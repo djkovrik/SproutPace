@@ -1,0 +1,16 @@
+{
+  "action":"assign",
+  "reconcileDrift":"Fresh record/verify succeeded, but independent PNG inspection found the Catalog ad after item four and Trays History ad after item five below the 851dp viewport, so label, clipping and navigation overlap are not visually inspectable; Catalog also has no explicit hidden/offline golden.",
+  "assignmentId":"approved-inline-ad-golden-visibility-correction",
+  "packageId":"approved-inline-ad-placement",
+  "owner":"vibe-visual-testing",
+  "acceptanceScenarioIds":["AC-100","AC-101"],
+  "qualityGateIds":[],
+  "allowedFiles":["shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt","shared/compose/src/commonTest/**","shared/compose/src/androidUnitTest/**"],
+  "inputScopeId":"approved-inline-ad-placement-v1",
+  "goal":"Add deterministic inspection previews/goldens that visibly include the exact Catalog and explicit History loaded-ad insertion points and a Catalog hidden/offline state, without changing production UI behavior.",
+  "contractInputs":["spec/screens/SCREEN-003.md","spec/screens/SCREEN-007.md","shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt","shared/compose/src/androidUnitTest/snapshots/**"],
+  "requiredReads":["C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"],
+  "requestedCommands":[":shared:compose:testAndroidHostTest",":shared:compose:cleanRecordPaparazzi",":shared:compose:verifyPaparazzi"],
+  "acceptanceCriteria":["A deterministic Catalog golden visibly shows the loaded localized Advertising label at the exact after-four insertion and permits clipping/overlap inspection.","A deterministic explicit History golden visibly shows the loaded localized Advertising label at the exact after-five insertion and permits bottom-navigation overlap inspection.","A deterministic Catalog hidden/offline golden proves no label, placeholder or reserved blank space.","No production UI or product behavior changes; root owns Gradle and final Lazyweb review."]
+}

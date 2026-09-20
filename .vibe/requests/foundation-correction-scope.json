@@ -1,0 +1,12 @@
+{
+  "action": "scope",
+  "scopeId": "foundation-correction-v1",
+  "patterns": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "spec/**"
+  ],
+  "dependencyRationale": "The three lint-failing foundation sources plus normative design/quality inputs fully define this behavior-preserving correction.",
+  "toolchainIdentity": "Kotlin 2.4.10; Detekt 2.0.0-alpha.6; Compose Multiplatform 1.12.0."
+}

@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.6321075999876484,
+  "events": [
+    {
+      "at": "2026-09-20T12:26:18.618422Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T12:26:20.952215Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-243c3dc3-9811-4ada-85ab-ab5bbff5010d.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T12:26:24.134290Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-243c3dc3-9811-4ada-85ab-ab5bbff5010d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T12:26:24.258324Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-243c3dc3-9811-4ada-85ab-ab5bbff5010d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T12:26:24.293822Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T12:26:24.967748Z",
+      "durationSeconds": 0.6321075999876484,
+      "receiptRef": ".vibe/receipts/RECEIPT-243c3dc3-9811-4ada-85ab-ab5bbff5010d.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-crash-reporting-runtime-contract-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-243c3dc3-9811-4ada-85ab-ab5bbff5010d.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-243c3dc3-9811-4ada-85ab-ab5bbff5010d.json",
+  "stage": "bound"
+}

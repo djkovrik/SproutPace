@@ -1,0 +1,108 @@
+{
+  "action": "handoff",
+  "assignmentId": "data-build-wiring",
+  "handoffId": "HANDOFF-data-build-wiring-20260920-r3",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-data-build-wiring-20260920.json",
+    ".vibe/handoffs/HANDOFF-data-build-wiring-20260920-r1.json",
+    ".vibe/handoffs/HANDOFF-data-build-wiring-20260920-r2.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "build.gradle.kts",
+      "symbol": "alias(libs.plugins.sqldelight).apply(false)",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "build.gradle.kts",
+      "symbol": "alias(libs.plugins.sqldelight).apply(false)",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "symbol": "sqldelight = \"2.4.0\"",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "symbol": "sqldelight = \"2.4.0\"",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:data\")",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:data\")",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:tasks",
+        ":shared:data:compileAndroidMain"
+      ],
+      "tasks": [
+        ":shared:data:tasks",
+        ":shared:data:compileAndroidMain"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-001",
+          "surfaces": ["repository-check"]
+        }
+      ]
+    },
+    {
+      "argv": [
+        "./gradlew",
+        ":shared:data:compileKotlinIosArm64"
+      ],
+      "tasks": [
+        ":shared:data:compileKotlinIosArm64"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-003",
+          "surfaces": ["ios-build"]
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Windows repository verification was not executed because this specialist assignment explicitly forbids running Gradle.",
+      "obligationIds": ["QG-001"],
+      "nextAction": "The orchestrator should run gradlew.bat :shared:data:tasks :shared:data:compileAndroidMain and bind the repository-check receipt."
+    },
+    {
+      "description": "The iOS build requires macOS and was not executed by this Windows specialist assignment.",
+      "obligationIds": ["QG-003"],
+      "nextAction": "On macOS, the orchestrator should run ./gradlew :shared:data:compileKotlinIosArm64 and bind the ios-build receipt."
+    }
+  ]
+}

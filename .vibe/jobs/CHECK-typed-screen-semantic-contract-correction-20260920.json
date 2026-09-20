@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.9618439999758266,
+  "events": [
+    {
+      "at": "2026-09-20T10:43:32.622831Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T10:43:34.262611Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-fedd644c-4c59-4938-9889-01fa3806cdb3.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T10:43:49.406189Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-fedd644c-4c59-4938-9889-01fa3806cdb3.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:43:50.311917Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-fedd644c-4c59-4938-9889-01fa3806cdb3.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:43:50.405289Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T10:43:51.423892Z",
+      "durationSeconds": 0.9618439999758266,
+      "receiptRef": ".vibe/receipts/RECEIPT-fedd644c-4c59-4938-9889-01fa3806cdb3.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-typed-screen-semantic-contract-correction-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-fedd644c-4c59-4938-9889-01fa3806cdb3.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-fedd644c-4c59-4938-9889-01fa3806cdb3.json",
+  "stage": "bound"
+}

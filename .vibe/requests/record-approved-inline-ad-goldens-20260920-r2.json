@@ -1,0 +1,3 @@
+{
+  "action":"check","jobId":"CHECK-record-approved-inline-ad-goldens-20260920-r2","runner":"gradle","kind":"targeted","inputScopeId":"approved-inline-ad-placement-v1","tasks":[":shared:compose:cleanRecordPaparazzi","--no-configuration-cache"],"coveredObligations":[{"obligationId":"AC-100","surfaces":["ui-golden"]},{"obligationId":"AC-101","surfaces":["ui-golden"]}],"timeoutSeconds":1800,"toolchainIdentity":"Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Paparazzi 2.0.0-alpha05"
+}

@@ -1,0 +1,15 @@
+{
+  "action": "check",
+  "jobId": "CHECK-reminder-settings-production-reachability-r2-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "reminder-delivery-v1",
+  "tasks": [":shared:component:testAndroidHostTest", ":shared:data:testAndroidHostTest", ":shared:compose:testAndroidHostTest", ":shared:compose:compileKotlinIosSimulatorArm64"],
+  "coveredObligations": [
+    {"obligationId": "AC-064", "surfaces": ["component-test"]},
+    {"obligationId": "AC-065", "surfaces": ["component-test", "platform-test"]},
+    {"obligationId": "AC-067", "surfaces": ["integration-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android host tests; Kotlin/Native iOS simulator compilation"
+}

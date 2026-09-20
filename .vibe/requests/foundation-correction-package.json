@@ -1,0 +1,15 @@
+{
+  "action": "package",
+  "packageId": "foundation-correction",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-004"],
+  "fileBoundaries": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "shared/domain/**"
+  ],
+  "integrationGoal": "The foundation sources pass strict Detekt while preserving the Android/iOS production root and preview behavior.",
+  "nextAction": "Apply the evidence-backed Detekt correction and issue a superseding handoff."
+}

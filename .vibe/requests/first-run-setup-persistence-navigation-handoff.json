@@ -1,0 +1,86 @@
+{
+  "action": "handoff",
+  "assignmentId": "first-run-setup-persistence-navigation",
+  "handoffId": "HANDOFF-first-run-setup-persistence-navigation-20260920",
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-72fe6283-cd8b-4781-87e2-1b583b8c225f.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "private suspend fun continueSetup",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId": "AC-010", "surface": "database-integration-test"},
+        {"obligationId": "AC-014", "surface": "database-integration-test"},
+        {"obligationId": "AC-050", "surface": "database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "symbol": "ScreenOutput.Completed",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-010", "surface": "component-test"},
+        {"obligationId": "AC-014", "surface": "component-test"},
+        {"obligationId": "AC-050", "surface": "component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "testName": "ac010Ac014Ac050_firstRunSetupIsAtomicIdempotentAndImmediatelyFeasible",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId": "AC-010", "surface": "database-integration-test"},
+        {"obligationId": "AC-014", "surface": "database-integration-test"},
+        {"obligationId": "AC-050", "surface": "database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "testName": "ac010Ac014Ac050_invalidFirstRunSetupNeverMutatesExistingData",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId": "AC-010", "surface": "database-integration-test"},
+        {"obligationId": "AC-014", "surface": "database-integration-test"},
+        {"obligationId": "AC-050", "surface": "database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "successfulContinueSetupMutatesBeforeReplacingOnboardingWithRestorablePlan",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-010", "surface": "component-test"},
+        {"obligationId": "AC-014", "surface": "component-test"},
+        {"obligationId": "AC-050", "surface": "component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:compileKotlinIosSimulatorArm64",
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:compileKotlinIosSimulatorArm64",
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        {"obligationId": "AC-010", "surfaces": ["component-test", "database-integration-test"]},
+        {"obligationId": "AC-014", "surfaces": ["component-test", "database-integration-test"]},
+        {"obligationId": "AC-050", "surfaces": ["component-test", "database-integration-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

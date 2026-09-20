@@ -1,0 +1,131 @@
+Calculating task graph as no cached configuration is available for tasks: detekt :shared:domain:testAndroidHostTest :shared:compose:compileAndroidMain :androidApp:assembleDebug koverXmlReport koverVerify
+
+> Configure project :shared:compose
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :androidApp:generateDebugAssets UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:preAndroidHostTestBuild UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:domain:androidJar UP-TO-DATE
+> Task :shared:domain:koverFindJar UP-TO-DATE
+> Task :androidApp:generateDebugResources
+> Task :androidApp:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :shared:domain:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles
+> Task :androidApp:javaPreCompileDebug
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :androidApp:extractDeepLinksDebug
+> Task :androidApp:mapDebugSourceSetPaths
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:compose:mapAndroidMainSourceSetPaths
+> Task :androidApp:createDebugCompatibleScreenManifests
+> Task :shared:compose:writeAndroidMainAarMetadata
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain
+> Task :shared:compose:generateComposeResClass
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain
+> Task :androidApp:writeDebugAppMetadata
+> Task :koverGenerateArtifact
+> Task :androidApp:mergeDebugJniLibFolders
+> Task :shared:compose:mergeAndroidMainJniLibFolders
+> Task :shared:compose:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:compose:copyAndroidMainJniLibsProjectOnly
+> Task :androidApp:validateSigningDebug
+> Task :shared:compose:processAndroidMainManifest
+> Task :shared:compose:convertXmlValueResourcesForCommonMain
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain
+> Task :androidApp:writeDebugSigningConfigVersions
+> Task :shared:compose:generateResourceAccessorsForCommonMain
+> Task :androidApp:packageDebugResources
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :shared:compose:packageAndroidMainResources
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:domain:compileAndroidHostTest UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:testAndroidHostTest UP-TO-DATE
+> Task :shared:domain:koverGenerateArtifactAndroid
+> Task :shared:domain:koverGenerateArtifact
+> Task :koverXmlReport
+> Task :shared:domain:koverXmlReport
+> Task :koverCachedVerify
+> Task :koverVerify
+> Task :shared:domain:koverCachedVerify
+> Task :shared:domain:koverVerify
+> Task :shared:compose:compileAndroidMainLibraryResources
+> Task :shared:compose:parseAndroidMainLocalResources
+> Task :shared:compose:generateAndroidMainRFile
+
+> Task :detekt
+Successfully generated markdown at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.md
+Successfully generated html at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.html
+Successfully generated sarif at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.sarif
+Successfully generated checkstyle at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.xml
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\App.kt:161:13 Function names should match the pattern: (?:[a-z][a-zA-Z0-9]*|ActiveScreen|AnalyticsDescription|AnalyticsRow|AndroidPrivacyRegionApi|App|AppTheme|BagCueBrandMark|BagCueIcon|CapabilityNotice|CatalogEditor|CatalogItemDescription|CatalogList|CatalogPreview|CatalogRow|CatalogScreen|ChecklistRow|CreateScreen|DeleteDialog|DeleteTemplateDialog|DiscardDialog|DuplicateDialog|EmptyState|ErrorSnackbar|ErrorState|HistoryCalendar|HistoryRow|HistoryScreen|IosAnalyticsController|IosInlineAdController|IosPrivacyRegionApi|ItemEditorDialog|ItemSelector|MainViewController|OneOffDialog|PositionEditorDialog|PositionRow|PrimaryNavigationBar|PrimaryNavigationBarItem|PrimaryNavigationRail|PrivacyControls|ProductShell|ReminderRow|ResultScreen|SaveToTemplatesDialog|SectionTitle|SessionScreen|SettingsScreen|SkippedDialog|TemplateActions|TemplateEditor|TemplateList|TemplateRow|TemplateScreen|ThemeChanged|TodayScreen) [FunctionNaming]
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\App.kt:167:13 Function names should match the pattern: (?:[a-z][a-zA-Z0-9]*|ActiveScreen|AnalyticsDescription|AnalyticsRow|AndroidPrivacyRegionApi|App|AppTheme|BagCueBrandMark|BagCueIcon|CapabilityNotice|CatalogEditor|CatalogItemDescription|CatalogList|CatalogPreview|CatalogRow|CatalogScreen|ChecklistRow|CreateScreen|DeleteDialog|DeleteTemplateDialog|DiscardDialog|DuplicateDialog|EmptyState|ErrorSnackbar|ErrorState|HistoryCalendar|HistoryRow|HistoryScreen|IosAnalyticsController|IosInlineAdController|IosPrivacyRegionApi|ItemEditorDialog|ItemSelector|MainViewController|OneOffDialog|PositionEditorDialog|PositionRow|PrimaryNavigationBar|PrimaryNavigationBarItem|PrimaryNavigationRail|PrivacyControls|ProductShell|ReminderRow|ResultScreen|SaveToTemplatesDialog|SectionTitle|SessionScreen|SettingsScreen|SkippedDialog|TemplateActions|TemplateEditor|TemplateList|TemplateRow|TemplateScreen|ThemeChanged|TodayScreen) [FunctionNaming]
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\App.kt:180:13 Function names should match the pattern: (?:[a-z][a-zA-Z0-9]*|ActiveScreen|AnalyticsDescription|AnalyticsRow|AndroidPrivacyRegionApi|App|AppTheme|BagCueBrandMark|BagCueIcon|CapabilityNotice|CatalogEditor|CatalogItemDescription|CatalogList|CatalogPreview|CatalogRow|CatalogScreen|ChecklistRow|CreateScreen|DeleteDialog|DeleteTemplateDialog|DiscardDialog|DuplicateDialog|EmptyState|ErrorSnackbar|ErrorState|HistoryCalendar|HistoryRow|HistoryScreen|IosAnalyticsController|IosInlineAdController|IosPrivacyRegionApi|ItemEditorDialog|ItemSelector|MainViewController|OneOffDialog|PositionEditorDialog|PositionRow|PrimaryNavigationBar|PrimaryNavigationBarItem|PrimaryNavigationRail|PrivacyControls|ProductShell|ReminderRow|ResultScreen|SaveToTemplatesDialog|SectionTitle|SessionScreen|SettingsScreen|SkippedDialog|TemplateActions|TemplateEditor|TemplateList|TemplateRow|TemplateScreen|ThemeChanged|TodayScreen) [FunctionNaming]
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\App.kt:103:69 This expression contains a magic number. Consider defining it to a well named constant. [MagicNumber]
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\theme\Theme.kt:8:1 androidx.compose.runtime.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\compose\src\iosMain\kotlin\main.kt:22:2 The file main.kt is not ending with a new line. [NewLineAtEndOfFile]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\catalog\SproutPaceCatalog.kt:45:1 Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\catalog\SproutPaceCatalog.kt:48:1 Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\catalog\SproutPaceCatalog.kt:49:1 Line detected, which is longer than the defined maximum line length in the code style. [MaxLineLength]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\catalog\SproutPaceCatalog.kt:3:1 com.sedsoftware.sproutpace.domain.model.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\contract\Managers.kt:40:14 The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled. [TooGenericExceptionCaught]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\contract\Managers.kt:3:1 com.sedsoftware.sproutpace.domain.model.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\engine\BatchLifecycleEngine.kt:3:1 com.sedsoftware.sproutpace.domain.model.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\engine\CapacityEngine.kt:3:1 com.sedsoftware.sproutpace.domain.model.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\engine\PlannerEngine.kt:3:1 com.sedsoftware.sproutpace.domain.model.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\engine\SchedulingEngine.kt:3:1 com.sedsoftware.sproutpace.domain.model.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\engine\SnapshotEngine.kt:3:1 com.sedsoftware.sproutpace.domain.model.* is a wildcard import. Replace it with fully qualified imports. [WildcardImport]
+e: D:\Sources\Android\SproutPace\shared\domain\src\commonMain\kotlin\com\sedsoftware\sproutpace\domain\model\Identity.kt:22:32 This expression contains a magic number. Consider defining it to a well named constant. [MagicNumber]
+
+
+> Task :detekt FAILED
+> Task :shared:compose:mergeAndroidMainAssets
+> Task :androidApp:desugarDebugFileDependencies
+> Task :androidApp:processDebugNavigationResources
+> Task :androidApp:checkDebugDuplicateClasses
+> Task :androidApp:checkDebugAarMetadata
+> Task :androidApp:mergeDebugNativeLibs
+> Task :androidApp:processDebugMainManifest
+> Task :androidApp:mergeDebugResources
+> Task :shared:compose:kspAndroidMain
+> Task :shared:compose:copyRoomSchemas NO-SOURCE
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':detekt'.
+> Analysis failed with 18 issues.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 47s
+57 actionable tasks: 49 executed, 8 up-to-date
+Configuration cache entry stored.

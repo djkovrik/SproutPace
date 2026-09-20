@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "at": "2026-09-20T16:00:12.281120Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T16:00:14.407324Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-0bf44a68-377b-4d39-84fd-88a383040ea2.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T16:00:55.264364Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-0bf44a68-377b-4d39-84fd-88a383040ea2.json",
+      "stage": "receipt-written"
+    }
+  ],
+  "jobId": "CHECK-record-final-product-goldens-r2-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-0bf44a68-377b-4d39-84fd-88a383040ea2.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-0bf44a68-377b-4d39-84fd-88a383040ea2.json",
+  "stage": "receipt-written"
+}

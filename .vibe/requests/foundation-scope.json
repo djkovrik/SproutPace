@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "foundation-v1",
+  "patterns": ["**"],
+  "fallbackReason": "Foundation build logic, platform entry points, generated resources, quality tooling, and CI are repository-wide transitive inputs until the architect publishes the inspected module graph.",
+  "dependencyRationale": "All current modules and normative inputs influence root compilation, native linkage, quality-task registration, and screenshot-host compatibility.",
+  "toolchainIdentity": "Gradle wrapper 9.2.1; JDK 17 contract; Kotlin 2.4.10; AGP 9.1.1; Compose Multiplatform 1.12.0; exact added quality-tool versions must be verified and pinned by the architect."
+}

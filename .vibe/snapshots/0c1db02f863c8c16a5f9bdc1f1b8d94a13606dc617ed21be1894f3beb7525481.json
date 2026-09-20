@@ -1,0 +1,63 @@
+{
+  "algorithm": "sha256",
+  "digest": "ad57cc11f101dfdcfb96d02989983916d2b99f478e7881d37069af9f5b52f0ca",
+  "files": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "sha256": "e3f838009406796a2ec75cf6f86839f6026df55501c6c463bc03160f427a336e"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+      "sha256": "fcf26bc015b5dc073a1543c78997fa20f8e2189bbe8a93e3e4e189dc179ba535"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "sha256": "ceff893f75b427c3dcaa199859c0e5b5503726e8b61dde9771f45b27eec3dbbf"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenStoreProvider.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "sha256": "a15623350e067412d976fd79e25fd5ef6b90b1a8b0b6b2184cdc41e03bf804cb"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "f17b512d482765c1f3c17c1db6028246b1812e849d2a82d23e138e7667715ce2"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "sha256": "bf18e8420e20502e2a93fd4a1d3ed3cc4b34a7e5bf6048f9d9514033719d6714"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "sha256": "26381e2ca55483d5febcdef04148d3bb7225179819297e36b6a426d9b0be1723"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "sha256": "6c49b177d86234b5f4cf425f4e5c711c97745b5f482e7a93ec47d99bfc72bc56"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": "87386b46f68d6dfeed018e62d64b489c8d268544af65cec4289b5a0b286b6273"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "sha256": "63b2c16d2537c5a7c65bc3de3b7a9c72368283358ca952ce2bc78fd799f9e73d"
+    }
+  ],
+  "patterns": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenStoreProvider.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ]
+}

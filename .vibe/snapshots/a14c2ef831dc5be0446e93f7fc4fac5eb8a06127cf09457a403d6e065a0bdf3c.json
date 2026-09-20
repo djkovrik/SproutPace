@@ -1,0 +1,28 @@
+{
+  "algorithm": "sha256",
+  "digest": "f259c8ebc46f78b69010ae19356b86a6cb8dc0150fa52ec65c7539d113e7977f",
+  "files": [
+    {
+      "path": "shared/data/README.md",
+      "sha256": "a43adfdb9547193da859da0953e7da6a52c7b75c0e529f14e6650e6112146681"
+    },
+    {
+      "path": "shared/data/build.gradle.kts",
+      "sha256": "39af873f707b15493aacaa4d2a986dca8e591fce33e0447b19c07b08e5f308a1"
+    },
+    {
+      "path": "shared/data/scripts/validate-data.ps1",
+      "sha256": "34db433060bdf0edb78a5534a55985843004df2e61a7d32341e279a09e2fdcfe"
+    },
+    {
+      "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+      "sha256": "81f536e559d9c57090db541167ce4246a650a28156cbe2759c1c17a658097404"
+    }
+  ],
+  "patterns": [
+    "shared/data/README.md",
+    "shared/data/build.gradle.kts",
+    "shared/data/scripts/validate-data.ps1",
+    "shared/data/src/commonMain/sqldelight/**"
+  ]
+}

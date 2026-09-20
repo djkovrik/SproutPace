@@ -1,0 +1,143 @@
+{
+  "action": "reconcile-evidence",
+  "oldEvidenceIds": ["EV-0000214f069df8aa62974e45aaa5ac1916ce73cffeeb8bdf82ebb002c9693fc4"],
+  "obligationIds": ["AC-002", "AC-113", "QG-001", "QG-004", "QG-006"],
+  "reason": "Attach current root-owned closure evidence to obligations that predated the final production integration.",
+  "inspectionNote": "Each anchor was inspected in the current workspace and its verification surface is covered by the current green final-local-gates receipt.",
+  "reconcileDrift": "Inspected closure-only scripts, request artifacts, and archived stale handoffs; no product behavior changed.",
+  "newEvidence": [
+    {
+      "kind": "productionEvidence",
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "symbol": "class AppRootComponentDefault",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-002", "surface": "component-test"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "successfulContinueSetupMutatesBeforeReplacingOnboardingWithRestorablePlan",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-002", "surface": "component-test"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "testName": "rootDependenciesKeepReleaseAndDebugFactoriesDistinct",
+      "surface": "integration-test",
+      "coverage": [{"obligationId": "AC-002", "surface": "integration-test"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "testName": "FirstRunPreviews",
+      "surface": "ui-golden",
+      "coverage": [{"obligationId": "AC-002", "surface": "ui-golden"}]
+    },
+    {
+      "kind": "productionEvidence",
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/CrashReporting.kt",
+      "symbol": "class CrashReportingCoordinator",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-113", "surface": "platform-test"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt",
+      "testName": "configuredReleaseAppliesDefaultAndStoredPreferenceSynchronously",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-113", "surface": "platform-test"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "build.gradle.kts",
+      "testName": "koverVerify",
+      "surface": "repository-check",
+      "coverage": [{"obligationId": "AC-113", "surface": "repository-check"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "docs/configuration/FIREBASE-CRASHLYTICS.md",
+      "testName": "They intentionally expose no user ID",
+      "surface": "privacy-review",
+      "coverage": [{"obligationId": "AC-113", "surface": "privacy-review"}]
+    },
+    {
+      "kind": "productionEvidence",
+      "path": "build.gradle.kts",
+      "symbol": "detekt",
+      "surface": "repository-check",
+      "coverage": [{"obligationId": "QG-001", "surface": "repository-check"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "testName": "detekt",
+      "surface": "static-analysis",
+      "coverage": [{"obligationId": "QG-001", "surface": "static-analysis"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "testName": "qg011_catalogIdentityMetadataAndLocalizationKeysAreComplete",
+      "surface": "unit-test",
+      "coverage": [{"obligationId": "QG-001", "surface": "unit-test"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "testName": "rootDependenciesKeepReleaseAndDebugFactoriesDistinct",
+      "surface": "integration-test",
+      "coverage": [{"obligationId": "QG-001", "surface": "integration-test"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "build.gradle.kts",
+      "testName": "koverVerify",
+      "surface": "coverage-check",
+      "coverage": [{"obligationId": "QG-001", "surface": "coverage-check"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "localeFontScaleAndAdaptiveStressVariantsAreExecutable",
+      "surface": "localization-contract-test",
+      "coverage": [{"obligationId": "QG-001", "surface": "localization-contract-test"}]
+    },
+    {
+      "kind": "productionEvidence",
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "symbol": ":androidApp:bundleRelease",
+      "surface": "release-check",
+      "coverage": [{"obligationId": "QG-004", "surface": "release-check"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "testName": ":androidApp:bundleRelease",
+      "surface": "release-check",
+      "coverage": [{"obligationId": "QG-004", "surface": "release-check"}]
+    },
+    {
+      "kind": "productionEvidence",
+      "path": "docs/assets/asset-manifest.json",
+      "symbol": "ASSET-001",
+      "surface": "asset-check",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-check"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "docs/assets/asset-manifest.json",
+      "testName": "ASSET-001",
+      "surface": "asset-check",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-check"}]
+    },
+    {
+      "kind": "testEvidence",
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "approvedCustomAssetInspectionPreviewIsDiscoverableAndTallEnough",
+      "surface": "asset-visual",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-visual"}]
+    }
+  ]
+}

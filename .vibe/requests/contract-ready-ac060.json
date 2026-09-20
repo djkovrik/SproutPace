@@ -1,0 +1,18 @@
+{
+  "action": "contract-ready",
+  "obligationId": "AC-060",
+  "behavioralSurfaces": ["store-test", "component-test"],
+  "contractEvidence": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "symbol": "ScreenId.TODAY",
+      "surface": "component-test"
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "symbol": "ac060_todayPublishesNextOverdueAndTodayContext",
+      "surface": "store-test"
+    }
+  ],
+  "inspectionNote": "The existing Today read contract and current component/store suite provide the two non-golden behavioral dependency surfaces required to start AC-061/063 correction. The later action-targeting package will correct command execution without treating AC-060 as fully closed."
+}

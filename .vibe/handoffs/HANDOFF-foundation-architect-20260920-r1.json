@@ -1,0 +1,535 @@
+{
+  "acceptanceScenarioIds": [],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/2465835a89f91028aa176065bf21d508d66843fedf6e4dc66c3443937b9c9b55.json",
+    "sha256": "b4eca5985568382c9bfe0b6b36ce58e4634d9b864f30fee2e54a2e259ab49d5a"
+  },
+  "assignmentId": "foundation-architect-correction-1",
+  "blockers": [
+    {
+      "description": "This correction replaces the nonexistent :shared:compose:compileKotlinAndroid request imported from HANDOFF-foundation-architect-20260920 with the discovered :shared:compose:compileAndroidMain task. The original handoff is already imported under a different assignment, so Protocol 2.0 forbids listing it in supersedes.",
+      "nextAction": "Ingest this correction handoff, reconcile the original failed pending check, and run the corrected requested command.",
+      "obligationIds": [
+        "QG-004"
+      ]
+    },
+    {
+      "description": "The Kover filter and verification rule are wired, but its minimum remains the explicit foundation sentinel 0 until a successful filtered XML report is measured from the new domain/Decompose tests.",
+      "nextAction": "Run the domain/Kover tasks, inspect the filtered denominator and measured line rate, then commit a fixed baseline-derived sproutpace.kover.minimum before treating coverage as a release gate.",
+      "obligationIds": [
+        "QG-004"
+      ]
+    },
+    {
+      "description": "Paparazzi snapshots were not recorded on Windows; no PNG baseline or human approval is claimed.",
+      "nextAction": "Run the smoke test and recordPaparazzi on Linux, inspect the light/dark/RU-200% outputs, commit approved snapshots, then run verifyPaparazzi.",
+      "obligationIds": [
+        "QG-004"
+      ]
+    },
+    {
+      "description": "The iOS framework/app and macOS CI contract is implemented but has not been executed on a Mac.",
+      "nextAction": "Run the Kotlin/Native and xcodebuild commands from the original foundation contract on macOS or pinned CI and bind the resulting receipts.",
+      "obligationIds": [
+        "QG-004"
+      ]
+    }
+  ],
+  "changedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "completedAt": "2026-09-20T06:52:59.743246Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-foundation-architect-20260920-r1",
+  "inputFingerprint": {
+    "appSpec": {
+      "algorithm": "sha256",
+      "digest": "bb5cfb5e652c875f39f637ed7dfc70c428ff09dfe1da703ac67e030b6ed00212",
+      "files": [
+        {
+          "path": "app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ]
+    },
+    "digest": "0ad58ff85a09dc5482ac2635dacbced37ef24e143364ed07a27be9ee64c8fb88",
+    "inputs": {
+      "algorithm": "sha256",
+      "digest": "22ac549e3dcea938c8b84cc82d78625c937f68d7603e0e6fc5aff09000b2b96c",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "0465a5664d122b3327993286cc537442ae4cff112217ef490abd2ffe241eb08b"
+        },
+        {
+          "path": "androidApp/build.gradle.kts",
+          "sha256": "de4266c343b2ece01a0ce5fbfbb21833ddaa5cafa58af6a7694d577c32f89f07"
+        },
+        {
+          "path": "build.gradle.kts",
+          "sha256": "4ea8d8a516007db3d42ecebff3f838a8d1a830f34affe647b478586d40b2bff8"
+        },
+        {
+          "path": "gradle.properties",
+          "sha256": "dbfde9f711d844a893e1373fe13648fc0f0f361dcb595d02bade50ffca30e8bd"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "sha256": "5ed31558d7f3215c25446b3d41bef3bd10b4efb523182332cab3f7eadba5d606"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "sha256": "423cb469ccc0ecc31f0e4e1c309976198ccb734cdcbb7029d4bda0f18f57e8d9"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "sha256": "c89af773425cae016d64791247cb548f0d1209225917209ff5728df4298ccd43"
+        },
+        {
+          "path": "gradlew",
+          "sha256": "7d514e3330fe299d9eee52acbfec77115704d76b73cabac6de915695153129a4"
+        },
+        {
+          "path": "gradlew.bat",
+          "sha256": "9ca26d733ada3a45f27b2151288f54e75c9f95b287d1f82ef942ec5cc2d4f006"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "sha256": "a2215323e073769f089af1fb2da8b8432293a7d9cbcf16b45a6adc8d30bbf7b0"
+        },
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "sha256": "838479f8cd857bdd73320c3cfe726b2ad86d0372960746e4b4ed6d3ee32fd31e"
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "f5bbb96a12258707892f4f20630652081d7ddc3384e68582d3f5818078c1b121"
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+          "sha256": "10bc09b371f135412f832bc4e527f3ca7bea5d07db6bea04dd066da28c03496e"
+        },
+        {
+          "path": "shared/compose/src/iosMain/kotlin/main.kt",
+          "sha256": "ae488309367dbc585a54baa104113ee5632ddb874270b0cc11765c11ac195431"
+        },
+        {
+          "path": "shared/domain/build.gradle.kts",
+          "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+        },
+        {
+          "path": "spec/app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "spec/data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "spec/design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "spec/domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "spec/flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "spec/flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "spec/flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "spec/flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "spec/flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "spec/flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "spec/flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "spec/flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "spec/flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "spec/flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "spec/flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "spec/flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "spec/product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "spec/quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "spec/screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "spec/screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "spec/screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "spec/screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "spec/screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "spec/screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "spec/screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "spec/screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "spec/screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "spec/screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "spec/screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "spec/screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "spec/screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "spec/screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "spec/screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "spec/screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ],
+      "patterns": [
+        "**/*.gradle",
+        "**/*.gradle.kts",
+        "**/*.properties",
+        "**/.gitignore",
+        "**/libs.versions.toml",
+        "*.gradle",
+        "*.gradle.kts",
+        "*.properties",
+        ".gitignore",
+        "build-logic/**",
+        "buildSrc/**",
+        "gradle/**",
+        "gradlew",
+        "gradlew.bat",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+        "shared/compose/src/iosMain/kotlin/main.kt",
+        "spec/**"
+      ]
+    },
+    "instructions": [],
+    "scopeDigest": "116d40bd2a739a54e31132f0684ff74dd767039e212d8e29ba8910413ea6bb9b"
+  },
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "python",
+        "-c",
+        "assert the reported preview naming, animation duration, wildcard import, and EOF-newline source regressions are absent"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+        "shared/compose/src/iosMain/kotlin/main.kt"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-project-architect",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-004",
+          "surface": "release-check"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "surface": "release-check",
+      "symbol": "ROTATION_DURATION_MILLIS"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-004",
+          "surface": "release-check"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+      "surface": "release-check",
+      "symbol": "import androidx.compose.runtime.CompositionLocalProvider"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-004",
+          "surface": "release-check"
+        }
+      ],
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "surface": "release-check",
+      "symbol": "fun MainViewController"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-004"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        "detekt",
+        ":shared:compose:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-004",
+          "surfaces": [
+            "release-check"
+          ]
+        }
+      ],
+      "tasks": [
+        "detekt",
+        ":shared:compose:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "d816746e759f874cac9e23bb4464049cdcca1483d37147cb8fc760042897ed70",
+    "files": [
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "sha256": "f5bbb96a12258707892f4f20630652081d7ddc3384e68582d3f5818078c1b121"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+        "sha256": "10bc09b371f135412f832bc4e527f3ca7bea5d07db6bea04dd066da28c03496e"
+      },
+      {
+        "path": "shared/compose/src/iosMain/kotlin/main.kt",
+        "sha256": "ae488309367dbc585a54baa104113ee5632ddb874270b0cc11765c11ac195431"
+      }
+    ],
+    "patterns": [
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+      "shared/compose/src/iosMain/kotlin/main.kt"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T06:49:13.351590Z",
+  "supersedes": [],
+  "testEvidence": []
+}

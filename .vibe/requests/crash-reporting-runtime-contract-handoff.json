@@ -1,0 +1,81 @@
+{
+  "action": "handoff",
+  "assignmentId": "crash-reporting-runtime-contract",
+  "handoffId": "HANDOFF-crash-reporting-runtime-contract-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/CrashReporting.kt",
+      "symbol": "class CrashReportingCoordinator",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId":"AC-110","surface":"platform-test"},
+        {"obligationId":"AC-111","surface":"platform-test"},
+        {"obligationId":"AC-112","surface":"platform-test"}
+      ]
+    },
+    {
+      "path": "shared/platform/src/iosMain/kotlin/com/sedsoftware/sproutpace/platform/IosCrashReportingDriver.kt",
+      "symbol": "class IosCrashReportingDriver",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId":"AC-110","surface":"platform-test"},
+        {"obligationId":"AC-111","surface":"platform-test"},
+        {"obligationId":"AC-112","surface":"platform-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt",
+      "testName": "configuredReleaseAppliesDefaultAndStoredPreferenceSynchronously",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId":"AC-110","surface":"platform-test"},
+        {"obligationId":"AC-111","surface":"platform-test"}
+      ]
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt",
+      "testName": "retainedObserverCanApplyChangedValueWithoutRewritingPreference",
+      "surface": "platform-test",
+      "coverage": [{"obligationId":"AC-112","surface":"platform-test"}]
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt",
+      "testName": "nonReleaseAlwaysDisablesWhilePreservingUserChoice",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId":"AC-110","surface":"platform-test"},
+        {"obligationId":"AC-112","surface":"platform-test"}
+      ]
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt",
+      "testName": "unavailableOrFailedDriverNeverClaimsCollectionIsActive",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId":"AC-110","surface":"platform-test"},
+        {"obligationId":"AC-112","surface":"platform-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:platform:testAndroidHostTest", ":shared:platform:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:platform:testAndroidHostTest", ":shared:platform:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [
+        {"obligationId":"AC-110","surfaces":["platform-test"]},
+        {"obligationId":"AC-111","surfaces":["platform-test"]},
+        {"obligationId":"AC-112","surfaces":["platform-test"]}
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Production graph observation, effective Settings UI and native Swift application are intentionally owned by the follow-up integration assignment after shared reminder/action files return.",
+      "obligationIds": ["AC-110", "AC-111", "AC-112"],
+      "nextAction": "Register the production crash integration assignment and verify settings-integration-test plus component-test surfaces."
+    }
+  ]
+}

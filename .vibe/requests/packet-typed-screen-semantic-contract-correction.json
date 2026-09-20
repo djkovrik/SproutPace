@@ -1,0 +1,46 @@
+{
+  "acceptanceCriteria": [
+    "recipeId, cultureId, trayId, zoneId, batchId and all enum-like fields use SINGLE_CHOICE or MULTI_CHOICE as appropriate; dynamic options can be attached without violating ScreenField invariants.",
+    "Zone types use exact stable IDs natural_light, grow_light and dark; theme options system, light and dark remain distinct; all other enum IDs exactly match ProductionScreenDataManager parsing.",
+    "Every registry field, option and action emits a specific stable TextKey describing its actual concept; no unknown field/action silently falls back to field_recipe/action_edit and no distinct theme option aliases to system.",
+    "Tests enumerate all registry keys, assert selector kinds and stable option IDs, and prove representative create/edit command preparation still matches manager operations.",
+    "No data, Compose resource, UI, platform, build, ledger or external service changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt"
+  ],
+  "assignmentId": "typed-screen-semantic-contract-correction",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/screens",
+    "spec/domain.md",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Make the typed screen registry semantically exact for model-driven UI: selectors must use choice kinds with stable domain option IDs, every field/option/action must emit a specific production TextKey, and registry preparation must stay compatible with every ProductionScreenDataManager operation.",
+  "obligationIds": [
+    "AC-010",
+    "AC-014",
+    "AC-020",
+    "AC-030",
+    "AC-040",
+    "AC-050",
+    "AC-080"
+  ],
+  "requestedCommands": [
+    ":shared:component:testAndroidHostTest",
+    ":shared:component:allTests",
+    ":shared:component:compileAndroidMain",
+    ":shared:component:compileKotlinIosSimulatorArm64",
+    ":shared:data:testAndroidHostTest"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

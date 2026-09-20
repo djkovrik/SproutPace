@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256",
+  "digest": "25caa9e1dc212a786cd17a25d22767607bcb7a49462165896a2857b59f8e9d6d",
+  "files": [
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "sha256": "ddaf2727c8605f30d1f916811de88631fdc6b39c10c597a9bc47ed6ff2d4d3e6"
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "sha256": "d18ddf8496c554dbadc2394fa12e7f5bf3bcbed9d6e6ac2854544e74c4c4f9d8"
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "sha256": "49dc2e0c2b02e660a591c4e7041521e41263f7470c303ab68856b2118e8d8e99"
+    }
+  ],
+  "patterns": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "iosApp/iosApp/iosApp.swift"
+  ]
+}

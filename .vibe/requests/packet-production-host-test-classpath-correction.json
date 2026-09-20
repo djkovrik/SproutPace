@@ -1,0 +1,32 @@
+{
+  "acceptanceCriteria": [
+    "PreviewSmokeTest uses only preview-safe App/state entrypoints and never constructs production storage or a removed productionSproutPaceRoot.",
+    "androidApp has a direct, pinned project dependency sufficient to compile AppRootComponent at the App(graph.root) call site without broadening public APIs unnecessarily.",
+    "No production behavior, product scope, root/data/platform source, ledger or external configuration changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "androidApp/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt"
+  ],
+  "assignmentId": "production-host-test-classpath-correction",
+  "contractInputs": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Remove the obsolete production-root test reference and expose the root API correctly to androidApp so Compose host tests and the real debug application assemble against the retained ProductionAppGraph.",
+  "obligationIds": [
+    "AC-095"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":androidApp:assembleDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/manual-di-and-entry-points.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

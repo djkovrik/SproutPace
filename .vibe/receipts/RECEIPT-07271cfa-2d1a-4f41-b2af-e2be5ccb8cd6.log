@@ -1,0 +1,318 @@
+Calculating task graph as no cached configuration is available for tasks: :androidApp:assembleDebug :androidApp:assembleRelease :androidApp:bundleRelease
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :shared:root:androidPreBuild UP-TO-DATE
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:monetization:androidPreBuild UP-TO-DATE
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:root:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:monetization:preAndroidMainBuild UP-TO-DATE
+> Task :androidApp:generateDebugResources UP-TO-DATE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:domain:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:component:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :androidApp:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :shared:compose:generateComposeResClass UP-TO-DATE
+> Task :androidApp:generateDebugBuildConfig UP-TO-DATE
+> Task :androidApp:packageDebugResources UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :androidApp:generateDebugAssets UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:compose:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:platform:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:monetization:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:convertXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:monetization:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :androidApp:javaPreCompileDebug UP-TO-DATE
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :androidApp:desugarDebugFileDependencies UP-TO-DATE
+> Task :shared:component:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:monetization:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:domain:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:data:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:platform:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:monetization:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :androidApp:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :shared:root:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :androidApp:extractDeepLinksDebug UP-TO-DATE
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :androidApp:mapDebugSourceSetPaths UP-TO-DATE
+> Task :shared:data:processAndroidMainManifest UP-TO-DATE
+> Task :shared:component:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:compose:processAndroidMainManifest UP-TO-DATE
+> Task :shared:monetization:processAndroidMainManifest UP-TO-DATE
+> Task :shared:domain:processAndroidMainManifest UP-TO-DATE
+> Task :shared:root:processAndroidMainManifest UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:platform:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:platform:processAndroidMainManifest UP-TO-DATE
+> Task :androidApp:mergeDebugJniLibFolders UP-TO-DATE
+> Task :shared:component:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:platform:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain UP-TO-DATE
+> Task :shared:domain:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:data:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:component:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:compose:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForCommonMain UP-TO-DATE
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :shared:domain:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:component:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:data:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :androidApp:validateSigningDebug UP-TO-DATE
+> Task :shared:compose:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:domain:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain UP-TO-DATE
+> Task :shared:data:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :androidApp:preReleaseBuild UP-TO-DATE
+> Task :androidApp:writeDebugAppMetadata UP-TO-DATE
+> Task :androidApp:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :shared:root:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:monetization:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:compose:packageAndroidMainResources UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainAssets UP-TO-DATE
+> Task :shared:monetization:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:root:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:compose:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:monetization:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:root:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:compose:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:platform:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:compose:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :androidApp:mergeReleaseJniLibFolders
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:monetization:compileAndroidMain UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :androidApp:generateReleaseBuildConfig
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :androidApp:javaPreCompileRelease FROM-CACHE
+> Task :androidApp:generateReleaseResources FROM-CACHE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:monetization:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:monetization:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:component:bundleLibRuntimeToDirAndroidMain
+> Task :shared:root:compileAndroidMain
+> Task :shared:root:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:root:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:root:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:domain:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:platform:compileAndroidMain
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :androidApp:mergeDebugAssets UP-TO-DATE
+> Task :androidApp:compressDebugAssets UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :androidApp:mergeDebugResources UP-TO-DATE
+> Task :shared:platform:processAndroidMainJavaRes UP-TO-DATE
+> Task :androidApp:checkDebugAarMetadata UP-TO-DATE
+> Task :androidApp:processDebugNavigationResources UP-TO-DATE
+> Task :shared:platform:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :androidApp:compileDebugNavigationResources UP-TO-DATE
+> Task :androidApp:parseDebugLocalResources UP-TO-DATE
+> Task :androidApp:processReleaseNavigationResources FROM-CACHE
+> Task :androidApp:generateDebugRFile UP-TO-DATE
+> Task :shared:data:bundleLibRuntimeToDirAndroidMain
+> Task :androidApp:checkDebugDuplicateClasses UP-TO-DATE
+> Task :androidApp:checkReleaseAarMetadata
+> Task :androidApp:checkReleaseDuplicateClasses
+> Task :androidApp:mergeDebugNativeLibs UP-TO-DATE
+> Task :androidApp:stripDebugDebugSymbols UP-TO-DATE
+> Task :androidApp:mapReleaseSourceSetPaths
+> Task :androidApp:compileReleaseNavigationResources FROM-CACHE
+> Task :androidApp:mergeReleaseNativeLibs
+> Task :androidApp:packageReleaseResources
+> Task :androidApp:parseReleaseLocalResources FROM-CACHE
+> Task :androidApp:generateReleaseRFile FROM-CACHE
+> Task :androidApp:createReleaseCompatibleScreenManifests
+> Task :androidApp:extractDeepLinksRelease FROM-CACHE
+> Task :androidApp:processDebugMainManifest UP-TO-DATE
+> Task :androidApp:processDebugManifest UP-TO-DATE
+> Task :androidApp:processDebugManifestForPackage UP-TO-DATE
+> Task :androidApp:processReleaseMainManifest
+> Task :androidApp:processReleaseManifest
+> Task :androidApp:desugarReleaseFileDependencies
+> Task :androidApp:mergeReleaseStartupProfile
+> Task :shared:compose:prepareAndroidMainArtProfile
+> Task :shared:component:prepareAndroidMainArtProfile
+> Task :shared:data:prepareAndroidMainArtProfile
+> Task :shared:monetization:prepareAndroidMainArtProfile
+> Task :shared:domain:prepareAndroidMainArtProfile
+> Task :shared:platform:prepareAndroidMainArtProfile
+> Task :shared:root:prepareAndroidMainArtProfile
+> Task :androidApp:mergeExtDexDebug UP-TO-DATE
+
+> Task :androidApp:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so. Run with --info option to learn more.
+
+> Task :androidApp:processReleaseManifestForPackage
+> Task :shared:compose:kspAndroidMain
+> Task :shared:compose:copyRoomSchemas NO-SOURCE
+> Task :androidApp:extractReleaseNativeSymbolTables
+> Task :androidApp:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :androidApp:generateReleaseAssets UP-TO-DATE
+> Task :shared:data:prepareLintJarForPublish
+> Task :shared:compose:prepareLintJarForPublish
+> Task :shared:domain:prepareLintJarForPublish
+> Task :shared:component:prepareLintJarForPublish
+> Task :shared:domain:createFullJarAndroidMain
+> Task :shared:component:createFullJarAndroidMain
+> Task :shared:data:createFullJarAndroidMain
+> Task :shared:platform:prepareLintJarForPublish
+> Task :shared:platform:createFullJarAndroidMain
+> Task :shared:root:createFullJarAndroidMain
+> Task :shared:monetization:createFullJarAndroidMain
+> Task :androidApp:processDebugResources UP-TO-DATE
+> Task :androidApp:extractProguardFiles
+> Task :androidApp:extractReleaseVersionControlInfo
+> Task :shared:monetization:prepareLintJarForPublish
+> Task :shared:compose:extractAndroidMainAnnotations
+> Task :shared:compose:checkAndroidMainAarMetadata
+> Task :shared:platform:mergeAndroidMainJavaResource
+> Task :shared:monetization:mergeAndroidMainJavaResource
+> Task :shared:root:extractAndroidMainAnnotations
+> Task :shared:root:prepareLintJarForPublish
+> Task :shared:root:mergeAndroidMainJavaResource
+> Task :androidApp:mergeReleaseAssets
+> Task :shared:platform:extractAndroidMainAnnotations
+> Task :shared:data:extractAndroidMainAnnotations
+> Task :shared:data:mergeAndroidMainJavaResource
+> Task :shared:component:extractAndroidMainAnnotations
+> Task :shared:monetization:extractAndroidMainAnnotations
+> Task :shared:root:syncAndroidMainLibJars
+> Task :shared:platform:syncAndroidMainLibJars
+> Task :shared:monetization:syncAndroidMainLibJars
+> Task :shared:domain:extractAndroidMainAnnotations
+> Task :shared:data:syncAndroidMainLibJars
+> Task :androidApp:writeReleaseAppMetadata
+> Task :androidApp:writeReleaseSigningConfigVersions
+> Task :androidApp:processApplicationManifestReleaseForBundle
+> Task :androidApp:collectReleaseDependencies
+> Task :shared:component:mergeAndroidMainJavaResource
+> Task :shared:component:syncAndroidMainLibJars
+> Task :androidApp:configureReleaseDependencies
+> Task :androidApp:sdkReleaseDependencyData
+> Task :shared:domain:checkAndroidMainAarMetadata
+> Task :shared:domain:mergeAndroidMainJavaResource
+> Task :shared:domain:syncAndroidMainLibJars
+> Task :shared:domain:bundleAndroidMainLocalLintAar
+> Task :androidApp:parseReleaseIntegrityConfig
+> Task :shared:component:checkAndroidMainAarMetadata
+> Task :shared:data:checkAndroidMainAarMetadata
+> Task :shared:root:checkAndroidMainAarMetadata
+> Task :shared:component:bundleAndroidMainLocalLintAar
+> Task :shared:data:bundleAndroidMainLocalLintAar
+> Task :shared:monetization:checkAndroidMainAarMetadata
+> Task :shared:monetization:bundleAndroidMainLocalLintAar
+> Task :shared:root:bundleAndroidMainLocalLintAar
+
+> Task :shared:compose:compileAndroidMain
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:67:13 'lateinit' is unnecessary: definitely initialized in constructors.
+
+> Task :androidApp:compressReleaseAssets
+> Task :androidApp:mergeReleaseResources
+> Task :shared:compose:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:compose:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:compose:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :androidApp:compileDebugKotlin
+> Task :androidApp:compileDebugJavaWithJavac UP-TO-DATE
+> Task :androidApp:dexBuilderDebug UP-TO-DATE
+> Task :androidApp:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :androidApp:processDebugJavaRes UP-TO-DATE
+> Task :androidApp:mergeProjectDexDebug UP-TO-DATE
+> Task :androidApp:mergeDebugJavaResource UP-TO-DATE
+> Task :shared:compose:createFullJarAndroidMain
+> Task :androidApp:compileReleaseKotlin
+> Task :androidApp:mergeExtDexRelease
+> Task :androidApp:mergeReleaseArtProfile
+> Task :androidApp:processReleaseJavaRes
+> Task :androidApp:compileReleaseJavaWithJavac
+> Task :androidApp:mergeLibDexDebug
+> Task :androidApp:packageDebug
+> Task :androidApp:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :androidApp:assembleDebug
+> Task :shared:compose:mergeAndroidMainJavaResource
+> Task :shared:compose:syncAndroidMainLibJars
+> Task :shared:compose:bundleAndroidMainLocalLintAar
+> Task :androidApp:processReleaseResources
+> Task :shared:platform:checkAndroidMainAarMetadata
+> Task :shared:platform:bundleAndroidMainLocalLintAar
+> Task :androidApp:bundleReleaseResources
+> Task :androidApp:optimizeReleaseResources
+> Task :androidApp:dexBuilderRelease
+> Task :androidApp:mergeReleaseJavaResource
+> Task :androidApp:generateReleaseLintVitalReportModel
+> Task :androidApp:mergeReleaseGlobalSynthetics
+> Task :androidApp:mergeDexRelease
+> Task :androidApp:buildReleasePreBundle
+> Task :androidApp:compileReleaseArtProfile
+> Task :androidApp:lintVitalAnalyzeRelease
+> Task :androidApp:lintVitalReportRelease
+> Task :androidApp:lintVitalRelease
+> Task :androidApp:packageRelease
+> Task :androidApp:assembleRelease
+> Task :androidApp:createReleaseApkListingFileRedirect
+> Task :androidApp:packageReleaseBundle
+> Task :androidApp:signReleaseBundle
+> Task :androidApp:bundleRelease
+> Task :androidApp:produceReleaseBundleIdeListingFile
+> Task :androidApp:createReleaseBundleListingFileRedirect
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 1m 22s
+251 actionable tasks: 123 executed, 7 from cache, 121 up-to-date
+Configuration cache entry stored.

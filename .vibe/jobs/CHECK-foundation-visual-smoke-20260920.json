@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.3024056000285782,
+  "events": [
+    {
+      "at": "2026-09-20T06:59:48.161183Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T06:59:51.118762Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-bc18032d-e895-4600-bc33-678e23d53c93.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T07:00:02.603505Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-bc18032d-e895-4600-bc33-678e23d53c93.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T07:00:04.222328Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-bc18032d-e895-4600-bc33-678e23d53c93.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T07:00:04.302191Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T07:00:04.662102Z",
+      "durationSeconds": 0.3024056000285782,
+      "receiptRef": ".vibe/receipts/RECEIPT-bc18032d-e895-4600-bc33-678e23d53c93.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-foundation-visual-smoke-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-bc18032d-e895-4600-bc33-678e23d53c93.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-bc18032d-e895-4600-bc33-678e23d53c93.json",
+  "stage": "bound"
+}

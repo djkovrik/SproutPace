@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256",
+  "digest": "d2ee6497f8a03c6053d4bdce4097f525e581e7e881b5b28f052be45d37321bf5",
+  "files": [
+    {
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "sha256": "37c08b2c1cf8d29f5b91b28874478a747eb81608ac237edf342ad9b996d2a625"
+    },
+    {
+      "path": "androidApp/build.gradle.kts",
+      "sha256": "b1438423d559d9bab7aec7857fec48a209fc3188932d39daaa74d1a0da02bf1c"
+    },
+    {
+      "path": "docs/CI-RELEASE-SETUP.md",
+      "sha256": "3314e3f0911dcb0bcedb103cb7f40110acc5aa19266f5d57dc8a0da48b77a482"
+    }
+  ],
+  "patterns": [
+    ".github/workflows/AnalysisAndTest.yml",
+    "androidApp/build.gradle.kts",
+    "docs/CI-RELEASE-SETUP.md"
+  ]
+}

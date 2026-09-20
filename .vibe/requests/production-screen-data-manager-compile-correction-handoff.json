@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-production-screen-data-manager-compile-correction-1-20260920.json",
+  "inspectionNote": "Inspected the one-line compile correction: BatchState transition events now use the existing batchStateKey mapper rather than the GrowStage mapper. No other source, test, schema or behavior changed; root will rerun both target compilers and host tests."
+}

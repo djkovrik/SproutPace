@@ -1,0 +1,132 @@
+{
+  "action": "handoff",
+  "assignmentId": "backup-destination-platform-contract",
+  "handoffId": "HANDOFF-backup-destination-platform-contract-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "symbol": "importPickedContent",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "file-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "symbol": "submit",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "symbol": "read",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "QG-012", "surface": "file-integration-test"}
+      ]
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "symbol": "presentExportPicker",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "QG-012", "surface": "file-integration-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "ac074_importedPrivatePhotoRendersFromSameLinkAfterReadback",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "file-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "createBackupChoosesDestinationThenEditsAndSubmitsExactlyOnce",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "exportCsvUsesStableDestinationContractAndCancellationDoesNothing",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "qg012_completeArchiveRoundTripsEveryRelationshipStageScheduleUtf8AndMultiplePhotos",
+      "surface": "snapshot-roundtrip-test",
+      "coverage": [
+        {"obligationId": "QG-012", "surface": "snapshot-roundtrip-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "qg012_missingCorruptDuplicateAndUnsupportedArchivesAreRejectedBeforeMutation",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "QG-012", "surface": "file-integration-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell", "-NoProfile", "-Command",
+        "verify seven-file assignment delta, separate import/destination kinds, stable ZIP/CSV contracts, result-once routing, Android content/canonical-import boundaries, iOS app-owned placeholder export, cancellation cleanup, balanced braces and no trailing whitespace"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T11:57:10Z",
+      "completedAt": "2026-09-20T11:57:11Z"
+    },
+    {
+      "argv": [
+        "git", "diff", "--check", "--",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+        "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+        "shared/compose/src/iosMain/kotlin/main.kt",
+        "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+        "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "iosApp/iosApp/iosApp.swift"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T11:57:11Z",
+      "completedAt": "2026-09-20T11:57:12Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {"obligationId": "AC-074", "surfaces": ["file-integration-test", "component-test"]},
+        {"obligationId": "QG-012", "surfaces": ["snapshot-roundtrip-test", "file-integration-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-production-graph-data-platform-wiring-20260920.json",
+  "inspectionNote": "Inspected the six-file production graph wiring: the graph owns the local repository and backup service, Android and iOS use real private-file/document/reminder adapters, reminders reconcile only future targets, and the first-run reset is dispatched to the same root graph. Bound receipt 7b55499c-027b-451f-b59f-439fa8799dba confirms Android and iOS compilation, targeted production integration tests, and Android debug APK assembly. macOS Xcode execution and Paparazzi baselines remain separate validation stages, not implementation blockers."
+}

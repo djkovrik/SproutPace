@@ -1,0 +1,154 @@
+{
+  "action": "handoff",
+  "assignmentId": "scheduled-action-command-targeting-r2",
+  "handoffId": "HANDOFF-scheduled-action-command-targeting-r2-20260920",
+  "supersedes": [],
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-bf70157a-9aee-408f-ab96-03dfc265e522.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "symbol": "ScreenItemCommand",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "component-test"},
+        {"obligationId": "AC-063", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+      "symbol": "data class ScreenOperationContract",
+      "surface": "store-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "store-test"},
+        {"obligationId": "AC-063", "surface": "store-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+      "symbol": "executeValidated",
+      "surface": "store-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "store-test"},
+        {"obligationId": "AC-063", "surface": "store-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "actionItem",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "updateAction",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "symbol": "private fun submitItem",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "component-test"},
+        {"obligationId": "AC-063", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "symbol": "ItemCard",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "component-test"},
+        {"obligationId": "AC-063", "surface": "component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "itemTargetedCommandsRequireExactExplicitSubject",
+      "surface": "store-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "store-test"},
+        {"obligationId": "AC-063", "surface": "store-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "testName": "ac061Ac063_completeAndSkipUseExplicitActionTargetsAndKeepLaterBatchWork",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "itemCommandRoutesValidatedOperationWithExplicitSubject",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-061", "surface": "component-test"},
+        {"obligationId": "AC-063", "surface": "component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "git", "diff", "--check", "--",
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+        "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+        "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+        "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+        "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T12:25:08.7253962Z",
+      "completedAt": "2026-09-20T12:25:08.7727746Z"
+    },
+    {
+      "argv": [
+        "rg", "typed item command, exact Store target validation, pending-only data transitions, and focused component/data/UI tests",
+        "shared/component/src/commonMain", "shared/component/src/commonTest",
+        "shared/data/src/commonMain", "shared/data/src/androidHostTest",
+        "shared/compose/src/commonMain", "shared/compose/src/commonTest"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T12:16:48.2935100Z",
+      "completedAt": "2026-09-20T12:16:48.3360342Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:component:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:compose:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:component:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:compose:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        {"obligationId": "AC-061", "surfaces": ["store-test", "component-test", "database-integration-test"]},
+        {"obligationId": "AC-063", "surfaces": ["store-test", "component-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

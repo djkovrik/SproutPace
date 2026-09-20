@@ -1,0 +1,24 @@
+{
+  "action": "package",
+  "packageId": "foundation",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-001", "QG-002", "QG-003", "QG-007"],
+  "fileBoundaries": [
+    "settings.gradle.kts",
+    "build.gradle.kts",
+    "gradle/**",
+    "build-logic/**",
+    "detekt/**",
+    ".github/**",
+    "androidApp/**",
+    "iosApp/**",
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/androidUnitTest/**",
+    "docs/architecture/**",
+    "docs/CI-RELEASE-SETUP.md"
+  ],
+  "integrationGoal": "Android and iOS production entry points construct and render the shared production root; strict quality, preview/screenshot smoke, and CI tasks are wired.",
+  "nextAction": "Create the verified KMP delivery foundation without changing feature product behavior."
+}

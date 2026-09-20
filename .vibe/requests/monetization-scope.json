@@ -1,0 +1,19 @@
+{
+  "action": "scope",
+  "scopeId": "monetization-privacy-v1",
+  "patterns": [
+    "spec/**",
+    "shared/domain/**",
+    "shared/data/**",
+    "shared/component/**",
+    "shared/monetization/**",
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/**",
+    "iosApp/**",
+    "docs/configuration/**"
+  ],
+  "fallbackReason": "Privacy-before-init and ad lifecycle span shared consent/state contracts, Android host configuration and the explicit iOS safe-disabled contract.",
+  "dependencyRationale": "Advertising eligibility consumes persisted settings/component boundaries and AppSpec privacy contracts but must remain isolated from offline product data and user content.",
+  "toolchainIdentity": "Kotlin 2.4.10; Ktor client with Android/Darwin/MockEngine; current official Yandex Mobile Ads Android SDK; iOS ads intentionally disabled without project/ad-unit identifiers."
+}

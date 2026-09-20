@@ -1,0 +1,17 @@
+{
+  "action": "scope",
+  "scopeId": "trays-history-category-correction-v1",
+  "patterns": [
+    "shared/component/**",
+    "shared/data/**",
+    "shared/compose/**",
+    "spec/app-spec.json",
+    "spec/flows/FLOW-008.md",
+    "spec/screens/SCREEN-003.md",
+    "*.gradle.kts",
+    "gradle/**"
+  ],
+  "dependencyRationale": "The visible Trays category is produced by persisted batch terminal state, carried through ScreenSnapshot and the component Store, and rendered by shared Compose; tests and localized resources are transitive inputs.",
+  "fallbackReason": "The current shared modules expose a generic screen model rather than a dedicated Trays module, so the complete component/data/compose feature paths are fingerprinted.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37"
+}

@@ -1,0 +1,41 @@
+{
+  "acceptanceCriteria": [
+    "NOTIFICATIONS declares three explicit fields and update-notifications requires exactly dailySummaryEnabled, summaryTime and soakRemindersEnabled; no legacy enabled argument remains on this screen.",
+    "Production snapshots render independent persisted values with default 09:00 and execute one validated command that updates all three preferences.",
+    "EN/RU production resources label all three controls and remain key-parity complete.",
+    "Component and real settings integration tests prove command preparation, persistence, restart, independence and legacy safe defaults. Specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "assignmentId": "reminder-settings-screen-contract-correction",
+  "contractInputs": [
+    "spec/flows/FLOW-006.md",
+    "spec/screens/SCREEN-016.md",
+    ".vibe/handoffs/HANDOFF-production-reminder-delivery-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Replace the legacy Notifications enabled form with independent dailySummaryEnabled, summaryTime and soakRemindersEnabled fields/command arguments, render the real persisted values, and prove command persistence/restart through component and settings integration tests.",
+  "obligationIds": [
+    "AC-064",
+    "AC-065",
+    "AC-067"
+  ],
+  "requestedCommands": [
+    ":shared:component:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

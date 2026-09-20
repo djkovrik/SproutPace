@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 1.177166000008583,
+  "events": [
+    {
+      "at": "2026-09-20T11:59:33.591316Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T11:59:35.834770Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-e2b13b95-3faf-43b6-81e9-fc9ac0a681c7.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T12:00:17.608130Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-e2b13b95-3faf-43b6-81e9-fc9ac0a681c7.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T12:00:17.757840Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-e2b13b95-3faf-43b6-81e9-fc9ac0a681c7.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T12:00:17.839363Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T12:00:19.056495Z",
+      "durationSeconds": 1.177166000008583,
+      "receiptRef": ".vibe/receipts/RECEIPT-e2b13b95-3faf-43b6-81e9-fc9ac0a681c7.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-backup-destination-platform-contract-r1-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-e2b13b95-3faf-43b6-81e9-fc9ac0a681c7.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-e2b13b95-3faf-43b6-81e9-fc9ac0a681c7.json",
+  "stage": "bound"
+}

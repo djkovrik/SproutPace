@@ -1,0 +1,39 @@
+{
+  "action": "assign",
+  "reconcileDrift": "SQLDelight, Settings, private file storage and backup services now compile and the initial host integration suite passes after foreign-key enforcement. The local-data package still needs explicit scenario-named evidence for every owned acceptance scenario and full replacement-restore relationships.",
+  "assignmentId": "local-data-acceptance-test-matrix",
+  "packageId": "local-data",
+  "owner": "vibe-test-engineer",
+  "acceptanceScenarioIds": ["AC-013", "AC-015", "AC-016", "AC-017", "AC-022", "AC-023", "AC-024", "AC-025", "AC-033", "AC-034", "AC-053", "AC-056", "AC-070", "AC-071", "AC-072", "AC-073", "AC-074", "AC-082", "AC-083", "AC-084", "AC-090", "AC-091", "AC-092", "AC-093", "AC-094", "AC-095"],
+  "qualityGateIds": ["QG-012"],
+  "allowedFiles": [
+    "shared/data/src/androidHostTest/**",
+    "shared/data/src/commonTest/**"
+  ],
+  "inputScopeId": "local-data-v1",
+  "goal": "Add deterministic SQLDelight, Settings, private-file, CSV and snapshot replacement tests for every acceptance scenario owned by local-data, including restart restoration, immutable snapshots/history, cascade/photo cleanup, invalid-input rollback, complete erase and duplicate-free restore.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/data.md",
+    "spec/quality.md",
+    "shared/data/src/commonMain/**",
+    "shared/data/src/androidMain/**",
+    "shared/data/src/iosMain/**"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/references/testing-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:allTests"
+  ],
+  "acceptanceCriteria": [
+    "Every listed AC has explicit scenario-named executable evidence at its required data surface.",
+    "A complete archive fixture contains every managed relationship and photos, round-trips exactly, replaces old state atomically and does not duplicate rows or files.",
+    "Invalid archive and referential-integrity failures roll back without partial observations.",
+    "Erase removes database, settings and private photo state while preserving no product data.",
+    "The specialist reports production gaps as blockers and does not weaken scenarios, run Gradle or edit production/ledger files."
+  ]
+}

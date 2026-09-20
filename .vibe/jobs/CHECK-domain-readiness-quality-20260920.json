@@ -1,0 +1,40 @@
+{
+  "durationSeconds": 0.202051600033883,
+  "error": "ERROR: unknown receipt obligation/surface",
+  "events": [
+    {
+      "at": "2026-09-20T06:56:17.560168Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T06:56:20.363241Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-511d0805-8c18-4089-bc27-cdb4b9cf7f97.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T06:56:41.629499Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-511d0805-8c18-4089-bc27-cdb4b9cf7f97.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T06:56:44.043434Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-511d0805-8c18-4089-bc27-cdb4b9cf7f97.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T06:56:44.180565Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T06:56:44.441076Z",
+      "durationSeconds": 0.202051600033883,
+      "error": "ERROR: unknown receipt obligation/surface",
+      "receiptRef": ".vibe/receipts/RECEIPT-511d0805-8c18-4089-bc27-cdb4b9cf7f97.json",
+      "stage": "binding-pending"
+    }
+  ],
+  "jobId": "CHECK-domain-readiness-quality-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-511d0805-8c18-4089-bc27-cdb4b9cf7f97.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-511d0805-8c18-4089-bc27-cdb4b9cf7f97.json",
+  "stage": "binding-pending"
+}

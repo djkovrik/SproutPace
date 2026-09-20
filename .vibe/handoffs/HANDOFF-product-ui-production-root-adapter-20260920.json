@@ -1,0 +1,271 @@
+{
+  "acceptanceScenarioIds": [
+    "AC-001",
+    "AC-120",
+    "AC-121",
+    "AC-122",
+    "AC-123"
+  ],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/76b102ecb467b69cf5cc9e019c4155d043e1e0ee337aa8619638d0f704bf4f51.json",
+    "sha256": "e8bfa35845de732306e5881a7abfcc72f6b5d740d1297d17c546dd7eee574e79"
+  },
+  "assignmentId": "product-ui-production-root-adapter",
+  "blockers": [
+    "Android assembly gap: androidApp/SproutPaceApplication.kt and AppActivity.kt are outside this assignment and still import the removed SproutPaceRoot/productionSproutPaceRoot placeholder contract; a host assembly assignment must construct AppRootComponent on the UI thread and pass the same instance to App.",
+    "Swift assembly gap: iosApp/iosApp/iosApp.swift is outside this assignment and still calls MainViewController() with no root; it must construct/receive the production AppRootComponent with bridged lifecycle and pass that same instance to MainViewController(root:).",
+    "Component contract gap: ScreenModel exposes only flat ScreenItem keys plus generic flags, not the complete typed per-screen fields required by all sixteen detailed forms/timelines/settings. The adapter renders real supplied items, selection, state, busy/offline/ad and commands, while richer screen-specific values remain unavailable until component contracts expose them.",
+    "Localization contract gap: TextKey is an open string wrapper and generated Compose resources do not provide a stable public lookup by arbitrary string key. RootUiAdapter maps the currently declared screen/action/preview keys and uses localized contextual fallbacks for unknown keys; complete future keys require an explicit shared key-to-resource registry at the presentation boundary.",
+    "Root must run the requested Android/iOS compilation and host tests; this specialist did not run Gradle."
+  ],
+  "changedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "completedAt": "2026-09-20T08:47:36.308224Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-product-ui-production-root-adapter-20260920",
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "assert placeholder root is absent, production App requires AppRootComponent, stack/model/slot and action routes exist, iOS MainViewController requires root, and scoped git diff is clean"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-decompose-engineer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "surface": "component-test",
+      "symbol": "fun RootApp"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "surface": "component-test",
+      "symbol": "class RootActionRouter"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "surface": "component-test",
+      "symbol": "fun App"
+    }
+  ],
+  "qualityGateIds": [],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-001",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-120",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-121",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-123",
+          "surfaces": [
+            "component-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [],
+      "tasks": [
+        ":androidApp:assembleDebug"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "6d59a4b4f9624cbaf6e4a40cf785a56f443d5ed1897b58be387832186811df0a",
+    "files": [
+      {
+        "path": "shared/compose/build.gradle.kts",
+        "sha256": "22ecb7587c7f1674617bc1cfb63d51403f5eca9fada77b254d7b81dd82bbfef9"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "sha256": "0c0db15fb61a20b95cf6c4015950f9f3053b993e3d8580fa3d9f0c66bf27a70c"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+        "sha256": "7a379a5b6a2301246554866245c328cfd39ab9715e7c8dcfecf01a9feee4bde5"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+        "sha256": "16e423ddaf3077e677987b2391dea0a0c3bdb35613241c40300b6f2dae0f72ab"
+      },
+      {
+        "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+        "sha256": "572d3f49d0ce743193524133e906a0e9f7dcd14bfe5ef1d6d8375d98dfc464dc"
+      },
+      {
+        "path": "shared/compose/src/iosMain/kotlin/main.kt",
+        "sha256": "1302b7f0c9d2bd8df7962bb718875d1372dbf27edb640096c2c654da9883f081"
+      }
+    ],
+    "patterns": [
+      "shared/compose/build.gradle.kts",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "shared/compose/src/iosMain/kotlin/main.kt"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T08:41:39.339348Z",
+  "supersedes": [],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "surface": "component-test",
+      "testName": "executableMappingCoversAllSixteenScreenIdsAndRealModelFields"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "surface": "component-test",
+      "testName": "primaryAndDetailNavigationRouteThroughRootWithoutLocalBackStack"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "surface": "component-test",
+      "testName": "retrySelectionLayoutAndCommandsRouteToActiveScreenComponent"
+    }
+  ]
+}

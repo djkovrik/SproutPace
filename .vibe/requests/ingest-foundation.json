@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-foundation-architect-20260920.json",
+  "inspectionNote": "Inspected the complete foundation diff and immutable handoff. Changes remain within registered boundaries, wire the Android/iOS entry contracts, strict Detekt, filtered Kover, preview scanner/Paparazzi host, EN/RU native labels, and pinned Android/macOS CI. Runtime Gradle, snapshot, measured coverage threshold, and macOS checks remain explicit pending work and are not claimed complete."
+}

@@ -1,0 +1,32 @@
+{
+  "action": "assign",
+  "assignmentId": "core-domain-detekt-correction-1",
+  "packageId": "foundation-correction",
+  "owner": "vibe-domain-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-004"],
+  "allowedFiles": [
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt"
+  ],
+  "inputScopeId": "domain-quality-correction-v1",
+  "goal": "Correct only the strict Detekt findings reported by RECEIPT-8bdbb4ad-37a4-40b6-b5a1-a61f9bef5c51: explicit imports, line wrapping, specific exception handling, and named constants. Preserve every domain behavior and public contract.",
+  "contractInputs": ["spec/app-spec.json", "spec/domain.md", "spec/quality.md"],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/SKILL.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md",
+    ".vibe/receipts/RECEIPT-8bdbb4ad-37a4-40b6-b5a1-a61f9bef5c51.json"
+  ],
+  "requestedCommands": ["detekt", ":shared:domain:allTests", ":shared:domain:testAndroidHostTest"],
+  "acceptanceCriteria": [
+    "All assigned domain Detekt findings are corrected without suppressing or weakening rules.",
+    "Public contracts and deterministic behavior are unchanged.",
+    "Fresh tests are requested and an immutable Protocol 2.0 handoff is produced."
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "action": "handoff",
+  "assignmentId": "monetization-privacy-api-sam-correction-2",
+  "handoffId": "HANDOFF-monetization-privacy-api-sam-correction-2-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+      "symbol": "fun interface PrivacyRegionApi",
+      "surface": "ad-config-check",
+      "coverage": [
+        {"obligationId": "QG-009", "surface": "ad-config-check"}
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:monetization:allTests", ":shared:monetization:testAndroidHostTest", ":shared:monetization:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:monetization:allTests", ":shared:monetization:testAndroidHostTest", ":shared:monetization:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [
+        {"obligationId": "QG-009", "surfaces": ["ad-config-check"]}
+      ]
+    },
+    {
+      "argv": ["./gradlew", ":shared:monetization:allTests", ":shared:monetization:testAndroidHostTest", ":shared:monetization:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:monetization:allTests", ":shared:monetization:testAndroidHostTest", ":shared:monetization:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [
+        {"obligationId": "QG-009", "surfaces": ["ad-config-check"]}
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Cross-platform monetization tests and compilation remain owned by the orchestrator and were not run by this specialist.",
+      "obligationIds": ["QG-009"],
+      "nextAction": "Run the requested platform commands and ingest this assignment-local handoff after inspection."
+    }
+  ]
+}

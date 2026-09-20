@@ -1,0 +1,38 @@
+{
+  "algorithm": "sha256",
+  "digest": "cf97e26ee88f507ede510d5f6b02e4bd26e1e32e68db88d7942d8d1b7062156c",
+  "files": [
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "sha256": "22ecb7587c7f1674617bc1cfb63d51403f5eca9fada77b254d7b81dd82bbfef9"
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "sha256": "1302b7f0c9d2bd8df7962bb718875d1372dbf27edb640096c2c654da9883f081"
+    }
+  ],
+  "patterns": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ]
+}

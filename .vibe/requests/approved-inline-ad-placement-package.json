@@ -1,0 +1,10 @@
+{
+  "action": "package",
+  "packageId": "approved-inline-ad-placement",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-100", "AC-101"],
+  "qualityGateIds": [],
+  "fileBoundaries": ["shared/monetization/**", "shared/component/**", "shared/data/**", "shared/compose/**"],
+  "integrationGoal": "Trace and verify the already implemented single inline native ad at the exact approved Catalog and explicit History positions, with zero UI or requests on prohibited, unavailable, short, offline, unresolved, failed, preview and iOS states.",
+  "nextAction": "Bind ad lifecycle and component evidence now; defer only the required final ui-golden record/verify surface."
+}

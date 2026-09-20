@@ -1,0 +1,30 @@
+{
+  "algorithm": "sha256",
+  "digest": "cbb2a5135d1d0475c5e3da8f0f64cfd2cd815207c574685af1f2056743f93b0f",
+  "files": [
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+      "sha256": "aa16caf4be61386494752dfda90eba3e5f744faf23d97e6156eec6f86b5ecfda"
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "sha256": "9f1274ba9d793e35226462c657a3ae4792499927555f0995ae940f7b628dfe96"
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentPreview.kt",
+      "sha256": "c2294ada19636e3b444a1b009d46d761549f1dbd74adff9a3be0a39c3bea5f0b"
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootFactory.kt",
+      "sha256": "a3132471193ac4c0834f33d816fa3fea69e68e992cd3dc24028b014b2b23474f"
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "sha256": "32fa2b7a4718084f6e05a8223761f4dacd1c3513daf1edd189173367beedc431"
+    }
+  ],
+  "patterns": [
+    "shared/root/src/commonMain/**",
+    "shared/root/src/commonTest/**"
+  ]
+}

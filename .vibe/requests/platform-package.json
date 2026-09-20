@@ -1,0 +1,21 @@
+{
+  "action": "package",
+  "packageId": "platform-services",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-008"],
+  "fileBoundaries": [
+    "shared/platform/**",
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "androidApp/src/main/res/values*/**",
+    "iosApp/iosApp.xcodeproj/project.pbxproj",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "docs/architecture/PLATFORM-SERVICES.md",
+    "docs/configuration/**"
+  ],
+  "integrationGoal": "Establish the cross-platform service implementation and conditional Firebase configuration contract. Acceptance evidence is registered later by downstream integration packages after prerequisite AC packages close.",
+  "nextAction": "Implement platform services and safe external Firebase configuration contracts without creating projects or embedding identifiers."
+}

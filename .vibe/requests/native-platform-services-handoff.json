@@ -1,0 +1,131 @@
+{
+  "action": "handoff",
+  "assignmentId": "native-platform-services",
+  "handoffId": "HANDOFF-native-platform-services-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "androidApp/build.gradle.kts",
+      "symbol": "firebaseCrashlyticsEnabled",
+      "surface": "firebase-config-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "firebase-config-check" }
+      ]
+    },
+    {
+      "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidCrashReportingDriver.kt",
+      "symbol": "AndroidCrashReportingDriver",
+      "surface": "firebase-config-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "firebase-config-check" }
+      ]
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "symbol": "NativeCrashReportingBridge",
+      "surface": "firebase-config-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "firebase-config-check" }
+      ]
+    },
+    {
+      "path": "iosApp/iosApp.xcodeproj/project.pbxproj",
+      "symbol": "DEBUG_INFORMATION_FORMAT = \"dwarf-with-dsym\";",
+      "surface": "crash-symbolication-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "crash-symbolication-check" }
+      ]
+    },
+    {
+      "path": "docs/configuration/FIREBASE-CRASHLYTICS.md",
+      "symbol": "Controlled release-candidate verification",
+      "surface": "crash-symbolication-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "crash-symbolication-check" }
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt",
+      "testName": "crashReportingUsesPersistedReleasePreferenceAndDisablesTestHosts",
+      "surface": "firebase-config-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "firebase-config-check" }
+      ]
+    },
+    {
+      "path": "shared/platform/scripts/validate-platform.ps1",
+      "testName": "firebase-config-check",
+      "surface": "firebase-config-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "firebase-config-check" }
+      ]
+    },
+    {
+      "path": "shared/platform/scripts/validate-platform.ps1",
+      "testName": "crash-symbolication-check",
+      "surface": "crash-symbolication-check",
+      "coverage": [
+        { "obligationId": "QG-008", "surface": "crash-symbolication-check" }
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell", "-File", "shared/platform/scripts/validate-platform.ps1"],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:35:38.8614803Z",
+      "completedAt": "2026-09-20T07:35:39.0050990Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:platform:allTests", ":shared:platform:testAndroidHostTest", ":shared:platform:compileAndroidMain", ":androidApp:assembleDebug"],
+      "tasks": [":shared:platform:allTests", ":shared:platform:testAndroidHostTest", ":shared:platform:compileAndroidMain", ":androidApp:assembleDebug"],
+      "coveredObligations": [
+        { "obligationId": "QG-008", "surfaces": ["firebase-config-check"] }
+      ]
+    },
+    {
+      "argv": ["./gradlew", ":shared:platform:compileKotlinIosArm64", ":shared:platform:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:platform:compileKotlinIosArm64", ":shared:platform:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [
+        { "obligationId": "QG-008", "surfaces": ["firebase-config-check"] }
+      ]
+    },
+    {
+      "argv": ["xcodebuild", "-project", "iosApp/iosApp.xcodeproj", "-scheme", "iosApp", "-configuration", "Debug", "-sdk", "iphonesimulator", "-destination", "generic/platform=iOS Simulator", "CODE_SIGNING_ALLOWED=NO", "build"],
+      "tasks": ["iosApp simulator build"],
+      "coveredObligations": [
+        { "obligationId": "QG-008", "surfaces": ["firebase-config-check"] }
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", "-Psproutpace.firebase.enabled=true", ":androidApp:assembleRelease", ":androidApp:uploadCrashlyticsMappingFileRelease"],
+      "tasks": [":androidApp:assembleRelease", ":androidApp:uploadCrashlyticsMappingFileRelease"],
+      "coveredObligations": [
+        { "obligationId": "QG-008", "surfaces": ["firebase-config-check", "crash-symbolication-check"] }
+      ]
+    },
+    {
+      "argv": ["xcodebuild", "-project", "iosApp/iosApp.xcodeproj", "-scheme", "iosApp", "-configuration", "Release", "-destination", "generic/platform=iOS", "-archivePath", "build/SproutPace.xcarchive", "CODE_SIGNING_ALLOWED=NO", "archive"],
+      "tasks": ["iosApp release archive and Crashlytics dSYM upload script"],
+      "coveredObligations": [
+        { "obligationId": "QG-008", "surfaces": ["firebase-config-check", "crash-symbolication-check"] }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The registered assignment forbids this Windows specialist from running Gradle; platform common/host tests and target compilation remain requested checks.",
+      "obligationIds": ["QG-008"],
+      "nextAction": "The orchestrator should first ingest this handoff, then wire :shared:platform in settings/composition outside this assignment and run the requested Windows and macOS build commands."
+    },
+    {
+      "description": "No real Firebase Android/Apple registrations or configuration files were created, so mapping/dSYM upload and controlled readable crash reports are external and unverified.",
+      "obligationIds": ["QG-008"],
+      "nextAction": "Follow docs/configuration/FIREBASE-CRASHLYTICS.md with approved non-production Firebase apps, then bind redacted configuration and controlled-crash symbolication receipts."
+    }
+  ]
+}

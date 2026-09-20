@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-trays-history-category-correction-20260920.json",
+  "inspectionNote": "Inspected the AC-084 category implementation, typed component Store transition, deterministic Planned/Active/History UI filtering, terminal persisted outcome integration assertion, EN/RU labels, and the bound green Android plus iOS Kotlin/Native compile receipt. Data integration verifies immutable terminal state and outcome; component and adapter tests verify explicit History selection without list-position inference. The remaining ui-golden surface is intentionally deferred to the final visual pass."
+}

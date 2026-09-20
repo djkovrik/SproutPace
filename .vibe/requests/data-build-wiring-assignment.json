@@ -1,0 +1,25 @@
+{
+  "action": "assign",
+  "assignmentId": "data-build-wiring",
+  "packageId": "foundation",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-001", "QG-003"],
+  "allowedFiles": ["settings.gradle.kts", "build.gradle.kts", "gradle/libs.versions.toml"],
+  "inputScopeId": "data-build-wiring-v1",
+  "goal": "Wire the approved shared:data KMP/SQLDelight module without implementing data behavior: include :shared:data, pin SQLDelight 2.4.0 plugin/runtime/android/native/sqlite/coroutines dependencies, expose only the aliases required by shared:data, and keep Android/iOS compilation contracts explicit. Preserve all existing quality-tool wiring.",
+  "contractInputs": ["spec/data.md", "spec/quality.md", "shared/data/build.gradle.kts"],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/module-boundaries.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [":shared:data:tasks", ":shared:data:compileAndroidMain", ":shared:data:compileKotlinIosArm64"],
+  "acceptanceCriteria": [
+    "SQLDelight 2.4.0 plugin and only required runtime/driver/coroutines artifacts are pinned in the version catalog.",
+    "The shared:data module is included and root plugin application remains lazy.",
+    "Existing foundation, Kover, Detekt, Paparazzi, Android, and iOS wiring is preserved.",
+    "An immutable handoff reports exact Windows and macOS verification tasks without running Gradle."
+  ]
+}

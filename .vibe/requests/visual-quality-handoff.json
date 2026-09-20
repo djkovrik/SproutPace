@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-visual-quality-paparazzi-20260920.json",
+  "inspectionNote": "Inspected the Android host tooling dependency, scanner-generated parameterized Paparazzi suite, stable IDs and executable light/dark, locale/font-scale and adaptive assertions. Root will now run test, record and verify, then visually inspect outputs."
+}

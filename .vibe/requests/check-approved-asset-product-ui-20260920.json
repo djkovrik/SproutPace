@@ -1,0 +1,6 @@
+{
+  "action":"check","jobId":"CHECK-approved-asset-product-ui-20260920","runner":"gradle","kind":"targeted","inputScopeId":"approved-asset-product-ui-v1",
+  "tasks":[":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64"],
+  "coveredObligations":[{"obligationId":"AC-001","surfaces":["component-test"]},{"obligationId":"AC-120","surfaces":["localization-contract-test","component-test"]}],
+  "timeoutSeconds":1800,"toolchainIdentity":"Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; iOS Simulator Kotlin/Native target"
+}

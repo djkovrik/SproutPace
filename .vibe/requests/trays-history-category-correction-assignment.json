@@ -1,0 +1,50 @@
+{
+  "action": "assign",
+  "assignmentId": "trays-history-category-correction",
+  "packageId": "trays-history-category-correction",
+  "owner": "vibe-monetization-engineer",
+  "acceptanceScenarioIds": ["AC-084"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/**"
+  ],
+  "inputScopeId": "trays-history-category-correction-v1",
+  "goal": "Implement explicit Planned, Active, and History selection on Trays, with deterministic filtering from persisted batch state and an exact History marker that later advertising eligibility can consume.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-008.md",
+    "spec/screens/SCREEN-003.md",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "Trays exposes Planned, Active, and History as peer categories and never infers History from list position.",
+    "Planned contains planned batches, Active contains non-terminal non-planned batches, and History contains only terminal batches with immutable outcome state.",
+    "Category changes are typed component intents/state, preserve deterministic selection, and expose the selected category to downstream UI integration.",
+    "The implementation adds no advertising behavior and changes no persistence semantics.",
+    "Tests cover all three filters, category switching, terminal outcome rendering, and the exact selected-History marker; root owns Gradle."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "action":"integrate","packageId":"managed-observation-photo-lifecycle","receiptRef":".vibe/receipts/RECEIPT-851aacf9-7cce-493b-ac89-801c8f459fb5.json",
+  "integrationEvidence":[
+    {"role":"entry-point","path":"androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt","symbol":"pendingPhoto"},
+    {"role":"navigation","path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt","symbol":"REMOVE_PHOTO_VALUE"},
+    {"role":"restart","path":"shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt","symbol":"class FileBackedRestartTest"}
+  ],
+  "nextAction":"Run final cross-product asset integration, goldens, Lazyweb review and release-readiness gates."
+}

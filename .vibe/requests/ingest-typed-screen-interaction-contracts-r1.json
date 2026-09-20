@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-typed-screen-interaction-contracts-r1.json",
+  "inspectionNote": "Inspected the superseding handoff after current root/data/Compose contracts were re-read. The nine component files are unchanged from the green r2 receipt, remain source-compatible with the production consumers, and the handoff correctly supersedes the stale-input predecessor without expanding claimed surfaces."
+}

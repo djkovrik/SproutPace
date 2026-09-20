@@ -1,0 +1,23 @@
+{
+  "action": "check",
+  "jobId": "CHECK-functional-model-driven-product-ui-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "functional-product-ui-v1",
+  "tasks": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest",
+    ":androidApp:assembleDebug"
+  ],
+  "coveredObligations": [
+    {"obligationId":"AC-001","surfaces":["component-test"]},
+    {"obligationId":"AC-002","surfaces":["component-test"]},
+    {"obligationId":"AC-120","surfaces":["localization-test","accessibility-test"]},
+    {"obligationId":"AC-121","surfaces":["accessibility-test"]},
+    {"obligationId":"AC-122","surfaces":["adaptive-test"]},
+    {"obligationId":"QG-002","surfaces":["build","localization-test","accessibility-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Material3 1.12.0-alpha03; Paparazzi 2.0.0-alpha02"
+}

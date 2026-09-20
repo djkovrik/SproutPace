@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-monetization-privacy-api-sam-correction-2-20260920.json",
+  "inspectionNote": "Inspected the one-line API declaration correction and immutable handoff. PrivacyRegionApi is now a Kotlin fun interface so existing common lambda/SAM tests compile; its suspend fetch contract, Ktor implementation, strict endpoint validation and fail-closed semantics are unchanged. Cross-platform Gradle verification remains root-owned."
+}

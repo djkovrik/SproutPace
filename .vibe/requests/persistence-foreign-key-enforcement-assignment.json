@@ -1,0 +1,38 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The root-owned data gate now compiles and runs, but the orphan-observation integration test shows SQLite foreign-key enforcement is disabled. Existing persistence sources and user files are preserved; this assignment is limited to driver initialization and the directly related test.",
+  "assignmentId": "persistence-foreign-key-enforcement-correction-5",
+  "packageId": "core-domain",
+  "owner": "vibe-persistence-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": [
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+    "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+    "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt"
+  ],
+  "inputScopeId": "local-data-v1",
+  "goal": "Enable SQLite foreign-key enforcement consistently for Android, iOS and the host integration driver so invalid orphan observations fail atomically, without changing the schema or persistence contracts.",
+  "contractInputs": [
+    "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:allTests",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "Every production SQLDelight driver enables SQLite foreign-key enforcement when opened.",
+    "The host integration driver mirrors production enforcement and the orphan-observation test passes.",
+    "Invalid child writes cannot leave partial observable state.",
+    "No schema, domain contract or unrelated persistence behavior changes.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ]
+}

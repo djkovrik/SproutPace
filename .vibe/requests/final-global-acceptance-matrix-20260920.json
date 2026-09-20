@@ -1,0 +1,655 @@
+{
+  "action": "check",
+  "jobId": "CHECK-final-global-acceptance-matrix-20260920",
+  "runner": "gradle",
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":shared:data:verifySqlDelightMigration",
+    ":shared:domain:compileKotlinIosSimulatorArm64",
+    ":shared:data:compileKotlinIosSimulatorArm64",
+    ":shared:component:compileKotlinIosSimulatorArm64",
+    ":shared:root:compileKotlinIosSimulatorArm64",
+    ":shared:platform:compileKotlinIosSimulatorArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug",
+    ":androidApp:assembleRelease",
+    ":androidApp:bundleRelease",
+    "koverXmlReport",
+    "koverVerify"
+  ],
+  "coveredObligations": [
+    {
+      "obligationId": "AC-001",
+      "surfaces": [
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-002",
+      "surfaces": [
+        "component-test",
+        "integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-010",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-011",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-012",
+      "surfaces": [
+        "component-test",
+        "domain-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-013",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-014",
+      "surfaces": [
+        "component-test",
+        "domain-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-015",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-016",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-017",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-020",
+      "surfaces": [
+        "component-test",
+        "catalog-contract-test"
+      ]
+    },
+    {
+      "obligationId": "AC-021",
+      "surfaces": [
+        "component-test",
+        "domain-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-022",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-023",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-024",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-025",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-026",
+      "surfaces": [
+        "domain-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-027",
+      "surfaces": [
+        "catalog-contract-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-030",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-031",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-032",
+      "surfaces": [
+        "component-test",
+        "domain-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-033",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-034",
+      "surfaces": [
+        "component-test",
+        "database-integration-test",
+        "file-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-035",
+      "surfaces": [
+        "domain-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-036",
+      "surfaces": [
+        "domain-test",
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-037",
+      "surfaces": [
+        "domain-test",
+        "store-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-038",
+      "surfaces": [
+        "domain-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-039",
+      "surfaces": [
+        "domain-test",
+        "store-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-040",
+      "surfaces": [
+        "domain-test",
+        "store-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-050",
+      "surfaces": [
+        "component-test",
+        "domain-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-051",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-052",
+      "surfaces": [
+        "domain-test",
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-053",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-054",
+      "surfaces": [
+        "domain-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-055",
+      "surfaces": [
+        "domain-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-056",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-057",
+      "surfaces": [
+        "domain-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-060",
+      "surfaces": [
+        "store-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-061",
+      "surfaces": [
+        "store-test",
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-062",
+      "surfaces": [
+        "domain-test",
+        "store-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-063",
+      "surfaces": [
+        "store-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-064",
+      "surfaces": [
+        "platform-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-065",
+      "surfaces": [
+        "platform-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-066",
+      "surfaces": [
+        "platform-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-067",
+      "surfaces": [
+        "platform-test",
+        "integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-068",
+      "surfaces": [
+        "domain-test",
+        "platform-test"
+      ]
+    },
+    {
+      "obligationId": "AC-070",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-071",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-072",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-073",
+      "surfaces": [
+        "component-test",
+        "database-integration-test",
+        "file-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-074",
+      "surfaces": [
+        "platform-test",
+        "file-integration-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-080",
+      "surfaces": [
+        "domain-test",
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-081",
+      "surfaces": [
+        "domain-test",
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-082",
+      "surfaces": [
+        "component-test",
+        "platform-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-083",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-084",
+      "surfaces": [
+        "component-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-085",
+      "surfaces": [
+        "domain-test",
+        "database-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-090",
+      "surfaces": [
+        "snapshot-roundtrip-test",
+        "file-integration-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-091",
+      "surfaces": [
+        "snapshot-roundtrip-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-092",
+      "surfaces": [
+        "snapshot-roundtrip-test",
+        "platform-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-093",
+      "surfaces": [
+        "snapshot-roundtrip-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-094",
+      "surfaces": [
+        "file-integration-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-095",
+      "surfaces": [
+        "integration-test",
+        "file-integration-test",
+        "platform-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-100",
+      "surfaces": [
+        "ad-lifecycle-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-101",
+      "surfaces": [
+        "ad-lifecycle-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-102",
+      "surfaces": [
+        "privacy-integration-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-103",
+      "surfaces": [
+        "privacy-integration-test",
+        "settings-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-104",
+      "surfaces": [
+        "privacy-integration-test",
+        "ad-lifecycle-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-105",
+      "surfaces": [
+        "privacy-integration-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-106",
+      "surfaces": [
+        "network-mock-test",
+        "privacy-integration-test",
+        "ad-lifecycle-test"
+      ]
+    },
+    {
+      "obligationId": "AC-107",
+      "surfaces": [
+        "ad-lifecycle-test"
+      ]
+    },
+    {
+      "obligationId": "AC-110",
+      "surfaces": [
+        "platform-test",
+        "settings-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-111",
+      "surfaces": [
+        "platform-test",
+        "settings-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-112",
+      "surfaces": [
+        "platform-test",
+        "component-test",
+        "settings-integration-test"
+      ]
+    },
+    {
+      "obligationId": "AC-113",
+      "surfaces": [
+        "repository-check",
+        "platform-test",
+        "privacy-review"
+      ]
+    },
+    {
+      "obligationId": "AC-120",
+      "surfaces": [
+        "localization-contract-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-121",
+      "surfaces": [
+        "settings-integration-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "AC-122",
+      "surfaces": [
+        "accessibility-test",
+        "keyboard-test"
+      ]
+    },
+    {
+      "obligationId": "AC-123",
+      "surfaces": [
+        "integration-test",
+        "component-test"
+      ]
+    },
+    {
+      "obligationId": "QG-001",
+      "surfaces": [
+        "repository-check",
+        "unit-test",
+        "integration-test",
+        "static-analysis",
+        "coverage-check",
+        "localization-contract-test"
+      ]
+    },
+    {
+      "obligationId": "QG-002",
+      "surfaces": [
+        "android-build",
+        "android-platform-test"
+      ]
+    },
+    {
+      "obligationId": "QG-003",
+      "surfaces": [
+        "ios-build"
+      ]
+    },
+    {
+      "obligationId": "QG-004",
+      "surfaces": [
+        "release-check"
+      ]
+    },
+    {
+      "obligationId": "QG-011",
+      "surfaces": [
+        "catalog-contract-test",
+        "content-review"
+      ]
+    },
+    {
+      "obligationId": "QG-012",
+      "surfaces": [
+        "snapshot-roundtrip-test",
+        "file-integration-test"
+      ]
+    }
+  ],
+  "timeoutSeconds": 3600,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 21 daemon; JVM target 17; AGP 9.1.1; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Windows host Kotlin/Native iOS simulator compilation only"
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-reminder-settings-production-reachability-20260920.json",
+  "inspectionNote": "Inspected removal of the legacy enabled compatibility path and the real production-manager persistence proof for daily summary, 09:00-local time and soak reminders. Receipt 2f182ec5 is green."
+}

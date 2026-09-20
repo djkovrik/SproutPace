@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "first-run-flow-v1",
+  "patterns": ["spec/**", "shared/component/**", "shared/domain/**", "shared/data/**", "shared/root/**", "gradle/**", "*.gradle.kts", "gradle.properties"],
+  "dependencyRationale": "The first-run completion crosses the typed component command contract, domain setup/plan invariants, transactional local persistence and root navigation output.",
+  "fallbackReason": "Generated SQLDelight and retained Decompose/MVIKotlin types are transitive inputs, so the complete four-module scope is safer than a hand-maintained file list.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Decompose 3.4.0; MVIKotlin 4.3.0; SQLDelight 2.4.0"
+}

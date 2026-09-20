@@ -1,0 +1,95 @@
+{
+  "action": "handoff",
+  "assignmentId": "approved-asset-product-ui-integration",
+  "handoffId": "HANDOFF-approved-asset-product-ui-integration-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "symbol": "screenHero(state: SproutPaceUiState)",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "symbol": "fun LabeledActionContent",
+      "surface": "accessibility-test",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "accessibility-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "fun RecipeAssetInspectionPreview",
+      "surface": "screenshot-test",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "screenshot-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "requiredUiPreviewCases",
+      "surface": "preview-compile",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "preview-compile"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/AssetUiIntegrationContractTest.kt",
+      "testName": "recipeFixtureExposesAllApprovedStageIllustrationsAndMatchingCulture",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "approvedCustomAssetInspectionPreviewIsDiscoverableAndTallEnough",
+      "surface": "screenshot-test",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "screenshot-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AssetUiSourceContractTest.kt",
+      "testName": "productionRendererReferencesEveryApprovedCustomVisualRole",
+      "surface": "accessibility-test",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "accessibility-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+      "testName": "englishAndRussianProductionResourcesHaveIdenticalKeys",
+      "surface": "localization-contract-test",
+      "coverage": [
+        {"obligationId": "AC-120", "surface": "localization-contract-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "testName": "scannerFindsDeterministicProductionPreviewSet",
+      "surface": "preview-compile",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "preview-compile"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["git", "diff", "--check", "--", "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt", "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt", "shared/compose/src/commonTest", "shared/compose/src/androidUnitTest"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "Validate EN/RU key parity and all 24 required typed production asset references"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [],
+  "blockers": []
+}

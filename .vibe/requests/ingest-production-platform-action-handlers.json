@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-production-platform-action-handlers-20260920.json",
+  "inspectionNote": "Inspected the six bounded host/config files. Android and iOS now inject the typed action seam, return only successful owned photo/archive results, request notification permission, open app settings, and open only externally configured HTTPS privacy URLs; iOS advertising remains safe-disabled. Bound receipt 66ea8639 confirms Android/iOS shared compilation, 82 Compose host tests and debug APK. QG-012 is intentionally not claimed: the recorded destination-vs-import picker blocker is accepted for immediate correction."
+}

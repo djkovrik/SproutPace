@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-android-release-readiness-correction-20260920.json",
+  "inspectionNote": "Inspected the Android release-candidate correction: missing live Yandex configuration now keeps release advertising fail-closed, ordinary release assembly is detached from publication validation, and CI/documentation distinguish unsigned build evidence from externally configured publication. Bound receipt 07271cfa-2d1a-4f41-b2af-e2be5ccb8cd6 confirms debug APK, unsigned release APK and release AAB assembly without secrets or publication."
+}

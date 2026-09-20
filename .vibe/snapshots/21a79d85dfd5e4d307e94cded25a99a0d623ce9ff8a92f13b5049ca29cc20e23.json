@@ -1,0 +1,43 @@
+{
+  "algorithm": "sha256",
+  "digest": "1320410251c179adc9eda80f1879d6c6fc6c4e57f47765ded32ec98b1c0724a1",
+  "files": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "sha256": "7cb34db5b4b6da3012e5299feede67ec4aa8e3162cdb8e5daf7fd7e21178d8a3"
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "sha256": "ae396667e8e8e65ccf51aa17032940ca0a1688a71aed223d6c944b53aebfcc62"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+      "sha256": "960df6294e60c5c5cf016798870242c592576b5c38735c937f306d306d3749c1"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values/strings.xml",
+      "sha256": "791b25344f4f35885a3d1122db7caf7a119dec2d0329c0599fa200d2d6b3a705"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+      "sha256": "a1e161154d80b004b577f6c772f72f25280351ef345fadc3ac58bb6f76fcc552"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+      "sha256": "041450e312d531a7ccac067ebcb5a1e9635c7e44dea0806651ec92b86b3f9496"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "sha256": "77e16848ef3faca0f57539b98334a59951d0e75ec2bc9808da2077e6e1dc74a8"
+    }
+  ],
+  "patterns": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "acceptanceCriteria": [
+    "Product settings and backup/restore preserve independent daily-summary enabled, summary local time defaulting to 09:00, and soak-reminder enabled values with safe fallback for legacy archives/settings.",
+    "Production ReminderPlan derives current/overdue Today work, exactly one future daily summary when enabled and useful, and each enabled future soak target from the current persisted ProductSnapshot using stable physical IDs.",
+    "Real Android and iOS permission state drives physical scheduling; denied or revoked permission cancels physical registrations while product actions and Today remain unchanged and visible.",
+    "Application start, process restart, foreground resume/settings return, successful restore, product-data mutation, Android boot/package replacement/time-zone signals and iOS active-scene transitions invoke idempotent reconciliation without duplicate logical or physical IDs.",
+    "Android keeps best-effort alarms without exact-alarm permission; iOS uses pending notification identifiers; both localize native notification text from EN/RU resources.",
+    "Platform, component/integration and persistence tests prove no-work silence, one daily summary, independent soak choice, denial behavior, stable IDs, restart/restore idempotence, cancellation and time-zone/environment recovery. Specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/architecture/PLATFORM-SERVICES.md",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidNotificationPermissionService.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderDriver.kt",
+    "shared/platform/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderIntegrationTest.kt",
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/Fakes.kt",
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt",
+    "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt"
+  ],
+  "assignmentId": "production-reminder-delivery",
+  "contractInputs": [
+    "spec/flows/FLOW-006.md",
+    "spec/screens/SCREEN-002.md",
+    "spec/screens/SCREEN-016.md",
+    "spec/quality.md",
+    ".vibe/requests/reminder-delivery-integration-package.json",
+    ".vibe/receipts/RECEIPT-0ef0936d-645c-4ef8-b5da-313a1e3b6b40.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Persist independent daily-summary, local 09:00 summary time and soak reminder choices; derive one complete logical plan from current product data; reconcile stable native registrations on app start, resume, restore, product mutation and Android environment signals while permission denial only disables physical delivery and never hides Today work.",
+  "obligationIds": [
+    "AC-064",
+    "AC-065",
+    "AC-067"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/flow-delivery-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

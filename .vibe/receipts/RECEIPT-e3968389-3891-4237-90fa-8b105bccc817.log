@@ -1,0 +1,7 @@
+Missing design-review contract marker: Accepted
+D:\Sources\Android\SproutPace\.vibe\scripts\verify-final-design-review.ps1:15 знак:9
++         throw "Missing design-review contract marker: $marker"
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Missing design-...arker: Accepted:String) [], RuntimeException
+    + FullyQualifiedErrorId : Missing design-review contract marker: Accepted
+ 

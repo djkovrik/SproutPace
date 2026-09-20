@@ -1,0 +1,14 @@
+{
+  "action": "check",
+  "jobId": "CHECK-scheduled-action-command-targeting-r5-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "action-targeting-v1",
+  "tasks": [":shared:data:testAndroidHostTest", ":shared:component:testAndroidHostTest", ":shared:compose:testAndroidHostTest", ":shared:compose:compileKotlinIosSimulatorArm64"],
+  "coveredObligations": [
+    {"obligationId": "AC-061", "surfaces": ["store-test", "component-test", "database-integration-test"]},
+    {"obligationId": "AC-063", "surfaces": ["store-test", "component-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android host tests; Kotlin/Native iOS simulator compilation"
+}

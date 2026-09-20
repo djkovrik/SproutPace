@@ -1,0 +1,38 @@
+{
+  "acceptanceCriteria": [
+    "AppRootComponent exposes a typed resetToFirstRun operation owned by the root navigation boundary.",
+    "The default implementation dismisses any confirmation and replaces the entire stack with FIRST_RUN instead of pushing it.",
+    "Back cannot reveal pre-erase content after the reset, and serialization/restoration preserves the reset destination.",
+    "Preview implementation remains usable and contract tests cover compact and adaptive navigation invariants.",
+    "No data, Compose, platform, host, ledger, or external configuration changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/root/src/commonMain/**",
+    "shared/root/src/commonTest/**"
+  ],
+  "assignmentId": "root-first-run-reset",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-009.md",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Add a typed, lifecycle-safe root navigation operation that atomically resets the Decompose stack to SCREEN-001 after successful local erase; test that prior destinations cannot reappear via Back and that state restoration starts from first run.",
+  "obligationIds": [
+    "AC-095"
+  ],
+  "requestedCommands": [
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:allTests",
+    ":shared:root:compileAndroidMain",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/navigation-and-root.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/lifecycle-state-retention.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "action": "assign",
+  "reconcileDrift": "QG-001 currently aggregates only domain coverage, filters for an unaggregated component package, and defaults to zero percent, so the gate can pass without measuring most production logic.",
+  "assignmentId": "foundation-meaningful-kover-gate",
+  "packageId": "foundation",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-001"],
+  "allowedFiles": ["build.gradle.kts"],
+  "inputScopeId": "foundation-kover-aggregation-v1",
+  "goal": "Make QG-001 coverage meaningful from the root build only: apply Kover to the uninstrumented component/root projects, aggregate domain/data/component/root/platform/monetization, measure all six package roots, and enforce a nonzero defensible line threshold plus per-package coverage presence.",
+  "contractInputs": [
+    "gradle/libs.versions.toml",
+    "shared/domain/build.gradle.kts",
+    "shared/data/build.gradle.kts",
+    "shared/component/build.gradle.kts",
+    "shared/root/build.gradle.kts",
+    "shared/platform/build.gradle.kts",
+    "shared/monetization/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    "koverXmlReport",
+    "koverVerify"
+  ],
+  "acceptanceCriteria": [
+    "Root build applies Kover to component/root without editing their module build files and directly aggregates all six production logic projects.",
+    "Coverage filters include domain, data, component, root, platform and monetization; only generated/resource/preview classes are excluded.",
+    "The default application line threshold is at least 60 percent and any override is validated in 1..100; a package-grouped rule prevents an entirely uncovered included package.",
+    "Root check runs all six host suites before report/verify without an override. CI is not changed because its existing ordering already does this.",
+    "No module build file, production/test source, workflow, dependency catalog, ledger or unrelated root configuration is changed; specialist does not run Gradle."
+  ]
+}

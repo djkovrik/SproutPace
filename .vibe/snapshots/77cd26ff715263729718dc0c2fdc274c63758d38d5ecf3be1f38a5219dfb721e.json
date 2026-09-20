@@ -1,0 +1,22 @@
+{
+  "algorithm": "sha256",
+  "digest": "78524a1d6a76c119e983c91153724fd600fe61609258f0bdeeb91aabc95f0f95",
+  "files": [
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "sha256": "3e8e78e85d2e77682fbfc2c166c08814918add8efaa9c1942af9ccaeeed84169"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "sha256": "cba2fdec0142fb3a0c1a4661c98c61d0ad14d300361243b40dcf715b59f3ebb7"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "sha256": "0bdcac2f685bb6fb82dcf279bf47f6051b161f9e77f99aaa43e9b99b2e8f7b7e"
+    }
+  ],
+  "patterns": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/**"
+  ]
+}

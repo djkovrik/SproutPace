@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-core-acceptance-test-matrix-20260920.json",
+  "inspectionNote": "Inspected the expanded scenario-named domain, Store/component and root tests. Accepted the explicit unresolved production gap: fake-backed component evidence is not end-to-end proof until a data-backed ScreenDataManager and platform AppRootFactory assembly are implemented and tested."
+}

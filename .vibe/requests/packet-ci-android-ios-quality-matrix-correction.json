@@ -1,0 +1,51 @@
+{
+  "acceptanceCriteria": [
+    "Linux CI uses existing Android KMP/Paparazzi task names and runs all shared module host tests, strict analysis, coverage, Android debug assembly and screenshot verification.",
+    "macOS CI compiles/tests every shared iOS module, links the Compose framework and builds the Swift host unsigned for iOS Simulator.",
+    "iOS production ads remain disabled and no live Firebase/Yandex/signing secret is required by CI.",
+    "Failure reports, coverage and Paparazzi diffs are retained as artifacts.",
+    "Actions are SHA-pinned and permissions remain least-privilege.",
+    "Documentation separates locally verified gates, macOS/CI-only gates and external release configuration.",
+    "The specialist does not run Gradle, Xcode, edit application source or edit the ledger."
+  ],
+  "allowedFiles": [
+    ".github/workflows/AnalysisAndTest.yml",
+    "docs/CI-RELEASE-SETUP.md"
+  ],
+  "assignmentId": "ci-android-ios-quality-matrix-correction",
+  "contractInputs": [
+    "spec/quality.md",
+    "settings.gradle.kts",
+    "shared/compose/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml",
+    "docs/CI-RELEASE-SETUP.md"
+  ],
+  "forkTurns": "none",
+  "goal": "Correct the pinned GitHub Actions matrix to run real repository task names, complete Android/quality/Paparazzi gates on Linux and all shared iOS Simulator compile/test plus framework and unsigned Xcode host build gates on macOS, without requiring Firebase/Yandex/signing secrets.",
+  "obligationIds": [
+    "QG-001",
+    "QG-002",
+    "QG-003",
+    "QG-007"
+  ],
+  "requestedCommands": [
+    "detekt",
+    "koverXmlReport",
+    "koverVerify",
+    ":androidApp:assembleDebug",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:verifyPaparazziDebug",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:data:compileKotlinIosSimulatorArm64",
+    ":shared:component:compileKotlinIosSimulatorArm64",
+    ":shared:root:compileKotlinIosSimulatorArm64",
+    ":shared:platform:compileKotlinIosSimulatorArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/platform-entrypoints-and-release.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

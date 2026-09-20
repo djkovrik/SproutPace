@@ -1,0 +1,35 @@
+{
+  "acceptanceCriteria": [
+    "Storage read/write exceptions cannot escape privacy resolve/decision operations and always disable advertising.",
+    "SDK disposal exceptions cannot escape decline/withdraw operations.",
+    "A deterministic common test covers the storage failure path.",
+    "No other file or behavior changes; root owns Gradle.",
+    "Superseding handoff claims only QG-009/QG-010 declared surfaces with exact equality."
+  ],
+  "allowedFiles": [
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt"
+  ],
+  "assignmentId": "privacy-yandex-ads-correction-1",
+  "contractInputs": [
+    "spec/flows/FLOW-010.md",
+    ".vibe/handoffs/HANDOFF-privacy-yandex-ads-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Finalize the inspected fail-closed correction: private-settings read/write failures return ineligible/false without crashing the offline core, and SDK disposal failures after decline/withdraw remain isolated; retain the deterministic regression test and all existing privacy/ad behavior.",
+  "obligationIds": [
+    "QG-009",
+    "QG-010"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:allTests",
+    ":shared:monetization:testAndroidHostTest"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/privacy-region-endpoint.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/ad-lifecycle-and-testing.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "action":"handoff","assignmentId":"reminder-settings-fixture-correction","handoffId":"HANDOFF-reminder-settings-fixture-correction-20260920",
+  "productionEvidence":[{"path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt","symbol":"realisticPreviewFieldValue","surface":"ui-golden","coverage":[{"obligationId":"AC-064","surface":"ui-golden"}]}],
+  "testEvidence":[{"path":"shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt","testName":"ac067_notificationPreferenceChangeTriggersProductReconciliation","surface":"integration-test","coverage":[{"obligationId":"AC-067","surface":"integration-test"}]}],
+  "nonGradleChecks":[{"argv":["git","diff","--check","--","shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt","shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt"],"exitCode":0}],
+  "requestedCommands":[{"argv":["gradlew.bat",":shared:compose:testAndroidHostTest",":shared:compose:verifyPaparazzi"],"tasks":[":shared:compose:testAndroidHostTest",":shared:compose:verifyPaparazzi"],"coveredObligations":[{"obligationId":"AC-064","surfaces":["ui-golden"]},{"obligationId":"AC-067","surfaces":["integration-test"]}]}],"blockers":[]
+}

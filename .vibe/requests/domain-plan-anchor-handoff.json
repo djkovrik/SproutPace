@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-domain-plan-anchor.json",
+  "inspectionNote": "Inspected required HarvestPlan.anchorDate, caller-date-free deterministic suggestions, continuous max(anchor, actual)+cadence semantics, stable suggestion IDs and calendar-rollover/update tests. Android/iOS domain compilation and tests are green; AC-051 remains correctly deferred to its normative component/database surfaces and persistence adaptation is active."
+}

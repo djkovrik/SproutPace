@@ -1,0 +1,43 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The production composition graph now exists in shared Compose, but Android hosts still import the removed placeholder SproutPaceRoot/productionSproutPaceRoot and Swift still constructs the removed productionSproutPaceRoot then calls MainViewController without its required IosProductionAppGraph. Lifecycle forwarding is therefore absent and Android assembly/iOS linkage cannot succeed.",
+  "assignmentId": "foundation-production-host-wiring",
+  "packageId": "foundation",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-001", "QG-002", "QG-003"],
+  "allowedFiles": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/iosApp.swift"
+  ],
+  "goal": "Wire the real retained production graph into Android Application/Activity and SwiftUI: one graph/root per app lifetime, correct lifecycle forwarding, no placeholder factories, no graph recreation on configuration changes, and correct light/dark system-bar appearance. Preserve iOS advertising safe-disabled and existing platform-service bridges.",
+  "contractInputs": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "androidApp/src/main/AndroidManifest.xml",
+    "iosApp/iosApp/iosApp.swift"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/platform-entry-points-and-lifecycle.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug",
+    "xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO build"
+  ],
+  "acceptanceCriteria": [
+    "SproutPaceApplication creates and retains exactly one AndroidProductionAppGraph using application context and BuildConfig.DEBUG.",
+    "AppActivity renders graph.root and forwards start/resume/pause/stop without closing or recreating the application graph during configuration changes.",
+    "Swift retains exactly one IosProductionAppGraph, calls MainViewController(graph:), and maps scene active/inactive/background transitions to graph lifecycle without constructing an obsolete root.",
+    "Android and iOS system status/navigation bar content uses dark icons in light theme and light icons in dark theme.",
+    "iOS advertising remains unconditionally safe-disabled with no project/ad-unit identifier or SDK initialization.",
+    "Existing notification, picker, crash-reporting and Firebase-safe configuration behavior remains intact.",
+    "No product, domain, persistence schema or external project changes; specialist does not run Gradle/Xcode or edit the ledger."
+  ]
+}

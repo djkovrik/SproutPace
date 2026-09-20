@@ -1,0 +1,93 @@
+{
+  "algorithm": "sha256",
+  "digest": "14ec51bc3894c9e280c567bde4660cb5f7a9ade4ce79fbb7472800f81ab45687",
+  "files": [
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "sha256": "0140fc8fce68acbf16cac064596c493dc9dddeb747bcaec7b56315ce57f94891"
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "sha256": "ec65a6ff0b90618b97718fe421b3392af2d4cf201e73cfee5c30010117f90e6a"
+    },
+    {
+      "path": "docs/architecture/PLATFORM-SERVICES.md",
+      "sha256": "c347df1788c2a96747eb52f492ef8bbf011d44babbc8d01044a421526212b527"
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "sha256": "e4c11dcfc1ad9a85e6b7157e22f086347ed914169a7aee9d56ed32fd4593927e"
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "sha256": "69a9f27885a736a603c80a2f54e944d1152b38fc85e64de1579078a48dd811aa"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "sha256": "8ef747ab9979195933284a94937b10f853a2d5805dd4831c1ec579d0b177b873"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "sha256": "ba46476951a1f9ba9267ace89ddd0f733ceaae8b6aae64463ca7d9eb3df85f1d"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+      "sha256": "90ca382c0ec21c078b6ddb19759fa1d6dc2c49f6c414db985c95cdf0e34e7791"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "sha256": "7d2f453d567e1224629529c1797fb5ad958a26a9815dc29f2703229d98cc0505"
+    },
+    {
+      "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidNotificationPermissionService.kt",
+      "sha256": "801986a1868d709bdc63a22f1594d72b7aecb30af36ecf389e4d7532944df30b"
+    },
+    {
+      "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderDriver.kt",
+      "sha256": "a016d3108e2174ce3330534da482da90bc5737966c48b08be9939af0ce58b8bb"
+    },
+    {
+      "path": "shared/platform/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderIntegrationTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/Fakes.kt",
+      "sha256": "1f20cdc27361b541910029f77ff6247002f2888be774a6454428ee5a6791d788"
+    },
+    {
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt",
+      "sha256": "7f16d46a694df23e4f3480a42b422f134a520465383ebaac332280839ebfa106"
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt",
+      "sha256": "ff98c57b4f7d365a141632ce880e0e583f6592aa4471d8889a4de4f9fe820738"
+    }
+  ],
+  "patterns": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/architecture/PLATFORM-SERVICES.md",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidNotificationPermissionService.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderDriver.kt",
+    "shared/platform/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderIntegrationTest.kt",
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/Fakes.kt",
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt",
+    "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt"
+  ]
+}

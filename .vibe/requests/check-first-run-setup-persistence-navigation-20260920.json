@@ -1,0 +1,20 @@
+{
+  "action": "check",
+  "jobId": "CHECK-first-run-setup-persistence-navigation-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "first-run-flow-v1",
+  "tasks": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:compileKotlinIosSimulatorArm64",
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "coveredObligations": [
+    {"obligationId":"AC-010","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-014","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-050","surfaces":["component-test","database-integration-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; SQLDelight 2.4.0; Decompose 3.4.0; Android/iOS simulator KMP targets"
+}

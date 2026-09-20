@@ -1,0 +1,37 @@
+{
+  "acceptanceCriteria": [
+    "Paparazzi setup no longer fails with a missing Compose tooling resource class.",
+    "ComposablePreviewScanner discovers a nonzero deterministic production preview set and generated parameterized tests render stable IDs.",
+    "Required light/dark, EN/RU, 200 percent font scale and adaptive primary-screen variants are asserted by executable tests.",
+    "The record/verify/report commands and expected golden output location are described in the handoff for root-owned execution.",
+    "The specialist does not run Gradle, edit the ledger, record goldens or perform the post-golden Lazyweb review; root owns those stages."
+  ],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/**"
+  ],
+  "assignmentId": "visual-quality-paparazzi",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/design.md",
+    "spec/quality.md",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Build a deterministic ComposablePreviewScanner plus parameterized Paparazzi suite for the primary light/dark, EN/RU, 200 percent font-scale and adaptive preview matrix; fix the current Paparazzi runtime classpath failure; prepare record/verify commands and inspectable stable screenshot IDs without changing product behavior.",
+  "obligationIds": [
+    "QG-007"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:recordPaparazziDebug",
+    ":shared:compose:verifyPaparazziDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/references/visual-testing-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-domain-action-rebuild-correction.json",
+  "inspectionNote": "Inspected the pure ActionScheduleEngine, typed correction input/result, public applyCorrection, domain-owned undo rebuild, stable-ID deduplication, fixed-date conflict preservation, elapsed/civil-time handling and scenario tests. The current combined receipt covers all requested domain/component/root tests and Android/iOS compiles; no blockers remain in this assignment."
+}

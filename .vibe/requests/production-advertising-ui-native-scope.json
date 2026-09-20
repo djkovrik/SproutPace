@@ -1,0 +1,25 @@
+{
+  "action": "scope",
+  "scopeId": "production-advertising-ui-native-v1",
+  "patterns": [
+    "shared/monetization/**",
+    "shared/component/**",
+    "shared/data/**",
+    "shared/compose/**",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "spec/app-spec.json",
+    "spec/flows/FLOW-010.md",
+    "spec/screens/SCREEN-003.md",
+    "spec/screens/SCREEN-007.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/screens/SCREEN-015.md",
+    "spec/design.md",
+    "spec/quality.md",
+    "*.gradle.kts",
+    "gradle/**"
+  ],
+  "dependencyRationale": "Ad eligibility starts in the canonical monetization runtime, becomes typed screen/component state, renders through common Compose with Android/iOS actuals, and is hosted by the Android application lifecycle.",
+  "fallbackReason": "The current generic sixteen-screen architecture and shared Compose host require full relevant module fingerprints; assignment write boundaries remain explicit.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Yandex Mobile Ads Android 8.5.0"
+}

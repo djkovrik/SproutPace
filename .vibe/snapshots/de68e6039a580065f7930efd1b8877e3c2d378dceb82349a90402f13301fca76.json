@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "digest": "45e74e3705c606b14a0eac6e0331dfe32994ddace5cab05552694cfb878de118",
+  "files": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "sha256": "2c47a8102129298bd277674be6636a4dd45bb3cd0b7f196d6c86b857b34ebd52"
+    }
+  ],
+  "patterns": [
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ]
+}

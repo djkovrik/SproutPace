@@ -1,0 +1,16 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The implementation and green receipt are valid, but ingest of HANDOFF-typed-screen-interaction-contracts.json detected changed assignment inputs during parallel root/production integration. Re-read the current contracts, confirm no semantic conflict, and issue a superseding handoff without broadening scope.",
+  "assignmentId": "typed-screen-interaction-contracts-correction-1",
+  "packageId": "core-domain",
+  "owner": "vibe-decompose-engineer",
+  "acceptanceScenarioIds": ["AC-010", "AC-014", "AC-020", "AC-026", "AC-027", "AC-030", "AC-032", "AC-035", "AC-036", "AC-037", "AC-038", "AC-039", "AC-040", "AC-050", "AC-051", "AC-052", "AC-054", "AC-055", "AC-057", "AC-060", "AC-062", "AC-066", "AC-068", "AC-080", "AC-081", "AC-085"],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": ["shared/component/src/commonMain/**", "shared/component/src/commonTest/**"],
+  "inputScopeId": "component-root-v1",
+  "goal": "Reconcile current root/data/presentation inputs with the completed typed interaction contracts and produce a superseding protocol handoff; change component code only if the current contracts reveal a real incompatibility.",
+  "contractInputs": ["spec/app-spec.json", "spec/screens/**", "spec/flows/**", "shared/component/src/commonMain/**", "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt", "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt", "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt"],
+  "requiredReads": ["C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md", "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md", "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"],
+  "requestedCommands": [":shared:component:testAndroidHostTest", ":shared:component:allTests", ":shared:component:compileAndroidMain", ":shared:component:compileKotlinIosSimulatorArm64"],
+  "acceptanceCriteria": ["Current inputs are explicitly reviewed against the completed typed contracts.", "The superseding handoff cites HANDOFF-typed-screen-interaction-contracts.json in supersedes and reuses only the current green receipt if its scope remains current.", "No non-component source, build, ledger or external configuration changes; specialist does not run Gradle."]
+}

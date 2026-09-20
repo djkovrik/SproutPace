@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "digest": "dc6774b06ebd1a220f9c565069ad9e0bc58b5daec7f9702de07d5cc6cda51966",
+  "files": [
+    {
+      "path": "docs/assets/ASSET-INVENTORY.md",
+      "sha256": null
+    },
+    {
+      "path": "docs/assets/asset-manifest.json",
+      "sha256": "8e365d1ca0aca0c9106f0d0a83cb653b6bf2ed963027431b4f623a26d9b44c65"
+    }
+  ],
+  "patterns": [
+    "docs/assets/ASSET-INVENTORY.md",
+    "docs/assets/asset-manifest.json"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "action": "check",
+  "jobId": "CHECK-ac002-dependencies-current-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "first-run-flow-v1",
+  "tasks": [":shared:domain:allTests", ":shared:component:allTests", ":shared:data:testAndroidHostTest"],
+  "coveredObligations": [
+    {"obligationId":"AC-010","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-014","surfaces":["domain-test","component-test","database-integration-test"]},
+    {"obligationId":"AC-050","surfaces":["component-test","database-integration-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; SQLDelight 2.4.0; MVIKotlin 4.3.0"
+}

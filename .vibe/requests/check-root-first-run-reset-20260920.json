@@ -1,0 +1,13 @@
+{
+  "action": "check",
+  "jobId": "CHECK-root-first-run-reset-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "component-root-v1",
+  "tasks": [":shared:root:testAndroidHostTest", ":shared:root:allTests", ":shared:root:compileAndroidMain", ":shared:root:compileKotlinIosSimulatorArm64"],
+  "coveredObligations": [
+    {"obligationId": "AC-095", "surfaces": ["component-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Decompose 3.4.0; Android/iOS simulator KMP targets"
+}

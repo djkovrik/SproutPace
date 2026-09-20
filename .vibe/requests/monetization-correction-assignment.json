@@ -1,0 +1,31 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected the three post-handoff monetization edits. They are a correctness fix for private-settings read/write exceptions and SDK disposal exceptions escaping the fail-closed boundary, plus its deterministic regression test; no unrelated or user-owned file changed.",
+  "assignmentId": "privacy-yandex-ads-correction-1",
+  "packageId": "monetization-privacy",
+  "owner": "vibe-monetization-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-009", "QG-010"],
+  "allowedFiles": [
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt"
+  ],
+  "inputScopeId": "monetization-privacy-v1",
+  "goal": "Finalize the inspected fail-closed correction: private-settings read/write failures return ineligible/false without crashing the offline core, and SDK disposal failures after decline/withdraw remain isolated; retain the deterministic regression test and all existing privacy/ad behavior.",
+  "contractInputs": ["spec/flows/FLOW-010.md", ".vibe/handoffs/HANDOFF-privacy-yandex-ads-20260920.json"],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/privacy-region-endpoint.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/ad-lifecycle-and-testing.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [":shared:monetization:allTests", ":shared:monetization:testAndroidHostTest"],
+  "acceptanceCriteria": [
+    "Storage read/write exceptions cannot escape privacy resolve/decision operations and always disable advertising.",
+    "SDK disposal exceptions cannot escape decline/withdraw operations.",
+    "A deterministic common test covers the storage failure path.",
+    "No other file or behavior changes; root owns Gradle.",
+    "Superseding handoff claims only QG-009/QG-010 declared surfaces with exact equality."
+  ]
+}

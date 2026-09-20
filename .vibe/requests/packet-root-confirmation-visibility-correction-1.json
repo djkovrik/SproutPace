@@ -1,0 +1,31 @@
+{
+  "acceptanceCriteria": [
+    "AppRootComponentDefault compiles without exposing a private implementation type through a public property.",
+    "The public ConfirmationComponent slot contract remains unchanged.",
+    "Existing confirmation and navigation tests remain valid.",
+    "Root reruns Android/iOS compilation and root tests."
+  ],
+  "allowedFiles": [
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt"
+  ],
+  "assignmentId": "root-confirmation-visibility-correction-1",
+  "contractInputs": [
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/root/NAVIGATION.md"
+  ],
+  "forkTurns": "none",
+  "goal": "Remove the public API exposure of the private ConfirmationComponentDefault implementation while preserving AppRootComponent confirmation-slot behavior and Decompose navigation semantics.",
+  "obligationIds": [
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:root:allTests",
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileAndroidMain",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "action": "handoff",
+  "assignmentId": "asset-production-usage-evidence",
+  "handoffId": "HANDOFF-asset-production-usage-evidence-20260920",
+  "productionEvidence": [
+    {
+      "path": "docs/assets/asset-manifest.json",
+      "symbol": "ASSET-029",
+      "surface": "asset-check",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-check"}]
+    },
+    {
+      "path": "docs/assets/ASSET-INVENTORY.md",
+      "symbol": "Visual evidence review",
+      "surface": "asset-visual",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-visual"}]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": ["python", "C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py", "--app-spec-root", "D:/Sources/Android/SproutPace/spec", "--repository", "D:/Sources/Android/SproutPace"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "Verify all manifest output, usage, visual-evidence and generation-record paths and SHA-256 hashes"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [],
+  "blockers": []
+}

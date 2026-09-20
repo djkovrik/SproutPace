@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.7521782999974675,
+  "events": [
+    {
+      "at": "2026-09-20T11:33:43.181939Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T11:33:45.697781Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T11:34:02.586678Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T11:34:02.661769Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T11:34:02.701316Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T11:34:03.495221Z",
+      "durationSeconds": 0.7521782999974675,
+      "receiptRef": ".vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-paparazzi-windows-safe-r4-verify-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json",
+  "stage": "bound"
+}

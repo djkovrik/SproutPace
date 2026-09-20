@@ -1,0 +1,71 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Canonical privacy persistence and controller behavior are ingested, and Trays has an explicit History category. Production snapshots still never set showInlineAdSlot, the common UI renders a static placeholder rather than a native banner, eligible visits do not trigger privacy resolution/navigation, and Settings exposes privacy management regardless of applicability.",
+  "assignmentId": "production-advertising-ui-native",
+  "packageId": "canonical-advertising-privacy-runtime",
+  "owner": "vibe-monetization-engineer",
+  "acceptanceScenarioIds": ["AC-102", "AC-104"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/monetization/src/commonMain/**",
+    "shared/monetization/src/commonTest/**",
+    "shared/monetization/src/androidMain/**",
+    "shared/monetization/src/androidHostTest/**",
+    "shared/monetization/src/iosMain/**",
+    "shared/monetization/src/iosTest/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonTest/**",
+    "shared/compose/src/androidMain/**",
+    "shared/compose/src/iosMain/**",
+    "shared/compose/src/androidUnitTest/**",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md"
+  ],
+  "inputScopeId": "production-advertising-ui-native-v1",
+  "goal": "Implement production consent reachability and native ad rendering: resolve privacy only at the first sufficiently populated eligible Android Catalog or explicit Trays History visit; open the full Advertising Privacy screen before any request when required; support equal Accept/Decline, policy link, conditional Settings management and withdrawal; and render at most one lifecycle-owned Yandex inline banner at the exact approved insertion point only after successful load.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-010.md",
+    "spec/screens/SCREEN-003.md",
+    "spec/screens/SCREEN-007.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/screens/SCREEN-015.md",
+    "shared/monetization/src/commonMain/**",
+    "shared/monetization/src/androidMain/**",
+    "shared/component/src/commonMain/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/androidMain/**"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:allTests",
+    ":shared:component:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "acceptanceCriteria": [
+    "Catalog becomes eligible only with at least five real culture cards and inserts one ad after card four; Trays becomes eligible only for explicitly selected History with at least six terminal records and inserts one ad after record five. No list-position inference and at most one request per eligible screen visit.",
+    "Before any SDK initialization/load, the first eligible interactive Android visit resolves canonical privacy. ConsentRequired navigates to the full SCREEN-015; Accept and Decline have equal clear actions, back implies no consent, and the configured HTTPS privacy action is safe-disabled when absent.",
+    "Settings exposes advertising privacy management only when fresh applicability makes it relevant. Accepted state offers withdrawal; decline/withdraw stop new requests and remove owned ad UI immediately without affecting product data.",
+    "Unknown/false eligibility, unresolved/declined consent, stale/malformed/offline/failed endpoint, short content, prohibited surfaces, previews/tests, missing ID, SDK/no-fill/load failure, or disposed host produce zero reserved space and never block core content.",
+    "Android uses the existing Yandex BannerAdView driver with host lifecycle disposal and shows a localized Advertising label only after the native ad reports loaded. There is no generic Compose placeholder and no duplicate banner per visit.",
+    "iOS stays unconditionally disabled with no banner view, placeholder, error, request, dependency or identifier; iOS/common compilation remains green.",
+    "All new user-visible copy and semantics exist in EN/RU production resources; deterministic component/Compose tests cover eligibility, exact insertion indices, privacy navigation/actions/withdrawal, collapsed states, lifecycle disposal, and conditional Settings reachability. Add deterministic preview states for the final ui-golden pass, but root records goldens later. Root owns Gradle."
+  ]
+}

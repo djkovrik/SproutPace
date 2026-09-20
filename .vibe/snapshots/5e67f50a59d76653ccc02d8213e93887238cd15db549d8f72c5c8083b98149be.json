@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256",
+  "digest": "eae8e37b78120d21379ef7665c0a8bb7925b7740d9a591dca7db1a309d73d591",
+  "files": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "sha256": "a278f2b6cfee1c101c739b62f58af613dbd96acbed8ee52e5b496ee3f8b19fcf"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+      "sha256": "d7d2b2195af553c3702f466e2497813734bdf213a774100f63bcdbbf131716bf"
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "sha256": "577dd6ec433e7e2c8a4e7bae396f774c9092d403f89087d0408816d6f8b96ba7"
+    }
+  ],
+  "patterns": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt"
+  ]
+}

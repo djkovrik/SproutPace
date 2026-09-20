@@ -1,0 +1,25 @@
+{
+  "action": "assign",
+  "assignmentId": "approved-assets",
+  "packageId": "assets",
+  "owner": "vibe-assets-creator",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-006"],
+  "allowedFiles": ["shared/compose/src/commonMain/composeResources/drawable/**", "docs/assets/**"],
+  "inputScopeId": "assets-v1",
+  "goal": "Deliver all ASSET-001 through ASSET-029 exactly from the approved AppSpec: canonical Material Symbols vectors for reuse items, original portable vectors for the logo/stages/empty state, generated raster catalog illustrations, and a traceable asset manifest/generation records. Preserve existing launcher assets unless an approved derivative can be produced safely. UI wiring is owned by a later assignment.",
+  "contractInputs": ["spec/app-spec.json", "spec/design.md", "spec/screens/**", "docs/assignments/REQUEST-SPROUTPACE-APPSPEC-2.md"],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-assets-creator/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-assets-creator/references/asset-contract.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": ["asset validator requirement-only", "asset validator repository mode", ":shared:compose:generateComposeResClass", ":shared:compose:compileKotlinAndroid"],
+  "acceptanceCriteria": [
+    "Every ASSET ID has the exact required output path and valid format/dimensions.",
+    "Reuse vectors identify the real Material Symbols source and license; custom/generated work has truthful provenance.",
+    "Raster generation uses the imagegen skill/tool and stores generation records plus observed output details.",
+    "The asset manifest is structurally complete; usage/visual evidence that depends on later UI/goldens is explicitly left as a blocker rather than fabricated.",
+    "An immutable Protocol 2.0 handoff is produced without editing the delivery ledger or running Gradle."
+  ]
+}

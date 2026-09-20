@@ -1,0 +1,53 @@
+{
+  "algorithm": "sha256",
+  "digest": "49c33ace336faa6745eb851971cc0ce13b9f039a1f05c05cff72ee9f67fca953",
+  "files": [
+    {
+      "path": "docs/configuration/firebase-and-ads.md",
+      "sha256": null
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "sha256": "62754b4171088bf3af3cb064be1f5395cebb19b4ef9e4078b039d898879c08d9"
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "sha256": "008ff72ca692bc03368629d351d9d02433f3e5208cc79b7863ed92df2ed93436"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+      "sha256": "c4b5e17ffbcb2192ce04f5d9fb8f8b8fddbb0b929e022d2e1415b2a593818bf1"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values/strings.xml",
+      "sha256": "b166ebb5796fc8d8f6de7c3749902017e1e20f2b0a1239214b99613c9565396a"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+      "sha256": "a1e161154d80b004b577f6c772f72f25280351ef345fadc3ac58bb6f76fcc552"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "sha256": "8d7b4f1ca06f728fe423d5bb63b625218837836e5725e0907ff3bb70cb47dd18"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionSettingsRuntimeTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "sha256": "ef0222d2481022c848b1ce7cdce2570ab5b3b2ae7072d597c7a35c2e85d3e59f"
+    }
+  ],
+  "patterns": [
+    "docs/configuration/firebase-and-ads.md",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionSettingsRuntimeTest.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt"
+  ]
+}

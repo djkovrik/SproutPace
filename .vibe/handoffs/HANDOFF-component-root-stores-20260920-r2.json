@@ -1,0 +1,1375 @@
+{
+  "acceptanceScenarioIds": [
+    "AC-010",
+    "AC-011",
+    "AC-012",
+    "AC-014",
+    "AC-020",
+    "AC-021",
+    "AC-026",
+    "AC-027",
+    "AC-030",
+    "AC-031",
+    "AC-032",
+    "AC-035",
+    "AC-036",
+    "AC-037",
+    "AC-038",
+    "AC-039",
+    "AC-040",
+    "AC-050",
+    "AC-051",
+    "AC-052",
+    "AC-054",
+    "AC-055",
+    "AC-057",
+    "AC-060",
+    "AC-062",
+    "AC-066",
+    "AC-068",
+    "AC-080",
+    "AC-081",
+    "AC-085"
+  ],
+  "allowedFiles": [
+    "shared/component/**",
+    "shared/root/**"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/588bf40e011830f82d79bb81869151600b0d59095e61d80cc3fe6a4dcf8e5b01.json",
+    "sha256": "3d98aa9313cc8f43c731b1f7fa866f30d4fd30a72dbcaa199a43a4f8fbc138a0"
+  },
+  "assignmentId": "component-root-stores",
+  "blockers": [
+    "Orchestrator-owned settings.gradle.kts must include :shared:component and :shared:root before requested Gradle tasks can run.",
+    "Orchestrator-owned gradle/libs.versions.toml must define the pinned aliases documented in the specialist return; compilation has not been run by this specialist."
+  ],
+  "changedFiles": [
+    "shared/component/build.gradle.kts",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/root/NAVIGATION.md",
+    "shared/root/build.gradle.kts",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentPreview.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootFactory.kt",
+    "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt"
+  ],
+  "completedAt": "2026-09-20T07:38:32.134692Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-component-root-stores-20260920-r2",
+  "inputFingerprint": {
+    "appSpec": {
+      "algorithm": "sha256",
+      "digest": "bb5cfb5e652c875f39f637ed7dfc70c428ff09dfe1da703ac67e030b6ed00212",
+      "files": [
+        {
+          "path": "app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ]
+    },
+    "digest": "d016d9629ed933ba8f1830487b61c930e769e17da307bbed8e47305bdcdf4041",
+    "inputs": {
+      "algorithm": "sha256",
+      "digest": "a79abd72764254d2797e8a3029372e52d6a60a1c74aa422186c5c54691a8d589",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "0465a5664d122b3327993286cc537442ae4cff112217ef490abd2ffe241eb08b"
+        },
+        {
+          "path": "androidApp/build.gradle.kts",
+          "sha256": "df5ead567ec67511fb4ca9e66480b7c41105386b989dea722efe0af2a2d3a04b"
+        },
+        {
+          "path": "build.gradle.kts",
+          "sha256": "c6309354356fef4a4576a1e124f575c3a8db26d5a96311ab7c13c97bc1ba2904"
+        },
+        {
+          "path": "gradle.properties",
+          "sha256": "dbfde9f711d844a893e1373fe13648fc0f0f361dcb595d02bade50ffca30e8bd"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "sha256": "58148cf342f0410c793e24a8c99ccbaa25687e834033bcfdecb18cf6ec3b94c4"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "sha256": "423cb469ccc0ecc31f0e4e1c309976198ccb734cdcbb7029d4bda0f18f57e8d9"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "sha256": "c89af773425cae016d64791247cb548f0d1209225917209ff5728df4298ccd43"
+        },
+        {
+          "path": "gradlew",
+          "sha256": "7d514e3330fe299d9eee52acbfec77115704d76b73cabac6de915695153129a4"
+        },
+        {
+          "path": "gradlew.bat",
+          "sha256": "9ca26d733ada3a45f27b2151288f54e75c9f95b287d1f82ef942ec5cc2d4f006"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "sha256": "c8fd2489cb4d3b7caf7cd39943351bf5aedbc5bf54e9ef22e9c65f338c75f1de"
+        },
+        {
+          "path": "shared/component/build.gradle.kts",
+          "sha256": "5ec9e9bdd6c1d0644d1e1dc21c44b6d0dac0da700a621a465c47dd6393d9647f"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+          "sha256": "db8f4e91dd14e5f8031e9ae812f49e6ce96a76b333997f6facc92cd1735a1a6e"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+          "sha256": "aff0914b2652cd34a55c3b787fd36e34b7f8b8fa73f1c813d59201995466b87d"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+          "sha256": "915800219df618557bc526618560b33286dcb975c0a2549ff9f1066e969ade47"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+          "sha256": "f4f57097f6726c7aa19f1fe9302c5e3ebd1034ff4427cfb6566744040a4bde33"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+          "sha256": "1f872302958fb4cbfd74cc3d41f835b07c2350401f8e24af02db73241b08c6cd"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+          "sha256": "8176c9693bf88d6d050721b222a87a9128c4df95a254a85f3e128a747364475d"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+          "sha256": "aee6784f5dca75c8791de4bf471c9a255e51bc009477f02f17b223ac59fec239"
+        },
+        {
+          "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+          "sha256": "f30e007762b06755831dca7d6dc4e671e4e06ae417e8f51c2523a2493655f71a"
+        },
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "sha256": "838479f8cd857bdd73320c3cfe726b2ad86d0372960746e4b4ed6d3ee32fd31e"
+        },
+        {
+          "path": "shared/data/build.gradle.kts",
+          "sha256": "39af873f707b15493aacaa4d2a986dca8e591fce33e0447b19c07b08e5f308a1"
+        },
+        {
+          "path": "shared/domain/build.gradle.kts",
+          "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+          "sha256": "96ff0956fb815ac0e1ebe8669d1d7363f943c36225bee9adeef80f3c10c04593"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+          "sha256": "1fa70a9852bc1596fed07d8e8313351a16452bcd8fe76b0befffebe9e0312ddf"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+          "sha256": "245e7ff7a4de2467845bdcacba2796d918779c0380799082ec51df7e0db8d33d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+          "sha256": "3b475e520207e8b177b55dbcc748b61435a3fe70c2c41fce5d81e0a2f6fcdbcf"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+          "sha256": "a9a344b71df735949f42849b1fb501a57379187e8aa8f2e9ae86a57d57cc8cf1"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+          "sha256": "2dd58d77f387885910e6233d47682370462e2b8c84a86b0b6bd3847517be3ac0"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+          "sha256": "8d1af50d1a10fc045a79fc1fb777bb3ed02a2c7e79728519cd07b934e7834359"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+          "sha256": "b4d99db82af10d4fd21ab19b54cbc4729e27ef153ef9781c6d40ff335cbd32f6"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+          "sha256": "9f550281444a44f8088d6c85443382e342dcf0b54c21455616113def3476f11d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+          "sha256": "976bedac78664da311a948afdc3c660a6782f1ddb3a12c7fed9558a53493392d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/ObservationAndBackup.kt",
+          "sha256": "68632e20c9bba7753104037e95a9f62b2b185402af69756ae65f4f3803b13d83"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+          "sha256": "8cecc950d6307ba0faa23561958260c3b0ce40c04a77f4f55e7e7c9d9fa2170e"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+          "sha256": "4f5ae174aae3b54fb40c8b7f6340c0d78d920f2bdbfca702845960f8fc0ae7db"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+          "sha256": "b7c49a34f7d14d644e4c1a9403eeae9427ea5fb2d1ff608870857dc4b542fc38"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+          "sha256": "be7959e8435f587245e6f5115997f62aff146cc68d3161f2af75afdde293dea5"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt",
+          "sha256": "849b41387205f258b7d0be5b45293c20c1853069a803777ccca279e7237c5957"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+          "sha256": "9ee8ebbaf1e9451c2322038cf73c68f5c4d70bb0452dd2e56023724c625f00cd"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt",
+          "sha256": "5c0e6396a0019a163f6b525dcdab0708b4f3457c19e57ccceec7f8dea5b14082"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+          "sha256": "d4dea416a4464dfbaa380f753dd00d7c0ec7c08a6056972705a28b58315117c7"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+          "sha256": "b52e03b3d9c321207237c3111473c8912f15221be00f71007c356bff7d9e1075"
+        },
+        {
+          "path": "shared/platform/build.gradle.kts",
+          "sha256": "98972ee422ce55fa286b709b815e5135f0c4fea31f69493418a72450d073db96"
+        },
+        {
+          "path": "shared/root/NAVIGATION.md",
+          "sha256": "323af0ef17ee2e6655859d9e3ee9a56380fadf2296af99520cc65a579220e629"
+        },
+        {
+          "path": "shared/root/build.gradle.kts",
+          "sha256": "05d09902cf778a6340e4ec262ca6d68c0ac4d46ccf2e953c1de7558a1b527e51"
+        },
+        {
+          "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+          "sha256": "9fc78cab565623b2c844174b9f22b854f33bb49e0a8434b54dcbcd32489e2a23"
+        },
+        {
+          "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+          "sha256": "318598f4481daf678521f801f60cdb6c78a39ece1cd434c71e38045e3cdcc262"
+        },
+        {
+          "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentPreview.kt",
+          "sha256": "c2294ada19636e3b444a1b009d46d761549f1dbd74adff9a3be0a39c3bea5f0b"
+        },
+        {
+          "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootFactory.kt",
+          "sha256": "a3132471193ac4c0834f33d816fa3fea69e68e992cd3dc24028b014b2b23474f"
+        },
+        {
+          "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+          "sha256": "b0d685adc5c40b58630b3e66237986272300ef7bb4d73446fe59989d14bc5a14"
+        },
+        {
+          "path": "spec/app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "spec/data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "spec/design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "spec/domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "spec/flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "spec/flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "spec/flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "spec/flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "spec/flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "spec/flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "spec/flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "spec/flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "spec/flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "spec/flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "spec/flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "spec/flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "spec/product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "spec/quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "spec/screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "spec/screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "spec/screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "spec/screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "spec/screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "spec/screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "spec/screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "spec/screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "spec/screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "spec/screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "spec/screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "spec/screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "spec/screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "spec/screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "spec/screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "spec/screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ],
+      "patterns": [
+        "**/*.gradle",
+        "**/*.gradle.kts",
+        "**/*.properties",
+        "**/.gitignore",
+        "**/libs.versions.toml",
+        "*.gradle",
+        "*.gradle.kts",
+        "*.properties",
+        ".gitignore",
+        "build-logic/**",
+        "buildSrc/**",
+        "gradle/**",
+        "gradlew",
+        "gradlew.bat",
+        "shared/component/**",
+        "shared/domain/**",
+        "shared/root/**",
+        "spec/**"
+      ]
+    },
+    "instructions": [],
+    "scopeDigest": "e858d7dee71390cde57267cc0f14e672161981601cc33c6707d1e65bbdfd72c1"
+  },
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "strictly assert evidence row surfaces equal every coverage surface and each obligation declares that surface in spec/app-spec.json"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "python",
+        "delivery-work.py",
+        "handoff",
+        "--validate"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-decompose-engineer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-010",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-011",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-012",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-014",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-020",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-021",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-026",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-027",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-030",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-032",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-035",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-036",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-037",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-038",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-039",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-040",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-050",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-051",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-052",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-054",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-055",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-057",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-060",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-062",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-066",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-080",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-081",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "surface": "component-test",
+      "symbol": "data class ScreenModel"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-068",
+          "surface": "domain-test"
+        },
+        {
+          "obligationId": "AC-085",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "surface": "domain-test",
+      "symbol": "data class ScreenModel"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-011",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "surface": "catalog-contract-test",
+      "symbol": "data class ScreenModel"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-011",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-021",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-051",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-052",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-054",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-080",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-081",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+      "surface": "component-test",
+      "symbol": "class ScreenStoreProvider"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-037",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-039",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-040",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-060",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-062",
+          "surface": "store-test"
+        }
+      ],
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+      "surface": "store-test",
+      "symbol": "class ScreenStoreProvider"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-060",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+      "surface": "component-test",
+      "symbol": "class TodayComponentPreview"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-011",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+      "surface": "catalog-contract-test",
+      "symbol": "class TodayComponentPreview"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-020",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-030",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-050",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-057",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-060",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-080",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "surface": "component-test",
+      "symbol": "class AppRootComponentDefault"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-011"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:component:allTests",
+        ":shared:component:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-010",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-011",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-012",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-014",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-020",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-021",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-026",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-027",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-030",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-031",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-032",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-035",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-036",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-037",
+          "surfaces": [
+            "component-test",
+            "store-test"
+          ]
+        },
+        {
+          "obligationId": "AC-038",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-039",
+          "surfaces": [
+            "component-test",
+            "store-test"
+          ]
+        },
+        {
+          "obligationId": "AC-040",
+          "surfaces": [
+            "component-test",
+            "store-test"
+          ]
+        },
+        {
+          "obligationId": "AC-050",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-051",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-052",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-054",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-055",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-057",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-060",
+          "surfaces": [
+            "component-test",
+            "store-test"
+          ]
+        },
+        {
+          "obligationId": "AC-062",
+          "surfaces": [
+            "component-test",
+            "store-test"
+          ]
+        },
+        {
+          "obligationId": "AC-066",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-080",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-081",
+          "surfaces": [
+            "component-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:component:allTests",
+        ":shared:component:testAndroidHostTest"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:root:allTests",
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:compileKotlinIosArm64",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-020",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-030",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-031",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-050",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-051",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-057",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-060",
+          "surfaces": [
+            "component-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:root:allTests",
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:compileKotlinIosArm64",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "af8f7ffbf64f9615ac3681a3de299750b913abdb6111b265b9d2eb02fde4e2ef",
+    "files": [
+      {
+        "path": "shared/component/build.gradle.kts",
+        "sha256": "5ec9e9bdd6c1d0644d1e1dc21c44b6d0dac0da700a621a465c47dd6393d9647f"
+      },
+      {
+        "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+        "sha256": "db8f4e91dd14e5f8031e9ae812f49e6ce96a76b333997f6facc92cd1735a1a6e"
+      },
+      {
+        "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+        "sha256": "aff0914b2652cd34a55c3b787fd36e34b7f8b8fa73f1c813d59201995466b87d"
+      },
+      {
+        "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+        "sha256": "915800219df618557bc526618560b33286dcb975c0a2549ff9f1066e969ade47"
+      },
+      {
+        "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+        "sha256": "f4f57097f6726c7aa19f1fe9302c5e3ebd1034ff4427cfb6566744040a4bde33"
+      },
+      {
+        "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+        "sha256": "1f872302958fb4cbfd74cc3d41f835b07c2350401f8e24af02db73241b08c6cd"
+      },
+      {
+        "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+        "sha256": "8176c9693bf88d6d050721b222a87a9128c4df95a254a85f3e128a747364475d"
+      },
+      {
+        "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+        "sha256": "aee6784f5dca75c8791de4bf471c9a255e51bc009477f02f17b223ac59fec239"
+      },
+      {
+        "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+        "sha256": "f30e007762b06755831dca7d6dc4e671e4e06ae417e8f51c2523a2493655f71a"
+      },
+      {
+        "path": "shared/root/NAVIGATION.md",
+        "sha256": "323af0ef17ee2e6655859d9e3ee9a56380fadf2296af99520cc65a579220e629"
+      },
+      {
+        "path": "shared/root/build.gradle.kts",
+        "sha256": "05d09902cf778a6340e4ec262ca6d68c0ac4d46ccf2e953c1de7558a1b527e51"
+      },
+      {
+        "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+        "sha256": "9fc78cab565623b2c844174b9f22b854f33bb49e0a8434b54dcbcd32489e2a23"
+      },
+      {
+        "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+        "sha256": "318598f4481daf678521f801f60cdb6c78a39ece1cd434c71e38045e3cdcc262"
+      },
+      {
+        "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentPreview.kt",
+        "sha256": "c2294ada19636e3b444a1b009d46d761549f1dbd74adff9a3be0a39c3bea5f0b"
+      },
+      {
+        "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootFactory.kt",
+        "sha256": "a3132471193ac4c0834f33d816fa3fea69e68e992cd3dc24028b014b2b23474f"
+      },
+      {
+        "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+        "sha256": "b0d685adc5c40b58630b3e66237986272300ef7bb4d73446fe59989d14bc5a14"
+      }
+    ],
+    "patterns": [
+      "shared/component/**",
+      "shared/root/**"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T07:04:50.715243Z",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-component-root-stores-20260920.json",
+    ".vibe/handoffs/HANDOFF-component-root-stores-20260920-r1.json"
+  ],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-020",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-060",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "surface": "component-test",
+      "testName": "everyRenderedScreenHasAnIsolatedComponentOwnedPreview"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-011",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "surface": "catalog-contract-test",
+      "testName": "everyRenderedScreenHasAnIsolatedComponentOwnedPreview"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-011",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-051",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "surface": "component-test",
+      "testName": "storeStateMapsToPublicModelAndRetainsSelectionAcrossRecreation"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-037",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-039",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-040",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-060",
+          "surface": "store-test"
+        },
+        {
+          "obligationId": "AC-062",
+          "surface": "store-test"
+        }
+      ],
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "surface": "store-test",
+      "testName": "duplicateCommandCallbacksInvokeManagerExactlyOnceWhileInFlight"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-010",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-021",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-030",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-050",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-080",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-081",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "surface": "component-test",
+      "testName": "resultBoundaryPreservesNullableSuccessAndFailureCause"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-020",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-030",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-050",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "surface": "component-test",
+      "testName": "primaryDestinationsAreStableAndDuplicateDetailClicksAreSafe"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-011",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-051",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "surface": "component-test",
+      "testName": "serializableStackRestoresSelectedDetail"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-057",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "surface": "component-test",
+      "testName": "deepLinksValidateRequiredIdsAndBackReturnsToPrimary"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-060",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "surface": "component-test",
+      "testName": "adaptivePresentationUsesBottomBarRailAndBoundedPanes"
+    }
+  ]
+}

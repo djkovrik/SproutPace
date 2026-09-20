@@ -1,0 +1,13 @@
+{
+  "action": "check",
+  "jobId": "CHECK-persisted-production-theme-runtime-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "theme-runtime-v1",
+  "tasks": [":shared:compose:testAndroidHostTest", ":shared:compose:compileKotlinIosSimulatorArm64", ":androidApp:assembleDebug"],
+  "coveredObligations": [
+    {"obligationId": "AC-121", "surfaces": ["settings-integration-test", "component-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose host tests; Android debug assembly; Kotlin/Native iOS simulator compilation"
+}

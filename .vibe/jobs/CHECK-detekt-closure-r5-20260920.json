@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.6164160999469459,
+  "events": [
+    {
+      "at": "2026-09-20T15:56:54.789516Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T15:56:56.391373Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-72c8c9be-cbb3-458a-919d-28f5cba0383c.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T15:58:28.655954Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-72c8c9be-cbb3-458a-919d-28f5cba0383c.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T15:59:43.690839Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-72c8c9be-cbb3-458a-919d-28f5cba0383c.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T15:59:44.392779Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T15:59:45.041274Z",
+      "durationSeconds": 0.6164160999469459,
+      "receiptRef": ".vibe/receipts/RECEIPT-72c8c9be-cbb3-458a-919d-28f5cba0383c.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-detekt-closure-r5-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-72c8c9be-cbb3-458a-919d-28f5cba0383c.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-72c8c9be-cbb3-458a-919d-28f5cba0383c.json",
+  "stage": "bound"
+}

@@ -1,0 +1,38 @@
+{
+  "algorithm": "sha256",
+  "digest": "f0f1a4ee302b246ad0fb33134aaa5dca37209de4c608d97dd40ad708c2840782",
+  "files": [
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "sha256": "f51aeb4331c27c3a7afeb15213ec1ab4d9ae316d780dfcc092889b379ee0e198"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "ca77d4a09b334125542d1044f6b4103262e885ecbad62f75a94b3928e03c8cae"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "sha256": "8817210daa363b35f5c458add949bccccd96f100ef89bf50e09f507f96b1ef72"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "sha256": "ae488309367dbc585a54baa104113ee5632ddb874270b0cc11765c11ac195431"
+    }
+  ],
+  "patterns": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ]
+}

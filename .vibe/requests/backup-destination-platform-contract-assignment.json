@@ -1,0 +1,48 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The first native handler integration correctly imports existing documents but uses that same input path for create-backup/export, leaving QG-012 blocked because writes require a system-created destination. Android archive reads also reject the app-owned path returned by its importer.",
+  "assignmentId": "backup-destination-platform-contract",
+  "packageId": "production-integration",
+  "owner": "vibe-platform-engineer",
+  "acceptanceScenarioIds": ["AC-074"],
+  "qualityGateIds": ["QG-012"],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/iosApp.swift"
+  ],
+  "inputScopeId": "backup-destination-platform-contract-v1",
+  "goal": "Separate existing-document import from new-document destination selection, submit create-backup/export only after a successful destination result, and make imported Android archive paths readable by the production document port.",
+  "contractInputs": [
+    "spec/flows/FLOW-009.md",
+    "spec/screens/SCREEN-014.md",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidSystemPickers.kt",
+    ".vibe/handoffs/HANDOFF-production-platform-action-handlers-20260920.json"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "acceptanceCriteria": [
+    "CHOOSE_DOCUMENT remains existing archive import and returns an app-owned path/URL only on success; photo behavior is unchanged.",
+    "Create backup and export CSV request distinct destination actions with stable suggested filenames/media types; only a successful nonblank result updates documentId and submits the original ScreenAction once.",
+    "Android destinations use ActivityResult CreateDocument content URIs; Android archive reads accept only content URIs or canonical files inside the app-owned imports directory and reject other paths.",
+    "iOS destination actions create an app-owned placeholder, present UIDocumentPicker for exporting, return only the selected file URL, and preserve safe cancellation/failure behavior.",
+    "Router tests prove destination selection, submit-after-result and cancellation no-op. Existing backup round-trip/rollback tests remain green.",
+    "No data format, domain rule, product scope, live identifier, ad behavior, theme, unrelated UI, golden, ledger or publication change; specialist does not run Gradle."
+  ]
+}

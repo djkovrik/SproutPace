@@ -1,0 +1,68 @@
+{
+  "action": "handoff",
+  "assignmentId": "domain-action-rebuild-correction",
+  "handoffId": "HANDOFF-domain-action-rebuild-correction",
+  "productionEvidence": [
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ActionScheduleEngine.kt",
+      "symbol": "data class ActionScheduleCorrection",
+      "surface": "public-contract",
+      "coverage": [{"obligationId": "AC-032", "surface": "public-contract"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ActionScheduleEngine.kt",
+      "symbol": "fun rebuild",
+      "surface": "domain-engine",
+      "coverage": [
+        {"obligationId": "AC-032", "surface": "domain-engine"},
+        {"obligationId": "AC-039", "surface": "domain-engine"}
+      ]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+      "symbol": "fun applyCorrection",
+      "surface": "public-contract",
+      "coverage": [{"obligationId": "AC-032", "surface": "public-contract"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+      "symbol": "fun undoLastTransition(batch: GrowBatch): BatchChange",
+      "surface": "public-contract",
+      "coverage": [{"obligationId": "AC-039", "surface": "public-contract"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ActionScheduleEngineTest.kt",
+      "testName": "ac032_correctionPreservesHistoryStableIdsAndFixedDates",
+      "surface": "domain-test",
+      "coverage": [{"obligationId": "AC-032", "surface": "domain-test"}]
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ActionScheduleEngineTest.kt",
+      "testName": "ac032_correctionKeepsCivilZoneAndRemovesOnlyObsoletePendingObligations",
+      "surface": "domain-test",
+      "coverage": [{"obligationId": "AC-032", "surface": "domain-test"}]
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ActionScheduleEngineTest.kt",
+      "testName": "ac032_terminalHistoryIsNeverRescheduled",
+      "surface": "domain-test",
+      "coverage": [{"obligationId": "AC-032", "surface": "domain-test"}]
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "testName": "ac039_undoReversesOnlyLatestTransitionAndRebuildsActionsIdempotently",
+      "surface": "domain-test",
+      "coverage": [{"obligationId": "AC-039", "surface": "domain-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "verify assignment baseline delta, line length, production imports, and AC-032/039 scenario anchors"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [],
+  "blockers": []
+}

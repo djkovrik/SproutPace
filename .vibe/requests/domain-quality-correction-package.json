@@ -1,0 +1,10 @@
+{
+  "action": "package",
+  "packageId": "domain-quality-correction",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": [],
+  "fileBoundaries": ["shared/domain/**"],
+  "integrationGoal": "Domain production sources pass strict Detekt with unchanged contracts and behavioral test results.",
+  "nextAction": "Apply explicit imports, line wrapping, specific exception handling, and named constants, then rerun domain tests."
+}

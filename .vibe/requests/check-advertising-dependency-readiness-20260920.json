@@ -1,0 +1,14 @@
+{
+  "action": "check",
+  "jobId": "CHECK-advertising-dependency-readiness-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "advertising-dependency-readiness-v1",
+  "tasks": [":shared:domain:allTests", ":shared:component:testAndroidHostTest", ":shared:data:testAndroidHostTest"],
+  "coveredObligations": [
+    {"obligationId":"AC-020","surfaces":["component-test","catalog-contract-test"]},
+    {"obligationId":"AC-084","surfaces":["component-test","database-integration-test"]}
+  ],
+  "timeoutSeconds": 1200,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android SDK 37"
+}

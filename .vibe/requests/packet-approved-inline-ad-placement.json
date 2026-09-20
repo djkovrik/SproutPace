@@ -1,0 +1,38 @@
+{
+  "acceptanceCriteria": [
+    "AC-100 ad-lifecycle-test and component-test prove exactly one Catalog slot after item four at five or more items and one explicit History slot after item five at six or more terminal records.",
+    "AC-101 ad-lifecycle-test and component-test prove no slot or request for short content, non-History trays, prohibited screens, offline, unresolved or declined consent, SDK/no-fill/load failure, previews/tests, missing ID and iOS.",
+    "Do not change production behavior unless a concrete contradiction is found; defer ui-golden only to root's final visual pass. Root owns Gradle."
+  ],
+  "allowedFiles": [
+    "shared/compose/src/androidUnitTest/**",
+    "shared/compose/src/commonTest/**",
+    "shared/data/src/androidHostTest/**",
+    "shared/monetization/src/commonTest/**"
+  ],
+  "assignmentId": "approved-inline-ad-placement",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-010.md",
+    "spec/screens/SCREEN-003.md",
+    "spec/screens/SCREEN-007.md",
+    "shared/monetization/src/commonMain/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**"
+  ],
+  "forkTurns": "none",
+  "goal": "Reconcile and hand off deterministic evidence for exact single-slot eligibility and all collapsed/prohibited/unavailable states without changing the already-green production behavior.",
+  "obligationIds": [
+    "AC-100",
+    "AC-101"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:allTests",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

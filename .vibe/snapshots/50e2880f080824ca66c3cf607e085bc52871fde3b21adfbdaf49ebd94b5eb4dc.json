@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "digest": "df4fa5834cfa20d9043954fc235f2c65d488f5c012332196defbe33d34a3bb38",
+  "files": [
+    {
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt",
+      "sha256": "b248948a25941cd0eac7346b6b44bde7bb0a04b193e730863a2dd2319a6c7302"
+    }
+  ],
+  "patterns": [
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt"
+  ]
+}

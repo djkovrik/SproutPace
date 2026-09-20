@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "digest": "84adc237d6e81ecb840503034ffb2b7264db58496005803c56112edc4a7d5ce3",
+  "files": [
+    {
+      "path": "shared/monetization/build.gradle.kts",
+      "sha256": "eeb732f48211f772ab494c24e3ae0c44b96e6ef11e179357b9e0438164e89b6c"
+    },
+    {
+      "path": "shared/monetization/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/monetization/ProductSettingsPrivacyStoreTest.kt",
+      "sha256": "e2d1608776acb50e2d9ad8cb93ffce06eb440e3eb1e09acb995a641ee102af55"
+    }
+  ],
+  "patterns": [
+    "shared/monetization/build.gradle.kts",
+    "shared/monetization/src/androidHostTest/**"
+  ]
+}

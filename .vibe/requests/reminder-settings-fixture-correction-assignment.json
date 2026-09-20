@@ -1,0 +1,25 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The corrected production Notifications contract exposed two stale test-only fixtures: the wrapper test still expected compatibility persistence, and preview values did not recognize the three new typed fields.",
+  "assignmentId": "reminder-settings-fixture-correction",
+  "packageId": "reminder-delivery-integration",
+  "owner": "vibe-test-engineer",
+  "acceptanceScenarioIds": ["AC-064", "AC-065", "AC-067"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt"
+  ],
+  "inputScopeId": "reminder-delivery-v1",
+  "goal": "Align reminder reconciliation and preview fixtures with the accepted three-field Notifications contract.",
+  "contractInputs": ["spec/flows/FLOW-006.md", "spec/screens/SCREEN-016.md"],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md"
+  ],
+  "requestedCommands": [":shared:compose:testAndroidHostTest", ":shared:compose:verifyPaparazzi"],
+  "acceptanceCriteria": [
+    "Wrapper integration test verifies reconciliation/delegation rather than fake persistence.",
+    "All three new Notifications fields have deterministic realistic preview values."
+  ]
+}

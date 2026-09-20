@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "digest": "ea5bab425a678fba8b8e61ec6a38b4c69255819bb18552731bcb5deba4246b48",
+  "files": [
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+      "sha256": "c640c0ecf099d4524381a5a17849085d1e928318d1c337686f9777af4055df7f"
+    }
+  ],
+  "patterns": [
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "algorithm": "sha256",
+  "digest": "1d3ba5a0d3ea16332e193b1047dfb0d17aed289c90aac3dcc7efe9f13d6d4767",
+  "files": [
+    {
+      "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidCrashReportingDriver.kt",
+      "sha256": "b79ac93034257b4fc1cd039ef0d4c42f7d7743f5d3afcb784743f95e141a37f4"
+    },
+    {
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/CrashReporting.kt",
+      "sha256": "1bfbb4ce2e349bd0a9ecf22c14086214c3ea4a3aeb39066ce4fe5959c912a19d"
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/platform/src/iosMain/kotlin/com/sedsoftware/sproutpace/platform/IosCrashReportingDriver.kt",
+      "sha256": null
+    }
+  ],
+  "patterns": [
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidCrashReportingDriver.kt",
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/CrashReporting.kt",
+    "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt",
+    "shared/platform/src/iosMain/kotlin/com/sedsoftware/sproutpace/platform/IosCrashReportingDriver.kt"
+  ]
+}

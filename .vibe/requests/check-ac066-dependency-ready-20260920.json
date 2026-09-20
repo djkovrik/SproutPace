@@ -1,0 +1,13 @@
+{
+  "action": "check",
+  "jobId": "CHECK-ac066-dependency-ready-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "ac066-dependency-ready-v1",
+  "tasks": [":shared:component:testAndroidHostTest", ":shared:platform:testAndroidHostTest"],
+  "coveredObligations": [
+    {"obligationId": "AC-066", "surfaces": ["component-test", "platform-test"]}
+  ],
+  "timeoutSeconds": 1200,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android-host tests"
+}

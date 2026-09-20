@@ -1,0 +1,35 @@
+{
+  "acceptanceCriteria": [
+    "Keep continue-setup replacing all history with PLAN.",
+    "Successful editor saves and close/outcome operations leave the editor using back-stack semantics where identity context is not safely available.",
+    "Deleting the active batch or recipe returns to its safe primary collection destination and cannot reveal the deleted detail by Back.",
+    "Completion handling is conditional on the active screen/operation pair so unrelated commands cannot navigate accidentally.",
+    "Tests cover create/update completion, destructive completion, close/observation completion, stack depth, and no-op unknown operations.",
+    "No data, Compose UI, platform, build, ledger, or external-service changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+    "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt"
+  ],
+  "assignmentId": "root-completion-routing",
+  "contractInputs": [
+    "spec/flows",
+    "spec/screens",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Make successful typed screen operations produce deterministic, stack-safe post-operation navigation without inventing missing identity context or changing persistence/product semantics.",
+  "obligationIds": [
+    "AC-030",
+    "AC-080"
+  ],
+  "requestedCommands": [
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

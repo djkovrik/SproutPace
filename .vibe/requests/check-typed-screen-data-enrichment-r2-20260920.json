@@ -1,0 +1,24 @@
+{
+  "action": "check",
+  "jobId": "CHECK-typed-screen-data-enrichment-r2-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "typed-screen-data-v1",
+  "tasks": [":shared:data:testAndroidHostTest", ":shared:data:allTests", ":shared:data:compileAndroidMain", ":shared:data:compileKotlinIosSimulatorArm64"],
+  "coveredObligations": [
+    {"obligationId":"AC-010","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-011","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-020","surfaces":["component-test","catalog-contract-test"]},
+    {"obligationId":"AC-021","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-030","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-031","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-040","surfaces":["component-test"]},
+    {"obligationId":"AC-050","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-060","surfaces":["component-test"]},
+    {"obligationId":"AC-080","surfaces":["component-test","database-integration-test"]},
+    {"obligationId":"AC-085","surfaces":["database-integration-test"]},
+    {"obligationId":"QG-011","surfaces":["catalog-contract-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; SQLDelight 2.4.0; Android and iOS simulator KMP targets"
+}

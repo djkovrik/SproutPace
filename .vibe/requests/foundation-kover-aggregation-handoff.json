@@ -1,0 +1,78 @@
+{
+  "action": "handoff",
+  "assignmentId": "foundation-meaningful-kover-gate",
+  "handoffId": "HANDOFF-foundation-meaningful-kover-gate-20260920",
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "build.gradle.kts",
+      "symbol": "coverageProjectPaths",
+      "surface": "unit-test",
+      "coverage": [
+        {"obligationId": "QG-001", "surface": "unit-test"}
+      ]
+    },
+    {
+      "path": "build.gradle.kts",
+      "symbol": "coverageHostTestTasks",
+      "surface": "integration-test",
+      "coverage": [
+        {"obligationId": "QG-001", "surface": "integration-test"}
+      ]
+    },
+    {
+      "path": "build.gradle.kts",
+      "symbol": "kover",
+      "surface": "coverage-check",
+      "coverage": [
+        {"obligationId": "QG-001", "surface": "coverage-check"}
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": ["git", "diff", "--check", "--", "build.gradle.kts"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "assert six aggregated Kover projects, 60 percent default, validated 1..100 override, package-presence rule, host-test dependencies, and removal of zero/broad exclusions"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:domain:testAndroidHostTest",
+        ":shared:data:testAndroidHostTest",
+        ":shared:component:testAndroidHostTest",
+        ":shared:root:testAndroidHostTest",
+        ":shared:platform:testAndroidHostTest",
+        ":shared:monetization:testAndroidHostTest",
+        "koverXmlReport",
+        "koverVerify"
+      ],
+      "tasks": [
+        ":shared:domain:testAndroidHostTest",
+        ":shared:data:testAndroidHostTest",
+        ":shared:component:testAndroidHostTest",
+        ":shared:root:testAndroidHostTest",
+        ":shared:platform:testAndroidHostTest",
+        ":shared:monetization:testAndroidHostTest",
+        "koverXmlReport",
+        "koverVerify"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-001",
+          "surfaces": ["unit-test", "integration-test", "coverage-check"]
+        }
+      ],
+      "receiptRef": ".vibe/receipts/RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.json"
+    }
+  ],
+  "blockers": []
+}

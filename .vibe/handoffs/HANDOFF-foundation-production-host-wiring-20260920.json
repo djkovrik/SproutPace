@@ -1,0 +1,221 @@
+{
+  "acceptanceScenarioIds": [],
+  "allowedFiles": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "iosApp/iosApp/iosApp.swift"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/05e29397a527c2652d75c4e10f64ecb29d988719d1553fb1b19fce686b8480a3.json",
+    "sha256": "e01e333e6c2cb8ce75a91434335db3e9ed1fc5af1884282a8ca1731ab3fba958"
+  },
+  "assignmentId": "foundation-production-host-wiring",
+  "blockers": [
+    {
+      "description": "Android/Compose compilation and debug assembly were not executed because this specialist assignment explicitly forbids Gradle.",
+      "nextAction": "The orchestrator runs the requested Gradle tasks and binds successful repository-check and android-build receipts.",
+      "obligationIds": [
+        "QG-001",
+        "QG-002"
+      ]
+    },
+    {
+      "description": "Kotlin iOS compilation and the unsigned simulator host build require orchestrator/macOS execution and were not run by this specialist.",
+      "nextAction": "Run the requested Kotlin iOS compile and xcodebuild commands on macOS, exercise scene transitions, then bind ios-build and ios-platform-test receipts.",
+      "obligationIds": [
+        "QG-003"
+      ]
+    }
+  ],
+  "changedFiles": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "iosApp/iosApp/iosApp.swift"
+  ],
+  "completedAt": "2026-09-20T09:16:26.612545Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-foundation-production-host-wiring-20260920",
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "verify exactly-one Android/iOS graph construction, retained ownership, lifecycle order, obsolete-root absence, system-bar polarity, native service preservation, safe-disabled iOS advertising, balanced braces and whitespace"
+      ],
+      "completedAt": "2026-09-20T09:15:30.9372541Z",
+      "exitCode": 0,
+      "startedAt": "2026-09-20T09:15:30.8564823Z"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "iosApp/iosApp/iosApp.swift"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-project-architect",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-001",
+          "surface": "repository-check"
+        }
+      ],
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "surface": "repository-check",
+      "symbol": "AndroidProductionAppGraph"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-002",
+          "surface": "android-build"
+        }
+      ],
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "surface": "android-build",
+      "symbol": "AndroidProductionAppGraph"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-002",
+          "surface": "android-platform-test"
+        }
+      ],
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "surface": "android-platform-test",
+      "symbol": "appGraph.onStart()"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-003",
+          "surface": "ios-build"
+        }
+      ],
+      "path": "iosApp/iosApp/iosApp.swift",
+      "surface": "ios-build",
+      "symbol": "IosApplicationHost"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-003",
+          "surface": "ios-platform-test"
+        }
+      ],
+      "path": "iosApp/iosApp/iosApp.swift",
+      "surface": "ios-platform-test",
+      "symbol": "func transition(to scenePhase: ScenePhase)"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-001",
+    "QG-002",
+    "QG-003"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-001",
+          "surfaces": [
+            "repository-check"
+          ]
+        },
+        {
+          "obligationId": "QG-002",
+          "surfaces": [
+            "android-build"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ]
+    },
+    {
+      "argv": [
+        "./gradlew",
+        ":shared:compose:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-003",
+          "surfaces": [
+            "ios-build"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:compileKotlinIosSimulatorArm64"
+      ]
+    },
+    {
+      "argv": [
+        "xcodebuild",
+        "-project",
+        "iosApp/iosApp.xcodeproj",
+        "-scheme",
+        "iosApp",
+        "-sdk",
+        "iphonesimulator",
+        "CODE_SIGNING_ALLOWED=NO",
+        "build"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-003",
+          "surfaces": [
+            "ios-build",
+            "ios-platform-test"
+          ]
+        }
+      ],
+      "tasks": [
+        "xcodebuild iosApp simulator host"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "247ff9042cea7d5bdecfd240096b1a50012e96a9b7b550d3ffe5d6468b7c751a",
+    "files": [
+      {
+        "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "sha256": "d80a98647f1f5d7a5955890af1660bebeb8ea5f8d72baf69a58a7e0045a62fc4"
+      },
+      {
+        "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+        "sha256": "ec65a6ff0b90618b97718fe421b3392af2d4cf201e73cfee5c30010117f90e6a"
+      },
+      {
+        "path": "iosApp/iosApp/iosApp.swift",
+        "sha256": "71446d7cf1b9afae78ca5b2b82e0079f0cd41078a3400880d2d19dd864159ec8"
+      }
+    ],
+    "patterns": [
+      "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "iosApp/iosApp/iosApp.swift"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T09:12:12.583961Z",
+  "supersedes": [],
+  "testEvidence": []
+}

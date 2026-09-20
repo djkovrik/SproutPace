@@ -1,0 +1,34 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected current drift after the root integration build. It consists of preserved user inputs plus already returned/ingested delivery outputs and generated Gradle artifacts; this assignment is isolated to one unmodified root implementation file before correction.",
+  "assignmentId": "root-confirmation-visibility-correction-1",
+  "packageId": "core-domain",
+  "owner": "vibe-decompose-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": [
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt"
+  ],
+  "inputScopeId": "component-root-v1",
+  "goal": "Remove the public API exposure of the private ConfirmationComponentDefault implementation while preserving AppRootComponent confirmation-slot behavior and Decompose navigation semantics.",
+  "contractInputs": [
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/root/NAVIGATION.md"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:root:allTests",
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileAndroidMain",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "AppRootComponentDefault compiles without exposing a private implementation type through a public property.",
+    "The public ConfirmationComponent slot contract remains unchanged.",
+    "Existing confirmation and navigation tests remain valid.",
+    "Root reruns Android/iOS compilation and root tests."
+  ]
+}

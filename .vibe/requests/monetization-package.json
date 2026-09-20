@@ -1,0 +1,18 @@
+{
+  "action": "package",
+  "packageId": "monetization-privacy",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-009", "QG-010"],
+  "fileBoundaries": [
+    "shared/monetization/**",
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "iosApp/iosApp/iosApp.swift",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "docs/configuration/advertising/**"
+  ],
+  "integrationGoal": "Establish strict privacy-region and consent gating plus Android inline Yandex ad lifecycle and an unconditional iOS no-ID safe-disabled adapter; downstream packages register AC evidence after prerequisites close.",
+  "nextAction": "Implement fail-closed privacy and ad contracts without live identifiers, project creation or external publication."
+}

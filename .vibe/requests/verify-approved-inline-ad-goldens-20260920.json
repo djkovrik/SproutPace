@@ -1,0 +1,14 @@
+{
+  "action":"check",
+  "jobId":"CHECK-verify-approved-inline-ad-goldens-20260920",
+  "runner":"gradle",
+  "kind":"targeted",
+  "inputScopeId":"approved-inline-ad-placement-v1",
+  "tasks":[":shared:compose:verifyPaparazzi",":shared:compose:testAndroidHostTest","--no-configuration-cache"],
+  "coveredObligations":[
+    {"obligationId":"AC-100","surfaces":["ad-lifecycle-test","component-test","ui-golden"]},
+    {"obligationId":"AC-101","surfaces":["ad-lifecycle-test","component-test","ui-golden"]}
+  ],
+  "timeoutSeconds":1800,
+  "toolchainIdentity":"Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Paparazzi 2.0.0-alpha05"
+}

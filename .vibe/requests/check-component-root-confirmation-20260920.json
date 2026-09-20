@@ -1,0 +1,19 @@
+{
+  "action": "check",
+  "jobId": "CHECK-component-root-confirmation-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "component-root-v1",
+  "tasks": [
+    ":shared:component:allTests",
+    ":shared:root:allTests",
+    ":shared:component:compileAndroidMain",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "coveredObligations": [
+    {"obligationId": "AC-032", "surfaces": ["component-test"]},
+    {"obligationId": "AC-039", "surfaces": ["component-test", "store-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Decompose 3.5.0; MVIKotlin 4.4.0; Essenty 2.5.0"
+}

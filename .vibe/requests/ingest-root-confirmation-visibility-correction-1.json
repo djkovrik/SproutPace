@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-root-confirmation-visibility-correction-1.json",
+  "inspectionNote": "Inspected the exact root implementation and immutable handoff. The confirmation property now explicitly exposes Value<ChildSlot<AppRootComponent.ConfirmationConfig, ConfirmationComponent>>, preserving the public AppRootComponent contract while keeping ConfirmationComponentDefault private. The assignment is one-file scoped and leaves Gradle verification pending for root-owned execution."
+}

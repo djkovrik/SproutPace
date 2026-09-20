@@ -1,0 +1,32 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected current drift after the monetization test compilation failed. The assigned PrivacyRegion.kt is the returned implementation baseline; no user-owned source is replaced and the correction is limited to its API declaration.",
+  "assignmentId": "monetization-privacy-api-sam-correction-2",
+  "packageId": "monetization-privacy",
+  "owner": "vibe-monetization-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-009"],
+  "allowedFiles": [
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt"
+  ],
+  "inputScopeId": "monetization-privacy-v1",
+  "goal": "Make the single-method suspend PrivacyRegionApi usable through Kotlin SAM construction as required by existing common tests, without changing endpoint, validation, cache or fail-closed behavior.",
+  "contractInputs": [
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:allTests",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:monetization:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "PrivacyRegionApi supports existing lambda/SAM construction in common tests.",
+    "Production KtorPrivacyRegionApi implementation and strict validation semantics remain unchanged.",
+    "Root reruns cross-platform monetization tests and compilation."
+  ]
+}

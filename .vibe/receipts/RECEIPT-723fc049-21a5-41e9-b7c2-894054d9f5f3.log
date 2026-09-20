@@ -1,0 +1,44 @@
+Starting a Gradle Daemon, 1 incompatible and 4 stopped Daemons could not be reused, use --status for details
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :detekt
+Successfully generated markdown at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.md
+Successfully generated html at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.html
+Successfully generated sarif at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.sarif
+Successfully generated checkstyle at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.xml
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\BackupAndExport.kt:199:82 This expression contains a magic number. Consider defining it to a well named constant. [MagicNumber]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\LocalDatabase.kt:181:77 Function parameter names should match the pattern: [a-z][A-Za-z0-9]* [FunctionParameterNaming]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\LocalDatabase.kt:185:87 Function parameter names should match the pattern: [a-z][A-Za-z0-9]* [FunctionParameterNaming]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\LocalDatabase.kt:181:77 Function parameter `_sortOrder` is unused. [UnusedParameter]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\LocalDatabase.kt:185:87 Function parameter `_sortOrder` is unused. [UnusedParameter]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\PrivateFileStore.kt:112:31 This expression contains a magic number. Consider defining it to a well named constant. [MagicNumber]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\ProductionScreenDataManager.kt:479:17 The function fieldValues appears to be too complex based on Cyclomatic Complexity (complexity: 36). The maximum allowed complexity for methods is set to '25' [CyclomaticComplexMethod]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\ProductionScreenDataManager.kt:714:17 The function screenFacts appears to be too complex based on Cyclomatic Complexity (complexity: 31). The maximum allowed complexity for methods is set to '25' [CyclomaticComplexMethod]
+e: D:\Sources\Android\SproutPace\shared\data\src\commonMain\kotlin\com\sedsoftware\sproutpace\data\ProductionScreenDataManager.kt:75:7 Class ProductionScreenDataManager is too large. Consider splitting it into smaller pieces. [LargeClass]
+
+
+> Task :detekt FAILED
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':detekt'.
+> Analysis failed with 9 issues.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 33s
+1 actionable task: 1 executed

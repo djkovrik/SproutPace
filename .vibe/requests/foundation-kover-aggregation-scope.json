@@ -1,0 +1,18 @@
+{
+  "action": "scope",
+  "scopeId": "foundation-kover-aggregation-v1",
+  "patterns": [
+    "build.gradle.kts",
+    "gradle/libs.versions.toml",
+    "shared/domain/build.gradle.kts",
+    "shared/data/build.gradle.kts",
+    "shared/component/build.gradle.kts",
+    "shared/root/build.gradle.kts",
+    "shared/platform/build.gradle.kts",
+    "shared/monetization/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml"
+  ],
+  "dependencyRationale": "The root QG-001 coverage task must instrument and aggregate all six production logic modules, include their package namespaces, and remain consistent with the existing CI test/report ordering.",
+  "fallbackReason": "Root-applied plugin instrumentation avoids changing module build files outside the registered QG-001 boundary while preserving the same Kover execution model.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kover 0.9.9; Kotlin Multiplatform 2.4.10"
+}

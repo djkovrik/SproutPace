@@ -1,0 +1,49 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The production UI adapter now requires AppRootComponent, and ProductionScreenDataManager exists, but no application-scoped composition root constructs LocalDatabase, ProductSettings, StoreFactory, LifecycleRegistry and AppRootFactory. Android still imports the removed placeholder productionSproutPaceRoot, while Swift calls a no-argument MainViewController.",
+  "assignmentId": "product-ui-production-assembly",
+  "packageId": "product-ui",
+  "owner": "vibe-decompose-engineer",
+  "acceptanceScenarioIds": ["AC-001", "AC-120", "AC-121", "AC-122", "AC-123"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt"
+  ],
+  "goal": "Implement an application-scoped production composition graph for Android and iOS that owns lifecycle, SQLDelight database/settings/data manager/store factories and creates exactly one AppRootComponent; expose typed Android and iOS entrypoints so hosts pass and retain the same root. Keep previews isolated and iOS advertising untouched/safe-disabled.",
+  "contractInputs": [
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootFactory.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+    "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "iosApp/iosApp/iosApp.swift"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/navigation-and-root.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/lifecycle-state-retention.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest",
+    ":androidApp:assembleDebug"
+  ],
+  "acceptanceCriteria": [
+    "Production graph injects ProductionScreenDataManager and never EmptyScreenDataManager.",
+    "Android and iOS each construct the platform SQL driver and persistent Multiplatform Settings through typed entrypoints.",
+    "Exactly one retained AppRootComponent and LifecycleRegistry exist per application graph; lifecycle callbacks are explicit and platform-hostable.",
+    "Release and debug store-factory selection obeys AppRootDependencies without enabling debug tooling in release.",
+    "iOS MainViewController uses the retained production graph/root and has no no-argument placeholder path.",
+    "Previews and tests do not create the production database or graph.",
+    "No host files, domain behavior, persistence schema, external projects or product scope changes; specialist does not run Gradle or edit the ledger."
+  ]
+}

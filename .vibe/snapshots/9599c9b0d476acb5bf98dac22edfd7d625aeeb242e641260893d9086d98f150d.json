@@ -1,0 +1,68 @@
+{
+  "algorithm": "sha256",
+  "digest": "76dc935cdc5982e7b55c81f9fcb446cadfbd905bca128b98ba117dcba0e90642",
+  "files": [
+    {
+      "path": "docs/design-review/product-ui-material-contract.md",
+      "sha256": "e0da61296963a979ecf88e352d50d3a38a7302b2aa0fe8d2eea5f79386e03ab2"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+      "sha256": "12fde395dd77dbaecb6b63046b40edce192496cb7bd5cd8a0a4b0805232ade1b"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values/strings.xml",
+      "sha256": "e35dbbeb820c29e11f23a20bba8a20253df2f0235139ea34619d99d2e57510ce"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "0c0db15fb61a20b95cf6c4015950f9f3053b993e3d8580fa3d9f0c66bf27a70c"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "sha256": "7a379a5b6a2301246554866245c328cfd39ab9715e7c8dcfecf01a9feee4bde5"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "sha256": "16e423ddaf3077e677987b2391dea0a0c3bdb35613241c40300b6f2dae0f72ab"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "sha256": "3c4703dda0ef7afdf6fcacf3446a604d21e8e4ffa21a47226135160522c5dbf9"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "sha256": "572d3f49d0ce743193524133e906a0e9f7dcd14bfe5ef1d6d8375d98dfc464dc"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "sha256": null
+    }
+  ],
+  "patterns": [
+    "docs/design-review/product-ui-material-contract.md",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt"
+  ]
+}

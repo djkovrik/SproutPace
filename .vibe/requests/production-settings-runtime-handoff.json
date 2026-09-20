@@ -1,0 +1,11 @@
+{
+  "action":"handoff","assignmentId":"production-settings-runtime-integration","handoffId":"HANDOFF-production-settings-runtime-integration-20260920",
+  "productionEvidence":[
+    {"path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt","symbol":"CrashAwareScreenDataManager","surface":"settings-integration-test","coverage":[{"obligationId":"AC-112","surface":"settings-integration-test"}]},
+    {"path":"shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt","symbol":"AndroidProductionAppGraph","surface":"platform-test","coverage":[{"obligationId":"AC-110","surface":"platform-test"}]},
+    {"path":"shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt","symbol":"IosProductionAppGraph","surface":"platform-test","coverage":[{"obligationId":"AC-111","surface":"platform-test"}]}
+  ],
+  "testEvidence":[{"path":"shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionSettingsRuntimeTest.kt","testName":"ac112_settingsShowsLiveEffectiveAndUnavailableCrashState","surface":"component-test","coverage":[{"obligationId":"AC-112","surface":"component-test"}]}],
+  "nonGradleChecks":[{"argv":["git","diff","--check","--","shared/compose/src","iosApp/iosApp/iosApp.swift","docs/configuration/firebase-and-ads.md"],"exitCode":0}],
+  "requestedCommands":[{"argv":["gradlew.bat",":shared:platform:allTests",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],"tasks":[":shared:platform:allTests",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],"coveredObligations":[{"obligationId":"AC-110","surfaces":["platform-test","settings-integration-test"]},{"obligationId":"AC-111","surfaces":["platform-test","settings-integration-test"]},{"obligationId":"AC-112","surfaces":["platform-test","component-test","settings-integration-test"]}]}],"blockers":[]
+}

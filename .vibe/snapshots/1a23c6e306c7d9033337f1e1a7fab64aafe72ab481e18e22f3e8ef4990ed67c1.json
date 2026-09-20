@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "digest": "16f56d01d181cac6d21aa7f0a24b3e23b77c40bb73d3ec0971c88153c4a8a6cb",
+  "files": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+      "sha256": "96ab0e8ba0eb00367d5212519f0c61fb6a457e26f966cdc24a9bdcb3bd135801"
+    }
+  ],
+  "patterns": [
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt"
+  ]
+}

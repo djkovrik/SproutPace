@@ -1,0 +1,29 @@
+{
+  "acceptanceCriteria": [
+    "ProductSettingsPrivacyStoreTest proves canonical payload survival across a fresh MultiplatformProductSettings instance and clearing removes the payload.",
+    "androidHostTest uses exactly matching multiplatform-settings and multiplatform-settings-test 1.3.0 dependencies; no production dependency or behavior changes.",
+    "Only the declared test source and build wiring are claimed; root owns Gradle."
+  ],
+  "allowedFiles": [
+    "shared/monetization/build.gradle.kts",
+    "shared/monetization/src/androidHostTest/**"
+  ],
+  "assignmentId": "canonical-advertising-privacy-test-wiring",
+  "contractInputs": [
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "gradle/libs.versions.toml"
+  ],
+  "forkTurns": "none",
+  "goal": "Own and verify the canonical ProductSettings adapter process-restart test and the exact matching Android-host test dependencies without changing production source or behavior.",
+  "obligationIds": [
+    "AC-103"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:testAndroidHostTest"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

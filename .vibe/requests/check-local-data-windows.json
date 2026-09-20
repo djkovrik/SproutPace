@@ -1,0 +1,24 @@
+{
+  "action": "check",
+  "jobId": "CHECK-local-data-windows-20260920",
+  "runner": "gradle",
+  "tasks": [
+    ":shared:data:allTests",
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:verifySqlDelightMigration"
+  ],
+  "coveredObligations": [
+    {"obligationId": "AC-011", "surfaces": ["database-integration-test"]},
+    {"obligationId": "AC-014", "surfaces": ["database-integration-test"]},
+    {"obligationId": "AC-020", "surfaces": ["catalog-contract-test"]},
+    {"obligationId": "AC-021", "surfaces": ["database-integration-test"]},
+    {"obligationId": "AC-030", "surfaces": ["database-integration-test"]},
+    {"obligationId": "AC-031", "surfaces": ["database-integration-test"]},
+    {"obligationId": "AC-051", "surfaces": ["database-integration-test"]},
+    {"obligationId": "AC-080", "surfaces": ["database-integration-test"]},
+    {"obligationId": "QG-011", "surfaces": ["catalog-contract-test"]}
+  ],
+  "inputScopeId": "local-data-v1",
+  "timeoutSeconds": 1800
+}

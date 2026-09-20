@@ -1,0 +1,33 @@
+{
+  "action": "check",
+  "jobId": "CHECK-final-paparazzi-integration-gate-20260920",
+  "runner": "gradle",
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:verifyPaparazzi",
+    ":shared:component:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    "--no-configuration-cache"
+  ],
+  "coveredObligations": [
+    {"obligationId":"AC-001","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-002","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-020","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-027","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-038","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-055","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-060","surfaces":["store-test","component-test","ui-golden"]},
+    {"obligationId":"AC-064","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-084","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-093","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-100","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-101","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-120","surfaces":["localization-contract-test","component-test","ui-golden"]},
+    {"obligationId":"AC-121","surfaces":["component-test","ui-golden"]},
+    {"obligationId":"AC-122","surfaces":["ui-golden","accessibility-test","keyboard-test"]},
+    {"obligationId":"QG-006","surfaces":["asset-visual"]},
+    {"obligationId":"QG-007","surfaces":["preview-compile","screenshot-test","accessibility-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 21; Paparazzi deterministic preview verification with configuration cache disabled"
+}

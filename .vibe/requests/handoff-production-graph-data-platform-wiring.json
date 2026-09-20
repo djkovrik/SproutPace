@@ -1,0 +1,121 @@
+{
+  "action": "handoff",
+  "assignmentId": "production-graph-data-platform-wiring",
+  "handoffId": "HANDOFF-production-graph-data-platform-wiring-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "class ProductionAppGraph",
+      "surface": "integration-test",
+      "coverage": [
+        {"obligationId": "AC-095", "surface": "integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "class SnapshotReminderReconciliationPort",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId": "AC-082", "surface": "platform-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "class FirstRunNavigationOutput",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-095", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "symbol": "class AndroidArchiveDocumentPort",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "AC-095", "surface": "file-integration-test"},
+        {"obligationId": "QG-012", "surface": "file-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "symbol": "class IosArchiveDocumentPort",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "AC-095", "surface": "file-integration-test"},
+        {"obligationId": "QG-012", "surface": "file-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "symbol": "class IosReminderDriver",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId": "AC-082", "surface": "platform-test"},
+        {"obligationId": "AC-095", "surface": "platform-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "testName": "reminderReconciliationCancelsObsoleteAndSchedulesOnlyFutureSoakTargets",
+      "surface": "platform-test",
+      "coverage": [
+        {"obligationId": "AC-082", "surface": "platform-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "testName": "eraseOutputSwitchesToMainContextBeforeResettingRoot",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-095", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt",
+      "testName": "androidDocumentPortTreatsContentUriAsOpaqueAndTransfersBytes",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "AC-095", "surface": "file-integration-test"},
+        {"obligationId": "QG-012", "surface": "file-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt",
+      "testName": "androidDocumentPortRejectsFilesystemPaths",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId": "QG-012", "surface": "file-integration-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest",
+        "--tests",
+        "com.sedsoftware.sproutpace.compose.ProductionAppGraphContractTest",
+        "--tests",
+        "com.sedsoftware.sproutpace.compose.ProductionIntegrationContractTest",
+        ":androidApp:assembleDebug"
+      ],
+      "tasks": [
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {"obligationId": "AC-082", "surfaces": ["platform-test"]},
+        {"obligationId": "AC-095", "surfaces": ["integration-test", "platform-test"]}
+      ]
+    }
+  ],
+  "blockers": [],
+  "supersedes": []
+}

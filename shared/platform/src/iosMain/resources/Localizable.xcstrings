@@ -1,0 +1,36 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "notification_channel_reminders" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Growing reminders" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Напоминания о выращивании" } }
+      }
+    },
+    "notification_daily_summary_body" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your trays have work ready for review." } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Проверьте задачи, готовые для ваших лотков." } }
+      }
+    },
+    "notification_daily_summary_title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today in SproutPace" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Сегодня в SproutPace" } }
+      }
+    },
+    "notification_soak_complete_body" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your seeds are ready for the next step." } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Семена готовы к следующему этапу." } }
+      }
+    },
+    "notification_soak_complete_title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Soaking is complete" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Замачивание завершено" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-reminder-settings-screen-contract-correction-20260920.json",
+  "inspectionNote": "Inspected the independent Notifications fields/command contract, persisted values and EN/RU resources. Receipt 2f182ec5 proves component/data/Compose tests and iOS simulator compilation."
+}

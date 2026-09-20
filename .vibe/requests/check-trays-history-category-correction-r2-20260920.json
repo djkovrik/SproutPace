@@ -1,0 +1,18 @@
+{
+  "action": "check",
+  "jobId": "CHECK-trays-history-category-correction-r2-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "trays-history-category-correction-v1",
+  "tasks": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "coveredObligations": [
+    {"obligationId":"AC-084","surfaces":["database-integration-test","component-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Decompose 3.4.0; MVIKotlin 4.3.0; Android/iOS simulator KMP targets"
+}

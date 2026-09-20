@@ -1,0 +1,1346 @@
+{
+  "acceptanceScenarioIds": [
+    "AC-012",
+    "AC-014",
+    "AC-020",
+    "AC-021",
+    "AC-026",
+    "AC-027",
+    "AC-032",
+    "AC-035",
+    "AC-036",
+    "AC-037",
+    "AC-038",
+    "AC-039",
+    "AC-040",
+    "AC-050",
+    "AC-052",
+    "AC-054",
+    "AC-055",
+    "AC-057",
+    "AC-062",
+    "AC-068",
+    "AC-080",
+    "AC-081",
+    "AC-085"
+  ],
+  "allowedFiles": [
+    "shared/domain/**"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/79beff3f073a6146c30720fcb82fb303a09f05216551c84fbe3dab6c50ce00ca.json",
+    "sha256": "2f97d0210491517ab4a1f92c5b48d7a31944e56be8c491fcaf2eb1e162aa9a04"
+  },
+  "assignmentId": "core-domain-model",
+  "blockers": [],
+  "changedFiles": [
+    "shared/domain/build.gradle.kts",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/ObservationAndBackup.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt"
+  ],
+  "completedAt": "2026-09-20T06:27:01.891724Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-core-domain-model-20260920-r1",
+  "inputFingerprint": {
+    "appSpec": {
+      "algorithm": "sha256",
+      "digest": "bb5cfb5e652c875f39f637ed7dfc70c428ff09dfe1da703ac67e030b6ed00212",
+      "files": [
+        {
+          "path": "app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ]
+    },
+    "digest": "f8e0cead24ca1619c64672a888a021afcc4a811af8e4bc5cbbc5af0a92a2b555",
+    "inputs": {
+      "algorithm": "sha256",
+      "digest": "70abfc3559314b4467aa703365d62f00cd578dadbcb70475d483f8353a680ad7",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "0465a5664d122b3327993286cc537442ae4cff112217ef490abd2ffe241eb08b"
+        },
+        {
+          "path": "androidApp/build.gradle.kts",
+          "sha256": "de4266c343b2ece01a0ce5fbfbb21833ddaa5cafa58af6a7694d577c32f89f07"
+        },
+        {
+          "path": "build.gradle.kts",
+          "sha256": "4ea8d8a516007db3d42ecebff3f838a8d1a830f34affe647b478586d40b2bff8"
+        },
+        {
+          "path": "gradle.properties",
+          "sha256": "dbfde9f711d844a893e1373fe13648fc0f0f361dcb595d02bade50ffca30e8bd"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "sha256": "5ed31558d7f3215c25446b3d41bef3bd10b4efb523182332cab3f7eadba5d606"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "sha256": "423cb469ccc0ecc31f0e4e1c309976198ccb734cdcbb7029d4bda0f18f57e8d9"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "sha256": "c89af773425cae016d64791247cb548f0d1209225917209ff5728df4298ccd43"
+        },
+        {
+          "path": "gradlew",
+          "sha256": "7d514e3330fe299d9eee52acbfec77115704d76b73cabac6de915695153129a4"
+        },
+        {
+          "path": "gradlew.bat",
+          "sha256": "9ca26d733ada3a45f27b2151288f54e75c9f95b287d1f82ef942ec5cc2d4f006"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "sha256": "8762a2a2371e7d7cfbc257fe2d12291b6348cb49b551286a83d564d5721da22e"
+        },
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "sha256": "838479f8cd857bdd73320c3cfe726b2ad86d0372960746e4b4ed6d3ee32fd31e"
+        },
+        {
+          "path": "shared/domain/build.gradle.kts",
+          "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+          "sha256": "2412a44d9540541cf52341a8e64f6c576f1eec205f131206725ef775d3651fb5"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+          "sha256": "a2bab407516bc4b492af76a6670718201624afe276fe2d6dff094cef10460441"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+          "sha256": "1d325c7498f8580294baa3073ec5f5ed400ccb16079d60c070bfe81c2c280c45"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+          "sha256": "0f7930b7bfebe723dbc9d44306d745e356dc7496bce7d29cf8c7b2128ae89720"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+          "sha256": "a9a344b71df735949f42849b1fb501a57379187e8aa8f2e9ae86a57d57cc8cf1"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+          "sha256": "7f379ede6c62a7cd8f6dbaaf7207b6ce8844c0469c480272d69ab6049a77dc32"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+          "sha256": "72d47943211f88312c72e05ab043d4f49d68b9374663d0d653968c7bf7e0907c"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+          "sha256": "b710a48bbefa89a54986f03c9dd572a8252dfee304c421e4d554174771e0cecd"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+          "sha256": "9f550281444a44f8088d6c85443382e342dcf0b54c21455616113def3476f11d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+          "sha256": "49f3a097503b4f1416d87cf1be14d7c87dcf603e2f3e86198f3eb0b7b098147f"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/ObservationAndBackup.kt",
+          "sha256": "68632e20c9bba7753104037e95a9f62b2b185402af69756ae65f4f3803b13d83"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+          "sha256": "8cecc950d6307ba0faa23561958260c3b0ce40c04a77f4f55e7e7c9d9fa2170e"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+          "sha256": "4f5ae174aae3b54fb40c8b7f6340c0d78d920f2bdbfca702845960f8fc0ae7db"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+          "sha256": "b7c49a34f7d14d644e4c1a9403eeae9427ea5fb2d1ff608870857dc4b542fc38"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+          "sha256": "be7959e8435f587245e6f5115997f62aff146cc68d3161f2af75afdde293dea5"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt",
+          "sha256": "849b41387205f258b7d0be5b45293c20c1853069a803777ccca279e7237c5957"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt",
+          "sha256": "5c0e6396a0019a163f6b525dcdab0708b4f3457c19e57ccceec7f8dea5b14082"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+          "sha256": "d4dea416a4464dfbaa380f753dd00d7c0ec7c08a6056972705a28b58315117c7"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+          "sha256": "b52e03b3d9c321207237c3111473c8912f15221be00f71007c356bff7d9e1075"
+        },
+        {
+          "path": "spec/app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "spec/data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "spec/design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "spec/domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "spec/flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "spec/flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "spec/flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "spec/flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "spec/flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "spec/flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "spec/flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "spec/flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "spec/flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "spec/flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "spec/flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "spec/flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "spec/product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "spec/quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "spec/screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "spec/screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "spec/screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "spec/screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "spec/screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "spec/screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "spec/screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "spec/screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "spec/screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "spec/screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "spec/screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "spec/screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "spec/screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "spec/screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "spec/screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "spec/screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ],
+      "patterns": [
+        "**/*.gradle",
+        "**/*.gradle.kts",
+        "**/*.properties",
+        "**/.gitignore",
+        "**/libs.versions.toml",
+        "*.gradle",
+        "*.gradle.kts",
+        "*.properties",
+        ".gitignore",
+        "build-logic/**",
+        "buildSrc/**",
+        "gradle/**",
+        "gradlew",
+        "gradlew.bat",
+        "shared/domain/**",
+        "spec/**"
+      ]
+    },
+    "instructions": [],
+    "scopeDigest": "0b4219f7c04d1246f6a0e42c5ab301c91cd7cec4287ff386c703edd0f42bc9df"
+  },
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "scan commonMain forbidden imports/result wrappers and assert 24 assigned AC/QG test anchors"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "assert Android host-test compilation and common JvmInline import are configured"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-domain-engineer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-012",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+      "surface": "public-contract",
+      "symbol": "data class GrowZone"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-014",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+      "surface": "public-contract",
+      "symbol": "sealed interface TrayShape"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-020",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-027",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "QG-011",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+      "surface": "public-contract",
+      "symbol": "object SproutPaceCatalog"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-021",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+      "surface": "public-contract",
+      "symbol": "data class UserGrowRecipe"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-026",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+      "surface": "public-contract",
+      "symbol": "recommendedSeedMass"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-032",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-035",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-036",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-037",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-038",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-039",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-040",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-080",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-081",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-085",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+      "surface": "public-contract",
+      "symbol": "object BatchLifecycleEngine"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-050",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-052",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-054",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-055",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-057",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+      "surface": "public-contract",
+      "symbol": "object PlannerEngine"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-062",
+          "surface": "public-contract"
+        },
+        {
+          "obligationId": "AC-068",
+          "surface": "public-contract"
+        }
+      ],
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+      "surface": "public-contract",
+      "symbol": "object SchedulingEngine"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-011"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:domain:allTests"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-012",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-014",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-020",
+          "surfaces": [
+            "catalog-contract-test"
+          ]
+        },
+        {
+          "obligationId": "AC-021",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-026",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-027",
+          "surfaces": [
+            "catalog-contract-test"
+          ]
+        },
+        {
+          "obligationId": "AC-032",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-035",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-036",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-037",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-038",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-039",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-040",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-050",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-052",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-054",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-055",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-057",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-062",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-068",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-080",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-081",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-085",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "QG-011",
+          "surfaces": [
+            "catalog-contract-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:domain:allTests"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:domain:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-012",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-014",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-020",
+          "surfaces": [
+            "catalog-contract-test"
+          ]
+        },
+        {
+          "obligationId": "AC-021",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-026",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-027",
+          "surfaces": [
+            "catalog-contract-test"
+          ]
+        },
+        {
+          "obligationId": "AC-032",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-035",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-036",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-037",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-038",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-039",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-040",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-050",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-052",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-054",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-055",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-057",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-062",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-068",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-080",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-081",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-085",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "QG-011",
+          "surfaces": [
+            "catalog-contract-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:domain:testAndroidHostTest"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "b69fd67fad78df4aa3404920e104f487d8fe168ead336786d1b9ac2647bf4028",
+    "files": [
+      {
+        "path": "shared/domain/build.gradle.kts",
+        "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+        "sha256": "2412a44d9540541cf52341a8e64f6c576f1eec205f131206725ef775d3651fb5"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+        "sha256": "a2bab407516bc4b492af76a6670718201624afe276fe2d6dff094cef10460441"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+        "sha256": "1d325c7498f8580294baa3073ec5f5ed400ccb16079d60c070bfe81c2c280c45"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+        "sha256": "0f7930b7bfebe723dbc9d44306d745e356dc7496bce7d29cf8c7b2128ae89720"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+        "sha256": "a9a344b71df735949f42849b1fb501a57379187e8aa8f2e9ae86a57d57cc8cf1"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+        "sha256": "7f379ede6c62a7cd8f6dbaaf7207b6ce8844c0469c480272d69ab6049a77dc32"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+        "sha256": "72d47943211f88312c72e05ab043d4f49d68b9374663d0d653968c7bf7e0907c"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+        "sha256": "b710a48bbefa89a54986f03c9dd572a8252dfee304c421e4d554174771e0cecd"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+        "sha256": "9f550281444a44f8088d6c85443382e342dcf0b54c21455616113def3476f11d"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+        "sha256": "49f3a097503b4f1416d87cf1be14d7c87dcf603e2f3e86198f3eb0b7b098147f"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/ObservationAndBackup.kt",
+        "sha256": "68632e20c9bba7753104037e95a9f62b2b185402af69756ae65f4f3803b13d83"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+        "sha256": "8cecc950d6307ba0faa23561958260c3b0ce40c04a77f4f55e7e7c9d9fa2170e"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+        "sha256": "4f5ae174aae3b54fb40c8b7f6340c0d78d920f2bdbfca702845960f8fc0ae7db"
+      },
+      {
+        "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+        "sha256": "b7c49a34f7d14d644e4c1a9403eeae9427ea5fb2d1ff608870857dc4b542fc38"
+      },
+      {
+        "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+        "sha256": "be7959e8435f587245e6f5115997f62aff146cc68d3161f2af75afdde293dea5"
+      },
+      {
+        "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt",
+        "sha256": "849b41387205f258b7d0be5b45293c20c1853069a803777ccca279e7237c5957"
+      },
+      {
+        "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt",
+        "sha256": "5c0e6396a0019a163f6b525dcdab0708b4f3457c19e57ccceec7f8dea5b14082"
+      },
+      {
+        "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+        "sha256": "d4dea416a4464dfbaa380f753dd00d7c0ec7c08a6056972705a28b58315117c7"
+      },
+      {
+        "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+        "sha256": "b52e03b3d9c321207237c3111473c8912f15221be00f71007c356bff7d9e1075"
+      }
+    ],
+    "patterns": [
+      "shared/domain/**"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T06:04:35.783688Z",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-core-domain-model-20260920.json"
+  ],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-012",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "surface": "domain-test",
+      "testName": "ac012_zoneUpdateExposesCapacityConflictAndRealityResolution"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-014",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "surface": "domain-test",
+      "testName": "ac014_metricTrayShapesHaveExactAreaRules"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-020",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "surface": "catalog-contract-test",
+      "testName": "ac020_catalogIsVersionedOfflineAndHasEightStableCultures"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-021",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "surface": "domain-test",
+      "testName": "ac021_personalRecipeRequiresValidAuthoredConfiguration"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-026",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "surface": "domain-test",
+      "testName": "ac026_seedRecommendationUsesMetricAreaAndRemainsSeparateFromActualMass"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-027",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "surface": "catalog-contract-test",
+      "testName": "ac027_safetyGuidanceAndSourcesAreBundledAsStableKeysAndMetadata"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-032",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac032_correctionRecalculatesDependentFutureActionsButPreservesFixedDates"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-035",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac035_soakingRecordsActualEventWithoutOccupyingPlace"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-036",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac036_sowingOccupiesExactlyOneConfiguredPlace"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-037",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac037_actualTransitionShiftsOnlyDependentFutureActions"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-038",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac038_realMoveCanBecomeVisiblyUnassignedWhenCapacityIsFull"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-039",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac039_undoReversesOnlyLatestTransitionAndRebuildsActionsIdempotently"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-040",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac040_skipIsExplicitAndContinuesAtNextApplicableStage"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-050",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "surface": "domain-test",
+      "testName": "ac050_positiveCadenceAndRotationGenerateSuggestionsNotBatches"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-052",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "surface": "domain-test",
+      "testName": "ac052_planUpdateChangesFutureSuggestionsWithoutMutatingConfirmedBatch"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-054",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "surface": "domain-test",
+      "testName": "ac054_pauseStopsOnlyFutureSuggestions"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-055",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "surface": "domain-test",
+      "testName": "ac055_capacityConflictIsExhaustiveAndNeverFeasible"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-057",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "surface": "domain-test",
+      "testName": "ac057_continuousQueueCreatesOneNextSuggestionWithoutConsumptionState"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-062",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "surface": "domain-test",
+      "testName": "ac062_snoozePreservesStableActionIdentity"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-068",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "surface": "domain-test",
+      "testName": "ac068_civilActionsFollowNewZoneWhileElapsedSoakKeepsInstant"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-080",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac080_harvestReleasesCapacityAndCancelsFutureActions"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-081",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac081_failedOutcomeReleasesCapacityAndKeepsOptionalReason"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-085",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "surface": "domain-test",
+      "testName": "ac085_actualHarvestMassExistsOnlyOnHarvestedOutcome"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-011",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "surface": "catalog-contract-test",
+      "testName": "qg011_catalogIdentityMetadataAndLocalizationKeysAreComplete"
+    }
+  ]
+}

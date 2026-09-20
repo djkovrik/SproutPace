@@ -1,0 +1,58 @@
+{
+  "algorithm": "sha256",
+  "digest": "2bb09029f9ab7c53659622426b102bad8c175d919ce51234c2ec2bb2f1fc9b77",
+  "files": [
+    {
+      "path": "androidApp/build.gradle.kts",
+      "sha256": "de4266c343b2ece01a0ce5fbfbb21833ddaa5cafa58af6a7694d577c32f89f07"
+    },
+    {
+      "path": "androidApp/src/main/AndroidManifest.xml",
+      "sha256": "907f63178f6f32293e7ba7c10f1339bfb56c86681bc6ea5f8016dade52811841"
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "sha256": "3c67c3242864009420c2ea4b699e5e58110a25c3582648147b2e35645a802689"
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "sha256": "fd125e716182b716e212db7a2629e73a60adbed07e7f43f780daff4cf4de455e"
+    },
+    {
+      "path": "androidApp/src/main/res/values-ru/strings.xml",
+      "sha256": "ee3178daa85ccd952dcc9416a7fdb5dfba7f72559f759c9a62d5fb928d5f2f59"
+    },
+    {
+      "path": "androidApp/src/main/res/values/strings.xml",
+      "sha256": "ee3178daa85ccd952dcc9416a7fdb5dfba7f72559f759c9a62d5fb928d5f2f59"
+    },
+    {
+      "path": "docs/architecture/PLATFORM-SERVICES.md",
+      "sha256": null
+    },
+    {
+      "path": "iosApp/iosApp.xcodeproj/project.pbxproj",
+      "sha256": "2c5296debb93b8ffa087fe273703298fd391fc1721390841bdb61e2cb229656a"
+    },
+    {
+      "path": "iosApp/iosApp/Info.plist",
+      "sha256": "b984d2f4ab97ef48fb2999fc8f3a910e2215bd8e159f3b2b7b03c66aaf4178ca"
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "sha256": "9bfc87a0479630faf3601f74dbdf498573273dd0ec903342ac632362d79ad2b4"
+    }
+  ],
+  "patterns": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "androidApp/src/main/res/values*/**",
+    "docs/architecture/PLATFORM-SERVICES.md",
+    "docs/configuration/**",
+    "iosApp/iosApp.xcodeproj/project.pbxproj",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/platform/**"
+  ]
+}

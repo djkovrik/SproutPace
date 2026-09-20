@@ -1,0 +1,64 @@
+{
+  "action": "handoff",
+  "assignmentId": "production-host-test-classpath-correction",
+  "handoffId": "HANDOFF-production-host-test-classpath-correction-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "androidApp/build.gradle.kts",
+      "symbol": "implementation(project(\":shared:root\"))",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "platform-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "testName": "previewEntryPointNeedsNoProductionRoot",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "component-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell", "-NoProfile", "-Command",
+        "verify preview smoke contains no removed production root/storage graph, resolves preview App(state), keeps deterministic scanner smoke, has one direct shared:root dependency, balanced braces and clean whitespace"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T10:11:28.7586094Z",
+      "completedAt": "2026-09-20T10:11:28.8372589Z"
+    },
+    {
+      "argv": [
+        "git", "diff", "--check", "--",
+        "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+        "androidApp/build.gradle.kts"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:compose:testAndroidHostTest"],
+      "tasks": [":shared:compose:testAndroidHostTest"],
+      "coveredObligations": [
+        {"obligationId": "AC-095", "surfaces": ["component-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":androidApp:assembleDebug"],
+      "tasks": [":androidApp:assembleDebug"],
+      "coveredObligations": [
+        {"obligationId": "AC-095", "surfaces": ["platform-test"]}
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Compose Android host tests and Android debug assembly were not executed because this specialist assignment explicitly forbids Gradle.",
+      "obligationIds": ["AC-095"],
+      "nextAction": "The orchestrator runs both requested tasks and binds successful component-test and platform-test receipts before AC-095 verification."
+    }
+  ]
+}

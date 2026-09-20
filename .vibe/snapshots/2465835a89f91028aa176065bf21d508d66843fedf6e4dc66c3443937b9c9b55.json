@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256",
+  "digest": "39307593bd1192e621fbcb8bf9eba5650912449219a6cfea4a53469420e9c596",
+  "files": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "a6921f2c9efd7e42f3ca9be43622323d10f4fc5ca622930f0f144d066981babc"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+      "sha256": "0626c1177823ba77d7efa18ceaec68ee17f0a2bbca721fdf25fb3a55f1ac7f76"
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "sha256": "ff567e7ecb89d9528ff6df0f50e61ed66677d69a33c4595c32dd596e5f8675e2"
+    }
+  ],
+  "patterns": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ]
+}

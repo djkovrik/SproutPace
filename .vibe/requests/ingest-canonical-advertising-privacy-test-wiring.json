@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-canonical-advertising-privacy-test-wiring-20260920.json",
+  "inspectionNote": "Inspected the isolated Android-host ProductSettings privacy adapter tests and exact Multiplatform Settings 1.3.0 runtime/test classpath. Receipt 2fd6e06b proves the Android-host test task; no production behavior is changed."
+}

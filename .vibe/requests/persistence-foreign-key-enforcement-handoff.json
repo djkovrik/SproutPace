@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-persistence-foreign-key-enforcement-correction-5-20260920.json",
+  "inspectionNote": "Inspected Android callback, NativeSqliteDriver configuration and JDBC properties changes. They enable foreign-key constraints at driver open time without schema, LocalDatabase or test changes and retain the existing orphan-write integration evidence."
+}

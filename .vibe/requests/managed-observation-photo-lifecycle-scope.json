@@ -1,0 +1,7 @@
+{
+  "action":"scope","scopeId":"managed-observation-photo-lifecycle-v1",
+  "patterns":["shared/domain/**","shared/platform/**","shared/data/**","shared/component/**","shared/compose/**","androidApp/**","iosApp/**","docs/architecture/PLATFORM-SERVICES.md","spec/app-spec.json","spec/flows/FLOW-007.md","spec/screens/SCREEN-005.md","spec/screens/SCREEN-009.md","*.gradle.kts","gradle/**"],
+  "dependencyRationale":"Photo picking is native, canonical ownership and restart restoration cross private file storage plus SQLDelight, component state carries stable identity, and Compose renders/edit actions on both targets.",
+  "fallbackReason":"The current implementation stores a temporary import path as PhotoId, so the correction necessarily crosses platform picker, data transaction, component model and UI adapter boundaries.",
+  "toolchainIdentity":"Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; iOS Simulator Kotlin/Native target"
+}

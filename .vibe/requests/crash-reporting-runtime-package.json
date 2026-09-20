@@ -1,0 +1,17 @@
+{
+  "action": "package",
+  "packageId": "crash-reporting-runtime",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-110", "AC-111", "AC-112"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/platform/**",
+    "shared/data/**",
+    "shared/compose/**",
+    "androidApp/**",
+    "iosApp/**",
+    "docs/configuration/**"
+  ],
+  "integrationGoal": "Android and iOS production startup restore the persisted privacy-minimal crash preference, apply it before routine reporting, react immediately to Settings changes, remain disabled in non-release hosts, and expose the effective or unavailable state without requiring external Firebase configuration.",
+  "nextAction": "After reminder delivery returns shared host ownership, wire the crash coordinator and native drivers into the retained production graph, surface effective state in Settings, and add platform/component/settings integration tests."
+}

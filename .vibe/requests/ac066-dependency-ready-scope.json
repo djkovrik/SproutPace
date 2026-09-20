@@ -1,0 +1,16 @@
+{
+  "action": "scope",
+  "scopeId": "ac066-dependency-ready-v1",
+  "patterns": [
+    "shared/component/src/commonMain/**",
+    "shared/component/src/commonTest/**",
+    "shared/component/build.gradle.kts",
+    "shared/platform/src/commonMain/**",
+    "shared/platform/src/commonTest/**",
+    "shared/platform/build.gradle.kts",
+    "gradle/libs.versions.toml"
+  ],
+  "dependencyRationale": "AC-066 dependency readiness requires the typed component scheduling command and the platform reminder-plan/reconciler behavior that creates one stable future soak target.",
+  "fallbackReason": "Only component/platform common code, tests and their build/catalog inputs influence these two behavioral surfaces.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; kotlinx.coroutines test"
+}

@@ -1,0 +1,23 @@
+{
+  "action": "integrate",
+  "packageId": "action-targeting-integration",
+  "receiptRef": ".vibe/receipts/RECEIPT-d3c5de61-f740-4c47-8fd7-599b86dbb4df.json",
+  "integrationEvidence": [
+    {
+      "role": "entry-point",
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "class ProductionAppGraph"
+    },
+    {
+      "role": "navigation",
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "symbol": "childStack"
+    },
+    {
+      "role": "restart",
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "symbol": "class FileBackedRestartTest"
+    }
+  ],
+  "nextAction": "Continue final reconciliation, current-fingerprint evidence binding, and independent acceptance audit."
+}

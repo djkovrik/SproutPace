@@ -1,0 +1,29 @@
+{
+  "action": "assign",
+  "assignmentId": "core-domain-model",
+  "packageId": "core-domain",
+  "owner": "vibe-domain-engineer",
+  "acceptanceScenarioIds": ["AC-012", "AC-014", "AC-020", "AC-021", "AC-026", "AC-027", "AC-032", "AC-035", "AC-036", "AC-037", "AC-038", "AC-039", "AC-040", "AC-050", "AC-052", "AC-054", "AC-055", "AC-057", "AC-062", "AC-068", "AC-080", "AC-081", "AC-085"],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": ["shared/domain/**"],
+  "inputScopeId": "core-domain-v1",
+  "goal": "Implement the complete pure KMP domain model and contract layer for zones, tray sizes, built-in/user recipes, batches/stages/actions, capacity planning, observations/outcomes, backup-facing snapshots, stable catalog identity/metadata, scheduling and time-zone semantics. Add exhaustive common tests for every assigned domain or catalog surface. Do not implement persistence, platform APIs, Stores, navigation, or UI.",
+  "contractInputs": ["spec/app-spec.json", "spec/domain.md", "spec/data.md", "spec/product.md", "spec/flows/**", "docs/02-microgreens.md", "docs/assignments/REQUEST-SPROUTPACE-APPSPEC-2.md"],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/domain-modeling.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/managers-events-errors.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/time-and-scheduling.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/localization-contract.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [":shared:domain:allTests"],
+  "acceptanceCriteria": [
+    "No Android/iOS, Compose resource, persistence DTO, or UI types enter common domain contracts.",
+    "All bundled catalog identities and localization keys are stable and language-neutral.",
+    "Capacity, metric area/seed mass, batch state, dependent rescheduling, undo, planner conflict, recurrence/time-zone, and outcome rules are deterministic and boundary-tested.",
+    "Fallible manager contracts use one flat Kotlin Result and preserve cancellation/causes.",
+    "Every assigned domain-test and catalog-contract-test surface has exact test evidence.",
+    "An immutable Protocol 2.0 handoff is produced without editing the delivery ledger."
+  ]
+}

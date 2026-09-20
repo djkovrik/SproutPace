@@ -1,0 +1,48 @@
+{
+  "action": "handoff",
+  "assignmentId": "domain-dependency-readiness",
+  "handoffId": "HANDOFF-domain-dependency-readiness-20260920-r1",
+  "supersedes": [".vibe/handoffs/HANDOFF-domain-dependency-readiness-20260920.json"],
+  "productionEvidence": [
+    {"path":"shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt","symbol":"sealed interface TrayShape","surface":"public-contract","coverage":[{"obligationId":"AC-014","surface":"public-contract"}]},
+    {"path":"shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt","symbol":"object SproutPaceCatalog","surface":"public-contract","coverage":[{"obligationId":"AC-020","surface":"public-contract"}]},
+    {"path":"shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt","symbol":"data class UserGrowRecipe","surface":"public-contract","coverage":[{"obligationId":"AC-021","surface":"public-contract"}]},
+    {"path":"shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt","symbol":"fun validate","surface":"public-contract","coverage":[{"obligationId":"AC-055","surface":"public-contract"}]},
+    {"path":"shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt","symbol":"fun close","surface":"public-contract","coverage":[{"obligationId":"AC-080","surface":"public-contract"}]}
+  ],
+  "testEvidence": [
+    {"path":"shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt","testName":"ac014_metricTrayGeometryIsStableForPersistence","surface":"domain-test","coverage":[{"obligationId":"AC-014","surface":"domain-test"}]},
+    {"path":"shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt","testName":"ac020_builtInCatalogHasVersionedLanguageNeutralIdentity","surface":"catalog-contract-test","coverage":[{"obligationId":"AC-020","surface":"catalog-contract-test"}]},
+    {"path":"shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt","testName":"ac021_personalRecipePreservesStableIdentityAndAuthoredFields","surface":"domain-test","coverage":[{"obligationId":"AC-021","surface":"domain-test"}]},
+    {"path":"shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt","testName":"ac055_capacityConflictPreservesDateCountsAndResolutionSemantics","surface":"domain-test","coverage":[{"obligationId":"AC-055","surface":"domain-test"}]},
+    {"path":"shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt","testName":"ac080_everyTerminalOutcomeReleasesCapacityAndCancelsPendingWork","surface":"domain-test","coverage":[{"obligationId":"AC-080","surface":"domain-test"}]}
+  ],
+  "nonGradleChecks": [
+    {"argv":["powershell","-NoProfile","-Command","validate no wildcard imports, no lines over 120, and exact AC anchors 011/014/020/021/030/031/051/055/080"],"exitCode":0},
+    {"argv":["powershell","-NoProfile","-Command","confirm missing legacy domain-contracts-and-errors.md and read authoritative managers-events-errors.md replacement"],"exitCode":0},
+    {"argv":["powershell","-NoProfile","-Command","inspect non-binding source contract anchors for AC-011/030/031/051 without registering undeclared verification surfaces"],"exitCode":0}
+  ],
+  "requestedCommands": [
+    {
+      "argv":["gradlew.bat",":shared:domain:allTests"],
+      "tasks":[":shared:domain:allTests"],
+      "coveredObligations":[
+        {"obligationId":"AC-014","surfaces":["domain-test"]},{"obligationId":"AC-020","surfaces":["catalog-contract-test"]},{"obligationId":"AC-021","surfaces":["domain-test"]},{"obligationId":"AC-055","surfaces":["domain-test"]},{"obligationId":"AC-080","surfaces":["domain-test"]}
+      ]
+    },
+    {
+      "argv":["gradlew.bat",":shared:domain:testAndroidHostTest"],
+      "tasks":[":shared:domain:testAndroidHostTest"],
+      "coveredObligations":[
+        {"obligationId":"AC-014","surfaces":["domain-test"]},{"obligationId":"AC-020","surfaces":["catalog-contract-test"]},{"obligationId":"AC-021","surfaces":["domain-test"]},{"obligationId":"AC-055","surfaces":["domain-test"]},{"obligationId":"AC-080","surfaces":["domain-test"]}
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "AC-011, AC-030, AC-031, and AC-051 have deterministic non-binding source contract checks in DependencyReadinessTest.kt, but AppSpec does not declare domain-test for those obligations, so this handoff registers no test evidence for them.",
+      "obligationIds": ["AC-011", "AC-030", "AC-031", "AC-051"],
+      "nextAction": "Persistence and component owners must add and run the AppSpec-declared database-integration-test and component-test surfaces before these obligations can receive binding evidence."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "assets-v1",
+  "patterns": ["shared/compose/src/commonMain/composeResources/drawable/**", "docs/assets/**", "spec/**"],
+  "dependencyRationale": "The frozen asset inventory, visual briefs, output resources, generation records, and delivery manifest fully define static asset validation; production usage and goldens will be bound by later integration checks.",
+  "toolchainIdentity": "Compose Multiplatform Resources 1.12.0; Vibe asset validator current workspace version; PNG inspection via Pillow when raster outputs are present."
+}

@@ -1,0 +1,21 @@
+{
+  "action": "scope",
+  "scopeId": "canonical-advertising-privacy-runtime-v1",
+  "patterns": [
+    "shared/monetization/**",
+    "shared/data/**",
+    "shared/compose/**",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "spec/app-spec.json",
+    "spec/flows/FLOW-010.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/screens/SCREEN-015.md",
+    "spec/quality.md",
+    "*.gradle.kts",
+    "gradle/**"
+  ],
+  "dependencyRationale": "Privacy metadata is persisted in shared data, evaluated in shared monetization, and injected by production Compose/Android graph; backup, erase, and iOS safe-disable tests are transitive contract inputs.",
+  "fallbackReason": "The current runtime constructs privacy and application services across module boundaries, so the complete relevant module paths are fingerprinted while assignment writes remain narrowly enumerated.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Ktor 3.5.2; Compose Multiplatform 1.12.0; Android SDK 37; Yandex Mobile Ads Android 8.5.0"
+}

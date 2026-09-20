@@ -1,0 +1,28 @@
+{
+  "action": "scope",
+  "scopeId": "platform-host-actions-theme-v1",
+  "patterns": [
+    "spec/app-spec.json",
+    "spec/screens/SCREEN-011.md",
+    "spec/screens/SCREEN-014.md",
+    "spec/screens/SCREEN-015.md",
+    "spec/screens/SCREEN-016.md",
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/compose/src/commonTest/**",
+    "shared/platform/src/androidMain/**",
+    "docs/configuration/**",
+    "docs/design-review/product-ui-material-contract.md"
+  ],
+  "dependencyRationale": "Native platform actions and persisted theme selection cross the host entry points, the shared Compose bridge, the production settings graph, existing Android picker/permission services, iOS native services, and external privacy configuration contract.",
+  "fallbackReason": "Swift-to-Kotlin exported bridge signatures and generated BuildConfig fields are transitive host inputs, so both native entry points and their shared boundary must be fingerprinted together.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Xcode/macOS execution deferred to CI"
+}

@@ -1,0 +1,11 @@
+{
+  "action":"check",
+  "jobId":"CHECK-detekt-closure-20260920",
+  "runner":"gradle",
+  "kind":"targeted",
+  "inputScopeId":"foundation-v1",
+  "tasks":["detekt","--no-configuration-cache"],
+  "coveredObligations":[{"obligationId":"QG-001","surfaces":["static-analysis"]}],
+  "timeoutSeconds":1800,
+  "toolchainIdentity":"Gradle wrapper 9.5.1; JDK 21; Detekt 2.0.0-alpha.6"
+}

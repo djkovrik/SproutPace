@@ -1,0 +1,70 @@
+{
+  "action": "handoff",
+  "assignmentId": "persistence-query-mapping-correction-3",
+  "handoffId": "HANDOFF-persistence-query-mapping-correction-3-20260920-r2",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-persistence-query-mapping-correction-3-20260920.json",
+    ".vibe/handoffs/HANDOFF-persistence-query-mapping-correction-3-20260920-r1.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+      "symbol": "decodedListFlow",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        {
+          "obligationId": "QG-011",
+          "surface": "catalog-contract-test"
+        }
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "rg",
+        "-n",
+        "select(Recipes|Batches|Plans|Observations)\\(\\)|decodedListFlow|executeAsList\\(\\)\\.map|payloads\\.map\\(decode\\)",
+        "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+        "shared/data/build/generated/sqldelight/code/SproutPaceDatabase/commonMain/com/sedsoftware/sproutpace/data/db/SproutPaceQueries.kt"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T08:08:04.5940622Z",
+      "completedAt": "2026-09-20T08:08:04.6200890Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:data:allTests"],
+      "tasks": [":shared:data:allTests"],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-011",
+          "surfaces": ["catalog-contract-test"]
+        }
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:data:testAndroidHostTest"],
+      "tasks": [":shared:data:testAndroidHostTest"],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-011",
+          "surfaces": ["catalog-contract-test"]
+        }
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:data:compileAndroidMain"],
+      "tasks": [":shared:data:compileAndroidMain"],
+      "coveredObligations": []
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:data:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:data:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": []
+    }
+  ],
+  "blockers": []
+}

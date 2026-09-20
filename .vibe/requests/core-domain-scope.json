@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "core-domain-v1",
+  "patterns": ["shared/domain/**", "spec/**"],
+  "dependencyRationale": "Pure domain production/tests plus the complete normative AppSpec define all invariants, time rules, catalog identities, and manager contracts; build files are implicit protocol inputs.",
+  "toolchainIdentity": "Kotlin 2.4.10; kotlinx-coroutines 1.11.0; kotlinx-datetime 0.8.0; kotlin-test from the pinned Kotlin toolchain."
+}

@@ -1,0 +1,38 @@
+Calculating task graph as no cached configuration is available for tasks: detekt :shared:domain:testAndroidHostTest :shared:data:testAndroidHostTest :shared:component:testAndroidHostTest :shared:root:testAndroidHostTest :shared:platform:testAndroidHostTest :shared:monetization:testAndroidHostTest :shared:compose:testAndroidHostTest :shared:compose:compileAndroidMain :shared:data:verifySqlDelightMigration :shared:domain:compileKotlinIosSimulatorArm64 :shared:data:compileKotlinIosSimulatorArm64 :shared:component:compileKotlinIosSimulatorArm64 :shared:root:compileKotlinIosSimulatorArm64 :shared:platform:compileKotlinIosSimulatorArm64 :shared:monetization:compileKotlinIosSimulatorArm64 :shared:compose:compileKotlinIosSimulatorArm64 :androidApp:assembleDebug :androidApp:assembleRelease :androidApp:bundleRelease koverXmlReport koverVerify
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :detekt
+Successfully generated markdown at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.md
+Successfully generated html at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.html
+Successfully generated sarif at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.sarif
+Successfully generated checkstyle at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.xml
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\RootUiAdapter.kt:372:26 The function toUiState appears to be too complex based on Cyclomatic Complexity (complexity: 27). The maximum allowed complexity for methods is set to '25' [CyclomaticComplexMethod]
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\RootUiAdapter.kt:372:26 The function toUiState is too long (97). The maximum length is 90. [LongMethod]
+
+
+> Task :detekt FAILED
+
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':detekt'.
+> Analysis failed with 2 issues.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 10s
+1 actionable task: 1 executed
+Configuration cache entry stored.

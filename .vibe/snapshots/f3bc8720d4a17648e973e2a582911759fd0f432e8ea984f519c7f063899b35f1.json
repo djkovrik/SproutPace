@@ -1,0 +1,32 @@
+{
+  "algorithm": "sha256",
+  "digest": "043876933927ed3f8f8670c70f56486f1b1ef67306fd936eeedc70906a657249",
+  "files": [
+    {
+      "path": "shared/data/README.md",
+      "sha256": "ce4261b1d27ff8a733f887ebee934a60c4d501a49fae610f83a9cf599555157c"
+    },
+    {
+      "path": "shared/data/build.gradle.kts",
+      "sha256": "39af873f707b15493aacaa4d2a986dca8e591fce33e0447b19c07b08e5f308a1"
+    },
+    {
+      "path": "shared/data/scripts/validate-data.ps1",
+      "sha256": "60496afa41a2fdc55531225c158e0b53f54633df870810706a12bc2dc6343fb4"
+    },
+    {
+      "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/1.sqm",
+      "sha256": "56471857d0d3cbf67d3abcecb98e9c2f730e8cb7d6b7a531a07c146edb2fb01d"
+    },
+    {
+      "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+      "sha256": "fdf796b5d341a6e55f7b9ecf811cb3ce67a35af063ca56ffded5ce7cec608072"
+    }
+  ],
+  "patterns": [
+    "shared/data/README.md",
+    "shared/data/build.gradle.kts",
+    "shared/data/scripts/validate-data.ps1",
+    "shared/data/src/commonMain/sqldelight/**"
+  ]
+}

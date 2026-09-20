@@ -1,0 +1,53 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The production data-manager handoff found that current confirmation opens only after ScreenStore emits Completed, so destructive commands would mutate before confirmation and confirm() only dismisses. AppSpec requires pre-mutation confirmation for deletes, replacement restore, reset and destructive discard paths.",
+  "assignmentId": "component-root-pre-mutation-confirmation",
+  "packageId": "core-domain",
+  "owner": "vibe-decompose-engineer",
+  "acceptanceScenarioIds": ["AC-032", "AC-039"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+    "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt"
+  ],
+  "inputScopeId": "component-root-v1",
+  "goal": "Introduce a typed, serializable pre-mutation confirmation contract: destructive Execute requests confirmation without touching the Store/manager; confirm dispatches a distinct confirmed action exactly once to the active component; cancel/back/dismiss mutate nothing; state restoration preserves the pending command safely.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-002.md",
+    "spec/flows/FLOW-003.md",
+    "spec/flows/FLOW-004.md",
+    "spec/flows/FLOW-005.md",
+    "spec/flows/FLOW-007.md",
+    "spec/flows/FLOW-009.md",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/component-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/navigation-and-root.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/lifecycle-state-retention.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:component:allTests",
+    ":shared:root:allTests",
+    ":shared:component:compileAndroidMain",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "Every destructive operation named by the assigned ACs is classified centrally and cannot reach ScreenStore/ScreenDataManager before explicit confirmation.",
+    "The pending typed command is retained in serializable Decompose slot configuration without relying on string-prefix heuristics.",
+    "Confirm dismisses the slot and dispatches the exact command through a distinct confirmed path once; cancel, back and dismiss dispatch nothing.",
+    "Tests prove no pre-confirm mutation, one post-confirm dispatch, cancel/back safety, and state restoration for a pending confirmation.",
+    "Non-destructive Execute behavior and existing navigation remain unchanged.",
+    "No Compose, data implementation, platform, schema or product-scope changes; specialist does not run Gradle or edit the ledger."
+  ]
+}

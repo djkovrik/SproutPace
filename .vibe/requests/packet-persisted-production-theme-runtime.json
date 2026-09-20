@@ -1,0 +1,44 @@
+{
+  "acceptanceCriteria": [
+    "Production AppTheme resolves SYSTEM from isSystemInDarkTheme and forces LIGHT or DARK overrides without mutating the stored preference.",
+    "The retained ProductSettings theme StateFlow reaches Android and iOS RootApp; a Settings update immediately re-renders all screens and survives restart through existing persistence.",
+    "Android and iOS system-bar/status appearance callbacks receive the resolved dark value, including after preference or system appearance changes.",
+    "Tests prove the SYSTEM/LIGHT/DARK truth table and production propagation; existing deterministic light/dark Settings and Today previews remain golden-ready with semantic Material color roles. Specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "docs/design-review/product-ui-material-contract.md",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ThemeRuntimeContractTest.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt"
+  ],
+  "assignmentId": "persisted-production-theme-runtime",
+  "contractInputs": [
+    "spec/flows/FLOW-012.md",
+    "spec/screens/SCREEN-002.md",
+    "spec/screens/SCREEN-011.md",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "https://www.lazyweb.com/agentic-search/b33bd652-1b1a-4279-ae3c-07cb61358220"
+  ],
+  "forkTurns": "none",
+  "goal": "Propagate the persisted SYSTEM/LIGHT/DARK ThemePreference from the retained production graph into the shared Material3 root so both platforms and all screens re-render immediately, while SYSTEM continues to react to OS appearance and previews remain deterministic.",
+  "obligationIds": [
+    "AC-121"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug",
+    ":shared:compose:verifyPaparazzi"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/references/theming-material3.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

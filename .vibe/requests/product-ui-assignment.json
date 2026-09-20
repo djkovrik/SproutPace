@@ -1,0 +1,64 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected current drift after the root integration diagnostic. Existing shared/compose changes are the returned foundation, theme, assets and build wiring that form the baseline; no user-owned files are removed, and the new assignment is constrained to product UI and its design-review documentation.",
+  "assignmentId": "product-ui-all-screens",
+  "packageId": "product-ui",
+  "owner": "vibe-product-designer",
+  "acceptanceScenarioIds": ["AC-001", "AC-120", "AC-121", "AC-122", "AC-123"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/commonMain/composeResources/values/**",
+    "shared/compose/src/commonMain/composeResources/values-ru/**",
+    "shared/compose/src/commonTest/**",
+    "shared/compose/src/androidUnitTest/**",
+    "docs/design-review/**"
+  ],
+  "goal": "Replace the foundation demo with the complete Material 3-first SproutPace UI for all sixteen approved screens and their required loading/content/empty/error/permission/confirmation states, production EN/RU strings, adaptive compact/rail/list-detail behavior, keyboard semantics, minimum touch targets and deterministic previews. Use the approved assets and the prior Lazyweb findings; do not change product scope or run Gradle.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/design.md",
+    "spec/product.md",
+    "spec/screens/SCREEN-001.md",
+    "spec/screens/SCREEN-002.md",
+    "spec/screens/SCREEN-003.md",
+    "spec/screens/SCREEN-004.md",
+    "spec/screens/SCREEN-005.md",
+    "spec/screens/SCREEN-006.md",
+    "spec/screens/SCREEN-007.md",
+    "spec/screens/SCREEN-008.md",
+    "spec/screens/SCREEN-009.md",
+    "spec/screens/SCREEN-010.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/screens/SCREEN-012.md",
+    "spec/screens/SCREEN-013.md",
+    "spec/screens/SCREEN-014.md",
+    "spec/screens/SCREEN-015.md",
+    "spec/screens/SCREEN-016.md",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "docs/assets/asset-manifest.json"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/localization-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:verifyPaparazziDebug",
+    ":androidApp:assembleDebug"
+  ],
+  "acceptanceCriteria": [
+    "All 16 approved ScreenId values have production Compose rendering and are reachable through root/navigation callbacks without product-scope additions.",
+    "Every user-facing string is a production Compose resource with complete EN and RU variants; no hardcoded authored UI copy remains.",
+    "Compact uses bottom navigation, wider layouts use rail/list-detail where specified, and safe insets plus 200 percent font scale remain usable.",
+    "Primary actions, controls and custom click targets expose roles/labels and meet 48dp minimum targets; keyboard traversal is deterministic.",
+    "Deterministic light/dark, RU, large-text and adaptive previews exist for primary and critical states, ready for Paparazzi discovery.",
+    "A design decision note records the already completed Lazyweb evidence and the exact patterns applied; post-golden review remains a later root-owned gate.",
+    "No Gradle execution, ledger edits, external project creation or scope changes are performed by the specialist."
+  ]
+}

@@ -4,5 +4,14 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>ru</string>
+	</array>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<false/>
+	<key>SproutPacePrivacyPolicyURL</key>
+	<string>$(SPROUTPACE_PRIVACY_POLICY_URL)</string>
 </dict>
 </plist>

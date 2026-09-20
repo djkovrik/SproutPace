@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-root-completion-routing-20260920.json",
+  "inspectionNote": "Inspected exact active-config and operation-pair routing. First-run still replaces history with Plan; active batch/recipe deletion replaces history with its safe primary collection; editor, observation, recipe and close completions pop one entry only when the source configuration is still active; unknown, mismatched and late completions are no-ops. Bound receipt d73958df-3118-4033-a3c4-1f7612b8006a confirms root Android tests and iOS simulator compilation."
+}

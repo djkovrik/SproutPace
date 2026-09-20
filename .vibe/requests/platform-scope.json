@@ -1,0 +1,22 @@
+{
+  "action": "scope",
+  "scopeId": "platform-services-v1",
+  "patterns": [
+    "spec/**",
+    "shared/domain/**",
+    "shared/data/**",
+    "shared/platform/**",
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/**",
+    "androidApp/src/main/res/values*/**",
+    "iosApp/iosApp.xcodeproj/project.pbxproj",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "docs/architecture/**",
+    "docs/configuration/**"
+  ],
+  "fallbackReason": "Native notifications, pickers, lifecycle and diagnostics span common KMP contracts plus Android/iOS host configuration.",
+  "dependencyRationale": "Platform adapters consume stable domain/data contracts and must match AppSpec capability, localization, privacy and build requirements on both targets.",
+  "toolchainIdentity": "Kotlin 2.4.10; AGP 9.1.1; Android API 23-37; iOS arm64/simulator arm64; platform-native notifications and document/photo picker APIs; Firebase Crashlytics configuration supplied externally."
+}

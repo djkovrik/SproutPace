@@ -1,0 +1,10 @@
+{
+  "action": "package",
+  "packageId": "assets",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-006"],
+  "fileBoundaries": ["shared/compose/src/commonMain/composeResources/drawable/**", "docs/assets/**", "androidApp/src/main/res/mipmap*/**", "iosApp/iosApp/Assets.xcassets/**"],
+  "integrationGoal": "Every approved ASSET ID has a production Compose resource, provenance, manifest evidence, and later reachable typed use reviewed in screen goldens.",
+  "nextAction": "Create and validate the approved reusable icons, original vectors, and catalog illustrations."
+}

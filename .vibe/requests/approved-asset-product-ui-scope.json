@@ -1,0 +1,6 @@
+{
+  "action":"scope","scopeId":"approved-asset-product-ui-v1","patterns":["shared/compose/**","docs/assets/**","spec/app-spec.json","spec/design.md","spec/screens/**","*.gradle.kts","gradle/**"],
+  "dependencyRationale":"Approved assets are already delivered as Compose resources; production reachability is controlled by shared screen renderers and must be verified in deterministic previews/goldens.",
+  "fallbackReason":"Shared generic renderers map typed screen/item/action roles to assets across several screens, so the full compose module is fingerprinted.",
+  "toolchainIdentity":"Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Paparazzi 2.0.0-alpha05"
+}

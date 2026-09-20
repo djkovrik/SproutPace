@@ -1,0 +1,97 @@
+{
+  "action": "handoff",
+  "assignmentId": "approved-inline-ad-placement",
+  "handoffId": "HANDOFF-approved-inline-ad-placement-20260920",
+  "productionEvidence": [],
+  "testEvidence": [
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "testName": "permitsExactlyTheApprovedSingleInlinePositions",
+      "surface": "ad-lifecycle-test",
+      "coverage": [
+        {"obligationId": "AC-100", "surface": "ad-lifecycle-test"},
+        {"obligationId": "AC-101", "surface": "ad-lifecycle-test"}
+      ]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "testName": "ineligibleUnavailableAndSdkFailureNeverBecomeReady",
+      "surface": "ad-lifecycle-test",
+      "coverage": [
+        {"obligationId": "AC-101", "surface": "ad-lifecycle-test"}
+      ]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "testName": "previewAutomatedAndIosHostsNeverResolvePrivacyOrInitialize",
+      "surface": "ad-lifecycle-test",
+      "coverage": [
+        {"obligationId": "AC-101", "surface": "ad-lifecycle-test"}
+      ]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "testName": "inlineSessionLimitsRetryAndDisposesDeterministically",
+      "surface": "ad-lifecycle-test",
+      "coverage": [
+        {"obligationId": "AC-101", "surface": "ad-lifecycle-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "advertisingEligibilityUsesOnlyApprovedTypedSurfacesAndExactIndices",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-100", "surface": "component-test"},
+        {"obligationId": "AC-101", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "eligibleVisitGatePermitsAtMostOnePreparation",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-100", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AdvertisingUiContractTest.kt",
+      "testName": "androidNativeBannerIsLifecycleOwnedAndCollapsedUntilLoaded",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-101", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AdvertisingUiContractTest.kt",
+      "testName": "iosInlineHostIsAnUnconditionalNoOp",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-101", "surface": "component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["git", "diff", "--check", "--", "shared/monetization/src/commonTest", "shared/compose/src/commonTest", "shared/compose/src/androidUnitTest"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:monetization:allTests", ":shared:data:testAndroidHostTest", ":shared:compose:testAndroidHostTest"],
+      "tasks": [":shared:monetization:allTests", ":shared:data:testAndroidHostTest", ":shared:compose:testAndroidHostTest"],
+      "coveredObligations": [
+        {"obligationId": "AC-100", "surfaces": ["ad-lifecycle-test", "component-test"]},
+        {"obligationId": "AC-101", "surfaces": ["ad-lifecycle-test", "component-test"]}
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "AC-100 and AC-101 ui-golden evidence remains intentionally deferred to the orchestrator's final Paparazzi record/verify and post-golden Lazyweb review pass.",
+      "obligationIds": ["AC-100", "AC-101"],
+      "nextAction": "Record and verify the deterministic Catalog and explicit History advertising preview states during the final ui-golden pass."
+    }
+  ]
+}

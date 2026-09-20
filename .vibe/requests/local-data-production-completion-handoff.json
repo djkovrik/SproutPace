@@ -1,0 +1,162 @@
+{
+  "action": "handoff",
+  "assignmentId": "local-data-production-completion",
+  "handoffId": "HANDOFF-local-data-production-completion-20260920",
+  "supersedes": [],
+  "receiptRefs": [".vibe/receipts/RECEIPT-e2b0911c-2912-4b10-aafa-67d6b0453071.json"],
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "class ProductionScreenDataManager",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-013","surface":"database-integration-test"},{"obligationId":"AC-015","surface":"database-integration-test"},
+        {"obligationId":"AC-016","surface":"database-integration-test"},{"obligationId":"AC-017","surface":"database-integration-test"},
+        {"obligationId":"AC-022","surface":"database-integration-test"},{"obligationId":"AC-023","surface":"database-integration-test"},
+        {"obligationId":"AC-024","surface":"database-integration-test"},{"obligationId":"AC-025","surface":"database-integration-test"},
+        {"obligationId":"AC-033","surface":"database-integration-test"},{"obligationId":"AC-034","surface":"database-integration-test"},
+        {"obligationId":"AC-053","surface":"database-integration-test"},{"obligationId":"AC-056","surface":"database-integration-test"},
+        {"obligationId":"AC-070","surface":"database-integration-test"},{"obligationId":"AC-071","surface":"database-integration-test"},
+        {"obligationId":"AC-072","surface":"database-integration-test"},{"obligationId":"AC-073","surface":"database-integration-test"},
+        {"obligationId":"AC-082","surface":"database-integration-test"},{"obligationId":"AC-083","surface":"database-integration-test"},
+        {"obligationId":"AC-084","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "class LocalBackupService",
+      "surface": "snapshot-roundtrip-test",
+      "coverage": [
+        {"obligationId":"AC-090","surface":"snapshot-roundtrip-test"},{"obligationId":"AC-091","surface":"snapshot-roundtrip-test"},
+        {"obligationId":"AC-092","surface":"snapshot-roundtrip-test"},{"obligationId":"AC-093","surface":"snapshot-roundtrip-test"},
+        {"obligationId":"QG-012","surface":"snapshot-roundtrip-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "class LocalWorkspaceRepository",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId":"AC-034","surface":"file-integration-test"},{"obligationId":"AC-073","surface":"file-integration-test"},
+        {"obligationId":"AC-074","surface":"file-integration-test"},{"obligationId":"AC-090","surface":"file-integration-test"},
+        {"obligationId":"AC-094","surface":"file-integration-test"},{"obligationId":"AC-095","surface":"file-integration-test"},
+        {"obligationId":"QG-012","surface":"file-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "LocalDataIntegrationEvent.FirstRunNavigationRequired",
+      "surface": "integration-test",
+      "coverage": [{"obligationId":"AC-095","surface":"integration-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "LocalDataAcceptanceTest",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-013","surface":"database-integration-test"},{"obligationId":"AC-015","surface":"database-integration-test"},
+        {"obligationId":"AC-016","surface":"database-integration-test"},{"obligationId":"AC-017","surface":"database-integration-test"},
+        {"obligationId":"AC-022","surface":"database-integration-test"},{"obligationId":"AC-023","surface":"database-integration-test"},
+        {"obligationId":"AC-024","surface":"database-integration-test"},{"obligationId":"AC-025","surface":"database-integration-test"},
+        {"obligationId":"AC-033","surface":"database-integration-test"},{"obligationId":"AC-034","surface":"database-integration-test"},
+        {"obligationId":"AC-053","surface":"database-integration-test"},{"obligationId":"AC-056","surface":"database-integration-test"},
+        {"obligationId":"AC-070","surface":"database-integration-test"},{"obligationId":"AC-071","surface":"database-integration-test"},
+        {"obligationId":"AC-072","surface":"database-integration-test"},{"obligationId":"AC-073","surface":"database-integration-test"},
+        {"obligationId":"AC-082","surface":"database-integration-test"},{"obligationId":"AC-083","surface":"database-integration-test"},
+        {"obligationId":"AC-084","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "testName": "assignedHistoryAndPrivatePhotosSurviveActualCloseAndReopen",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-015","surface":"database-integration-test"},{"obligationId":"AC-022","surface":"database-integration-test"},
+        {"obligationId":"AC-071","surface":"database-integration-test"},{"obligationId":"AC-084","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "testName": "assignedHistoryAndPrivatePhotosSurviveActualCloseAndReopen",
+      "surface": "file-integration-test",
+      "coverage": [{"obligationId":"AC-074","surface":"file-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "ac090_ac091_archiveBytesAreDeterministicVersionedPortableAndDocumentBacked",
+      "surface": "snapshot-roundtrip-test",
+      "coverage": [
+        {"obligationId":"AC-090","surface":"snapshot-roundtrip-test"},{"obligationId":"AC-091","surface":"snapshot-roundtrip-test"},
+        {"obligationId":"QG-012","surface":"snapshot-roundtrip-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "ac092_ac093_restoreCompensatesEveryStoreWhenReminderReconciliationFails",
+      "surface": "snapshot-roundtrip-test",
+      "coverage": [
+        {"obligationId":"AC-092","surface":"snapshot-roundtrip-test"},{"obligationId":"AC-093","surface":"snapshot-roundtrip-test"},
+        {"obligationId":"QG-012","surface":"snapshot-roundtrip-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "qg012_completeArchiveRoundTripsEveryRelationshipStageScheduleUtf8AndMultiplePhotos",
+      "surface": "file-integration-test",
+      "coverage": [
+        {"obligationId":"AC-034","surface":"file-integration-test"},{"obligationId":"AC-073","surface":"file-integration-test"},
+        {"obligationId":"AC-074","surface":"file-integration-test"},{"obligationId":"AC-090","surface":"file-integration-test"},
+        {"obligationId":"AC-094","surface":"file-integration-test"},{"obligationId":"AC-095","surface":"file-integration-test"},
+        {"obligationId":"QG-012","surface":"file-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "ac095_eraseCancelsRemindersAndEmitsTypedRootOutputOnlyAfterCommit",
+      "surface": "integration-test",
+      "coverage": [{"obligationId":"AC-095","surface":"integration-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {"argv":["git","diff","--check","--","shared/data/src"],"exitCode":0},
+    {"argv":["rg","LocalBackupArchive|HarvestPlan|PlannerEngine.suggestions|undoLastTransition","shared/data/src"],"exitCode":0}
+  ],
+  "requestedCommands": [
+    {
+      "argv":["gradlew.bat",":shared:data:testAndroidHostTest",":shared:data:allTests"],
+      "tasks":[":shared:data:testAndroidHostTest",":shared:data:allTests"],
+      "coveredObligations": [
+        {"obligationId":"AC-013","surfaces":["database-integration-test"]},{"obligationId":"AC-015","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-016","surfaces":["database-integration-test"]},{"obligationId":"AC-017","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-022","surfaces":["database-integration-test"]},{"obligationId":"AC-023","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-024","surfaces":["database-integration-test"]},{"obligationId":"AC-025","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-033","surfaces":["database-integration-test"]},{"obligationId":"AC-034","surfaces":["database-integration-test","file-integration-test"]},
+        {"obligationId":"AC-053","surfaces":["database-integration-test"]},{"obligationId":"AC-056","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-070","surfaces":["database-integration-test"]},{"obligationId":"AC-071","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-072","surfaces":["database-integration-test"]},{"obligationId":"AC-073","surfaces":["database-integration-test","file-integration-test"]},
+        {"obligationId":"AC-074","surfaces":["file-integration-test"]},{"obligationId":"AC-082","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-083","surfaces":["database-integration-test"]},{"obligationId":"AC-084","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-090","surfaces":["snapshot-roundtrip-test","file-integration-test"]},{"obligationId":"AC-091","surfaces":["snapshot-roundtrip-test"]},
+        {"obligationId":"AC-092","surfaces":["snapshot-roundtrip-test"]},{"obligationId":"AC-093","surfaces":["snapshot-roundtrip-test"]},
+        {"obligationId":"AC-094","surfaces":["file-integration-test"]},{"obligationId":"AC-095","surfaces":["integration-test","file-integration-test"]},
+        {"obligationId":"QG-012","surfaces":["snapshot-roundtrip-test","file-integration-test"]}
+      ]
+    },
+    {"argv":["gradlew.bat",":shared:data:verifySqlDelightMigration"],"tasks":[":shared:data:verifySqlDelightMigration"],"coveredObligations":[]},
+    {"argv":["gradlew.bat",":shared:data:compileAndroidMain"],"tasks":[":shared:data:compileAndroidMain"],"coveredObligations":[]},
+    {"argv":["gradlew.bat",":shared:data:compileKotlinIosSimulatorArm64"],"tasks":[":shared:data:compileKotlinIosSimulatorArm64"],"coveredObligations":[]}
+  ],
+  "blockers": [
+    {
+      "description": "Root production composition still must inject LocalWorkspaceRepository, LocalBackupService, ArchiveDocumentPort, ReminderReconciliationPort and consume LocalDataIntegrationEvent.FirstRunNavigationRequired; data exposes typed ports/output but cannot change root/component/platform files in this assignment.",
+      "nextAction": "Wire the data ports in the root composition and map FirstRunNavigationRequired to a confirmed navigation reset after successful erase.",
+      "obligationIds": ["AC-034","AC-073","AC-090","AC-091","AC-092","AC-094","AC-095"]
+    },
+    {
+      "description": "The registered required-read paths sqldelight-schema-queries-transactions.md and migrations-backup-restore.md do not exist in the installed persistence skill; all actual replacement references linked from SKILL.md were read instead.",
+      "nextAction": "Correct the assignment template to reference the installed SQLDelight, drivers/transactions, snapshot, settings and persistence-testing documents."
+    }
+  ]
+}

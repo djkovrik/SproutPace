@@ -1,0 +1,26 @@
+{
+  "action": "check",
+  "jobId": "CHECK-canonical-advertising-privacy-runtime-r2-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "canonical-advertising-privacy-runtime-v1",
+  "tasks": [
+    ":shared:monetization:allTests",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "coveredObligations": [
+    {"obligationId":"AC-102","surfaces":["privacy-integration-test"]},
+    {"obligationId":"AC-103","surfaces":["privacy-integration-test","settings-integration-test"]},
+    {"obligationId":"AC-104","surfaces":["privacy-integration-test","ad-lifecycle-test"]},
+    {"obligationId":"AC-105","surfaces":["privacy-integration-test"]},
+    {"obligationId":"AC-106","surfaces":["network-mock-test","privacy-integration-test","ad-lifecycle-test"]},
+    {"obligationId":"AC-107","surfaces":["ios-platform-test","ad-lifecycle-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Ktor 3.5.2; Multiplatform Settings 1.3.0; Android SDK 37; Yandex Mobile Ads Android 8.5.0; iOS Simulator Kotlin/Native target"
+}

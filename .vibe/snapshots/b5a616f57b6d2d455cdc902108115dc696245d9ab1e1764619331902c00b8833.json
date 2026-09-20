@@ -1,0 +1,43 @@
+{
+  "algorithm": "sha256",
+  "digest": "60d0ab1577535dfde8195c9c3ccbadbd183d446d03a84c2ba3d5f7f650f01747",
+  "files": [
+    {
+      "path": "androidApp/build.gradle.kts",
+      "sha256": "6d12cd276daa5bd44d4b0520b886e96dbcb1dac86ab158e646852a1c993c44cd"
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "sha256": "d80a98647f1f5d7a5955890af1660bebeb8ea5f8d72baf69a58a7e0045a62fc4"
+    },
+    {
+      "path": "docs/configuration/ADVERTISING-PRIVACY.md",
+      "sha256": "849fb041097f267b5d0d2ee0710b9eb817c197f028fe58eab1c1fe7a596bde85"
+    },
+    {
+      "path": "iosApp/iosApp/Info.plist",
+      "sha256": "5bcc68999eae7f967a232bc28aa92dac7a9012ef166974960ac825281af67ef0"
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "sha256": "71446d7cf1b9afae78ca5b2b82e0079f0cd41078a3400880d2d19dd864159ec8"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "b57b94feff68cbee979b42e97c1952a83e018de7da497a215913daf673b8d5ec"
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "sha256": "fc02aef1985521b8255026a6a0e1dfba664662c06117c8e1fbdc2c5f48c33a6a"
+    }
+  ],
+  "patterns": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ]
+}

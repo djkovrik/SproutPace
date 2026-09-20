@@ -1,0 +1,13 @@
+{
+  "action": "check",
+  "jobId": "CHECK-android-release-readiness-correction-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "foundation-v1",
+  "tasks": [":androidApp:assembleDebug", ":androidApp:assembleRelease", ":androidApp:bundleRelease"],
+  "coveredObligations": [
+    {"obligationId":"QG-002","surfaces":["android-build"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 21 daemon; JVM target 17; AGP 9.1.1; Android API 24-37"
+}

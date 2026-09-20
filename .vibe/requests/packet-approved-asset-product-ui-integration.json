@@ -1,0 +1,46 @@
+{
+  "acceptanceCriteria": [
+    "Settings visibly uses the approved logo and settings icon in its existing hierarchy; first-run usage remains.",
+    "Existing add/edit/delete/photo/notifications/backup/repeat/complete actions use approved icons with localized accessible labels and minimum targets.",
+    "Batch/Recipe existing stage content uses stage_soaking, stage_sown, stage_blackout, stage_light_growth and stage_harvest as decorative supporting visuals without replacing text.",
+    "Existing empty Today state uses illustration_empty_today decoratively.",
+    "Recipe uses the matching culture cover for its selected culture; Catalog coverage remains.",
+    "Deterministic previews make every custom visual asset inspectable in light/dark or relevant state; do not add product features, new asset designs or raw user-facing strings. Root owns Gradle, goldens and Lazyweb review."
+  ],
+  "allowedFiles": [
+    "docs/design-review/**",
+    "shared/compose/src/androidUnitTest/**",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonTest/**"
+  ],
+  "assignmentId": "approved-asset-product-ui-integration",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/design.md",
+    "docs/assets/ASSET-INVENTORY.md",
+    "docs/assets/asset-manifest.json",
+    "https://www.lazyweb.com/agentic-search/b33bd652-1b1a-4279-ae3c-07cb61358220",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**"
+  ],
+  "forkTurns": "none",
+  "goal": "Integrate every already-approved asset into its required existing production screen/action role with accessible semantics and deterministic golden visibility, without adding features or altering product scope.",
+  "obligationIds": [
+    "AC-001",
+    "AC-120"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:cleanRecordPaparazzi",
+    ":shared:compose:verifyPaparazzi"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-assets-creator/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

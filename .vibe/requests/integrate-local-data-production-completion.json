@@ -1,0 +1,23 @@
+{
+  "action": "integrate",
+  "packageId": "local-data",
+  "receiptRef": ".vibe/receipts/RECEIPT-e2b0911c-2912-4b10-aafa-67d6b0453071.json",
+  "integrationEvidence": [
+    {
+      "role": "entry-point",
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "class ProductionScreenDataManager"
+    },
+    {
+      "role": "navigation",
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "FirstRunNavigationRequired"
+    },
+    {
+      "role": "restart",
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "symbol": "class FileBackedRestartTest"
+    }
+  ],
+  "nextAction": "Open the cross-cutting production integration package for platform document/reminder adapters and erase-to-first-run root navigation; retain AC-095 platform/integration surfaces as pending."
+}

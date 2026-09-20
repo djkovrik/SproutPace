@@ -1,0 +1,35 @@
+{
+  "acceptanceCriteria": [
+    "Generated test package/class/parameter names keep temporary image paths Windows-safe while case.id remains the stable snapshot name.",
+    "Generation cleans stale outputs before writing so renamed classes cannot execute twice.",
+    "Paparazzi tasks declare preview generation dependency and documented configuration-cache incompatibility without disabling unrelated configuration cache usage.",
+    "CI invokes task names that exist in the current KMP Paparazzi plugin and verifies committed baselines.",
+    "No production UI, preview fixtures, feature code, snapshots, ledger, or dependency versions are changed; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    ".github/workflows/AnalysisAndTest.yml",
+    "shared/compose/build.gradle.kts"
+  ],
+  "assignmentId": "paparazzi-windows-safe-wiring",
+  "contractInputs": [
+    "shared/compose/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml",
+    ".vibe/receipts/RECEIPT-4489462d-2cda-4ad0-89e8-9a7ef18ac41d.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Review and complete Windows-safe deterministic preview-test generation and ensure CI invokes the actual Paparazzi tasks without weakening screenshot coverage.",
+  "obligationIds": [
+    "QG-007"
+  ],
+  "requestedCommands": [
+    ":shared:compose:cleanRecordPaparazzi",
+    ":shared:compose:verifyPaparazzi",
+    ":shared:compose:testAndroidHostTest"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/visual-testing-and-quality-gates.md",
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

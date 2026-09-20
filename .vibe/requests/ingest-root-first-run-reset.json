@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-root-first-run-reset-20260920.json",
+  "inspectionNote": "Inspected the typed AppRootComponent reset seam and tests. The default root dismisses pending confirmation, replaces the complete stack with FIRST_RUN, Back cannot reveal pre-erase destinations, and saved state restores only the reset destination. The isolated Android tests/allTests and Android/iOS compilation receipt is green and bound."
+}

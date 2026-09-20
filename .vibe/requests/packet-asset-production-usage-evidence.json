@@ -1,0 +1,33 @@
+{
+  "acceptanceCriteria": [
+    "Every ASSET-001..ASSET-021 manifest entry has at least one exact reachable production usage or an explicit shared/platform icon use, with no invented file or symbol.",
+    "Every custom visual asset has at least one exact current Paparazzi golden or platform icon contact-sheet evidence path that exists and has been inspected.",
+    "Manifest SHA-256, dimensions, license, source and provenance remain correct; no generated asset, production source, golden, build, ledger or external file changes.",
+    "Requirement-only and repository-mode asset validators pass under root after the documentation-only change; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "docs/assets/ASSET-INVENTORY.md",
+    "docs/assets/asset-manifest.json"
+  ],
+  "assignmentId": "asset-production-usage-evidence",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/androidUnitTest/snapshots/images/**"
+  ],
+  "forkTurns": "none",
+  "goal": "Populate verified production usages and current visual evidence for every approved asset, preserving hashes/provenance and using only actual source and golden paths.",
+  "obligationIds": [
+    "QG-006"
+  ],
+  "requestedCommands": [
+    "asset validator requirement-only",
+    "asset validator repository mode"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-assets-creator/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

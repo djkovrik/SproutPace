@@ -1,0 +1,318 @@
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:domain:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:domain:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:domain:processAndroidMainManifest UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:root:androidPreBuild UP-TO-DATE
+> Task :shared:root:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:root:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:root:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:processAndroidMainManifest UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:component:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:component:processAndroidMainManifest UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:root:compileAndroidMain UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:root:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:data:processAndroidMainManifest UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:platform:compileAndroidMain UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:platform:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:platform:processAndroidMainManifest UP-TO-DATE
+> Task :shared:platform:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:platform:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:platform:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainAssets UP-TO-DATE
+> Task :shared:platform:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:generateComposablePreviewPaparazziTests
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:compose:convertXmlValueResourcesForCommonMain
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain
+> Task :shared:compose:generateResourceAccessorsForCommonMain
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :shared:compose:packageAndroidMainResources UP-TO-DATE
+> Task :shared:compose:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:compose:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:compose:generateComposeResClass UP-TO-DATE
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :shared:compose:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :shared:compose:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:compose:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:checkAndroidHostTestAarMetadata UP-TO-DATE
+> Task :shared:compose:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:compose:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:mapAndroidHostTestSourceSetPaths UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestResources UP-TO-DATE
+> Task :shared:compose:mergeAndroidHostTestResources UP-TO-DATE
+> Task :shared:compose:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestManifest UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestResources UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestAssets UP-TO-DATE
+> Task :shared:compose:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainAssets
+> Task :shared:compose:mergeAndroidHostTestAssets
+> Task :shared:compose:packageAndroidHostTestForUnitTest
+> Task :shared:compose:generateAndroidHostTestConfig
+> Task :shared:compose:preparePaparazziAndroidMainResources UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:compose:androidJar UP-TO-DATE
+> Task :shared:compose:kspAndroidMain
+
+> Task :shared:compose:compileAndroidMain
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:67:13 'lateinit' is unnecessary: definitely initialized in constructors.
+
+> Task :shared:compose:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:bundleAndroidMainClassesToCompileJar
+> Task :shared:compose:bundleAndroidMainClassesToRuntimeJar
+> Task :shared:compose:kspAndroidHostTest
+> Task :shared:compose:copyRoomSchemas NO-SOURCE
+> Task :shared:compose:deleteAndroidMainPaparazziSnapshots
+> Task :shared:compose:deletePaparazziSnapshots
+
+> Task :shared:compose:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt:35:39 Expression is unused.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt:35:9 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt:129:47 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:compose:transformAndroidHostTestClassesWithAsm
+
+> Task :shared:compose:testAndroidHostTest
+
+P > [0] > snapshot[0] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [1] > snapshot[1] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [2] > snapshot[2] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [3] > snapshot[3] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [4] > snapshot[4] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [5] > snapshot[5] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [6] > snapshot[6] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [7] > snapshot[7] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [8] > snapshot[8] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [9] > snapshot[9] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [10] > snapshot[10] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [11] > snapshot[11] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [12] > snapshot[12] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [13] > snapshot[13] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [14] > snapshot[14] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [15] > snapshot[15] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [16] > snapshot[16] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [17] > snapshot[17] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [18] > snapshot[18] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [19] > snapshot[19] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [20] > snapshot[20] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [21] > snapshot[21] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [22] > snapshot[22] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [23] > snapshot[23] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [24] > snapshot[24] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [25] > snapshot[25] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [26] > snapshot[26] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [27] > snapshot[27] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [28] > snapshot[28] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [29] > snapshot[29] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [30] > snapshot[30] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [31] > snapshot[31] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [32] > snapshot[32] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [33] > snapshot[33] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [34] > snapshot[34] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [35] > snapshot[35] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [36] > snapshot[36] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [37] > snapshot[37] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [38] > snapshot[38] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [39] > snapshot[39] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [40] > snapshot[40] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [41] > snapshot[41] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [42] > snapshot[42] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [43] > snapshot[43] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [44] > snapshot[44] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [45] > snapshot[45] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [46] > snapshot[46] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [47] > snapshot[47] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [48] > snapshot[48] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [49] > snapshot[49] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [50] > snapshot[50] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [51] > snapshot[51] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [52] > snapshot[52] FAILED
+    java.lang.AssertionError at P.kt:30
+
+P > [53] > snapshot[53] FAILED
+    java.lang.AssertionError at P.kt:30
+
+82 tests completed, 54 failed
+
+> Task :shared:compose:testAndroidHostTest FAILED
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':shared:compose:testAndroidHostTest'.
+> There were failing tests. See the report at: file:///D:/Sources/Android/SproutPace/shared/compose/build/reports/tests/testAndroidHostTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 34s
+87 actionable tasks: 25 executed, 62 up-to-date

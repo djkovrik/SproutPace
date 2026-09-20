@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_reminders">Growing reminders</string>
+    <string name="notification_daily_summary_title">Today in SproutPace</string>
+    <string name="notification_daily_summary_body">Your trays have work ready for review.</string>
+    <string name="notification_soak_complete_title">Soaking is complete</string>
+    <string name="notification_soak_complete_body">Your seeds are ready for the next step.</string>
+</resources>

@@ -1,0 +1,44 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The verified FIRST_RUN contract now captures a complete minimum zone/tray/plan setup, but ProductionScreenDataManager still renders legacy type=light/no dimensions and treats continue-setup as a no-op. AppRootComponentDefault also ignores successful completion, so AC-002 cannot exit onboarding or show a feasible first plan.",
+  "assignmentId": "first-run-setup-persistence-navigation",
+  "packageId": "core-domain",
+  "owner": "vibe-decompose-engineer",
+  "acceptanceScenarioIds": ["AC-010", "AC-014", "AC-050"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+    "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt"
+  ],
+  "inputScopeId": "first-run-flow-v1",
+  "goal": "Implement AC-002 end to end: typed continue-setup validates and atomically persists one light-capable zone, one metric tray preset and one anchored harvest plan, creates no batch, then successful completion replaces onboarding with primary Plan. Preserve all existing data if validation fails and make retries idempotent.",
+  "contractInputs": [
+    "spec/flows/FLOW-001.md",
+    "spec/screens/SCREEN-001.md",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:compileKotlinIosSimulatorArm64",
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "FIRST_RUN defaults use exact natural_light/grow_light IDs, valid positive metric dimensions, cadence/mode and at least one built-in culture stable ID.",
+    "continue-setup accepts only the stabilized typed arguments, rejects dark-only/invalid values without mutation, and atomically persists deterministic setup zone/tray/plan IDs while preserving unrelated existing records.",
+    "A successful retry is idempotent and produces one zone, tray and plan; no GrowBatch is created until a suggestion is later confirmed and saved.",
+    "The resulting Today/Plan snapshots expose a feasible first suggestion using the persisted anchor and capacity.",
+    "Root handles Completed(continue-setup) by replacing the stack with primary PLAN; back cannot return to onboarding. Tests prove mutation-before-navigation ordering and restored root behavior.",
+    "No Compose UI, platform, build, ledger or external service changes; specialist does not run Gradle."
+  ]
+}

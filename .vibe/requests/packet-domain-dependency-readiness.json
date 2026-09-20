@@ -1,0 +1,40 @@
+{
+  "acceptanceCriteria": [
+    "Every assigned AC has an exact named domain-test anchor exercising its downstream contract surface.",
+    "No production source or behavior is changed.",
+    "The handoff requests both common/native aggregate tests and Android host tests."
+  ],
+  "allowedFiles": [
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt"
+  ],
+  "assignmentId": "domain-dependency-readiness",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/domain.md",
+    "spec/data.md",
+    "shared/domain/src/commonMain/**"
+  ],
+  "forkTurns": "none",
+  "goal": "Add exact deterministic common tests that prove the existing public domain contracts required by downstream persistence: setup repository/result boundaries, tray metric geometry, built-in catalog identity, personal recipes, batch snapshot identity, observations, plan identity, capacity conflict semantics, and terminal capacity release. Do not edit production sources.",
+  "obligationIds": [
+    "AC-011",
+    "AC-014",
+    "AC-020",
+    "AC-021",
+    "AC-030",
+    "AC-031",
+    "AC-051",
+    "AC-055",
+    "AC-080"
+  ],
+  "requestedCommands": [
+    ":shared:domain:allTests",
+    ":shared:domain:testAndroidHostTest"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/domain-modeling.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/domain-contracts-and-errors.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

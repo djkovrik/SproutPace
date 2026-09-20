@@ -1,0 +1,889 @@
+{
+  "acceptanceScenarioIds": [],
+  "allowedFiles": [
+    "docs/assets/**",
+    "shared/compose/src/commonMain/composeResources/drawable/**"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/81dcf894dde67d23761131aa239eb85bdd527925fa82f4d168b7e5ce641bb16e.json",
+    "sha256": "9bc51c64d5c53ca5070743a2a8469d98f381be90b02337493aa7368f8eea503a"
+  },
+  "assignmentId": "approved-assets",
+  "blockers": [
+    {
+      "affectedAssetIds": [
+        "ASSET-001",
+        "ASSET-002",
+        "ASSET-003",
+        "ASSET-004",
+        "ASSET-005",
+        "ASSET-006",
+        "ASSET-007",
+        "ASSET-008",
+        "ASSET-009",
+        "ASSET-010",
+        "ASSET-011",
+        "ASSET-012",
+        "ASSET-013",
+        "ASSET-014",
+        "ASSET-015",
+        "ASSET-016",
+        "ASSET-017",
+        "ASSET-018",
+        "ASSET-019",
+        "ASSET-020",
+        "ASSET-021",
+        "ASSET-022",
+        "ASSET-023",
+        "ASSET-024",
+        "ASSET-025",
+        "ASSET-026",
+        "ASSET-027",
+        "ASSET-028",
+        "ASSET-029"
+      ],
+      "description": "Production commonMain Kotlin usage evidence is pending for ASSET-001 through ASSET-029 because UI wiring is owned by a later assignment.",
+      "nextAction": "UI owner wires typed Res.drawable accessors in production commonMain code and updates each manifest usage with the current source hash and complete screen coverage."
+    },
+    {
+      "affectedAssetIds": [
+        "ASSET-001",
+        "ASSET-016",
+        "ASSET-017",
+        "ASSET-018",
+        "ASSET-019",
+        "ASSET-020",
+        "ASSET-021",
+        "ASSET-022",
+        "ASSET-023",
+        "ASSET-024",
+        "ASSET-025",
+        "ASSET-026",
+        "ASSET-027",
+        "ASSET-028",
+        "ASSET-029"
+      ],
+      "description": "Production screen/state/theme rendering and golden evidence are pending for full-evidence assets; the current contact sheet proves only generated raster review.",
+      "nextAction": "Product Designer and Visual Testing render the production resources in required light/dark and stress previews, inspect approved goldens, and add truthful visual evidence."
+    }
+  ],
+  "changedFiles": [
+    "docs/assets/asset-manifest.json",
+    "docs/assets/generated-catalog-contact-sheet.png",
+    "docs/assets/generation/catalog-covers.json",
+    "docs/assets/visual-review.md",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_arugula.png",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_basil.png",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_broccoli.png",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_garden_cress.png",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_mustard.png",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_pea.png",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_radish.png",
+    "shared/compose/src/commonMain/composeResources/drawable/culture_sunflower.png",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_add.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_add_photo.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_arrow_back.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_backup.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_check_circle.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_delete.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_edit.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_nav_catalog.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_nav_plan.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_nav_today.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_nav_trays.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_notifications.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_repeat.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/ic_settings.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/illustration_empty_today.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/logo_sproutpace.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/stage_blackout.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/stage_harvest.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/stage_light_growth.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/stage_soaking.xml",
+    "shared/compose/src/commonMain/composeResources/drawable/stage_sown.xml"
+  ],
+  "completedAt": "2026-09-20T06:30:20.392357Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-approved-assets-20260920",
+  "inputFingerprint": {
+    "appSpec": {
+      "algorithm": "sha256",
+      "digest": "bb5cfb5e652c875f39f637ed7dfc70c428ff09dfe1da703ac67e030b6ed00212",
+      "files": [
+        {
+          "path": "app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ]
+    },
+    "digest": "49bca784bac5922e26b6784f46c0f453033ee79af7d48414f065b1a1cd4eec5e",
+    "inputs": {
+      "algorithm": "sha256",
+      "digest": "d283f7988d8bc593c260f0b75f2500938f8bf98bb3eb767dd2c5ffa9da752287",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "0465a5664d122b3327993286cc537442ae4cff112217ef490abd2ffe241eb08b"
+        },
+        {
+          "path": "androidApp/build.gradle.kts",
+          "sha256": "de4266c343b2ece01a0ce5fbfbb21833ddaa5cafa58af6a7694d577c32f89f07"
+        },
+        {
+          "path": "build.gradle.kts",
+          "sha256": "4ea8d8a516007db3d42ecebff3f838a8d1a830f34affe647b478586d40b2bff8"
+        },
+        {
+          "path": "docs/assets/asset-manifest.json",
+          "sha256": "8e365d1ca0aca0c9106f0d0a83cb653b6bf2ed963027431b4f623a26d9b44c65"
+        },
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+        },
+        {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+        },
+        {
+          "path": "gradle.properties",
+          "sha256": "dbfde9f711d844a893e1373fe13648fc0f0f361dcb595d02bade50ffca30e8bd"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "sha256": "5ed31558d7f3215c25446b3d41bef3bd10b4efb523182332cab3f7eadba5d606"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "sha256": "423cb469ccc0ecc31f0e4e1c309976198ccb734cdcbb7029d4bda0f18f57e8d9"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "sha256": "c89af773425cae016d64791247cb548f0d1209225917209ff5728df4298ccd43"
+        },
+        {
+          "path": "gradlew",
+          "sha256": "7d514e3330fe299d9eee52acbfec77115704d76b73cabac6de915695153129a4"
+        },
+        {
+          "path": "gradlew.bat",
+          "sha256": "9ca26d733ada3a45f27b2151288f54e75c9f95b287d1f82ef942ec5cc2d4f006"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "sha256": "8762a2a2371e7d7cfbc257fe2d12291b6348cb49b551286a83d564d5721da22e"
+        },
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "sha256": "838479f8cd857bdd73320c3cfe726b2ad86d0372960746e4b4ed6d3ee32fd31e"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_arugula.png",
+          "sha256": "97a625d76ed73ac2a15950aeb7385b4ba057e64ac0d2d404b3abbd9a4b5380d1"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_basil.png",
+          "sha256": "096c057fdcf5ea3539d7628159fa01a2d7a0b1323f1e365a072c305a7d9ef609"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_broccoli.png",
+          "sha256": "d435df8fae4c50364db82f2e633a86abb96930db8f651aff219baa721b3f304c"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_garden_cress.png",
+          "sha256": "ae4716a157709d0a38950e458db991a89145f7f45c8bba216d36d6ad0a6119a4"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_mustard.png",
+          "sha256": "0c9e73b48e7dc48cf0f63d4eb5706694d14168ebb5a8b90a4e7726bcaee81ad6"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_pea.png",
+          "sha256": "bd61d734e5db617ed3682f99b1be5640c9c21de5d4748d4888ee6f7df52d47bb"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_radish.png",
+          "sha256": "ecba319170ad3caa1b9fade886ec6020b9c53871c5b0f970844d040cb9cf9b01"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_sunflower.png",
+          "sha256": "5d581ab5551c125cd4a56e35ab0b069de7a3e3a62ef9e6ae1de2a512b8ce089d"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_add.xml",
+          "sha256": "40790fca4656e04b725fccaf6cd2c0dc08af2e17f8fdbed276e4d8ace151e11d"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_add_photo.xml",
+          "sha256": "628361b1304b4c28d71412329f43e92b5c8a057d69e0075d93de9a76033ea3e5"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_arrow_back.xml",
+          "sha256": "5e4b78ac70844af9338326b81cb0320432b943c228d7b8925e6c3a2bcb345141"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_backup.xml",
+          "sha256": "c9688e2975e22f47a4f3fa29f2f7ec5ffd1346161c66e53c1960020c6ec51a45"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_check_circle.xml",
+          "sha256": "e939790179dededf60482effcc74c423c298dfe62c39c99a49266fe8b6a5f7b6"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_cyclone.xml",
+          "sha256": "7f53513fe352f0fe5bd4fbd161326a3d2d702524c53c2a9df9c340ec7688867d"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_dark_mode.xml",
+          "sha256": "cdc9a08b6654ceb82e6cc4088301df78ff9ea19994496b96e60c810c797dcd88"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_delete.xml",
+          "sha256": "11c0fc782036556ed11497a53b874d513db281163bc6b590c47beec4d9309334"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_edit.xml",
+          "sha256": "a1862c4a827af94875a7464fffa54f3fc044e2aa3c34806724b8d74d894586bc"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_light_mode.xml",
+          "sha256": "6de9720e76a88f26d6f479e3213c427c4e82679142e5582cd72025f3a44f7405"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_catalog.xml",
+          "sha256": "1d284da319428a9db57503a0f433d5e2c4d660948f080faa8af43b3820409154"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_plan.xml",
+          "sha256": "cbe89562d82e56989d20933e05afc8237fed7fba9419c65e4fc21ed8078014f5"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_today.xml",
+          "sha256": "fb974263dc07ed621bb375587b8eef248e8c4f594beec3f552c873426a575ab2"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_trays.xml",
+          "sha256": "7238813c44d27f9c5c6265f182dd9211ff35a715b882fdcd7e7672a6f4f40aa8"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_notifications.xml",
+          "sha256": "7ad0af604b71eeb10b514eb4645607bad37a2d02dfe8772debb533089ef26c25"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_repeat.xml",
+          "sha256": "06b3f6f1bd6b210e1f5b0fa0a56da3b0694949013a1e376a0f76383b82ccd215"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_rotate_right.xml",
+          "sha256": "a9456e3f9f4d3bc9fb6adcb9c642eecac0867447c9dfc486ddd1a9a1e10209da"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_settings.xml",
+          "sha256": "a8e2344e1667c55b34a5f7ff3a1f857d4af9f6f0b0a4741ac4f7504d2a11aec2"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/illustration_empty_today.xml",
+          "sha256": "0e46d37d567b451a2690f473f68acebe4d6b8d4da24428dad373b7e875094113"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/logo_sproutpace.xml",
+          "sha256": "0ed54aca349d35a9f8d46c1cf55e6b0ae8b076fb88c359fa96a29e61f1785277"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_blackout.xml",
+          "sha256": "c5a6e7804a23e443b19941e21e313f4e19e67609f075c3cc52bc2010648004c7"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_harvest.xml",
+          "sha256": "3948e37477ffb98f6ecb8541c4830ce1ed716e2a063091a748af9e46f43e2287"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_light_growth.xml",
+          "sha256": "0da3d9b127d42503458add8d952e2c6f31a94caf6bf9f5e486444fbf19b0af57"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_soaking.xml",
+          "sha256": "7910e30eab02ab58dc1f793489da1d47ec1b0fb9c969c813e0f95128bdd84b0c"
+        },
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_sown.xml",
+          "sha256": "728af8c57f3a5195bd988aa4e1deb2da3d6dc285fc1083fe28f583209b9a8599"
+        },
+        {
+          "path": "shared/domain/build.gradle.kts",
+          "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+        },
+        {
+          "path": "spec/app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "spec/data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "spec/design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "spec/domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "spec/flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "spec/flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "spec/flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "spec/flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "spec/flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "spec/flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "spec/flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "spec/flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "spec/flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "spec/flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "spec/flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "spec/flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "spec/product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "spec/quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "spec/screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "spec/screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "spec/screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "spec/screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "spec/screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "spec/screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "spec/screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "spec/screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "spec/screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "spec/screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "spec/screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "spec/screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "spec/screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "spec/screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "spec/screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "spec/screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ],
+      "patterns": [
+        "**/*.gradle",
+        "**/*.gradle.kts",
+        "**/*.properties",
+        "**/.gitignore",
+        "**/libs.versions.toml",
+        "*.gradle",
+        "*.gradle.kts",
+        "*.properties",
+        ".gitignore",
+        "build-logic/**",
+        "buildSrc/**",
+        "docs/assets/**",
+        "gradle/**",
+        "gradlew",
+        "gradlew.bat",
+        "shared/compose/src/commonMain/composeResources/drawable/**",
+        "spec/**"
+      ]
+    },
+    "instructions": [],
+    "scopeDigest": "48a27e808ee503f571832b9cd3651dad94633fc7d9796688f2dc8a7822e0a7c7"
+  },
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "python",
+        "C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py",
+        "--app-spec-root",
+        "D:/Sources/Android/SproutPace/spec"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Parse the 21 delivered vector XML files and reject platform/theme resource references"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "C:/Users/Sergey/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+        "C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py",
+        "--app-spec-root",
+        "D:/Sources/Android/SproutPace/spec",
+        "--repository",
+        "D:/Sources/Android/SproutPace"
+      ],
+      "exitCode": 1
+    }
+  ],
+  "owner": "vibe-assets-creator",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-006",
+          "surface": "asset-manifest"
+        }
+      ],
+      "path": "docs/assets/asset-manifest.json",
+      "surface": "asset-manifest",
+      "symbol": "ASSET-029"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-006",
+          "surface": "asset-provenance"
+        }
+      ],
+      "path": "docs/assets/generation/catalog-covers.json",
+      "surface": "asset-provenance",
+      "symbol": "ASSET-022"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-006",
+          "surface": "asset-review"
+        }
+      ],
+      "path": "docs/assets/visual-review.md",
+      "surface": "asset-review",
+      "symbol": "asset-level generation review only"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-006"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "C:/Users/Sergey/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+        "C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py",
+        "--app-spec-root",
+        "D:/Sources/Android/SproutPace/spec",
+        "--repository",
+        "D:/Sources/Android/SproutPace"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-006",
+          "surfaces": [
+            "asset-check",
+            "asset-visual"
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:generateComposeResClass",
+        ":shared:compose:compileKotlinAndroid"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-006",
+          "surfaces": [
+            "asset-check"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:generateComposeResClass",
+        ":shared:compose:compileKotlinAndroid"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "56df9f0e7c9eec6b55608e2e329cb4f7905dbbc01225a20f0ed724862e953f20",
+    "files": [
+      {
+        "path": "docs/assets/asset-manifest.json",
+        "sha256": "8e365d1ca0aca0c9106f0d0a83cb653b6bf2ed963027431b4f623a26d9b44c65"
+      },
+      {
+        "path": "docs/assets/generated-catalog-contact-sheet.png",
+        "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+      },
+      {
+        "path": "docs/assets/generation/catalog-covers.json",
+        "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+      },
+      {
+        "path": "docs/assets/visual-review.md",
+        "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_arugula.png",
+        "sha256": "97a625d76ed73ac2a15950aeb7385b4ba057e64ac0d2d404b3abbd9a4b5380d1"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_basil.png",
+        "sha256": "096c057fdcf5ea3539d7628159fa01a2d7a0b1323f1e365a072c305a7d9ef609"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_broccoli.png",
+        "sha256": "d435df8fae4c50364db82f2e633a86abb96930db8f651aff219baa721b3f304c"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_garden_cress.png",
+        "sha256": "ae4716a157709d0a38950e458db991a89145f7f45c8bba216d36d6ad0a6119a4"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_mustard.png",
+        "sha256": "0c9e73b48e7dc48cf0f63d4eb5706694d14168ebb5a8b90a4e7726bcaee81ad6"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_pea.png",
+        "sha256": "bd61d734e5db617ed3682f99b1be5640c9c21de5d4748d4888ee6f7df52d47bb"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_radish.png",
+        "sha256": "ecba319170ad3caa1b9fade886ec6020b9c53871c5b0f970844d040cb9cf9b01"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/culture_sunflower.png",
+        "sha256": "5d581ab5551c125cd4a56e35ab0b069de7a3e3a62ef9e6ae1de2a512b8ce089d"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_add.xml",
+        "sha256": "40790fca4656e04b725fccaf6cd2c0dc08af2e17f8fdbed276e4d8ace151e11d"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_add_photo.xml",
+        "sha256": "628361b1304b4c28d71412329f43e92b5c8a057d69e0075d93de9a76033ea3e5"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_arrow_back.xml",
+        "sha256": "5e4b78ac70844af9338326b81cb0320432b943c228d7b8925e6c3a2bcb345141"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_backup.xml",
+        "sha256": "c9688e2975e22f47a4f3fa29f2f7ec5ffd1346161c66e53c1960020c6ec51a45"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_check_circle.xml",
+        "sha256": "e939790179dededf60482effcc74c423c298dfe62c39c99a49266fe8b6a5f7b6"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_cyclone.xml",
+        "sha256": "7f53513fe352f0fe5bd4fbd161326a3d2d702524c53c2a9df9c340ec7688867d"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_dark_mode.xml",
+        "sha256": "cdc9a08b6654ceb82e6cc4088301df78ff9ea19994496b96e60c810c797dcd88"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_delete.xml",
+        "sha256": "11c0fc782036556ed11497a53b874d513db281163bc6b590c47beec4d9309334"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_edit.xml",
+        "sha256": "a1862c4a827af94875a7464fffa54f3fc044e2aa3c34806724b8d74d894586bc"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_light_mode.xml",
+        "sha256": "6de9720e76a88f26d6f479e3213c427c4e82679142e5582cd72025f3a44f7405"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_catalog.xml",
+        "sha256": "1d284da319428a9db57503a0f433d5e2c4d660948f080faa8af43b3820409154"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_plan.xml",
+        "sha256": "cbe89562d82e56989d20933e05afc8237fed7fba9419c65e4fc21ed8078014f5"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_today.xml",
+        "sha256": "fb974263dc07ed621bb375587b8eef248e8c4f594beec3f552c873426a575ab2"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_trays.xml",
+        "sha256": "7238813c44d27f9c5c6265f182dd9211ff35a715b882fdcd7e7672a6f4f40aa8"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_notifications.xml",
+        "sha256": "7ad0af604b71eeb10b514eb4645607bad37a2d02dfe8772debb533089ef26c25"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_repeat.xml",
+        "sha256": "06b3f6f1bd6b210e1f5b0fa0a56da3b0694949013a1e376a0f76383b82ccd215"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_rotate_right.xml",
+        "sha256": "a9456e3f9f4d3bc9fb6adcb9c642eecac0867447c9dfc486ddd1a9a1e10209da"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/ic_settings.xml",
+        "sha256": "a8e2344e1667c55b34a5f7ff3a1f857d4af9f6f0b0a4741ac4f7504d2a11aec2"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/illustration_empty_today.xml",
+        "sha256": "0e46d37d567b451a2690f473f68acebe4d6b8d4da24428dad373b7e875094113"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/logo_sproutpace.xml",
+        "sha256": "0ed54aca349d35a9f8d46c1cf55e6b0ae8b076fb88c359fa96a29e61f1785277"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/stage_blackout.xml",
+        "sha256": "c5a6e7804a23e443b19941e21e313f4e19e67609f075c3cc52bc2010648004c7"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/stage_harvest.xml",
+        "sha256": "3948e37477ffb98f6ecb8541c4830ce1ed716e2a063091a748af9e46f43e2287"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/stage_light_growth.xml",
+        "sha256": "0da3d9b127d42503458add8d952e2c6f31a94caf6bf9f5e486444fbf19b0af57"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/stage_soaking.xml",
+        "sha256": "7910e30eab02ab58dc1f793489da1d47ec1b0fb9c969c813e0f95128bdd84b0c"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/drawable/stage_sown.xml",
+        "sha256": "728af8c57f3a5195bd988aa4e1deb2da3d6dc285fc1083fe28f583209b9a8599"
+      }
+    ],
+    "patterns": [
+      "docs/assets/**",
+      "shared/compose/src/commonMain/composeResources/drawable/**"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T06:06:30.452801Z",
+  "supersedes": [],
+  "testEvidence": []
+}

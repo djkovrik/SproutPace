@@ -1,0 +1,150 @@
+{
+  "action": "handoff",
+  "assignmentId": "core-persistence-foundation",
+  "handoffId": "HANDOFF-core-persistence-foundation-20260920-r3",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-core-persistence-foundation-20260920.json",
+    ".vibe/handoffs/HANDOFF-core-persistence-foundation-20260920-r1.json",
+    ".vibe/handoffs/HANDOFF-core-persistence-foundation-20260920-r2.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+      "symbol": "class LocalDatabase",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-011","surface":"database-integration-test"},
+        {"obligationId":"AC-014","surface":"database-integration-test"},
+        {"obligationId":"AC-021","surface":"database-integration-test"},
+        {"obligationId":"AC-030","surface":"database-integration-test"},
+        {"obligationId":"AC-031","surface":"database-integration-test"},
+        {"obligationId":"AC-051","surface":"database-integration-test"},
+        {"obligationId":"AC-080","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+      "symbol": "grow_batch",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-030","surface":"database-integration-test"},
+        {"obligationId":"AC-031","surface":"database-integration-test"},
+        {"obligationId":"AC-080","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt",
+      "symbol": "object SnapshotValidation",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        {"obligationId":"AC-020","surface":"catalog-contract-test"},
+        {"obligationId":"QG-011","surface":"catalog-contract-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "class LocalBackupService",
+      "surface": "database-integration-test",
+      "coverage": [{"obligationId":"AC-031","surface":"database-integration-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "testName": "setupRecipeBatchPlanAndObservationSurviveRestartBoundary",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-011","surface":"database-integration-test"},
+        {"obligationId":"AC-014","surface":"database-integration-test"},
+        {"obligationId":"AC-021","surface":"database-integration-test"},
+        {"obligationId":"AC-030","surface":"database-integration-test"},
+        {"obligationId":"AC-031","surface":"database-integration-test"},
+        {"obligationId":"AC-051","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "testName": "catalogIdentityAndLocalizationKeysRoundTripWithoutTranslatedText",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        {"obligationId":"AC-020","surface":"catalog-contract-test"},
+        {"obligationId":"QG-011","surface":"catalog-contract-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "testName": "deletingSourcesDoesNotMutateBatchSnapshots",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-030","surface":"database-integration-test"},
+        {"obligationId":"AC-080","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "testName": "backupFileFailurePreservesDatabaseAndFiles",
+      "surface": "database-integration-test",
+      "coverage": [{"obligationId":"AC-031","surface":"database-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "testName": "replacementIsIdempotentAndRejectsOrphansBeforeMutation",
+      "surface": "database-integration-test",
+      "coverage": [{"obligationId":"AC-031","surface":"database-integration-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell.exe","-NoProfile","-File","shared/data/scripts/validate-data.ps1"],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:13:52Z",
+      "completedAt": "2026-09-20T07:13:53Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat",":shared:data:allTests"],
+      "tasks": [":shared:data:allTests"],
+      "coveredObligations": [
+        {"obligationId":"AC-011","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-014","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-020","surfaces":["catalog-contract-test"]},
+        {"obligationId":"AC-021","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-030","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-031","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-051","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-080","surfaces":["database-integration-test"]},
+        {"obligationId":"QG-011","surfaces":["catalog-contract-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:testAndroidHostTest"],
+      "tasks": [":shared:data:testAndroidHostTest"],
+      "coveredObligations": [
+        {"obligationId":"AC-011","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-014","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-020","surfaces":["catalog-contract-test"]},
+        {"obligationId":"AC-021","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-030","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-031","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-051","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-080","surfaces":["database-integration-test"]},
+        {"obligationId":"QG-011","surfaces":["catalog-contract-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:compileKotlinIosArm64",":shared:data:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:data:compileKotlinIosArm64",":shared:data:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [{"obligationId":"AC-031","surfaces":["database-integration-test"]}]
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:verifySqlDelightMigration"],
+      "tasks": [":shared:data:verifySqlDelightMigration"],
+      "coveredObligations": [
+        {"obligationId":"AC-011","surfaces":["database-integration-test"]},
+        {"obligationId":"AC-031","surfaces":["database-integration-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

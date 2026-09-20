@@ -1,0 +1,132 @@
+{
+  "action": "handoff",
+  "assignmentId": "managed-observation-photo-lifecycle",
+  "handoffId": "HANDOFF-managed-observation-photo-lifecycle-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt",
+      "symbol": "interface SystemFilePicker",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "platform-test"}]
+    },
+    {
+      "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidSystemPickers.kt",
+      "symbol": "class AndroidSystemPickerHost",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "platform-test"}]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PendingPhotoImport.kt",
+      "symbol": "interface PendingPhotoImportStore",
+      "surface": "file-integration-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "file-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "sealed interface ObservationPhotoChange",
+      "surface": "file-integration-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "file-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "class ProductionScreenDataManager",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "symbol": "class RootActionRouter",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "component-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt",
+      "testName": "ac074_photoPickerContractExposesOpaquePendingTokenWithoutPath",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "platform-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "ac074_failedCommitCompensatesReplacementBytesAndRestoresPriorLink",
+      "surface": "file-integration-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "file-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "testName": "assignedHistoryAndPrivatePhotosSurviveActualCloseAndReopen",
+      "surface": "file-integration-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "file-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "testName": "ac074_pickerBytesBecomeManagedPhotoAndSupportRestartReplaceAndRemove",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "ac074_photoDraftProtocolIsOpaqueAndScreenPhotoOwnsItsBytes",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "replacingPendingPhotoDiscardsOldTokenBeforeEditingDraft",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-074", "surface": "component-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["git", "diff", "--check"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "parse EN/RU resource XML, compare resource keys, parse AndroidManifest.xml, and reject broad-media permissions or raw path/URI PhotoId construction"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:platform:allTests",
+        ":shared:data:testAndroidHostTest",
+        ":shared:component:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:platform:compileKotlinIosSimulatorArm64",
+        ":shared:data:compileKotlinIosSimulatorArm64",
+        ":shared:component:compileKotlinIosSimulatorArm64",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ],
+      "tasks": [
+        ":shared:platform:allTests",
+        ":shared:data:testAndroidHostTest",
+        ":shared:component:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:platform:compileKotlinIosSimulatorArm64",
+        ":shared:data:compileKotlinIosSimulatorArm64",
+        ":shared:component:compileKotlinIosSimulatorArm64",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-074",
+          "surfaces": ["platform-test", "file-integration-test", "component-test"]
+        }
+      ],
+      "receiptRef": ".vibe/receipts/RECEIPT-851aacf9-7cce-493b-ac89-801c8f459fb5.json"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Final observation-photo UI golden refresh remains intentionally root-owned and is not claimed by this handoff.",
+      "nextAction": "Root records, inspects, and verifies the affected Paparazzi goldens in the final visual gate.",
+      "obligationIds": ["AC-074"]
+    }
+  ]
+}

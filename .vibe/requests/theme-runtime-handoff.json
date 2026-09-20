@@ -1,0 +1,12 @@
+{
+  "action":"handoff","assignmentId":"persisted-production-theme-runtime","handoffId":"HANDOFF-persisted-production-theme-runtime-20260920",
+  "productionEvidence":[
+    {"path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt","symbol":"ThemedAppRootComponent","surface":"settings-integration-test","coverage":[{"obligationId":"AC-121","surface":"settings-integration-test"}]},
+    {"path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt","symbol":"resolveDarkTheme","surface":"component-test","coverage":[{"obligationId":"AC-121","surface":"component-test"}]},
+    {"path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt","symbol":"RootApp","surface":"component-test","coverage":[{"obligationId":"AC-121","surface":"component-test"}]}
+  ],
+  "testEvidence":[{"path":"shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ThemeRuntimeContractTest.kt","testName":"ac121_systemFollowsHostAndOverridesRemainStable","surface":"component-test","coverage":[{"obligationId":"AC-121","surface":"component-test"}]}],
+  "nonGradleChecks":[{"argv":["git","diff","--check","--","shared/compose/src/commonMain","shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ThemeRuntimeContractTest.kt"],"exitCode":0}],
+  "requestedCommands":[{"argv":["gradlew.bat",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],"tasks":[":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],"coveredObligations":[{"obligationId":"AC-121","surfaces":["settings-integration-test","component-test"]}]}],
+  "blockers":[{"description":"AC-121 ui-golden evidence is intentionally deferred to the orchestrator's final visual record/verify and Lazyweb review pass.","obligationIds":["AC-121"],"nextAction":"Record and verify the approved light/dark Settings and Today preview matrix in the final visual pass, then attach the screenshot receipt."}]
+}

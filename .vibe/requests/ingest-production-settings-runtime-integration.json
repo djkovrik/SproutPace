@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-production-settings-runtime-integration-20260920.json",
+  "inspectionNote": "Inspected synchronous startup and live crash preference application, effective Settings states, Android optional driver, iOS bridge and EN/RU resources. Receipt 45ad29ea proves platform/Compose tests, iOS simulator compilation and Android debug assembly."
+}

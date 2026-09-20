@@ -1,0 +1,37 @@
+{
+  "action": "handoff",
+  "assignmentId": "platform-jvminline-import-correction-1",
+  "handoffId": "HANDOFF-platform-jvminline-import-correction-1-20260920",
+  "productionEvidence": [],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "rg",
+        "-n",
+        "^import kotlin\\.jvm\\.JvmInline$|^value class PhysicalReminderId",
+        "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:platform:allTests",
+        ":shared:platform:testAndroidHostTest",
+        ":shared:platform:compileAndroidMain",
+        ":shared:platform:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:platform:allTests",
+        ":shared:platform:testAndroidHostTest",
+        ":shared:platform:compileAndroidMain",
+        ":shared:platform:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": []
+    }
+  ],
+  "blockers": []
+}

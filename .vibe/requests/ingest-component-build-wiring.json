@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-component-build-wiring-20260920-r1.json",
+  "inspectionNote": "Inspected the assignment-local build diff and superseding r1 handoff. settings.gradle.kts includes shared:component and shared:root exactly once; the version catalog pins and exposes every alias referenced by their checked-in build scripts; existing SQLDelight and quality wiring remains intact. r1 refreshes the input fingerprint after ingested platform work while preserving the exact result fingerprint. No feature source or generated artifact was changed and Gradle validation remains root-owned."
+}

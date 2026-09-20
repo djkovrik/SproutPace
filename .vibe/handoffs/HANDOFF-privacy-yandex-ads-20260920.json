@@ -1,0 +1,1056 @@
+{
+  "acceptanceScenarioIds": [],
+  "allowedFiles": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "docs/configuration/advertising/**",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/monetization/**"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/7f69d9de5a106fba8c2c66db6e6aba201bbe61817d5b6af7f4392c48770c47d3.json",
+    "sha256": "82c54cb5efd9655f385fd6fd77ff7c91b13fdd70dd5694d6db50c52e0e0f8a7a"
+  },
+  "assignmentId": "privacy-yandex-ads",
+  "blockers": [
+    {
+      "description": "The registered assignment forbids this specialist from running Gradle, and :shared:monetization is not yet included by root settings.gradle.kts.",
+      "nextAction": "Add include(\":shared:monetization\") in the root build-wiring assignment, then run the requested Windows and macOS commands through the serialized Gradle runner.",
+      "obligationIds": [
+        "QG-009"
+      ]
+    },
+    {
+      "description": "No real Android Yandex project/ad unit or physical-device integration receipt exists in repository scope.",
+      "nextAction": "Supply the Android inline ad unit externally and execute the documented protected/non-protected/failure/withdrawal device matrix with YandexAds integration logs.",
+      "obligationIds": [
+        "QG-009"
+      ]
+    },
+    {
+      "description": "The final privacy-policy URL, legally approved EN/RU consent/disclosure copy, and completed store disclosures are external and remain intentionally blank/unverified.",
+      "nextAction": "Populate the external templates with approved values, wire localized resources downstream, and record privacy-policy-check and store-disclosure-check receipts before distribution.",
+      "obligationIds": [
+        "QG-010"
+      ]
+    }
+  ],
+  "changedFiles": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "docs/configuration/advertising/STORE-DISCLOSURE-CHECKLIST.md",
+    "docs/configuration/advertising/android-yandex.properties.example",
+    "docs/configuration/advertising/privacy-policy.example.properties",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/monetization/build.gradle.kts",
+    "shared/monetization/scripts/validate-advertising.ps1",
+    "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt",
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt",
+    "shared/monetization/src/iosTest/kotlin/com/sedsoftware/sproutpace/monetization/IosAdsDisabledTest.kt"
+  ],
+  "completedAt": "2026-09-20T07:55:24.018318Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-privacy-yandex-ads-20260920",
+  "inputFingerprint": {
+    "appSpec": {
+      "algorithm": "sha256",
+      "digest": "bb5cfb5e652c875f39f637ed7dfc70c428ff09dfe1da703ac67e030b6ed00212",
+      "files": [
+        {
+          "path": "app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ]
+    },
+    "digest": "92ddecdfc7578fdb4bfecf9db661a35c805490996309a1ccb6584bd185a20b69",
+    "inputs": {
+      "algorithm": "sha256",
+      "digest": "9e2bca849d52b4778f5af3e5a676ba0afa37d3df463be30ed0057cda381165d1",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "0465a5664d122b3327993286cc537442ae4cff112217ef490abd2ffe241eb08b"
+        },
+        {
+          "path": "androidApp/build.gradle.kts",
+          "sha256": "e9d902ada19426dd690398abcd68c1cece9e5645cf33ce182a05c5866fef3c36"
+        },
+        {
+          "path": "androidApp/src/main/AndroidManifest.xml",
+          "sha256": "5663018068bb8e3c7381fbb5d874b5055a2e153cbad5b27bf864adcfdd6fd9d0"
+        },
+        {
+          "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+          "sha256": "ddaf2727c8605f30d1f916811de88631fdc6b39c10c597a9bc47ed6ff2d4d3e6"
+        },
+        {
+          "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+          "sha256": "d18ddf8496c554dbadc2394fa12e7f5bf3bcbed9d6e6ac2854544e74c4c4f9d8"
+        },
+        {
+          "path": "build.gradle.kts",
+          "sha256": "c6309354356fef4a4576a1e124f575c3a8db26d5a96311ab7c13c97bc1ba2904"
+        },
+        {
+          "path": "docs/configuration/ADVERTISING-PRIVACY.md",
+          "sha256": "849fb041097f267b5d0d2ee0710b9eb817c197f028fe58eab1c1fe7a596bde85"
+        },
+        {
+          "path": "docs/configuration/FIREBASE-CRASHLYTICS.md",
+          "sha256": "a1c6b2bcab5916a1d94c683933a758bb1e3e331e4ec322d0f6800baf8a730cbb"
+        },
+        {
+          "path": "docs/configuration/advertising/STORE-DISCLOSURE-CHECKLIST.md",
+          "sha256": "82b01a8ccac027883d4b8ad8ee51b2f242d5c96541e430627aa96eb03e257472"
+        },
+        {
+          "path": "docs/configuration/advertising/android-yandex.properties.example",
+          "sha256": "ba1f459b1f8946c251c802cb0ca49a9bf902743fcb90cda9b3715c9e8d83a894"
+        },
+        {
+          "path": "docs/configuration/advertising/privacy-policy.example.properties",
+          "sha256": "e91479e6bf625525e93a438cfe5eec8a72264b8e0146a28b6bec80c0779f780e"
+        },
+        {
+          "path": "docs/configuration/firebase/GoogleService-Info.plist.example",
+          "sha256": "f13556cdb3edf71ba7a06b0d04663ece9a45efa99e646bddc9a97af55c7b3a66"
+        },
+        {
+          "path": "docs/configuration/firebase/google-services.json.example",
+          "sha256": "ad9fe081961ea430b20a1b9be57156d548c641f6a9575e931bbebb1a434db1a8"
+        },
+        {
+          "path": "gradle.properties",
+          "sha256": "dbfde9f711d844a893e1373fe13648fc0f0f361dcb595d02bade50ffca30e8bd"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "sha256": "58148cf342f0410c793e24a8c99ccbaa25687e834033bcfdecb18cf6ec3b94c4"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "sha256": "423cb469ccc0ecc31f0e4e1c309976198ccb734cdcbb7029d4bda0f18f57e8d9"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "sha256": "c89af773425cae016d64791247cb548f0d1209225917209ff5728df4298ccd43"
+        },
+        {
+          "path": "gradlew",
+          "sha256": "7d514e3330fe299d9eee52acbfec77115704d76b73cabac6de915695153129a4"
+        },
+        {
+          "path": "gradlew.bat",
+          "sha256": "9ca26d733ada3a45f27b2151288f54e75c9f95b287d1f82ef942ec5cc2d4f006"
+        },
+        {
+          "path": "iosApp/iosApp.xcodeproj/project.pbxproj",
+          "sha256": "a2b32f8ef7c376b43b1c450733ac5daa9943f44ac680cfdaa7cb3d1366eff012"
+        },
+        {
+          "path": "iosApp/iosApp.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+          "sha256": "7f3b00b5c3fdb45242d7b87e1e5c4e25d1fa8129a16c94295ecc4e8ea2235c5f"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AccentColor.colorset/Contents.json",
+          "sha256": "9af65086fa30b49252fae1a1225731691de794f7775af74d71befeb507d12b7c"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x.png",
+          "sha256": "8dc87dfa42f165a295629149d8ea2a1a8bf46b193720fc7cf152c6846c3ea153"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x~ipad.png",
+          "sha256": "8dc87dfa42f165a295629149d8ea2a1a8bf46b193720fc7cf152c6846c3ea153"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@3x.png",
+          "sha256": "88ef903bfa09d62a61cb817b7b0fb8f156bcdc174d6a695dea0272a2c01dfe27"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20~ipad.png",
+          "sha256": "fa44cfc0467ab32dca9b8042023575f506a14c02402c58c55d3cb8f2ef2d2ebd"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29.png",
+          "sha256": "ec9a632d25c6359e2d8684dbef9b33bf768c7d94f9566b1355f6752e3ffed508"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x.png",
+          "sha256": "2b75e7351d48cbe288e868991d68630ae781bc7adfdd9e6a28f63dab1adfcdb4"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x~ipad.png",
+          "sha256": "2b75e7351d48cbe288e868991d68630ae781bc7adfdd9e6a28f63dab1adfcdb4"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@3x.png",
+          "sha256": "ea7f0610b8af31c4e00717b116b1560025ab33733c4d124c2843c974ca588e92"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29~ipad.png",
+          "sha256": "ec9a632d25c6359e2d8684dbef9b33bf768c7d94f9566b1355f6752e3ffed508"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x.png",
+          "sha256": "80937e00ec05e1ba02951f7f9b5633a5cd528b89052fbcbc862465a9c25ed7b5"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x~ipad.png",
+          "sha256": "80937e00ec05e1ba02951f7f9b5633a5cd528b89052fbcbc862465a9c25ed7b5"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@3x.png",
+          "sha256": "0c465540a459725e6e4577c2e44bba6c8b32fd4b6691e0d4277763dfe77fbe6a"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40~ipad.png",
+          "sha256": "8dc87dfa42f165a295629149d8ea2a1a8bf46b193720fc7cf152c6846c3ea153"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@2x~car.png",
+          "sha256": "0c465540a459725e6e4577c2e44bba6c8b32fd4b6691e0d4277763dfe77fbe6a"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@3x~car.png",
+          "sha256": "e85d0b7e3251d1075af4ecf3658465a3ebab86fdc701b6f13212561e2a69a57d"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-83.5@2x~ipad.png",
+          "sha256": "f2cf43f9c90faf7a9680be24be0f14ef429274f81755a96884db89c41f754e4c"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x.png",
+          "sha256": "0c465540a459725e6e4577c2e44bba6c8b32fd4b6691e0d4277763dfe77fbe6a"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x~ipad.png",
+          "sha256": "872614d0c76ee5ee3474fff7c67ce2486e99937cb7715d5bd62c9bff18fcbf89"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@3x.png",
+          "sha256": "e85d0b7e3251d1075af4ecf3658465a3ebab86fdc701b6f13212561e2a69a57d"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ios-marketing.png",
+          "sha256": "880e05f8cc2ea96a40439958974a346c9c9a5a6968f22bc0cabfb1a9242b39ef"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ipad.png",
+          "sha256": "1aaacaf7e64d860bdd272f7e664fc036cfc9d11d109ce2af5d1b8ccb0411bce2"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
+          "sha256": "266dc8f743788643ad5256ba29c3d7151f32a9de6b421ebe43ae9344aaceca69"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/Contents.json",
+          "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b"
+        },
+        {
+          "path": "iosApp/iosApp/Info.plist",
+          "sha256": "5bcc68999eae7f967a232bc28aa92dac7a9012ef166974960ac825281af67ef0"
+        },
+        {
+          "path": "iosApp/iosApp/Preview Content/Preview Assets.xcassets/Contents.json",
+          "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b"
+        },
+        {
+          "path": "iosApp/iosApp/iosApp.swift",
+          "sha256": "49dc2e0c2b02e660a591c4e7041521e41263f7470c303ab68856b2118e8d8e99"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "sha256": "1ffc4bb1072ba49b7bf2df7cc64aaccced71ce1f4aefd42f80eb23d917418d6b"
+        },
+        {
+          "path": "shared/component/build.gradle.kts",
+          "sha256": "5ec9e9bdd6c1d0644d1e1dc21c44b6d0dac0da700a621a465c47dd6393d9647f"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+          "sha256": "db8f4e91dd14e5f8031e9ae812f49e6ce96a76b333997f6facc92cd1735a1a6e"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+          "sha256": "aff0914b2652cd34a55c3b787fd36e34b7f8b8fa73f1c813d59201995466b87d"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+          "sha256": "915800219df618557bc526618560b33286dcb975c0a2549ff9f1066e969ade47"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+          "sha256": "f4f57097f6726c7aa19f1fe9302c5e3ebd1034ff4427cfb6566744040a4bde33"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+          "sha256": "1f872302958fb4cbfd74cc3d41f835b07c2350401f8e24af02db73241b08c6cd"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+          "sha256": "8176c9693bf88d6d050721b222a87a9128c4df95a254a85f3e128a747364475d"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+          "sha256": "aee6784f5dca75c8791de4bf471c9a255e51bc009477f02f17b223ac59fec239"
+        },
+        {
+          "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+          "sha256": "f30e007762b06755831dca7d6dc4e671e4e06ae417e8f51c2523a2493655f71a"
+        },
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "sha256": "3e8e78e85d2e77682fbfc2c166c08814918add8efaa9c1942af9ccaeeed84169"
+        },
+        {
+          "path": "shared/data/README.md",
+          "sha256": "839a98b6be5dbf0ab7fb10ef5aa30a3fe8c002faf6a49fb30fafbf5ae5ef1e3b"
+        },
+        {
+          "path": "shared/data/build.gradle.kts",
+          "sha256": "39af873f707b15493aacaa4d2a986dca8e591fce33e0447b19c07b08e5f308a1"
+        },
+        {
+          "path": "shared/data/scripts/validate-data.ps1",
+          "sha256": "1ca695c5e76636964d3ae78b59f6be349c9b80865f17b7ec993c2fa14142481b"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+          "sha256": "696053d775bc3a4f1e5d0e3d293f7deb23921ed4a27c9dc3a82d9050a8b3ee0f"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+          "sha256": "0c3f2e9dba841483d16926b3fd927dcd2f7f4c4e428d5cc36e4808c50cacef7a"
+        },
+        {
+          "path": "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+          "sha256": "fb27d3ee16712c319d135c2db37bd0932dcb57b36152c227acec6a2b6605f1a6"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+          "sha256": "90ca382c0ec21c078b6ddb19759fa1d6dc2c49f6c414db985c95cdf0e34e7791"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+          "sha256": "8fe23f4f3fb1e917df5bea45acfdd4b25a6a6cdaf740a65a7550080a45064cb2"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt",
+          "sha256": "8757c78841658df2b554d1ecd5d2396e478eacd87542c8f3d516e255c37f88ef"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+          "sha256": "6dd6200d0f33bb6fc33d1656e34b26342f0769c0aed165ca84c99ffc051ea741"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PrivateFileStore.kt",
+          "sha256": "2016a6e11b7c5457658424229b06371cb920b7d7246afb1eaafbaa8342ddc743"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt",
+          "sha256": "68c56a3f80ca335a18311f2442c45c36ec6962525d9a1065f93ad9a33837c818"
+        },
+        {
+          "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+          "sha256": "81f536e559d9c57090db541167ce4246a650a28156cbe2759c1c17a658097404"
+        },
+        {
+          "path": "shared/data/src/commonMain/sqldelight/databases/1.db",
+          "sha256": "0c34a8911d4a683f41e2da604aea137cc9b2754c3be07e8282adcc71193da633"
+        },
+        {
+          "path": "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+          "sha256": "6745d59ceecd1471c2e05d386ffa3b52ae099c8068c02ceb597803876f2861a2"
+        },
+        {
+          "path": "shared/domain/build.gradle.kts",
+          "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+          "sha256": "96ff0956fb815ac0e1ebe8669d1d7363f943c36225bee9adeef80f3c10c04593"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+          "sha256": "1fa70a9852bc1596fed07d8e8313351a16452bcd8fe76b0befffebe9e0312ddf"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+          "sha256": "245e7ff7a4de2467845bdcacba2796d918779c0380799082ec51df7e0db8d33d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+          "sha256": "3b475e520207e8b177b55dbcc748b61435a3fe70c2c41fce5d81e0a2f6fcdbcf"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+          "sha256": "a9a344b71df735949f42849b1fb501a57379187e8aa8f2e9ae86a57d57cc8cf1"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+          "sha256": "2dd58d77f387885910e6233d47682370462e2b8c84a86b0b6bd3847517be3ac0"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+          "sha256": "8d1af50d1a10fc045a79fc1fb777bb3ed02a2c7e79728519cd07b934e7834359"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+          "sha256": "b4d99db82af10d4fd21ab19b54cbc4729e27ef153ef9781c6d40ff335cbd32f6"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+          "sha256": "9f550281444a44f8088d6c85443382e342dcf0b54c21455616113def3476f11d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+          "sha256": "976bedac78664da311a948afdc3c660a6782f1ddb3a12c7fed9558a53493392d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/ObservationAndBackup.kt",
+          "sha256": "68632e20c9bba7753104037e95a9f62b2b185402af69756ae65f4f3803b13d83"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+          "sha256": "8cecc950d6307ba0faa23561958260c3b0ce40c04a77f4f55e7e7c9d9fa2170e"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+          "sha256": "4f5ae174aae3b54fb40c8b7f6340c0d78d920f2bdbfca702845960f8fc0ae7db"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+          "sha256": "b7c49a34f7d14d644e4c1a9403eeae9427ea5fb2d1ff608870857dc4b542fc38"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+          "sha256": "be7959e8435f587245e6f5115997f62aff146cc68d3161f2af75afdde293dea5"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt",
+          "sha256": "849b41387205f258b7d0be5b45293c20c1853069a803777ccca279e7237c5957"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+          "sha256": "9ee8ebbaf1e9451c2322038cf73c68f5c4d70bb0452dd2e56023724c625f00cd"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt",
+          "sha256": "5c0e6396a0019a163f6b525dcdab0708b4f3457c19e57ccceec7f8dea5b14082"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+          "sha256": "d4dea416a4464dfbaa380f753dd00d7c0ec7c08a6056972705a28b58315117c7"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+          "sha256": "b52e03b3d9c321207237c3111473c8912f15221be00f71007c356bff7d9e1075"
+        },
+        {
+          "path": "shared/monetization/build.gradle.kts",
+          "sha256": "bfab0f687b4633e1768dcab967c756e76abe82c6b468fb904c00766cb49d2e8d"
+        },
+        {
+          "path": "shared/monetization/scripts/validate-advertising.ps1",
+          "sha256": "cfdae9265c0fe600c0dff1d449003bd52338e422a2bc95a1c66a095eb7913e0b"
+        },
+        {
+          "path": "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt",
+          "sha256": "5f1cf91ee3ec0642cc9510c79914015f31396bd83400a7ac5e515028d56b2cd8"
+        },
+        {
+          "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+          "sha256": "18fbe7335f8ba7ef32518fe976df02d0a52d8a4c9d572bab9576539e53650483"
+        },
+        {
+          "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+          "sha256": "9e23a17652b17a910fa594958f810e653703fcbbae18b18e040e393ad005ac2c"
+        },
+        {
+          "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+          "sha256": "c640c0ecf099d4524381a5a17849085d1e928318d1c337686f9777af4055df7f"
+        },
+        {
+          "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+          "sha256": "71b98134cc91ea2fd253f85624de3304d6a02bcf61aa84e12e9a2c4276a02802"
+        },
+        {
+          "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+          "sha256": "29ba82a006020276ba656c01b1d5cd62a5ce113467379056a6a9f8c06454fee0"
+        },
+        {
+          "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt",
+          "sha256": "629734b532c1b0cad08c8e9dfda467def93048458761810867136bfc8220d0ed"
+        },
+        {
+          "path": "shared/monetization/src/iosTest/kotlin/com/sedsoftware/sproutpace/monetization/IosAdsDisabledTest.kt",
+          "sha256": "4c735cbe214f74b9113dfa6138bb3b1acd3de8541426c5c4a6b393cf1a13b84e"
+        },
+        {
+          "path": "shared/platform/build.gradle.kts",
+          "sha256": "98972ee422ce55fa286b709b815e5135f0c4fea31f69493418a72450d073db96"
+        },
+        {
+          "path": "shared/root/build.gradle.kts",
+          "sha256": "05d09902cf778a6340e4ec262ca6d68c0ac4d46ccf2e953c1de7558a1b527e51"
+        },
+        {
+          "path": "spec/app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "spec/data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "spec/design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "spec/domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "spec/flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "spec/flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "spec/flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "spec/flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "spec/flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "spec/flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "spec/flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "spec/flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "spec/flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "spec/flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "spec/flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "spec/flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "spec/product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "spec/quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "spec/screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "spec/screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "spec/screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "spec/screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "spec/screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "spec/screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "spec/screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "spec/screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "spec/screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "spec/screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "spec/screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "spec/screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "spec/screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "spec/screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "spec/screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "spec/screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ],
+      "patterns": [
+        "**/*.gradle",
+        "**/*.gradle.kts",
+        "**/*.properties",
+        "**/.gitignore",
+        "**/libs.versions.toml",
+        "*.gradle",
+        "*.gradle.kts",
+        "*.properties",
+        ".gitignore",
+        "androidApp/build.gradle.kts",
+        "androidApp/src/main/AndroidManifest.xml",
+        "androidApp/src/main/kotlin/**",
+        "build-logic/**",
+        "buildSrc/**",
+        "docs/configuration/**",
+        "gradle/**",
+        "gradlew",
+        "gradlew.bat",
+        "iosApp/**",
+        "shared/component/**",
+        "shared/data/**",
+        "shared/domain/**",
+        "shared/monetization/**",
+        "spec/**"
+      ]
+    },
+    "instructions": [],
+    "scopeDigest": "ff1f8c8187b9e7486715ab8ca38413306f30547a763a1277c097cdd32d123126"
+  },
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-File",
+        "shared/monetization/scripts/validate-advertising.ps1"
+      ],
+      "completedAt": "2026-09-20T07:55:14.0613226Z",
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:55:13.8427774Z"
+    }
+  ],
+  "owner": "vibe-monetization-engineer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-009",
+          "surface": "ad-config-check"
+        }
+      ],
+      "path": "androidApp/build.gradle.kts",
+      "surface": "ad-config-check",
+      "symbol": "validateYandexReleaseAdUnit"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-009",
+          "surface": "ad-device-check"
+        }
+      ],
+      "path": "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt",
+      "surface": "ad-device-check",
+      "symbol": "class AndroidYandexAdsDriver"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-010",
+          "surface": "privacy-policy-check"
+        }
+      ],
+      "path": "docs/configuration/ADVERTISING-PRIVACY.md",
+      "surface": "privacy-policy-check",
+      "symbol": "Remaining external actions"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-010",
+          "surface": "store-disclosure-check"
+        }
+      ],
+      "path": "docs/configuration/advertising/STORE-DISCLOSURE-CHECKLIST.md",
+      "surface": "store-disclosure-check",
+      "symbol": "Store disclosure checklist"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-009",
+    "QG-010"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:monetization:allTests",
+        ":shared:monetization:testAndroidHostTest",
+        ":shared:monetization:compileAndroidMain",
+        ":shared:monetization:compileKotlinIosArm64",
+        ":shared:monetization:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-009",
+          "surfaces": [
+            "ad-config-check"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:monetization:allTests",
+        ":shared:monetization:testAndroidHostTest",
+        ":shared:monetization:compileAndroidMain",
+        ":shared:monetization:compileKotlinIosArm64",
+        ":shared:monetization:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ]
+    },
+    {
+      "argv": [
+        "./gradlew",
+        ":shared:monetization:allTests",
+        ":shared:monetization:testAndroidHostTest",
+        ":shared:monetization:compileAndroidMain",
+        ":shared:monetization:compileKotlinIosArm64",
+        ":shared:monetization:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-009",
+          "surfaces": [
+            "ad-config-check"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:monetization:allTests",
+        ":shared:monetization:testAndroidHostTest",
+        ":shared:monetization:compileAndroidMain",
+        ":shared:monetization:compileKotlinIosArm64",
+        ":shared:monetization:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ]
+    },
+    {
+      "argv": [
+        "adb",
+        "logcat",
+        "-v",
+        "brief",
+        "*:S YandexAds"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-009",
+          "surfaces": [
+            "ad-device-check"
+          ]
+        }
+      ],
+      "tasks": [
+        "Android Yandex SDK and inline-banner device verification"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "65d873efb264026382ab07a7616d720ca78a6bbd0dd727b4ca23b50f79d97c37",
+    "files": [
+      {
+        "path": "androidApp/build.gradle.kts",
+        "sha256": "e9d902ada19426dd690398abcd68c1cece9e5645cf33ce182a05c5866fef3c36"
+      },
+      {
+        "path": "androidApp/src/main/AndroidManifest.xml",
+        "sha256": "5663018068bb8e3c7381fbb5d874b5055a2e153cbad5b27bf864adcfdd6fd9d0"
+      },
+      {
+        "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "sha256": "ddaf2727c8605f30d1f916811de88631fdc6b39c10c597a9bc47ed6ff2d4d3e6"
+      },
+      {
+        "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+        "sha256": "d18ddf8496c554dbadc2394fa12e7f5bf3bcbed9d6e6ac2854544e74c4c4f9d8"
+      },
+      {
+        "path": "docs/configuration/ADVERTISING-PRIVACY.md",
+        "sha256": "849fb041097f267b5d0d2ee0710b9eb817c197f028fe58eab1c1fe7a596bde85"
+      },
+      {
+        "path": "docs/configuration/advertising/STORE-DISCLOSURE-CHECKLIST.md",
+        "sha256": "82b01a8ccac027883d4b8ad8ee51b2f242d5c96541e430627aa96eb03e257472"
+      },
+      {
+        "path": "docs/configuration/advertising/android-yandex.properties.example",
+        "sha256": "ba1f459b1f8946c251c802cb0ca49a9bf902743fcb90cda9b3715c9e8d83a894"
+      },
+      {
+        "path": "docs/configuration/advertising/privacy-policy.example.properties",
+        "sha256": "e91479e6bf625525e93a438cfe5eec8a72264b8e0146a28b6bec80c0779f780e"
+      },
+      {
+        "path": "iosApp/iosApp/iosApp.swift",
+        "sha256": "49dc2e0c2b02e660a591c4e7041521e41263f7470c303ab68856b2118e8d8e99"
+      },
+      {
+        "path": "shared/monetization/build.gradle.kts",
+        "sha256": "bfab0f687b4633e1768dcab967c756e76abe82c6b468fb904c00766cb49d2e8d"
+      },
+      {
+        "path": "shared/monetization/scripts/validate-advertising.ps1",
+        "sha256": "cfdae9265c0fe600c0dff1d449003bd52338e422a2bc95a1c66a095eb7913e0b"
+      },
+      {
+        "path": "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt",
+        "sha256": "5f1cf91ee3ec0642cc9510c79914015f31396bd83400a7ac5e515028d56b2cd8"
+      },
+      {
+        "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+        "sha256": "18fbe7335f8ba7ef32518fe976df02d0a52d8a4c9d572bab9576539e53650483"
+      },
+      {
+        "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+        "sha256": "9e23a17652b17a910fa594958f810e653703fcbbae18b18e040e393ad005ac2c"
+      },
+      {
+        "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+        "sha256": "c640c0ecf099d4524381a5a17849085d1e928318d1c337686f9777af4055df7f"
+      },
+      {
+        "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+        "sha256": "71b98134cc91ea2fd253f85624de3304d6a02bcf61aa84e12e9a2c4276a02802"
+      },
+      {
+        "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+        "sha256": "29ba82a006020276ba656c01b1d5cd62a5ce113467379056a6a9f8c06454fee0"
+      },
+      {
+        "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt",
+        "sha256": "629734b532c1b0cad08c8e9dfda467def93048458761810867136bfc8220d0ed"
+      },
+      {
+        "path": "shared/monetization/src/iosTest/kotlin/com/sedsoftware/sproutpace/monetization/IosAdsDisabledTest.kt",
+        "sha256": "4c735cbe214f74b9113dfa6138bb3b1acd3de8541426c5c4a6b393cf1a13b84e"
+      }
+    ],
+    "patterns": [
+      "androidApp/build.gradle.kts",
+      "androidApp/src/main/AndroidManifest.xml",
+      "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+      "docs/configuration/ADVERTISING-PRIVACY.md",
+      "docs/configuration/advertising/**",
+      "iosApp/iosApp/iosApp.swift",
+      "shared/monetization/**"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T07:41:12.676436Z",
+  "supersedes": [],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-009",
+          "surface": "ad-config-check"
+        }
+      ],
+      "path": "shared/monetization/scripts/validate-advertising.ps1",
+      "surface": "ad-config-check",
+      "testName": "ad-config-check"
+    }
+  ]
+}

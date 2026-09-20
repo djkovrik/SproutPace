@@ -1,0 +1,41 @@
+{
+  "acceptanceCriteria": [
+    "SQLDelight code generation succeeds under the configured SQLite 3.18 dialect.",
+    "The initial schema is not represented as a migration requiring a nonexistent prior database snapshot.",
+    "A documented and executable schema snapshot/migration verification contract remains for future version changes.",
+    "No domain/data behavior outside schema bootstrap and migration validation changes.",
+    "The specialist performs static validation only and returns an immutable Protocol 2.0 handoff; root owns Gradle."
+  ],
+  "allowedFiles": [
+    "shared/data/README.md",
+    "shared/data/build.gradle.kts",
+    "shared/data/scripts/validate-data.ps1",
+    "shared/data/src/commonMain/sqldelight/**"
+  ],
+  "assignmentId": "persistence-sqldelight-correction-1",
+  "contractInputs": [
+    "spec/data.md",
+    "spec/quality.md",
+    "shared/data/build.gradle.kts",
+    "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+    "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/1.sqm"
+  ],
+  "forkTurns": "none",
+  "goal": "Correct the SQLDelight 2.4.0 initial-schema and migration-verification contract exposed by the root diagnostic build: use syntax accepted by the configured SQLite 3.18 dialect, do not mislabel initial schema objects as a migration from a nonexistent schema, and retain a real forward-migration verification path/documented baseline strategy. Preserve all data semantics and queries.",
+  "obligationIds": [
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:data:generateCommonMainSproutPaceDatabaseInterface",
+    ":shared:data:verifySqlDelightMigration",
+    ":shared:data:allTests",
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:compileAndroidMain"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/sqldelight-schema-and-queries.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/migrations-and-drivers.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

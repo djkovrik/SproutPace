@@ -1,0 +1,86 @@
+{
+  "action": "handoff",
+  "assignmentId": "approved-asset-product-ui-integration",
+  "handoffId": "HANDOFF-approved-asset-product-ui-integration-20260920-v2",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-approved-asset-product-ui-integration-20260920.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "symbol": "screenHero(state: SproutPaceUiState)",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "symbol": "showsEmptyIllustration(): Boolean",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "fun RecipeAssetInspectionPreview",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "fun EmptyPlanPreview",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "approvedCustomAssetInspectionPreviewIsDiscoverableAndTallEnough",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "approvedEmptyIllustrationScreensHaveDeterministicLightAndDarkPreviews",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-001", "surface": "ui-golden"},
+        {"obligationId": "AC-120", "surface": "ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+      "testName": "englishAndRussianProductionResourcesHaveIdenticalKeys",
+      "surface": "localization-contract-test",
+      "coverage": [
+        {"obligationId": "AC-120", "surface": "localization-contract-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["git", "diff", "--check", "--", "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt", "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt", "shared/compose/src/commonTest", "shared/compose/src/androidUnitTest"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "Validate EN/RU key parity, all 24 required typed production asset references, and exact empty-illustration scope TODAY/TRAYS/PLAN"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [],
+  "blockers": []
+}

@@ -1,0 +1,56 @@
+{
+  "action": "assign",
+  "assignmentId": "privacy-yandex-ads",
+  "packageId": "monetization-privacy",
+  "owner": "vibe-monetization-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-009", "QG-010"],
+  "allowedFiles": [
+    "shared/monetization/**",
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "iosApp/iosApp/iosApp.swift",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "docs/configuration/advertising/**"
+  ],
+  "inputScopeId": "monetization-privacy-v1",
+  "goal": "Implement the canonical privacy region endpoint client and strict validation, 72-hour cache, policyVersion-bound consent state machine, privacy-before-SDK initialization, setUserConsent before every permitted initialization, approved inline placement policy (Catalog and History only, maximum one), lifecycle-safe Android Yandex banner adapter with debug test ID and release real-ID guard, and unconditional iOS safe-disabled no-ID adapter. Network/malformed/stale/unknown/withdrawn states fail closed while the offline core remains available. Add deterministic MockEngine/privacy/ad lifecycle tests and external-only templates/docs for Android ad unit, final privacy URL and approved EN/RU consent/disclosure copy. No live IDs, project creation, analytics, attribution, mediation or prohibited formats.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/quality.md",
+    "spec/flows/FLOW-010.md",
+    "spec/screens/SCREEN-003.md",
+    "spec/screens/SCREEN-007.md",
+    "spec/screens/SCREEN-015.md",
+    "docs/02-microgreens.md",
+    "docs/assignments/REQUEST-SPROUTPACE-APPSPEC-2.md"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/privacy-region-endpoint.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/yandex-compose-multiplatform.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/ad-format-selection.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/privacy-consent-age-location.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/references/ad-lifecycle-and-testing.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/localization-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:allTests",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:monetization:compileAndroidMain",
+    ":shared:monetization:compileKotlinIosArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "acceptanceCriteria": [
+    "Region response is strictly validated; cache age is at most 72 hours; no locale/time-zone inference exists; every ambiguous/error/offline/stale path disables SDK initialization and ad requests.",
+    "Protected-region consent is bound to policyVersion, restored only when fresh/matching, invalidated on version change, and withdrawal prevents new requests immediately.",
+    "Yandex SDK initialization occurs only after an eligible privacy decision and setUserConsent is applied before each permitted initialization.",
+    "Only one inline slot can render on Catalog and History; all other screens/states, previews and tests are prohibited; no fullscreen/sticky/rewarded/app-open/mediation formats exist.",
+    "Android debug uses official test configuration and release refuses placeholders/missing IDs; iOS remains safe-disabled because no iOS ad project/unit exists.",
+    "Tests cover region success/failure/malformed/stale, consent create/restore/withdraw/version change, placement limits, load/failure/retry/disposal and iOS disabled state.",
+    "Templates/docs identify only external remaining actions: Android ad unit, final privacy URL, approved localized copy and device verification; no external objects are created."
+  ]
+}

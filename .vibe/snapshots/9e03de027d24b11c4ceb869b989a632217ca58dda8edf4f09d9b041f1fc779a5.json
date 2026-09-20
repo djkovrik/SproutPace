@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256",
+  "digest": "0a3b1ef2a217edb4b4dacbf098a5d9ec4b06fe2e8ac4e352bedf70aa71e2e426",
+  "files": [
+    {
+      "path": "shared/data/build.gradle.kts",
+      "sha256": "f2f61558d5596b227e42211822ccb0ab764cb4392766c7e4bbcabcce01dee542"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "sha256": null
+    }
+  ],
+  "patterns": [
+    "shared/data/build.gradle.kts",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ]
+}

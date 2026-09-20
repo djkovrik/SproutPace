@@ -1,0 +1,30 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Root compile reached the new component tests and found only missing Essenty lifecycle extension imports for resume/pause/destroy plus one invariant list type-inference mismatch at the completed output assertion.",
+  "assignmentId": "core-acceptance-tests-compile-correction-1",
+  "packageId": "core-domain",
+  "owner": "vibe-test-engineer",
+  "acceptanceScenarioIds": ["AC-010", "AC-011", "AC-012", "AC-014", "AC-020", "AC-021", "AC-026", "AC-027", "AC-030", "AC-031", "AC-032", "AC-035", "AC-036", "AC-037", "AC-038", "AC-039", "AC-040", "AC-050", "AC-051", "AC-052", "AC-054", "AC-055", "AC-057", "AC-060", "AC-062", "AC-066", "AC-068", "AC-080", "AC-081", "AC-085"],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": [
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt"
+  ],
+  "inputScopeId": "core-domain-v1",
+  "goal": "Correct only the component test compilation errors using the proper Essenty lifecycle extensions and an explicit ScreenOutput expected-list type; preserve all scenario assertions.",
+  "contractInputs": [
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:component:allTests"
+  ],
+  "acceptanceCriteria": [
+    "Lifecycle test uses actual Essenty lifecycle transition APIs available to commonTest.",
+    "Completion output assertion has an explicit common ScreenOutput type and remains exact.",
+    "No scenario, production or assertion semantics change.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ]
+}

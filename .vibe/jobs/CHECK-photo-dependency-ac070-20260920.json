@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.6512842000229284,
+  "events": [
+    {
+      "at": "2026-09-20T14:41:36.848238Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T14:41:39.499293Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-634f818d-433d-424d-ac03-f55bd706fb5a.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T14:41:43.846453Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-634f818d-433d-424d-ac03-f55bd706fb5a.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:41:44.077830Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-634f818d-433d-424d-ac03-f55bd706fb5a.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:41:44.114338Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T14:41:44.807346Z",
+      "durationSeconds": 0.6512842000229284,
+      "receiptRef": ".vibe/receipts/RECEIPT-634f818d-433d-424d-ac03-f55bd706fb5a.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-photo-dependency-ac070-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-634f818d-433d-424d-ac03-f55bd706fb5a.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-634f818d-433d-424d-ac03-f55bd706fb5a.json",
+  "stage": "bound"
+}

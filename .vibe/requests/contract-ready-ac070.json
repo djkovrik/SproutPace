@@ -1,0 +1,18 @@
+{
+  "action": "contract-ready",
+  "obligationId": "AC-070",
+  "behavioralSurfaces": ["component-test", "database-integration-test"],
+  "contractEvidence": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "symbol": "ac013Ac017Ac024Ac025Ac083Ac090ToAc095_allProductionCommandsReachRealDataServices",
+      "surface": "component-test"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "symbol": "ac070_datedObservationPersistsInChronologicalHistory",
+      "surface": "database-integration-test"
+    }
+  ],
+  "inspectionNote": "Inspected the current observation component command contract and persisted local-data acceptance scenario. The bound green local-data receipt covers both required behavioral surfaces; this establishes dependency readiness only."
+}

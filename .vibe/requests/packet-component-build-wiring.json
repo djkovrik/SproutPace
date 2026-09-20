@@ -1,0 +1,41 @@
+{
+  "acceptanceCriteria": [
+    "settings.gradle.kts includes :shared:component and :shared:root exactly once.",
+    "The version catalog exposes every alias referenced by both module build scripts at the exact approved versions.",
+    "Existing SQLDelight, Android, Compose, Detekt, Kover, and Paparazzi wiring is preserved.",
+    "No feature source file or generated artifact is edited and no Gradle command is run by the specialist.",
+    "An immutable Protocol 2.0 handoff requests root-owned Windows and macOS validation on only declared QG surfaces."
+  ],
+  "allowedFiles": [
+    "build.gradle.kts",
+    "gradle/libs.versions.toml",
+    "settings.gradle.kts"
+  ],
+  "assignmentId": "component-build-wiring",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "shared/component/build.gradle.kts",
+    "shared/root/build.gradle.kts",
+    ".vibe/handoffs/HANDOFF-component-root-stores-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Wire the delivered shared:component and shared:root KMP modules into the existing build without changing their sources: include both projects and add the exact pinned Decompose 3.5.0, MVIKotlin 4.4.0, Essenty 2.5.0, and kotlinx-serialization-core aliases required by their checked-in build scripts. Preserve every existing plugin, data module alias, and quality configuration.",
+  "obligationIds": [
+    "QG-001",
+    "QG-003"
+  ],
+  "requestedCommands": [
+    ":shared:component:allTests",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:allTests",
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileKotlinIosArm64",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/module-boundaries.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

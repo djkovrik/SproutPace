@@ -1,0 +1,63 @@
+{
+  "acceptanceCriteria": [
+    "Exactly one canonical private versioned payload stores endpoint/schema/policy/fetched-at/expires-at/consent choice; malformed, stale, future-fetched, overlong, mismatched-policy, offline, timeout and failed responses all remain fail-closed with no inference.",
+    "The production PrivacyCoordinator reads/writes ProductSettings through an explicit adapter; AndroidAdvertisingRuntime no longer creates a second independent consent store.",
+    "Accept, decline and withdrawal update the canonical payload; withdrawal immediately prevents future requests and disposes currently owned ad UI through the controller contract.",
+    "Policy version changes invalidate the prior choice and require a fresh decision before SDK initialization; setUserConsent always precedes initialization/load when advertising is permitted.",
+    "Backup/restore round-trips the full privacy payload and erase-all removes it without changing unrelated product state semantics.",
+    "iOS contains no Yandex dependency, project, ad identifier, placeholder or request path and remains unconditionally disabled; Android missing ID remains disabled.",
+    "Tests cover AC-102 through AC-107 on privacy-integration-test, settings-integration-test, network-mock-test, ad-lifecycle-test, component-test where applicable, and ios-platform-test. Do not change product UI in this package; root owns Gradle."
+  ],
+  "allowedFiles": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/data/src/androidHostTest/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+    "shared/monetization/src/androidMain/**",
+    "shared/monetization/src/commonMain/**",
+    "shared/monetization/src/commonTest/**",
+    "shared/monetization/src/iosMain/**",
+    "shared/monetization/src/iosTest/**"
+  ],
+  "assignmentId": "canonical-advertising-privacy-runtime",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-010.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/screens/SCREEN-015.md",
+    "spec/quality.md",
+    "shared/monetization/src/commonMain/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Unify advertising region metadata and user choice into one ProductSettings-backed versioned payload used by the production privacy coordinator and covered by backup, replacement restore, and erase-all. Preserve strict fail-closed endpoint behavior, make accept/decline/withdrawal and policy-version invalidation authoritative before any SDK initialization, and keep iOS unconditionally ad-disabled without identifiers or dependencies.",
+  "obligationIds": [
+    "AC-102",
+    "AC-103",
+    "AC-104",
+    "AC-105",
+    "AC-106",
+    "AC-107"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:allTests",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

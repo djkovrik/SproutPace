@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.9179210999864154,
+  "events": [
+    {
+      "at": "2026-09-20T10:56:17.090062Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T10:56:20.359458Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-243ddfc1-ba7d-4a3e-9b5d-49e5268d215a.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T10:56:39.223970Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-243ddfc1-ba7d-4a3e-9b5d-49e5268d215a.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:56:39.323678Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-243ddfc1-ba7d-4a3e-9b5d-49e5268d215a.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:56:39.354512Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T10:56:40.305894Z",
+      "durationSeconds": 0.9179210999864154,
+      "receiptRef": ".vibe/receipts/RECEIPT-243ddfc1-ba7d-4a3e-9b5d-49e5268d215a.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-first-run-setup-persistence-navigation-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-243ddfc1-ba7d-4a3e-9b5d-49e5268d215a.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-243ddfc1-ba7d-4a3e-9b5d-49e5268d215a.json",
+  "stage": "bound"
+}

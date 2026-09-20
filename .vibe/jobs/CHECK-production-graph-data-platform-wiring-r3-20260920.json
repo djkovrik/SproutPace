@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 2.0104974000132643,
+  "events": [
+    {
+      "at": "2026-09-20T10:09:19.557892Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T10:09:21.693594Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-3fa5a79a-32bb-4aee-82c9-ecf6c8c9d631.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T10:09:49.760783Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-3fa5a79a-32bb-4aee-82c9-ecf6c8c9d631.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:09:50.115330Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-3fa5a79a-32bb-4aee-82c9-ecf6c8c9d631.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:09:50.361457Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T10:09:52.526135Z",
+      "durationSeconds": 2.0104974000132643,
+      "receiptRef": ".vibe/receipts/RECEIPT-3fa5a79a-32bb-4aee-82c9-ecf6c8c9d631.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-production-graph-data-platform-wiring-r3-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-3fa5a79a-32bb-4aee-82c9-ecf6c8c9d631.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-3fa5a79a-32bb-4aee-82c9-ecf6c8c9d631.json",
+  "stage": "bound"
+}

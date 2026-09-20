@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-production-advertising-ui-native-20260920.json",
+  "inspectionNote": "Inspected the production Android runtime ownership, first eligible visit privacy navigation, exact Catalog and explicit History insertion rules, fail-closed offline and short-content behavior, equal consent actions and withdrawal, conditional Settings entry, lifecycle-owned native BannerAdView collapse/load/dispose behavior, and unconditional iOS no-op. The bound green receipt proves monetization/component/data/Compose tests, Android debug assembly, and Compose plus monetization iOS simulator Kotlin/Native compilation. UI goldens remain intentionally deferred to the final visual pass."
+}

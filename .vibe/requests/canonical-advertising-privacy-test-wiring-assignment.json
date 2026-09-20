@@ -1,0 +1,32 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The canonical privacy runtime is green, but its new Android-host restart test and matching test classpath were not included in the runtime assignment write boundary, so evidence cannot be ingested until the wiring is owned separately.",
+  "assignmentId": "canonical-advertising-privacy-test-wiring",
+  "packageId": "canonical-advertising-privacy-test-wiring",
+  "owner": "vibe-monetization-engineer",
+  "acceptanceScenarioIds": ["AC-103"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/monetization/build.gradle.kts",
+    "shared/monetization/src/androidHostTest/**"
+  ],
+  "inputScopeId": "canonical-advertising-privacy-test-wiring-v1",
+  "goal": "Own and verify the canonical ProductSettings adapter process-restart test and the exact matching Android-host test dependencies without changing production source or behavior.",
+  "contractInputs": [
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "gradle/libs.versions.toml"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:testAndroidHostTest"
+  ],
+  "acceptanceCriteria": [
+    "ProductSettingsPrivacyStoreTest proves canonical payload survival across a fresh MultiplatformProductSettings instance and clearing removes the payload.",
+    "androidHostTest uses exactly matching multiplatform-settings and multiplatform-settings-test 1.3.0 dependencies; no production dependency or behavior changes.",
+    "Only the declared test source and build wiring are claimed; root owns Gradle."
+  ]
+}

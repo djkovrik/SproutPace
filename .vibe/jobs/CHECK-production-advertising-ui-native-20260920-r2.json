@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.6691646000253968,
+  "events": [
+    {
+      "at": "2026-09-20T13:56:57.077709Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T13:58:15.079439Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-8d5d47f1-3fe5-48b8-bfd3-7688ca16b955.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T14:07:17.374367Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-8d5d47f1-3fe5-48b8-bfd3-7688ca16b955.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T15:15:13.616814Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-8d5d47f1-3fe5-48b8-bfd3-7688ca16b955.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T15:15:13.661597Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T15:15:14.364301Z",
+      "durationSeconds": 0.6691646000253968,
+      "receiptRef": ".vibe/receipts/RECEIPT-8d5d47f1-3fe5-48b8-bfd3-7688ca16b955.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-production-advertising-ui-native-20260920-r2",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-8d5d47f1-3fe5-48b8-bfd3-7688ca16b955.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-8d5d47f1-3fe5-48b8-bfd3-7688ca16b955.json",
+  "stage": "bound"
+}

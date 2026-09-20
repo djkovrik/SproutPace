@@ -1,0 +1,13 @@
+{
+  "action":"handoff","assignmentId":"reminder-settings-screen-contract-correction","handoffId":"HANDOFF-reminder-settings-screen-contract-correction-20260920",
+  "productionEvidence":[
+    {"path":"shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt","symbol":"ScreenId.NOTIFICATIONS","surface":"component-test","coverage":[{"obligationId":"AC-065","surface":"component-test"}]},
+    {"path":"shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt","symbol":"notificationsSnapshot","surface":"integration-test","coverage":[{"obligationId":"AC-067","surface":"integration-test"}]}
+  ],
+  "testEvidence":[
+    {"path":"shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt","testName":"ac065_notificationsCommandKeepsDailyTimeAndSoakChoicesIndependent","surface":"component-test","coverage":[{"obligationId":"AC-065","surface":"component-test"}]},
+    {"path":"shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt","testName":"ac065_defaultsToEnabledDailySummaryAtNineAndIndependentSoakReminder","surface":"integration-test","coverage":[{"obligationId":"AC-067","surface":"integration-test"}]}
+  ],
+  "nonGradleChecks":[{"argv":["git","diff","--check","--","shared/component","shared/data","shared/compose/src/commonMain/composeResources"],"exitCode":0}],
+  "requestedCommands":[{"argv":["gradlew.bat",":shared:component:testAndroidHostTest",":shared:data:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64"],"tasks":[":shared:component:testAndroidHostTest",":shared:data:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64"],"coveredObligations":[{"obligationId":"AC-064","surfaces":["component-test"]},{"obligationId":"AC-065","surfaces":["component-test"]},{"obligationId":"AC-067","surfaces":["integration-test"]}]}],"blockers":[]
+}

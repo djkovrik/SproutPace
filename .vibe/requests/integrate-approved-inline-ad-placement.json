@@ -1,0 +1,9 @@
+{
+  "action":"integrate","packageId":"approved-inline-ad-placement","receiptRef":".vibe/receipts/RECEIPT-b2c6c8a4-c601-4cf2-ae4d-969d7bde6f9a.json",
+  "integrationEvidence":[
+    {"role":"entry-point","path":"shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt","symbol":"class AndroidProductionAppGraph"},
+    {"role":"navigation","path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt","symbol":"adPlacementRequestOrNull"},
+    {"role":"restart","path":"shared/monetization/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/monetization/ProductSettingsPrivacyStoreTest.kt","symbol":"canonicalPayloadSurvivesProcessRestartThroughProductSettingsAdapter"}
+  ],
+  "nextAction":"Open the managed observation photo lifecycle package; retain final cross-product goldens and Lazyweb review for release readiness."
+}

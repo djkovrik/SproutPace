@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "local-data-v1",
+  "patterns": ["shared/data/**", "shared/domain/**", "spec/**"],
+  "dependencyRationale": "The persistence implementation depends on all domain entities/contracts, its generated SQLDelight schema, platform driver source sets, fixtures, and the complete normative data/quality contract.",
+  "toolchainIdentity": "Kotlin 2.4.10; SQLDelight 2.4.0; kotlinx-coroutines 1.11.0; kotlinx-serialization 1.11.0; Multiplatform Settings 1.3.0; kotlinx-datetime 0.8.0."
+}

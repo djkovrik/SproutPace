@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-foundation-architect-20260920-r1.json",
+  "inspectionNote": "Inspected the three-file correction and handoff. It replaces the invalid compile task with compileAndroidMain, fixes the six observed Detekt findings using a named duration, narrow preview naming suppressions, explicit imports, and clean EOF/whitespace, without weakening rules or changing production-root behavior. Remaining coverage, golden, and macOS work is preserved explicitly."
+}

@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "advertising-dependency-readiness-v1",
+  "patterns": ["shared/domain/**", "shared/component/**", "shared/data/**", "spec/app-spec.json", "spec/flows/FLOW-003.md", "spec/flows/FLOW-008.md", "spec/screens/SCREEN-003.md", "spec/screens/SCREEN-007.md", "spec/screens/SCREEN-008.md", "*.gradle.kts", "gradle/**"],
+  "dependencyRationale": "AC-100 consumes the stable offline catalog count from domain/component contracts and the explicit immutable terminal History category from component/data contracts.",
+  "fallbackReason": "These are already implemented cross-module dependency contracts; this scope only binds their existing deterministic tests for downstream package readiness.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android SDK 37"
+}

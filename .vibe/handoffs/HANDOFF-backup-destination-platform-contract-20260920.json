@@ -1,0 +1,645 @@
+{
+  "acceptanceScenarioIds": [
+    "AC-074"
+  ],
+  "allowedFiles": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/d81bc777c7746435a8e6c12b9cca36b558ce7a3468c9110955ff1dbd1e20d9eb.json",
+    "sha256": "e72d0a84621fe6646aaabb7d3c1e143df0849d206ce0daddda77d99b8d4bddb1"
+  },
+  "assignmentId": "backup-destination-platform-contract",
+  "blockers": [],
+  "changedFiles": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "completedAt": "2026-09-20T12:02:34.003979Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-backup-destination-platform-contract-20260920",
+  "inputFingerprint": {
+    "appSpec": {
+      "algorithm": "sha256",
+      "digest": "bb5cfb5e652c875f39f637ed7dfc70c428ff09dfe1da703ac67e030b6ed00212",
+      "files": [
+        {
+          "path": "app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ]
+    },
+    "digest": "668e2c1e14d6c0a11e92a58bef5eee7abd862c1c113cd6a2425328d15bced134",
+    "inputs": {
+      "algorithm": "sha256",
+      "digest": "a0784810482034001adf18429a08b95d0190ccf3a8325f014423c3c10f539011",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "0465a5664d122b3327993286cc537442ae4cff112217ef490abd2ffe241eb08b"
+        },
+        {
+          "path": "androidApp/build.gradle.kts",
+          "sha256": "436079bf7f1417bfdbe68abd479cea152599de6091e3435e30166bcdbf585544"
+        },
+        {
+          "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+          "sha256": "0140fc8fce68acbf16cac064596c493dc9dddeb747bcaec7b56315ce57f94891"
+        },
+        {
+          "path": "build.gradle.kts",
+          "sha256": "a7a3931ac41f369c5e81d768384247a55338faf1fd56516f114aa03e86389e6b"
+        },
+        {
+          "path": "docs/configuration/advertising/privacy-policy.example.properties",
+          "sha256": "e91479e6bf625525e93a438cfe5eec8a72264b8e0146a28b6bec80c0779f780e"
+        },
+        {
+          "path": "gradle.properties",
+          "sha256": "dbfde9f711d844a893e1373fe13648fc0f0f361dcb595d02bade50ffca30e8bd"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "sha256": "58148cf342f0410c793e24a8c99ccbaa25687e834033bcfdecb18cf6ec3b94c4"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "sha256": "423cb469ccc0ecc31f0e4e1c309976198ccb734cdcbb7029d4bda0f18f57e8d9"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "sha256": "c89af773425cae016d64791247cb548f0d1209225917209ff5728df4298ccd43"
+        },
+        {
+          "path": "gradlew",
+          "sha256": "7d514e3330fe299d9eee52acbfec77115704d76b73cabac6de915695153129a4"
+        },
+        {
+          "path": "gradlew.bat",
+          "sha256": "9ca26d733ada3a45f27b2151288f54e75c9f95b287d1f82ef942ec5cc2d4f006"
+        },
+        {
+          "path": "iosApp/iosApp/iosApp.swift",
+          "sha256": "e4c11dcfc1ad9a85e6b7157e22f086347ed914169a7aee9d56ed32fd4593927e"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "sha256": "f2b6e028ff12dda4d44613914c4de232931f32c5963454a6cacaeb377e1acbf0"
+        },
+        {
+          "path": "shared/component/build.gradle.kts",
+          "sha256": "5ec9e9bdd6c1d0644d1e1dc21c44b6d0dac0da700a621a465c47dd6393d9647f"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+          "sha256": "e3f838009406796a2ec75cf6f86839f6026df55501c6c463bc03160f427a336e"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+          "sha256": "594d346ef256f6f5979decdf740f00812b88d295f7f3bc02c611c553f8365505"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+          "sha256": "fcf26bc015b5dc073a1543c78997fa20f8e2189bbe8a93e3e4e189dc179ba535"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+          "sha256": "ceff893f75b427c3dcaa199859c0e5b5503726e8b61dde9771f45b27eec3dbbf"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+          "sha256": "6f29be4c4a3aeaf6a0e4604cfea92101546806052fd57619d2e2835af57c288c"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+          "sha256": "d2289a568335734507785482b2f27211d1fa0cff0b07fed2dae8da36d89180c2"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+          "sha256": "50838cafd11bb2abdadbf508b7b8d5f6eca5a842a39b0811cfdebeed2d1213f2"
+        },
+        {
+          "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+          "sha256": "08813f62d529ff8b00bbfcf9189b6093bda02aa61519dde4a4c9e24f38bca9df"
+        },
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "sha256": "c5ea3bc72d07f5e260efed5e8efb2ea440448e5aa299f8706661f1e29208aeaf"
+        },
+        {
+          "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+          "sha256": "69a9f27885a736a603c80a2f54e944d1152b38fc85e64de1579078a48dd811aa"
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "f17b512d482765c1f3c17c1db6028246b1812e849d2a82d23e138e7667715ce2"
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+          "sha256": "bf18e8420e20502e2a93fd4a1d3ed3cc4b34a7e5bf6048f9d9514033719d6714"
+        },
+        {
+          "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt",
+          "sha256": "263e008a3c035696c67f4b64b60e01c609e3a852323749cf3a28a28eaee08143"
+        },
+        {
+          "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+          "sha256": "63f04d6ed50db7f668349447f969feb578850bc85088f5f19d1f286a57ab3b4b"
+        },
+        {
+          "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+          "sha256": "6c49b177d86234b5f4cf425f4e5c711c97745b5f482e7a93ec47d99bfc72bc56"
+        },
+        {
+          "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiContractTest.kt",
+          "sha256": "c82b0ce1d86b8f6a834c71b39b312b69146d78b5ac21aff805c13161ef5b01e5"
+        },
+        {
+          "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+          "sha256": "56332222a0344cea10e92491c74291b4c0646fba98c9385c9cab0abca03caadf"
+        },
+        {
+          "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+          "sha256": "ba46476951a1f9ba9267ace89ddd0f733ceaae8b6aae64463ca7d9eb3df85f1d"
+        },
+        {
+          "path": "shared/compose/src/iosMain/kotlin/main.kt",
+          "sha256": "2734fc3b3dd4e853ea0b29613fe7bf28034d8a59306848ce342d2e3092032277"
+        },
+        {
+          "path": "shared/data/build.gradle.kts",
+          "sha256": "246c7a3353fbe1ecd34d996271a0972376d8cfa98b92ce22af339625b45e0590"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+          "sha256": "bcdd28a622f13b93451bdf8081c4e773dd02da959bbf126f2d97da738d31a5c2"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+          "sha256": "9830ab232dc796a998f2b5392c5c646b0df2ebf05b2672dd8b644171ecb1da0b"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+          "sha256": "0667a96a6270a0c71c6aefd5a767bd5f185d3d23e2ba319c67a306a11a9428eb"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+          "sha256": "87386b46f68d6dfeed018e62d64b489c8d268544af65cec4289b5a0b286b6273"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+          "sha256": "4f777e244b1124ad3ac167a54b29e43114fdbbf8f20e24c9c6e00df8cacc0970"
+        },
+        {
+          "path": "shared/domain/build.gradle.kts",
+          "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+        },
+        {
+          "path": "shared/monetization/build.gradle.kts",
+          "sha256": "bfab0f687b4633e1768dcab967c756e76abe82c6b468fb904c00766cb49d2e8d"
+        },
+        {
+          "path": "shared/platform/build.gradle.kts",
+          "sha256": "98972ee422ce55fa286b709b815e5135f0c4fea31f69493418a72450d073db96"
+        },
+        {
+          "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidCrashReportingDriver.kt",
+          "sha256": "b79ac93034257b4fc1cd039ef0d4c42f7d7743f5d3afcb784743f95e141a37f4"
+        },
+        {
+          "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidNotificationPermissionService.kt",
+          "sha256": "801986a1868d709bdc63a22f1594d72b7aecb30af36ecf389e4d7532944df30b"
+        },
+        {
+          "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderDriver.kt",
+          "sha256": "a016d3108e2174ce3330534da482da90bc5737966c48b08be9939af0ce58b8bb"
+        },
+        {
+          "path": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidSystemPickers.kt",
+          "sha256": "005ca0943c78268f61fc4f795e0fbba260cb5c0fdd1fd036966b8fc4a1cae262"
+        },
+        {
+          "path": "shared/platform/src/androidMain/res/values-ru/strings.xml",
+          "sha256": "e6a6d23a22ca2bc042319bb03d175c311a1ce5d6e2f46e1ec794e7426defd599"
+        },
+        {
+          "path": "shared/platform/src/androidMain/res/values/strings.xml",
+          "sha256": "9cb22d23f6a2f49c6cf04af2caa893756d462b45e1516b59a33267234136e15c"
+        },
+        {
+          "path": "shared/root/build.gradle.kts",
+          "sha256": "05d09902cf778a6340e4ec262ca6d68c0ac4d46ccf2e953c1de7558a1b527e51"
+        },
+        {
+          "path": "spec/app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "spec/flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "spec/screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        }
+      ],
+      "patterns": [
+        "**/*.gradle",
+        "**/*.gradle.kts",
+        "**/*.properties",
+        "**/.gitignore",
+        "**/libs.versions.toml",
+        "*.gradle",
+        "*.gradle.kts",
+        "*.properties",
+        ".gitignore",
+        "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "build-logic/**",
+        "buildSrc/**",
+        "gradle/**",
+        "gradlew",
+        "gradlew.bat",
+        "iosApp/iosApp/iosApp.swift",
+        "shared/component/src/commonMain/**",
+        "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+        "shared/compose/src/commonTest/**",
+        "shared/compose/src/iosMain/**",
+        "shared/data/src/androidHostTest/**",
+        "shared/platform/src/androidMain/**",
+        "spec/app-spec.json",
+        "spec/flows/FLOW-009.md",
+        "spec/screens/SCREEN-014.md"
+      ]
+    },
+    "instructions": [],
+    "scopeDigest": "7899c0fe40d57a2b01c0cfebb5c2a98999fa240aac9dbce1362874e01cdad711"
+  },
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "verify seven-file assignment delta, separate import/destination kinds, stable ZIP/CSV contracts, result-once routing, Android content/canonical-import boundaries, iOS app-owned placeholder export, cancellation cleanup, balanced braces and no trailing whitespace"
+      ],
+      "completedAt": "2026-09-20T11:57:11Z",
+      "exitCode": 0,
+      "startedAt": "2026-09-20T11:57:10Z"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+        "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+        "shared/compose/src/iosMain/kotlin/main.kt",
+        "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+        "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "iosApp/iosApp/iosApp.swift"
+      ],
+      "completedAt": "2026-09-20T11:57:12Z",
+      "exitCode": 0,
+      "startedAt": "2026-09-20T11:57:11Z"
+    }
+  ],
+  "owner": "vibe-platform-engineer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-074",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "surface": "file-integration-test",
+      "symbol": "importPickedContent"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-074",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "surface": "component-test",
+      "symbol": "submit"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-012",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "surface": "file-integration-test",
+      "symbol": "read"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-012",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "iosApp/iosApp/iosApp.swift",
+      "surface": "file-integration-test",
+      "symbol": "presentExportPicker"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-012"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-074",
+          "surfaces": [
+            "file-integration-test",
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "QG-012",
+          "surfaces": [
+            "snapshot-roundtrip-test",
+            "file-integration-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:compose:testAndroidHostTest",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":androidApp:assembleDebug"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "0fd1535a2ba80778b9b14bd34dcffaa5ecdc00196eab3bfa213f8f5eacd16313",
+    "files": [
+      {
+        "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "sha256": "0140fc8fce68acbf16cac064596c493dc9dddeb747bcaec7b56315ce57f94891"
+      },
+      {
+        "path": "iosApp/iosApp/iosApp.swift",
+        "sha256": "e4c11dcfc1ad9a85e6b7157e22f086347ed914169a7aee9d56ed32fd4593927e"
+      },
+      {
+        "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+        "sha256": "69a9f27885a736a603c80a2f54e944d1152b38fc85e64de1579078a48dd811aa"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "sha256": "f17b512d482765c1f3c17c1db6028246b1812e849d2a82d23e138e7667715ce2"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+        "sha256": "bf18e8420e20502e2a93fd4a1d3ed3cc4b34a7e5bf6048f9d9514033719d6714"
+      },
+      {
+        "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+        "sha256": "6c49b177d86234b5f4cf425f4e5c711c97745b5f482e7a93ec47d99bfc72bc56"
+      },
+      {
+        "path": "shared/compose/src/iosMain/kotlin/main.kt",
+        "sha256": "2734fc3b3dd4e853ea0b29613fe7bf28034d8a59306848ce342d2e3092032277"
+      }
+    ],
+    "patterns": [
+      "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "iosApp/iosApp/iosApp.swift",
+      "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "shared/compose/src/iosMain/kotlin/main.kt"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T11:53:39.699883Z",
+  "supersedes": [],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-074",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "file-integration-test",
+      "testName": "ac074_importedPrivatePhotoRendersFromSameLinkAfterReadback"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-074",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "surface": "component-test",
+      "testName": "createBackupChoosesDestinationThenEditsAndSubmitsExactlyOnce"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-074",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "surface": "component-test",
+      "testName": "exportCsvUsesStableDestinationContractAndCancellationDoesNothing"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-012",
+          "surface": "snapshot-roundtrip-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "snapshot-roundtrip-test",
+      "testName": "qg012_completeArchiveRoundTripsEveryRelationshipStageScheduleUtf8AndMultiplePhotos"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-012",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "file-integration-test",
+      "testName": "qg012_missingCorruptDuplicateAndUnsupportedArchivesAreRejectedBeforeMutation"
+    }
+  ]
+}

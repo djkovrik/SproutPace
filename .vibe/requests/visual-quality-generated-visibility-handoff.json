@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-visual-quality-generated-visibility-correction-1-20260920.json",
+  "inspectionNote": "Inspected the generator-only visibility correction: the generated JUnit class is internal, PreviewCase remains internal and the 42-case matrix is unchanged."
+}

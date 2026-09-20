@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-product-ui-production-root-adapter-20260920.json",
+  "inspectionNote": "Inspected the real AppRootComponent stack/model/confirmation adapter, typed action routing, model-driven items and iOS caller-provided root API. Accepted explicit host assembly, typed per-screen model and TextKey registry gaps for follow-up assignments; no placeholder root remains in Compose."
+}

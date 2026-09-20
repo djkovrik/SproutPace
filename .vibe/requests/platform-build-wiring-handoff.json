@@ -1,0 +1,112 @@
+{
+  "action": "handoff",
+  "assignmentId": "platform-build-wiring",
+  "handoffId": "HANDOFF-platform-build-wiring-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:platform\")",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:platform\")",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    },
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "symbol": "implementation(project(\":shared:platform\"))",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "symbol": "implementation(project(\":shared:platform\"))",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "python",
+        "-c",
+        "verify one shared:platform include, one narrow shared:compose commonMain implementation dependency, platform target graph, and preserved Compose/Paparazzi/KSP/iOS framework anchors"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:41:35.6436223Z",
+      "completedAt": "2026-09-20T07:41:35.7028753Z"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "settings.gradle.kts",
+        "shared/compose/build.gradle.kts"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:41:41.4486058Z",
+      "completedAt": "2026-09-20T07:41:41.4977656Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:platform:allTests",
+        ":shared:platform:testAndroidHostTest",
+        ":shared:platform:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ],
+      "tasks": [
+        ":shared:platform:allTests",
+        ":shared:platform:testAndroidHostTest",
+        ":shared:platform:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        { "obligationId": "QG-001", "surfaces": ["repository-check"] }
+      ]
+    },
+    {
+      "argv": [
+        "./gradlew",
+        ":shared:platform:compileKotlinIosArm64",
+        ":shared:platform:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:platform:compileKotlinIosArm64",
+        ":shared:platform:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        { "obligationId": "QG-003", "surfaces": ["ios-build"] }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Repository tests, Android compilation, and Android app assembly were not executed because this specialist assignment forbids running Gradle.",
+      "obligationIds": ["QG-001"],
+      "nextAction": "The orchestrator should run the requested Windows Gradle tasks and bind the repository-check receipt."
+    },
+    {
+      "description": "The iOS target compilations require macOS and were not executed by this Windows specialist assignment.",
+      "obligationIds": ["QG-003"],
+      "nextAction": "On macOS, the orchestrator should run both requested shared:platform iOS compile tasks and bind the ios-build receipt."
+    }
+  ]
+}

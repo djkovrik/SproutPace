@@ -1,0 +1,27 @@
+{
+  "action": "assign",
+  "assignmentId": "foundation-architect-correction-1",
+  "packageId": "foundation-correction",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-004"],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "inputScopeId": "foundation-correction-v1",
+  "goal": "Correct the verified foundation issues only: satisfy strict Detekt in the three listed files and issue a fresh immutable handoff whose Android compile command uses :shared:compose:compileAndroidMain. Preserve behavior and all prior evidence/blockers.",
+  "contractInputs": ["spec/app-spec.json", "spec/design.md", "spec/quality.md"],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": ["detekt", ":shared:compose:compileAndroidMain", ":androidApp:assembleDebug"],
+  "acceptanceCriteria": [
+    "The three assigned files have no strict Detekt findings without weakening the shared rules.",
+    "Product behavior and production-root reachability remain unchanged.",
+    "The immutable handoff supersedes the original foundation handoff and requests :shared:compose:compileAndroidMain."
+  ]
+}

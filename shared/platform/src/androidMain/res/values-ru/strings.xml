@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_reminders">Напоминания о выращивании</string>
+    <string name="notification_daily_summary_title">Сегодня в SproutPace</string>
+    <string name="notification_daily_summary_body">Проверьте задачи, готовые для ваших лотков.</string>
+    <string name="notification_soak_complete_title">Замачивание завершено</string>
+    <string name="notification_soak_complete_body">Семена готовы к следующему этапу.</string>
+</resources>

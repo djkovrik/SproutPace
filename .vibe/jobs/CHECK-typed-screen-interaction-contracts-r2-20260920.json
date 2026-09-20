@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 1.8693125999998301,
+  "events": [
+    {
+      "at": "2026-09-20T10:03:53.414084Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T10:03:55.332004Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-4173261f-9c59-4e7c-b35f-9323fac2c05d.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T10:04:04.785440Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-4173261f-9c59-4e7c-b35f-9323fac2c05d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:04:05.216980Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-4173261f-9c59-4e7c-b35f-9323fac2c05d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:04:05.446809Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T10:04:07.445283Z",
+      "durationSeconds": 1.8693125999998301,
+      "receiptRef": ".vibe/receipts/RECEIPT-4173261f-9c59-4e7c-b35f-9323fac2c05d.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-typed-screen-interaction-contracts-r2-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-4173261f-9c59-4e7c-b35f-9323fac2c05d.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-4173261f-9c59-4e7c-b35f-9323fac2c05d.json",
+  "stage": "bound"
+}

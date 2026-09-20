@@ -1,0 +1,31 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The root-owned first UI compile failed only because App.kt uses Box without importing androidx.compose.foundation.layout.Box. The ingested UI handoff is otherwise preserved.",
+  "assignmentId": "product-ui-box-import-correction-1",
+  "packageId": "product-ui",
+  "owner": "vibe-product-designer",
+  "acceptanceScenarioIds": ["AC-001", "AC-120", "AC-121", "AC-122", "AC-123"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt"
+  ],
+  "goal": "Add the missing Compose layout Box import that blocks Android UI compilation, with no behavior or product changes.",
+  "contractInputs": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest"
+  ],
+  "acceptanceCriteria": [
+    "App.kt imports androidx.compose.foundation.layout.Box.",
+    "No UI behavior, resources, tests or product scope changes.",
+    "Root reruns the UI compile and tests.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ]
+}

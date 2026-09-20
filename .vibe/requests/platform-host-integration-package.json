@@ -1,0 +1,23 @@
+{
+  "action": "package",
+  "packageId": "platform-host-integration",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-064", "AC-074", "AC-090", "AC-091", "AC-092", "AC-093", "AC-094", "AC-121"],
+  "qualityGateIds": ["QG-002", "QG-003", "QG-010"],
+  "fileBoundaries": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/iosMain/**",
+    "shared/compose/src/commonTest/**",
+    "docs/configuration/**",
+    "docs/design-review/product-ui-material-contract.md"
+  ],
+  "integrationGoal": "The production Android and iOS hosts execute every approved typed platform action and apply the persisted theme preference, while privacy links remain external-configured and safe-disabled when absent.",
+  "nextAction": "Wire the existing platform services into both production Compose hosts and verify theme and result-routing contracts."
+}

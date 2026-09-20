@@ -1,0 +1,73 @@
+{
+  "algorithm": "sha256",
+  "digest": "fb8789a81a0ac270759f40b63a0b71f14d2b0c468357a15a117389579f30734b",
+  "files": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "sha256": "3a923644b25abf35dafc2932bf967d7ca7984427178a614e5004875f2a966023"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "sha256": "696053d775bc3a4f1e5d0e3d293f7deb23921ed4a27c9dc3a82d9050a8b3ee0f"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": "ab9495f92a92bcd781c8367c7d36c84f9a4dfaa12bc3be0cad1a5d3cd0610c69"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+      "sha256": "6b6e3ef276c91b8084db57212792426976e0bf6711df962403a13bd3f81b765a"
+    },
+    {
+      "path": "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+      "sha256": "6d41228c6b2a0e72b167f3caeda1356b8d63076304b7c50ece49340a6c59617f"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+      "sha256": "90ca382c0ec21c078b6ddb19759fa1d6dc2c49f6c414db985c95cdf0e34e7791"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "sha256": "8fe23f4f3fb1e917df5bea45acfdd4b25a6a6cdaf740a65a7550080a45064cb2"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt",
+      "sha256": "8757c78841658df2b554d1ecd5d2396e478eacd87542c8f3d516e255c37f88ef"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+      "sha256": "97ecaed605dd134653742119a3c92cd183c3479a2e19bbcc7c5daa72fa40af0d"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PrivateFileStore.kt",
+      "sha256": "2016a6e11b7c5457658424229b06371cb920b7d7246afb1eaafbaa8342ddc743"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "sha256": "dc3dc6bf3c3bf3737ea8491e1c00b0960a39e6bd5746c68cc6bdc82e90aa7e16"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt",
+      "sha256": "68c56a3f80ca335a18311f2442c45c36ec6962525d9a1065f93ad9a33837c818"
+    },
+    {
+      "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+      "sha256": "81f536e559d9c57090db541167ce4246a650a28156cbe2759c1c17a658097404"
+    },
+    {
+      "path": "shared/data/src/commonMain/sqldelight/databases/1.db",
+      "sha256": "0c34a8911d4a683f41e2da604aea137cc9b2754c3be07e8282adcc71193da633"
+    },
+    {
+      "path": "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+      "sha256": "592736afc441a5548c895b6fcbc8ae7aabbcad88f68aba1e9c8b6653c174cd63"
+    }
+  ],
+  "patterns": [
+    "shared/data/src/androidHostTest/**",
+    "shared/data/src/androidMain/**",
+    "shared/data/src/commonMain/**",
+    "shared/data/src/commonTest/**",
+    "shared/data/src/iosMain/**"
+  ]
+}

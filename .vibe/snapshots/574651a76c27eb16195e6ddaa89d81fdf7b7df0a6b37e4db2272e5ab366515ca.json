@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "digest": "3587bb08ff7d83f301f2dacb722349169e4385025ac6c390f519cc8f7282fd17",
+  "files": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "sha256": "f4ab2f252c71cd14c647645e074af11578825c81d4a5eeff4251fc24bcc53f5b"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+      "sha256": "7b25fa7ff1ff2d0ab0522ffc3a0b963e2a641d096ab39b0b3f24e552eaa86523"
+    }
+  ],
+  "patterns": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt"
+  ]
+}

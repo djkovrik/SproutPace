@@ -1,0 +1,53 @@
+{
+  "algorithm": "sha256",
+  "digest": "6ceb0dd57825377763359fcb9d591c6060536cb2985547214e9491653f4cb784",
+  "files": [
+    {
+      "path": "docs/design-review/product-ui-material-contract.md",
+      "sha256": "9fb9201034eb7752d0773619ca7e68cf769726db8f28a385bc68f76c8ad6c9e2"
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "sha256": "5f492bb999c80702168ce36b6998ef9b640ffb227651598fb6fdc0ca8b259fa1"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "dfdd86bddee2437acdcce437581b95720127dacb5ef6ffea868f43c0f6492003"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "sha256": "58b0a6342c341102a038ffefb45cac11bedf931accfbbd1b3721a64113e4d3c9"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "sha256": "defc0a4be9b0517d096427429e81d6c64af5f93f380f6999ba7acb1227033c27"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "sha256": "4c3cfa25f0e15875ed0890d395374769e18df0f676589f0d38875e0e7a267dc0"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+      "sha256": "8b99dba8b3b1096f20619c53b81c1399f36d3033dd3fd185c2029815f12ec93d"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ThemeRuntimeContractTest.kt",
+      "sha256": null
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "sha256": "4590841f82f3b9467f9c83a91cacbe428712f1a25d22865677c282a45fa71453"
+    }
+  ],
+  "patterns": [
+    "docs/design-review/product-ui-material-contract.md",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ThemeRuntimeContractTest.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt"
+  ]
+}

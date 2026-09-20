@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-approved-assets-20260920-r1.json",
+  "inspectionNote": "Inspected the original and fresh superseding asset handoffs, manifest, provenance, all 21 XML vectors, all 8 raster covers, and the rendered contact sheet. Assignment-owned bytes remain unchanged and within registered boundaries. The contact sheet is visually coherent; production typed usages and golden evidence remain truthfully deferred to Product UI and Visual Testing."
+}

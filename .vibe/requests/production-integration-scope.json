@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "production-integration-v1",
+  "patterns": ["**"],
+  "dependencyRationale": "Production assembly crosses Compose, root, data, platform, Android and iOS entrypoints, native resources, generated SQLDelight models and shared build configuration. A repository-wide immutable scope avoids omitting transitive native or resource inputs for the final cross-platform integration receipts.",
+  "fallbackReason": "The retained application graph and platform adapters transitively depend on all shared modules plus Android/iOS host configuration; a narrower manual list would be less reliable than the small repository-wide fingerprint.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; AGP 9.1.1; Compose Multiplatform; Decompose/MVIKotlin; SQLDelight 2.4.0; Android API 23-37; iOS arm64/simulator arm64"
+}

@@ -1,0 +1,13 @@
+{
+  "action": "scope",
+  "scopeId": "core-dependency-readiness-v1",
+  "patterns": [
+    "shared/domain/**",
+    "shared/data/**",
+    "shared/component/**",
+    "shared/root/**",
+    "spec/**"
+  ],
+  "dependencyRationale": "Reviewed transitive inputs for the domain, real SQLDelight manager, MVIKotlin component and Decompose root behavioral tests used to establish downstream local-data dependency readiness.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; SQLDelight 2.4.0; MVIKotlin 4.3.0; Decompose 3.4.0"
+}

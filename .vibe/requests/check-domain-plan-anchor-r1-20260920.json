@@ -1,0 +1,18 @@
+{
+  "action": "check",
+  "jobId": "CHECK-domain-plan-anchor-r1-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "core-domain-v1",
+  "tasks": [
+    ":shared:domain:allTests",
+    ":shared:domain:compileAndroidMain",
+    ":shared:domain:compileKotlinIosSimulatorArm64"
+  ],
+  "coveredObligations": [
+    {"obligationId": "AC-052", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-057", "surfaces": ["domain-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; kotlinx-datetime 0.8.0"
+}

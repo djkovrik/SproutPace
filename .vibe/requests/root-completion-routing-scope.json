@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "root-completion-routing-v1",
+  "patterns": ["spec/flows/**", "spec/screens/**", "shared/component/**", "shared/root/**", "*.gradle.kts", "gradle/**"],
+  "dependencyRationale": "Post-operation navigation depends on the typed ScreenOutput contract, the active Decompose configuration, and the approved screen-flow destinations.",
+  "fallbackReason": "Root and component tests use retained Decompose and MVIKotlin types, so module-level input scope avoids omitting generated or transitive contract inputs.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Decompose 3.4.0; MVIKotlin 4.3.0"
+}

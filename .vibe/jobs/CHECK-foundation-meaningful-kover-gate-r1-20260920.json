@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.7693023000028916,
+  "events": [
+    {
+      "at": "2026-09-20T11:52:42.663938Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T11:52:44.871999Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T11:53:06.928308Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T11:53:06.975957Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T11:53:07.015945Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T11:53:07.826966Z",
+      "durationSeconds": 0.7693023000028916,
+      "receiptRef": ".vibe/receipts/RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-foundation-meaningful-kover-gate-r1-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-bb3de024-17ee-4d4a-835f-e0c81361cbb5.json",
+  "stage": "bound"
+}

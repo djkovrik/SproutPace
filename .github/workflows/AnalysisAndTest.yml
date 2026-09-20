@@ -1,0 +1,148 @@
+name: Analysis and test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: analysis-and-test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android-quality:
+    name: Android, quality, and screenshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+        with:
+          cache-provider: basic
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
+      - name: Run Android and repository gates
+        run: >-
+          ./gradlew --stacktrace
+          detekt
+          :shared:domain:testAndroidHostTest
+          :shared:data:testAndroidHostTest
+          :shared:component:testAndroidHostTest
+          :shared:root:testAndroidHostTest
+          :shared:platform:testAndroidHostTest
+          :shared:monetization:testAndroidHostTest
+          :shared:compose:testAndroidHostTest
+          :shared:compose:compileAndroidMain
+          :shared:data:verifySqlDelightMigration
+          :androidApp:assembleDebug
+          :androidApp:assembleRelease
+          :androidApp:bundleRelease
+          koverXmlReport
+          koverVerify
+
+      - name: Verify committed Paparazzi baselines
+        run: >-
+          ./gradlew --stacktrace --no-configuration-cache
+          :shared:compose:verifyPaparazzi
+
+      - name: Upload quality reports
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: android-quality-reports
+          if-no-files-found: ignore
+          path: |
+            build/reports/detekt/**
+            build/reports/kover/**
+            shared/*/build/test-results/**
+            shared/*/build/reports/tests/**
+            shared/compose/build/reports/paparazzi/**
+
+      - name: Upload screenshot failures
+        if: failure()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: paparazzi-failures
+          if-no-files-found: ignore
+          path: shared/compose/build/paparazzi/failures/**
+
+  ios:
+    name: iOS compile, tests, framework, and app linkage
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+        with:
+          cache-provider: basic
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
+      - name: Compile and test Kotlin iOS targets
+        run: >-
+          ./gradlew --stacktrace
+          :shared:domain:compileKotlinIosSimulatorArm64
+          :shared:data:compileKotlinIosSimulatorArm64
+          :shared:component:compileKotlinIosSimulatorArm64
+          :shared:root:compileKotlinIosSimulatorArm64
+          :shared:platform:compileKotlinIosSimulatorArm64
+          :shared:monetization:compileKotlinIosSimulatorArm64
+          :shared:compose:compileKotlinIosSimulatorArm64
+          :shared:domain:iosSimulatorArm64Test
+          :shared:data:iosSimulatorArm64Test
+          :shared:component:iosSimulatorArm64Test
+          :shared:root:iosSimulatorArm64Test
+          :shared:platform:iosSimulatorArm64Test
+          :shared:monetization:iosSimulatorArm64Test
+          :shared:compose:iosSimulatorArm64Test
+          :shared:compose:linkDebugFrameworkIosSimulatorArm64
+
+      - name: Build the iOS host without signing
+        run: |
+          mkdir -p build/ios-ci
+          xcodebuild \
+            -project iosApp/iosApp.xcodeproj \
+            -scheme iosApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -resultBundlePath build/ios-ci/SproutPace.xcresult \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Upload iOS test and build reports
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: ios-test-and-build-reports
+          if-no-files-found: ignore
+          path: |
+            shared/*/build/test-results/**
+            shared/*/build/reports/tests/**
+            build/ios-ci/**

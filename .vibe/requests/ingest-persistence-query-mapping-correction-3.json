@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-persistence-query-mapping-correction-3-20260920-r2.json",
+  "inspectionNote": "Inspected LocalDatabase.kt and the superseding same-assignment handoff. Generated parameterless Query<String> methods are now collected and decoded after query execution for all four reactive flows and snapshot export, preserving typed domain APIs, dispatcher use, schema and transaction semantics. The generic decodedListFlow helper is narrowly scoped; Gradle compilation and persistence tests remain root-owned."
+}

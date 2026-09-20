@@ -1,0 +1,21 @@
+{
+  "action": "scope",
+  "scopeId": "action-targeting-v1",
+  "patterns": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-006.md",
+    "spec/screens/SCREEN-002.md",
+    "spec/screens/SCREEN-005.md",
+    "shared/component/src/commonMain/**",
+    "shared/component/src/commonTest/**",
+    "shared/data/src/commonMain/**",
+    "shared/data/src/androidHostTest/**",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonTest/**"
+  ],
+  "dependencyRationale": "An item action's operation and persisted subject identity pass through the production snapshot, component Store, UI model/router and manager transaction; all four layers must agree to prove exactly-once completion and skip semantics.",
+  "fallbackReason": "The bounded common and test source sets are required because the exact ScreenAction/ScreenCommand signatures are cross-module public contracts.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; MVIKotlin 4.3.0; Decompose 3.4.0"
+}

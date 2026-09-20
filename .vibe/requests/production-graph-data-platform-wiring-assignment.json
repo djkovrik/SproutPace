@@ -1,0 +1,49 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The local-data package now provides real workspace, archive, document, reminder and typed root-output ports, but ProductionAppGraph still constructs ProductionScreenDataManager(database, settings) with null optional dependencies. Consequently backup/restore/erase, private photos, reminder reconciliation and erase-to-first-run are unreachable in production hosts.",
+  "assignmentId": "production-graph-data-platform-wiring",
+  "packageId": "production-integration",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": ["AC-082", "AC-095"],
+  "qualityGateIds": ["QG-012"],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt"
+  ],
+  "inputScopeId": "production-integration-v1",
+  "goal": "Wire the verified local data capabilities into the retained Android/iOS production graph using platform-correct private photo and opaque document byte adapters, snapshot-to-future-reminder reconciliation, and LocalDataIntegrationEvent consumption through AppRootComponent.resetToFirstRun().",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-008.md",
+    "spec/flows/FLOW-009.md",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalWorkspaceRepository.kt",
+    "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+    "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidReminderDriver.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/manual-di-and-entry-points.md",
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/references/notifications-and-alarms.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/migrations-backup-restore.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [":shared:compose:compileAndroidMain", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:compose:testAndroidHostTest", ":androidApp:assembleDebug"],
+  "acceptanceCriteria": [
+    "Production graph constructs AndroidPrivateFileStore/IosPrivateFileStore, LocalWorkspaceRepository and LocalBackupService and injects all of them into ProductionScreenDataManager.",
+    "Opaque Android content URIs and iOS security-scoped file URLs are read/written through typed ArchiveDocumentPort adapters without leaking external paths into the portable archive.",
+    "Restore and erase reconcile only app-owned future reminders using the platform reminder driver; erase cancellation and root reset happen only after successful data commit.",
+    "FirstRunNavigationRequired is consumed on the main context and invokes AppRootComponent.resetToFirstRun without creating a second root or graph.",
+    "Android and iOS retain one graph, keep iOS ads untouched/safe-disabled, and expose no fake or in-memory production fallback.",
+    "Tests verify dependency assembly and event ordering; no root, data, platform, host, ledger or external project changes; specialist does not run Gradle."
+  ]
+}

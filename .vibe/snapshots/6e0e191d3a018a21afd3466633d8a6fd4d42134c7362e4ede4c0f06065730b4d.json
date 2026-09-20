@@ -1,0 +1,34 @@
+{
+  "algorithm": "sha256",
+  "digest": "0f01748787995a4095adaf2d77989685842f25d8d7be9a5b001f4d17edefbb73",
+  "files": [
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "sha256": "cba2fdec0142fb3a0c1a4661c98c61d0ad14d300361243b40dcf715b59f3ebb7"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values/strings.xml",
+      "sha256": "434d77acf6a4087fdb7396cd7a592ef519ec024994146dccd7e0063e3149b5ff"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "f5bbb96a12258707892f4f20630652081d7ddc3384e68582d3f5818078c1b121"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Color.kt",
+      "sha256": "2ac139caafc891dfd437203260537d30583c95f7d75d3cae58ae02b257bc9af5"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+      "sha256": "10bc09b371f135412f832bc4e527f3ca7bea5d07db6bea04dd066da28c03496e"
+    }
+  ],
+  "patterns": [
+    "docs/design-review/**",
+    "shared/compose/src/androidUnitTest/**",
+    "shared/compose/src/commonMain/composeResources/values-ru/**",
+    "shared/compose/src/commonMain/composeResources/values/**",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/commonTest/**"
+  ]
+}

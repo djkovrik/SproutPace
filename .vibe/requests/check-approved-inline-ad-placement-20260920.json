@@ -1,0 +1,14 @@
+{
+  "action": "check",
+  "jobId": "CHECK-approved-inline-ad-placement-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "approved-inline-ad-placement-v1",
+  "tasks": [":shared:monetization:allTests", ":shared:data:testAndroidHostTest", ":shared:compose:testAndroidHostTest"],
+  "coveredObligations": [
+    {"obligationId":"AC-100","surfaces":["ad-lifecycle-test","component-test"]},
+    {"obligationId":"AC-101","surfaces":["ad-lifecycle-test","component-test"]}
+  ],
+  "timeoutSeconds": 1200,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Yandex Mobile Ads Android 8.5.0"
+}

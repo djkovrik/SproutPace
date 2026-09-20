@@ -1,0 +1,9 @@
+{
+  "action":"integrate","packageId":"production-integration","receiptRef":".vibe/receipts/RECEIPT-c9406ddb-e177-4666-a914-71d482768118.json",
+  "integrationEvidence":[
+    {"role":"entry-point","path":"shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt","symbol":"class AndroidProductionAppGraph"},
+    {"role":"navigation","path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt","symbol":"FirstRunNavigationRequired"},
+    {"role":"restart","path":"shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt","symbol":"class FileBackedRestartTest"}
+  ],
+  "nextAction":"Open an AC-074 correction package for managed photo identity, atomic Keep/Replace/Remove and post-restart rendering discovered after coarse production integration."
+}

@@ -1,0 +1,69 @@
+{
+  "acceptanceCriteria": [
+    "Every listed AC has at least one explicit scenario-named executable test at its required core-domain surface.",
+    "Tests use deterministic fakes, virtual time where needed and assert exact failure causes and idempotency behavior.",
+    "Store tests cover intent-to-state and label sequences; component/root tests cover navigation, stable IDs, back and lifecycle behavior.",
+    "Tests do not duplicate production algorithms or modify production sources.",
+    "The specialist reports any production-contract gap as a blocker rather than making the test pass by weakening the scenario.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ],
+  "allowedFiles": [
+    "shared/component/src/commonTest/**",
+    "shared/domain/src/commonTest/**",
+    "shared/root/src/commonTest/**"
+  ],
+  "assignmentId": "core-acceptance-test-matrix",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/domain.md",
+    "spec/quality.md",
+    "shared/domain/src/commonMain/**",
+    "shared/component/src/commonMain/**",
+    "shared/root/src/commonMain/**"
+  ],
+  "forkTurns": "none",
+  "goal": "Add deterministic, scenario-named domain, Store/component and Decompose root tests that exercise every acceptance scenario owned by core-domain, including success, failure, idempotency, lifecycle, cancellation and time-zone boundaries; do not weaken assertions or change production code.",
+  "obligationIds": [
+    "AC-010",
+    "AC-011",
+    "AC-012",
+    "AC-014",
+    "AC-020",
+    "AC-021",
+    "AC-026",
+    "AC-027",
+    "AC-030",
+    "AC-031",
+    "AC-032",
+    "AC-035",
+    "AC-036",
+    "AC-037",
+    "AC-038",
+    "AC-039",
+    "AC-040",
+    "AC-050",
+    "AC-051",
+    "AC-052",
+    "AC-054",
+    "AC-055",
+    "AC-057",
+    "AC-060",
+    "AC-062",
+    "AC-066",
+    "AC-068",
+    "AC-080",
+    "AC-081",
+    "AC-085",
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:domain:allTests",
+    ":shared:component:allTests",
+    ":shared:root:allTests"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/references/testing-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

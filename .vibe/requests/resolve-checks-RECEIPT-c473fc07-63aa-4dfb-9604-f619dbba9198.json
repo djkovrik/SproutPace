@@ -1,0 +1,16 @@
+{
+  "action": "resolve-work",
+  "inspectionNote": "Current successful integration receipt covers every obligation/surface declared by these historical pending checks.",
+  "receiptRef": ".vibe/receipts/RECEIPT-c972c2c9-b022-41a6-a66c-b6967bc0310f.json",
+  "resolvedIds": [
+    "CHECK-0cf1313e901f569f7cbf1af9be9a5978919730ba906c14ec8a71f2b2f56004ae",
+    "CHECK-187b29a07001707b3ea74b67738d708734683f9b029016c89ea5ff09ff13dee7",
+    "CHECK-1e87b2f09765b7d2045eddcf188fc36c2a1bd79c01a62a70dcb6e94055a65eba",
+    "CHECK-856e7a3e5566472b69b91071b464b266df3222367c79bf6ef28204fa27c449b4",
+    "CHECK-97e57939be716fb7b1947687c78b1f6c6ecf31a4841631390fcaba5cea5b4424",
+    "CHECK-d8a6bca0085599ab79dd27293fadd2e770a2a4a2785f531dc2020310f46a9f7f",
+    "CHECK-e18999b22f77bc2775695207b557014351cad3a467162ad7f3b72353305c0574",
+    "CHECK-e479a67f1ed726653c6910501464437c68a041ef37036e9adab0a748d4f60824",
+    "CHECK-f43cd24c15f4f4357adf7e0c9cc9ba63ae0e67e88e2c90e56beb5557cca74662"
+  ]
+}

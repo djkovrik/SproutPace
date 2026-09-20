@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-product-ui-production-assembly-20260920-r1.json",
+  "inspectionNote": "Inspected the platform-typed production graph, application-scoped lifecycle/root ownership, real SQLDelight and Multiplatform Settings construction, data-manager injection, DB-free assembly seam tests and graph-only iOS controller API. Accepted explicit host-wiring and macOS verification follow-ups; root will compile both targets before host edits."
+}

@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "digest": "1cde2679959452bc25f993ee726b1013d7311b3bc83aa3de2f8868fb3d3062ee",
+  "files": [
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+      "sha256": null
+    }
+  ],
+  "patterns": [
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt"
+  ]
+}

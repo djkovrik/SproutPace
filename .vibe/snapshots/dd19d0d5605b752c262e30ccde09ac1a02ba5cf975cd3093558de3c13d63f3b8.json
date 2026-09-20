@@ -1,0 +1,43 @@
+{
+  "algorithm": "sha256",
+  "digest": "35c11451d00d148d35c306a4e0b9e5c6a2b583968ce54e331a36ab5587bbfc38",
+  "files": [
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "sha256": "f30e007762b06755831dca7d6dc4e671e4e06ae417e8f51c2523a2493655f71a"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+      "sha256": "be7959e8435f587245e6f5115997f62aff146cc68d3161f2af75afdde293dea5"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt",
+      "sha256": "849b41387205f258b7d0be5b45293c20c1853069a803777ccca279e7237c5957"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+      "sha256": "9ee8ebbaf1e9451c2322038cf73c68f5c4d70bb0452dd2e56023724c625f00cd"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt",
+      "sha256": "5c0e6396a0019a163f6b525dcdab0708b4f3457c19e57ccceec7f8dea5b14082"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "sha256": "d4dea416a4464dfbaa380f753dd00d7c0ec7c08a6056972705a28b58315117c7"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+      "sha256": "b52e03b3d9c321207237c3111473c8912f15221be00f71007c356bff7d9e1075"
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "sha256": "b0d685adc5c40b58630b3e66237986272300ef7bb4d73446fe59989d14bc5a14"
+    }
+  ],
+  "patterns": [
+    "shared/component/src/commonTest/**",
+    "shared/domain/src/commonTest/**",
+    "shared/root/src/commonTest/**"
+  ]
+}

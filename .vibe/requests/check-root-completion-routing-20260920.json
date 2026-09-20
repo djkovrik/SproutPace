@@ -1,0 +1,17 @@
+{
+  "action": "check",
+  "jobId": "CHECK-root-completion-routing-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "root-completion-routing-v1",
+  "tasks": [
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "coveredObligations": [
+    {"obligationId":"AC-030","surfaces":["component-test"]},
+    {"obligationId":"AC-080","surfaces":["component-test"]}
+  ],
+  "timeoutSeconds": 1200,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Decompose 3.4.0; MVIKotlin 4.3.0"
+}

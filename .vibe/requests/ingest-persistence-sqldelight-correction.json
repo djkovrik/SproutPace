@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-persistence-sqldelight-correction-1-20260920.json",
+  "inspectionNote": "Inspected the narrow SQLDelight correction: the unsupported schema PRAGMA and invalid initial 1.sqm migration are removed, future migrations require a committed v1 .db baseline plus 2.sqm, and post-SQLite-3.18 UPSERT forms are replaced by transactional SQLDelight statement groups without REPLACE/IGNORE data loss semantics. README and static validation contract match the implementation; Gradle validation remains root-owned."
+}

@@ -1,0 +1,33 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected the current data module after the root module gate. The only new failure is unresolved com.russhwolf.settings.MapSettings in androidHostTest; build files remain the previously returned baseline and no user source is replaced.",
+  "assignmentId": "data-mapsettings-test-wiring-correction-4",
+  "packageId": "core-domain",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": [
+    "shared/data/build.gradle.kts"
+  ],
+  "inputScopeId": "local-data-v1",
+  "goal": "Wire the official Multiplatform Settings test artifact required for MapSettings into shared:data androidHostTest without changing production dependencies or test behavior.",
+  "contractInputs": [
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+    "shared/data/build.gradle.kts"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:allTests",
+    ":shared:data:compileAndroidMain"
+  ],
+  "acceptanceCriteria": [
+    "androidHostTest resolves MapSettings from the matching official Multiplatform Settings test artifact.",
+    "The dependency is test-scoped and version-aligned with the existing Multiplatform Settings runtime.",
+    "No production source or persistence behavior changes.",
+    "Root reruns data host tests and compilation."
+  ]
+}

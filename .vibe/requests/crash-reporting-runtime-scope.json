@@ -1,0 +1,18 @@
+{
+  "action": "scope",
+  "scopeId": "crash-reporting-runtime-v1",
+  "patterns": [
+    "shared/data/**",
+    "shared/platform/**",
+    "shared/component/**",
+    "shared/compose/**",
+    "androidApp/**",
+    "iosApp/**",
+    "docs/configuration/**",
+    "spec/flows/FLOW-011.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/quality.md"
+  ],
+  "dependencyRationale": "Crash preference persistence, platform-neutral coordination, native Android/iOS adapters, production graph observation, Settings model/UI state and both host entry points jointly determine AC-110/111/112.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform; Android API 23-37; iOS arm64/simulator arm64; optional Firebase Crashlytics adapters"
+}

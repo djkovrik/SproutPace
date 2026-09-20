@@ -1,0 +1,48 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The model-driven UI exposes typed photo/document, notification, settings and privacy actions, but both production hosts currently use the safe no-op handler. Wire these approved platform contracts without changing product behavior.",
+  "assignmentId": "production-platform-action-handlers",
+  "packageId": "production-integration",
+  "owner": "vibe-platform-engineer",
+  "acceptanceScenarioIds": ["AC-074"],
+  "qualityGateIds": ["QG-012"],
+  "allowedFiles": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md"
+  ],
+  "inputScopeId": "platform-host-actions-theme-v1",
+  "goal": "Inject production Android and iOS platform handlers for every typed platform action, open only externally configured HTTPS privacy URLs, preserve cancel/failure safely, and keep iOS advertising disabled.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidSystemPickers.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidNotificationPermissionService.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/localization-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest",
+    ":androidApp:assembleDebug"
+  ],
+  "acceptanceCriteria": [
+    "Android host injects a real handler: photo/archive imports return only app-owned paths, permission request uses the existing stateful service, settings opens the app settings page, and privacy opens only a nonblank configured HTTPS URL.",
+    "iOS exports a stable Kotlin bridge implemented by Swift for photo/archive picking, notification permission, system settings and HTTPS privacy; cancellation and native failures do not overwrite a field, and document/photo results use owned file URLs accepted by the existing iOS ports.",
+    "Android/iOS privacy configuration remains an external template contract and is safe-disabled when absent. No live URL, Firebase project, Yandex iOS project/ad unit, SDK initialization, publication or scope expansion is introduced.",
+    "Existing typed platform-result routing remains the only field-update boundary and native cancellation/failure never overwrites the form state.",
+    "No data/domain/component/root/theme behavior or Paparazzi baselines are changed; specialist does not run Gradle."
+  ]
+}

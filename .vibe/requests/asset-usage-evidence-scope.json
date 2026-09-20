@@ -1,0 +1,16 @@
+{
+  "action": "scope",
+  "scopeId": "asset-usage-evidence-v1",
+  "patterns": [
+    "spec/app-spec.json",
+    "docs/assets/**",
+    "shared/compose/src/commonMain/composeResources/drawable/**",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/androidUnitTest/snapshots/images/**",
+    "androidApp/src/main/res/mipmap*/**",
+    "iosApp/iosApp/Assets.xcassets/**"
+  ],
+  "dependencyRationale": "Final asset evidence must bind each approved asset to a reachable production usage and reviewed current golden while validating immutable hashes and platform icon sets.",
+  "fallbackReason": "All approved resource, platform icon and screenshot locations are explicit; no unrelated source or build output is needed.",
+  "toolchainIdentity": "Vibe asset validator; Compose Resources 1.12.0; current Paparazzi 54-case baseline"
+}

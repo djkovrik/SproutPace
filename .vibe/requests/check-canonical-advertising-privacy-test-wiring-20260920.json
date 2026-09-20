@@ -1,0 +1,13 @@
+{
+  "action": "check",
+  "jobId": "CHECK-canonical-advertising-privacy-test-wiring-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "canonical-advertising-privacy-test-wiring-v1",
+  "tasks": [":shared:monetization:testAndroidHostTest"],
+  "coveredObligations": [
+    {"obligationId":"AC-103","surfaces":["settings-integration-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Multiplatform Settings 1.3.0"
+}

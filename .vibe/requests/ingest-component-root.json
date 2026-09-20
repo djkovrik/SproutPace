@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-component-root-stores-20260920-r2.json",
+  "inspectionNote": "Inspected the complete shared:component and shared:root implementation plus both superseding handoffs. The change remains inside its registered boundary, exposes immutable screen contracts and component-owned previews, keeps observable orchestration in MVIKotlin Stores, and implements serializable Decompose stack/slot navigation with centralized tests. r2 preserves the validated AppSpec surfaces and refreshes the input fingerprint after parallel platform work without source edits. Gradle execution remains pending until root-owned module wiring is complete."
+}

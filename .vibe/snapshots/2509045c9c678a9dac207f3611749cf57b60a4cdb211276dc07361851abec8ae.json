@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "digest": "35921922a81704524a21f98b9f89493f55a9b4a9f44d3cf6cde21f1dd4a4d65f",
+  "files": [
+    {
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "sha256": "ea358111b925d79a2916321cfe7aaf823421dd8508c2f89030980f7cbce9aec1"
+    },
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "sha256": "b1ceb1a3974b51157a70690bf1fb3730ac724641c29237afdd169507a4343238"
+    }
+  ],
+  "patterns": [
+    ".github/workflows/AnalysisAndTest.yml",
+    "shared/compose/build.gradle.kts"
+  ]
+}

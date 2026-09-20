@@ -1,0 +1,63 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The first UI handoff now compiles, but its own blocker is still present: production App uses a local placeholder SproutPaceRoot and static sample content instead of the Decompose AppRootComponent, active ScreenComponent model and confirmation slot. Existing visual design/resources/previews are preserved.",
+  "assignmentId": "product-ui-production-root-adapter",
+  "packageId": "product-ui",
+  "owner": "vibe-decompose-engineer",
+  "acceptanceScenarioIds": ["AC-001", "AC-120", "AC-121", "AC-122", "AC-123"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ],
+  "goal": "Replace the placeholder production root with a real Decompose AppRootComponent adapter: subscribe to active stack/model and confirmation slot, render actual model items/states, route navigation/back/retry/commands to root and ScreenComponent, keep previews explicitly preview-only, and make iOS MainViewController require the same production root instance.",
+  "contractInputs": [
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "spec/screens/SCREEN-001.md",
+    "spec/screens/SCREEN-002.md",
+    "spec/screens/SCREEN-003.md",
+    "spec/screens/SCREEN-004.md",
+    "spec/screens/SCREEN-005.md",
+    "spec/screens/SCREEN-006.md",
+    "spec/screens/SCREEN-007.md",
+    "spec/screens/SCREEN-008.md",
+    "spec/screens/SCREEN-009.md",
+    "spec/screens/SCREEN-010.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/screens/SCREEN-012.md",
+    "spec/screens/SCREEN-013.md",
+    "spec/screens/SCREEN-014.md",
+    "spec/screens/SCREEN-015.md",
+    "spec/screens/SCREEN-016.md"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/component-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/navigation-and-root.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/lifecycle-state-retention.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest",
+    ":androidApp:assembleDebug"
+  ],
+  "acceptanceCriteria": [
+    "Production App accepts AppRootComponent and contains no placeholder production root or ignored root instance.",
+    "Active ChildStack ScreenComponent.model and confirmation ChildSlot drive rendered screen, variants, items, selection, busy/offline/ad flags and destructive confirmation.",
+    "Navigation, back, retry, selection and executable UI commands route to AppRootComponent or active ScreenComponent without stringly duplicated navigation state.",
+    "Preview entry points remain deterministic and never create the production root.",
+    "iOS MainViewController requires the caller-provided AppRootComponent used by Compose.",
+    "Executable mapping/action tests cover all sixteen ScreenId values and primary navigation.",
+    "No domain, persistence or product-scope changes; specialist does not run Gradle or edit ledger."
+  ]
+}

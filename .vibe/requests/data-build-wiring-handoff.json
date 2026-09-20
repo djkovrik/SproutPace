@@ -1,0 +1,119 @@
+{
+  "action": "handoff",
+  "assignmentId": "data-build-wiring",
+  "handoffId": "HANDOFF-data-build-wiring-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "build.gradle.kts",
+      "symbol": "alias(libs.plugins.sqldelight).apply(false)",
+      "surface": "lazy-plugin-contract",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "build-contract" },
+        { "obligationId": "QG-003", "surface": "ios-build-contract" }
+      ]
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "symbol": "sqldelight = \"2.4.0\"",
+      "surface": "dependency-catalog",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "dependency-contract" },
+        { "obligationId": "QG-003", "surface": "native-driver-contract" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:data\")",
+      "surface": "module-inclusion",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "module-graph" },
+        { "obligationId": "QG-003", "surface": "ios-module-graph" }
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "build.gradle.kts",
+        "gradle/libs.versions.toml",
+        "settings.gradle.kts"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:01:59.7933985Z",
+      "completedAt": "2026-09-20T07:01:59.8489643Z"
+    },
+    {
+      "argv": [
+        "python",
+        "-c",
+        "parse gradle/libs.versions.toml with tomllib and assert the SQLDelight 2.4.0 plugin plus exactly runtime, coroutines-extensions, android-driver, native-driver, and sqlite-driver aliases"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:02:11.4381431Z",
+      "completedAt": "2026-09-20T07:02:11.5058917Z"
+    },
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "assert lazy SQLDelight root plugin, single shared:data include, data-module alias usage, Android/iOS target anchors, and preserved Detekt/Kover/Paparazzi anchors"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:02:25.1382489Z",
+      "completedAt": "2026-09-20T07:02:25.2056166Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:tasks",
+        ":shared:data:compileAndroidMain"
+      ],
+      "tasks": [
+        ":shared:data:tasks",
+        ":shared:data:compileAndroidMain"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-001",
+          "surfaces": ["task-discovery", "android-compilation"]
+        }
+      ]
+    },
+    {
+      "argv": [
+        "./gradlew",
+        ":shared:data:compileKotlinIosArm64"
+      ],
+      "tasks": [
+        ":shared:data:compileKotlinIosArm64"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-003",
+          "surfaces": ["macos-ios-arm64-compilation"]
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Windows Gradle task discovery and Android compilation were not executed because this specialist assignment explicitly forbids running Gradle.",
+      "obligationIds": ["QG-001"],
+      "nextAction": "The orchestrator should run gradlew.bat :shared:data:tasks :shared:data:compileAndroidMain and bind the receipt."
+    },
+    {
+      "description": "The iOS Arm64 compilation requires macOS and was not executed by this Windows specialist assignment.",
+      "obligationIds": ["QG-003"],
+      "nextAction": "On macOS, the orchestrator should run ./gradlew :shared:data:compileKotlinIosArm64 and bind the receipt."
+    }
+  ]
+}

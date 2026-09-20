@@ -1,0 +1,41 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected current drift after the second root diagnostic build. It contains returned/ingested specialist outputs plus active monetization work and ignored Gradle outputs; no pre-existing user source was removed or overwritten.",
+  "assignmentId": "persistence-migration-baseline-correction-2",
+  "packageId": "core-domain",
+  "owner": "vibe-persistence-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": [
+    "shared/data/build.gradle.kts",
+    "shared/data/src/commonMain/sqldelight/**",
+    "shared/data/scripts/validate-data.ps1",
+    "shared/data/README.md"
+  ],
+  "inputScopeId": "local-data-v1",
+  "goal": "Make the actual SQLDelight migration verification task executable and green for the initial schema. The prior correction fixed generation but verifyCommonMainSproutPaceDatabaseMigration still fails because no committed schema database exists. Generate/commit the correct v1 schema baseline using the SQLDelight task or configure an equally real initial-schema strategy; preserve future 2.sqm verification and all current schema/query semantics.",
+  "contractInputs": [
+    "spec/quality.md",
+    "shared/data/build.gradle.kts",
+    "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+    "shared/data/README.md"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/migrations-and-drivers.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:verifyCommonMainSproutPaceDatabaseMigration",
+    ":shared:data:verifySqlDelightMigration",
+    ":shared:data:allTests",
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:compileAndroidMain"
+  ],
+  "acceptanceCriteria": [
+    "The checked-in project contains the SQLDelight schema baseline/input required by verifyCommonMainSproutPaceDatabaseMigration, or a documented executable initial-schema configuration that makes verification succeed without suppressing future migrations.",
+    "Future 2.sqm migrations are verified against the committed v1 baseline.",
+    "No current schema/query/domain behavior changes.",
+    "Static validation proves baseline presence/config consistency; root reruns Gradle."
+  ]
+}

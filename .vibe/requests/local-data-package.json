@@ -1,0 +1,17 @@
+{
+  "action": "package",
+  "packageId": "local-data",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [
+    "AC-013", "AC-015", "AC-016", "AC-017",
+    "AC-022", "AC-023", "AC-024", "AC-025",
+    "AC-033", "AC-034", "AC-053", "AC-056",
+    "AC-070", "AC-071", "AC-072", "AC-073", "AC-074",
+    "AC-082", "AC-083", "AC-084",
+    "AC-090", "AC-091", "AC-092", "AC-093", "AC-094", "AC-095"
+  ],
+  "qualityGateIds": ["QG-012"],
+  "fileBoundaries": ["shared/data/**"],
+  "integrationGoal": "A real KMP data graph persists complete local state, survives restart, atomically restores a full archive with photos, exports CSV, and erases all local product state.",
+  "nextAction": "Implement SQLDelight, Settings, private file storage, manager adapters, backup/restore, CSV, migrations, and deterministic tests."
+}

@@ -1,0 +1,43 @@
+{
+  "algorithm": "sha256",
+  "digest": "ce14c772de0d2b4cd2f32c51b109fd258e9fbda181c0ba630b04e984c08d04f6",
+  "files": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "sha256": "db8f4e91dd14e5f8031e9ae812f49e6ce96a76b333997f6facc92cd1735a1a6e"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "sha256": "915800219df618557bc526618560b33286dcb975c0a2549ff9f1066e969ade47"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+      "sha256": "f4f57097f6726c7aa19f1fe9302c5e3ebd1034ff4427cfb6566744040a4bde33"
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "sha256": "1ed9b5eec312df5d7889eada4bc18fa48d010ee9b5f82812c940aac9e21e36a7"
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+      "sha256": "9fc78cab565623b2c844174b9f22b854f33bb49e0a8434b54dcbcd32489e2a23"
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "sha256": "9246209223844018d8f2c7357936489fcf43fe4886f51eab5dda30ff2d300f58"
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "sha256": "6c145adf55b20277bde354b7419f6eb67f80339bfc28183181061ed1f85acc97"
+    }
+  ],
+  "patterns": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+    "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt"
+  ]
+}

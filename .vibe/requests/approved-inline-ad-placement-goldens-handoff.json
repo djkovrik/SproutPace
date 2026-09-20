@@ -1,0 +1,79 @@
+{
+  "action": "handoff",
+  "assignmentId": "approved-inline-ad-placement-goldens",
+  "handoffId": "HANDOFF-approved-inline-ad-placement-goldens-20260920",
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-a279e6df-b2cb-4100-822c-90020901acc6.json",
+    ".vibe/receipts/RECEIPT-b2c6c8a4-c601-4cf2-ae4d-969d7bde6f9a.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "CatalogLoadedAdInspectionPreview",
+      "surface": "ui-golden",
+      "coverage": [{"obligationId": "AC-100", "surface": "ui-golden"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "TraysHistoryLoadedAdInspectionPreview",
+      "surface": "ui-golden",
+      "coverage": [{"obligationId": "AC-100", "surface": "ui-golden"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "CatalogHiddenAdOfflineInspectionPreview",
+      "surface": "ui-golden",
+      "coverage": [{"obligationId": "AC-101", "surface": "ui-golden"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "advertisingInspectionPreviewsAreDiscoverableAndTallEnough",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId": "AC-100", "surface": "ui-golden"},
+        {"obligationId": "AC-101", "surface": "ui-golden"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "view_image",
+        "--detail",
+        "original",
+        "CatalogLoadedAdInspectionPreview",
+        "CatalogHiddenAdOfflineInspectionPreview",
+        "TraysHistoryLoadedAdInspectionPreview"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:compose:cleanRecordPaparazzi", "--no-configuration-cache"],
+      "tasks": [":shared:compose:cleanRecordPaparazzi"],
+      "coveredObligations": [
+        {"obligationId": "AC-100", "surfaces": ["ui-golden"]},
+        {"obligationId": "AC-101", "surfaces": ["ui-golden"]}
+      ],
+      "receiptRef": ".vibe/receipts/RECEIPT-a279e6df-b2cb-4100-822c-90020901acc6.json"
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:verifyPaparazzi",
+        ":shared:compose:testAndroidHostTest",
+        "--no-configuration-cache"
+      ],
+      "tasks": [":shared:compose:verifyPaparazzi", ":shared:compose:testAndroidHostTest"],
+      "coveredObligations": [
+        {"obligationId": "AC-100", "surfaces": ["ui-golden"]},
+        {"obligationId": "AC-101", "surfaces": ["ui-golden"]}
+      ],
+      "receiptRef": ".vibe/receipts/RECEIPT-b2c6c8a4-c601-4cf2-ae4d-969d7bde6f9a.json"
+    }
+  ],
+  "blockers": []
+}

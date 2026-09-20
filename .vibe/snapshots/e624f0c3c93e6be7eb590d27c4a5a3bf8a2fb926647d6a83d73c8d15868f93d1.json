@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256",
+  "digest": "a2b950ff91c2483a27c3ebfeb8c52f73c8a63f9e894e6f39276d3ac36691adf4",
+  "files": [
+    {
+      "path": "build.gradle.kts",
+      "sha256": "4ea8d8a516007db3d42ecebff3f838a8d1a830f34affe647b478586d40b2bff8"
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "sha256": "5ed31558d7f3215c25446b3d41bef3bd10b4efb523182332cab3f7eadba5d606"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "sha256": "a2215323e073769f089af1fb2da8b8432293a7d9cbcf16b45a6adc8d30bbf7b0"
+    }
+  ],
+  "patterns": [
+    "build.gradle.kts",
+    "gradle/libs.versions.toml",
+    "settings.gradle.kts"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "action": "scope",
+  "scopeId": "canonical-advertising-privacy-test-wiring-v1",
+  "patterns": [
+    "shared/monetization/build.gradle.kts",
+    "shared/monetization/src/androidHostTest/**",
+    "shared/monetization/src/commonMain/**",
+    "shared/data/src/commonMain/**",
+    "gradle/libs.versions.toml",
+    "spec/app-spec.json"
+  ],
+  "dependencyRationale": "The Android-host adapter test compiles the canonical monetization adapter against ProductSettings and MapSettings; only its test source set and matching dependency classpath are writable.",
+  "fallbackReason": "The adapter crosses the monetization/data module boundary, so their common contracts are fingerprint inputs while writes remain limited to two paths.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Multiplatform Settings 1.3.0"
+}

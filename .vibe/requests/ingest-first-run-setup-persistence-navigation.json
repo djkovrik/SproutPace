@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-first-run-setup-persistence-navigation-20260920.json",
+  "inspectionNote": "Inspected the four-file first-run correction. Completing setup takes the current persisted snapshot, adds deterministic zone, tray-size preset, and harvest plan records, recomputes the manifest, and commits them atomically through one replace operation. Retrying is idempotent, invalid conditional dimensions or catalog choices do not mutate storage, existing workspace records are preserved, and the root replaces the setup stack with Plan only after persistence succeeds. Bound receipt 72fe6283-cd8b-4781-87e2-1b583b8c225f confirms Android host integration/component tests and Android/iOS compilation."
+}

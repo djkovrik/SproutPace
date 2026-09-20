@@ -1,0 +1,42 @@
+{
+  "action": "assign",
+  "assignmentId": "crash-reporting-runtime-contract",
+  "packageId": "crash-reporting-runtime",
+  "owner": "vibe-platform-engineer",
+  "acceptanceScenarioIds": ["AC-110", "AC-111", "AC-112"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/CrashReporting.kt",
+    "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidCrashReportingDriver.kt",
+    "shared/platform/src/iosMain/kotlin/com/sedsoftware/sproutpace/platform/IosCrashReportingDriver.kt",
+    "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt"
+  ],
+  "inputScopeId": "crash-reporting-runtime-v1",
+  "goal": "Harden the platform-neutral crash runtime contract for synchronous startup/live preference application, deterministic effective state, forced non-release disabling and an exportable minimal iOS native driver bridge without requiring Firebase configuration.",
+  "contractInputs": [
+    "spec/flows/FLOW-011.md",
+    "spec/screens/SCREEN-011.md",
+    "spec/quality.md",
+    "docs/configuration/FIREBASE-CRASHLYTICS.md",
+    ".vibe/requests/crash-reporting-runtime-package.json"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/flow-delivery-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:platform:testAndroidHostTest",
+    ":shared:platform:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "A first configured release start applies the persisted default true preference before routine reporting; Android/iOS automatic collection remains manifest/plist disabled until this explicit application.",
+    "A stored opt-out or opt-in is restored on process restart, and changing the Settings switch persists and applies the new preference immediately through a typed, non-racy command.",
+    "Debug, preview and automated test environments force collection off regardless of the stored user preference; absence or failure of optional Firebase configuration never blocks startup.",
+    "The coordinator exposes deterministic Active, Off by choice, Disabled in this build and Unavailable states for later Settings integration.",
+    "The production bridge exposes only collection enablement and reviewed technical non-fatals; no Analytics, user IDs, breadcrumbs, user content or external project/secret is introduced.",
+    "Platform tests cover release default-on, restart restore, live disable/re-enable, non-release disabling, unavailable/failed drivers and the minimal iOS bridge contract. Specialist does not run Gradle."
+  ]
+}

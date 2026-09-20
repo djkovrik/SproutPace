@@ -1,0 +1,29 @@
+{
+  "acceptanceCriteria": [
+    "PlatformContracts.kt resolves JvmInline for Android and Kotlin/Native common compilation.",
+    "PhysicalReminderId and every platform service contract remain behaviorally unchanged.",
+    "Root reruns cross-platform platform tests and compilation."
+  ],
+  "allowedFiles": [
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt"
+  ],
+  "assignmentId": "platform-jvminline-import-correction-1",
+  "contractInputs": [
+    "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Restore Kotlin/Native compilation of the common PhysicalReminderId value class by adding the correct portable JvmInline annotation import without changing platform contracts or reminder behavior.",
+  "obligationIds": [
+    "QG-008"
+  ],
+  "requestedCommands": [
+    ":shared:platform:allTests",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:platform:compileAndroidMain",
+    ":shared:platform:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "action":"package","packageId":"managed-observation-photo-lifecycle","owner":"vibe-developer","acceptanceScenarioIds":["AC-074"],"qualityGateIds":[],
+  "fileBoundaries":["shared/domain/**","shared/platform/**","shared/data/**","shared/component/**","shared/compose/**","androidApp/**","iosApp/**","docs/architecture/PLATFORM-SERVICES.md"],
+  "integrationGoal":"Import a system-picked observation photo into canonical app-private storage, persist only stable managed identity, restore and render it after process restart, support explicit Keep/Replace/Remove with atomic compensation and orphan cleanup, and preserve Android/iOS no-broad-permission parity.",
+  "nextAction":"Implement and verify AC-074 on platform-test, file-integration-test and component-test, then refresh the final UI goldens."
+}

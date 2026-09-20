@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "paparazzi-windows-safe-v1",
+  "patterns": ["shared/compose/build.gradle.kts", ".github/workflows/AnalysisAndTest.yml", "gradle/**", "*.gradle.kts"],
+  "dependencyRationale": "Generated preview test identity, Paparazzi task names, KSP ordering and CI verification are owned by Compose build wiring.",
+  "fallbackReason": "Plugin-created task behavior and generated source inputs are transitive Gradle inputs, so version-catalog and root build metadata are included read-only in the fingerprint.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Paparazzi 2.0.0-alpha02; ComposablePreviewScanner 0.0.3; Windows and GitHub Actions hosts"
+}

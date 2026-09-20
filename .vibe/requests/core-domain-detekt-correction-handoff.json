@@ -1,0 +1,80 @@
+{
+  "action": "handoff",
+  "assignmentId": "core-domain-detekt-correction-1",
+  "handoffId": "HANDOFF-core-domain-detekt-correction-1",
+  "productionEvidence": [
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+      "symbol": "object SproutPaceCatalog",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+      "symbol": "domainResult",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+      "symbol": "object BatchLifecycleEngine",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+      "symbol": "object CapacityEngine",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+      "symbol": "object PlannerEngine",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+      "symbol": "object SchedulingEngine",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+      "symbol": "object SnapshotEngine",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+      "symbol": "MAX_PERCENTAGE",
+      "surface": "static-analysis-remediation",
+      "coverage": [{"obligationId": "QG-004", "surface": "static-analysis-remediation"}]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "verify no wildcard imports, over-140 lines, generic catches, or raw percentage bound in the eight assigned files; compare all eight files with assignment baseline"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", "detekt"],
+      "tasks": ["detekt"],
+      "coveredObligations": [{"obligationId": "QG-004", "surfaces": ["static-analysis"]}]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:domain:allTests"],
+      "tasks": [":shared:domain:allTests"],
+      "coveredObligations": [{"obligationId": "QG-004", "surfaces": ["regression-test"]}]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:domain:testAndroidHostTest"],
+      "tasks": [":shared:domain:testAndroidHostTest"],
+      "coveredObligations": [{"obligationId": "QG-004", "surfaces": ["regression-test"]}]
+    }
+  ],
+  "blockers": []
+}

@@ -1,0 +1,75 @@
+{
+  "acceptanceCriteria": [
+    "No production root path requires EmptyScreenDataManager for core catalog/setup/batch/plan/Today flows.",
+    "All sixteen ScreenId watches return deterministic snapshots derived from real database/catalog/settings state, with stable IDs and TextKey values rather than localized strings.",
+    "Core save/update/lifecycle/planning/Today/close commands validate typed arguments, call the appropriate pure engine and persist atomically through LocalDatabase.",
+    "Unknown operations or malformed arguments fail explicitly and never mutate state.",
+    "Duplicate command deduplication is compatible with Store-level exactly-once behavior and persisted entities keep immutable recipe/tray/zone snapshots.",
+    "Integration tests exercise every listed core AC through ProductionScreenDataManager and an in-memory SQLDelight database.",
+    "No UI, platform, ledger or external service changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/data/build.gradle.kts",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "assignmentId": "production-screen-data-manager-core",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/domain.md",
+    "spec/data.md",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/domain/src/commonMain/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Implement the production data-backed ScreenDataManager for core AppSpec flows using LocalDatabase, SproutPaceCatalog and pure domain engines. Watches must expose stable IDs/resource keys and real persisted state; commands must validate typed arguments, preserve immutable snapshots/history, be idempotent by contract, and return one flat Result boundary. Add in-memory SQLDelight integration evidence for every listed core AC surface.",
+  "obligationIds": [
+    "AC-010",
+    "AC-011",
+    "AC-012",
+    "AC-014",
+    "AC-020",
+    "AC-021",
+    "AC-026",
+    "AC-027",
+    "AC-030",
+    "AC-031",
+    "AC-032",
+    "AC-035",
+    "AC-036",
+    "AC-037",
+    "AC-038",
+    "AC-039",
+    "AC-040",
+    "AC-050",
+    "AC-051",
+    "AC-052",
+    "AC-054",
+    "AC-055",
+    "AC-057",
+    "AC-060",
+    "AC-062",
+    "AC-066",
+    "AC-068",
+    "AC-080",
+    "AC-081",
+    "AC-085",
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:allTests",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/store-decision-and-shape.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/executor-reducer-result.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

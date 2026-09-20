@@ -1,0 +1,7 @@
+{
+  "action":"handoff","assignmentId":"reminder-settings-production-reachability","handoffId":"HANDOFF-reminder-settings-production-reachability-20260920",
+  "productionEvidence":[{"path":"shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt","symbol":"ReminderAwareScreenDataManager","surface":"integration-test","coverage":[{"obligationId":"AC-067","surface":"integration-test"}]}],
+  "testEvidence":[{"path":"shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt","testName":"typedSnapshotsPreserveAuthoredValuesAndPrepareAcceptedCommands","surface":"integration-test","coverage":[{"obligationId":"AC-067","surface":"integration-test"}]}],
+  "nonGradleChecks":[{"argv":["git","diff","--check","--","shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt","shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt"],"exitCode":0}],
+  "requestedCommands":[{"argv":["gradlew.bat",":shared:data:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64"],"tasks":[":shared:data:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64"],"coveredObligations":[{"obligationId":"AC-067","surfaces":["integration-test"]}]}],"blockers":[]
+}

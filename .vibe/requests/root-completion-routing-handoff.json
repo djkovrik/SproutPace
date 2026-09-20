@@ -1,0 +1,94 @@
+{
+  "action": "handoff",
+  "assignmentId": "root-completion-routing",
+  "handoffId": "HANDOFF-root-completion-routing-20260920",
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-d73958df-3118-4033-a3c4-1f7612b8006a.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "symbol": "private fun onCompleted",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-030", "surface": "component-test"},
+        {"obligationId": "AC-080", "surface": "component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "ac030_createAndUpdateEditorCompletionsPopExactlyOneEntry",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-030", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "ac080_closeAndObservationCompletionsReturnToExistingBatchDetail",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-080", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "destructiveBatchAndRecipeCompletionReplaceHistoryWithSafeCollections",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-030", "surface": "component-test"},
+        {"obligationId": "AC-080", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "completionRoutingRequiresTheExactActiveScreenAndOperationPair",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-030", "surface": "component-test"},
+        {"obligationId": "AC-080", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "lateCompletionFromAnInactiveConfigCannotNavigateTheCurrentEditor",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-030", "surface": "component-test"},
+        {"obligationId": "AC-080", "surface": "component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "rg",
+        "-n",
+        "onCompleted|ac030_createAndUpdate|ac080_closeAndObservation|completionRoutingRequires|lateCompletionFrom",
+        "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+        "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        {"obligationId": "AC-030", "surfaces": ["component-test"]},
+        {"obligationId": "AC-080", "surfaces": ["component-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

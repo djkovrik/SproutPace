@@ -1,0 +1,13 @@
+{
+  "action": "package",
+  "packageId": "canonical-advertising-privacy-test-wiring",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-103"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/monetization/build.gradle.kts",
+    "shared/monetization/src/androidHostTest/**"
+  ],
+  "integrationGoal": "Own the Android-host ProductSettings adapter restart test and its matching Multiplatform Settings runtime/test classpath without changing production behavior.",
+  "nextAction": "Verify the isolated test wiring, ingest it, then regenerate the canonical runtime handoff with only its originally assigned evidence."
+}

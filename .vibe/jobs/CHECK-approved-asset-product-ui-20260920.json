@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.6508589999866672,
+  "events": [
+    {
+      "at": "2026-09-20T15:11:14.815779Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T15:11:17.392818Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-80db1d07-e29b-4e25-8c62-ca6aa5b7af68.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T15:11:57.468613Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-80db1d07-e29b-4e25-8c62-ca6aa5b7af68.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T15:11:57.554010Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-80db1d07-e29b-4e25-8c62-ca6aa5b7af68.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T15:11:57.604281Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T15:11:58.291850Z",
+      "durationSeconds": 0.6508589999866672,
+      "receiptRef": ".vibe/receipts/RECEIPT-80db1d07-e29b-4e25-8c62-ca6aa5b7af68.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-approved-asset-product-ui-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-80db1d07-e29b-4e25-8c62-ca6aa5b7af68.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-80db1d07-e29b-4e25-8c62-ca6aa5b7af68.json",
+  "stage": "bound"
+}

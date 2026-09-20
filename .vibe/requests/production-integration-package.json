@@ -1,0 +1,18 @@
+{
+  "action": "package",
+  "packageId": "production-integration",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-074", "AC-082", "AC-095"],
+  "qualityGateIds": ["QG-012"],
+  "fileBoundaries": [
+    "shared/root/**",
+    "shared/compose/**",
+    "shared/platform/**",
+    "androidApp/**",
+    "iosApp/**",
+    "docs/architecture/**",
+    "docs/configuration/**"
+  ],
+  "integrationGoal": "Connect the verified data, root and platform contracts in the retained Android/iOS production graph so document/photo flows, future reminder reconciliation, erase-to-first-run navigation, lifecycle, localization and safe external configuration work end to end.",
+  "nextAction": "Add the root reset seam, platform adapters and production graph wiring, then verify Android/iOS compilation and integration tests without creating external projects."
+}

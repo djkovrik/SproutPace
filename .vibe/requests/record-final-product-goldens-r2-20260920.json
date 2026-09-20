@@ -1,0 +1,6 @@
+{
+  "action":"check","jobId":"CHECK-record-final-product-goldens-r2-20260920","runner":"gradle","kind":"targeted","inputScopeId":"approved-asset-product-ui-v1",
+  "tasks":[":shared:compose:cleanRecordPaparazzi","--no-configuration-cache"],
+  "coveredObligations":[{"obligationId":"AC-001","surfaces":["ui-golden"]},{"obligationId":"AC-120","surfaces":["ui-golden"]},{"obligationId":"QG-006","surfaces":["asset-visual"]},{"obligationId":"QG-007","surfaces":["preview-compile","screenshot-test","accessibility-test"]}],
+  "timeoutSeconds":1800,"toolchainIdentity":"Gradle wrapper 9.5.1; JDK 21; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Paparazzi 2.0.0-alpha05"
+}

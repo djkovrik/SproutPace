@@ -1,0 +1,31 @@
+{
+  "acceptanceCriteria": [
+    "Generated Android host test sources do not expose an internal type from a public declaration.",
+    "PreviewCase remains as narrow as practical and the 42-case matrix is unchanged.",
+    "No production UI or product behavior changes.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt"
+  ],
+  "assignmentId": "visual-quality-generated-visibility-correction-1",
+  "contractInputs": [
+    "shared/compose/build/generated/source/paparazziPreviews/androidHostTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/generated/GeneratedComposablePreviewPaparazziTest.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Make the generated Paparazzi test visibility compatible with PreviewCase without widening unrelated APIs or changing test behavior.",
+  "obligationIds": [
+    "QG-007"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:recordPaparazziDebug",
+    ":shared:compose:verifyPaparazziDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

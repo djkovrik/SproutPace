@@ -1,0 +1,703 @@
+{
+  "action": "handoff",
+  "assignmentId": "production-screen-data-manager-core",
+  "handoffId": "HANDOFF-production-screen-data-manager-core-20260920-r1",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-production-screen-data-manager-core-20260920.json"
+  ],
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-010",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-011",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-012",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-014",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-020",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-021",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-026",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-027",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-030",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-032",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-035",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-036",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-037",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-038",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-039",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-040",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-050",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-051",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-052",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-054",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-055",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-057",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-060",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-062",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-066",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-080",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-081",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "surface": "component-test",
+      "symbol": "class ProductionScreenDataManager"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-010",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-011",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-012",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-014",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-021",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-030",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-032",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-036",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-050",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-051",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-052",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-080",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-081",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-085",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "surface": "database-integration-test",
+      "symbol": "fun applyCommand"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-068",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "surface": "domain-test",
+      "symbol": "fun updateAllCivilActions"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-020",
+          "surface": "catalog-contract-test"
+        },
+        {
+          "obligationId": "AC-027",
+          "surface": "catalog-contract-test"
+        },
+        {
+          "obligationId": "QG-011",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "surface": "catalog-contract-test",
+      "symbol": "fun catalogSnapshot"
+    }
+  ],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-010",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-011",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-012",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-014",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "database-integration-test",
+      "testName": "ac010Ac011Ac012Ac014_setupPersistsAndExposesCapacityConsequences"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-020",
+          "surface": "catalog-contract-test"
+        },
+        {
+          "obligationId": "AC-027",
+          "surface": "catalog-contract-test"
+        },
+        {
+          "obligationId": "QG-011",
+          "surface": "catalog-contract-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "catalog-contract-test",
+      "testName": "ac020Ac021Ac026Ac027_catalogRecipeAndEditableRecommendationRemainOffline"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-021",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "database-integration-test",
+      "testName": "ac020Ac021Ac026Ac027_catalogRecipeAndEditableRecommendationRemainOffline"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-026",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "component-test",
+      "testName": "ac020Ac021Ac026Ac027_catalogRecipeAndEditableRecommendationRemainOffline"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-030",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-031",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-032",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "database-integration-test",
+      "testName": "ac030Ac031Ac032_batchSnapshotSurvivesSourceChangesAndCorrection"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-035",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-036",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-037",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-038",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-039",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-040",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "component-test",
+      "testName": "ac035Ac036Ac037Ac038Ac039Ac040_lifecycleUsesEnginesAndStableEvents"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-050",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-051",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-052",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "database-integration-test",
+      "testName": "ac050Ac051Ac052Ac054Ac055Ac057_plansArePersistedAndSuggestionsStayUnconfirmed"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-054",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-055",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-057",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "component-test",
+      "testName": "ac050Ac051Ac052Ac054Ac055Ac057_plansArePersistedAndSuggestionsStayUnconfirmed"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-060",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-062",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-066",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "component-test",
+      "testName": "ac060Ac062Ac066Ac068_todaySnoozeAndTimeZoneChangesPreserveStableActions"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-068",
+          "surface": "domain-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "domain-test",
+      "testName": "ac060Ac062Ac066Ac068_todaySnoozeAndTimeZoneChangesPreserveStableActions"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-080",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-081",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-085",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "surface": "database-integration-test",
+      "testName": "ac080Ac081Ac085_terminalOutcomesReleaseCapacityAndStoreOnlyActualMass"
+    }
+  ],
+  "nonGradleChecks": [],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests",
+        ":shared:data:compileAndroidMain",
+        ":shared:data:compileKotlinIosSimulatorArm64",
+        "--no-configuration-cache"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-010",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-011",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-012",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-014",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-020",
+          "surfaces": [
+            "component-test",
+            "catalog-contract-test"
+          ]
+        },
+        {
+          "obligationId": "AC-021",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-026",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-027",
+          "surfaces": [
+            "component-test",
+            "catalog-contract-test"
+          ]
+        },
+        {
+          "obligationId": "AC-030",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-031",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-032",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-035",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-036",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-037",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-038",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-039",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-040",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-050",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-051",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-052",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-054",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-055",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-057",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-060",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-062",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-066",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-068",
+          "surfaces": [
+            "domain-test"
+          ]
+        },
+        {
+          "obligationId": "AC-080",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-081",
+          "surfaces": [
+            "component-test",
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-085",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "QG-011",
+          "surfaces": [
+            "catalog-contract-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests",
+        ":shared:data:compileAndroidMain",
+        ":shared:data:compileKotlinIosSimulatorArm64"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The production root currently depends on :shared:component but not :shared:data, so ProductionScreenDataManager is not yet constructed or injected into ScreenComponentDependencies.",
+      "nextAction": "Create a root-owned assembly assignment that adds the data dependency, platform driver/settings factories and injects this manager instead of EmptyScreenDataManager.",
+      "obligationIds": [
+        "AC-010",
+        "AC-020",
+        "AC-030",
+        "AC-050",
+        "AC-060",
+        "AC-080"
+      ]
+    },
+    {
+      "description": "AC-032 full correction semantics and AC-039 reminder rebuilding cannot be completed from current contracts: no domain operation recalculates dependent future actions after arbitrary correction, and undoLastTransition requires a prebuilt action list but no schedule builder contract exists. This manager preserves past events and supports typed mass/place correction, while passing the existing action set to undo.",
+      "nextAction": "Add a domain-owned deterministic action rebuilding/correction engine, then extend the manager in a separately registered assignment.",
+      "obligationIds": [
+        "AC-032",
+        "AC-039"
+      ]
+    },
+    {
+      "description": "HarvestPlan does not persist a first-harvest anchor or generated suggestion state. Suggestions are therefore deterministically recomputed from the injected current local date, but a user-selected anchor cannot be restored under the present model.",
+      "nextAction": "Decide in Domain whether the anchor is plan data; if yes, add it with a persistence migration before claiming full restart semantics.",
+      "obligationIds": [
+        "AC-051",
+        "AC-052",
+        "AC-057"
+      ]
+    },
+    {
+      "description": "The data manager stores stable soak/civil action identities and preserves elapsed targets across time-zone changes, but native reminder scheduling/reconciliation is outside the allowed data files and still needs the required platform-test surfaces.",
+      "nextAction": "Wire persisted actions to the platform ReminderManager and run platform tests in the platform/root integration assignment.",
+      "obligationIds": [
+        "AC-066",
+        "AC-068"
+      ]
+    },
+    {
+      "description": "Destructive ACs outside this assignment cannot safely mutate through the current root confirmation because ConfirmationComponent only dismisses and ScreenStore emits Completed after manager execution; post-hoc confirmation would violate confirmation-before-mutation.",
+      "nextAction": "Introduce a non-mutating request-confirmation output and a distinct confirmed command before implementing delete/reset operations.",
+      "obligationIds": []
+    },
+    {
+      "description": "Gradle execution is reserved for the orchestrator, so compilation and the new real-schema tests remain requested rather than claimed.",
+      "nextAction": "Run the requested Android host tests plus Android/iOS compilation and inspect any failures before ingestion.",
+      "obligationIds": [
+        "QG-011"
+      ]
+    }
+  ]
+}

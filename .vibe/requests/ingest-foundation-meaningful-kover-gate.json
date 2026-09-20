@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-foundation-meaningful-kover-gate-20260920.json",
+  "inspectionNote": "Inspected the root-only Kover correction. It instruments component/root from the QG-001-owned root script, aggregates all six logic modules, enforces a validated 60 percent default plus per-package presence, and runs six host suites before report/verify. Bound receipt bb3de024 proves all suites and both coverage tasks; merged LINE coverage is 3287/3799 (86.52 percent), with every included namespace nonzero."
+}

@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.792392099974677,
+  "events": [
+    {
+      "at": "2026-09-20T11:30:18.135772Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T11:30:21.901637Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T11:30:26.043172Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T11:30:26.234555Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T11:30:26.261943Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T11:30:27.095952Z",
+      "durationSeconds": 0.792392099974677,
+      "receiptRef": ".vibe/receipts/RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-paparazzi-windows-safe-r1-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.json",
+  "stage": "bound"
+}

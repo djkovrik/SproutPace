@@ -1,0 +1,1295 @@
+{
+  "acceptanceScenarioIds": [
+    "AC-013",
+    "AC-015",
+    "AC-016",
+    "AC-017",
+    "AC-022",
+    "AC-023",
+    "AC-024",
+    "AC-025",
+    "AC-033",
+    "AC-034",
+    "AC-053",
+    "AC-056",
+    "AC-070",
+    "AC-071",
+    "AC-072",
+    "AC-073",
+    "AC-074",
+    "AC-082",
+    "AC-083",
+    "AC-084",
+    "AC-090",
+    "AC-091",
+    "AC-092",
+    "AC-093",
+    "AC-094",
+    "AC-095"
+  ],
+  "allowedFiles": [
+    "shared/data/src/androidHostTest/**",
+    "shared/data/src/androidMain/**",
+    "shared/data/src/commonMain/**",
+    "shared/data/src/commonTest/**",
+    "shared/data/src/iosMain/**"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/b3a508ae877ad357e54b4735b39eb1c041caa249946ca859a877ae8a546e80ac.json",
+    "sha256": "d028ec6dbe06e5c3a21bd93d5b12d188bec9ef23385508e7e3769500587e24c8"
+  },
+  "assignmentId": "local-data-production-completion",
+  "blockers": [
+    {
+      "description": "Root production composition still must inject LocalWorkspaceRepository, LocalBackupService, ArchiveDocumentPort, ReminderReconciliationPort and consume LocalDataIntegrationEvent.FirstRunNavigationRequired; data exposes typed ports/output but cannot change root/component/platform files in this assignment.",
+      "nextAction": "Wire the data ports in the root composition and map FirstRunNavigationRequired to a confirmed navigation reset after successful erase.",
+      "obligationIds": [
+        "AC-034",
+        "AC-073",
+        "AC-090",
+        "AC-091",
+        "AC-092",
+        "AC-094",
+        "AC-095"
+      ]
+    },
+    {
+      "description": "The registered required-read paths sqldelight-schema-queries-transactions.md and migrations-backup-restore.md do not exist in the installed persistence skill; all actual replacement references linked from SKILL.md were read instead.",
+      "nextAction": "Correct the assignment template to reference the installed SQLDelight, drivers/transactions, snapshot, settings and persistence-testing documents."
+    }
+  ],
+  "changedFiles": [
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "completedAt": "2026-09-20T09:40:16.650690Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-local-data-production-completion-20260920",
+  "inputFingerprint": {
+    "appSpec": {
+      "algorithm": "sha256",
+      "digest": "bb5cfb5e652c875f39f637ed7dfc70c428ff09dfe1da703ac67e030b6ed00212",
+      "files": [
+        {
+          "path": "app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ]
+    },
+    "digest": "e46b76b5da271b21dc33eb3ddcd4bef56ad9aeb753a8eb085e3e2bd29aa5fbf8",
+    "inputs": {
+      "algorithm": "sha256",
+      "digest": "d6c651635072eb2cc6cbd491a68fec87de9a5d2bed02673b43f1bdb7975ef87e",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "0465a5664d122b3327993286cc537442ae4cff112217ef490abd2ffe241eb08b"
+        },
+        {
+          "path": "androidApp/build.gradle.kts",
+          "sha256": "e9d902ada19426dd690398abcd68c1cece9e5645cf33ce182a05c5866fef3c36"
+        },
+        {
+          "path": "build.gradle.kts",
+          "sha256": "c6309354356fef4a4576a1e124f575c3a8db26d5a96311ab7c13c97bc1ba2904"
+        },
+        {
+          "path": "docs/configuration/advertising/privacy-policy.example.properties",
+          "sha256": "e91479e6bf625525e93a438cfe5eec8a72264b8e0146a28b6bec80c0779f780e"
+        },
+        {
+          "path": "gradle.properties",
+          "sha256": "dbfde9f711d844a893e1373fe13648fc0f0f361dcb595d02bade50ffca30e8bd"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "sha256": "58148cf342f0410c793e24a8c99ccbaa25687e834033bcfdecb18cf6ec3b94c4"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "sha256": "423cb469ccc0ecc31f0e4e1c309976198ccb734cdcbb7029d4bda0f18f57e8d9"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "sha256": "c89af773425cae016d64791247cb548f0d1209225917209ff5728df4298ccd43"
+        },
+        {
+          "path": "gradlew",
+          "sha256": "7d514e3330fe299d9eee52acbfec77115704d76b73cabac6de915695153129a4"
+        },
+        {
+          "path": "gradlew.bat",
+          "sha256": "9ca26d733ada3a45f27b2151288f54e75c9f95b287d1f82ef942ec5cc2d4f006"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "sha256": "f2b6e028ff12dda4d44613914c4de232931f32c5963454a6cacaeb377e1acbf0"
+        },
+        {
+          "path": "shared/component/build.gradle.kts",
+          "sha256": "5ec9e9bdd6c1d0644d1e1dc21c44b6d0dac0da700a621a465c47dd6393d9647f"
+        },
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "sha256": "0dd9e9a52aff859dd9a1a47aee3fee4adf11c732abd80d4c3182afe950b09c44"
+        },
+        {
+          "path": "shared/data/README.md",
+          "sha256": "839a98b6be5dbf0ab7fb10ef5aa30a3fe8c002faf6a49fb30fafbf5ae5ef1e3b"
+        },
+        {
+          "path": "shared/data/build.gradle.kts",
+          "sha256": "246c7a3353fbe1ecd34d996271a0972376d8cfa98b92ce22af339625b45e0590"
+        },
+        {
+          "path": "shared/data/scripts/validate-data.ps1",
+          "sha256": "1ca695c5e76636964d3ae78b59f6be349c9b80865f17b7ec993c2fa14142481b"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+          "sha256": "bcdd28a622f13b93451bdf8081c4e773dd02da959bbf126f2d97da738d31a5c2"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+          "sha256": "9830ab232dc796a998f2b5392c5c646b0df2ebf05b2672dd8b644171ecb1da0b"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+          "sha256": "0667a96a6270a0c71c6aefd5a767bd5f185d3d23e2ba319c67a306a11a9428eb"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+          "sha256": "6bb12e4e085f8ed59e5bea2520bfa9fcf6713a2a380b82ba9957804a79cc59d3"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+          "sha256": "4f777e244b1124ad3ac167a54b29e43114fdbbf8f20e24c9c6e00df8cacc0970"
+        },
+        {
+          "path": "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+          "sha256": "6d41228c6b2a0e72b167f3caeda1356b8d63076304b7c50ece49340a6c59617f"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+          "sha256": "90ca382c0ec21c078b6ddb19759fa1d6dc2c49f6c414db985c95cdf0e34e7791"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+          "sha256": "7d2f453d567e1224629529c1797fb5ad958a26a9815dc29f2703229d98cc0505"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt",
+          "sha256": "d23669c811061d5db78ab568b6856071a8e10949f03f3bb0db3b4466e56eadc3"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+          "sha256": "97ecaed605dd134653742119a3c92cd183c3479a2e19bbcc7c5daa72fa40af0d"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PrivateFileStore.kt",
+          "sha256": "2016a6e11b7c5457658424229b06371cb920b7d7246afb1eaafbaa8342ddc743"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+          "sha256": "1c1896be89d7002c4ed51131d6e2a95fa0e450c036a29ef9991567d2420a4488"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt",
+          "sha256": "68c56a3f80ca335a18311f2442c45c36ec6962525d9a1065f93ad9a33837c818"
+        },
+        {
+          "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+          "sha256": "81f536e559d9c57090db541167ce4246a650a28156cbe2759c1c17a658097404"
+        },
+        {
+          "path": "shared/data/src/commonMain/sqldelight/databases/1.db",
+          "sha256": "0c34a8911d4a683f41e2da604aea137cc9b2754c3be07e8282adcc71193da633"
+        },
+        {
+          "path": "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+          "sha256": "592736afc441a5548c895b6fcbc8ae7aabbcad88f68aba1e9c8b6653c174cd63"
+        },
+        {
+          "path": "shared/domain/build.gradle.kts",
+          "sha256": "c954f12aa2aedf6492f9870ff72ecbd92958da904367eccd5140ebd71b878fbd"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+          "sha256": "96ff0956fb815ac0e1ebe8669d1d7363f943c36225bee9adeef80f3c10c04593"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+          "sha256": "1fa70a9852bc1596fed07d8e8313351a16452bcd8fe76b0befffebe9e0312ddf"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ActionScheduleEngine.kt",
+          "sha256": "abcb41f4399442d67c9381ca918c049432b2bee405ac33bddafb5e9da539dc71"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+          "sha256": "de6be00d5f1c5e5cdfba38c99ccef8852a1d7d8186eea589c64ba519983cc96e"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+          "sha256": "3b475e520207e8b177b55dbcc748b61435a3fe70c2c41fce5d81e0a2f6fcdbcf"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+          "sha256": "a9a344b71df735949f42849b1fb501a57379187e8aa8f2e9ae86a57d57cc8cf1"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+          "sha256": "402884bbe41025ba7cbad1e20f75e4fd0fb310f3f3c8a9ab64bdbb2d1b02b444"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+          "sha256": "8d1af50d1a10fc045a79fc1fb777bb3ed02a2c7e79728519cd07b934e7834359"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+          "sha256": "b4d99db82af10d4fd21ab19b54cbc4729e27ef153ef9781c6d40ff335cbd32f6"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+          "sha256": "9f550281444a44f8088d6c85443382e342dcf0b54c21455616113def3476f11d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+          "sha256": "976bedac78664da311a948afdc3c660a6782f1ddb3a12c7fed9558a53493392d"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/ObservationAndBackup.kt",
+          "sha256": "68632e20c9bba7753104037e95a9f62b2b185402af69756ae65f4f3803b13d83"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+          "sha256": "a0db7aecede165dd446d80e555a505e188cb4219cb3e2c84677f950896c07120"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+          "sha256": "4f5ae174aae3b54fb40c8b7f6340c0d78d920f2bdbfca702845960f8fc0ae7db"
+        },
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+          "sha256": "b7c49a34f7d14d644e4c1a9403eeae9427ea5fb2d1ff608870857dc4b542fc38"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ActionScheduleEngineTest.kt",
+          "sha256": "28939e1d4387af562d59a0aeb81696cad6e8dc06caa2b955e6910f6bc96b2a49"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt",
+          "sha256": "9d6f77552ad2c34903dc680829555133bf0e95f84ce242e30bde27404f8e60d2"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt",
+          "sha256": "849b41387205f258b7d0be5b45293c20c1853069a803777ccca279e7237c5957"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+          "sha256": "9621a88f5248e60261fb09e94069299b51b3a60ea9ef86a411318f7761cf067c"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt",
+          "sha256": "5c0e6396a0019a163f6b525dcdab0708b4f3457c19e57ccceec7f8dea5b14082"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+          "sha256": "6c4051547c78aeef5a75fadb2cc0758557aac44244c7479c896c9b30cf1dad5c"
+        },
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt",
+          "sha256": "3d4094f2343ee1d1a83c07701cd52ee14a64453df1dfd9a615afd2c9bf337205"
+        },
+        {
+          "path": "shared/monetization/build.gradle.kts",
+          "sha256": "bfab0f687b4633e1768dcab967c756e76abe82c6b468fb904c00766cb49d2e8d"
+        },
+        {
+          "path": "shared/platform/build.gradle.kts",
+          "sha256": "98972ee422ce55fa286b709b815e5135f0c4fea31f69493418a72450d073db96"
+        },
+        {
+          "path": "shared/root/build.gradle.kts",
+          "sha256": "05d09902cf778a6340e4ec262ca6d68c0ac4d46ccf2e953c1de7558a1b527e51"
+        },
+        {
+          "path": "spec/app-spec.json",
+          "sha256": "728347528a697f0659f113258c855dabe1a982213eaa0b35fe31d9fab4e2f3a1"
+        },
+        {
+          "path": "spec/data.md",
+          "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+        },
+        {
+          "path": "spec/design.md",
+          "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        },
+        {
+          "path": "spec/domain.md",
+          "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+        },
+        {
+          "path": "spec/flows/FLOW-001.md",
+          "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+        },
+        {
+          "path": "spec/flows/FLOW-002.md",
+          "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+        },
+        {
+          "path": "spec/flows/FLOW-003.md",
+          "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+        },
+        {
+          "path": "spec/flows/FLOW-004.md",
+          "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+        },
+        {
+          "path": "spec/flows/FLOW-005.md",
+          "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+        },
+        {
+          "path": "spec/flows/FLOW-006.md",
+          "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        },
+        {
+          "path": "spec/flows/FLOW-007.md",
+          "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+        },
+        {
+          "path": "spec/flows/FLOW-008.md",
+          "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+        },
+        {
+          "path": "spec/flows/FLOW-009.md",
+          "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+        },
+        {
+          "path": "spec/flows/FLOW-010.md",
+          "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+        },
+        {
+          "path": "spec/flows/FLOW-011.md",
+          "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+        },
+        {
+          "path": "spec/flows/FLOW-012.md",
+          "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+        },
+        {
+          "path": "spec/product.md",
+          "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        },
+        {
+          "path": "spec/quality.md",
+          "sha256": "5f136e9929833b19c9882f68a9196b945209feacb62ad3e35f766a3ac19ff6b7"
+        },
+        {
+          "path": "spec/screens/SCREEN-001.md",
+          "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+        },
+        {
+          "path": "spec/screens/SCREEN-002.md",
+          "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+        },
+        {
+          "path": "spec/screens/SCREEN-003.md",
+          "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+        },
+        {
+          "path": "spec/screens/SCREEN-004.md",
+          "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+        },
+        {
+          "path": "spec/screens/SCREEN-005.md",
+          "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+        },
+        {
+          "path": "spec/screens/SCREEN-006.md",
+          "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+        },
+        {
+          "path": "spec/screens/SCREEN-007.md",
+          "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+        },
+        {
+          "path": "spec/screens/SCREEN-008.md",
+          "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+        },
+        {
+          "path": "spec/screens/SCREEN-009.md",
+          "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+        },
+        {
+          "path": "spec/screens/SCREEN-010.md",
+          "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+        },
+        {
+          "path": "spec/screens/SCREEN-011.md",
+          "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+        },
+        {
+          "path": "spec/screens/SCREEN-012.md",
+          "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+        },
+        {
+          "path": "spec/screens/SCREEN-013.md",
+          "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+        },
+        {
+          "path": "spec/screens/SCREEN-014.md",
+          "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+        },
+        {
+          "path": "spec/screens/SCREEN-015.md",
+          "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+        },
+        {
+          "path": "spec/screens/SCREEN-016.md",
+          "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+        }
+      ],
+      "patterns": [
+        "**/*.gradle",
+        "**/*.gradle.kts",
+        "**/*.properties",
+        "**/.gitignore",
+        "**/libs.versions.toml",
+        "*.gradle",
+        "*.gradle.kts",
+        "*.properties",
+        ".gitignore",
+        "build-logic/**",
+        "buildSrc/**",
+        "gradle/**",
+        "gradlew",
+        "gradlew.bat",
+        "shared/data/**",
+        "shared/domain/**",
+        "spec/**"
+      ]
+    },
+    "instructions": [],
+    "scopeDigest": "d461eab641b870fad1c92dea63db40be692f73bcf9c1c8381e1a6afbfa7086ad"
+  },
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/data/src"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "rg",
+        "LocalBackupArchive|HarvestPlan|PlannerEngine.suggestions|undoLastTransition",
+        "shared/data/src"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-persistence-engineer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-013",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-015",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-016",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-017",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-022",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-023",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-024",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-025",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-033",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-034",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-053",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-056",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-070",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-071",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-072",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-073",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-082",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-083",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-084",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "surface": "database-integration-test",
+      "symbol": "class ProductionScreenDataManager"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-090",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "AC-091",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "AC-092",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "AC-093",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "QG-012",
+          "surface": "snapshot-roundtrip-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "surface": "snapshot-roundtrip-test",
+      "symbol": "class LocalBackupService"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-034",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-073",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-074",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-090",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-094",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-095",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "QG-012",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "surface": "file-integration-test",
+      "symbol": "class LocalWorkspaceRepository"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-095",
+          "surface": "integration-test"
+        }
+      ],
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "surface": "integration-test",
+      "symbol": "LocalDataIntegrationEvent.FirstRunNavigationRequired"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-012"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-013",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-015",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-016",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-017",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-022",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-023",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-024",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-025",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-033",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-034",
+          "surfaces": [
+            "database-integration-test",
+            "file-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-053",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-056",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-070",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-071",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-072",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-073",
+          "surfaces": [
+            "database-integration-test",
+            "file-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-074",
+          "surfaces": [
+            "file-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-082",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-083",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-084",
+          "surfaces": [
+            "database-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-090",
+          "surfaces": [
+            "snapshot-roundtrip-test",
+            "file-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-091",
+          "surfaces": [
+            "snapshot-roundtrip-test"
+          ]
+        },
+        {
+          "obligationId": "AC-092",
+          "surfaces": [
+            "snapshot-roundtrip-test"
+          ]
+        },
+        {
+          "obligationId": "AC-093",
+          "surfaces": [
+            "snapshot-roundtrip-test"
+          ]
+        },
+        {
+          "obligationId": "AC-094",
+          "surfaces": [
+            "file-integration-test"
+          ]
+        },
+        {
+          "obligationId": "AC-095",
+          "surfaces": [
+            "integration-test",
+            "file-integration-test"
+          ]
+        },
+        {
+          "obligationId": "QG-012",
+          "surfaces": [
+            "snapshot-roundtrip-test",
+            "file-integration-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:verifySqlDelightMigration"
+      ],
+      "coveredObligations": [],
+      "tasks": [
+        ":shared:data:verifySqlDelightMigration"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:compileAndroidMain"
+      ],
+      "coveredObligations": [],
+      "tasks": [
+        ":shared:data:compileAndroidMain"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [],
+      "tasks": [
+        ":shared:data:compileKotlinIosSimulatorArm64"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "6cfb5f0a33206d7db146c2fb455b96dc83b70b7fde9c15f2dd74eb33f80d7be5",
+    "files": [
+      {
+        "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+        "sha256": "bcdd28a622f13b93451bdf8081c4e773dd02da959bbf126f2d97da738d31a5c2"
+      },
+      {
+        "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+        "sha256": "9830ab232dc796a998f2b5392c5c646b0df2ebf05b2672dd8b644171ecb1da0b"
+      },
+      {
+        "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+        "sha256": "0667a96a6270a0c71c6aefd5a767bd5f185d3d23e2ba319c67a306a11a9428eb"
+      },
+      {
+        "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+        "sha256": "6bb12e4e085f8ed59e5bea2520bfa9fcf6713a2a380b82ba9957804a79cc59d3"
+      },
+      {
+        "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+        "sha256": "4f777e244b1124ad3ac167a54b29e43114fdbbf8f20e24c9c6e00df8cacc0970"
+      },
+      {
+        "path": "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+        "sha256": "6d41228c6b2a0e72b167f3caeda1356b8d63076304b7c50ece49340a6c59617f"
+      },
+      {
+        "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+        "sha256": "90ca382c0ec21c078b6ddb19759fa1d6dc2c49f6c414db985c95cdf0e34e7791"
+      },
+      {
+        "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+        "sha256": "7d2f453d567e1224629529c1797fb5ad958a26a9815dc29f2703229d98cc0505"
+      },
+      {
+        "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt",
+        "sha256": "d23669c811061d5db78ab568b6856071a8e10949f03f3bb0db3b4466e56eadc3"
+      },
+      {
+        "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+        "sha256": "97ecaed605dd134653742119a3c92cd183c3479a2e19bbcc7c5daa72fa40af0d"
+      },
+      {
+        "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PrivateFileStore.kt",
+        "sha256": "2016a6e11b7c5457658424229b06371cb920b7d7246afb1eaafbaa8342ddc743"
+      },
+      {
+        "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+        "sha256": "1c1896be89d7002c4ed51131d6e2a95fa0e450c036a29ef9991567d2420a4488"
+      },
+      {
+        "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt",
+        "sha256": "68c56a3f80ca335a18311f2442c45c36ec6962525d9a1065f93ad9a33837c818"
+      },
+      {
+        "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+        "sha256": "81f536e559d9c57090db541167ce4246a650a28156cbe2759c1c17a658097404"
+      },
+      {
+        "path": "shared/data/src/commonMain/sqldelight/databases/1.db",
+        "sha256": "0c34a8911d4a683f41e2da604aea137cc9b2754c3be07e8282adcc71193da633"
+      },
+      {
+        "path": "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+        "sha256": "592736afc441a5548c895b6fcbc8ae7aabbcad88f68aba1e9c8b6653c174cd63"
+      }
+    ],
+    "patterns": [
+      "shared/data/src/androidHostTest/**",
+      "shared/data/src/androidMain/**",
+      "shared/data/src/commonMain/**",
+      "shared/data/src/commonTest/**",
+      "shared/data/src/iosMain/**"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T09:18:00.998070Z",
+  "supersedes": [],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-013",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-015",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-016",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-017",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-022",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-023",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-024",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-025",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-033",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-034",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-053",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-056",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-070",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-071",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-072",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-073",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-082",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-083",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-084",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "database-integration-test",
+      "testName": "LocalDataAcceptanceTest"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-015",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-022",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-071",
+          "surface": "database-integration-test"
+        },
+        {
+          "obligationId": "AC-084",
+          "surface": "database-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "surface": "database-integration-test",
+      "testName": "assignedHistoryAndPrivatePhotosSurviveActualCloseAndReopen"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-074",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "surface": "file-integration-test",
+      "testName": "assignedHistoryAndPrivatePhotosSurviveActualCloseAndReopen"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-090",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "AC-091",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "QG-012",
+          "surface": "snapshot-roundtrip-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "snapshot-roundtrip-test",
+      "testName": "ac090_ac091_archiveBytesAreDeterministicVersionedPortableAndDocumentBacked"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-092",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "AC-093",
+          "surface": "snapshot-roundtrip-test"
+        },
+        {
+          "obligationId": "QG-012",
+          "surface": "snapshot-roundtrip-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "snapshot-roundtrip-test",
+      "testName": "ac092_ac093_restoreCompensatesEveryStoreWhenReminderReconciliationFails"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-034",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-073",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-074",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-090",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-094",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "AC-095",
+          "surface": "file-integration-test"
+        },
+        {
+          "obligationId": "QG-012",
+          "surface": "file-integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "file-integration-test",
+      "testName": "qg012_completeArchiveRoundTripsEveryRelationshipStageScheduleUtf8AndMultiplePhotos"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-095",
+          "surface": "integration-test"
+        }
+      ],
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "surface": "integration-test",
+      "testName": "ac095_eraseCancelsRemindersAndEmitsTypedRootOutputOnlyAfterCommit"
+    }
+  ]
+}

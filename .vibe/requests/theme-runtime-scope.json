@@ -1,0 +1,17 @@
+{
+  "action": "scope",
+  "scopeId": "theme-runtime-v1",
+  "patterns": [
+    "shared/data/**",
+    "shared/component/**",
+    "shared/root/**",
+    "shared/compose/**",
+    "androidApp/**",
+    "iosApp/**",
+    "spec/flows/FLOW-012.md",
+    "spec/screens/SCREEN-002.md",
+    "spec/screens/SCREEN-011.md"
+  ],
+  "dependencyRationale": "The persisted ThemePreference flows through the production data manager, retained graph, root Compose adapter, Material theme and Android/iOS system-surface callbacks; all are transitive AC-121 inputs.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform Material3; Android API 23-37; iOS arm64/simulator arm64"
+}

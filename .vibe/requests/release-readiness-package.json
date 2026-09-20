@@ -1,0 +1,15 @@
+{
+  "action": "package",
+  "packageId": "release-readiness",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-002", "QG-009"],
+  "fileBoundaries": [
+    "androidApp/**",
+    ".github/**",
+    "docs/CI-RELEASE-SETUP.md",
+    "docs/configuration/**"
+  ],
+  "integrationGoal": "Produce Android release-candidate build evidence without external secrets while keeping publication and production advertising fail-closed behind explicit external configuration validation.",
+  "nextAction": "Separate release-candidate assembly from publication configuration validation and verify debug/release/bundle tasks without signing or publishing."
+}

@@ -1,0 +1,41 @@
+{
+  "acceptanceCriteria": [
+    "Production startup synchronously applies the stored crash preference; later changes disable and re-enable collection without restart, while debug/preview/test remain disabled.",
+    "Settings exposes requested and effective Active, User off, Build disabled or Unavailable crash state without user data diagnostics.",
+    "Android uses the optional Firebase-free driver and iOS uses the minimal native bridge without requiring external secrets.",
+    "EN/RU resources and nonvisual tests cover runtime state. Specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "docs/configuration/firebase-and-ads.md",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionSettingsRuntimeTest.kt",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt"
+  ],
+  "assignmentId": "production-settings-runtime-integration",
+  "contractInputs": [
+    "spec/flows/FLOW-011.md",
+    "spec/screens/SCREEN-011.md",
+    ".vibe/handoffs/HANDOFF-crash-reporting-runtime-contract-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Apply persisted crash collection preferences live on Android/iOS with visible effective state, and propagate persisted SYSTEM/LIGHT/DARK through retained Compose UI with immediate updates.",
+  "obligationIds": [
+    "AC-110",
+    "AC-111",
+    "AC-112"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

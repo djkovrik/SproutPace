@@ -1,0 +1,48 @@
+{
+  "algorithm": "sha256",
+  "digest": "b7eb4fa0f84caae2628c7d3fd468b73eacc3b04962e3962070a080eada90337c",
+  "files": [
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+      "sha256": "2412a44d9540541cf52341a8e64f6c576f1eec205f131206725ef775d3651fb5"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+      "sha256": "a2bab407516bc4b492af76a6670718201624afe276fe2d6dff094cef10460441"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+      "sha256": "1d325c7498f8580294baa3073ec5f5ed400ccb16079d60c070bfe81c2c280c45"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+      "sha256": "0f7930b7bfebe723dbc9d44306d745e356dc7496bce7d29cf8c7b2128ae89720"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+      "sha256": "7f379ede6c62a7cd8f6dbaaf7207b6ce8844c0469c480272d69ab6049a77dc32"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+      "sha256": "72d47943211f88312c72e05ab043d4f49d68b9374663d0d653968c7bf7e0907c"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+      "sha256": "b710a48bbefa89a54986f03c9dd572a8252dfee304c421e4d554174771e0cecd"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt",
+      "sha256": "49f3a097503b4f1416d87cf1be14d7c87dcf603e2f3e86198f3eb0b7b098147f"
+    }
+  ],
+  "patterns": [
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/CapacityEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SnapshotEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Identity.kt"
+  ]
+}

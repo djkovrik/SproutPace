@@ -1,0 +1,14 @@
+{
+  "action": "package",
+  "packageId": "trays-history-category-correction",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-084"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/component/**",
+    "shared/data/**",
+    "shared/compose/**"
+  ],
+  "integrationGoal": "Trays exposes explicit Planned, Active, and History peer categories, filters persisted batches deterministically, retains selection within the active category, and gives downstream advertising an unambiguous History-only eligibility contract.",
+  "nextAction": "Add the minimal typed tray-category state across snapshot, component/UI adapter, production rendering, and deterministic tests without changing batch persistence semantics."
+}

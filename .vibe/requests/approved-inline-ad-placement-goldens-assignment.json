@@ -1,0 +1,16 @@
+{
+  "action":"assign",
+  "reconcileDrift":"Behavioral AC-100/101 evidence is ingested and dependency-ready; required ui-golden baselines have now been freshly recorded and verified but need a separate visual-testing handoff before the package can close.",
+  "assignmentId":"approved-inline-ad-placement-goldens",
+  "packageId":"approved-inline-ad-placement",
+  "owner":"vibe-visual-testing",
+  "acceptanceScenarioIds":["AC-100","AC-101"],
+  "qualityGateIds":[],
+  "allowedFiles":["shared/compose/src/androidUnitTest/snapshots/**","shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/**","shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt"],
+  "inputScopeId":"approved-inline-ad-placement-v1",
+  "goal":"Inspect and hand off the freshly recorded and independently verified deterministic UI goldens for approved inline-ad and fully collapsed unavailable/prohibited states, without changing product behavior.",
+  "contractInputs":["spec/app-spec.json","spec/screens/SCREEN-003.md","spec/screens/SCREEN-007.md","shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",".vibe/receipts/RECEIPT-3e912e01-140b-4131-b798-dfb18e365992.json",".vibe/receipts/RECEIPT-ecce75e1-5818-40ea-a2ed-123840c3c99c.json"],
+  "requiredReads":["C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"],
+  "requestedCommands":[":shared:compose:cleanRecordPaparazzi",":shared:compose:verifyPaparazzi",":shared:compose:testAndroidHostTest"],
+  "acceptanceCriteria":["AC-100 and AC-101 ui-golden surfaces reference stable deterministic preview IDs and the fresh record plus verify receipts.","Inspect representative Catalog and Trays/ad-disabled states for clipping, overlap, reserved blank space, placeholder UI or unlabeled advertising chrome.","Do not run Gradle, edit production UI or perform the final post-delivery Lazyweb review; report any concrete visual blocker to root."]
+}

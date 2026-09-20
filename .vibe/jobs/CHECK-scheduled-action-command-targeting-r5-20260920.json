@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.8185279000317678,
+  "events": [
+    {
+      "at": "2026-09-20T12:22:24.282112Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T12:22:26.705513Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-33ea3deb-86a3-4697-918d-0e265e944c2e.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T12:22:29.881515Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-33ea3deb-86a3-4697-918d-0e265e944c2e.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T12:22:30.281369Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-33ea3deb-86a3-4697-918d-0e265e944c2e.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T12:22:30.352371Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T12:22:31.203636Z",
+      "durationSeconds": 0.8185279000317678,
+      "receiptRef": ".vibe/receipts/RECEIPT-33ea3deb-86a3-4697-918d-0e265e944c2e.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-scheduled-action-command-targeting-r5-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-33ea3deb-86a3-4697-918d-0e265e944c2e.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-33ea3deb-86a3-4697-918d-0e265e944c2e.json",
+  "stage": "bound"
+}

@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "at": "2026-09-20T15:28:22.149749Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T15:28:24.429723Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-9c530163-62bc-4d95-8453-22ff56b62748.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T15:28:45.048051Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-9c530163-62bc-4d95-8453-22ff56b62748.json",
+      "stage": "receipt-written"
+    }
+  ],
+  "jobId": "CHECK-diagnose-detekt-screencontent-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-9c530163-62bc-4d95-8453-22ff56b62748.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-9c530163-62bc-4d95-8453-22ff56b62748.json",
+  "stage": "receipt-written"
+}

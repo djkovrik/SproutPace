@@ -1,0 +1,40 @@
+{
+  "action": "handoff",
+  "assignmentId": "privacy-yandex-ads",
+  "handoffId": "HANDOFF-privacy-yandex-ads-20260920-r1",
+  "supersedes": [".vibe/handoffs/HANDOFF-privacy-yandex-ads-20260920.json"],
+  "productionEvidence": [
+    {"path":"androidApp/build.gradle.kts","symbol":"validateYandexReleaseAdUnit","surface":"ad-config-check","coverage":[{"obligationId":"QG-009","surface":"ad-config-check"}]},
+    {"path":"shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt","symbol":"class AndroidYandexAdsDriver","surface":"ad-device-check","coverage":[{"obligationId":"QG-009","surface":"ad-device-check"}]},
+    {"path":"docs/configuration/ADVERTISING-PRIVACY.md","symbol":"Remaining external actions","surface":"privacy-policy-check","coverage":[{"obligationId":"QG-010","surface":"privacy-policy-check"}]},
+    {"path":"docs/configuration/advertising/STORE-DISCLOSURE-CHECKLIST.md","symbol":"Store disclosure checklist","surface":"store-disclosure-check","coverage":[{"obligationId":"QG-010","surface":"store-disclosure-check"}]}
+  ],
+  "testEvidence": [
+    {"path":"shared/monetization/scripts/validate-advertising.ps1","testName":"ad-config-check","surface":"ad-config-check","coverage":[{"obligationId":"QG-009","surface":"ad-config-check"}]}
+  ],
+  "nonGradleChecks": [
+    {"argv":["powershell","-File","shared/monetization/scripts/validate-advertising.ps1"],"exitCode":0,"startedAt":"2026-09-20T07:56:40.2244525Z","completedAt":"2026-09-20T07:56:40.4515082Z"}
+  ],
+  "requestedCommands": [
+    {
+      "argv":["gradlew.bat",":shared:monetization:allTests",":shared:monetization:testAndroidHostTest",":shared:monetization:compileAndroidMain",":shared:monetization:compileKotlinIosArm64",":shared:monetization:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+      "tasks":[":shared:monetization:allTests",":shared:monetization:testAndroidHostTest",":shared:monetization:compileAndroidMain",":shared:monetization:compileKotlinIosArm64",":shared:monetization:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+      "coveredObligations":[{"obligationId":"QG-009","surfaces":["ad-config-check"]}]
+    },
+    {
+      "argv":["./gradlew",":shared:monetization:allTests",":shared:monetization:testAndroidHostTest",":shared:monetization:compileAndroidMain",":shared:monetization:compileKotlinIosArm64",":shared:monetization:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+      "tasks":[":shared:monetization:allTests",":shared:monetization:testAndroidHostTest",":shared:monetization:compileAndroidMain",":shared:monetization:compileKotlinIosArm64",":shared:monetization:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+      "coveredObligations":[{"obligationId":"QG-009","surfaces":["ad-config-check"]}]
+    },
+    {
+      "argv":["adb","logcat","-v","brief","*:S YandexAds"],
+      "tasks":["Android Yandex SDK and inline-banner device verification"],
+      "coveredObligations":[{"obligationId":"QG-009","surfaces":["ad-device-check"]}]
+    }
+  ],
+  "blockers": [
+    {"description":"The registered assignment forbids this specialist from running Gradle, and :shared:monetization is not yet included by root settings.gradle.kts.","obligationIds":["QG-009"],"nextAction":"Add include(\":shared:monetization\") in the root build-wiring assignment, then run the requested Windows and macOS commands through the serialized Gradle runner."},
+    {"description":"No real Android Yandex project/ad unit or physical-device integration receipt exists in repository scope.","obligationIds":["QG-009"],"nextAction":"Supply the Android inline ad unit externally and execute the documented protected/non-protected/failure/withdrawal device matrix with YandexAds integration logs."},
+    {"description":"The final privacy-policy URL, legally approved EN/RU consent/disclosure copy, and completed store disclosures are external and remain intentionally blank/unverified.","obligationIds":["QG-010"],"nextAction":"Populate the external templates with approved values, wire localized resources downstream, and record privacy-policy-check and store-disclosure-check receipts before distribution."}
+  ]
+}

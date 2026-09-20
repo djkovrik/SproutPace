@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-platform-jvminline-import-correction-1-20260920.json",
+  "inspectionNote": "Inspected the single allowed platform contract change and immutable handoff. Only kotlin.jvm.JvmInline is imported so the existing PhysicalReminderId value class resolves in common Android and Kotlin/Native compilation; no platform service, reminder or Firebase semantics changed, and no false QG-008 coverage is claimed."
+}

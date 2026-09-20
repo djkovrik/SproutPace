@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-typed-screen-semantic-contract-correction.json",
+  "inspectionNote": "Inspected the strict semantic registry correction: stable-ID selectors and enum fields now use exact choice kinds/IDs, field/option/action keys are specific and fail on unknown mappings, and FIRST_RUN declares complete light-zone/tray/plan arguments including conditional metric dimensions. Bound receipt fedd644c-4c59-4938-9889-01fa3806cdb3 confirms component host/allTests, Android/iOS component compilation and the full data host suite. The separately registered FIRST_RUN data correction will consume this now-stable contract."
+}

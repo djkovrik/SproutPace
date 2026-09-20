@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.7124133000033908,
+  "events": [
+    {
+      "at": "2026-09-20T16:36:41.148443Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T16:36:42.205575Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-c972c2c9-b022-41a6-a66c-b6967bc0310f.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T16:36:51.770177Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-c972c2c9-b022-41a6-a66c-b6967bc0310f.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T16:36:51.916788Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-c972c2c9-b022-41a6-a66c-b6967bc0310f.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T16:36:52.051317Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T16:36:52.804150Z",
+      "durationSeconds": 0.7124133000033908,
+      "receiptRef": ".vibe/receipts/RECEIPT-c972c2c9-b022-41a6-a66c-b6967bc0310f.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-final-paparazzi-integration-gate-20260920-r2",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-c972c2c9-b022-41a6-a66c-b6967bc0310f.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-c972c2c9-b022-41a6-a66c-b6967bc0310f.json",
+  "stage": "bound"
+}

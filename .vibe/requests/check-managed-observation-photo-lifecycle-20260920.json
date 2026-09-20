@@ -1,0 +1,6 @@
+{
+  "action":"check","jobId":"CHECK-managed-observation-photo-lifecycle-20260920","runner":"gradle","kind":"targeted","inputScopeId":"managed-observation-photo-lifecycle-v1",
+  "tasks":[":shared:platform:allTests",":shared:data:testAndroidHostTest",":shared:component:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:platform:compileKotlinIosSimulatorArm64",":shared:data:compileKotlinIosSimulatorArm64",":shared:component:compileKotlinIosSimulatorArm64",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+  "coveredObligations":[{"obligationId":"AC-074","surfaces":["platform-test","file-integration-test","component-test"]}],
+  "timeoutSeconds":1800,"toolchainIdentity":"Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; iOS Simulator Kotlin/Native target"
+}

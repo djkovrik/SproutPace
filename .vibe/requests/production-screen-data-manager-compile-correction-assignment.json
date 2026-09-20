@@ -1,0 +1,33 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Root-owned Android and iOS compilation of the ingested production data manager failed at ProductionScreenDataManager.kt:202 because a BatchState event target is passed to stageKey, which requires GrowStage. The intended resource mapping already exists as batchStateKey.",
+  "assignmentId": "production-screen-data-manager-compile-correction-1",
+  "packageId": "core-domain",
+  "owner": "vibe-mvikotlin-engineer",
+  "acceptanceScenarioIds": ["AC-035", "AC-039"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "inputScopeId": "core-domain-v1",
+  "goal": "Correct the event timeline resource-key mapping to accept BatchState, without changing product behavior or any other production/data contract.",
+  "contractInputs": [
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "Batch transition event targets use the BatchState resource-key mapper.",
+    "No behavior, persistence schema, tests, UI, platform code or product scope changes.",
+    "Root reruns Android host tests and Android/iOS compilation.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ]
+}

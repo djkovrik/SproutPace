@@ -1,0 +1,36 @@
+{
+  "acceptanceCriteria": [
+    "settings.gradle.kts includes :shared:monetization exactly once.",
+    "Every existing project include and repository configuration is preserved.",
+    "No other file is edited and Gradle remains root-owned.",
+    "Handoff uses only QG-001 repository-check and QG-003 ios-build exact surfaces."
+  ],
+  "allowedFiles": [
+    "settings.gradle.kts"
+  ],
+  "assignmentId": "monetization-build-wiring",
+  "contractInputs": [
+    "shared/monetization/build.gradle.kts",
+    "androidApp/build.gradle.kts",
+    ".vibe/handoffs/HANDOFF-privacy-yandex-ads-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Include the ingested shared:monetization KMP module exactly once without changing any other repository build configuration.",
+  "obligationIds": [
+    "QG-001",
+    "QG-003"
+  ],
+  "requestedCommands": [
+    ":shared:monetization:allTests",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:monetization:compileAndroidMain",
+    ":shared:monetization:compileKotlinIosArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/module-boundaries.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

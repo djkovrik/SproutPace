@@ -1,0 +1,168 @@
+{
+  "action": "handoff",
+  "assignmentId": "functional-model-driven-product-ui",
+  "handoffId": "HANDOFF-functional-model-driven-product-ui-20260920-r2",
+  "supersedes": [".vibe/handoffs/HANDOFF-functional-model-driven-product-ui-20260920-r1.json"],
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-330b6319-2e6e-412c-9acc-9c2ff1fc5ff7.json",
+    ".vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "symbol": "data class SproutPaceUiState",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"component-test"},
+        {"obligationId":"AC-120","surface":"component-test"},
+        {"obligationId":"AC-121","surface":"component-test"},
+        {"obligationId":"AC-123","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "symbol": "class RootActionRouter",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"component-test"},
+        {"obligationId":"AC-123","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "symbol": "fun ScreenContent",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-120","surface":"component-test"},
+        {"obligationId":"AC-121","surface":"component-test"},
+        {"obligationId":"AC-123","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "symbol": "fun FieldControl",
+      "surface": "accessibility-test",
+      "coverage": [{"obligationId":"AC-122","surface":"accessibility-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+      "symbol": "fun strictTextResource",
+      "surface": "localization-contract-test",
+      "coverage": [{"obligationId":"AC-120","surface":"localization-contract-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "symbol": "val requiredUiPreviewCases",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"ui-golden"},
+        {"obligationId":"AC-120","surface":"ui-golden"},
+        {"obligationId":"AC-121","surface":"ui-golden"},
+        {"obligationId":"AC-122","surface":"ui-golden"}
+      ]
+    },
+    {
+      "path": "docs/design-review/product-ui-material-contract.md",
+      "symbol": "The root-owned post-golden Lazyweb review",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId":"AC-120","surface":"ui-golden"},
+        {"obligationId":"AC-121","surface":"ui-golden"},
+        {"obligationId":"AC-122","surface":"ui-golden"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "executableMappingCoversAllSixteenScreenIdsAndRealModelFields",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"component-test"},
+        {"obligationId":"AC-123","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "retrySelectionEditingChoiceLayoutAndSubmitRouteTypedActionsToActiveComponent",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-001","surface":"component-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt",
+      "testName": "everyTypedScreenContractKeyResolvesStrictly",
+      "surface": "localization-contract-test",
+      "coverage": [{"obligationId":"AC-120","surface":"localization-contract-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "matrixCoversEveryScreenContentAndRussianLargeText",
+      "surface": "ui-golden",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"ui-golden"},
+        {"obligationId":"AC-120","surface":"ui-golden"},
+        {"obligationId":"AC-121","surface":"ui-golden"},
+        {"obligationId":"AC-122","surface":"ui-golden"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "testName": "taskScreensProgressivelyDiscloseContextualCommandInputs",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-121","surface":"component-test"},
+        {"obligationId":"AC-123","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+      "testName": "interactiveRendererDeclaresMinimumTargetsRolesErrorsAndStateDescriptions",
+      "surface": "accessibility-test",
+      "coverage": [
+        {"obligationId":"AC-122","surface":"accessibility-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+      "testName": "englishAndRussianProductionResourcesHaveIdenticalKeys",
+      "surface": "localization-contract-test",
+      "coverage": [{"obligationId":"AC-120","surface":"localization-contract-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "parse EN/RU strings.xml; verify 423 unique keys per locale and exact parity"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["rg", "-n", "Preview item|preview-value|sample_[a-z0-9_]+", "shared/compose/src/commonMain/kotlin"],
+      "exitCode": 1
+    },
+    {
+      "argv": ["git", "diff", "--check", "--", "docs/design-review/product-ui-material-contract.md", "shared/compose/src"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["rg", "-n", "hierarch|progressive|primary|destructive|facts|action", ".lazyweb/design-improve/sproutpace-core-2026-09-20/report.html", "https://www.lazyweb.com/agentic-search/b33bd652-1b1a-4279-ae3c-07cb61358220"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "Validate completed exitCode=0 receipts .vibe/receipts/RECEIPT-330b6319-2e6e-412c-9acc-9c2ff1fc5ff7.json (clean Paparazzi record) and .vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json (independent Paparazzi verify plus 82 Android host tests)"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:compose:compileAndroidMain", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:compose:testAndroidHostTest", ":androidApp:assembleDebug"],
+      "tasks": [":shared:compose:compileAndroidMain", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:compose:testAndroidHostTest", ":androidApp:assembleDebug"],
+      "coveredObligations": [
+        {"obligationId":"AC-001","surfaces":["component-test"]},
+        {"obligationId":"AC-120","surfaces":["localization-contract-test","component-test"]},
+        {"obligationId":"AC-121","surfaces":["component-test"]},
+        {"obligationId":"AC-122","surfaces":["accessibility-test"]},
+        {"obligationId":"AC-123","surfaces":["component-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

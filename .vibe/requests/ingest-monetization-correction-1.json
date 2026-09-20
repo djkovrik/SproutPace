@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-privacy-yandex-ads-correction-1-20260920-r1.json",
+  "inspectionNote": "Inspected the three corrected monetization files and the superseding immutable handoff. Private-store read/write failures now fail closed, consent mutation returns false instead of escaping, and SDK consent/disposal failures are isolated; the regression test covers unavailable private storage. The correction remains limited to conditional QG-009/QG-010 ad/privacy surfaces and introduces no acceptance evidence or external project creation."
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-canonical-advertising-privacy-runtime-20260920-v2.json",
+  "inspectionNote": "Inspected the superseding canonical privacy handoff after separating Android-host test wiring. It contains only originally assigned production/data/common/ios evidence, preserves LocalDataAcceptance backup/restore/erase coverage, and is backed by green receipt da693321 for monetization, data and Compose tests, Android debug assembly, and iOS simulator Kotlin/Native compilation. AC-102/104 component reachability remains reserved for the next UI package."
+}

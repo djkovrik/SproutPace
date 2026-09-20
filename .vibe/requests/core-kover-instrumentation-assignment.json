@@ -1,0 +1,35 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Root coverage currently cannot consume component/root execution data because those two KMP modules do not apply the pinned Kover plugin.",
+  "assignmentId": "core-kover-instrumentation",
+  "packageId": "core-domain",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/component/build.gradle.kts",
+    "shared/root/build.gradle.kts"
+  ],
+  "inputScopeId": "core-kover-instrumentation-v1",
+  "goal": "Apply the already pinned Kover plugin to component and root so the foundation QG-001 aggregator can measure those production packages; do not change dependencies, source, tests, thresholds, CI, or evidence claims.",
+  "contractInputs": [
+    "gradle/libs.versions.toml",
+    "build.gradle.kts",
+    "shared/domain/build.gradle.kts",
+    "shared/data/build.gradle.kts",
+    "shared/platform/build.gradle.kts",
+    "shared/monetization/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [":shared:component:testAndroidHostTest", ":shared:root:testAndroidHostTest"],
+  "acceptanceCriteria": [
+    "Both component and root apply alias(libs.plugins.kover) using the existing catalog version.",
+    "No production/test source, dependency, configuration, threshold, CI, ledger or unrelated build file changes.",
+    "Specialist does not run Gradle; root validates tasks and later aggregation."
+  ]
+}

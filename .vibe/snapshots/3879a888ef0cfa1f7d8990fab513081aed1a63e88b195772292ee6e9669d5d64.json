@@ -1,0 +1,28 @@
+{
+  "algorithm": "sha256",
+  "digest": "68cc6b093b026eb9f42434918366c445b482edd6b0306b56a6c0d301ad772845",
+  "files": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "sha256": "696053d775bc3a4f1e5d0e3d293f7deb23921ed4a27c9dc3a82d9050a8b3ee0f"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+      "sha256": "0c3f2e9dba841483d16926b3fd927dcd2f7f4c4e428d5cc36e4808c50cacef7a"
+    },
+    {
+      "path": "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+      "sha256": "fb27d3ee16712c319d135c2db37bd0932dcb57b36152c227acec6a2b6605f1a6"
+    },
+    {
+      "path": "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+      "sha256": "6745d59ceecd1471c2e05d386ffa3b52ae099c8068c02ceb597803876f2861a2"
+    }
+  ],
+  "patterns": [
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+    "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+    "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt"
+  ]
+}

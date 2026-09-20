@@ -1,0 +1,22 @@
+{
+  "action": "scope",
+  "scopeId": "backup-destination-platform-contract-v1",
+  "patterns": [
+    "spec/app-spec.json",
+    "spec/flows/FLOW-009.md",
+    "spec/screens/SCREEN-014.md",
+    "shared/component/src/commonMain/**",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/iosMain/**",
+    "shared/compose/src/commonTest/**",
+    "shared/platform/src/androidMain/**",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/data/src/androidHostTest/**"
+  ],
+  "dependencyRationale": "Backup restore consumes an existing system-picked archive, while backup/CSV export require a newly created destination. The typed router, native hosts, Android document port, iOS bridge and round-trip tests form one end-to-end contract.",
+  "fallbackReason": "Platform-specific picker result types are generated across Kotlin/Swift boundaries, so both host implementations and the shared routing seam must be fingerprinted together.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android Activity Results; UIKit UIDocumentPickerViewController"
+}

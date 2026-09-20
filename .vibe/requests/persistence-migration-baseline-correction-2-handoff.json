@@ -1,0 +1,50 @@
+{
+  "action": "handoff",
+  "assignmentId": "persistence-migration-baseline-correction-2",
+  "handoffId": "HANDOFF-persistence-migration-baseline-correction-2-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/data/build.gradle.kts",
+      "symbol": "schemaOutputDirectory",
+      "surface": "catalog-contract-test",
+      "coverage": [{"obligationId":"QG-011","surface":"catalog-contract-test"}]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell.exe","-NoProfile","-File","shared/data/scripts/validate-data.ps1"],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:48:14Z",
+      "completedAt": "2026-09-20T07:48:15Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat",":shared:data:verifyCommonMainSproutPaceDatabaseMigration"],
+      "tasks": [":shared:data:verifyCommonMainSproutPaceDatabaseMigration"],
+      "coveredObligations": []
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:verifySqlDelightMigration"],
+      "tasks": [":shared:data:verifySqlDelightMigration"],
+      "coveredObligations": []
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:allTests"],
+      "tasks": [":shared:data:allTests"],
+      "coveredObligations": [{"obligationId":"QG-011","surfaces":["catalog-contract-test"]}]
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:testAndroidHostTest"],
+      "tasks": [":shared:data:testAndroidHostTest"],
+      "coveredObligations": [{"obligationId":"QG-011","surfaces":["catalog-contract-test"]}]
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:compileAndroidMain"],
+      "tasks": [":shared:data:compileAndroidMain"],
+      "coveredObligations": []
+    }
+  ],
+  "blockers": []
+}

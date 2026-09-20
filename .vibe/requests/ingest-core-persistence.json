@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-core-persistence-foundation-20260920-r3.json",
+  "inspectionNote": "Inspected all persistence handoff attempts, final 15-file assignment delta, SQL schema/migration, manager adapters, Settings/file/backup/CSV/erasure code, Android/iOS/test drivers, deterministic integration tests, and static validator output. r3 includes the Gradle-discovered androidHostTest accessor fix and normalizes every evidence row to exact matching declared coverage surfaces; AC-055 is intentionally unbound. No external secrets or translated built-in catalog text are stored."
+}

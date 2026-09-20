@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "at": "2026-09-20T11:14:21.723463Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T11:14:23.618222Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-20c9388f-7a61-4d2c-9671-9f850c10c272.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T11:14:29.162000Z",
+      "exitCode": 1,
+      "stage": "runner-failed"
+    }
+  ],
+  "exitCode": 1,
+  "jobId": "CHECK-record-functional-ui-goldens-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-20c9388f-7a61-4d2c-9671-9f850c10c272.log",
+  "stage": "runner-failed"
+}

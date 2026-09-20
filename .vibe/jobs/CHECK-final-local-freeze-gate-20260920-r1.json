@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "at": "2026-09-20T15:25:54.488236Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T15:25:56.375649Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-9bddd0f9-3229-4bb1-b6bc-cb28864575a5.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T15:27:09.390202Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-9bddd0f9-3229-4bb1-b6bc-cb28864575a5.json",
+      "stage": "receipt-written"
+    }
+  ],
+  "jobId": "CHECK-final-local-freeze-gate-20260920-r1",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-9bddd0f9-3229-4bb1-b6bc-cb28864575a5.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-9bddd0f9-3229-4bb1-b6bc-cb28864575a5.json",
+  "stage": "receipt-written"
+}

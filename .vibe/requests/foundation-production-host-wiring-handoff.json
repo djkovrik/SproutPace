@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-foundation-production-host-wiring-20260920.json",
+  "inspectionNote": "Inspected Android single-graph ownership, Activity rendering/lifecycle forwarding, corrected system-bar polarity, Swift retained graph and guarded scene lifecycle, MainViewController(graph:) bridge, UIKit status-bar container, and preservation of Firebase/picker/notification/iOS-ad-safe-disable code. Accepted the documented macOS/Xcode and root Gradle verification follow-ups."
+}

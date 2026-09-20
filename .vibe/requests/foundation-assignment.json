@@ -1,0 +1,58 @@
+{
+  "action": "assign",
+  "assignmentId": "foundation-architect",
+  "packageId": "foundation",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-001", "QG-002", "QG-003", "QG-007"],
+  "allowedFiles": [
+    "settings.gradle.kts",
+    "build.gradle.kts",
+    "gradle/**",
+    "build-logic/**",
+    "detekt/**",
+    ".github/**",
+    "androidApp/**",
+    "iosApp/**",
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/androidUnitTest/**",
+    "docs/architecture/**",
+    "docs/CI-RELEASE-SETUP.md"
+  ],
+  "inputScopeId": "foundation-v1",
+  "goal": "Establish the KMP Android/iOS production foundation, explicit composition/root lifecycle, strict Detekt and filtered Kover wiring, Compose preview scanner/Paparazzi smoke host, and Android/iOS build-test CI contracts. Do not implement feature business rules or final UI.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/product.md",
+    "spec/design.md",
+    "spec/quality.md",
+    "docs/assignments/REQUEST-SPROUTPACE-APPSPEC-2.md"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/module-boundaries.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/manual-di.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/platform-entrypoints-and-release.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/localization-contract.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/ci-release-contract.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileKotlinAndroid",
+    ":androidApp:assembleDebug",
+    ":shared:compose:iosSimulatorArm64Test",
+    "strict Detekt task",
+    "filtered Kover report/verify",
+    "preview scanner and Paparazzi smoke record/verify"
+  ],
+  "acceptanceCriteria": [
+    "Production root is constructed once and reachable from Android and iOS entry points.",
+    "Android and iOS build contracts are explicit; no secrets are embedded.",
+    "Detekt is strict and Kover is filtered with baseline measurement deferred until meaningful tests exist.",
+    "ComposablePreviewScanner/Paparazzi is hosted in the Compose resource module and can discover a nonzero production preview.",
+    "CI includes Linux Android/quality checks and macOS iOS compilation/test/linkage checks.",
+    "All changes stay within the registered assignment boundary and an immutable Protocol 2.0 handoff is produced."
+  ]
+}

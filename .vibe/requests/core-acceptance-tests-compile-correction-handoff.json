@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-core-acceptance-tests-compile-correction-1-20260920.json",
+  "inspectionNote": "Inspected the import-only Essenty lifecycle correction and explicit ScreenOutput expected-list type. All scenario assertions and the production integration blocker remain unchanged."
+}

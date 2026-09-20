@@ -1,0 +1,58 @@
+{
+  "acceptanceCriteria": [
+    "Permission checking and requesting are separate typed transitions, with denied/unavailable states and resume recheck after Settings.",
+    "Daily summary is registered only when work exists; soak reminders are best effort; stable physical IDs prevent duplicates and support cancellation/reconciliation after restart, update and time-zone changes.",
+    "Android and iOS system pickers import user-selected photos/documents into app-owned storage without broad media permissions; restore completion triggers future-reminder reconciliation.",
+    "Crash reporting is release-default-on, persisted externally through the existing settings contract, runtime-toggleable, disabled in debug/tests/previews, and never includes Analytics, breadcrumbs, user identifiers or user-authored content.",
+    "Native user-visible copy is complete in default English and Russian resources; code contains no translated literals or app-specific locale override.",
+    "Ordinary Android/iOS builds require no Firebase secret; templates and exact setup instructions cover google-services.json, GoogleService-Info.plist, symbols and controlled test-crash verification without creating projects.",
+    "All shared behavior has deterministic common/host tests; macOS-only execution remains an explicit requested gate, not a claimed local result."
+  ],
+  "allowedFiles": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "androidApp/src/main/res/values*/**",
+    "docs/architecture/PLATFORM-SERVICES.md",
+    "docs/configuration/**",
+    "iosApp/iosApp.xcodeproj/project.pbxproj",
+    "iosApp/iosApp/Info.plist",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/platform/**"
+  ],
+  "assignmentId": "native-platform-services",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/domain.md",
+    "spec/data.md",
+    "spec/quality.md",
+    "spec/flows/FLOW-006.md",
+    "spec/flows/FLOW-007.md",
+    "spec/flows/FLOW-009.md",
+    "spec/flows/FLOW-011.md",
+    "docs/assignments/REQUEST-SPROUTPACE-APPSPEC-2.md"
+  ],
+  "forkTurns": "none",
+  "goal": "Implement shared platform-neutral contracts, deterministic fakes, Android and iOS adapters/factories for notification permission and best-effort daily/soak reminders, restart/time-zone/replacement restore reconciliation, system photo/document picking and safe imported-file ownership, lifecycle resume rechecks, complete-erasure coordination, and privacy-minimized Crashlytics enable/disable behavior. Configure native resources/manifests/plists and safe Firebase templates/docs while keeping ordinary builds green with no secrets. Do not implement UI, persistence internals, ads, product analytics, or business schedule calculations.",
+  "obligationIds": [
+    "QG-008"
+  ],
+  "requestedCommands": [
+    ":shared:platform:allTests",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:platform:compileAndroidMain",
+    ":androidApp:assembleDebug",
+    ":shared:platform:compileKotlinIosArm64",
+    ":shared:platform:compileKotlinIosSimulatorArm64",
+    "macOS xcodebuild with CODE_SIGNING_ALLOWED=NO"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/references/expect-actual-and-factories.md",
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/references/permissions-lifecycle.md",
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/references/notifications-alarms-background.md",
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/references/platform-configuration.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/localization-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

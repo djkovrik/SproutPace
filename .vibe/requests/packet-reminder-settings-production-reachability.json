@@ -1,0 +1,33 @@
+{
+  "acceptanceCriteria": [
+    "No production Notifications command or wrapper uses the legacy enabled argument.",
+    "The production manager integration test submits and verifies three independent persisted values.",
+    "Specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt"
+  ],
+  "assignmentId": "reminder-settings-production-reachability",
+  "contractInputs": [
+    "spec/flows/FLOW-006.md",
+    "spec/screens/SCREEN-016.md",
+    ".vibe/handoffs/HANDOFF-production-reminder-delivery-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Remove the legacy Notifications enabled compatibility path and prove the production screen command persists independent daily-summary, summary-time and soak-reminder choices.",
+  "obligationIds": [
+    "AC-064",
+    "AC-065",
+    "AC-067"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

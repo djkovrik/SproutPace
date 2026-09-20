@@ -1,0 +1,122 @@
+{
+  "acceptanceScenarioIds": [
+    "AC-001",
+    "AC-120",
+    "AC-121",
+    "AC-122",
+    "AC-123"
+  ],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/18d8b58557968246c1ac008e5ae721426d8f3b654002336d9aba575bec6c9021.json",
+    "sha256": "87540dfbfb2cc1c0b4c0d81c7966d0d67225dd62fc51da02ce6471dedc2e6c9e"
+  },
+  "assignmentId": "product-ui-box-import-correction-1",
+  "blockers": [
+    "Root must rerun the requested Android/iOS compile and Android host tests; this specialist did not run Gradle."
+  ],
+  "changedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt"
+  ],
+  "completedAt": "2026-09-20T08:25:49.070374Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-product-ui-box-import-correction-1-20260920",
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "assert exactly one androidx.compose.foundation.layout.Box import and run git diff --check for App.kt"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-product-designer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "surface": "component-test",
+      "symbol": "fun SproutPaceApp"
+    }
+  ],
+  "qualityGateIds": [],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-001",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-120",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-121",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-123",
+          "surfaces": [
+            "component-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "276bed61c3d1ffba36d23adc4297040fe9c0eeb4e390bbcaa1cf1ed062db00e7",
+    "files": [
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "sha256": "ca77d4a09b334125542d1044f6b4103262e885ecbad62f75a94b3928e03c8cae"
+      }
+    ],
+    "patterns": [
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T08:25:01.501759Z",
+  "supersedes": [],
+  "testEvidence": []
+}

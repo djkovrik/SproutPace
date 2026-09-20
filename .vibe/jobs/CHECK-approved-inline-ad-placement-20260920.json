@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.7996199000044726,
+  "events": [
+    {
+      "at": "2026-09-20T14:20:42.412013Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T14:20:44.242796Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-53ad1a0a-2877-4520-a7f6-705471e0f9b6.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T14:21:12.623514Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-53ad1a0a-2877-4520-a7f6-705471e0f9b6.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:21:12.929329Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-53ad1a0a-2877-4520-a7f6-705471e0f9b6.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:21:12.970871Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T14:21:13.883185Z",
+      "durationSeconds": 0.7996199000044726,
+      "receiptRef": ".vibe/receipts/RECEIPT-53ad1a0a-2877-4520-a7f6-705471e0f9b6.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-approved-inline-ad-placement-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-53ad1a0a-2877-4520-a7f6-705471e0f9b6.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-53ad1a0a-2877-4520-a7f6-705471e0f9b6.json",
+  "stage": "bound"
+}

@@ -1,0 +1,42 @@
+{
+  "acceptanceCriteria": [
+    "HarvestPlan carries an explicit validated LocalDate anchor used for the first persisted/recomputed suggestion.",
+    "PlannerEngine derives cadence and continuous suggestions from the stored anchor rather than the caller's current date.",
+    "Restart on a later current date yields the same pending suggestion identities/dates/conflicts for unchanged plan state.",
+    "Cadence/rotation/mode updates preserve anchor by default and never mutate confirmed batches.",
+    "Continuous next-suggestion semantics advance deterministically from the later of the stored anchor and actual harvest input as specified by FLOW-005.",
+    "Scenario-named AC-051/052/057 tests cover restart/calendar rollover and update behavior.",
+    "No data codec/schema, component, UI, platform or ledger changes; specialist does not run Gradle and reports required persistence migration to root."
+  ],
+  "allowedFiles": [
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt"
+  ],
+  "assignmentId": "domain-plan-anchor",
+  "contractInputs": [
+    "spec/domain.md",
+    "spec/flows/FLOW-005.md",
+    "spec/screens/SCREEN-006.md",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Add a persisted, language-neutral plan anchor date and make all plan/continuous suggestion generation deterministic from stored plan state. Updating cadence/rotation/mode must preserve the anchor unless the user explicitly changes it; confirmed batches remain immutable.",
+  "obligationIds": [
+    "AC-051",
+    "AC-052",
+    "AC-057"
+  ],
+  "requestedCommands": [
+    ":shared:domain:allTests",
+    ":shared:domain:compileAndroidMain",
+    ":shared:domain:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/time-and-recurrence.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

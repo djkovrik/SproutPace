@@ -1,0 +1,140 @@
+CREATE TABLE grow_zone (
+  id TEXT NOT NULL PRIMARY KEY,
+  name TEXT NOT NULL CHECK (length(trim(name)) > 0),
+  type TEXT NOT NULL CHECK (type IN ('NATURAL_LIGHT','GROW_LIGHT','DARK')),
+  capacity INTEGER NOT NULL CHECK (capacity >= 0),
+  sort_order INTEGER NOT NULL CHECK (sort_order >= 0)
+);
+CREATE UNIQUE INDEX grow_zone_order ON grow_zone(sort_order, id);
+
+CREATE TABLE tray_preset (
+  id TEXT NOT NULL PRIMARY KEY,
+  name TEXT NOT NULL CHECK (length(trim(name)) > 0),
+  shape TEXT NOT NULL CHECK (shape IN ('RECTANGLE','CIRCLE')),
+  primary_cm REAL NOT NULL CHECK (primary_cm > 0),
+  secondary_cm REAL CHECK (secondary_cm IS NULL OR secondary_cm > 0),
+  sort_order INTEGER NOT NULL CHECK (sort_order >= 0)
+);
+CREATE UNIQUE INDEX tray_preset_order ON tray_preset(sort_order, id);
+
+CREATE TABLE user_recipe (
+  id TEXT NOT NULL PRIMARY KEY,
+  name TEXT NOT NULL CHECK (length(trim(name)) > 0),
+  culture_id TEXT,
+  payload TEXT NOT NULL,
+  sort_order INTEGER NOT NULL CHECK (sort_order >= 0)
+);
+CREATE INDEX user_recipe_culture ON user_recipe(culture_id);
+
+CREATE TABLE grow_batch (
+  id TEXT NOT NULL PRIMARY KEY,
+  state TEXT NOT NULL,
+  source_recipe_id TEXT,
+  built_in_culture_id TEXT,
+  payload TEXT NOT NULL,
+  sort_order INTEGER NOT NULL CHECK (sort_order >= 0)
+);
+CREATE INDEX grow_batch_state_order ON grow_batch(state, sort_order, id);
+
+CREATE TABLE harvest_plan (
+  id TEXT NOT NULL PRIMARY KEY,
+  payload TEXT NOT NULL,
+  sort_order INTEGER NOT NULL CHECK (sort_order >= 0)
+);
+
+CREATE TABLE observation (
+  id TEXT NOT NULL PRIMARY KEY,
+  batch_id TEXT NOT NULL REFERENCES grow_batch(id) ON DELETE CASCADE,
+  occurred_at TEXT NOT NULL,
+  photo_id TEXT UNIQUE,
+  payload TEXT NOT NULL
+);
+CREATE INDEX observation_batch_time ON observation(batch_id, occurred_at, id);
+
+selectZones:
+SELECT * FROM grow_zone ORDER BY sort_order, id;
+upsertZone {
+INSERT INTO grow_zone(id,name,type,capacity,sort_order)
+SELECT :id,:name,:type,:capacity,:sort_order WHERE 0;
+UPDATE grow_zone SET name=:name,type=:type,capacity=:capacity,sort_order=:sort_order WHERE id=:id;
+INSERT INTO grow_zone(id,name,type,capacity,sort_order)
+SELECT :id,:name,:type,:capacity,:sort_order WHERE changes() = 0;
+}
+deleteZone:
+DELETE FROM grow_zone WHERE id = ?;
+
+selectTrayPresets:
+SELECT * FROM tray_preset ORDER BY sort_order, id;
+upsertTrayPreset {
+INSERT INTO tray_preset(id,name,shape,primary_cm,secondary_cm,sort_order)
+SELECT :id,:name,:shape,:primary_cm,:secondary_cm,:sort_order WHERE 0;
+UPDATE tray_preset SET name=:name,shape=:shape,primary_cm=:primary_cm,
+  secondary_cm=:secondary_cm,sort_order=:sort_order WHERE id=:id;
+INSERT INTO tray_preset(id,name,shape,primary_cm,secondary_cm,sort_order)
+SELECT :id,:name,:shape,:primary_cm,:secondary_cm,:sort_order WHERE changes() = 0;
+}
+deleteTrayPreset:
+DELETE FROM tray_preset WHERE id = ?;
+
+selectRecipes:
+SELECT payload FROM user_recipe ORDER BY sort_order, id;
+upsertRecipe {
+INSERT INTO user_recipe(id,name,culture_id,payload,sort_order)
+SELECT :id,:name,:culture_id,:payload,:sort_order WHERE 0;
+UPDATE user_recipe SET name=:name,culture_id=:culture_id,payload=:payload,sort_order=:sort_order WHERE id=:id;
+INSERT INTO user_recipe(id,name,culture_id,payload,sort_order)
+SELECT :id,:name,:culture_id,:payload,:sort_order WHERE changes() = 0;
+}
+deleteRecipe:
+DELETE FROM user_recipe WHERE id = ?;
+
+selectBatches:
+SELECT payload FROM grow_batch ORDER BY sort_order, id;
+upsertBatch {
+INSERT INTO grow_batch(id,state,source_recipe_id,built_in_culture_id,payload,sort_order)
+SELECT :id,:state,:source_recipe_id,:built_in_culture_id,:payload,:sort_order WHERE 0;
+UPDATE grow_batch SET state=:state,source_recipe_id=:source_recipe_id,
+  built_in_culture_id=:built_in_culture_id,payload=:payload,sort_order=:sort_order WHERE id=:id;
+INSERT INTO grow_batch(id,state,source_recipe_id,built_in_culture_id,payload,sort_order)
+SELECT :id,:state,:source_recipe_id,:built_in_culture_id,:payload,:sort_order WHERE changes() = 0;
+}
+deleteBatch:
+DELETE FROM grow_batch WHERE id = ?;
+
+selectPlans:
+SELECT payload FROM harvest_plan ORDER BY sort_order, id;
+upsertPlan {
+INSERT INTO harvest_plan(id,payload,sort_order) SELECT :id,:payload,:sort_order WHERE 0;
+UPDATE harvest_plan SET payload=:payload,sort_order=:sort_order WHERE id=:id;
+INSERT INTO harvest_plan(id,payload,sort_order) SELECT :id,:payload,:sort_order WHERE changes() = 0;
+}
+deletePlan:
+DELETE FROM harvest_plan WHERE id = ?;
+
+selectObservations:
+SELECT payload FROM observation ORDER BY occurred_at, id;
+selectObservationsForBatch:
+SELECT payload FROM observation WHERE batch_id = ? ORDER BY occurred_at, id;
+upsertObservation {
+INSERT INTO observation(id,batch_id,occurred_at,photo_id,payload)
+SELECT :id,:batch_id,:occurred_at,:photo_id,:payload WHERE 0;
+UPDATE observation SET batch_id=:batch_id,occurred_at=:occurred_at,
+  photo_id=:photo_id,payload=:payload WHERE id=:id;
+INSERT INTO observation(id,batch_id,occurred_at,photo_id,payload)
+SELECT :id,:batch_id,:occurred_at,:photo_id,:payload WHERE changes() = 0;
+}
+deleteObservation:
+DELETE FROM observation WHERE id = ?;
+
+deleteAllObservations:
+DELETE FROM observation;
+deleteAllPlans:
+DELETE FROM harvest_plan;
+deleteAllBatches:
+DELETE FROM grow_batch;
+deleteAllRecipes:
+DELETE FROM user_recipe;
+deleteAllTrayPresets:
+DELETE FROM tray_preset;
+deleteAllZones:
+DELETE FROM grow_zone;

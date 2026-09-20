@@ -1,0 +1,117 @@
+{
+  "action": "handoff",
+  "assignmentId": "foundation-architect-correction-1",
+  "handoffId": "HANDOFF-foundation-architect-20260920-r1",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "symbol": "ROTATION_DURATION_MILLIS",
+      "surface": "release-check",
+      "coverage": [
+        {
+          "obligationId": "QG-004",
+          "surface": "release-check"
+        }
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+      "symbol": "import androidx.compose.runtime.CompositionLocalProvider",
+      "surface": "release-check",
+      "coverage": [
+        {
+          "obligationId": "QG-004",
+          "surface": "release-check"
+        }
+      ]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "symbol": "fun MainViewController",
+      "surface": "release-check",
+      "coverage": [
+        {
+          "obligationId": "QG-004",
+          "surface": "release-check"
+        }
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "python",
+        "-c",
+        "assert the reported preview naming, animation duration, wildcard import, and EOF-newline source regressions are absent"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+        "shared/compose/src/iosMain/kotlin/main.kt"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        "detekt",
+        ":shared:compose:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ],
+      "tasks": [
+        "detekt",
+        ":shared:compose:compileAndroidMain",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-004",
+          "surfaces": [
+            "release-check"
+          ]
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "This correction replaces the nonexistent :shared:compose:compileKotlinAndroid request imported from HANDOFF-foundation-architect-20260920 with the discovered :shared:compose:compileAndroidMain task. The original handoff is already imported under a different assignment, so Protocol 2.0 forbids listing it in supersedes.",
+      "obligationIds": [
+        "QG-004"
+      ],
+      "nextAction": "Ingest this correction handoff, reconcile the original failed pending check, and run the corrected requested command."
+    },
+    {
+      "description": "The Kover filter and verification rule are wired, but its minimum remains the explicit foundation sentinel 0 until a successful filtered XML report is measured from the new domain/Decompose tests.",
+      "obligationIds": [
+        "QG-004"
+      ],
+      "nextAction": "Run the domain/Kover tasks, inspect the filtered denominator and measured line rate, then commit a fixed baseline-derived sproutpace.kover.minimum before treating coverage as a release gate."
+    },
+    {
+      "description": "Paparazzi snapshots were not recorded on Windows; no PNG baseline or human approval is claimed.",
+      "obligationIds": [
+        "QG-004"
+      ],
+      "nextAction": "Run the smoke test and recordPaparazzi on Linux, inspect the light/dark/RU-200% outputs, commit approved snapshots, then run verifyPaparazzi."
+    },
+    {
+      "description": "The iOS framework/app and macOS CI contract is implemented but has not been executed on a Mac.",
+      "obligationIds": [
+        "QG-004"
+      ],
+      "nextAction": "Run the Kotlin/Native and xcodebuild commands from the original foundation contract on macOS or pinned CI and bind the resulting receipts."
+    }
+  ]
+}

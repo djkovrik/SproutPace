@@ -1,0 +1,18 @@
+{
+  "action": "package",
+  "packageId": "reminder-delivery-integration",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-064", "AC-065", "AC-067"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/platform/**",
+    "shared/data/**",
+    "shared/component/**",
+    "shared/compose/**",
+    "androidApp/**",
+    "iosApp/**",
+    "docs/architecture/**"
+  ],
+  "integrationGoal": "Notification settings persist independent daily-summary and soak choices plus local summary time, screen state reflects real permission, and Android/iOS production lifecycles idempotently reconcile one useful daily summary and future soak reminders after changes, restart, restore and time-zone signals without weakening Today.",
+  "nextAction": "Implement settings migration/backup, complete ReminderPlan derivation, host permission/lifecycle bridges and exact platform/component/integration tests."
+}

@@ -1,0 +1,18 @@
+{
+  "action": "contract-ready",
+  "obligationId": "AC-066",
+  "behavioralSurfaces": ["component-test", "platform-test"],
+  "contractEvidence": [
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "symbol": "ac066_soakTargetSchedulingPublishesOneStableReminder",
+      "surface": "component-test"
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt",
+      "symbol": "dailySummaryRequiresWorkAndPastSoakIsNotRegistered",
+      "surface": "platform-test"
+    }
+  ],
+  "inspectionNote": "The current component contract publishes one stable soak reminder target and the platform reconciler filters to future physical reminders. The fresh scoped receipt covers both required non-golden surfaces; this is dependency readiness only, while lifecycle integration is implemented downstream."
+}

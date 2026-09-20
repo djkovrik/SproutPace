@@ -1,0 +1,39 @@
+{
+  "algorithm": "sha256",
+  "digest": "1df156e4eef3a247cd920ead9f3fdf9d6614132fc16d8b15f2c1cbcd154dc58d",
+  "files": [
+    {
+      "path": "androidApp/build.gradle.kts",
+      "sha256": "df5ead567ec67511fb4ca9e66480b7c41105386b989dea722efe0af2a2d3a04b"
+    },
+    {
+      "path": "androidApp/src/main/AndroidManifest.xml",
+      "sha256": "2697daf4a961097fe7f2faf796f07ddee28710d0e6fadfffdbd7e52e418d5d9e"
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "sha256": "ddaf2727c8605f30d1f916811de88631fdc6b39c10c597a9bc47ed6ff2d4d3e6"
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "sha256": "fd125e716182b716e212db7a2629e73a60adbed07e7f43f780daff4cf4de455e"
+    },
+    {
+      "path": "docs/configuration/ADVERTISING-PRIVACY.md",
+      "sha256": null
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "sha256": "cd649b5f58157e3a29d86884663162aa0f58c1682f1562e0796d325fdee3af2e"
+    }
+  ],
+  "patterns": [
+    "androidApp/build.gradle.kts",
+    "androidApp/src/main/AndroidManifest.xml",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "docs/configuration/advertising/**",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/monetization/**"
+  ]
+}

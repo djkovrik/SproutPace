@@ -17,3 +17,4 @@ Pods/
 *yarn.lock
 .lazyweb
 detekt/reports/
+/app/cash/paparazzi/

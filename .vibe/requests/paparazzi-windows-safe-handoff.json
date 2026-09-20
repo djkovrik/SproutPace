@@ -1,0 +1,93 @@
+{
+  "action": "handoff",
+  "assignmentId": "paparazzi-windows-safe-wiring",
+  "handoffId": "HANDOFF-paparazzi-windows-safe-wiring-20260920",
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-330b6319-2e6e-412c-9acc-9c2ff1fc5ff7.json",
+    ".vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json"
+  ],
+  "resolvedReceiptRefs": [
+    ".vibe/receipts/RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.json",
+    ".vibe/receipts/RECEIPT-d566d46b-cd91-4513-ae09-c5280cf954f0.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "symbol": "abstract class GenerateComposablePreviewPaparazziTests",
+      "surface": "preview-compile",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "preview-compile"}
+      ]
+    },
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "symbol": "deleteAndroidMainPaparazziSnapshots",
+      "surface": "screenshot-test",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "screenshot-test"}
+      ]
+    },
+    {
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "symbol": "Verify committed Paparazzi baselines",
+      "surface": "screenshot-test",
+      "coverage": [
+        {"obligationId": "QG-007", "surface": "screenshot-test"}
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/compose/build.gradle.kts",
+        ".github/workflows/AnalysisAndTest.yml"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:cleanRecordPaparazzi",
+        "--no-configuration-cache"
+      ],
+      "tasks": [
+        ":shared:compose:cleanRecordPaparazzi"
+      ],
+      "coveredObligations": [
+        {"obligationId": "QG-007", "surfaces": ["screenshot-test"]}
+      ],
+      "receiptRef": ".vibe/receipts/RECEIPT-330b6319-2e6e-412c-9acc-9c2ff1fc5ff7.json",
+      "resolvedFailureReceiptRefs": [
+        ".vibe/receipts/RECEIPT-d0c005de-d095-42d6-a0e4-ab7ff5ccbd6d.json",
+        ".vibe/receipts/RECEIPT-d566d46b-cd91-4513-ae09-c5280cf954f0.json"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:verifyPaparazzi",
+        ":shared:compose:testAndroidHostTest",
+        "--no-configuration-cache"
+      ],
+      "tasks": [
+        ":shared:compose:verifyPaparazzi",
+        ":shared:compose:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        {"obligationId": "QG-007", "surfaces": ["preview-compile", "screenshot-test"]}
+      ],
+      "receiptRef": ".vibe/receipts/RECEIPT-41664d65-63fe-4bfe-830b-2673b7906070.json",
+      "resolvedFailureReceiptRefs": [
+        ".vibe/receipts/RECEIPT-d566d46b-cd91-4513-ae09-c5280cf954f0.json"
+      ]
+    }
+  ],
+  "blockers": []
+}

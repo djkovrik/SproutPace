@@ -1,0 +1,35 @@
+{
+  "acceptanceCriteria": [
+    "Every production SQLDelight driver enables SQLite foreign-key enforcement when opened.",
+    "The host integration driver mirrors production enforcement and the orphan-observation test passes.",
+    "Invalid child writes cannot leave partial observable state.",
+    "No schema, domain contract or unrelated persistence behavior changes.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ],
+  "allowedFiles": [
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+    "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+    "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt"
+  ],
+  "assignmentId": "persistence-foreign-key-enforcement-correction-5",
+  "contractInputs": [
+    "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Enable SQLite foreign-key enforcement consistently for Android, iOS and the host integration driver so invalid orphan observations fail atomically, without changing the schema or persistence contracts.",
+  "obligationIds": [
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:allTests",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

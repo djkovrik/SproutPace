@@ -1,0 +1,13 @@
+{
+  "action": "check",
+  "jobId": "CHECK-ac080-dependency-ready-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "ac080-dependency-ready-v1",
+  "tasks": [":shared:domain:testAndroidHostTest", ":shared:component:testAndroidHostTest", ":shared:data:testAndroidHostTest"],
+  "coveredObligations": [
+    {"obligationId": "AC-080", "surfaces": ["domain-test", "component-test", "database-integration-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android host tests"
+}

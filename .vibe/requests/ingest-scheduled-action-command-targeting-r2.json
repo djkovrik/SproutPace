@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-scheduled-action-command-targeting-r2-20260920.json",
+  "inspectionNote": "Inspected the bounded command-targeting delivery and its real data/component/UI tests. Operation and stable subject IDs are distinct end to end; Today and Batch Detail expose complete/skip for applicable pending actions; duplicate completion is idempotent and skip retains the batch. Receipt bf70157a proves data, component and Compose host tests plus iOS simulator compilation."
+}

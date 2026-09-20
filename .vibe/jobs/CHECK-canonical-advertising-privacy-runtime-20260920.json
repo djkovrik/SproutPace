@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.8387134000076912,
+  "events": [
+    {
+      "at": "2026-09-20T13:20:52.429398Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T13:20:55.146058Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-b80fe9b7-e40b-4ce5-811c-95ad5264d468.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T13:21:32.713927Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-b80fe9b7-e40b-4ce5-811c-95ad5264d468.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T13:21:33.213969Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-b80fe9b7-e40b-4ce5-811c-95ad5264d468.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T13:21:33.291862Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T13:21:34.180822Z",
+      "durationSeconds": 0.8387134000076912,
+      "receiptRef": ".vibe/receipts/RECEIPT-b80fe9b7-e40b-4ce5-811c-95ad5264d468.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-canonical-advertising-privacy-runtime-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-b80fe9b7-e40b-4ce5-811c-95ad5264d468.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-b80fe9b7-e40b-4ce5-811c-95ad5264d468.json",
+  "stage": "bound"
+}

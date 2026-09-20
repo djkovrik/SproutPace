@@ -1,0 +1,17 @@
+{
+  "action": "package",
+  "packageId": "visual-quality",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-007"],
+  "fileBoundaries": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/**",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/test/snapshots/**",
+    "docs/design-review/**",
+    ".gitattributes"
+  ],
+  "integrationGoal": "Deterministic preview discovery, Paparazzi record/verify goldens, accessibility and localization/adaptive stress coverage provide inspectable evidence for the approved product UI and its post-golden design review.",
+  "nextAction": "Repair the Paparazzi runtime wiring, generate parameterized screenshot tests for the approved preview matrix, record and inspect goldens, then perform the required Lazyweb review."
+}

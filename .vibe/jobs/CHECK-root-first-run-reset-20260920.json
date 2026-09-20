@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.738935399975162,
+  "events": [
+    {
+      "at": "2026-09-20T09:47:06.291302Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T09:47:08.122482Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-51ced84e-3493-4cb0-a13e-563b1e5772c2.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T09:47:13.370929Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-51ced84e-3493-4cb0-a13e-563b1e5772c2.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T09:47:13.498630Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-51ced84e-3493-4cb0-a13e-563b1e5772c2.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T09:47:13.541696Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T09:47:14.319110Z",
+      "durationSeconds": 0.738935399975162,
+      "receiptRef": ".vibe/receipts/RECEIPT-51ced84e-3493-4cb0-a13e-563b1e5772c2.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-root-first-run-reset-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-51ced84e-3493-4cb0-a13e-563b1e5772c2.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-51ced84e-3493-4cb0-a13e-563b1e5772c2.json",
+  "stage": "bound"
+}

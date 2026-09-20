@@ -1,0 +1,108 @@
+{
+  "action": "handoff",
+  "assignmentId": "component-root-stores",
+  "handoffId": "HANDOFF-component-root-stores-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "symbol": "data class ScreenModel",
+      "surface": "public-component-contract",
+      "coverage": [
+        {"obligationId":"AC-010","surface":"public-component-contract"},{"obligationId":"AC-011","surface":"public-component-contract"},{"obligationId":"AC-012","surface":"public-component-contract"},{"obligationId":"AC-014","surface":"public-component-contract"},
+        {"obligationId":"AC-020","surface":"public-component-contract"},{"obligationId":"AC-021","surface":"public-component-contract"},{"obligationId":"AC-026","surface":"public-component-contract"},{"obligationId":"AC-027","surface":"public-component-contract"},
+        {"obligationId":"AC-030","surface":"public-component-contract"},{"obligationId":"AC-031","surface":"public-component-contract"},{"obligationId":"AC-032","surface":"public-component-contract"},{"obligationId":"AC-035","surface":"public-component-contract"},{"obligationId":"AC-036","surface":"public-component-contract"},{"obligationId":"AC-037","surface":"public-component-contract"},{"obligationId":"AC-038","surface":"public-component-contract"},{"obligationId":"AC-039","surface":"public-component-contract"},{"obligationId":"AC-040","surface":"public-component-contract"},
+        {"obligationId":"AC-050","surface":"public-component-contract"},{"obligationId":"AC-051","surface":"public-component-contract"},{"obligationId":"AC-052","surface":"public-component-contract"},{"obligationId":"AC-054","surface":"public-component-contract"},{"obligationId":"AC-055","surface":"public-component-contract"},{"obligationId":"AC-057","surface":"public-component-contract"},
+        {"obligationId":"AC-060","surface":"public-component-contract"},{"obligationId":"AC-062","surface":"public-component-contract"},{"obligationId":"AC-066","surface":"public-component-contract"},{"obligationId":"AC-068","surface":"public-component-contract"},
+        {"obligationId":"AC-080","surface":"public-component-contract"},{"obligationId":"AC-081","surface":"public-component-contract"},{"obligationId":"AC-085","surface":"public-component-contract"},{"obligationId":"QG-011","surface":"public-component-contract"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+      "symbol": "class ScreenStoreProvider",
+      "surface": "store-orchestration",
+      "coverage": [
+        {"obligationId":"AC-011","surface":"store-orchestration"},{"obligationId":"AC-021","surface":"store-orchestration"},{"obligationId":"AC-031","surface":"store-orchestration"},{"obligationId":"AC-037","surface":"store-orchestration"},{"obligationId":"AC-039","surface":"store-orchestration"},{"obligationId":"AC-040","surface":"store-orchestration"},{"obligationId":"AC-051","surface":"store-orchestration"},{"obligationId":"AC-052","surface":"store-orchestration"},{"obligationId":"AC-054","surface":"store-orchestration"},{"obligationId":"AC-060","surface":"store-orchestration"},{"obligationId":"AC-062","surface":"store-orchestration"},{"obligationId":"AC-080","surface":"store-orchestration"},{"obligationId":"AC-081","surface":"store-orchestration"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+      "symbol": "class TodayComponentPreview",
+      "surface": "component-preview-contract",
+      "coverage": [{"obligationId":"AC-060","surface":"component-preview-contract"},{"obligationId":"QG-011","surface":"component-preview-contract"}]
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "symbol": "class AppRootComponentDefault",
+      "surface": "root-navigation",
+      "coverage": [
+        {"obligationId":"AC-020","surface":"root-navigation"},{"obligationId":"AC-030","surface":"root-navigation"},{"obligationId":"AC-031","surface":"root-navigation"},{"obligationId":"AC-050","surface":"root-navigation"},{"obligationId":"AC-057","surface":"root-navigation"},{"obligationId":"AC-060","surface":"root-navigation"},{"obligationId":"AC-080","surface":"root-navigation"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "everyRenderedScreenHasAnIsolatedComponentOwnedPreview",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-020","surface":"component-test"},{"obligationId":"AC-060","surface":"component-test"},{"obligationId":"QG-011","surface":"component-test"}]
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "storeStateMapsToPublicModelAndRetainsSelectionAcrossRecreation",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-011","surface":"component-test"},{"obligationId":"AC-031","surface":"component-test"},{"obligationId":"AC-051","surface":"component-test"}]
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "duplicateCommandCallbacksInvokeManagerExactlyOnceWhileInFlight",
+      "surface": "store-test",
+      "coverage": [{"obligationId":"AC-037","surface":"store-test"},{"obligationId":"AC-039","surface":"store-test"},{"obligationId":"AC-040","surface":"store-test"},{"obligationId":"AC-060","surface":"store-test"},{"obligationId":"AC-062","surface":"store-test"}]
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "resultBoundaryPreservesNullableSuccessAndFailureCause",
+      "surface": "store-test",
+      "coverage": [{"obligationId":"AC-010","surface":"store-test"},{"obligationId":"AC-021","surface":"store-test"},{"obligationId":"AC-030","surface":"store-test"},{"obligationId":"AC-050","surface":"store-test"},{"obligationId":"AC-080","surface":"store-test"},{"obligationId":"AC-081","surface":"store-test"}]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "primaryDestinationsAreStableAndDuplicateDetailClicksAreSafe",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-020","surface":"component-test"},{"obligationId":"AC-030","surface":"component-test"},{"obligationId":"AC-031","surface":"component-test"},{"obligationId":"AC-050","surface":"component-test"}]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "serializableStackRestoresSelectedDetail",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-011","surface":"component-test"},{"obligationId":"AC-031","surface":"component-test"},{"obligationId":"AC-051","surface":"component-test"}]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "deepLinksValidateRequiredIdsAndBackReturnsToPrimary",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-031","surface":"component-test"},{"obligationId":"AC-057","surface":"component-test"}]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "adaptivePresentationUsesBottomBarRailAndBoundedPanes",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-060","surface":"component-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {"argv":["powershell","-NoProfile","-Command","scan production commonMain for forbidden MutableValue/repository/platform/SDK imports and assert retained Store/cancellation mapping"],"exitCode":0},
+    {"argv":["powershell","-NoProfile","-Command","assert 16 component contracts, 16 defaults, 16 previews, deterministic tests, stack/slot/serializer/unwrap anchors"],"exitCode":0}
+  ],
+  "requestedCommands": [
+    {"argv":["gradlew.bat",":shared:component:allTests",":shared:component:testAndroidHostTest"],"tasks":[":shared:component:allTests",":shared:component:testAndroidHostTest"],"coveredObligations":[
+      {"obligationId":"AC-010","surfaces":["component-test"]},{"obligationId":"AC-011","surfaces":["component-test"]},{"obligationId":"AC-012","surfaces":["component-test"]},{"obligationId":"AC-014","surfaces":["component-test"]},{"obligationId":"AC-020","surfaces":["component-test"]},{"obligationId":"AC-021","surfaces":["component-test"]},{"obligationId":"AC-026","surfaces":["component-test"]},{"obligationId":"AC-027","surfaces":["component-test"]},{"obligationId":"AC-030","surfaces":["component-test"]},{"obligationId":"AC-031","surfaces":["component-test"]},{"obligationId":"AC-032","surfaces":["component-test"]},{"obligationId":"AC-035","surfaces":["component-test"]},{"obligationId":"AC-036","surfaces":["component-test"]},{"obligationId":"AC-037","surfaces":["component-test","store-test"]},{"obligationId":"AC-038","surfaces":["component-test"]},{"obligationId":"AC-039","surfaces":["component-test","store-test"]},{"obligationId":"AC-040","surfaces":["component-test","store-test"]},{"obligationId":"AC-050","surfaces":["component-test"]},{"obligationId":"AC-051","surfaces":["component-test"]},{"obligationId":"AC-052","surfaces":["component-test"]},{"obligationId":"AC-054","surfaces":["component-test"]},{"obligationId":"AC-055","surfaces":["component-test"]},{"obligationId":"AC-057","surfaces":["component-test"]},{"obligationId":"AC-060","surfaces":["component-test","store-test"]},{"obligationId":"AC-062","surfaces":["component-test","store-test"]},{"obligationId":"AC-066","surfaces":["component-test"]},{"obligationId":"AC-068","surfaces":["component-test"]},{"obligationId":"AC-080","surfaces":["component-test"]},{"obligationId":"AC-081","surfaces":["component-test"]},{"obligationId":"AC-085","surfaces":["component-test"]},{"obligationId":"QG-011","surfaces":["component-test"]}
+    ]},
+    {"argv":["gradlew.bat",":shared:root:allTests",":shared:root:testAndroidHostTest",":shared:root:compileKotlinIosArm64",":shared:root:compileKotlinIosSimulatorArm64"],"tasks":[":shared:root:allTests",":shared:root:testAndroidHostTest",":shared:root:compileKotlinIosArm64",":shared:root:compileKotlinIosSimulatorArm64"],"coveredObligations":[
+      {"obligationId":"AC-020","surfaces":["component-test"]},{"obligationId":"AC-030","surfaces":["component-test"]},{"obligationId":"AC-031","surfaces":["component-test"]},{"obligationId":"AC-050","surfaces":["component-test"]},{"obligationId":"AC-051","surfaces":["component-test"]},{"obligationId":"AC-057","surfaces":["component-test"]},{"obligationId":"AC-060","surfaces":["component-test"]}
+    ]}
+  ],
+  "blockers": [
+    "Orchestrator-owned settings.gradle.kts must include :shared:component and :shared:root before requested Gradle tasks can run.",
+    "Orchestrator-owned gradle/libs.versions.toml must define the pinned aliases documented in the specialist return; compilation has not been run by this specialist."
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "action": "handoff",
+  "assignmentId": "typed-screen-semantic-contract-correction",
+  "handoffId": "HANDOFF-typed-screen-semantic-contract-correction",
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-fedd644c-4c59-4938-9889-01fa3806cdb3.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "symbol": "object ScreenContractRegistry",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-010","surface":"component-test"},
+        {"obligationId":"AC-014","surface":"component-test"},
+        {"obligationId":"AC-020","surface":"component-test"},
+        {"obligationId":"AC-030","surface":"component-test"},
+        {"obligationId":"AC-040","surface":"component-test"},
+        {"obligationId":"AC-050","surface":"component-test"},
+        {"obligationId":"AC-080","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+      "symbol": "fun field",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-010","surface":"component-test"},
+        {"obligationId":"AC-014","surface":"component-test"},
+        {"obligationId":"AC-020","surface":"component-test"},
+        {"obligationId":"AC-030","surface":"component-test"},
+        {"obligationId":"AC-040","surface":"component-test"},
+        {"obligationId":"AC-050","surface":"component-test"},
+        {"obligationId":"AC-080","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+      "symbol": "fun actionLabelKey",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-010","surface":"component-test"},
+        {"obligationId":"AC-014","surface":"component-test"},
+        {"obligationId":"AC-020","surface":"component-test"},
+        {"obligationId":"AC-030","surface":"component-test"},
+        {"obligationId":"AC-040","surface":"component-test"},
+        {"obligationId":"AC-050","surface":"component-test"},
+        {"obligationId":"AC-080","surface":"component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "everyRegistryFieldOptionAndActionUsesItsSpecificSemanticTextKey",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-010","surface":"component-test"},
+        {"obligationId":"AC-014","surface":"component-test"},
+        {"obligationId":"AC-020","surface":"component-test"},
+        {"obligationId":"AC-030","surface":"component-test"},
+        {"obligationId":"AC-040","surface":"component-test"},
+        {"obligationId":"AC-050","surface":"component-test"},
+        {"obligationId":"AC-080","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "selectorsAndEnumsExposeExactKindsAndStableDomainOptionIds",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-010","surface":"component-test"},
+        {"obligationId":"AC-014","surface":"component-test"},
+        {"obligationId":"AC-020","surface":"component-test"},
+        {"obligationId":"AC-030","surface":"component-test"},
+        {"obligationId":"AC-040","surface":"component-test"},
+        {"obligationId":"AC-050","surface":"component-test"},
+        {"obligationId":"AC-080","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "firstRunAndRepresentativeCreateEditCommandsMatchProductionManagerArguments",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-010","surface":"component-test"},
+        {"obligationId":"AC-030","surface":"component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "git", "diff", "--check", "--",
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+        "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "rg", "exact semantic TextKeys, selector kinds, enum IDs, FIRST_RUN arguments, and three focused tests",
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component",
+        "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "integration-note",
+        "ProductionScreenDataManager FIRST_RUN still emits legacy type=light and does not persist continue-setup; this is an external follow-up data/root correction, not a blocker for the completed semantic contract assignment"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:component:testAndroidHostTest",
+        ":shared:component:allTests",
+        ":shared:component:compileAndroidMain",
+        ":shared:component:compileKotlinIosSimulatorArm64",
+        ":shared:data:testAndroidHostTest"
+      ],
+      "tasks": [
+        ":shared:component:testAndroidHostTest",
+        ":shared:component:allTests",
+        ":shared:component:compileAndroidMain",
+        ":shared:component:compileKotlinIosSimulatorArm64",
+        ":shared:data:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        {"obligationId":"AC-010","surfaces":["component-test"]},
+        {"obligationId":"AC-014","surfaces":["component-test"]},
+        {"obligationId":"AC-020","surfaces":["component-test"]},
+        {"obligationId":"AC-030","surfaces":["component-test"]},
+        {"obligationId":"AC-040","surfaces":["component-test"]},
+        {"obligationId":"AC-050","surfaces":["component-test"]},
+        {"obligationId":"AC-080","surfaces":["component-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

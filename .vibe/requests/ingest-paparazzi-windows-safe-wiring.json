@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-paparazzi-windows-safe-wiring-20260920.json",
+  "inspectionNote": "Inspected the two-file build correction and the regenerated baselines. KSP generation now precedes snapshot deletion, stale generated sources are removed, generated class and parameter names remain Windows-safe while case IDs preserve stable snapshot identity, and CI invokes the existing Paparazzi task. Sequential bound receipts 330b6319 and 41664d65 prove clean recording followed by independent verification and 82 passing Compose host tests."
+}

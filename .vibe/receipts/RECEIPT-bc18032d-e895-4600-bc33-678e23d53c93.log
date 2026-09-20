@@ -1,0 +1,31 @@
+Calculating task graph as no cached configuration is available for tasks: :shared:compose:testAndroidHostTest :shared:compose:recordPaparazzi :shared:compose:verifyPaparazzi
+
+> Configure project :shared:compose
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+1 problem was found storing the configuration cache.
+- Task `:shared:compose:preparePaparazziAndroidMainResources` of type `app.cash.paparazzi.gradle.PrepareResourcesTask`: error writing value of type 'org.gradle.api.internal.provider.DefaultListProperty'
+
+See the complete report at file:///D:/Sources/Android/SproutPace/build/reports/configuration-cache/1h27a5c7azl80hq4rrydrmyxp/10t9ar4yabczzhhg92i00pdsn/configuration-cache-report.html
+
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Configuration cache state could not be cached: field `__projectAssetDirs__` of task `:shared:compose:preparePaparazziAndroidMainResources` of type `app.cash.paparazzi.gradle.PrepareResourcesTask`: error writing value of type 'org.gradle.api.internal.provider.DefaultListProperty'
+> Querying the mapped value of map(map(map(list(interface java.util.Collection, item(list(interface org.gradle.api.file.Directory, item(flatmap(provider(task 'copyAndroidMainComposeResourcesToAndroidAssets', class org.jetbrains.compose.resources.CopyResourcesToAndroidAssetsTask))))) + item(list(interface org.gradle.api.file.Directory, [D:\Sources\Android\SproutPace\shared\compose\src\androidMain\assets])))))) before task ':shared:compose:copyAndroidMainComposeResourcesToAndroidAssets' has completed is not supported
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 10s
+Configuration cache entry discarded due to serialization error.

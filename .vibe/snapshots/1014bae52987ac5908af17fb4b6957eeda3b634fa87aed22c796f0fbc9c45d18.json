@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "digest": "1c341753432131b473ad429740ad757607a15f1ba68625bd8896caf1e2ff64ce",
+  "files": [
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "sha256": "9c7dcd7ef167b164a93bfd335eb6d527337b60700adf1b3e348bf00d9088e2ed"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt",
+      "sha256": "540fa823f00798d4e84b9ebfe3dc5978ce462e60c6712dabd3495cf9305746e2"
+    }
+  ],
+  "patterns": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt"
+  ]
+}

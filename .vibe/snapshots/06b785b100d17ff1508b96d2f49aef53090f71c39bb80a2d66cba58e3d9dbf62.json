@@ -1,0 +1,42 @@
+{
+  "algorithm": "sha256",
+  "digest": "a4303be4ef4a97902efa341ee5cfeb322b1cf98429c78f341bbee6c1f4921367",
+  "files": [
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "sha256": "cacf2db2641b3622e1d08f37796f09e81f6331473030e4df1ef435dc7a7d9d53"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+      "sha256": "aff0914b2652cd34a55c3b787fd36e34b7f8b8fa73f1c813d59201995466b87d"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+      "sha256": "42ededab5a4af65427f602dac8e8a8a756e0ac32a2c73957716d9a86d2b4b140"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+      "sha256": "99c3fa5666726b1ee211e5739bc450196eaf52c9bbe7d79def9bd01ce6bb0442"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentPreviews.kt",
+      "sha256": "1f872302958fb4cbfd74cc3d41f835b07c2350401f8e24af02db73241b08c6cd"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+      "sha256": "8176c9693bf88d6d050721b222a87a9128c4df95a254a85f3e128a747364475d"
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+      "sha256": "aee6784f5dca75c8791de4bf471c9a255e51bc009477f02f17b223ac59fec239"
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "sha256": "d3ab7f64c1e4968146921dc7424766c4ddbc879b904289930f1ad76cedd5f9e5"
+    }
+  ],
+  "patterns": [
+    "shared/component/src/commonMain/**",
+    "shared/component/src/commonTest/**"
+  ]
+}

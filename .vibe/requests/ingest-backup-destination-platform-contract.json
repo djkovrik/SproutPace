@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-backup-destination-platform-contract-20260920.json",
+  "inspectionNote": "Inspected all seven bounded changes. Restore-source import and create/export destination selection are now distinct typed actions; the router submits exactly once only after a nonblank destination, Android safely reads app-owned imports and writes content URIs, and iOS uses an owned export placeholder with cleanup. Bound receipt e2b13b95 proves data round-trip/file integration, Compose routing tests, Android/iOS compilation and debug APK, closing the prior QG-012 blocker."
+}

@@ -1,0 +1,14 @@
+{
+  "action": "check",
+  "jobId": "CHECK-production-graph-data-platform-wiring-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "production-integration-v1",
+  "tasks": [":shared:compose:compileAndroidMain", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:compose:testAndroidHostTest", ":androidApp:assembleDebug"],
+  "coveredObligations": [
+    {"obligationId":"AC-082","surfaces":["platform-test"]},
+    {"obligationId":"AC-095","surfaces":["integration-test","platform-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; AGP 9.1.1; Compose Multiplatform; Decompose/MVIKotlin; SQLDelight 2.4.0; Android API 23-37; iOS simulator arm64"
+}

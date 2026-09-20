@@ -1,0 +1,182 @@
+{
+  "action": "handoff",
+  "assignmentId": "core-domain-model",
+  "handoffId": "HANDOFF-core-domain-model-20260920-r2",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-core-domain-model-20260920.json",
+    ".vibe/handoffs/HANDOFF-core-domain-model-20260920-r1.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+      "symbol": "data class GrowZone",
+      "surface": "public-contract",
+      "coverage": [{"obligationId": "AC-012", "surface": "public-contract"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Setup.kt",
+      "symbol": "sealed interface TrayShape",
+      "surface": "public-contract",
+      "coverage": [{"obligationId": "AC-014", "surface": "public-contract"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+      "symbol": "object SproutPaceCatalog",
+      "surface": "public-contract",
+      "coverage": [
+        {"obligationId": "AC-020", "surface": "public-contract"},
+        {"obligationId": "AC-027", "surface": "public-contract"},
+        {"obligationId": "QG-011", "surface": "public-contract"}
+      ]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+      "symbol": "data class UserGrowRecipe",
+      "surface": "public-contract",
+      "coverage": [{"obligationId": "AC-021", "surface": "public-contract"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt",
+      "symbol": "recommendedSeedMass",
+      "surface": "public-contract",
+      "coverage": [{"obligationId": "AC-026", "surface": "public-contract"}]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+      "symbol": "object BatchLifecycleEngine",
+      "surface": "public-contract",
+      "coverage": [
+        {"obligationId": "AC-032", "surface": "public-contract"},
+        {"obligationId": "AC-035", "surface": "public-contract"},
+        {"obligationId": "AC-036", "surface": "public-contract"},
+        {"obligationId": "AC-037", "surface": "public-contract"},
+        {"obligationId": "AC-038", "surface": "public-contract"},
+        {"obligationId": "AC-039", "surface": "public-contract"},
+        {"obligationId": "AC-040", "surface": "public-contract"},
+        {"obligationId": "AC-080", "surface": "public-contract"},
+        {"obligationId": "AC-081", "surface": "public-contract"},
+        {"obligationId": "AC-085", "surface": "public-contract"}
+      ]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+      "symbol": "object PlannerEngine",
+      "surface": "public-contract",
+      "coverage": [
+        {"obligationId": "AC-050", "surface": "public-contract"},
+        {"obligationId": "AC-052", "surface": "public-contract"},
+        {"obligationId": "AC-054", "surface": "public-contract"},
+        {"obligationId": "AC-055", "surface": "public-contract"},
+        {"obligationId": "AC-057", "surface": "public-contract"}
+      ]
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/SchedulingEngine.kt",
+      "symbol": "object SchedulingEngine",
+      "surface": "public-contract",
+      "coverage": [
+        {"obligationId": "AC-062", "surface": "public-contract"},
+        {"obligationId": "AC-068", "surface": "public-contract"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "testName": "ac012_zoneUpdateExposesCapacityConflictAndRealityResolution", "surface": "domain-test", "coverage": [{"obligationId": "AC-012", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "testName": "ac014_metricTrayShapesHaveExactAreaRules", "surface": "domain-test", "coverage": [{"obligationId": "AC-014", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "testName": "ac020_catalogIsVersionedOfflineAndHasEightStableCultures", "surface": "catalog-contract-test", "coverage": [{"obligationId": "AC-020", "surface": "catalog-contract-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "testName": "ac021_personalRecipeRequiresValidAuthoredConfiguration", "surface": "domain-test", "coverage": [{"obligationId": "AC-021", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "testName": "ac026_seedRecommendationUsesMetricAreaAndRemainsSeparateFromActualMass", "surface": "domain-test", "coverage": [{"obligationId": "AC-026", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "testName": "ac027_safetyGuidanceAndSourcesAreBundledAsStableKeysAndMetadata", "surface": "catalog-contract-test", "coverage": [{"obligationId": "AC-027", "surface": "catalog-contract-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac032_correctionRecalculatesDependentFutureActionsButPreservesFixedDates", "surface": "domain-test", "coverage": [{"obligationId": "AC-032", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac035_soakingRecordsActualEventWithoutOccupyingPlace", "surface": "domain-test", "coverage": [{"obligationId": "AC-035", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac036_sowingOccupiesExactlyOneConfiguredPlace", "surface": "domain-test", "coverage": [{"obligationId": "AC-036", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac037_actualTransitionShiftsOnlyDependentFutureActions", "surface": "domain-test", "coverage": [{"obligationId": "AC-037", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac038_realMoveCanBecomeVisiblyUnassignedWhenCapacityIsFull", "surface": "domain-test", "coverage": [{"obligationId": "AC-038", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac039_undoReversesOnlyLatestTransitionAndRebuildsActionsIdempotently", "surface": "domain-test", "coverage": [{"obligationId": "AC-039", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac040_skipIsExplicitAndContinuesAtNextApplicableStage", "surface": "domain-test", "coverage": [{"obligationId": "AC-040", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt", "testName": "ac050_positiveCadenceAndRotationGenerateSuggestionsNotBatches", "surface": "domain-test", "coverage": [{"obligationId": "AC-050", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt", "testName": "ac052_planUpdateChangesFutureSuggestionsWithoutMutatingConfirmedBatch", "surface": "domain-test", "coverage": [{"obligationId": "AC-052", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt", "testName": "ac054_pauseStopsOnlyFutureSuggestions", "surface": "domain-test", "coverage": [{"obligationId": "AC-054", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt", "testName": "ac055_capacityConflictIsExhaustiveAndNeverFeasible", "surface": "domain-test", "coverage": [{"obligationId": "AC-055", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt", "testName": "ac057_continuousQueueCreatesOneNextSuggestionWithoutConsumptionState", "surface": "domain-test", "coverage": [{"obligationId": "AC-057", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt", "testName": "ac062_snoozePreservesStableActionIdentity", "surface": "domain-test", "coverage": [{"obligationId": "AC-062", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt", "testName": "ac068_civilActionsFollowNewZoneWhileElapsedSoakKeepsInstant", "surface": "domain-test", "coverage": [{"obligationId": "AC-068", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac080_harvestReleasesCapacityAndCancelsFutureActions", "surface": "domain-test", "coverage": [{"obligationId": "AC-080", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac081_failedOutcomeReleasesCapacityAndKeepsOptionalReason", "surface": "domain-test", "coverage": [{"obligationId": "AC-081", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt", "testName": "ac085_actualHarvestMassExistsOnlyOnHarvestedOutcome", "surface": "domain-test", "coverage": [{"obligationId": "AC-085", "surface": "domain-test"}]},
+    {"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "testName": "qg011_catalogIdentityMetadataAndLocalizationKeysAreComplete", "surface": "catalog-contract-test", "coverage": [{"obligationId": "QG-011", "surface": "catalog-contract-test"}]}
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "scan commonMain forbidden imports/result wrappers and assert 24 assigned AC/QG test anchors"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "assert Android host-test compilation and common JvmInline import are configured"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:domain:allTests"],
+      "tasks": [":shared:domain:allTests"],
+      "coveredObligations": [
+        {"obligationId": "AC-012", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-014", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-020", "surfaces": ["catalog-contract-test"]},
+        {"obligationId": "AC-021", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-026", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-027", "surfaces": ["catalog-contract-test"]},
+        {"obligationId": "AC-032", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-035", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-036", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-037", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-038", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-039", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-040", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-050", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-052", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-054", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-055", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-057", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-062", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-068", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-080", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-081", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-085", "surfaces": ["domain-test"]},
+        {"obligationId": "QG-011", "surfaces": ["catalog-contract-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:domain:testAndroidHostTest"],
+      "tasks": [":shared:domain:testAndroidHostTest"],
+      "coveredObligations": [
+        {"obligationId": "AC-012", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-014", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-020", "surfaces": ["catalog-contract-test"]},
+        {"obligationId": "AC-021", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-026", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-027", "surfaces": ["catalog-contract-test"]},
+        {"obligationId": "AC-032", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-035", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-036", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-037", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-038", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-039", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-040", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-050", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-052", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-054", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-055", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-057", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-062", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-068", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-080", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-081", "surfaces": ["domain-test"]},
+        {"obligationId": "AC-085", "surfaces": ["domain-test"]},
+        {"obligationId": "QG-011", "surfaces": ["catalog-contract-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

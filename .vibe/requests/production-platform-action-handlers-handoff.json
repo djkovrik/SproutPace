@@ -1,0 +1,86 @@
+{
+  "action": "handoff",
+  "assignmentId": "production-platform-action-handlers",
+  "handoffId": "HANDOFF-production-platform-action-handlers-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "symbol": "platformActionHandler",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "symbol": "IosPlatformActionBridge",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "platformActionsUseTypedSeamAndFeedDocumentResultBackIntoDraft",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-074", "surface": "component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell", "-NoProfile", "-Command",
+        "verify all five typed action kinds on Android and iOS, success-only nonblank result sinks, externally configured HTTPS-only privacy URLs, valid Info.plist XML and safe-disabled iOS advertising"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T11:45:30Z",
+      "completedAt": "2026-09-20T11:45:31Z"
+    },
+    {
+      "argv": [
+        "git", "diff", "--check", "--",
+        "androidApp/build.gradle.kts",
+        "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+        "docs/configuration/ADVERTISING-PRIVACY.md",
+        "iosApp/iosApp/Info.plist",
+        "iosApp/iosApp/iosApp.swift",
+        "shared/compose/src/iosMain/kotlin/main.kt"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T11:45:31Z",
+      "completedAt": "2026-09-20T11:45:32Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest",
+        ":androidApp:assembleDebug"
+      ],
+      "tasks": [
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [
+        {"obligationId": "AC-074", "surfaces": ["component-test"]}
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The current typed CHOOSE_DOCUMENT action always selects and imports an existing archive, while create-backup and export require a destination-document contract. AndroidSystemPickerHost and NativePlatformServices already expose destination pickers, but the shared typed action does not distinguish import from destination selection; therefore this handoff does not claim QG-012 snapshot-roundtrip-test or file-integration-test coverage.",
+      "obligationIds": ["QG-012"],
+      "nextAction": "Add a separately assigned typed destination-document action and route create-backup/export to the existing Android/iOS destination pickers, then run the declared QG-012 snapshot-roundtrip-test and file-integration-test surfaces."
+    }
+  ]
+}

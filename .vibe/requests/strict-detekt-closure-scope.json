@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "strict-detekt-closure-v1",
+  "patterns": ["detekt/base-config.yml", "androidApp/**", "shared/**", "spec/quality.md"],
+  "dependencyRationale": "The Detekt configuration and every currently analyzed production source define the complete strict static-analysis correction surface.",
+  "toolchainIdentity": "Kotlin 2.4.10; Detekt 2.0.0-alpha.6; JDK 21."
+}

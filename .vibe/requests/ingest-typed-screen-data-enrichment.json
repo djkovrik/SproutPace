@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-typed-screen-data-enrichment-20260920.json",
+  "inspectionNote": "Inspected the production snapshot enrichment and its Android-host integration tests. All sixteen screens now retain registry fields/facts/actions, persisted authored values and deterministic defaults; typed create/edit/settings/privacy/notification/backup paths are exercised. Bound receipt f8659179-5251-46fe-b281-a6b7c09fc30e confirms 53 Android host tests, allTests, Android compilation and iOS simulator compilation. Dynamic options are intentionally attached only to choice fields; the registered semantic contract correction will convert remaining stable-ID selectors from TEXT to choice kinds."
+}

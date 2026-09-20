@@ -1,0 +1,16 @@
+{
+  "events": [
+    {
+      "at": "2026-09-20T15:25:34.114178Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T15:25:35.716773Z",
+      "exitCode": 1,
+      "stage": "runner-failed"
+    }
+  ],
+  "exitCode": 1,
+  "jobId": "CHECK-final-local-freeze-gate-20260920",
+  "stage": "runner-failed"
+}

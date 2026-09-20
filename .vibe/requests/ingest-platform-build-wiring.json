@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-platform-build-wiring-20260920.json",
+  "inspectionNote": "Inspected the narrow platform build wiring and handoff. settings.gradle.kts includes :shared:platform exactly once and shared:compose commonMain adds a single implementation dependency; all existing targets, modules and quality configuration remain intact. No feature source or generated artifact changed and Gradle validation remains root-owned."
+}

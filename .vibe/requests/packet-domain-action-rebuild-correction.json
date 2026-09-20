@@ -1,0 +1,43 @@
+{
+  "acceptanceCriteria": [
+    "A typed correction operation recalculates only dependent pending future actions from actual/corrected anchors while preserving past events and terminal history.",
+    "User-fixed due moments remain unchanged and emit explicit ScheduleConflict consequences.",
+    "Undo derives its rebuilt action list in domain code, removes only the latest transition, restores state/placement, and returns obsolete action IDs for reminder cancellation.",
+    "Logical action IDs are stable for surviving obligations and repeated rebuild/undo input is deterministic and duplicate-free.",
+    "Elapsed soak targets and civil-time daily actions retain their distinct time-zone semantics.",
+    "Scenario-named tests cover AC-032 and AC-039 edge cases and idempotence.",
+    "No data, Compose, platform, ledger or product-scope changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ActionScheduleEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ActionScheduleEngineTest.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchLifecycleTest.kt"
+  ],
+  "assignmentId": "domain-action-rebuild-correction",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/domain.md",
+    "spec/flows/FLOW-004.md",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Provide a pure deterministic domain-owned action rebuild/correction API used by arbitrary batch corrections and undo. Preserve completed/skipped history, stable logical action IDs where the obligation survives, elapsed-vs-civil semantics, user-fixed dates with explicit conflicts, and idempotence; remove the need for callers to invent a rebuilt list.",
+  "obligationIds": [
+    "AC-032",
+    "AC-039"
+  ],
+  "requestedCommands": [
+    ":shared:domain:allTests",
+    ":shared:domain:compileAndroidMain",
+    ":shared:domain:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/domain-invariants.md",
+    "C:/Users/Sergey/.codex/skills/vibe-domain-engineer/references/time-and-recurrence.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

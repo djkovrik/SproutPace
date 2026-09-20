@@ -1,0 +1,25 @@
+{
+  "action": "check",
+  "jobId": "CHECK-approved-asset-product-ui-empty-correction-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "approved-asset-product-ui-v1",
+  "tasks": [
+    ":shared:compose:verifyPaparazzi",
+    ":shared:component:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    "--no-configuration-cache"
+  ],
+  "coveredObligations": [
+    {
+      "obligationId": "AC-001",
+      "surfaces": ["component-test", "ui-golden"]
+    },
+    {
+      "obligationId": "AC-120",
+      "surfaces": ["localization-contract-test", "ui-golden"]
+    }
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Paparazzi 2.0.0-alpha05"
+}

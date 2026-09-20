@@ -1,0 +1,369 @@
+{
+  "acceptanceScenarioIds": [
+    "AC-001",
+    "AC-120",
+    "AC-121",
+    "AC-122",
+    "AC-123"
+  ],
+  "allowedFiles": [
+    "docs/design-review/**",
+    "shared/compose/src/androidUnitTest/**",
+    "shared/compose/src/commonMain/composeResources/values-ru/**",
+    "shared/compose/src/commonMain/composeResources/values/**",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/commonTest/**"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/6e0e191d3a018a21afd3466633d8a6fd4d42134c7362e4ede4c0f06065730b4d.json",
+    "sha256": "a6cdcd7e3420490e40fe566a2f0266fb470622ca5037c005d36e9a04203685fc"
+  },
+  "assignmentId": "product-ui-all-screens",
+  "blockers": [
+    "The root-owned Decompose ScreenModel/ScreenAction adapter and production stack binding are a later integration assignment; this UI handoff does not claim production-root reachability.",
+    "Paparazzi goldens have not yet been recorded, inspected, or verified by the root-owned visual-testing stage.",
+    "The required post-golden Lazyweb first-release review is intentionally pending until approved rendered PNGs exist."
+  ],
+  "changedFiles": [
+    "docs/design-review/product-ui-material-contract.md",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Color.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiContractTest.kt"
+  ],
+  "completedAt": "2026-09-20T08:23:54.620049Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-product-ui-all-screens-20260920",
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "validate locale key equality, referenced resources, sixteen stable UI screens, and git diff whitespace"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-product-designer",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "surface": "component-test",
+      "symbol": "fun SproutPaceApp"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-122",
+          "surface": "accessibility-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "surface": "accessibility-test",
+      "symbol": "fun ScreenContent"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-122",
+          "surface": "keyboard-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "surface": "keyboard-test",
+      "symbol": "fun ScreenContent"
+    },
+    {
+      "anchor": {
+        "attributes": {
+          "name": "screen_today_title"
+        },
+        "element": "string",
+        "kind": "xml"
+      },
+      "coverage": [
+        {
+          "obligationId": "AC-120",
+          "surface": "localization-contract-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/composeResources/values/strings.xml",
+      "surface": "localization-contract-test"
+    },
+    {
+      "anchor": {
+        "attributes": {
+          "name": "screen_today_title"
+        },
+        "element": "string",
+        "kind": "xml"
+      },
+      "coverage": [
+        {
+          "obligationId": "AC-120",
+          "surface": "localization-contract-test"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+      "surface": "localization-contract-test"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "ui-golden"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "surface": "ui-golden",
+      "symbol": "fun FirstRunPreviews"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-120",
+          "surface": "ui-golden"
+        },
+        {
+          "obligationId": "AC-122",
+          "surface": "ui-golden"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "surface": "ui-golden",
+      "symbol": "fun RussianLargeTextPreview"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-121",
+          "surface": "ui-golden"
+        }
+      ],
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "surface": "ui-golden",
+      "symbol": "fun TodayPreviews"
+    }
+  ],
+  "qualityGateIds": [],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-001",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-120",
+          "surfaces": [
+            "component-test",
+            "localization-contract-test"
+          ]
+        },
+        {
+          "obligationId": "AC-121",
+          "surfaces": [
+            "component-test"
+          ]
+        },
+        {
+          "obligationId": "AC-123",
+          "surfaces": [
+            "component-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:compileAndroidMain",
+        ":shared:compose:compileKotlinIosSimulatorArm64",
+        ":shared:compose:testAndroidHostTest"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:verifyPaparazziDebug"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "AC-001",
+          "surfaces": [
+            "ui-golden"
+          ]
+        },
+        {
+          "obligationId": "AC-120",
+          "surfaces": [
+            "ui-golden"
+          ]
+        },
+        {
+          "obligationId": "AC-121",
+          "surfaces": [
+            "ui-golden"
+          ]
+        },
+        {
+          "obligationId": "AC-122",
+          "surfaces": [
+            "ui-golden"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:verifyPaparazziDebug"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":androidApp:assembleDebug"
+      ],
+      "coveredObligations": [],
+      "tasks": [
+        ":androidApp:assembleDebug"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "67009b11299f58040f8a8aa0f72d34d2a27a5ac0c45fc69ac6f2d56be0c3c14a",
+    "files": [
+      {
+        "path": "docs/design-review/product-ui-material-contract.md",
+        "sha256": "e0da61296963a979ecf88e352d50d3a38a7302b2aa0fe8d2eea5f79386e03ab2"
+      },
+      {
+        "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+        "sha256": "cba2fdec0142fb3a0c1a4661c98c61d0ad14d300361243b40dcf715b59f3ebb7"
+      },
+      {
+        "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+        "sha256": "0bdcac2f685bb6fb82dcf279bf47f6051b161f9e77f99aaa43e9b99b2e8f7b7e"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+        "sha256": "12fde395dd77dbaecb6b63046b40edce192496cb7bd5cd8a0a4b0805232ade1b"
+      },
+      {
+        "path": "shared/compose/src/commonMain/composeResources/values/strings.xml",
+        "sha256": "e35dbbeb820c29e11f23a20bba8a20253df2f0235139ea34619d99d2e57510ce"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+        "sha256": "7d0a231ff42f20af56845acf8e62fe61397444cc84cdc38dd6e458939d08b4b6"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+        "sha256": "8817210daa363b35f5c458add949bccccd96f100ef89bf50e09f507f96b1ef72"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+        "sha256": "3c4703dda0ef7afdf6fcacf3446a604d21e8e4ffa21a47226135160522c5dbf9"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Color.kt",
+        "sha256": "82ebd816ee09f674b459aa2756e502924567668194a837846faa312286b638a7"
+      },
+      {
+        "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+        "sha256": "8b99dba8b3b1096f20619c53b81c1399f36d3033dd3fd185c2029815f12ec93d"
+      },
+      {
+        "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiContractTest.kt",
+        "sha256": "c82b0ce1d86b8f6a834c71b39b312b69146d78b5ac21aff805c13161ef5b01e5"
+      }
+    ],
+    "patterns": [
+      "docs/design-review/**",
+      "shared/compose/src/androidUnitTest/**",
+      "shared/compose/src/commonMain/composeResources/values-ru/**",
+      "shared/compose/src/commonMain/composeResources/values/**",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+      "shared/compose/src/commonTest/**"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T08:08:32.856171Z",
+  "supersedes": [],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "component-test"
+        },
+        {
+          "obligationId": "AC-123",
+          "surface": "component-test"
+        }
+      ],
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiContractTest.kt",
+      "surface": "component-test",
+      "testName": "allApprovedScreensAreRepresentedExactlyOnce"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "AC-001",
+          "surface": "ui-golden"
+        },
+        {
+          "obligationId": "AC-120",
+          "surface": "ui-golden"
+        },
+        {
+          "obligationId": "AC-121",
+          "surface": "ui-golden"
+        },
+        {
+          "obligationId": "AC-122",
+          "surface": "ui-golden"
+        }
+      ],
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "surface": "ui-golden",
+      "testName": "scannerFindsEveryPrimaryScreenAndStressPreviews"
+    }
+  ]
+}

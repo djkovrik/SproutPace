@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "approved-inline-ad-placement-v1",
+  "patterns": ["shared/monetization/**", "shared/component/**", "shared/data/**", "shared/compose/**", "spec/app-spec.json", "spec/flows/FLOW-010.md", "spec/screens/SCREEN-003.md", "spec/screens/SCREEN-007.md", "*.gradle.kts", "gradle/**"],
+  "dependencyRationale": "Exact eligibility is derived from typed persisted Catalog and explicit Trays History state, routed through components and rendered by lifecycle-owned Compose/native advertising hosts.",
+  "fallbackReason": "The approved placement behavior crosses the shared monetization policy, production screen snapshots, root component adapter and platform Compose host.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Yandex Mobile Ads Android 8.5.0"
+}

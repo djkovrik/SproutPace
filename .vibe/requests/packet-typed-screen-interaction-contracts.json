@@ -1,0 +1,68 @@
+{
+  "acceptanceCriteria": [
+    "ScreenSnapshot/ScreenModel expose typed draft fields, option choices, read-only facts and action descriptors using stable keys/IDs and authored user data only; no localized app copy is embedded.",
+    "ScreenAction supports field edits and explicit submit/action intents; Store owns draft/validation/busy/error state and builds argument-bearing ScreenCommand values deterministically.",
+    "Every registered production operation declares its required arguments and subject semantics so invalid empty command submission is impossible from the typed contract.",
+    "Drafts survive expected Decompose state retention, destructive execution still uses ConfirmationRequested/ExecuteConfirmed exactly once, and cancellation never mutates data.",
+    "Preview components provide representative typed content/error/empty/permission/conflict/restore-preview states without production dependencies.",
+    "Contract tests cover all sixteen screens, all registry operations, validation/resource keys and state retention; no data, root, Compose, platform, build, ledger or external project changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/component/src/commonMain/**",
+    "shared/component/src/commonTest/**"
+  ],
+  "assignmentId": "typed-screen-interaction-contracts",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/screens/**",
+    "spec/flows/**",
+    "shared/component/src/commonMain/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Define and test typed, locale-neutral interactive screen state for all sixteen screens so production Compose can render real values and issue valid argument-bearing ScreenCommands while MVIKotlin/Decompose retain drafts, validation and async state.",
+  "obligationIds": [
+    "AC-010",
+    "AC-014",
+    "AC-020",
+    "AC-026",
+    "AC-027",
+    "AC-030",
+    "AC-032",
+    "AC-035",
+    "AC-036",
+    "AC-037",
+    "AC-038",
+    "AC-039",
+    "AC-040",
+    "AC-050",
+    "AC-051",
+    "AC-052",
+    "AC-054",
+    "AC-055",
+    "AC-057",
+    "AC-060",
+    "AC-062",
+    "AC-066",
+    "AC-068",
+    "AC-080",
+    "AC-081",
+    "AC-085",
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:component:testAndroidHostTest",
+    ":shared:component:allTests",
+    ":shared:component:compileAndroidMain",
+    ":shared:component:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/component-contracts-and-previews.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/store-contract-and-provider.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

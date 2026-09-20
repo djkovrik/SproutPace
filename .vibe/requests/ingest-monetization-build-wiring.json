@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-monetization-build-wiring-20260920.json",
+  "inspectionNote": "Inspected the exact settings.gradle.kts delta and immutable handoff. The change includes :shared:monetization exactly once while preserving the existing repository and module anchors; declared QG-001 repository-check and QG-003 ios-build surfaces match the handoff. Gradle and macOS checks remain explicitly pending for the orchestrator."
+}

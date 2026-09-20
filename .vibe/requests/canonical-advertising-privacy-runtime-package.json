@@ -1,0 +1,16 @@
+{
+  "action": "package",
+  "packageId": "canonical-advertising-privacy-runtime",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-102", "AC-103", "AC-104", "AC-105", "AC-106", "AC-107"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/monetization/**",
+    "shared/data/**",
+    "shared/compose/**",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md"
+  ],
+  "integrationGoal": "Use one ProductSettings-backed privacy payload for strict endpoint freshness, policy-bound consent, backup/restore/erase, production Android runtime gating, and unconditional iOS no-ID disablement.",
+  "nextAction": "Replace the duplicate Android privacy store with the canonical adapter and verify AC-102 through AC-107 before product UI/native banner integration."
+}

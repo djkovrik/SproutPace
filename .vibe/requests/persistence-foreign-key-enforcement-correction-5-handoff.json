@@ -1,0 +1,111 @@
+{
+  "action": "handoff",
+  "assignmentId": "persistence-foreign-key-enforcement-correction-5",
+  "handoffId": "HANDOFF-persistence-foreign-key-enforcement-correction-5-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+      "symbol": "override fun onConfigure(db: SupportSQLiteDatabase)",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        { "obligationId": "QG-011", "surface": "catalog-contract-test" }
+      ]
+    },
+    {
+      "path": "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+      "symbol": "DatabaseConfiguration.Extended(foreignKeyConstraints = true)",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        { "obligationId": "QG-011", "surface": "catalog-contract-test" }
+      ]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+      "symbol": "Properties().apply { put(\"foreign_keys\", \"true\") }",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        { "obligationId": "QG-011", "surface": "catalog-contract-test" }
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "testName": "foreignKeyFailureRollsBackWithoutPartialObservation",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        { "obligationId": "QG-011", "surface": "catalog-contract-test" }
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-Command",
+        "verify Android onConfigure, iOS DatabaseConfiguration, JDBC foreign_keys property, and orphan-write rollback assertions"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T08:25:37.8296247Z",
+      "completedAt": "2026-09-20T08:25:37.8897180Z"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+        "shared/data/src/androidMain/kotlin/com/sedsoftware/sproutpace/data/AndroidStorage.kt",
+        "shared/data/src/iosMain/kotlin/com/sedsoftware/sproutpace/data/IosStorage.kt",
+        "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T08:25:37.8635604Z",
+      "completedAt": "2026-09-20T08:25:37.9119912Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests",
+        ":shared:data:compileAndroidMain"
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests",
+        ":shared:data:compileAndroidMain"
+      ],
+      "coveredObligations": [
+        { "obligationId": "QG-011", "surfaces": ["catalog-contract-test"] }
+      ]
+    },
+    {
+      "argv": [
+        "./gradlew",
+        ":shared:data:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:data:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        { "obligationId": "QG-011", "surfaces": ["catalog-contract-test"] }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The Android host integration tests, allTests, and Android compilation were not run because this specialist assignment forbids running Gradle.",
+      "obligationIds": ["QG-011"],
+      "nextAction": "The orchestrator should run the requested Windows Gradle tasks and bind the catalog-contract-test receipt."
+    },
+    {
+      "description": "The iOS simulator compilation requires macOS and was not run by this Windows specialist assignment.",
+      "obligationIds": ["QG-011"],
+      "nextAction": "On macOS, the orchestrator should run the requested iOS simulator compile task."
+    }
+  ]
+}

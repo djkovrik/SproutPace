@@ -1,0 +1,99 @@
+{
+  "action": "handoff",
+  "assignmentId": "production-advertising-ui-native",
+  "handoffId": "HANDOFF-production-advertising-ui-native-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "symbol": "RootApp",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-102", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "symbol": "fun SproutPaceUiState.withAdvertisingPrivacy",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-102", "surface": "component-test"},
+        {"obligationId": "AC-104", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "fun settingsSnapshot",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-104", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/PlatformInlineAd.android.kt",
+      "symbol": "PlatformInlineAd",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-104", "surface": "component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "eligibleVisitOpensConsentBeforeReturningAnyAdIdentifier",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-102", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "privacyDecisionActionsAreEqualAndAcceptedStateOffersWithdrawal",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-102", "surface": "component-test"},
+        {"obligationId": "AC-104", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "privacyAcceptDeclineAndWithdrawalUseRuntimeBoundary",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-104", "surface": "component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AdvertisingUiContractTest.kt",
+      "testName": "androidNativeBannerIsLifecycleOwnedAndCollapsedUntilLoaded",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId": "AC-104", "surface": "component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "git diff --check; parse EN/RU XML; compare locale key parity; assert collapsed insertion source"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:monetization:allTests", ":shared:component:testAndroidHostTest", ":shared:data:testAndroidHostTest", ":shared:compose:testAndroidHostTest", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:monetization:compileKotlinIosSimulatorArm64", ":androidApp:assembleDebug"],
+      "tasks": [":shared:monetization:allTests", ":shared:component:testAndroidHostTest", ":shared:data:testAndroidHostTest", ":shared:compose:testAndroidHostTest", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:monetization:compileKotlinIosSimulatorArm64", ":androidApp:assembleDebug"],
+      "coveredObligations": [
+        {"obligationId": "AC-102", "surfaces": ["component-test"]},
+        {"obligationId": "AC-104", "surfaces": ["component-test"]}
+      ],
+      "receiptRef": ".vibe/receipts/RECEIPT-8d5d47f1-3fe5-48b8-bfd3-7688ca16b955.json"
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The deterministic Catalog, History, Settings-management and Advertising Privacy preview states are implemented, but ui-golden recording and post-golden review are intentionally deferred to the orchestrator's final visual pass and are not claimed by this component-test-only handoff.",
+      "obligationIds": ["AC-102", "AC-104"],
+      "nextAction": "Record and verify the affected Paparazzi previews during the final ui-golden pass, then perform the specified Lazyweb design review."
+    }
+  ]
+}

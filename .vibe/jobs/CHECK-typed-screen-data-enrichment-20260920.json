@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 1.173127399990335,
+  "events": [
+    {
+      "at": "2026-09-20T10:28:00.206456Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T10:28:02.161754Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-914f2b37-c20c-456a-a4dc-12e57cc35f4e.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T10:28:30.327412Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-914f2b37-c20c-456a-a4dc-12e57cc35f4e.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:28:30.628211Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-914f2b37-c20c-456a-a4dc-12e57cc35f4e.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:28:30.736229Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T10:28:32.050674Z",
+      "durationSeconds": 1.173127399990335,
+      "receiptRef": ".vibe/receipts/RECEIPT-914f2b37-c20c-456a-a4dc-12e57cc35f4e.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-typed-screen-data-enrichment-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-914f2b37-c20c-456a-a4dc-12e57cc35f4e.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-914f2b37-c20c-456a-a4dc-12e57cc35f4e.json",
+  "stage": "bound"
+}

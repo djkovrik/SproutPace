@@ -1,0 +1,10 @@
+{
+  "action": "package",
+  "packageId": "first-run-flow",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-002"],
+  "qualityGateIds": [],
+  "fileBoundaries": ["shared/component/**", "shared/data/**", "shared/root/**"],
+  "integrationGoal": "Completing the approved first-run form atomically persists a feasible minimum local setup and replaces onboarding with the first Plan destination without creating a grow batch.",
+  "nextAction": "Implement and verify the continue-setup transaction and successful root transition using the stabilized typed interaction contract."
+}

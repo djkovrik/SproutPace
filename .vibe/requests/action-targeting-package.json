@@ -1,0 +1,15 @@
+{
+  "action": "package",
+  "packageId": "action-targeting-integration",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-061", "AC-063"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/component/**",
+    "shared/data/**",
+    "shared/compose/**",
+    "shared/root/**"
+  ],
+  "integrationGoal": "Today and Batch Detail execute complete and skip exactly once against the explicit persisted ScheduledActionId, with no command/subject ambiguity and with the batch retained after skip.",
+  "nextAction": "Add explicit typed command targeting through model, Store, UI router and production data tests."
+}

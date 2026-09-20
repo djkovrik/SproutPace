@@ -1,0 +1,24 @@
+= : Имя "=" не распознано как имя командлета, функции, файла сценария или выполняемой программы. Проверьте правильность
+ написания имени, а также наличие и правильность пути, после чего повторите попытку.
+строка:1 знак:2
++  = Get-Content -Raw -LiteralPath 'docs/design-review/product-ui-mater ...
++  ~
+    + CategoryInfo          : ObjectNotFound: (=:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+= : Имя "=" не распознано как имя командлета, функции, файла сценария или выполняемой программы. Проверьте правильность
+ написания имени, а также наличие и правильность пути, после чего повторите попытку.
+строка:1 знак:89
++ ... Path 'docs/design-review/product-ui-material-contract.md';  = Get-Con ...
++                                                                 ~
+    + CategoryInfo          : ObjectNotFound: (=:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-notmatch : Имя "-notmatch" не распознано как имя командлета, функции, файла сценария или выполняемой программы. Провер
+ьте правильность написания имени, а также наличие и правильность пути, после чего повторите попытку.
+строка:1 знак:194
++ ... ove/sproutpace-final-2026-09-20/report.html'; if (( -notmatch '638f69 ...
++                                                         ~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (-notmatch:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

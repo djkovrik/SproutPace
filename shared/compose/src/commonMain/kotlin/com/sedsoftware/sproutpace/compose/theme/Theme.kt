@@ -5,7 +5,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import com.sedsoftware.sproutpace.data.ThemePreference
 
 private val LightColorScheme = lightColorScheme(
     primary = PrimaryLight,
@@ -87,19 +93,28 @@ internal val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
 
 @Composable
 internal fun AppTheme(
+    preference: ThemePreference = ThemePreference.SYSTEM,
     onThemeChanged: @Composable (isDark: Boolean) -> Unit,
     content: @Composable () -> Unit
 ) {
     val systemIsDark = isSystemInDarkTheme()
-    val isDarkState = remember(systemIsDark) { mutableStateOf(systemIsDark) }
+    val isDarkState = remember(preference, systemIsDark) {
+        mutableStateOf(resolveDarkTheme(preference, systemIsDark))
+    }
     CompositionLocalProvider(
         LocalThemeIsDark provides isDarkState
     ) {
         val isDark by isDarkState
-        onThemeChanged(!isDark)
+        onThemeChanged(isDark)
         MaterialTheme(
             colorScheme = if (isDark) DarkColorScheme else LightColorScheme,
             content = { Surface(content = content) }
         )
     }
+}
+
+internal fun resolveDarkTheme(preference: ThemePreference, systemIsDark: Boolean): Boolean = when (preference) {
+    ThemePreference.SYSTEM -> systemIsDark
+    ThemePreference.LIGHT -> false
+    ThemePreference.DARK -> true
 }

@@ -1,0 +1,73 @@
+{
+  "action": "handoff",
+  "assignmentId": "trays-history-category-correction",
+  "handoffId": "HANDOFF-trays-history-category-correction-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "fun traysSnapshot",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-084","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+      "symbol": "object ScreenContractRegistry",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-084","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "symbol": "fun ScreenModel.toUiState",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-084","surface":"component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "testName": "ac080Ac081Ac085_terminalOutcomesReleaseCapacityAndStoreOnlyActualMass",
+      "surface": "database-integration-test",
+      "coverage": [
+        {"obligationId":"AC-084","surface":"database-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "testName": "traysComponentKeepsExplicitHistoryChoiceInTypedStoreState",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-084","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "testName": "traysCategoryIsTypedAndFiltersOnlyTheSelectedPeerGroup",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-084","surface":"component-test"}
+      ]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell","-NoProfile","-Command","parse EN/RU XML, compare locale key parity, and run git diff --check"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat",":shared:data:testAndroidHostTest",":shared:component:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:data:testAndroidHostTest",":shared:component:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [
+        {"obligationId":"AC-084","surfaces":["database-integration-test","component-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

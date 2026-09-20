@@ -1,0 +1,16 @@
+{
+  "events": [
+    {
+      "at": "2026-09-20T11:14:01.442982Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T11:14:04.111346Z",
+      "exitCode": 1,
+      "stage": "runner-failed"
+    }
+  ],
+  "exitCode": 1,
+  "jobId": "RECORD-functional-ui-goldens-20260920",
+  "stage": "runner-failed"
+}

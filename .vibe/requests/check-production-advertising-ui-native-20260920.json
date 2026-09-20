@@ -1,0 +1,22 @@
+{
+  "action": "check",
+  "jobId": "CHECK-production-advertising-ui-native-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "production-advertising-ui-native-v1",
+  "tasks": [
+    ":shared:monetization:allTests",
+    ":shared:component:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "coveredObligations": [
+    {"obligationId":"AC-102","surfaces":["component-test"]},
+    {"obligationId":"AC-104","surfaces":["component-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Yandex Mobile Ads Android 8.5.0; iOS Simulator Kotlin/Native target"
+}

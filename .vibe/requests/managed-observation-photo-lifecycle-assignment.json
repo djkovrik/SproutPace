@@ -1,0 +1,20 @@
+{
+  "action":"assign",
+  "reconcileDrift":"The picker currently copies into Imports and persists the raw temporary path as PhotoId, bypassing PrivateFileStore/observation_photos. There is no real restart-safe photo render path or explicit Keep/Replace/Remove lifecycle.",
+  "assignmentId":"managed-observation-photo-lifecycle","packageId":"managed-observation-photo-lifecycle","owner":"vibe-platform-engineer","acceptanceScenarioIds":["AC-074"],"qualityGateIds":[],
+  "allowedFiles":["shared/domain/**","shared/platform/**","shared/data/**","shared/component/**","shared/compose/**","androidApp/**","iosApp/**","docs/architecture/PLATFORM-SERVICES.md"],
+  "inputScopeId":"managed-observation-photo-lifecycle-v1",
+  "goal":"Implement a two-phase restart-safe observation photo lifecycle using app-private managed storage and typed Keep/Replace/Remove semantics on Android and iOS, without broad media permissions or raw-path identity leakage.",
+  "contractInputs":["spec/app-spec.json","spec/flows/FLOW-007.md","spec/screens/SCREEN-005.md","spec/screens/SCREEN-009.md","shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PrivateFileStore.kt","shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq","shared/platform/src/commonMain/**","shared/compose/src/commonMain/**"],
+  "requiredReads":["C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md","C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-test-engineer/SKILL.md","C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"],
+  "requestedCommands":[":shared:platform:allTests",":shared:data:testAndroidHostTest",":shared:component:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:platform:compileKotlinIosSimulatorArm64",":shared:data:compileKotlinIosSimulatorArm64",":shared:component:compileKotlinIosSimulatorArm64",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+  "acceptanceCriteria":[
+    "System picker cancellation leaves draft and persisted state unchanged; successful bytes are first staged as a pending import and never persisted as a raw path or external URI.",
+    "Save imports into canonical app-private photo storage with deterministic safe identity and atomically commits the observation/photo row; failures compensate partial files and rows.",
+    "Editing exposes typed Keep, Replace and Remove. Replace deletes the prior managed file only after successful commit; Remove deletes the managed association/file without affecting observation text; orphan cleanup is deterministic and scoped.",
+    "Batch detail and observation editor resolve and render the managed photo after process restart; missing/corrupt files fail locally without crashing or losing core observation data.",
+    "Android Photo Picker and iOS PHPicker paths copy immediately into app-private staging and request no broad photo/media permission.",
+    "EN/RU production strings, accessibility semantics and deterministic previews cover add/keep/replace/remove, image description/privacy and failure states.",
+    "Deterministic platform, file-integration and component tests prove AC-074, plus Android assembly and all affected iOS Kotlin/Native compilations. Root owns Gradle and final goldens."
+  ]
+}

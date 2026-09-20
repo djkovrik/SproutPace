@@ -1,0 +1,28 @@
+{
+  "action": "handoff",
+  "assignmentId": "scheduled-action-command-targeting",
+  "handoffId": "HANDOFF-scheduled-action-command-targeting-scope-blocked-20260920",
+  "supersedes": [],
+  "productionEvidence": [],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-Command",
+        "Test-Path -LiteralPath declared ScreenStoreProvider path; Test-Path -LiteralPath actual component/store/ScreenStoreProvider path"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T12:07:08.3135875Z",
+      "completedAt": "2026-09-20T12:07:08.3590097Z"
+    }
+  ],
+  "requestedCommands": [],
+  "blockers": [
+    {
+      "description": "The assignment declares shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenStoreProvider.kt, which does not exist. The required production Store implementation is shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt, but that path is outside allowedFiles. No source or test files were changed.",
+      "obligationIds": ["AC-061", "AC-063"],
+      "nextAction": "Ingest this no-change blocker handoff, then register a correction assignment whose allowedFiles includes shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt and reissue the compact packet."
+    }
+  ]
+}

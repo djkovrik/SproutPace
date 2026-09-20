@@ -1,0 +1,26 @@
+{
+  "action": "handoff",
+  "assignmentId": "privacy-yandex-ads-correction-1",
+  "handoffId": "HANDOFF-privacy-yandex-ads-correction-1-20260920-r1",
+  "supersedes": [],
+  "productionEvidence": [
+    {"path":"shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt","symbol":"fun resolveLocked","surface":"ad-config-check","coverage":[{"obligationId":"QG-009","surface":"ad-config-check"}]},
+    {"path":"shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt","symbol":"fun stopImmediately","surface":"ad-device-check","coverage":[{"obligationId":"QG-009","surface":"ad-device-check"}]},
+    {"path":"shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt","symbol":"fun recordDecision","surface":"privacy-policy-check","coverage":[{"obligationId":"QG-010","surface":"privacy-policy-check"}]},
+    {"path":"shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt","symbol":"data class AdConfiguration","surface":"store-disclosure-check","coverage":[{"obligationId":"QG-010","surface":"store-disclosure-check"}]}
+  ],
+  "testEvidence": [
+    {"path":"shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt","testName":"privateSettingsFailuresFailClosedWithoutCrashingCoreFlow","surface":"ad-config-check","coverage":[{"obligationId":"QG-009","surface":"ad-config-check"}]}
+  ],
+  "nonGradleChecks": [
+    {"argv":["powershell","-File","shared/monetization/scripts/validate-advertising.ps1"],"exitCode":0,"startedAt":"2026-09-20T07:56:40.2244525Z","completedAt":"2026-09-20T07:56:40.4515082Z"}
+  ],
+  "requestedCommands": [
+    {"argv":["gradlew.bat",":shared:monetization:allTests",":shared:monetization:testAndroidHostTest"],"tasks":[":shared:monetization:allTests",":shared:monetization:testAndroidHostTest"],"coveredObligations":[{"obligationId":"QG-009","surfaces":["ad-config-check","ad-device-check"]},{"obligationId":"QG-010","surfaces":["privacy-policy-check","store-disclosure-check"]}]},
+    {"argv":["./gradlew",":shared:monetization:allTests",":shared:monetization:testAndroidHostTest"],"tasks":[":shared:monetization:allTests",":shared:monetization:testAndroidHostTest"],"coveredObligations":[{"obligationId":"QG-009","surfaces":["ad-config-check","ad-device-check"]},{"obligationId":"QG-010","surfaces":["privacy-policy-check","store-disclosure-check"]}]}
+  ],
+  "blockers": [
+    {"description":"Gradle execution remains owned by the orchestrator; the correction tests and target behavior are code-ready but unexecuted.","obligationIds":["QG-009","QG-010"],"nextAction":"Run the requested Windows and macOS tasks after root build wiring includes :shared:monetization."},
+    {"description":"The original assignment handoff `.vibe/handoffs/HANDOFF-privacy-yandex-ads-20260920.json` predates this inspected fail-closed correction and is retained only as historical context; Protocol 2.0 forbids cross-assignment supersedes.","obligationIds":["QG-009","QG-010"],"nextAction":"Inspect both immutable artifacts and ingest this correction assignment handoff independently with supersedes empty."}
+  ]
+}

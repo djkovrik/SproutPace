@@ -1,0 +1,131 @@
+{
+  "action": "handoff",
+  "assignmentId": "component-build-wiring",
+  "handoffId": "HANDOFF-component-build-wiring-20260920-r1",
+  "supersedes": [
+    ".vibe/handoffs/HANDOFF-component-build-wiring-20260920.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "gradle/libs.versions.toml",
+      "symbol": "decompose = \"3.5.0\"",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "symbol": "decompose = \"3.5.0\"",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:component\")",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:component\")",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:root\")",
+      "surface": "repository-check",
+      "coverage": [
+        { "obligationId": "QG-001", "surface": "repository-check" }
+      ]
+    },
+    {
+      "path": "settings.gradle.kts",
+      "symbol": "include(\":shared:root\")",
+      "surface": "ios-build",
+      "coverage": [
+        { "obligationId": "QG-003", "surface": "ios-build" }
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "python",
+        "-c",
+        "compare assignment-owned result hashes; parse TOML; verify exact Decompose, MVIKotlin, Essenty and serialization aliases used by shared:component/shared:root; verify unique includes and preserved SQLDelight/quality anchors"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:38:21.9287129Z",
+      "completedAt": "2026-09-20T07:38:22.0115153Z"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "build.gradle.kts",
+        "gradle/libs.versions.toml",
+        "settings.gradle.kts"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:38:30.3544099Z",
+      "completedAt": "2026-09-20T07:38:30.4025100Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:component:allTests",
+        ":shared:component:testAndroidHostTest",
+        ":shared:root:allTests",
+        ":shared:root:testAndroidHostTest"
+      ],
+      "tasks": [
+        ":shared:component:allTests",
+        ":shared:component:testAndroidHostTest",
+        ":shared:root:allTests",
+        ":shared:root:testAndroidHostTest"
+      ],
+      "coveredObligations": [
+        { "obligationId": "QG-001", "surfaces": ["repository-check"] }
+      ]
+    },
+    {
+      "argv": [
+        "./gradlew",
+        ":shared:root:compileKotlinIosArm64",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:root:compileKotlinIosArm64",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        { "obligationId": "QG-003", "surfaces": ["ios-build"] }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The Windows repository test tasks were not executed because this specialist assignment forbids running Gradle.",
+      "obligationIds": ["QG-001"],
+      "nextAction": "The orchestrator should run the requested gradlew.bat component/root test tasks and bind the repository-check receipt."
+    },
+    {
+      "description": "The iOS target compilation requires macOS and was not executed by this Windows specialist assignment.",
+      "obligationIds": ["QG-003"],
+      "nextAction": "On macOS, the orchestrator should run both requested shared:root iOS compile tasks and bind the ios-build receipt."
+    }
+  ]
+}

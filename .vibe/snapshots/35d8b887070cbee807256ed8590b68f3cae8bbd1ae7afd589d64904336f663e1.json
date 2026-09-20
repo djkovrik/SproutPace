@@ -1,0 +1,28 @@
+{
+  "algorithm": "sha256",
+  "digest": "02d553700ebc9d259a5ce472bc12a7e957a7ee607e3310a71a72abca3b4591fa",
+  "files": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": "a90db9fc0719a962e68f14e36faf3f45fde770fb008930c940f4dac7b4b7c77e"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "sha256": "51dbf09f3ba4243003e9f96eef87041de1393193537690d345f3f29c42c0d045"
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "sha256": "d17134df7fc48b6a64284324c97ae5c7583537cec38cfd8e73d5933c57fc3e34"
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "sha256": "583c861715452ac7cea4cb6cac4247fe819b455bc10da069fe1387c3c6d6d106"
+    }
+  ],
+  "patterns": [
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+    "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt"
+  ]
+}

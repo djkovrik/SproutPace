@@ -1,0 +1,43 @@
+{
+  "algorithm": "sha256",
+  "digest": "bd46efb7cfc74a75fe370b00adde5675fd6af9b420780abb38e08a1f0751907b",
+  "files": [
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+      "sha256": "36ec35252ae2bfe9cb00b8e098d218befe17ad3ee91d51dd1f5801c965535160"
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "sha256": "dc06802fc498d75eebc3bc6b5769ee2409d7c8d853cb56d3a2d3f4123a9e16d2"
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "sha256": "f5ae67fff25f94e0599f585ae40762509a6f0fbcaa90fa65776ff6667d53d12b"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "b57b94feff68cbee979b42e97c1952a83e018de7da497a215913daf673b8d5ec"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "sha256": "dccec01d84ce3d58d94957595f3df8f0a3a01ba6010ea686283f2dafbe845ba5"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "sha256": "573120faf2f931776eb5177816ec54625c24bbace98b21b27614edc648e0f3a0"
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "sha256": "e0619b48e90bd04e56aefe098fad3649a35f0be645b71197b0b9e499ad26aab9"
+    }
+  ],
+  "patterns": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+    "iosApp/iosApp/iosApp.swift",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/iosMain/kotlin/main.kt"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 1.0125468999613076,
+  "events": [
+    {
+      "at": "2026-09-20T16:36:16.154076Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T16:36:18.405605Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-45c9205c-7340-4d23-af4c-f7dc1a69a5e9.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T16:36:30.842308Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-45c9205c-7340-4d23-af4c-f7dc1a69a5e9.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T16:36:30.901717Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-45c9205c-7340-4d23-af4c-f7dc1a69a5e9.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T16:36:30.942220Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T16:36:31.996504Z",
+      "durationSeconds": 1.0125468999613076,
+      "receiptRef": ".vibe/receipts/RECEIPT-45c9205c-7340-4d23-af4c-f7dc1a69a5e9.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-final-global-freeze-gate-20260920-r4",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-45c9205c-7340-4d23-af4c-f7dc1a69a5e9.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-45c9205c-7340-4d23-af4c-f7dc1a69a5e9.json",
+  "stage": "bound"
+}

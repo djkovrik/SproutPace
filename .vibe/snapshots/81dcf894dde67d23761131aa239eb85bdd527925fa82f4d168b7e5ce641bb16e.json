@@ -1,0 +1,26 @@
+{
+  "algorithm": "sha256",
+  "digest": "a594c46acb3ea48d4d7b5b03b12c5077f90c1c0b4570fb063851ff2724c7461e",
+  "files": [
+    {
+      "path": "shared/compose/src/commonMain/composeResources/drawable/ic_cyclone.xml",
+      "sha256": "7f53513fe352f0fe5bd4fbd161326a3d2d702524c53c2a9df9c340ec7688867d"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/drawable/ic_dark_mode.xml",
+      "sha256": "cdc9a08b6654ceb82e6cc4088301df78ff9ea19994496b96e60c810c797dcd88"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/drawable/ic_light_mode.xml",
+      "sha256": "6de9720e76a88f26d6f479e3213c427c4e82679142e5582cd72025f3a44f7405"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/drawable/ic_rotate_right.xml",
+      "sha256": "a9456e3f9f4d3bc9fb6adcb9c642eecac0867447c9dfc486ddd1a9a1e10209da"
+    }
+  ],
+  "patterns": [
+    "docs/assets/**",
+    "shared/compose/src/commonMain/composeResources/drawable/**"
+  ]
+}

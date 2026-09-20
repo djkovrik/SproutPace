@@ -1,0 +1,3 @@
+# Copy only into a local/CI secret-backed Gradle properties source.
+# This value is a non-live format example and must never be committed as production configuration.
+sproutpace.yandex.android.adUnitId=R-M-123456-7

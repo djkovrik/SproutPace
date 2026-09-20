@@ -1,0 +1,19 @@
+{
+  "action": "scope",
+  "scopeId": "ac080-dependency-ready-v1",
+  "patterns": [
+    "shared/domain/src/commonMain/**",
+    "shared/domain/src/commonTest/**",
+    "shared/domain/build.gradle.kts",
+    "shared/component/src/commonMain/**",
+    "shared/component/src/commonTest/**",
+    "shared/component/build.gradle.kts",
+    "shared/data/src/commonMain/**",
+    "shared/data/src/androidHostTest/**",
+    "shared/data/build.gradle.kts",
+    "gradle/libs.versions.toml"
+  ],
+  "dependencyRationale": "AC-080 readiness requires terminal lifecycle/capacity release in domain, component publication, and persisted close-batch behavior through the production data manager.",
+  "fallbackReason": "Only domain/component/data common code, host tests and their build inputs influence the three declared surfaces.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android host tests"
+}

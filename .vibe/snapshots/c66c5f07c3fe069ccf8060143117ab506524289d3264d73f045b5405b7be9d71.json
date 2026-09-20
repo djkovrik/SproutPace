@@ -1,0 +1,22 @@
+{
+  "algorithm": "sha256",
+  "digest": "bcbb72dc875c2e3183e043b0c57fc52401cebc532b3bdaca5b5ec844b50b705c",
+  "files": [
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "sha256": "696053d775bc3a4f1e5d0e3d293f7deb23921ed4a27c9dc3a82d9050a8b3ee0f"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": "ab9495f92a92bcd781c8367c7d36c84f9a4dfaa12bc3be0cad1a5d3cd0610c69"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+      "sha256": "6b6e3ef276c91b8084db57212792426976e0bf6711df962403a13bd3f81b765a"
+    }
+  ],
+  "patterns": [
+    "shared/data/src/androidHostTest/**",
+    "shared/data/src/commonTest/**"
+  ]
+}

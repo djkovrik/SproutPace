@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.5963287000195123,
+  "events": [
+    {
+      "at": "2026-09-20T10:46:26.183670Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T10:46:28.608196Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-07271cfa-2d1a-4f41-b2af-e2be5ccb8cd6.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T10:47:52.465345Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-07271cfa-2d1a-4f41-b2af-e2be5ccb8cd6.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:47:52.644243Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-07271cfa-2d1a-4f41-b2af-e2be5ccb8cd6.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T10:47:52.685001Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T10:47:53.323007Z",
+      "durationSeconds": 0.5963287000195123,
+      "receiptRef": ".vibe/receipts/RECEIPT-07271cfa-2d1a-4f41-b2af-e2be5ccb8cd6.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-android-release-readiness-correction-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-07271cfa-2d1a-4f41-b2af-e2be5ccb8cd6.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-07271cfa-2d1a-4f41-b2af-e2be5ccb8cd6.json",
+  "stage": "bound"
+}

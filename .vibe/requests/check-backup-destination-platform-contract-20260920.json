@@ -1,0 +1,20 @@
+{
+  "action": "check",
+  "jobId": "CHECK-backup-destination-platform-contract-r1-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "backup-destination-platform-contract-v1",
+  "tasks": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "coveredObligations": [
+    {"obligationId": "AC-074", "surfaces": ["file-integration-test", "component-test"]},
+    {"obligationId": "QG-012", "surfaces": ["snapshot-roundtrip-test", "file-integration-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android Activity Results; Kotlin/Native iOS simulator compilation"
+}

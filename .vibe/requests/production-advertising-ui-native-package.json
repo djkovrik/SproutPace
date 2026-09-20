@@ -1,0 +1,17 @@
+{
+  "action": "package",
+  "packageId": "canonical-advertising-privacy-runtime",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-100", "AC-101", "AC-102", "AC-103", "AC-104", "AC-105", "AC-106", "AC-107"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/monetization/**",
+    "shared/component/**",
+    "shared/data/**",
+    "shared/compose/**",
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/**",
+    "docs/configuration/ADVERTISING-PRIVACY.md"
+  ],
+  "integrationGoal": "Connect canonical privacy eligibility to production screen state, automatic consent reachability, conditional settings management, and one lifecycle-owned Android native inline banner on the two approved positions while every ineligible/iOS state collapses to zero space.",
+  "nextAction": "Implement and verify production UI/native ad integration without production IDs, external projects, publication, or scope expansion."
+}

@@ -1,0 +1,178 @@
+{
+  "action": "handoff",
+  "assignmentId": "canonical-advertising-privacy-runtime",
+  "handoffId": "HANDOFF-canonical-advertising-privacy-runtime-20260920-v4",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+      "symbol": "data class AdvertisingPrivacyState",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-103","surface":"settings-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "class LocalBackupArchiveCodec",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-103","surface":"settings-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "symbol": "class LocalBackupArchiveCodec",
+      "surface": "privacy-integration-test",
+      "coverage": [{"obligationId":"AC-104","surface":"privacy-integration-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+      "symbol": "class ProductSettingsPrivacyStore",
+      "surface": "privacy-integration-test",
+      "coverage": [
+        {"obligationId":"AC-102","surface":"privacy-integration-test"},
+        {"obligationId":"AC-103","surface":"privacy-integration-test"},
+        {"obligationId":"AC-104","surface":"privacy-integration-test"},
+        {"obligationId":"AC-105","surface":"privacy-integration-test"},
+        {"obligationId":"AC-106","surface":"privacy-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+      "symbol": "class KtorPrivacyRegionApi",
+      "surface": "network-mock-test",
+      "coverage": [{"obligationId":"AC-106","surface":"network-mock-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+      "symbol": "class AdvertisingController",
+      "surface": "ad-lifecycle-test",
+      "coverage": [
+        {"obligationId":"AC-104","surface":"ad-lifecycle-test"},
+        {"obligationId":"AC-106","surface":"ad-lifecycle-test"},
+        {"obligationId":"AC-107","surface":"ad-lifecycle-test"}
+      ]
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+      "symbol": "object IosSafeDisabledAdSdkDriver",
+      "surface": "ios-platform-test",
+      "coverage": [{"obligationId":"AC-107","surface":"ios-platform-test"}]
+    },
+    {
+      "path": "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt",
+      "symbol": "class AndroidAdvertisingRuntime",
+      "surface": "privacy-integration-test",
+      "coverage": [
+        {"obligationId":"AC-102","surface":"privacy-integration-test"},
+        {"obligationId":"AC-103","surface":"privacy-integration-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+      "testName": "freshCacheAvoidsNetworkAndProtectedRegionRequiresChoice",
+      "surface": "privacy-integration-test",
+      "coverage": [
+        {"obligationId":"AC-102","surface":"privacy-integration-test"},
+        {"obligationId":"AC-103","surface":"privacy-integration-test"}
+      ]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+      "testName": "declineAndWithdrawalDisableAdsImmediately",
+      "surface": "privacy-integration-test",
+      "coverage": [{"obligationId":"AC-104","surface":"privacy-integration-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+      "testName": "changedPolicyFromFreshEndpointInvalidatesPreviouslyAcceptedChoice",
+      "surface": "privacy-integration-test",
+      "coverage": [{"obligationId":"AC-105","surface":"privacy-integration-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+      "testName": "mismatchedEndpointVersionFutureFetchAndOverlongCacheAllFailClosed",
+      "surface": "privacy-integration-test",
+      "coverage": [{"obligationId":"AC-106","surface":"privacy-integration-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt",
+      "testName": "rejectsMalformedOversizedExpiredAndOverlongResponses",
+      "surface": "network-mock-test",
+      "coverage": [{"obligationId":"AC-106","surface":"network-mock-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt",
+      "testName": "invalidUtf8AndTransportExceptionsFailClosed",
+      "surface": "network-mock-test",
+      "coverage": [{"obligationId":"AC-106","surface":"network-mock-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "testName": "withdrawalStopsRequestsDisposesOwnedAdsAndPreventsNewInitialization",
+      "surface": "ad-lifecycle-test",
+      "coverage": [{"obligationId":"AC-104","surface":"ad-lifecycle-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "testName": "unresolvedProtectedConsentMakesNoSdkCallUntilAcceptanceIsRecorded",
+      "surface": "ad-lifecycle-test",
+      "coverage": [{"obligationId":"AC-106","surface":"ad-lifecycle-test"}]
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "testName": "previewAutomatedAndIosHostsNeverResolvePrivacyOrInitialize",
+      "surface": "ad-lifecycle-test",
+      "coverage": [{"obligationId":"AC-107","surface":"ad-lifecycle-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "ac103_canonicalAdvertisingPrivacyPayloadBacksUpRestoresAndEraseClearsIt",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-103","surface":"settings-integration-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "testName": "ac103_canonicalAdvertisingPrivacyPayloadBacksUpRestoresAndEraseClearsIt",
+      "surface": "privacy-integration-test",
+      "coverage": [{"obligationId":"AC-104","surface":"privacy-integration-test"}]
+    },
+    {
+      "path": "shared/monetization/src/iosTest/kotlin/com/sedsoftware/sproutpace/monetization/IosAdsDisabledTest.kt",
+      "testName": "iosAdvertisingDriverIsUnconditionallyDisabled",
+      "surface": "ios-platform-test",
+      "coverage": [{"obligationId":"AC-107","surface":"ios-platform-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell","-NoProfile","-ExecutionPolicy","Bypass","-File","shared/monetization/scripts/validate-advertising.ps1"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell","-NoProfile","-Command","verify canonical ProductSettings key and adapter, no duplicate Android store, and no iOS Yandex dependency"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["git","diff","--check"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat",":shared:monetization:allTests",":shared:monetization:testAndroidHostTest",":shared:monetization:compileKotlinIosSimulatorArm64",":shared:data:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+      "tasks": [":shared:monetization:allTests",":shared:monetization:testAndroidHostTest",":shared:monetization:compileKotlinIosSimulatorArm64",":shared:data:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:compose:compileKotlinIosSimulatorArm64",":androidApp:assembleDebug"],
+      "coveredObligations": [
+        {"obligationId":"AC-102","surfaces":["privacy-integration-test"]},
+        {"obligationId":"AC-103","surfaces":["privacy-integration-test","settings-integration-test"]},
+        {"obligationId":"AC-104","surfaces":["privacy-integration-test","ad-lifecycle-test"]},
+        {"obligationId":"AC-105","surfaces":["privacy-integration-test"]},
+        {"obligationId":"AC-106","surfaces":["network-mock-test","privacy-integration-test","ad-lifecycle-test"]},
+        {"obligationId":"AC-107","surfaces":["ios-platform-test","ad-lifecycle-test"]}
+      ]
+    }
+  ],
+  "blockers": [
+    "AC-102 and AC-104 component-test reachability is intentionally reserved for the next production UI/native renderer package; this runtime handoff does not claim those surfaces.",
+    "iOS evidence is deliberately nil-only and safe-disabled: the shared driver reports unsupported, effectiveAdUnitId is null, the Swift bridge sentinel is nil, and there is no Yandex dependency, project, request, or render path."
+  ]
+}

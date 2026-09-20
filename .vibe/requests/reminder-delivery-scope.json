@@ -1,0 +1,8 @@
+{
+  "action": "scope",
+  "scopeId": "reminder-delivery-v1",
+  "patterns": ["**"],
+  "dependencyRationale": "Reminder delivery crosses persisted settings and backup codecs, SQLDelight-backed product snapshots, platform-neutral reconciliation, Android alarm/permission hosts, iOS notification hosts, Compose production assembly, localized resources and host lifecycle entry points.",
+  "fallbackReason": "The production reminder graph has transitive inputs across every shared module and both native hosts; a repository-wide immutable scope avoids omitting action/domain, resources, native configuration or generated database inputs while concurrent assignments are serialized by exact allowed-file ownership.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; AGP 9.1.1; Compose Multiplatform; SQLDelight 2.4.0; Android API 23-37; iOS arm64/simulator arm64; native AlarmManager and UserNotifications APIs"
+}

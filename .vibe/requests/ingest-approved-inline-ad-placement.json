@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-approved-inline-ad-placement-20260920-v2.json",
+  "inspectionNote": "Inspected exact single-slot Catalog and explicit History indices, one-attempt session gating, short/offline/prohibited/preview/iOS collapse, missing production ID, declined consent, SDK initialization/no-fill/load failure and deterministic disposal evidence. The bound receipt proves monetization, data and Compose behavioral suites. The required ui-golden surface remains intentionally deferred to the final record/verify and Lazyweb review pass."
+}

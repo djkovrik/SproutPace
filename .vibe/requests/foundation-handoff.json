@@ -1,0 +1,155 @@
+{
+  "action": "handoff",
+  "assignmentId": "foundation-architect",
+  "handoffId": "HANDOFF-foundation-architect-20260920",
+  "productionEvidence": [
+    {
+      "path": "build.gradle.kts",
+      "symbol": "detekt",
+      "surface": "static-analysis",
+      "coverage": [{"obligationId": "QG-001", "surface": "static-analysis"}]
+    },
+    {
+      "path": "build.gradle.kts",
+      "symbol": "kover",
+      "surface": "coverage-check",
+      "coverage": [{"obligationId": "QG-001", "surface": "coverage-check"}]
+    },
+    {
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "symbol": "android-quality:",
+      "surface": "repository-check",
+      "coverage": [{"obligationId": "QG-001", "surface": "repository-check"}]
+    },
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "symbol": "class SproutPaceApplication",
+      "surface": "android-build",
+      "coverage": [{"obligationId": "QG-002", "surface": "android-build"}]
+    },
+    {
+      "path": "iosApp/iosApp/iosApp.swift",
+      "symbol": "func makeUIViewController",
+      "surface": "ios-build",
+      "coverage": [{"obligationId": "QG-003", "surface": "ios-build"}]
+    },
+    {
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "symbol": "ios:",
+      "surface": "macos-ci-check",
+      "coverage": [{"obligationId": "QG-003", "surface": "macos-ci-check"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "symbol": "FoundationRussianLargeTextPreview",
+      "surface": "preview-compile",
+      "coverage": [{"obligationId": "QG-007", "surface": "preview-compile"}]
+    },
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "symbol": "GeneratePreviewSmokeTest",
+      "surface": "screenshot-test",
+      "coverage": [{"obligationId": "QG-007", "surface": "screenshot-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "testName": "productionRootIsProcessScoped",
+      "surface": "android-platform-test",
+      "coverage": [{"obligationId": "QG-002", "surface": "android-platform-test"}]
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "testName": "discoversAndRendersFoundationPreviews",
+      "surface": "screenshot-test",
+      "coverage": [{"obligationId": "QG-007", "surface": "screenshot-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["python", "-c", "parse gradle/libs.versions.toml with tomllib"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "parse AndroidManifest.xml, Android EN/RU strings.xml, and Info.plist as XML"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["java", "--class-path", "snakeyaml-engine-2.10.jar", "ParseYaml.java", ".github/workflows/AnalysisAndTest.yml"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "assert every workflow action uses a full 40-character SHA"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "assert Android, quality, screenshot, iOS framework, and xcodebuild workflow commands are present"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "scan assignment-owned text files for trailing whitespace"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "scan assignment-owned configuration and documentation for embedded keys or private-key material"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "verify detekt/base-config.yml SHA-256 against the generated Detekt 2.0.0-alpha.6 base configuration with approved thresholds"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["git", "diff", "--check"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", "detekt", ":shared:domain:testAndroidHostTest", ":shared:compose:compileKotlinAndroid", ":androidApp:assembleDebug", "koverXmlReport", "koverVerify"],
+      "tasks": ["detekt", ":shared:domain:testAndroidHostTest", ":shared:compose:compileKotlinAndroid", ":androidApp:assembleDebug", "koverXmlReport", "koverVerify"],
+      "coveredObligations": [
+        {"obligationId": "QG-001", "surfaces": ["repository-check", "unit-test", "static-analysis", "coverage-check"]},
+        {"obligationId": "QG-002", "surfaces": ["android-build"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:compose:testAndroidHostTest", ":shared:compose:recordPaparazzi", ":shared:compose:verifyPaparazzi"],
+      "tasks": [":shared:compose:testAndroidHostTest", ":shared:compose:recordPaparazzi", ":shared:compose:verifyPaparazzi"],
+      "coveredObligations": [
+        {"obligationId": "QG-007", "surfaces": ["preview-compile", "screenshot-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew", ":shared:compose:compileKotlinIosArm64", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:compose:iosSimulatorArm64Test", ":shared:domain:iosSimulatorArm64Test", ":shared:compose:linkDebugFrameworkIosSimulatorArm64"],
+      "tasks": [":shared:compose:compileKotlinIosArm64", ":shared:compose:compileKotlinIosSimulatorArm64", ":shared:compose:iosSimulatorArm64Test", ":shared:domain:iosSimulatorArm64Test", ":shared:compose:linkDebugFrameworkIosSimulatorArm64"],
+      "coveredObligations": [
+        {"obligationId": "QG-003", "surfaces": ["ios-build", "ios-platform-test"]}
+      ]
+    },
+    {
+      "argv": ["xcodebuild", "-project", "iosApp/iosApp.xcodeproj", "-scheme", "iosApp", "-configuration", "Debug", "-sdk", "iphonesimulator", "-destination", "generic/platform=iOS Simulator", "CODE_SIGNING_ALLOWED=NO", "build"],
+      "tasks": [],
+      "coveredObligations": [
+        {"obligationId": "QG-003", "surfaces": ["ios-build", "macos-ci-check"]}
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The Kover filter and verification rule are wired, but its minimum remains the explicit foundation sentinel 0 until a successful filtered XML report is measured from the new domain/Decompose tests.",
+      "obligationIds": ["QG-001"],
+      "nextAction": "Run the requested domain/Kover tasks, inspect the filtered denominator and measured line rate, then commit a fixed baseline-derived sproutpace.kover.minimum before treating coverage as a gate."
+    },
+    {
+      "description": "Paparazzi snapshots were not recorded on Windows; no PNG baseline or human approval is claimed.",
+      "obligationIds": ["QG-007"],
+      "nextAction": "Run the requested smoke test and recordPaparazzi on Linux, inspect the light/dark/RU-200% outputs, commit approved snapshots, then run verifyPaparazzi."
+    },
+    {
+      "description": "The iOS framework/app and macOS CI contract is implemented but has not been executed on a Mac in this assignment.",
+      "obligationIds": ["QG-003"],
+      "nextAction": "Run the requested Kotlin/Native and xcodebuild commands on macOS or the pinned CI workflow and bind the resulting receipts."
+    }
+  ]
+}

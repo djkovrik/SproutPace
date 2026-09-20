@@ -1,0 +1,5 @@
+{
+  "action": "bind",
+  "receiptRef": ".vibe/receipts/RECEIPT-e9941c16-da05-4840-99e0-63aee42e44dd.json",
+  "reconcileDrift": "Inspected the added AC-023 future-batch and AC-030/AC-032 complete fixed/actual date acceptance tests. They strengthen proof of the approved behavior without changing product scope."
+}

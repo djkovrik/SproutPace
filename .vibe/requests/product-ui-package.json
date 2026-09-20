@@ -1,0 +1,13 @@
+{
+  "action": "package",
+  "packageId": "product-ui",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-001", "AC-120", "AC-121", "AC-122", "AC-123"],
+  "qualityGateIds": [],
+  "fileBoundaries": [
+    "shared/compose/**",
+    "docs/design-review/**"
+  ],
+  "integrationGoal": "The shared Android/iOS Compose entry surface renders all sixteen AppSpec screens through production EN/RU resources with compact and adaptive navigation, accessible interactions, deterministic preview states, and reachability from the production root; domain-dependent end-to-end evidence is registered only after prerequisite packages close.",
+  "nextAction": "Implement the complete stateless product UI, production resource catalog and primary preview matrix using approved assets and the completed Lazyweb evidence."
+}

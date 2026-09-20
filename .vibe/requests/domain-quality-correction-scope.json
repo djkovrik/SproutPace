@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "domain-quality-correction-v1",
+  "patterns": ["shared/domain/**", "spec/**"],
+  "dependencyRationale": "Domain implementation and normative contracts define the behavior-preserving lint correction.",
+  "toolchainIdentity": "Kotlin 2.4.10; Detekt 2.0.0-alpha.6; kotlin-test."
+}

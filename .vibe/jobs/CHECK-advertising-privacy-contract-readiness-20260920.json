@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 1.611332800006494,
+  "events": [
+    {
+      "at": "2026-09-20T14:13:02.041908Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T14:13:04.675699Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-ef6289d9-1c21-40d2-bd5c-a6d19c2f482d.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T14:13:52.070910Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-ef6289d9-1c21-40d2-bd5c-a6d19c2f482d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:13:52.756046Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-ef6289d9-1c21-40d2-bd5c-a6d19c2f482d.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:13:52.882803Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T14:13:54.590179Z",
+      "durationSeconds": 1.611332800006494,
+      "receiptRef": ".vibe/receipts/RECEIPT-ef6289d9-1c21-40d2-bd5c-a6d19c2f482d.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-advertising-privacy-contract-readiness-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-ef6289d9-1c21-40d2-bd5c-a6d19c2f482d.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-ef6289d9-1c21-40d2-bd5c-a6d19c2f482d.json",
+  "stage": "bound"
+}

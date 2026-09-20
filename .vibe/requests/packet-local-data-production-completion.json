@@ -1,0 +1,79 @@
+{
+  "acceptanceCriteria": [
+    "ProductionScreenDataManager supports typed delete zone/tray/recipe/batch/plan/observation, duplicate recipe, repeat batch, backup preview/restore/export/erase commands with strict validation and deduplication.",
+    "A deterministic versioned archive codec reads/writes one portable payload containing manifest createdAt, all managed records, preferences, photo bytes/checksums and no external path leakage.",
+    "Replacement restore validates entirely before mutation, replaces rather than merges, is duplicate-free, and compensates database/settings/photos at every injected failure boundary.",
+    "Erase atomically clears database, settings and app-owned photos and invokes an injected reminder-cancellation port; restore invokes an injected future-only reminder reconciliation port.",
+    "Validation failures expose stable locale-neutral error/resource keys suitable for EN/RU presentation, not raw technical exceptions.",
+    "Close/reopen file-backed SQLDelight and private-file fixtures prove restart restoration for every assigned restart/history scenario.",
+    "All assigned scenario tests and QG-012 fixtures pass without weakening existing assertions.",
+    "No Compose, root, platform-native, ledger or external project changes; specialist does not run Gradle. Any navigation-to-first-run hook remains an explicit root integration output."
+  ],
+  "allowedFiles": [
+    "shared/data/src/androidHostTest/**",
+    "shared/data/src/androidMain/**",
+    "shared/data/src/commonMain/**",
+    "shared/data/src/commonTest/**",
+    "shared/data/src/iosMain/**"
+  ],
+  "assignmentId": "local-data-production-completion",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/data.md",
+    "spec/quality.md",
+    "spec/flows/FLOW-002.md",
+    "spec/flows/FLOW-003.md",
+    "spec/flows/FLOW-004.md",
+    "spec/flows/FLOW-005.md",
+    "spec/flows/FLOW-007.md",
+    "spec/flows/FLOW-009.md",
+    "shared/data/src/commonMain/**",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Complete the production local-data capability end to end within the data boundary: implement every missing CRUD/repeat/destructive ScreenDataManager command, a deterministic versioned single-archive byte codec with createdAt and injected document I/O, atomic replacement/erase compensation across database/settings/photos, stable localized error keys, reminder-reconciliation ports, and real close/reopen host fixtures. All destructive commands are reached only through the separate confirmed component path.",
+  "obligationIds": [
+    "AC-013",
+    "AC-015",
+    "AC-016",
+    "AC-017",
+    "AC-022",
+    "AC-023",
+    "AC-024",
+    "AC-025",
+    "AC-033",
+    "AC-034",
+    "AC-053",
+    "AC-056",
+    "AC-070",
+    "AC-071",
+    "AC-072",
+    "AC-073",
+    "AC-074",
+    "AC-082",
+    "AC-083",
+    "AC-084",
+    "AC-090",
+    "AC-091",
+    "AC-092",
+    "AC-093",
+    "AC-094",
+    "AC-095",
+    "QG-012"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:allTests",
+    ":shared:data:verifySqlDelightMigration",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/sqldelight-schema-queries-transactions.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/migrations-backup-restore.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "action": "check",
+  "jobId": "CHECK-domain-readiness-quality-20260920",
+  "runner": "gradle",
+  "tasks": [
+    "detekt",
+    ":shared:domain:allTests",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":androidApp:assembleDebug",
+    "koverXmlReport",
+    "koverVerify"
+  ],
+  "coveredObligations": [
+    {"obligationId": "AC-011", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-014", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-020", "surfaces": ["catalog-contract-test", "domain-test"]},
+    {"obligationId": "AC-021", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-030", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-031", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-051", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-055", "surfaces": ["domain-test"]},
+    {"obligationId": "AC-080", "surfaces": ["domain-test"]},
+    {"obligationId": "QG-001", "surfaces": ["repository-check", "unit-test", "static-analysis", "coverage-check"]},
+    {"obligationId": "QG-002", "surfaces": ["android-build"]},
+    {"obligationId": "QG-004", "surfaces": ["release-check"]},
+    {"obligationId": "QG-011", "surfaces": ["catalog-contract-test"]}
+  ],
+  "inputScopeId": "foundation-v1",
+  "timeoutSeconds": 1800
+}

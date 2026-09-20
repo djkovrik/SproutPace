@@ -1,0 +1,39 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The UI implementation compiles for Android and iOS Simulator, but androidHostTest fails during Paparazzi setup with ClassNotFoundException org.jetbrains.androidx.compose.ui.tooling.data.R. Existing 42 production previews and locale contracts are preserved.",
+  "assignmentId": "visual-quality-paparazzi",
+  "packageId": "foundation",
+  "owner": "vibe-visual-testing",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-007"],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/**"
+  ],
+  "goal": "Build a deterministic ComposablePreviewScanner plus parameterized Paparazzi suite for the primary light/dark, EN/RU, 200 percent font-scale and adaptive preview matrix; fix the current Paparazzi runtime classpath failure; prepare record/verify commands and inspectable stable screenshot IDs without changing product behavior.",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/design.md",
+    "spec/quality.md",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/references/visual-testing-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:recordPaparazziDebug",
+    ":shared:compose:verifyPaparazziDebug"
+  ],
+  "acceptanceCriteria": [
+    "Paparazzi setup no longer fails with a missing Compose tooling resource class.",
+    "ComposablePreviewScanner discovers a nonzero deterministic production preview set and generated parameterized tests render stable IDs.",
+    "Required light/dark, EN/RU, 200 percent font scale and adaptive primary-screen variants are asserted by executable tests.",
+    "The record/verify/report commands and expected golden output location are described in the handoff for root-owned execution.",
+    "The specialist does not run Gradle, edit the ledger, record goldens or perform the post-golden Lazyweb review; root owns those stages."
+  ]
+}

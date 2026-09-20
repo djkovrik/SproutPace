@@ -1,0 +1,13 @@
+{
+  "action": "check",
+  "jobId": "CHECK-ac060-dependency-ready-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "component-root-v1",
+  "tasks": [":shared:component:testAndroidHostTest"],
+  "coveredObligations": [
+    {"obligationId": "AC-060", "surfaces": ["store-test", "component-test"]}
+  ],
+  "timeoutSeconds": 1200,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; MVIKotlin 4.3.0; Decompose 3.4.0"
+}

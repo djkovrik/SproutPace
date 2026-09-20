@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-persistence-migration-baseline-correction-2-20260920.json",
+  "inspectionNote": "Inspected the executable SQLDelight migration-baseline correction. The committed 1.db is an empty SQLite schema with user_version=1, the six expected tables, five named indexes and the observation cascade foreign key; the validator checks integrity and exact schema/build consistency. README defines future 1.sqm v1-to-v2 and chained migration verification. No current data/query semantics changed; Gradle verification remains root-owned."
+}

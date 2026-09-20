@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-persisted-production-theme-runtime-20260920.json",
+  "inspectionNote": "Inspected persisted SYSTEM/LIGHT/DARK propagation into RootApp/AppTheme, live recomposition and resolved system-bar polarity. Receipt 5509a7c3 proves Compose tests, iOS simulator compilation and Android debug assembly. AC-121 ui-golden remains deliberately deferred to the final visual pass."
+}

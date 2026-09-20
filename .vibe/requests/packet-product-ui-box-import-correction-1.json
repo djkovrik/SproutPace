@@ -1,0 +1,33 @@
+{
+  "acceptanceCriteria": [
+    "App.kt imports androidx.compose.foundation.layout.Box.",
+    "No UI behavior, resources, tests or product scope changes.",
+    "Root reruns the UI compile and tests.",
+    "The specialist does not run Gradle or edit the delivery ledger."
+  ],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt"
+  ],
+  "assignmentId": "product-ui-box-import-correction-1",
+  "contractInputs": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Add the missing Compose layout Box import that blocks Android UI compilation, with no behavior or product changes.",
+  "obligationIds": [
+    "AC-001",
+    "AC-120",
+    "AC-121",
+    "AC-122",
+    "AC-123"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

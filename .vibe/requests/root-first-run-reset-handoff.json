@@ -1,0 +1,75 @@
+{
+  "action": "handoff",
+  "assignmentId": "root-first-run-reset",
+  "handoffId": "HANDOFF-root-first-run-reset-20260920",
+  "receiptRefs": [
+    ".vibe/receipts/RECEIPT-51ced84e-3493-4cb0-a13e-563b1e5772c2.json"
+  ],
+  "productionEvidence": [
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+      "symbol": "fun resetToFirstRun",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "symbol": "fun resetToFirstRun",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentPreview.kt",
+      "symbol": "fun resetToFirstRun",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "component-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "previewResetKeepsContractUsableAcrossAdaptivePresentation",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "ac095_resetDismissesConfirmationAndBackCannotRevealPreEraseScreens",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "ac095_firstRunResetRestoresAsTheOnlyDestination",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-095", "surface": "component-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["python", "-c", "assert root reset contract, stack replacement, preview parity, back and restoration tests"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:allTests",
+        ":shared:root:compileAndroidMain",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "tasks": [
+        ":shared:root:testAndroidHostTest",
+        ":shared:root:allTests",
+        ":shared:root:compileAndroidMain",
+        ":shared:root:compileKotlinIosSimulatorArm64"
+      ],
+      "coveredObligations": [
+        {"obligationId": "AC-095", "surfaces": ["component-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

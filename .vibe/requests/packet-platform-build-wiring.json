@@ -1,0 +1,40 @@
+{
+  "acceptanceCriteria": [
+    "settings.gradle.kts includes :shared:platform exactly once.",
+    "shared:compose receives only the project dependency needed to make platform services available to the production composition and linked iOS framework.",
+    "Existing modules, dependencies, quality tasks and target configuration are preserved.",
+    "No feature source or generated artifact is edited and Gradle remains root-owned.",
+    "Handoff evidence uses only QG-001 repository-check and QG-003 ios-build with exact surface equality."
+  ],
+  "allowedFiles": [
+    "settings.gradle.kts",
+    "shared/compose/build.gradle.kts"
+  ],
+  "assignmentId": "platform-build-wiring",
+  "contractInputs": [
+    "shared/platform/build.gradle.kts",
+    "androidApp/build.gradle.kts",
+    "shared/compose/build.gradle.kts",
+    ".vibe/handoffs/HANDOFF-native-platform-services-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Wire the ingested shared:platform module into the repository and shared Compose framework: include the project exactly once and add the narrow project dependency required for production composition/iOS linkage, preserving all current build and quality configuration.",
+  "obligationIds": [
+    "QG-001",
+    "QG-003"
+  ],
+  "requestedCommands": [
+    ":shared:platform:allTests",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:platform:compileAndroidMain",
+    ":shared:platform:compileKotlinIosArm64",
+    ":shared:platform:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/module-boundaries.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/platform-entrypoints-and-release.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

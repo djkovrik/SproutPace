@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-core-domain-detekt-correction-1.json",
+  "inspectionNote": "Inspected all eight assigned domain changes and the handoff. The correction is behavior-preserving: wildcard imports are explicit, catalog lines are wrapped, percentage bounds use named constants, and domainResult uses runCatching while still rethrowing cancellation. No rules are weakened and the required regression tests remain pending until the orchestrator runs them."
+}

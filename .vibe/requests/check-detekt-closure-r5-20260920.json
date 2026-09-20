@@ -1,0 +1,6 @@
+{
+  "action":"check","jobId":"CHECK-detekt-closure-r5-20260920","runner":"gradle","kind":"targeted","inputScopeId":"foundation-v1",
+  "tasks":["detekt",":shared:data:testAndroidHostTest",":shared:component:testAndroidHostTest",":shared:compose:testAndroidHostTest",":shared:data:compileKotlinIosSimulatorArm64",":shared:compose:compileKotlinIosSimulatorArm64","--no-configuration-cache"],
+  "coveredObligations":[{"obligationId":"QG-001","surfaces":["static-analysis","unit-test","integration-test"]},{"obligationId":"QG-003","surfaces":["ios-build"]}],
+  "timeoutSeconds":2400,"toolchainIdentity":"Gradle wrapper 9.5.1; JDK 21; Detekt 2.0.0-alpha.6; Kotlin 2.4.10"
+}

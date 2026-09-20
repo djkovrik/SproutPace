@@ -1,0 +1,104 @@
+{
+  "action": "handoff",
+  "assignmentId": "production-reminder-delivery",
+  "handoffId": "HANDOFF-production-reminder-delivery-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt",
+      "symbol": "ReminderReconciler",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-064", "surface": "platform-test"}, {"obligationId": "AC-065", "surface": "platform-test"}, {"obligationId": "AC-067", "surface": "platform-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "ReminderAwareScreenDataManager",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-064", "surface": "component-test"}, {"obligationId": "AC-065", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "SnapshotReminderPlanSource",
+      "surface": "integration-test",
+      "coverage": [{"obligationId": "AC-067", "surface": "integration-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "ProductionAppGraph",
+      "surface": "integration-test",
+      "coverage": [{"obligationId": "AC-067", "surface": "integration-test"}]
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+      "symbol": "ProductPreferences",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-065", "surface": "component-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt",
+      "testName": "deniedPermissionCancelsPhysicalRegistrationsButNotLogicalPlan",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-064", "surface": "platform-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+      "testName": "ac064_deniedPermissionIsExposedOnlyOnNotificationScreenAndDoesNotAlterToday",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-064", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt",
+      "testName": "dailySummaryRequiresWorkAndPastSoakIsNotRegistered",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-065", "surface": "platform-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+      "testName": "ac065_planContainsOneUsefulDailySummaryAndHonorsIndependentSoakToggle",
+      "surface": "component-test",
+      "coverage": [{"obligationId": "AC-065", "surface": "component-test"}]
+    },
+    {
+      "path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt",
+      "testName": "restoreReconciliationCancelsObsoleteIdsWithoutDuplicates",
+      "surface": "platform-test",
+      "coverage": [{"obligationId": "AC-067", "surface": "platform-test"}]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+      "testName": "ac067_notificationPreferenceChangeTriggersProductReconciliation",
+      "surface": "integration-test",
+      "coverage": [{"obligationId": "AC-067", "surface": "integration-test"}]
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+      "testName": "ac067_backupRoundTripPreservesReminderChoicesAndLegacyArchiveUsesSafeDefaults",
+      "surface": "integration-test",
+      "coverage": [{"obligationId": "AC-067", "surface": "integration-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["git", "diff", "--check", "--", "reminder assignment files"],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T12:26:07Z",
+      "completedAt": "2026-09-20T12:26:08Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:data:testAndroidHostTest", ":shared:platform:testAndroidHostTest", ":shared:compose:testAndroidHostTest", ":shared:compose:compileKotlinIosSimulatorArm64", ":androidApp:assembleDebug"],
+      "tasks": [":shared:data:testAndroidHostTest", ":shared:platform:testAndroidHostTest", ":shared:compose:testAndroidHostTest", ":shared:compose:compileKotlinIosSimulatorArm64", ":androidApp:assembleDebug"],
+      "coveredObligations": [
+        {"obligationId": "AC-064", "surfaces": ["platform-test", "component-test"]},
+        {"obligationId": "AC-065", "surfaces": ["platform-test", "component-test"]},
+        {"obligationId": "AC-067", "surfaces": ["platform-test", "integration-test"]}
+      ]
+    }
+  ],
+  "blockers": [
+    "The production notification screen registry still emits only the legacy enabled field. A sequential correction assignment must expose dailySummaryEnabled, summaryTime and soakRemindersEnabled through ScreenContractRegistry/ProductionScreenDataManager before AC-065 is treated as fully reachable; AC-064 also retains its required ui-golden surface for the shared visual pass."
+  ]
+}

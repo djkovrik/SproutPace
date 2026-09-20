@@ -1,0 +1,22 @@
+{
+  "action": "check",
+  "jobId": "CHECK-foundation-meaningful-kover-gate-r1-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "foundation-kover-aggregation-v1",
+  "tasks": [
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    "koverXmlReport",
+    "koverVerify"
+  ],
+  "coveredObligations": [
+    {"obligationId": "QG-001", "surfaces": ["unit-test", "integration-test", "coverage-check"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Kover 0.9.9; Android-host test aggregation"
+}

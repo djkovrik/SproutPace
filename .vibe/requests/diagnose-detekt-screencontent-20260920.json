@@ -1,0 +1,11 @@
+{
+  "action": "check",
+  "jobId": "CHECK-diagnose-detekt-screencontent-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "approved-asset-product-ui-v1",
+  "tasks": ["detekt", "--stacktrace", "--no-configuration-cache"],
+  "coveredObligations": [{"obligationId":"QG-001","surfaces":["static-analysis"]}],
+  "timeoutSeconds": 1200,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 21; detekt 2.0.0-alpha.6"
+}

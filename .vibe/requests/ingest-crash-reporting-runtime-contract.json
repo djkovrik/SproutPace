@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-crash-reporting-runtime-contract-20260920.json",
+  "inspectionNote": "Inspected platform-neutral crash reporting runtime and Android/iOS driver contracts. Receipt 243c3dc3 proves Android host platform tests and iOS simulator compilation. The handoff correctly retains production graph/Settings integration as a follow-up rather than overstating AC closure."
+}

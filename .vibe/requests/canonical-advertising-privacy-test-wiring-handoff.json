@@ -1,0 +1,47 @@
+{
+  "action": "handoff",
+  "assignmentId": "canonical-advertising-privacy-test-wiring",
+  "handoffId": "HANDOFF-canonical-advertising-privacy-test-wiring-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/monetization/build.gradle.kts",
+      "symbol": "getByName(\"androidHostTest\")",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-103","surface":"settings-integration-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/monetization/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/monetization/ProductSettingsPrivacyStoreTest.kt",
+      "testName": "canonicalPayloadSurvivesProcessRestartThroughProductSettingsAdapter",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-103","surface":"settings-integration-test"}]
+    },
+    {
+      "path": "shared/monetization/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/monetization/ProductSettingsPrivacyStoreTest.kt",
+      "testName": "malformedOrMismatchedPersistedPayloadIsNeverRestored",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-103","surface":"settings-integration-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell","-NoProfile","-Command","verify matching multiplatform-settings and multiplatform-settings-test 1.3.0 androidHostTest classpath"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["git","diff","--check"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat",":shared:monetization:testAndroidHostTest"],
+      "tasks": [":shared:monetization:testAndroidHostTest"],
+      "coveredObligations": [
+        {"obligationId":"AC-103","surfaces":["settings-integration-test"]}
+      ]
+    }
+  ],
+  "blockers": []
+}

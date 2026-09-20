@@ -1,0 +1,42 @@
+{
+  "action": "assign",
+  "reconcileDrift": "The reminder runtime now persists independent values, but the public Notifications screen contract still exposes one legacy enabled field and ProductionScreenDataManager ignores summaryTime and soakRemindersEnabled. This prevents the approved choices from being edited or verified through the component surface.",
+  "assignmentId": "reminder-settings-screen-contract-correction",
+  "packageId": "reminder-delivery-integration",
+  "owner": "vibe-platform-engineer",
+  "acceptanceScenarioIds": ["AC-064", "AC-065", "AC-067"],
+  "qualityGateIds": [],
+  "allowedFiles": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml"
+  ],
+  "inputScopeId": "reminder-delivery-v1",
+  "goal": "Replace the legacy Notifications enabled form with independent dailySummaryEnabled, summaryTime and soakRemindersEnabled fields/command arguments, render the real persisted values, and prove command persistence/restart through component and settings integration tests.",
+  "contractInputs": [
+    "spec/flows/FLOW-006.md",
+    "spec/screens/SCREEN-016.md",
+    ".vibe/handoffs/HANDOFF-production-reminder-delivery-20260920.json"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:component:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "NOTIFICATIONS declares three explicit fields and update-notifications requires exactly dailySummaryEnabled, summaryTime and soakRemindersEnabled; no legacy enabled argument remains on this screen.",
+    "Production snapshots render independent persisted values with default 09:00 and execute one validated command that updates all three preferences.",
+    "EN/RU production resources label all three controls and remain key-parity complete.",
+    "Component and real settings integration tests prove command preparation, persistence, restart, independence and legacy safe defaults. Specialist does not run Gradle."
+  ]
+}

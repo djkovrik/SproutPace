@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-domain-dependency-readiness-20260920-r1.json",
+  "inspectionNote": "Inspected the rejected original plus corrected superseding handoff and the single common test file. Binding evidence is limited to declared domain/catalog surfaces for AC-014/020/021/055/080. AC-011/030/031/051 remain honest non-binding contract checks pending real database/component evidence. Imports and line lengths pass static inspection; no production behavior changed."
+}

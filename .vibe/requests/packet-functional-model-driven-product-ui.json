@@ -1,0 +1,60 @@
+{
+  "acceptanceCriteria": [
+    "SproutPaceUiState losslessly carries typed fields/options/facts/actions/validation/unsaved/permission/offline/conflict state; authored values remain verbatim.",
+    "UiAction.EditField, ChooseOption, Submit and CancelDraft route only to matching ScreenAction; command actions never construct argument-less ScreenCommand in Compose. Root navigation descriptors use an explicit deterministic table and external picker/permission/privacy actions use a typed platform seam.",
+    "One stateless renderer displays real model items/facts/forms/actions for all sixteen screens; no sample_* value or no-op control is reachable in production. Text/number/date/document fields edit, booleans switch, single choices radio, multi choices checkbox, and inline validation retains values.",
+    "Every possible bundled TextKey has one deterministic Res.string mapping and complete semantically correct EN/RU resources; unknown keys are treated as contract defects, while authored content is never localized.",
+    "Compact/medium/expanded/large/extra-large layouts reflow without fixed-height copy, use approved bottom bar/rail/list-detail patterns, safe insets, 48dp targets, meaningful roles/labels/state/error semantics and keyboard-operable click actions.",
+    "Typed deterministic previews cover all 16 content screens light/dark plus required empty/error/permission/conflict/unassigned/restore/privacy/destructive states, RU 200 percent risks and AC-122 expanded screens, ready for later Paparazzi record/review.",
+    "Tests prove lossless mapping/routing, resource-key exhaustiveness, EN/RU parity, preview matrix and accessibility contract. No data/root implementation/platform/build/golden/ledger/external changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "docs/design-review/product-ui-material-contract.md",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt"
+  ],
+  "assignmentId": "functional-model-driven-product-ui",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/design.md",
+    "spec/screens",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "https://www.lazyweb.com/agentic-search/6e37f378-12e9-4857-bb35-8293331d48eb"
+  ],
+  "forkTurns": "none",
+  "goal": "Replace sample-only production rendering with a complete Material 3 model-driven UI for all sixteen screens. Preserve every typed field/fact/action/error, route edit/choice/submit/cancel through ScreenAction, provide explicit root-navigation and platform-action seams, production EN/RU resources, adaptive layouts, accessibility semantics and deterministic typed previews/tests. Do not record goldens yet.",
+  "obligationIds": [
+    "AC-001",
+    "AC-120",
+    "AC-121",
+    "AC-122",
+    "AC-123"
+  ],
+  "requestedCommands": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest",
+    ":androidApp:assembleDebug"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-product-designer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/localization-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

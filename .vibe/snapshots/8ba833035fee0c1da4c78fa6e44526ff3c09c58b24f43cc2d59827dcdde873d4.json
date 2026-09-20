@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "digest": "b702161dffbf459d99ac9e08e06e0fba1fb2e3e293819734b0903730f7109427",
+  "files": [
+    {
+      "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+      "sha256": "6a920fdd2292344e0a49900a3df586987b7f2ee88b389a585d9cb6b2d301b0f7"
+    }
+  ],
+  "patterns": [
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt"
+  ]
+}

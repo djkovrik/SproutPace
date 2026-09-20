@@ -1,0 +1,6 @@
+{
+  "action":"check","jobId":"CHECK-verify-final-product-goldens-20260920","runner":"gradle","kind":"targeted","inputScopeId":"approved-asset-product-ui-v1","tasks":[":shared:compose:verifyPaparazzi",":shared:compose:testAndroidHostTest","--no-configuration-cache"],
+  "coveredObligations":[
+    {"obligationId":"AC-001","surfaces":["ui-golden"]},{"obligationId":"AC-020","surfaces":["ui-golden"]},{"obligationId":"AC-064","surfaces":["ui-golden"]},{"obligationId":"AC-084","surfaces":["ui-golden"]},{"obligationId":"AC-100","surfaces":["ui-golden"]},{"obligationId":"AC-101","surfaces":["ui-golden"]},{"obligationId":"AC-120","surfaces":["localization-contract-test","ui-golden"]},{"obligationId":"AC-121","surfaces":["ui-golden"]},{"obligationId":"QG-007","surfaces":["preview-compile","screenshot-test","accessibility-test"]}
+  ],"timeoutSeconds":1800,"toolchainIdentity":"Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Paparazzi 2.0.0-alpha05"
+}

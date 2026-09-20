@@ -1,0 +1,15 @@
+{
+  "action": "check",
+  "jobId": "CHECK-crash-reporting-runtime-contract-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "crash-reporting-runtime-v1",
+  "tasks": [":shared:platform:testAndroidHostTest", ":shared:platform:compileKotlinIosSimulatorArm64"],
+  "coveredObligations": [
+    {"obligationId": "AC-110", "surfaces": ["platform-test"]},
+    {"obligationId": "AC-111", "surfaces": ["platform-test"]},
+    {"obligationId": "AC-112", "surfaces": ["platform-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Android host platform tests; Kotlin/Native iOS simulator compilation"
+}

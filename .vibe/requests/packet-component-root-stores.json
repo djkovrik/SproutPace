@@ -1,0 +1,82 @@
+{
+  "acceptanceCriteria": [
+    "Every production Compose-rendered screen contract has a sibling component-owned Preview implementation; navigation-only exclusions are documented.",
+    "Every UI-visible production Value<Model> is mapped from a retained MVIKotlin Store; production MutableValue and direct repository/data access are absent.",
+    "Stores use Manager Kotlin Result boundaries, cancellation-aware fold handling, pure reducers, deterministic initialization, lifecycle cleanup, and debug-only logging wiring.",
+    "Root owns stable bottom navigation, stacks/slots/panels, deep-link outputs, duplicate-click safety, state restoration, and compact/expanded navigation contracts.",
+    "Models carry stable IDs/resource keys rather than resolved localized strings, and no locale selector/state is introduced.",
+    "Centralized deterministic tests cover public callbacks/models, navigation, lifecycle/resume/back, retention/restoration, Store result branches, and the listed AC behaviors.",
+    "No Compose rendering, native platform API, SQL driver, network transport, Firebase, or Yandex SDK code is added."
+  ],
+  "allowedFiles": [
+    "shared/component/**",
+    "shared/root/**"
+  ],
+  "assignmentId": "component-root-stores",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/product.md",
+    "spec/domain.md",
+    "spec/design.md",
+    "spec/quality.md",
+    "spec/flows/**",
+    "spec/screens/**",
+    "shared/domain/**"
+  ],
+  "forkTurns": "none",
+  "goal": "Implement the complete UI-independent Decompose component graph and MVIKotlin Stores for SproutPace SCREEN-001 through SCREEN-016 and FLOW-001 through FLOW-012. Use a separate shared:component module plus shared:root assembly module, public immutable component models/callbacks/outputs, retained Stores for every UI-visible Value<Model>, component-owned Preview implementations for every Compose-rendered contract, serializable navigation configs, lifecycle/back handling, manual factories, and centralized root component tests. Implement all approved screen/flow states so later UI/platform/data integrations plug into stable Manager interfaces; do not edit Compose UI, platform code, data implementations, settings.gradle, or version catalog.",
+  "obligationIds": [
+    "AC-010",
+    "AC-011",
+    "AC-012",
+    "AC-014",
+    "AC-020",
+    "AC-021",
+    "AC-026",
+    "AC-027",
+    "AC-030",
+    "AC-031",
+    "AC-032",
+    "AC-035",
+    "AC-036",
+    "AC-037",
+    "AC-038",
+    "AC-039",
+    "AC-040",
+    "AC-050",
+    "AC-051",
+    "AC-052",
+    "AC-054",
+    "AC-055",
+    "AC-057",
+    "AC-060",
+    "AC-062",
+    "AC-066",
+    "AC-068",
+    "AC-080",
+    "AC-081",
+    "AC-085",
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:component:allTests",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:allTests",
+    ":shared:root:testAndroidHostTest",
+    ":shared:root:compileKotlinIosArm64",
+    ":shared:root:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/component-contract.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/navigation-and-root.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/references/lifecycle-state-retention.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/store-decision-and-shape.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/executor-reducer-result.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/initialization-retention-logging.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/blinkly-unwrap-pattern.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/localization-contract.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

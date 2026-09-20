@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-production-host-test-classpath-correction-20260920.json",
+  "inspectionNote": "Inspected the two-file correction: PreviewSmokeTest uses the preview-only state entrypoint and androidApp directly depends on shared:root. The subsequent green production integration receipt compiled the host tests, compiled Android/iOS production sources and assembled the debug APK; full unfiltered host tests remain intentionally pending until Paparazzi baselines are recorded after functional UI completion."
+}

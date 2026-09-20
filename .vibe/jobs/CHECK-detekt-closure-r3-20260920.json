@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "at": "2026-09-20T15:53:45.967052Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T15:53:48.099128Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-2394facc-a0f4-4bf2-b1b6-cfc2f423781f.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T15:54:28.609986Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-2394facc-a0f4-4bf2-b1b6-cfc2f423781f.json",
+      "stage": "receipt-written"
+    }
+  ],
+  "jobId": "CHECK-detekt-closure-r3-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-2394facc-a0f4-4bf2-b1b6-cfc2f423781f.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-2394facc-a0f4-4bf2-b1b6-cfc2f423781f.json",
+  "stage": "receipt-written"
+}

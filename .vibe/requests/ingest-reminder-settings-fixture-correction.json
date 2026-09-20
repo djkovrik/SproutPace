@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-reminder-settings-fixture-correction-20260920.json",
+  "inspectionNote": "Inspected the typed delegation/reconciliation fixture and deterministic preview values for the three notification fields. Receipt 2f182ec5 proves all affected host tests and iOS compile."
+}

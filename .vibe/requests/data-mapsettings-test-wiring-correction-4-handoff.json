@@ -1,0 +1,66 @@
+{
+  "action": "handoff",
+  "assignmentId": "data-mapsettings-test-wiring-correction-4",
+  "handoffId": "HANDOFF-data-mapsettings-test-wiring-correction-4-20260920",
+  "supersedes": [],
+  "productionEvidence": [
+    {
+      "path": "shared/data/build.gradle.kts",
+      "symbol": "implementation(\"com.russhwolf:multiplatform-settings-test:1.3.0\")",
+      "surface": "catalog-contract-test",
+      "coverage": [
+        { "obligationId": "QG-011", "surface": "catalog-contract-test" }
+      ]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-Command",
+        "verify exactly one official multiplatform-settings-test:1.3.0 dependency inside androidHostTest while preserving runtime and SQLDelight dependencies"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T08:18:17.6618209Z",
+      "completedAt": "2026-09-20T08:18:17.7371648Z"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/data/build.gradle.kts"
+      ],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T08:18:09.8319374Z",
+      "completedAt": "2026-09-20T08:18:09.8765529Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests",
+        ":shared:data:compileAndroidMain"
+      ],
+      "tasks": [
+        ":shared:data:testAndroidHostTest",
+        ":shared:data:allTests",
+        ":shared:data:compileAndroidMain"
+      ],
+      "coveredObligations": [
+        { "obligationId": "QG-011", "surfaces": ["catalog-contract-test"] }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "The shared:data Android host tests and compilation were not rerun because this specialist assignment forbids running Gradle.",
+      "obligationIds": ["QG-011"],
+      "nextAction": "The orchestrator should run the requested Gradle tasks and bind the catalog-contract-test receipt."
+    }
+  ]
+}

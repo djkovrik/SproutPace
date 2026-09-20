@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "domain-readiness-v1",
+  "patterns": ["shared/domain/**", "spec/**"],
+  "dependencyRationale": "The readiness tests inspect the current domain public contracts and normative dependency semantics only.",
+  "toolchainIdentity": "Kotlin 2.4.10; kotlin-test; kotlinx-datetime 0.8.0."
+}

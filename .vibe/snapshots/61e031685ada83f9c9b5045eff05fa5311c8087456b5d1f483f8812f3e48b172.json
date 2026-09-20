@@ -1,0 +1,402 @@
+{
+  "algorithm": "sha256",
+  "digest": "2dc0e28ea4d37f98782e809670bbf0095c55ed00150e4932e0334e12234614e4",
+  "files": [
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "sha256": "2fae2fa22ba371a8bc260b21fd2e80a7865d34abb9ccebb89e277e84b29f080f"
+    },
+    {
+      "path": "docs/configuration/ADVERTISING-PRIVACY.md",
+      "sha256": "c5d592d20fe2a8c490779e5cdde85aabae039e9d65988418c280a8f2b276fa28"
+    },
+    {
+      "path": "shared/compose/build.gradle.kts",
+      "sha256": "c5ea3bc72d07f5e260efed5e8efb2ea440448e5aa299f8706661f1e29208aeaf"
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "sha256": "5248e6c564c8e791cf396bd32b376a75215b4f31c203b4eb5e1d729248320126"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+      "sha256": "6200a2e95d1cd68745b1bc10b613aec2f3523d2af2b4fae3c52b41115b6f52ff"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "sha256": "02042650b12b157f07958c589378948993b549985c2b6516147a505909977ceb"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt",
+      "sha256": "56e1c2dd99f4709af05a04339bbef53c7710d5f82f64ed80015c2bde63f55742"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "sha256": "964a98a2ee999efeea8f6ecb0ee29885d032a9d08f0a62fa70bcdeef8824ae25"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt",
+      "sha256": "540fa823f00798d4e84b9ebfe3dc5978ce462e60c6712dabd3495cf9305746e2"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[0]_sproutpacepreviewskt.backuppreviews.14_backup_dark_w393dp_h851dp_night.png",
+      "sha256": "a7f17e5582fd1c0138dcf66ccd3c1e0affd9bbaf3259c5836770eb693b6330ce"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[10]_sproutpacepreviewskt.closebatchpreviews.10_close_batch_dark_w393dp_h851dp_night.png",
+      "sha256": "4e5052886da21ef6aef4a9b63c9a839d82f3b6bf64e6b9b3519883f4a1aa588b"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[11]_sproutpacepreviewskt.closebatchpreviews.10_close_batch_light_w393dp_h851dp_day.png",
+      "sha256": "b0c00ebe3dc9c00e957375e2ff5e3a64d75670568709e92db7264b5b7a4a9277"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.destructiveconfirmationpreview.destructive_confirmation_dark_w393dp_h851dp_night.png",
+      "sha256": "947abc931c855e6c9da7908cb7f840b58739868ea98c63ad76ce1011cd97c4dd"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[13]_sproutpacepreviewskt.destructiveconfirmationpreview.destructive_confirmation_light_w393dp_h851dp_day.png",
+      "sha256": "98ea04fa22fb94d06af9820e8e910b7eff0fc731ade81dcc2dfce23b389f57f9"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[14]_sproutpacepreviewskt.emptytodaypreview.empty_state_dark_w393dp_h851dp_night.png",
+      "sha256": "42040b9de805c25fe36a06fe13e07acebb2b41161b2d5d4a0ac4b3b6076bbed5"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[15]_sproutpacepreviewskt.emptytodaypreview.empty_state_light_w393dp_h851dp_day.png",
+      "sha256": "fcbf7ca333802f85506cb53ca1acadee367ae5e357ec34dde4036e975443ca4e"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[16]_sproutpacepreviewskt.expandedbatchdetailpreview.expanded_batch_detail_w1100dp_h800dp.png",
+      "sha256": "62109a973acf20ecf53ed3d60f5df1031aad9da533204a14b5e3fdb2ea35868e"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[17]_sproutpacepreviewskt.expandedcatalogpreview.expanded_catalog_w1100dp_h800dp.png",
+      "sha256": "eea6f810545a564f99de6743d282439e99220de8d68de1c586329e969e7e521a"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[18]_sproutpacepreviewskt.expandedplanpreview.expanded_plan_w1100dp_h800dp.png",
+      "sha256": "be9523425402737b9705867c60445e8ac4188f3c4635f8a58f5feffb3115c06d"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[19]_sproutpacepreviewskt.expandedtrayspreview.expanded_list_detail_w1100dp_h800dp.png",
+      "sha256": "2b575c0b05075ac2a2066aa20af92abc24e6dd2a16260d5c2490468eedfceb1a"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[1]_sproutpacepreviewskt.backuppreviews.14_backup_light_w393dp_h851dp_day.png",
+      "sha256": "310b3344f9317a36a7a175fe1c58e67cbc534fa158d467558c99742ab1ea311a"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[20]_sproutpacepreviewskt.firstrunpreviews.01_first_run_dark_w393dp_h851dp_night.png",
+      "sha256": "32142132950fe80ba6fc6633a48416dfbc301c89d589d62ae96c055b95444483"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[21]_sproutpacepreviewskt.firstrunpreviews.01_first_run_light_w393dp_h851dp_day.png",
+      "sha256": "da960c544c31d28d6abcacf927aee7574230e5e0cfa7f607ef39ac0ee2e46ba2"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[22]_sproutpacepreviewskt.localerrorpreview.local_error_dark_w393dp_h851dp_night.png",
+      "sha256": "da5f1005b61a43b26b7fc1ca9323908987f64c13f5475f132431b90b3b5047d5"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[23]_sproutpacepreviewskt.localerrorpreview.local_error_light_w393dp_h851dp_day.png",
+      "sha256": "e2c131a90a597cd9403ac0f9a845fb971a00379dcd68329d709cb8f0efea31f3"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[24]_sproutpacepreviewskt.notificationspreviews.16_notifications_dark_w393dp_h851dp_night.png",
+      "sha256": "c4b157c78dcb7f9580b0513a50b481a84739b886c9249920913619aceb4228cf"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[25]_sproutpacepreviewskt.notificationspreviews.16_notifications_light_w393dp_h851dp_day.png",
+      "sha256": "bd9bf52ec8710f49ff4c3470a22114f804e4733e97a1cd142ccfa754912790ac"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[26]_sproutpacepreviewskt.observationpreviews.09_observation_dark_w393dp_h851dp_night.png",
+      "sha256": "c37506fe966d354f8e19e17a1c94907b38be238d41602db188913d7a5bdae884"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[27]_sproutpacepreviewskt.observationpreviews.09_observation_light_w393dp_h851dp_day.png",
+      "sha256": "1de30283778ed3edfde49b2ca30141430bf9e8e2837219a4e10d6ee9cce7eda1"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[28]_sproutpacepreviewskt.permissiondeniedpreview.permission_denied_dark_w393dp_h851dp_night.png",
+      "sha256": "6228382f3f0265be6370ac26bb0c26be73eb16140d6b46dc4d43cc263cdbf11e"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[29]_sproutpacepreviewskt.permissiondeniedpreview.permission_denied_light_w393dp_h851dp_day.png",
+      "sha256": "a8c895e4d95ee69b91b96d33a3600d38460a00baf1b2e8ebf333bdefe39c06ea"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[2]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_dark_w393dp_h851dp_night.png",
+      "sha256": "113f675247074744866fca0c408ee72a4818f4523042e7f8b20b7d33712eb546"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[30]_sproutpacepreviewskt.planpreviews.06_plan_dark_w393dp_h851dp_night.png",
+      "sha256": "badba8c666bcac72e5135c65207d43dce4b964d90f030ceaafc96998b3740c97"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[31]_sproutpacepreviewskt.planpreviews.06_plan_light_w393dp_h851dp_day.png",
+      "sha256": "80290f4becdef141392a2b3ad518c69bbeb74503dd5698b5630c1fe73b4644e8"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[32]_sproutpacepreviewskt.privacypreviews.15_privacy_dark_w393dp_h851dp_night.png",
+      "sha256": "214069233dbd10eba9a2def6a63c38db79ef96443ea9b19936aab484c715fc40"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[33]_sproutpacepreviewskt.privacypreviews.15_privacy_light_w393dp_h851dp_day.png",
+      "sha256": "9e93cda412eb7c23531cc6da077652a8d08baa8d55da8038af02521c7c1a9443"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[34]_sproutpacepreviewskt.recipepreviews.08_recipe_dark_w393dp_h851dp_night.png",
+      "sha256": "d407a5431cd9a5df2376366784f32548e4a59d43012c35122be168589dbbbf9f"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[35]_sproutpacepreviewskt.recipepreviews.08_recipe_light_w393dp_h851dp_day.png",
+      "sha256": "659b095e6da39bfec6c3f2a98dc6c58104ee800d96ca489ca23211d26c57556f"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[36]_sproutpacepreviewskt.russianlargetextbatcheditorpreview.stress_ru_200%_batch_editor_w393dp_h851dp_ru_font_2_0f.png",
+      "sha256": "7108a12ae5b603f0a4d717250b99be8caa60b2bfeed7f4d624164257eb407c1d"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[37]_sproutpacepreviewskt.russianlargetextfirstrunpreview.stress_ru_200%_first_run_w393dp_h851dp_ru_font_2_0f.png",
+      "sha256": "04afdf387418f138728f4c52513c50a76886500513dca09b4c9967f919a74f14"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[38]_sproutpacepreviewskt.russianlargetextprivacypreview.stress_ru_200%_privacy_w393dp_h851dp_ru_font_2_0f.png",
+      "sha256": "a8c243b42bba1fa443fb3fe6704456a000c500763bef4b1f04907db02ad97154"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[39]_sproutpacepreviewskt.russianlargetextsettingspreview.stress_ru_200%_settings_w393dp_h851dp_ru_font_2_0f.png",
+      "sha256": "78d72cd28315cdbad375bbd2b2eae515753d5521df857eb4b0be73d62f877184"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[3]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_light_w393dp_h851dp_day.png",
+      "sha256": "4d437f5c5b4b29fc1cb8686837a72017d9585cea95108f6dc1002ed38deb6961"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[40]_sproutpacepreviewskt.settingspreviews.11_settings_dark_w393dp_h851dp_night.png",
+      "sha256": "2b827b7026b5ed812b4d29d6ffbabf0592a6faf0a63ffcdc30d68f47eec95d65"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[41]_sproutpacepreviewskt.settingspreviews.11_settings_light_w393dp_h851dp_day.png",
+      "sha256": "9b0b55fcb5c5b0f3f75166b663def4ab2a58c5a8dc79966565bfc6b2d0212a0f"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[42]_sproutpacepreviewskt.temporarilyunassignedpreview.temporarily_unassigned_dark_w393dp_h851dp_night.png",
+      "sha256": "733913ade329a8c923334a9e8dd1e93c86bc455c8b16aa2bc2f634a3bce75d61"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[43]_sproutpacepreviewskt.temporarilyunassignedpreview.temporarily_unassigned_light_w393dp_h851dp_day.png",
+      "sha256": "2cf90c8833a73c398a44bbeaf5f42949031862c000af7ee0ea016c1325b53f5f"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[44]_sproutpacepreviewskt.todaypreviews.02_today_dark_w393dp_h851dp_night.png",
+      "sha256": "975aa8d1fc202ecb7105a13db4878682403309445f4d749f03148efcf880e012"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[45]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+      "sha256": "2f6f772f80eb94c588447fc77a9b9359e06aee6db4ecd8435bab3fbc9fd48b0b"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[46]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_dark_w393dp_h851dp_night.png",
+      "sha256": "6db2b64bb8548c1d0f7325f92d606c2b917201f74cbe353ec03f35de4eda3554"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[47]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_light_w393dp_h851dp_day.png",
+      "sha256": "8512b1ebda6da37b12b255fcacf0e36f7a0c6b96cbfe7822d87fe08501fea112"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[48]_sproutpacepreviewskt.trayspreviews.03_trays_dark_w393dp_h851dp_night.png",
+      "sha256": "c6faa3ebae32ef42ee55b54eb8b78015d93474e19d1ff4fa1363d8a59425928e"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[49]_sproutpacepreviewskt.trayspreviews.03_trays_light_w393dp_h851dp_day.png",
+      "sha256": "55572f0a77f6e4d8c48819e7e247b085c4edce6d45b18dd9536a287effb1b656"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[4]_sproutpacepreviewskt.batcheditorpreviews.04_batch_editor_dark_w393dp_h851dp_night.png",
+      "sha256": "db968282aef57416b97a8376d3fcc6ba37af309db2eac10f546a068ca0a6da29"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[50]_sproutpacepreviewskt.validationerrorpreview.validation_error_dark_w393dp_h851dp_night.png",
+      "sha256": "9987c66bc1c6a66734142394b89c4e5ad4b623f5e1d405fee971874e5b4f86f3"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[51]_sproutpacepreviewskt.validationerrorpreview.validation_error_light_w393dp_h851dp_day.png",
+      "sha256": "e50204073eedbf870cc7e6fc622e5f28ad81cdb9a8fe85e5d958e18b364f7b95"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.zonespreviews.12_zones_dark_w393dp_h851dp_night.png",
+      "sha256": "881ffa9270c80c9052024a3266cbdd0ad6884fd8ce7833a6da59c9f5cc3e4a53"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[53]_sproutpacepreviewskt.zonespreviews.12_zones_light_w393dp_h851dp_day.png",
+      "sha256": "fea56df0fdee31299c2f8aab869ca328ad49c40f8195e5dcbf454e91809169f4"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[5]_sproutpacepreviewskt.batcheditorpreviews.04_batch_editor_light_w393dp_h851dp_day.png",
+      "sha256": "b8bf5f0aee9b5e27d501f948a8916fb610da7554ff48e5660e2669d69202dc6e"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[6]_sproutpacepreviewskt.capacityconflictpreview.capacity_conflict_dark_w393dp_h851dp_night.png",
+      "sha256": "eac7c188588fee92b6471d6d18516c055309096f4cecd1f6b3e0378d93b4cbc8"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[7]_sproutpacepreviewskt.capacityconflictpreview.capacity_conflict_light_w393dp_h851dp_day.png",
+      "sha256": "c462cb9804f394550121dbf40423ba37fd32a24e8be0cd01322ac78399b7db78"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[8]_sproutpacepreviewskt.catalogpreviews.07_catalog_dark_w393dp_h851dp_night.png",
+      "sha256": "4d73064e6e3d8875e2eff2d54e99d78271da75b771f52527dfe4261aff39f8e8"
+    },
+    {
+      "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[9]_sproutpacepreviewskt.catalogpreviews.07_catalog_light_w393dp_h851dp_day.png",
+      "sha256": "f822c1c073ba78bc67eef35f85b8514e670fdf43db20e02eafaeb51b8ce11de2"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+      "sha256": "3d15ffa896b60d73c9ac383e7f3339f13e3c76eb5f1eaea1cc3644a472f4c155"
+    },
+    {
+      "path": "shared/compose/src/commonMain/composeResources/values/strings.xml",
+      "sha256": "f00f34ca301b7f3d23eb4c4f0d42a4f5aea1eb20197925eccdf3510bfc66b18b"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+      "sha256": "85b8a814bab8fbb367911c9b71194e8dfb1307fee00d78a8d50f34902797f511"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+      "sha256": "a1e161154d80b004b577f6c772f72f25280351ef345fadc3ac58bb6f76fcc552"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "sha256": "c74f0a70d607d0a3625227d7f59478ad18bcd0533fd896fc38f7c98fc6160609"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+      "sha256": "a95e3f49079183e43c0fdd0123b2631671cdd3847d8587726f36e99cd8d01b70"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "sha256": "ad29095e43f52a0a4c5d0f7c826448dbfa639438c9f32f3c646852fbce6437b4"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+      "sha256": "4c3cfa25f0e15875ed0890d395374769e18df0f676589f0d38875e0e7a267dc0"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Color.kt",
+      "sha256": "82ebd816ee09f674b459aa2756e502924567668194a837846faa312286b638a7"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/theme/Theme.kt",
+      "sha256": "43414ede6b8e4f9e6983be19edb6715278a3d66c16db06fcf0c5465b8e8dec6f"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt",
+      "sha256": "263e008a3c035696c67f4b64b60e01c609e3a852323749cf3a28a28eaee08143"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "sha256": "63f04d6ed50db7f668349447f969feb578850bc85088f5f19d1f286a57ab3b4b"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionSettingsRuntimeTest.kt",
+      "sha256": "756ba662659b349a54860a4ff0d38d7872c3e190feb58dafce6ecfafc761872e"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+      "sha256": "9c3671b89098c20f71115ff4ae1149271f7f971a3fbef9bfa249ed32862378e1"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "sha256": "41ca2c9efcf6e1b0bbeff1bc50d9fdbea213c7c7738988ab3636e02b5bc28abb"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ThemeRuntimeContractTest.kt",
+      "sha256": "c11a69408aa178d2895e39a514a0062c2596bc4edfed6a6e69f253998a382ff4"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiContractTest.kt",
+      "sha256": "c82b0ce1d86b8f6a834c71b39b312b69146d78b5ac21aff805c13161ef5b01e5"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "sha256": "56332222a0344cea10e92491c74291b4c0646fba98c9385c9cab0abca03caadf"
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "sha256": "4590841f82f3b9467f9c83a91cacbe428712f1a25d22865677c282a45fa71453"
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "sha256": "2734fc3b3dd4e853ea0b29613fe7bf28034d8a59306848ce342d2e3092032277"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": "2a6acc4de8f02613c066b11d203501e654b59619bbee8419ade40b7575c049cd"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "sha256": "74413444827ec693770700869dd4009ef8014666a5258a7548199b235a142142"
+    },
+    {
+      "path": "shared/monetization/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/monetization/ProductSettingsPrivacyStoreTest.kt",
+      "sha256": "e2d1608776acb50e2d9ad8cb93ffce06eb440e3eb1e09acb995a641ee102af55"
+    },
+    {
+      "path": "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt",
+      "sha256": "cc84c09b7a6528a7d31627b25f911a69ebf5c0bb45e576d5ee1c7149b37c6da6"
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+      "sha256": "0835f85c9e56c1b2095460681f592286aafce140aed8317f949fb8dd611d0a7d"
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+      "sha256": "21ae6194c22163a2e41100ecee0ea79e3e9ced3b391def9ba91237fff140f760"
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+      "sha256": "4be621c61b0972992348575ee0546e48779a63eb497175c7e8ec3ce2222b6a1b"
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "sha256": "f6041d76e85accf4a2de15e18f2d1b1903ccfe5663275d035c2e65c69cd0d881"
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+      "sha256": "741d41caaa9af5947dd8d8048b3c3b5f1c75fa48c0a670112066ed089131c57b"
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt",
+      "sha256": "629734b532c1b0cad08c8e9dfda467def93048458761810867136bfc8220d0ed"
+    },
+    {
+      "path": "shared/monetization/src/iosTest/kotlin/com/sedsoftware/sproutpace/monetization/IosAdsDisabledTest.kt",
+      "sha256": "8a2a348f2756d8320ac25003562aced0fb6ff4c7464a5bc3cf755d332e8d1346"
+    }
+  ],
+  "patterns": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidMain/**",
+    "shared/compose/src/androidUnitTest/**",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/commonTest/**",
+    "shared/compose/src/iosMain/**",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+    "shared/monetization/src/androidHostTest/**",
+    "shared/monetization/src/androidMain/**",
+    "shared/monetization/src/commonMain/**",
+    "shared/monetization/src/commonTest/**",
+    "shared/monetization/src/iosMain/**",
+    "shared/monetization/src/iosTest/**"
+  ]
+}

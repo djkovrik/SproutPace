@@ -1,0 +1,138 @@
+{
+  "algorithm": "sha256",
+  "digest": "07197f7e5a343b0a2044e347843c2e8b0b6f8bdbf2dbaaabf9bf0ab07d4ceece",
+  "files": [
+    {
+      "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+      "sha256": "ec65a6ff0b90618b97718fe421b3392af2d4cf201e73cfee5c30010117f90e6a"
+    },
+    {
+      "path": "docs/configuration/ADVERTISING-PRIVACY.md",
+      "sha256": "ea40c46335fa6a1edf676589e8cb1c72e2a6094cbbe9620f1892b398fe7c4291"
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "sha256": "5f492bb999c80702168ce36b6998ef9b640ffb227651598fb6fdc0ca8b259fa1"
+    },
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "sha256": "27db23827f1e620b6929a8682195756eaa620c3f8a24cb331595e8a7c2156320"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt",
+      "sha256": "263e008a3c035696c67f4b64b60e01c609e3a852323749cf3a28a28eaee08143"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "sha256": "63f04d6ed50db7f668349447f969feb578850bc85088f5f19d1f286a57ab3b4b"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionSettingsRuntimeTest.kt",
+      "sha256": "756ba662659b349a54860a4ff0d38d7872c3e190feb58dafce6ecfafc761872e"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt",
+      "sha256": "9c3671b89098c20f71115ff4ae1149271f7f971a3fbef9bfa249ed32862378e1"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+      "sha256": "41ca2c9efcf6e1b0bbeff1bc50d9fdbea213c7c7738988ab3636e02b5bc28abb"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ThemeRuntimeContractTest.kt",
+      "sha256": "c11a69408aa178d2895e39a514a0062c2596bc4edfed6a6e69f253998a382ff4"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiContractTest.kt",
+      "sha256": "c82b0ce1d86b8f6a834c71b39b312b69146d78b5ac21aff805c13161ef5b01e5"
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "sha256": "56332222a0344cea10e92491c74291b4c0646fba98c9385c9cab0abca03caadf"
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "sha256": "4590841f82f3b9467f9c83a91cacbe428712f1a25d22865677c282a45fa71453"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt",
+      "sha256": "bcdd28a622f13b93451bdf8081c4e773dd02da959bbf126f2d97da738d31a5c2"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+      "sha256": "9830ab232dc796a998f2b5392c5c646b0df2ebf05b2672dd8b644171ecb1da0b"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt",
+      "sha256": "0667a96a6270a0c71c6aefd5a767bd5f185d3d23e2ba319c67a306a11a9428eb"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": "2a6acc4de8f02613c066b11d203501e654b59619bbee8419ade40b7575c049cd"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt",
+      "sha256": "041450e312d531a7ccac067ebcb5a1e9635c7e44dea0806651ec92b86b3f9496"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/TestSqlDriverFactory.kt",
+      "sha256": "4f777e244b1124ad3ac167a54b29e43114fdbbf8f20e24c9c6e00df8cacc0970"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+      "sha256": "bd45595ccfa56977c507a2f62779acbfae4605b0b93b4e63ed6c04a3f2cb43bc"
+    },
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "sha256": "4e531abbb237bc4cd548092e0f55edee50ba60465ef6a0382761ad483f3fd24a"
+    },
+    {
+      "path": "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt",
+      "sha256": "5f1cf91ee3ec0642cc9510c79914015f31396bd83400a7ac5e515028d56b2cd8"
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+      "sha256": "436d44d2c4718e0d0e2a997128ee25c47c0d92cbb2a6ebb3d3824d96d9915784"
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+      "sha256": "15a33eeb776bf6fddac0f48c148f4842a513ffd82ca3fb03a2d161e0ff867ac8"
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt",
+      "sha256": "f39525c1a6b628ae7e35af1ce6e3587bd7bf796f899377b14b85985ace4d8443"
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt",
+      "sha256": "71b98134cc91ea2fd253f85624de3304d6a02bcf61aa84e12e9a2c4276a02802"
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+      "sha256": "ee26c0771521fd01ba9003e31990a33606c0e03035d178c76b815060c786b847"
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt",
+      "sha256": "629734b532c1b0cad08c8e9dfda467def93048458761810867136bfc8220d0ed"
+    },
+    {
+      "path": "shared/monetization/src/iosTest/kotlin/com/sedsoftware/sproutpace/monetization/IosAdsDisabledTest.kt",
+      "sha256": "4c735cbe214f74b9113dfa6138bb3b1acd3de8541426c5c4a6b393cf1a13b84e"
+    }
+  ],
+  "patterns": [
+    "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/SproutPaceApplication.kt",
+    "docs/configuration/ADVERTISING-PRIVACY.md",
+    "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/**",
+    "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+    "shared/data/src/androidHostTest/**",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+    "shared/monetization/src/androidMain/**",
+    "shared/monetization/src/commonMain/**",
+    "shared/monetization/src/commonTest/**",
+    "shared/monetization/src/iosMain/**",
+    "shared/monetization/src/iosTest/**"
+  ]
+}

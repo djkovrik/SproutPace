@@ -1,0 +1,145 @@
+{
+  "acceptanceScenarioIds": [],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/1014bae52987ac5908af17fb4b6957eeda3b634fa87aed22c796f0fbc9c45d18.json",
+    "sha256": "0f04b7d723f22147dd6a84b7cfed1cd752ce9d1ebda4ab67db4ecd38beb02af3"
+  },
+  "assignmentId": "visual-quality-generated-visibility-correction-1",
+  "blockers": [
+    {
+      "description": "The corrected generated source has not been regenerated or compiled because this specialist assignment forbids Gradle execution.",
+      "nextAction": "Root reruns testAndroidHostTest, then record and verify after successful compilation.",
+      "obligationIds": [
+        "QG-007"
+      ]
+    }
+  ],
+  "changedFiles": [
+    "shared/compose/build.gradle.kts"
+  ],
+  "completedAt": "2026-09-20T08:40:03.877151Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-visual-quality-generated-visibility-correction-1-20260920",
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Assert generated test class is internal, PreviewCase remains internal, count exactly 42 production Preview annotations, and run git diff --check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-visual-testing",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "preview-compile"
+        }
+      ],
+      "path": "shared/compose/build.gradle.kts",
+      "surface": "preview-compile",
+      "symbol": "GenerateComposablePreviewPaparazziTests"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "screenshot-test"
+        }
+      ],
+      "path": "shared/compose/build.gradle.kts",
+      "surface": "screenshot-test",
+      "symbol": "GenerateComposablePreviewPaparazziTests"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-007"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:testAndroidHostTest",
+        "--no-configuration-cache"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-007",
+          "surfaces": [
+            "preview-compile",
+            "screenshot-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:testAndroidHostTest"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:recordPaparazziDebug",
+        "--no-configuration-cache"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-007",
+          "surfaces": [
+            "screenshot-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:recordPaparazziDebug"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:verifyPaparazziDebug",
+        "--no-configuration-cache"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-007",
+          "surfaces": [
+            "screenshot-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:verifyPaparazziDebug"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "aa88148648a4ab6a92845c194c0a3c74c9d8c007e9ec0b1aff15f22f8ca2f7a6",
+    "files": [
+      {
+        "path": "shared/compose/build.gradle.kts",
+        "sha256": "f51aeb4331c27c3a7afeb15213ec1ab4d9ae316d780dfcc092889b379ee0e198"
+      },
+      {
+        "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt",
+        "sha256": "540fa823f00798d4e84b9ebfe3dc5978ce462e60c6712dabd3495cf9305746e2"
+      }
+    ],
+    "patterns": [
+      "shared/compose/build.gradle.kts",
+      "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T08:39:02.831273Z",
+  "supersedes": [],
+  "testEvidence": []
+}

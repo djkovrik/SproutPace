@@ -1,0 +1,30 @@
+{
+  "acceptanceCriteria": [
+    "Wrapper integration test verifies reconciliation/delegation rather than fake persistence.",
+    "All three new Notifications fields have deterministic realistic preview values."
+  ],
+  "allowedFiles": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt"
+  ],
+  "assignmentId": "reminder-settings-fixture-correction",
+  "contractInputs": [
+    "spec/flows/FLOW-006.md",
+    "spec/screens/SCREEN-016.md"
+  ],
+  "forkTurns": "none",
+  "goal": "Align reminder reconciliation and preview fixtures with the accepted three-field Notifications contract.",
+  "obligationIds": [
+    "AC-064",
+    "AC-065",
+    "AC-067"
+  ],
+  "requestedCommands": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:verifyPaparazzi"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-visual-testing/SKILL.md"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "action": "check",
+  "jobId": "CHECK-core-dependency-readiness-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "core-dependency-readiness-v1",
+  "tasks": [
+    ":shared:domain:allTests",
+    ":shared:component:allTests",
+    ":shared:root:allTests",
+    ":shared:data:testAndroidHostTest"
+  ],
+  "coveredObligations": [
+    {"obligationId": "AC-014", "surfaces": ["domain-test", "component-test", "database-integration-test"]},
+    {"obligationId": "AC-020", "surfaces": ["catalog-contract-test", "component-test"]},
+    {"obligationId": "AC-021", "surfaces": ["domain-test", "component-test", "database-integration-test"]},
+    {"obligationId": "AC-030", "surfaces": ["component-test", "database-integration-test"]},
+    {"obligationId": "AC-031", "surfaces": ["component-test", "database-integration-test"]},
+    {"obligationId": "AC-051", "surfaces": ["component-test", "database-integration-test"]},
+    {"obligationId": "AC-055", "surfaces": ["domain-test", "component-test"]},
+    {"obligationId": "AC-080", "surfaces": ["domain-test", "component-test", "database-integration-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; SQLDelight 2.4.0; MVIKotlin 4.3.0; Decompose 3.4.0"
+}

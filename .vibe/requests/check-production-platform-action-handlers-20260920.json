@@ -1,0 +1,18 @@
+{
+  "action": "check",
+  "jobId": "CHECK-production-platform-action-handlers-r1-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "platform-host-actions-theme-v1",
+  "tasks": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:testAndroidHostTest",
+    ":androidApp:assembleDebug"
+  ],
+  "coveredObligations": [
+    {"obligationId": "AC-074", "surfaces": ["component-test"]}
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Android SDK 37; Kotlin/Native iOS simulator compilation on Windows"
+}

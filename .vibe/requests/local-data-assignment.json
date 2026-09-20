@@ -1,0 +1,45 @@
+{
+  "action": "assign",
+  "assignmentId": "local-data-persistence",
+  "packageId": "local-data",
+  "owner": "vibe-persistence-engineer",
+  "acceptanceScenarioIds": [
+    "AC-013", "AC-015", "AC-016", "AC-017",
+    "AC-022", "AC-023", "AC-024", "AC-025",
+    "AC-033", "AC-034", "AC-053", "AC-056",
+    "AC-070", "AC-071", "AC-072", "AC-073", "AC-074",
+    "AC-082", "AC-083", "AC-084",
+    "AC-090", "AC-091", "AC-092", "AC-093", "AC-094", "AC-095"
+  ],
+  "qualityGateIds": ["QG-012"],
+  "allowedFiles": ["shared/data/**"],
+  "inputScopeId": "local-data-v1",
+  "goal": "Implement the complete offline local-data layer in a new shared:data KMP module: SQLDelight schema/queries/migrations/drivers, typed Settings, private photo storage contracts/adapters, domain manager implementations, immutable snapshots, transactional staged backup/restore, CSV export, complete erasure, and deterministic cross-platform tests. Store only stable localization keys for built-in catalog data. Do not edit settings.gradle.kts or the version catalog; the orchestrator will wire the module/tool aliases separately.",
+  "contractInputs": [
+    "spec/app-spec.json", "spec/data.md", "spec/domain.md", "spec/quality.md",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/contract/Managers.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/sqldelight-schema-queries.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/drivers-adapters-transactions.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/reactive-and-snapshot-persistence.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/multiplatform-settings.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/persistence-testing.md",
+    "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:allTests", ":shared:data:testAndroidHostTest",
+    ":shared:data:compileKotlinIosArm64", ":shared:data:compileKotlinIosSimulatorArm64",
+    ":shared:data:verifySqlDelightMigration"
+  ],
+  "acceptanceCriteria": [
+    "All managed entities and immutable snapshots are represented with stable IDs, constraints, indexes, explicit ordering, and transactional writes.",
+    "Android, iOS, and test SQLDelight drivers plus Settings and private file adapters have explicit lifecycle and do not leak generated row types.",
+    "Backup preview/replace is validate-first and atomic across database and staged photos; invalid, cancelled, corrupt, unsupported, repeat, and insufficient-storage cases preserve existing state.",
+    "CSV is UTF-8, escaped, documented, excludes photos, and is not restorable.",
+    "Delete-all clears database, private photos, settings/privacy caches, and reminder metadata while retaining no invented external effect.",
+    "Deterministic tests cover CRUD, referential integrity, migrations, rollback, restart, reactive emissions, Settings fallbacks, snapshots, backup/photo integrity, CSV, and erasure.",
+    "No external secrets, translated built-in text, Firebase/Yandex SDK logic, UI, Stores, or platform picker/notification APIs are added."
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-local-data-acceptance-test-matrix-20260920.json",
+  "inspectionNote": "Inspected all scenario-named SQLDelight/settings/private-file/backup tests and their complete fixture. Accepted the explicit production blockers for serialized archive I/O and createdAt, reminder reconciliation, post-database rollback, localized invalid-archive errors, erase navigation/cancellation, and true close/reopen fixtures; these remain implementation work and the tests are not treated as closing those ACs yet."
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-canonical-advertising-privacy-runtime-20260920.json",
+  "inspectionNote": "Inspected the canonical typed ProductSettings advertising payload, strict endpoint/schema/policy/freshness validation, production Android runtime adapter, consent and withdrawal lifecycle ordering, full backup/restore/erase assertions, and iOS unsupported nil-only path. Bound receipt da693321 proves monetization, data and Compose tests, Android debug assembly and iOS simulator Kotlin/Native compilation. AC-102 and AC-104 component reachability remains intentionally unclaimed for the following production UI/native renderer package."
+}

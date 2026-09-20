@@ -1,0 +1,32 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected current drift after the cross-platform module gate. PlatformContracts.kt is the returned platform implementation baseline and is isolated before this import-only correction; existing user and specialist work remains preserved.",
+  "assignmentId": "platform-jvminline-import-correction-1",
+  "packageId": "platform-services",
+  "owner": "vibe-platform-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-008"],
+  "allowedFiles": [
+    "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt"
+  ],
+  "inputScopeId": "platform-services-v1",
+  "goal": "Restore Kotlin/Native compilation of the common PhysicalReminderId value class by adding the correct portable JvmInline annotation import without changing platform contracts or reminder behavior.",
+  "contractInputs": [
+    "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-platform-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:platform:allTests",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:platform:compileAndroidMain",
+    ":shared:platform:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "PlatformContracts.kt resolves JvmInline for Android and Kotlin/Native common compilation.",
+    "PhysicalReminderId and every platform service contract remain behaviorally unchanged.",
+    "Root reruns cross-platform platform tests and compilation."
+  ]
+}

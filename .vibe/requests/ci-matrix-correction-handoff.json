@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-ci-android-ios-quality-matrix-correction-20260920.json",
+  "inspectionNote": "Inspected corrected real Gradle task names, seven-module Android host and iOS Simulator matrices, framework/Xcode host linkage, SHA-pinned actions, artifacts and no-secret debug contract. macOS execution remains a later CI-only gate."
+}

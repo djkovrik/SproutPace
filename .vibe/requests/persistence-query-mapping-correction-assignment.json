@@ -1,0 +1,36 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Inspected current drift after the root integration build. It consists of preserved user inputs plus already returned/ingested delivery outputs and generated Gradle artifacts; this assignment is isolated to one unmodified persistence source file before correction.",
+  "assignmentId": "persistence-query-mapping-correction-3",
+  "packageId": "core-domain",
+  "owner": "vibe-persistence-engineer",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-011"],
+  "allowedFiles": [
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt"
+  ],
+  "inputScopeId": "local-data-v1",
+  "goal": "Correct LocalDatabase mapping to the generated SQLDelight Query<String> API so typed recipe, batch, plan and observation flows and snapshot export compile on Android and iOS without changing persistence semantics.",
+  "contractInputs": [
+    "spec/data.md",
+    "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/references/queries-transactions-and-reactive-streams.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [
+    ":shared:data:allTests",
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:compileKotlinIosSimulatorArm64"
+  ],
+  "acceptanceCriteria": [
+    "Generated parameterless Query<String> methods are consumed through explicit post-query domain decoding.",
+    "Reactive flows and snapshot export return the existing typed domain collections.",
+    "No schema, transaction, backup format or domain behavior changes.",
+    "Root reruns Android/iOS compilation and persistence tests."
+  ]
+}

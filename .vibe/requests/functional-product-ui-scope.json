@@ -1,0 +1,17 @@
+{
+  "action": "scope",
+  "scopeId": "functional-product-ui-v1",
+  "patterns": [
+    "spec/**",
+    "docs/assets/**",
+    "shared/component/src/commonMain/**",
+    "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponent.kt",
+    "shared/compose/**",
+    "gradle/**",
+    "*.gradle.kts",
+    "gradle.properties"
+  ],
+  "dependencyRationale": "The model-driven product UI depends on approved screen/design specs, stable component DTOs/actions, the root interface, production resources/assets and Compose preview/test build wiring. Root implementation and data internals are deliberately excluded.",
+  "fallbackReason": "Compose generated resource accessors and Paparazzi preview discovery are transitive generated inputs, so the complete compose module is included while mutable data/root implementations remain outside the fingerprint.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Material3 1.12.0-alpha03; Paparazzi 2.0.0-alpha02"
+}

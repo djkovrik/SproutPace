@@ -1,0 +1,18 @@
+{
+  "action": "check",
+  "jobId": "CHECK-foundation-visual-smoke-20260920",
+  "runner": "gradle",
+  "tasks": [
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:recordPaparazzi",
+    ":shared:compose:verifyPaparazzi"
+  ],
+  "coveredObligations": [
+    {
+      "obligationId": "QG-007",
+      "surfaces": ["preview-compile", "screenshot-test"]
+    }
+  ],
+  "inputScopeId": "foundation-v1",
+  "timeoutSeconds": 1800
+}

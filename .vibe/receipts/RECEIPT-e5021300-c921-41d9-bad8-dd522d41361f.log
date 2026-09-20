@@ -1,0 +1,364 @@
+Calculating task graph as configuration cache cannot be reused because file 'androidApp\build.gradle.kts' has changed.
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:generateComposeResClass UP-TO-DATE
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:root:androidPreBuild UP-TO-DATE
+> Task :shared:root:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:convertXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:compose:generateComposablePreviewPaparazziTests UP-TO-DATE
+> Task :shared:compose:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:component:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:data:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:domain:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:root:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:platform:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:compose:mapAndroidHostTestSourceSetPaths UP-TO-DATE
+> Task :shared:component:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:data:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :shared:domain:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:component:processAndroidMainManifest UP-TO-DATE
+> Task :shared:domain:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestResources UP-TO-DATE
+> Task :shared:platform:processAndroidMainManifest UP-TO-DATE
+> Task :shared:root:processAndroidMainManifest UP-TO-DATE
+> Task :shared:data:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:processAndroidMainManifest UP-TO-DATE
+> Task :shared:domain:exportCrossCompilationMetadataForIosSimulatorArm64ApiElements UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :shared:platform:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:component:exportCrossCompilationMetadataForIosSimulatorArm64ApiElements UP-TO-DATE
+> Task :shared:compose:convertXmlValueResourcesForIosMain NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForAppleMain NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForIosMain NO-SOURCE
+> Task :shared:compose:convertXmlValueResourcesForIosSimulatorArm64Main NO-SOURCE
+> Task :shared:component:downloadKotlinNativeDistribution UP-TO-DATE
+> Task :shared:compose:convertXmlValueResourcesForAppleMain NO-SOURCE
+> Task :shared:platform:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:convertXmlValueResourcesForNativeMain NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain UP-TO-DATE
+> Task :shared:compose:copyNonXmlValueResourcesForIosSimulatorArm64Main NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForNativeMain NO-SOURCE
+> Task :shared:domain:downloadKotlinNativeDistribution UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForAppleMain NO-SOURCE
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:data:exportCrossCompilationMetadataForIosSimulatorArm64ApiElements UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForAppleMain NO-SOURCE
+> Task :shared:compose:downloadKotlinNativeDistribution UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForCommonMain UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForIosMain NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForIosSimulatorArm64Main NO-SOURCE
+> Task :shared:platform:exportCrossCompilationMetadataForIosSimulatorArm64ApiElements UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForNativeMain NO-SOURCE
+> Task :shared:platform:downloadKotlinNativeDistribution UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestAssets UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForIosMain NO-SOURCE
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForIosSimulatorArm64Main NO-SOURCE
+> Task :shared:platform:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:packageAndroidMainResources UP-TO-DATE
+> Task :shared:data:downloadKotlinNativeDistribution UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForNativeMain NO-SOURCE
+> Task :shared:compose:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:root:exportCrossCompilationMetadataForIosSimulatorArm64ApiElements UP-TO-DATE
+> Task :shared:monetization:androidPreBuild UP-TO-DATE
+> Task :shared:root:downloadKotlinNativeDistribution UP-TO-DATE
+> Task :shared:monetization:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainAssets UP-TO-DATE
+
+> Task :shared:compose:checkIosSimulatorArm64MainComposeLibrariesCompatibility
+w: Skiko dependencies' versions are incompatible.
+    io.coil-kt.coil3:coil-core-iossimulatorarm64:3.5.0
+    \--- org.jetbrains.skiko:skiko:0.144.6 -> 0.150.1
+
+This may lead to compilation errors or unexpected behavior at runtime.
+Such version mismatch might be caused by dependency constraints in one of the included libraries.
+You can inspect resulted dependencies tree via `./gradlew :shared:compose:dependencies  --configuration iosSimulatorArm64CompileKlibraries`.
+See more details in Gradle documentation: https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html#sec:listing-dependencies
+
+Note: Skiko is considered implementation detail in Compose Multiplatform and might be incompatible across versions.
+Please align Skiko dependencies to the same version. If possible, avoid direct Skiko references and use Compose APIs instead.
+
+
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:parseAndroidMainLocalResources UP-TO-DATE
+> Task :androidApp:generateDebugAssets UP-TO-DATE
+> Task :shared:compose:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:generateActualResourceCollectorsForIosSimulatorArm64Main UP-TO-DATE
+> Task :shared:compose:androidJar UP-TO-DATE
+> Task :shared:monetization:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :androidApp:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :androidApp:javaPreCompileDebug UP-TO-DATE
+> Task :shared:monetization:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:monetization:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :androidApp:generateDebugBuildConfig UP-TO-DATE
+> Task :shared:monetization:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :androidApp:mapDebugSourceSetPaths UP-TO-DATE
+> Task :androidApp:desugarDebugFileDependencies UP-TO-DATE
+> Task :androidApp:generateDebugResources UP-TO-DATE
+> Task :androidApp:extractDeepLinksDebug UP-TO-DATE
+> Task :androidApp:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :shared:monetization:processAndroidMainManifest UP-TO-DATE
+> Task :androidApp:packageDebugResources UP-TO-DATE
+> Task :shared:compose:checkAndroidHostTestAarMetadata UP-TO-DATE
+> Task :androidApp:mergeDebugJniLibFolders UP-TO-DATE
+> Task :shared:component:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:compose:preparePaparazziAndroidMainResources UP-TO-DATE
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:data:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:domain:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:component:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:domain:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:compose:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:data:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:data:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:monetization:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :androidApp:checkDebugDuplicateClasses UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:compose:mergeAndroidHostTestAssets UP-TO-DATE
+> Task :shared:domain:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:monetization:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:platform:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:domain:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:platform:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:compose:mergeAndroidHostTestResources UP-TO-DATE
+> Task :shared:monetization:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :androidApp:validateSigningDebug UP-TO-DATE
+> Task :shared:root:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :androidApp:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :androidApp:writeDebugAppMetadata UP-TO-DATE
+> Task :shared:root:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:root:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :androidApp:mergeDebugAssets UP-TO-DATE
+> Task :androidApp:compressDebugAssets UP-TO-DATE
+> Task :androidApp:checkDebugAarMetadata UP-TO-DATE
+> Task :shared:monetization:compileAndroidMain UP-TO-DATE
+> Task :androidApp:processDebugNavigationResources UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :androidApp:compileDebugNavigationResources UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:monetization:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:monetization:processAndroidMainJavaRes UP-TO-DATE
+> Task :androidApp:parseDebugLocalResources UP-TO-DATE
+> Task :androidApp:mergeDebugResources UP-TO-DATE
+> Task :androidApp:generateDebugRFile UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestManifest UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :androidApp:mergeExtDexDebug UP-TO-DATE
+> Task :androidApp:mergeDebugNativeLibs UP-TO-DATE
+> Task :shared:root:compileAndroidMain UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :androidApp:stripDebugDebugSymbols UP-TO-DATE
+> Task :shared:root:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:root:processAndroidMainJavaRes UP-TO-DATE
+> Task :androidApp:processDebugMainManifest UP-TO-DATE
+> Task :androidApp:processDebugManifest UP-TO-DATE
+> Task :androidApp:processDebugManifestForPackage UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestResources UP-TO-DATE
+> Task :shared:compose:packageAndroidHostTestForUnitTest UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestConfig UP-TO-DATE
+> Task :shared:platform:compileAndroidMain UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:platform:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:platform:processAndroidMainJavaRes UP-TO-DATE
+> Task :androidApp:processDebugResources UP-TO-DATE
+> Task :shared:compose:kspAndroidMain UP-TO-DATE
+> Task :shared:compose:compileAndroidMain UP-TO-DATE
+> Task :shared:compose:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:compose:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:compose:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:compose:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:kspAndroidHostTest
+> Task :shared:domain:compileKotlinIosSimulatorArm64 UP-TO-DATE
+> Task :shared:component:compileKotlinIosSimulatorArm64 UP-TO-DATE
+> Task :shared:data:compileKotlinIosSimulatorArm64 UP-TO-DATE
+> Task :shared:root:compileKotlinIosSimulatorArm64 UP-TO-DATE
+> Task :shared:platform:compileKotlinIosSimulatorArm64 UP-TO-DATE
+> Task :shared:compose:kspKotlinIosSimulatorArm64 UP-TO-DATE
+> Task :shared:compose:copyRoomSchemas NO-SOURCE
+> Task :shared:compose:compileKotlinIosSimulatorArm64 UP-TO-DATE
+> Task :androidApp:mergeLibDexDebug
+
+> Task :shared:compose:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt:35:39 Expression is unused.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt:35:9 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt:129:47 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :androidApp:compileDebugKotlin
+> Task :androidApp:processDebugJavaRes
+> Task :shared:compose:transformAndroidHostTestClassesWithAsm
+> Task :androidApp:mergeDebugJavaResource
+> Task :androidApp:compileDebugJavaWithJavac
+> Task :shared:compose:testAndroidHostTest
+> Task :androidApp:dexBuilderDebug
+> Task :androidApp:mergeProjectDexDebug
+> Task :androidApp:mergeDebugGlobalSynthetics
+> Task :androidApp:packageDebug
+> Task :androidApp:assembleDebug
+> Task :androidApp:createDebugApkListingFileRedirect
+
+> Task :shared:compose:testAndroidHostTest
+
+GeneratedComposablePreviewPaparazziTest > [AppKt.TodayRussianLargeTextPreview.Today_RU_200%_W393dp_H851dp_ru_FONT_2_0f] > snapshot[AppKt.TodayRussianLargeTextPreview.Today_RU_200%_W393dp_H851dp_ru_FONT_2_0f] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.BatchDetailPreviews.05_Batch_detail_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.BatchDetailPreviews.05_Batch_detail_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.BatchDetailPreviews.05_Batch_detail_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.BatchDetailPreviews.05_Batch_detail_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.BatchEditorPreviews.04_Batch_editor_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.BatchEditorPreviews.04_Batch_editor_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.BatchEditorPreviews.04_Batch_editor_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.BatchEditorPreviews.04_Batch_editor_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.CapacityConflictPreview.Capacity_conflict_W393dp_H851dp] > snapshot[SproutPacePreviewsKt.CapacityConflictPreview.Capacity_conflict_W393dp_H851dp] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.CatalogPreviews.07_Catalog_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.CatalogPreviews.07_Catalog_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.CatalogPreviews.07_Catalog_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.CatalogPreviews.07_Catalog_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.CloseBatchPreviews.10_Close_batch_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.CloseBatchPreviews.10_Close_batch_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.CloseBatchPreviews.10_Close_batch_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.CloseBatchPreviews.10_Close_batch_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.DestructiveConfirmationPreview.Destructive_confirmation_W393dp_H851dp] > snapshot[SproutPacePreviewsKt.DestructiveConfirmationPreview.Destructive_confirmation_W393dp_H851dp] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.ExpandedTraysPreview.Expanded_list_detail_W1100dp_H800dp] > snapshot[SproutPacePreviewsKt.ExpandedTraysPreview.Expanded_list_detail_W1100dp_H800dp] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.FirstRunPreviews.01_First_run_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.FirstRunPreviews.01_First_run_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.FirstRunPreviews.01_First_run_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.FirstRunPreviews.01_First_run_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.NotificationsPreviews.16_Notifications_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.NotificationsPreviews.16_Notifications_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.NotificationsPreviews.16_Notifications_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.NotificationsPreviews.16_Notifications_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.ObservationPreviews.09_Observation_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.ObservationPreviews.09_Observation_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.ObservationPreviews.09_Observation_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.ObservationPreviews.09_Observation_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.PermissionDeniedPreview.Permission_denied_W393dp_H851dp] > snapshot[SproutPacePreviewsKt.PermissionDeniedPreview.Permission_denied_W393dp_H851dp] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.PrivacyPreviews.15_Privacy_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.PrivacyPreviews.15_Privacy_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.PrivacyPreviews.15_Privacy_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.PrivacyPreviews.15_Privacy_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.RussianLargeTextPreview.Stress_RU_200%_W393dp_H851dp_ru_FONT_2_0f] > snapshot[SproutPacePreviewsKt.RussianLargeTextPreview.Stress_RU_200%_W393dp_H851dp_ru_FONT_2_0f] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.SettingsPreviews.11_Settings_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.SettingsPreviews.11_Settings_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.SettingsPreviews.11_Settings_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.SettingsPreviews.11_Settings_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.TraySizesPreviews.13_Tray_sizes_Dark_W393dp_H851dp_NIGHT] > snapshot[SproutPacePreviewsKt.TraySizesPreviews.13_Tray_sizes_Dark_W393dp_H851dp_NIGHT] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+GeneratedComposablePreviewPaparazziTest > [SproutPacePreviewsKt.TraySizesPreviews.13_Tray_sizes_Light_W393dp_H851dp_DAY] > snapshot[SproutPacePreviewsKt.TraySizesPreviews.13_Tray_sizes_Light_W393dp_H851dp_DAY] FAILED
+    java.io.FileNotFoundException at GeneratedComposablePreviewPaparazziTest.kt:30
+
+60 tests completed, 26 failed
+
+> Task :shared:compose:testAndroidHostTest FAILED
+
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':shared:compose:testAndroidHostTest'.
+> There were failing tests. See the report at: file:///D:/Sources/Android/SproutPace/shared/compose/build/reports/tests/testAndroidHostTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 2m 15s
+173 actionable tasks: 22 executed, 151 up-to-date
+Configuration cache entry stored.

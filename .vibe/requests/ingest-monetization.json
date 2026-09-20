@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-privacy-yandex-ads-20260920.json",
+  "inspectionNote": "Inspected the privacy/advertising implementation and immutable handoff. The canonical endpoint is strictly decoded and cached for at most 72 hours; ambiguous, malformed, stale and network failures remain fail-closed. Consent is policy-version bound and precedes every permitted SDK initialization. Android exposes only one inline Catalog/History banner with debug test ID and release real-ID guard; iOS is unconditionally disabled. No analytics, identifiers, mediation or prohibited formats are added. External ad unit, privacy URL/copy and device/store checks remain conditional QG-009/QG-010 actions."
+}

@@ -1,0 +1,219 @@
+{
+  "acceptanceScenarioIds": [],
+  "allowedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/**"
+  ],
+  "assignmentBaselineRef": {
+    "path": ".vibe/snapshots/77cd26ff715263729718dc0c2fdc274c63758d38d5ecf3be1f38a5219dfb721e.json",
+    "sha256": "9b4a9a108ad1493f6e0252531ab3141090bb4199f4ad91ad07ac62aff4b5a781"
+  },
+  "assignmentId": "visual-quality-paparazzi",
+  "blockers": [
+    {
+      "description": "Gradle compilation, Paparazzi rendering, record and verify were not executed because this specialist assignment explicitly reserves Gradle and goldens for the orchestrator.",
+      "nextAction": "Root runs the three requested commands without configuration cache, inspects all new PNGs and the generated preview-coverage.json, then binds successful receipts.",
+      "obligationIds": [
+        "QG-007"
+      ]
+    },
+    {
+      "description": "Accessibility inspection and the first-release post-golden Lazyweb design review remain separate required QG-007 surfaces after approved goldens exist.",
+      "nextAction": "Root routes the recorded full primary-screen set through accessibility and Product Designer/Lazyweb review before QG-007 closure.",
+      "obligationIds": [
+        "QG-007"
+      ]
+    }
+  ],
+  "changedFiles": [
+    "shared/compose/build.gradle.kts",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+    "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt"
+  ],
+  "completedAt": "2026-09-20T08:37:50.984463Z",
+  "evidenceMode": "assignment",
+  "handoffId": "HANDOFF-visual-quality-paparazzi-20260920",
+  "nonGradleChecks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "shared/compose/build.gradle.kts",
+        "shared/compose/src/androidUnitTest"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Inspect Compose tooling AAR manifests/R packages; count 42 production @Preview annotations; verify deterministic scanner, stable IDs, light/dark, RU 200 percent and expanded assertions"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "owner": "vibe-visual-testing",
+  "productionEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "preview-compile"
+        }
+      ],
+      "path": "shared/compose/build.gradle.kts",
+      "surface": "preview-compile",
+      "symbol": "GenerateComposablePreviewPaparazziTests"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "screenshot-test"
+        }
+      ],
+      "path": "shared/compose/build.gradle.kts",
+      "surface": "screenshot-test",
+      "symbol": "GenerateComposablePreviewPaparazziTests"
+    }
+  ],
+  "qualityGateIds": [
+    "QG-007"
+  ],
+  "requestedCommands": [
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:testAndroidHostTest",
+        "--no-configuration-cache"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-007",
+          "surfaces": [
+            "preview-compile",
+            "screenshot-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:testAndroidHostTest"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:recordPaparazziDebug",
+        "--no-configuration-cache"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-007",
+          "surfaces": [
+            "screenshot-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:recordPaparazziDebug"
+      ]
+    },
+    {
+      "argv": [
+        "gradlew.bat",
+        ":shared:compose:verifyPaparazziDebug",
+        "--no-configuration-cache"
+      ],
+      "coveredObligations": [
+        {
+          "obligationId": "QG-007",
+          "surfaces": [
+            "screenshot-test"
+          ]
+        }
+      ],
+      "tasks": [
+        ":shared:compose:verifyPaparazziDebug"
+      ]
+    }
+  ],
+  "resultScopeFingerprint": {
+    "algorithm": "sha256",
+    "digest": "063e7a828a104763fe540dcafd7bea8bb5dfe307c0ede3ab98f9a321af9c333b",
+    "files": [
+      {
+        "path": "shared/compose/build.gradle.kts",
+        "sha256": "9c7dcd7ef167b164a93bfd335eb6d527337b60700adf1b3e348bf00d9088e2ed"
+      },
+      {
+        "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+        "sha256": "72808560a56c504edc9bffff0ed3c673bdebcfd75899fca1a2b109f18b2dc0ed"
+      },
+      {
+        "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+        "sha256": "964a98a2ee999efeea8f6ecb0ee29885d032a9d08f0a62fa70bcdeef8824ae25"
+      },
+      {
+        "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt",
+        "sha256": "540fa823f00798d4e84b9ebfe3dc5978ce462e60c6712dabd3495cf9305746e2"
+      }
+    ],
+    "patterns": [
+      "shared/compose/build.gradle.kts",
+      "shared/compose/src/androidUnitTest/**"
+    ]
+  },
+  "schemaVersion": "2.0",
+  "startedAt": "2026-09-20T08:29:43.051485Z",
+  "supersedes": [],
+  "testEvidence": [
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "preview-compile"
+        }
+      ],
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt",
+      "surface": "preview-compile",
+      "testName": "scannerFindsDeterministicProductionPreviewSet"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "screenshot-test"
+        }
+      ],
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "surface": "screenshot-test",
+      "testName": "everyPrimaryScreenHasLightAndDarkCoverage"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "screenshot-test"
+        }
+      ],
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "surface": "screenshot-test",
+      "testName": "localeFontScaleAndAdaptiveStressVariantsAreExecutable"
+    },
+    {
+      "coverage": [
+        {
+          "obligationId": "QG-007",
+          "surface": "screenshot-test"
+        }
+      ],
+      "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+      "surface": "screenshot-test",
+      "testName": "writesDeterministicCoverageInventory"
+    }
+  ]
+}

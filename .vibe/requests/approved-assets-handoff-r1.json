@@ -1,0 +1,65 @@
+{
+  "action": "handoff",
+  "assignmentId": "approved-assets",
+  "handoffId": "HANDOFF-approved-assets-20260920-r1",
+  "supersedes": [".vibe/handoffs/HANDOFF-approved-assets-20260920.json"],
+  "productionEvidence": [
+    {
+      "path": "docs/assets/asset-manifest.json",
+      "symbol": "ASSET-029",
+      "surface": "asset-manifest",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-manifest"}]
+    },
+    {
+      "path": "docs/assets/generation/catalog-covers.json",
+      "symbol": "ASSET-022",
+      "surface": "asset-provenance",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-provenance"}]
+    },
+    {
+      "path": "docs/assets/visual-review.md",
+      "symbol": "asset-level generation review only",
+      "surface": "asset-review",
+      "coverage": [{"obligationId": "QG-006", "surface": "asset-review"}]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": ["python", "C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py", "--app-spec-root", "D:/Sources/Android/SproutPace/spec"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "Parse the 21 delivered vector XML files and reject platform/theme resource references"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["C:/Users/Sergey/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe", "C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py", "--app-spec-root", "D:/Sources/Android/SproutPace/spec", "--repository", "D:/Sources/Android/SproutPace"],
+      "exitCode": 1
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["C:/Users/Sergey/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe", "C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py", "--app-spec-root", "D:/Sources/Android/SproutPace/spec", "--repository", "D:/Sources/Android/SproutPace"],
+      "tasks": [],
+      "coveredObligations": [{"obligationId": "QG-006", "surfaces": ["asset-check", "asset-visual"]}]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:compose:generateComposeResClass", ":shared:compose:compileKotlinAndroid"],
+      "tasks": [":shared:compose:generateComposeResClass", ":shared:compose:compileKotlinAndroid"],
+      "coveredObligations": [{"obligationId": "QG-006", "surfaces": ["asset-check"]}]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Production commonMain Kotlin usage evidence is pending for ASSET-001 through ASSET-029 because UI wiring is owned by a later assignment.",
+      "affectedAssetIds": ["ASSET-001", "ASSET-002", "ASSET-003", "ASSET-004", "ASSET-005", "ASSET-006", "ASSET-007", "ASSET-008", "ASSET-009", "ASSET-010", "ASSET-011", "ASSET-012", "ASSET-013", "ASSET-014", "ASSET-015", "ASSET-016", "ASSET-017", "ASSET-018", "ASSET-019", "ASSET-020", "ASSET-021", "ASSET-022", "ASSET-023", "ASSET-024", "ASSET-025", "ASSET-026", "ASSET-027", "ASSET-028", "ASSET-029"],
+      "nextAction": "UI owner wires typed Res.drawable accessors in production commonMain code and updates each manifest usage with the current source hash and complete screen coverage."
+    },
+    {
+      "description": "Production screen/state/theme rendering and golden evidence are pending for full-evidence assets; the current contact sheet proves only generated raster review.",
+      "affectedAssetIds": ["ASSET-001", "ASSET-016", "ASSET-017", "ASSET-018", "ASSET-019", "ASSET-020", "ASSET-021", "ASSET-022", "ASSET-023", "ASSET-024", "ASSET-025", "ASSET-026", "ASSET-027", "ASSET-028", "ASSET-029"],
+      "nextAction": "Product Designer and Visual Testing render the production resources in required light/dark and stress previews, inspect approved goldens, and add truthful visual evidence."
+    }
+  ]
+}

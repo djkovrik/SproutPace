@@ -1,0 +1,35 @@
+{
+  "action": "handoff",
+  "assignmentId": "root-confirmation-visibility-correction-1",
+  "handoffId": "HANDOFF-root-confirmation-visibility-correction-1",
+  "productionEvidence": [
+    {
+      "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+      "symbol": "override val confirmation",
+      "surface": "catalog-contract-test",
+      "coverage": [{"obligationId":"QG-011","surface":"catalog-contract-test"}]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+      "testName": "deepLinksValidateRequiredIdsAndBackReturnsToPrimary",
+      "surface": "catalog-contract-test",
+      "coverage": [{"obligationId":"QG-011","surface":"catalog-contract-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "assert confirmation override uses the public Value<ChildSlot<ConfirmationConfig, ConfirmationComponent>> type while ConfirmationComponentDefault remains private"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:root:allTests", ":shared:root:testAndroidHostTest", ":shared:root:compileAndroidMain", ":shared:root:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:root:allTests", ":shared:root:testAndroidHostTest", ":shared:root:compileAndroidMain", ":shared:root:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [{"obligationId":"QG-011","surfaces":["catalog-contract-test"]}]
+    }
+  ],
+  "blockers": []
+}

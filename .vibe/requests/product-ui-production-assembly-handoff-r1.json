@@ -1,0 +1,131 @@
+{
+  "action": "handoff",
+  "assignmentId": "product-ui-production-assembly",
+  "handoffId": "HANDOFF-product-ui-production-assembly-20260920-r1",
+  "supersedes": [".vibe/handoffs/HANDOFF-product-ui-production-assembly-20260920.json"],
+  "productionEvidence": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "symbol": "class ProductionAppGraph",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"component-test"},
+        {"obligationId":"AC-120","surface":"component-test"},
+        {"obligationId":"AC-121","surface":"component-test"},
+        {"obligationId":"AC-123","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "symbol": "class AndroidProductionAppGraph",
+      "surface": "localization-contract-test",
+      "coverage": [{"obligationId":"AC-120","surface":"localization-contract-test"}]
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "symbol": "class AndroidProductionAppGraph",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-121","surface":"settings-integration-test"}]
+    },
+    {
+      "path": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt",
+      "symbol": "class AndroidProductionAppGraph",
+      "surface": "integration-test",
+      "coverage": [{"obligationId":"AC-123","surface":"integration-test"}]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "symbol": "class IosProductionAppGraph",
+      "surface": "localization-contract-test",
+      "coverage": [{"obligationId":"AC-120","surface":"localization-contract-test"}]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "symbol": "class IosProductionAppGraph",
+      "surface": "settings-integration-test",
+      "coverage": [{"obligationId":"AC-121","surface":"settings-integration-test"}]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt",
+      "symbol": "class IosProductionAppGraph",
+      "surface": "integration-test",
+      "coverage": [{"obligationId":"AC-123","surface":"integration-test"}]
+    },
+    {
+      "path": "shared/compose/src/iosMain/kotlin/main.kt",
+      "symbol": "fun MainViewController",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"component-test"},
+        {"obligationId":"AC-121","surface":"component-test"}
+      ]
+    }
+  ],
+  "testEvidence": [
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "testName": "rootDependenciesKeepReleaseAndDebugFactoriesDistinct",
+      "surface": "component-test",
+      "coverage": [
+        {"obligationId":"AC-001","surface":"component-test"},
+        {"obligationId":"AC-123","surface":"component-test"}
+      ]
+    },
+    {
+      "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt",
+      "testName": "dependencyContractTestDoesNotConstructProductionStorage",
+      "surface": "component-test",
+      "coverage": [{"obligationId":"AC-123","surface":"component-test"}]
+    }
+  ],
+  "nonGradleChecks": [
+    {
+      "argv": ["git", "diff", "--check", "--", "shared/compose/build.gradle.kts", "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt", "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt", "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt", "shared/compose/src/iosMain/kotlin/main.kt", "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt"],
+      "exitCode": 0
+    },
+    {
+      "argv": ["rg", "-n", "EmptyScreenDataManager|ProductionScreenDataManager|fun MainViewController|LifecycleRegistry|AndroidSqlDriverFactory|IosSqlDriverFactory|SharedPreferencesSettings|NSUserDefaultsSettings", "shared/compose/src"],
+      "exitCode": 0
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat", ":shared:compose:compileAndroidMain"],
+      "tasks": [":shared:compose:compileAndroidMain"],
+      "coveredObligations": [
+        {"obligationId":"AC-001","surfaces":["component-test"]},
+        {"obligationId":"AC-120","surfaces":["component-test"]},
+        {"obligationId":"AC-121","surfaces":["component-test"]},
+        {"obligationId":"AC-123","surfaces":["component-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:compose:compileKotlinIosSimulatorArm64"],
+      "tasks": [":shared:compose:compileKotlinIosSimulatorArm64"],
+      "coveredObligations": [
+        {"obligationId":"AC-001","surfaces":["component-test"]},
+        {"obligationId":"AC-120","surfaces":["component-test"]},
+        {"obligationId":"AC-121","surfaces":["component-test"]},
+        {"obligationId":"AC-123","surfaces":["component-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":shared:compose:testAndroidHostTest"],
+      "tasks": [":shared:compose:testAndroidHostTest"],
+      "coveredObligations": [
+        {"obligationId":"AC-001","surfaces":["component-test"]},
+        {"obligationId":"AC-123","surfaces":["component-test"]}
+      ]
+    },
+    {
+      "argv": ["gradlew.bat", ":androidApp:assembleDebug"],
+      "tasks": [":androidApp:assembleDebug"],
+      "coveredObligations": []
+    }
+  ],
+  "blockers": [
+    "Android host wiring is outside this assignment: SproutPaceApplication must create and retain exactly one AndroidProductionAppGraph(applicationContext, BuildConfig.DEBUG); AppActivity must render graph.root and forward start/resume/pause/stop without recreating or closing the graph during configuration changes.",
+    "Swift host wiring is outside this assignment: iosApp.swift must create and retain exactly one IosProductionAppGraph(isDebug:), call MainViewController(graph:), forward scene active/inactive/background transitions to the explicit lifecycle methods, and close only when the application graph is permanently torn down.",
+    "The requested Android/iOS compilation, host tests, and Android assembly remain for the orchestrator; this specialist intentionally did not run Gradle. Native iOS/Xcode linkage still requires validation on macOS CI."
+  ]
+}

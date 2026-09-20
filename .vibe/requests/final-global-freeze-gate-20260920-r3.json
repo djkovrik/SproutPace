@@ -1,0 +1,40 @@
+{
+  "action": "check",
+  "jobId": "CHECK-final-global-freeze-gate-20260920-r3",
+  "runner": "gradle",
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":shared:data:verifySqlDelightMigration",
+    ":shared:domain:compileKotlinIosSimulatorArm64",
+    ":shared:data:compileKotlinIosSimulatorArm64",
+    ":shared:component:compileKotlinIosSimulatorArm64",
+    ":shared:root:compileKotlinIosSimulatorArm64",
+    ":shared:platform:compileKotlinIosSimulatorArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug",
+    ":androidApp:assembleRelease",
+    ":androidApp:bundleRelease",
+    "koverXmlReport",
+    "koverVerify"
+  ],
+  "coveredObligations": [
+    {"obligationId":"QG-001","surfaces":["repository-check","unit-test","integration-test","static-analysis","coverage-check","localization-contract-test"]},
+    {"obligationId":"QG-002","surfaces":["android-build","android-platform-test"]},
+    {"obligationId":"QG-003","surfaces":["ios-build"]},
+    {"obligationId":"QG-004","surfaces":["release-check"]},
+    {"obligationId":"QG-011","surfaces":["catalog-contract-test","content-review"]},
+    {"obligationId":"QG-012","surfaces":["snapshot-roundtrip-test","file-integration-test"]}
+  ],
+  "timeoutSeconds": 3600,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 21 daemon; JVM target 17; AGP 9.1.1; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Windows host Kotlin/Native iOS simulator compilation only"
+}

@@ -1,0 +1,50 @@
+{
+  "action": "handoff",
+  "assignmentId": "persistence-sqldelight-correction-1",
+  "handoffId": "HANDOFF-persistence-sqldelight-correction-1-20260920",
+  "productionEvidence": [
+    {
+      "path": "shared/data/src/commonMain/sqldelight/com/sedsoftware/sproutpace/data/db/SproutPace.sq",
+      "symbol": "user_recipe",
+      "surface": "catalog-contract-test",
+      "coverage": [{"obligationId":"QG-011","surface":"catalog-contract-test"}]
+    }
+  ],
+  "testEvidence": [],
+  "nonGradleChecks": [
+    {
+      "argv": ["powershell.exe","-NoProfile","-File","shared/data/scripts/validate-data.ps1"],
+      "exitCode": 0,
+      "startedAt": "2026-09-20T07:31:42Z",
+      "completedAt": "2026-09-20T07:31:43Z"
+    }
+  ],
+  "requestedCommands": [
+    {
+      "argv": ["gradlew.bat",":shared:data:generateCommonMainSproutPaceDatabaseInterface"],
+      "tasks": [":shared:data:generateCommonMainSproutPaceDatabaseInterface"],
+      "coveredObligations": []
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:verifySqlDelightMigration"],
+      "tasks": [":shared:data:verifySqlDelightMigration"],
+      "coveredObligations": []
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:allTests"],
+      "tasks": [":shared:data:allTests"],
+      "coveredObligations": [{"obligationId":"QG-011","surfaces":["catalog-contract-test"]}]
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:testAndroidHostTest"],
+      "tasks": [":shared:data:testAndroidHostTest"],
+      "coveredObligations": [{"obligationId":"QG-011","surfaces":["catalog-contract-test"]}]
+    },
+    {
+      "argv": ["gradlew.bat",":shared:data:compileAndroidMain"],
+      "tasks": [":shared:data:compileAndroidMain"],
+      "coveredObligations": []
+    }
+  ],
+  "blockers": []
+}

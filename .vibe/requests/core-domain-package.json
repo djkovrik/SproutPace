@@ -1,0 +1,10 @@
+{
+  "action": "package",
+  "packageId": "core-domain",
+  "owner": "vibe-developer",
+  "acceptanceScenarioIds": ["AC-010", "AC-011", "AC-012", "AC-014", "AC-020", "AC-021", "AC-026", "AC-027", "AC-030", "AC-031", "AC-032", "AC-035", "AC-036", "AC-037", "AC-038", "AC-039", "AC-040", "AC-050", "AC-051", "AC-052", "AC-054", "AC-055", "AC-057", "AC-060", "AC-062", "AC-066", "AC-068", "AC-080", "AC-081", "AC-085"],
+  "qualityGateIds": ["QG-011"],
+  "fileBoundaries": ["shared/domain/**", "shared/data/**", "shared/component/**", "shared/root/**"],
+  "integrationGoal": "The production root can create a feasible plan, advance a persisted batch through its lifecycle, recover after restart, and preserve catalog and history invariants.",
+  "nextAction": "Publish and verify the pure domain vocabulary, invariants, algorithms, manager contracts, and catalog identity contract."
+}

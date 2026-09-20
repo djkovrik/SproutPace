@@ -1,0 +1,28 @@
+{
+  "algorithm": "sha256",
+  "digest": "f790a2259940bacbce43993244b74651eb33ad042265008323076d75801a5762",
+  "files": [
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+      "sha256": "2dd58d77f387885910e6233d47682370462e2b8c84a86b0b6bd3847517be3ac0"
+    },
+    {
+      "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+      "sha256": "8cecc950d6307ba0faa23561958260c3b0ce40c04a77f4f55e7e7c9d9fa2170e"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+      "sha256": "9ee8ebbaf1e9451c2322038cf73c68f5c4d70bb0452dd2e56023724c625f00cd"
+    },
+    {
+      "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt",
+      "sha256": "89c8dde3f08349a6e3824486b65506714060a9313a0924d6b4f1085c21f2ac8b"
+    }
+  ],
+  "patterns": [
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/PlannerEngine.kt",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Plan.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DependencyReadinessTest.kt",
+    "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt"
+  ]
+}

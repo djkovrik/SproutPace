@@ -1,0 +1,15 @@
+{
+  "action": "assign",
+  "assignmentId": "strict-detekt-closure",
+  "packageId": "foundation",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-001"],
+  "allowedFiles": ["detekt/base-config.yml", "androidApp/**", "shared/**"],
+  "inputScopeId": "strict-detekt-closure-v1",
+  "goal": "Make the repository pass strict Detekt with zero findings. Correct the stale Compose naming allowlist/configuration only where it encodes legitimate Kotlin/Compose conventions; fix every remaining production-source finding without behavioral changes and without blanket suppression or disabling rules.",
+  "contractInputs": ["spec/app-spec.json", "spec/quality.md"],
+  "requiredReads": ["C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md", "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/build-logic-and-quality.md", "D:/Sources/vibe-skills/vibe-developer/references/specialist-handoff-contract.md"],
+  "requestedCommands": ["detekt"],
+  "acceptanceCriteria": ["Detekt completes with zero findings.", "Configuration supports legitimate Compose declarative function naming without an app-specific stale name list.", "No rule is globally disabled and no blanket suppression/baseline is introduced.", "Runtime behavior remains unchanged."]
+}

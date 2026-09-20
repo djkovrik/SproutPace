@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-data-build-wiring-20260920-r3.json",
+  "inspectionNote": "Inspected all four data-build-wiring handoffs and the final shared:data build contract. The owned root build, settings, and catalog files preserve existing quality wiring, pin SQLDelight 2.4.0 runtime/coroutines/Android/native/JVM drivers, lazily expose the plugin, and include :shared:data. r3 supersedes the earlier handoffs, records the final getByName(androidHostTest) source-set shape, and normalizes all evidence and requested-command surfaces to the AppSpec contract without additional source edits."
+}

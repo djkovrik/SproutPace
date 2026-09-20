@@ -1,0 +1,18 @@
+{
+  "action": "contract-ready",
+  "obligationId": "AC-011",
+  "behavioralSurfaces": ["component-test", "database-integration-test"],
+  "contractEvidence": [
+    {
+      "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt",
+      "symbol": "fun watch(screen: ScreenId, stableId: String?)",
+      "surface": "component-test"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "symbol": "ac010Ac011Ac012Ac014_setupPersistsAndExposesCapacityConsequences",
+      "surface": "database-integration-test"
+    }
+  ],
+  "inspectionNote": "Inspected the production ScreenDataManager watch path and real SQLDelight integration scenario. The current successful scoped receipt covers both required behavioral surfaces; this declaration only establishes downstream dependency readiness and does not mark AC-011 verified."
+}

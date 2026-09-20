@@ -1,0 +1,21 @@
+{
+  "action": "check",
+  "jobId": "CHECK-paparazzi-windows-safe-r2-20260920",
+  "runner": "gradle",
+  "kind": "targeted",
+  "inputScopeId": "paparazzi-windows-safe-v1",
+  "tasks": [
+    ":shared:compose:cleanRecordPaparazzi",
+    ":shared:compose:verifyPaparazzi",
+    ":shared:compose:testAndroidHostTest",
+    "--no-configuration-cache"
+  ],
+  "coveredObligations": [
+    {
+      "obligationId": "QG-007",
+      "surfaces": ["preview-compile", "screenshot-test"]
+    }
+  ],
+  "timeoutSeconds": 1800,
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; Compose Multiplatform 1.12.0; Paparazzi 2.0.0-alpha02"
+}

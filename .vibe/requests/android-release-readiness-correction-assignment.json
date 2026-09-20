@@ -1,0 +1,37 @@
+{
+  "action": "assign",
+  "reconcileDrift": "Android is the publication target, but the current preReleaseBuild hard-depends on a live Yandex ad unit, so an otherwise safe release candidate cannot be assembled without an external project. CI builds only debug. This conflicts with the approved instruction that missing external identifiers must not block implementation and with QG-002 release-build evidence.",
+  "assignmentId": "android-release-readiness-correction",
+  "packageId": "foundation",
+  "owner": "vibe-project-architect",
+  "acceptanceScenarioIds": [],
+  "qualityGateIds": ["QG-002"],
+  "allowedFiles": [
+    "androidApp/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml",
+    "docs/CI-RELEASE-SETUP.md"
+  ],
+  "inputScopeId": "foundation-v1",
+  "goal": "Make an unsigned Android release candidate buildable and testable without live Firebase/Yandex/signing/privacy values by keeping production ads fail-closed, while providing a separate explicit publication-configuration validator and CI release assembly gate. Do not publish or create external projects.",
+  "contractInputs": [
+    "spec/quality.md",
+    "spec/app-spec.json",
+    "androidApp/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml",
+    "docs/CI-RELEASE-SETUP.md"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-project-architect/references/platform-entrypoints-and-release.md",
+    "C:/Users/Sergey/.codex/skills/vibe-monetization-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ],
+  "requestedCommands": [":androidApp:assembleDebug", ":androidApp:assembleRelease", ":androidApp:bundleRelease"],
+  "acceptanceCriteria": [
+    "Missing Android Yandex ad unit leaves release advertising disabled and never substitutes a demo/live identifier; assembleRelease and bundleRelease remain buildable without secrets.",
+    "A separately named publication-readiness validation task rejects missing/placeholder Yandex ad unit, final privacy-policy URL/text and signing configuration, but is not a dependency of ordinary compile/test/release-candidate assembly.",
+    "CI assembles the unsigned Android release candidate in addition to debug and never signs, uploads or publishes it.",
+    "CI release documentation precisely distinguishes buildable safe-disabled release candidates from externally configured publishable releases, Firebase remains optional, and iOS ads remain untouched/safe-disabled.",
+    "No source, UI, ledger, live identifier, credential, external project or publication change; specialist does not run Gradle."
+  ]
+}

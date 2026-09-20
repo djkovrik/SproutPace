@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256",
+  "digest": "71c242b9c656dc8fba80170fe3bcf42f3c01df63a5d0c1d25b4ea421a3503467",
+  "files": [
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+      "sha256": "436d44d2c4718e0d0e2a997128ee25c47c0d92cbb2a6ebb3d3824d96d9915784"
+    },
+    {
+      "path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+      "sha256": "15a33eeb776bf6fddac0f48c148f4842a513ffd82ca3fb03a2d161e0ff867ac8"
+    },
+    {
+      "path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt",
+      "sha256": "ee26c0771521fd01ba9003e31990a33606c0e03035d178c76b815060c786b847"
+    }
+  ],
+  "patterns": [
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt",
+    "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt",
+    "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-core-domain-model-20260920-r2.json",
+  "inspectionNote": "Inspected both obsolete handoffs and the fresh superseding r2 handoff, all 20 assignment-local files, and exact coverage anchors. Production/test bytes remain within shared/domain/** and unchanged after foundation integration; the current successful allTests plus Android host-test receipt is bound separately. r2 supersedes both unimported attempts without rewriting history."
+}

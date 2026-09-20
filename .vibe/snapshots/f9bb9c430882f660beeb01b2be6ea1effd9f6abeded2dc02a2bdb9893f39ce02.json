@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "digest": "81a41ab0ad078b9c838770b3b2ee9d85e7239a2b34bcf88b6c0e69eddcba8a14",
+  "files": [
+    {
+      "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+      "sha256": "bab004037979bc9b560a0b11e84bcca1cd47445227fa260cf74a4a25a48b84cc"
+    },
+    {
+      "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+      "sha256": "5f863ec122382544f87e7f486372a5cad98c999ace9d66869f9ede9d71616ca6"
+    }
+  ],
+  "patterns": [
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt"
+  ]
+}

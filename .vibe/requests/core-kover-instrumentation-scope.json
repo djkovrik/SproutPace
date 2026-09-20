@@ -1,0 +1,18 @@
+{
+  "action": "scope",
+  "scopeId": "core-kover-instrumentation-v1",
+  "patterns": [
+    "gradle/libs.versions.toml",
+    "build.gradle.kts",
+    "shared/domain/build.gradle.kts",
+    "shared/data/build.gradle.kts",
+    "shared/component/build.gradle.kts",
+    "shared/root/build.gradle.kts",
+    "shared/platform/build.gradle.kts",
+    "shared/monetization/build.gradle.kts",
+    ".github/workflows/AnalysisAndTest.yml"
+  ],
+  "dependencyRationale": "Kover aggregation requires every tested core module to apply the already pinned coverage plugin before the root project can consume its Android-host execution data.",
+  "fallbackReason": "The exact build scripts and existing CI task order are the complete static input set for adding component/root instrumentation without touching production code.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kover 0.9.9; Kotlin Multiplatform 2.4.10"
+}

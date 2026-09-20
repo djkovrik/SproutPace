@@ -1,0 +1,50 @@
+{
+  "acceptanceCriteria": [
+    "Every actionable item carries its command operation separately from its explicit subject ID; display IDs are never used as persisted ScheduledActionId values.",
+    "Today and Batch Detail expose complete and skip for applicable nonterminal scheduled actions and route them through validated ScreenAction/ScreenCommand contracts without arbitrary operation construction in Compose.",
+    "Completing the same action twice changes persisted state once and produces no duplicate transition; skipping records SKIPPED and leaves the owning batch visible with later applicable work.",
+    "Component tests prove explicit-subject command construction and rejection of missing/mismatched targets; data integration tests use the real ProductionScreenDataManager/database path.",
+    "UI routing tests prove item taps/buttons send exact operation plus subject. Existing create/edit/navigation behavior remains unchanged.",
+    "No reminder, monetization, theme, platform host, resource, golden, build, ledger, or unrelated data/domain change; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+    "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "assignmentId": "scheduled-action-command-targeting-r2",
+  "contractInputs": [
+    "spec/flows/FLOW-006.md",
+    "spec/screens/SCREEN-002.md",
+    "spec/screens/SCREEN-005.md",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt",
+    ".vibe/handoffs/HANDOFF-scheduled-action-command-targeting-scope-blocked-20260920.json"
+  ],
+  "forkTurns": "none",
+  "goal": "Carry operation ID and explicit ScheduledActionId separately from production data through Store and Compose, make Complete/Skip reachable on Today and Batch Detail, and prove duplicate complete is idempotent while skip retains the batch.",
+  "obligationIds": [
+    "AC-061",
+    "AC-063"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-decompose-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/compose-expert/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-test-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

@@ -1,0 +1,139 @@
+Calculating task graph as no cached configuration is available for tasks: :shared:domain:testAndroidHostTest :shared:data:testAndroidHostTest :shared:component:testAndroidHostTest :shared:root:testAndroidHostTest :shared:platform:testAndroidHostTest :shared:monetization:testAndroidHostTest koverXmlReport koverVerify
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:domain:koverFindJar UP-TO-DATE
+> Task :shared:domain:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:androidJar UP-TO-DATE
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:koverFindJar UP-TO-DATE
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:androidJar UP-TO-DATE
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:component:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:data:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:root:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:koverFindJar UP-TO-DATE
+> Task :shared:component:androidJar UP-TO-DATE
+> Task :shared:root:androidPreBuild UP-TO-DATE
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:androidJar UP-TO-DATE
+> Task :shared:root:koverFindJar
+> Task :shared:platform:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:root:preAndroidMainBuild UP-TO-DATE
+> Task :shared:monetization:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:monetization:androidPreBuild UP-TO-DATE
+> Task :shared:platform:androidJar UP-TO-DATE
+> Task :shared:monetization:koverFindJar UP-TO-DATE
+> Task :shared:monetization:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:root:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:monetization:androidJar UP-TO-DATE
+> Task :shared:monetization:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:component:koverFindJar
+> Task :shared:monetization:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:monetization:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :koverGenerateArtifact
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:monetization:compileAndroidMain UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:monetization:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:compileAndroidHostTest UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:testAndroidHostTest UP-TO-DATE
+> Task :shared:monetization:compileAndroidHostTest UP-TO-DATE
+> Task :shared:domain:koverGenerateArtifactAndroid
+> Task :shared:component:compileAndroidHostTest UP-TO-DATE
+> Task :shared:root:compileAndroidMain UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:root:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:koverGenerateArtifact
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:root:compileAndroidHostTest UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:data:compileAndroidHostTest UP-TO-DATE
+> Task :shared:monetization:testAndroidHostTest UP-TO-DATE
+> Task :shared:platform:compileAndroidMain UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:platform:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:monetization:koverGenerateArtifactAndroid
+> Task :shared:data:testAndroidHostTest UP-TO-DATE
+> Task :shared:monetization:koverGenerateArtifact
+> Task :shared:data:koverGenerateArtifactAndroid
+> Task :shared:data:koverGenerateArtifact
+> Task :shared:platform:compileAndroidHostTest
+> Task :shared:monetization:koverXmlReport
+> Task :shared:domain:koverXmlReport
+> Task :shared:monetization:koverCachedVerify
+> Task :shared:monetization:koverVerify
+> Task :shared:domain:koverCachedVerify
+> Task :shared:domain:koverVerify
+> Task :shared:data:koverCachedVerify
+> Task :shared:data:koverVerify
+> Task :shared:data:koverXmlReport
+> Task :shared:component:testAndroidHostTest
+> Task :shared:component:koverGenerateArtifactAndroid
+> Task :shared:component:koverGenerateArtifact
+> Task :shared:component:koverCachedVerify
+> Task :shared:component:koverXmlReport
+> Task :shared:component:koverVerify
+> Task :shared:root:testAndroidHostTest
+> Task :shared:root:koverGenerateArtifactAndroid
+> Task :shared:root:koverGenerateArtifact
+> Task :shared:root:koverCachedVerify
+> Task :shared:root:koverXmlReport
+> Task :shared:root:koverVerify
+> Task :shared:platform:testAndroidHostTest
+> Task :shared:platform:koverGenerateArtifactAndroid
+> Task :shared:platform:koverGenerateArtifact
+> Task :shared:platform:koverXmlReport
+> Task :shared:platform:koverCachedVerify
+> Task :shared:platform:koverVerify
+> Task :koverXmlReport
+> Task :koverCachedVerify
+> Task :koverVerify
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 19s
+93 actionable tasks: 46 executed, 47 up-to-date
+Configuration cache entry stored.

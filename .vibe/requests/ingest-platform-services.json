@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-native-platform-services-20260920.json",
+  "inspectionNote": "Inspected the complete platform-services diff and immutable handoff. Common contracts, fakes/tests and reconciliation remain platform-neutral; Android implements permission, reminders, receivers and system pickers without broad media access; the iOS host implements UNUserNotificationCenter, PHPicker and UIDocumentPicker flows with active-scene recheck. Native strings are complete EN/RU, automatic Crashlytics collection is disabled until preference application, and Firebase templates/docs contain no live identifiers or secrets. External Firebase apps and controlled crash symbolication correctly remain conditional QG-008 work."
+}

@@ -1,0 +1,24 @@
+{
+  "action": "check",
+  "jobId": "CHECK-foundation-compile-20260920",
+  "runner": "gradle",
+  "tasks": [
+    ":shared:domain:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":androidApp:assembleDebug",
+    "koverXmlReport",
+    "koverVerify"
+  ],
+  "coveredObligations": [
+    {
+      "obligationId": "QG-001",
+      "surfaces": ["unit-test", "coverage-check"]
+    },
+    {
+      "obligationId": "QG-002",
+      "surfaces": ["android-build"]
+    }
+  ],
+  "inputScopeId": "foundation-v1",
+  "timeoutSeconds": 1800
+}

@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "digest": "058d669b3428bd760b1367132360323ee7d5b083ccb44a7e2fe39ae365105f8f",
+  "files": [
+    {
+      "path": ".github/workflows/AnalysisAndTest.yml",
+      "sha256": "8978b126a6bfec39c3b6b10243d9e347aa9596a88fdcba1283a9b68cbb4bcd69"
+    },
+    {
+      "path": "docs/CI-RELEASE-SETUP.md",
+      "sha256": "1b958fe53a6e966dd40babd2c1108924aee4adb40cc63b7bae8504e30e9d1c59"
+    }
+  ],
+  "patterns": [
+    ".github/workflows/AnalysisAndTest.yml",
+    "docs/CI-RELEASE-SETUP.md"
+  ]
+}

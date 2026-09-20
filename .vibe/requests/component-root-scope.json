@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "component-root-v1",
+  "patterns": ["shared/domain/**", "shared/component/**", "shared/root/**", "spec/**"],
+  "dependencyRationale": "The complete screen/flow component graph depends on stable domain contracts, component/root production and test sources, and every normative flow/screen contract; persistence/platform implementations remain behind Managers and fakes.",
+  "toolchainIdentity": "Kotlin 2.4.10; Decompose 3.5.0; MVIKotlin 4.4.0; Essenty 2.5.0; kotlinx-coroutines 1.11.0; kotlinx-serialization 1.11.0."
+}

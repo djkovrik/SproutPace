@@ -1,0 +1,5 @@
+{
+  "action": "ingest",
+  "handoffRef": ".vibe/handoffs/HANDOFF-canonical-advertising-privacy-runtime-20260920-v4.json",
+  "inspectionNote": "Inspected the canonical privacy handoff with one exact verification surface per evidence row after separating Android-host test wiring. It preserves strict endpoint/freshness/policy behavior, lifecycle ordering, backup/restore/erase coverage, and iOS safe-disablement, backed by green receipt da693321. AC-102/104 component reachability remains reserved for the next UI package."
+}

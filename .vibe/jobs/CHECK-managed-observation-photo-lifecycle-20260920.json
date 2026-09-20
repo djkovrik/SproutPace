@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 0.6352941999793984,
+  "events": [
+    {
+      "at": "2026-09-20T14:57:31.468927Z",
+      "stage": "queued"
+    },
+    {
+      "at": "2026-09-20T14:57:33.576351Z",
+      "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-41a0998c-a03a-478d-ba10-23464e6f5e2f.log",
+      "stage": "running"
+    },
+    {
+      "at": "2026-09-20T14:58:13.051642Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-41a0998c-a03a-478d-ba10-23464e6f5e2f.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:58:13.332165Z",
+      "receiptRef": ".vibe/receipts/RECEIPT-41a0998c-a03a-478d-ba10-23464e6f5e2f.json",
+      "stage": "receipt-written"
+    },
+    {
+      "at": "2026-09-20T14:58:13.376927Z",
+      "stage": "binding"
+    },
+    {
+      "at": "2026-09-20T14:58:14.061943Z",
+      "durationSeconds": 0.6352941999793984,
+      "receiptRef": ".vibe/receipts/RECEIPT-41a0998c-a03a-478d-ba10-23464e6f5e2f.json",
+      "stage": "bound"
+    }
+  ],
+  "jobId": "CHECK-managed-observation-photo-lifecycle-20260920",
+  "logPath": "D:\\Sources\\Android\\SproutPace\\.vibe\\receipts\\RECEIPT-41a0998c-a03a-478d-ba10-23464e6f5e2f.log",
+  "receiptRef": ".vibe/receipts/RECEIPT-41a0998c-a03a-478d-ba10-23464e6f5e2f.json",
+  "stage": "bound"
+}

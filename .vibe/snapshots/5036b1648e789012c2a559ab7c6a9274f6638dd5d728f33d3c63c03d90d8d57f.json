@@ -1,0 +1,8 @@
+{
+  "algorithm": "sha256",
+  "digest": "51e5b041bd45b16786e2c6820c9e9c5cd0a04ec4039cd27e4a9ca24c8e562651",
+  "files": [],
+  "patterns": [
+    "shared/data/**"
+  ]
+}

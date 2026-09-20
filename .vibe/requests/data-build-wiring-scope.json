@@ -1,0 +1,7 @@
+{
+  "action": "scope",
+  "scopeId": "data-build-wiring-v1",
+  "patterns": ["settings.gradle.kts", "build.gradle.kts", "gradle/**", "shared/data/**", "shared/domain/**", "spec/**"],
+  "dependencyRationale": "The shared:data module include, SQLDelight plugin/libraries, domain dependency, and native/Android test task contracts are transitive build inputs.",
+  "toolchainIdentity": "Gradle 9.2.1; Kotlin 2.4.10; AGP 9.1.1; SQLDelight 2.4.0; Multiplatform Settings 1.3.0."
+}

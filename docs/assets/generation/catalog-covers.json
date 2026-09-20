@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "tool": {
+    "workflow": "Codex built-in image_gen",
+    "model": "not reported by the built-in tool",
+    "sessionDate": "2026-09-20"
+  },
+  "sharedPrompt": {
+    "useCase": "scientific-educational",
+    "assetType": "3:2 catalog card illustration for a mobile microgreens planner",
+    "sceneBackdrop": "Warm neutral matte background usable on both light and dark cards; shallow tray and narrow soil cutaway.",
+    "styleMedium": "Refined flat-gouache botanical editorial illustration, natural texture, clean silhouettes, calm Material 3 botanical mood, cohesive catalog series.",
+    "composition": "Landscape 3:2, centered shallow tray, even generous edge padding, no crop at tray or leaves, legible at 192x120 dp.",
+    "constraints": "No text, labels, logos, watermark, people, tools, symptoms, pests, diagnosis imagery, or photorealism. One standalone image."
+  },
+  "export": {
+    "sourceDimensionsPx": [1536, 1024],
+    "sourceModeObserved": "RGB",
+    "operation": "Center-crop from 3:2 to 8:5, then Lanczos downsample",
+    "outputDimensionsPx": [768, 480],
+    "outputMode": "RGB",
+    "format": "PNG"
+  },
+  "assets": [
+    {
+      "id": "ASSET-022",
+      "subjectPrompt": "Healthy radish microgreens growing densely in a shallow home tray, botanically plausible at true microgreen scale with paired cotyledons and a few reddish stems.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-902f4b4c-244f-43a0-8578-14ea16a1658e.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_radish.png"
+    },
+    {
+      "id": "ASSET-023",
+      "subjectPrompt": "Healthy broccoli microgreens, with sturdy pale green stems and paired rounded-to-heart-shaped green cotyledons, growing densely in a shallow home tray at true microgreen scale.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-20d3a666-de04-49ce-b44c-6525e2329a98.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_broccoli.png"
+    },
+    {
+      "id": "ASSET-024",
+      "subjectPrompt": "Healthy arugula microgreens, with slender pale stems and paired small oval-to-heart-shaped cotyledons, growing densely in a shallow home tray at true microgreen scale.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-945861f3-6e0e-4a93-8fb3-009aa3d9217b.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_arugula.png"
+    },
+    {
+      "id": "ASSET-025",
+      "subjectPrompt": "Healthy mustard microgreens, with slender pale-green stems and paired rounded green cotyledons with subtle purple-green variation, growing densely in a shallow home tray at true microgreen scale.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-ef365f5b-e841-4064-bcb7-a42ee21d9ec8.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_mustard.png"
+    },
+    {
+      "id": "ASSET-026",
+      "subjectPrompt": "Healthy pea shoots, with large round pea seeds near the soil surface, sturdy pale stems, paired leaflets, and a few delicate tendrils, growing in a shallow home tray at true microgreen scale.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-e9ed9966-387c-4ac9-86b3-5237152b73f4.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_pea.png"
+    },
+    {
+      "id": "ASSET-027",
+      "subjectPrompt": "Healthy sunflower microgreens, with thick pale stems, broad paired green cotyledons, and a few accurately scaled dark seed hulls still attached, growing in a shallow home tray at true microgreen scale.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-442b4192-378d-4bba-a5a5-bf2914751e65.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_sunflower.png"
+    },
+    {
+      "id": "ASSET-028",
+      "subjectPrompt": "Healthy basil microgreens, with slender stems and paired small oval cotyledons, fresh medium green with occasional subtle purple stems, growing in a shallow home tray at true microgreen scale.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-e7b2f6eb-931b-4f7a-a58e-4a732b7072f1.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_basil.png"
+    },
+    {
+      "id": "ASSET-029",
+      "subjectPrompt": "Healthy garden cress (Lepidium sativum) microgreens—not watercress—with very slender pale stems and tiny paired rounded cotyledons, growing densely in a shallow home tray at true microgreen scale.",
+      "selectedToolOutput": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-8f58c46c-5195-41c5-a7a7-a3fe0ca95ea8.png",
+      "runtimeOutput": "shared/compose/src/commonMain/composeResources/drawable/culture_garden_cress.png"
+    }
+  ]
+}

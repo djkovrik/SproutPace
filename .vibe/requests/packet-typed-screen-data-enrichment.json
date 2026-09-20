@@ -1,0 +1,52 @@
+{
+  "acceptanceCriteria": [
+    "All sixteen ScreenId snapshots expose the registry fields, facts and actions; dynamic choice options use stable IDs plus TextKey or authored labels.",
+    "Existing zone, tray, recipe, batch, plan, observation, settings, privacy and notification values initialize editor drafts without localizing or rewriting authored user content.",
+    "Required dates/instants/defaults are deterministic and valid for registry command preparation; edit snapshots retain their stable subject IDs.",
+    "Backup/restore snapshots expose document identifiers and preview facts without interpreting opaque document identifiers as filesystem paths.",
+    "Integration tests prove representative create/edit/settings/privacy/restore snapshots can prepare commands accepted by ProductionScreenDataManager and that unknown/malformed commands remain non-mutating.",
+    "No Compose UI, platform, build, ledger or external service changes; specialist does not run Gradle."
+  ],
+  "allowedFiles": [
+    "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "assignmentId": "typed-screen-data-enrichment",
+  "contractInputs": [
+    "spec/app-spec.json",
+    "spec/data.md",
+    "spec/domain.md",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenDataManager.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt",
+    "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt",
+    "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+  ],
+  "forkTurns": "none",
+  "goal": "Populate every production ScreenSnapshot with the verified ScreenContractRegistry fields, facts and actions, enriching drafts from the actual persisted entity/settings state and dynamic catalog/workspace choices while preserving authored user values. Ensure editor/detail/restore/privacy/notification commands can be prepared with valid typed arguments and stable subject IDs.",
+  "obligationIds": [
+    "AC-010",
+    "AC-011",
+    "AC-020",
+    "AC-021",
+    "AC-030",
+    "AC-031",
+    "AC-040",
+    "AC-050",
+    "AC-060",
+    "AC-080",
+    "AC-085",
+    "QG-011"
+  ],
+  "requestedCommands": [
+    ":shared:data:testAndroidHostTest",
+    ":shared:data:allTests",
+    ":shared:data:compileAndroidMain",
+    ":shared:data:compileKotlinIosSimulatorArm64"
+  ],
+  "requiredReads": [
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-mvikotlin-engineer/references/store-decision-and-shape.md",
+    "C:/Users/Sergey/.codex/skills/vibe-persistence-engineer/SKILL.md",
+    "C:/Users/Sergey/.codex/skills/vibe-developer/references/specialist-handoff-contract.md"
+  ]
+}

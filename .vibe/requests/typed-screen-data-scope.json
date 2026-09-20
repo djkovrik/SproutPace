@@ -1,0 +1,16 @@
+{
+  "action": "scope",
+  "scopeId": "typed-screen-data-v1",
+  "patterns": [
+    "spec/**",
+    "shared/component/**",
+    "shared/domain/**",
+    "shared/data/**",
+    "gradle/**",
+    "*.gradle.kts",
+    "gradle.properties"
+  ],
+  "dependencyRationale": "Typed screen snapshots depend on the approved screen contracts, persisted workspace entities, pure domain models and the data module build graph. This immutable scope captures those inputs without including UI or platform host files.",
+  "fallbackReason": "The interaction registry and production data manager share contracts across component, domain and generated SQLDelight code; enumerating generated/transitive files individually would make the fingerprint incomplete.",
+  "toolchainIdentity": "Gradle wrapper 9.5.1; JDK 17; Kotlin 2.4.10; SQLDelight 2.4.0; kotlinx-coroutines and kotlinx-datetime"
+}
