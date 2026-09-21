@@ -1,5 +1,6 @@
 {
   "schemaVersion": "2.0",
+  "delivery": {"mode":"lean","ownership":"vertical-scenario","independentAudit":"fresh-then-delta","decision":"../docs/decisions/DEC-20260920-lean-delivery.md"},
   "app": {
     "name": "SproutPace",
     "summary": "Offline-first home microgreens planner that shows the next useful action for every tray and keeps repeated harvests feasible within real growing capacity.",
@@ -156,7 +157,7 @@
     "performance":["Local reads and writes must not visibly block interaction; Today and batch detail open from local state without waiting for network; image work is bounded and off the main thread."]
   },
   "localization": {"defaultLocale":"en","localeSelection":"system-only","resourceSystem":"compose-multiplatform-resources","resourceFileFormat":"strings.xml","keyStrategy":"shared-key-across-locales","localDataTextStorage":"resource-keys-only","nativeFallback":"platform-localized-resources","hardcodedUserFacingStrings":false},
-  "architecture": {"resultType":"kotlin-result","componentModel":"immutable-value","stateOwner":"mvikotlin-store","stateMapping":"store-state-to-component-model","storeDataAccess":"manager-result-unwrap","managerResultCapture":"runCatching","previewComponent":"separate-preview-implementation","componentModuleStrategy":"screen-or-flow-boundary","screenshotTestHost":"compose-ui-module","screenshotTestHostRationale":"The shared Compose UI module owns the production screens, theme, fonts, resources, deterministic previews, generated Android-hosted Paparazzi tests, and snapshots for both product targets."},
+  "architecture": {"resultType":"kotlin-result","componentModel":"immutable-value","stateOwner":"single-owner-store-or-parent-projection","stateMapping":"owned-state-or-parent-projection","storeDataAccess":"injectable-service-or-manager-result","managerResultCapture":"runCatching","previewComponent":"separate-preview-implementation","componentModuleStrategy":"stable-dependency-boundary","screenshotTestHost":"compose-ui-module","screenshotTestHostRationale":"The shared Compose UI module owns the production screens, theme, fonts, resources, deterministic previews, generated Android-hosted Paparazzi tests, and snapshots for both product targets."},
   "uiQuality": {
     "previewThemes":["light","dark"],"fontScales":[1.0,2.0],"localeCoverage":"all",
     "goldenTesting":{"required":true,"engine":"paparazzi","previewDiscovery":"ComposablePreviewScanner"},

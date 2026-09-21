@@ -1,3 +1,5 @@
+> Historical delivery plan. Current process: lean delivery, as approved in [DEC-20260920-lean-delivery](decisions/DEC-20260920-lean-delivery.md). Preserve this history; use `.vibe/work.json` for current work.
+
 # SproutPace delivery plan
 
 This is a full AppSpec 2.0 delivery. The authoritative state is `.vibe/delivery-ledger.json`; this document explains the planned capability sequence and ownership.

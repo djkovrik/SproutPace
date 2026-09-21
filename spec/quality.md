@@ -121,9 +121,9 @@ All screens support 200% text, screen readers, keyboard/pointer input where expo
 
 ## Architecture checks
 
-Reject custom generic Success/Failure wrappers, nested `Result<Result<T>>`, lost nullable successes, swallowed cancellation, production state mutation outside Stores, component-to-database calls, raw Store state exposed as UI model, stateful Compose previews, dependency cycles, and incorrect lifecycle/resource ownership.
+Reject custom generic Success/Failure wrappers, nested `Result<Result<T>>`, lost nullable successes, swallowed cancellation, duplicate mutable state ownership, component-to-database calls, raw Store state exposed as UI model, stateful Compose previews, dependency cycles, and incorrect lifecycle/resource ownership.
 
-Require Decompose public components, MVIKotlin Stores for UI-visible component state, Manager boundaries returning Kotlin `Result`, pure reducers, immutable component models, manual DI/factories, and separate preview components. The screenshot host remains the Compose UI/resource-owning module unless a documented build limitation requires the approved dedicated-host alternative.
+Require Decompose public components, MVIKotlin Stores for independent mutable/async state (read-only children may project parent state), injectable service or Manager boundaries returning Kotlin `Result`, pure reducers, immutable component models, manual DI/factories, and separate preview components. The screenshot host remains the Compose UI/resource-owning module unless a documented build limitation requires the approved dedicated-host alternative.
 
 ## Asset delivery
 
@@ -149,7 +149,7 @@ QG-004 requires:
 - QG-001, QG-002, QG-003, QG-006, QG-007, QG-011, and QG-012 current and successful;
 - each conditional external gate either proven when its condition is active or clearly reported as inactive/blocked-external;
 - build/test CI for Android and iOS; publishing automation only when publication scope is explicitly activated;
-- current dependency/SDK versions resolved from authoritative sources during implementation, including Yandex artifact availability;
+- pinned tested dependency/SDK versions; separate upgrades use authoritative release/migration sources and verify artifact availability;
 - one frozen integration matrix and independent acceptance audit with current fingerprints;
 - separate reporting of locally verified, implementation complete, and release ready.
 
@@ -157,5 +157,9 @@ Validator success alone does not prove product content, platform behavior, exter
 
 ## Delivery and verification boundaries
 
-Implementation begins only after explicit AppSpec approval. The full-delivery workflow initializes and maintains the delivery ledger, capability packages, immutable handoffs/receipts, checkpoint recovery, production-root integration, golden review, and independent audit. No implementation evidence exists at specification time.
+The approved process transition is recorded in `../docs/decisions/DEC-20260920-lean-delivery.md`. Lean delivery is current: one owner per complete scenario, direct checks with execution logs, compact `.vibe/work.json`/recovery notes, early production-root integration, risk-based golden review and independent final audit. Strict ledger/assignment/handoff history is preserved but not extended. Do not import historical verified claims as current proof.
+
+Use affected tests during iteration and one complete applicable matrix at a stable snapshot. After bounded fixes the same independent auditor reviews changed code and dependent behavior; changes to AppSpec or broad architecture start a fresh audit. Known gaps are auditable and prevent false completion. Preserve all approved acceptance surfaces, existing tests and goldens. Future visual variants cover primary screens in light/dark and distinct risk states; choose additional stress combinations by risk/pairwise coverage without reducing explicit screen contracts. Record shared M3 choices once and inspect every affected screen locally; reuse or group external review by screen family.
+
+Architecture flexibility governs future work and does not require rewriting existing tested modules/Stores. Existing lint and coverage thresholds remain binding; any actual policy change needs a scoped decision, never a workaround for a failed test.
 

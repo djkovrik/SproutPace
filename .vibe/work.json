@@ -1,0 +1,330 @@
+{
+  "appSpec": "spec",
+  "appSpecFingerprint": {
+    "algorithm": "sha256",
+    "digest": "645ff2884a1dda3e2d969f8e89e1922014ff3ce10284b58117ee9a9bfb7bc50f",
+    "files": [
+      {
+        "path": "app-spec.json",
+        "sha256": "82ed53de16c088bfa9828058e3297c4c7a44c03514dbf4e0ad22838fbb0c981a"
+      },
+      {
+        "path": "data.md",
+        "sha256": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df"
+      },
+      {
+        "path": "design.md",
+        "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+      },
+      {
+        "path": "domain.md",
+        "sha256": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f"
+      },
+      {
+        "path": "flows/FLOW-001.md",
+        "sha256": "c84036d01621acf60e218f2f65004cb81067352892dad78189ad6978526daafd"
+      },
+      {
+        "path": "flows/FLOW-002.md",
+        "sha256": "ca17c36c9159551d78b7371ae82a1d8990c2b525ea8acdbb2c7ea828377efcef"
+      },
+      {
+        "path": "flows/FLOW-003.md",
+        "sha256": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280"
+      },
+      {
+        "path": "flows/FLOW-004.md",
+        "sha256": "14ae1be16a6439f52fba4795f3ee1e95b7c903a759ce30252e69380fb754dcd1"
+      },
+      {
+        "path": "flows/FLOW-005.md",
+        "sha256": "9f8b2ce0c2a260280d640ca9c1162995fa3d6c331a668e679c88170938f95443"
+      },
+      {
+        "path": "flows/FLOW-006.md",
+        "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+      },
+      {
+        "path": "flows/FLOW-007.md",
+        "sha256": "63db722787b440c851b55b10be5d5bb33df359e9d01ec946a24ac8dd79eac019"
+      },
+      {
+        "path": "flows/FLOW-008.md",
+        "sha256": "c315edbec1a30da746c85b3ad800553eb8783ad1aba8767f6d272bedb9e2b284"
+      },
+      {
+        "path": "flows/FLOW-009.md",
+        "sha256": "b30d447f3e4d24eeab1082eaaf748be75532b0999f83cd6b8ecfdeaf0527c132"
+      },
+      {
+        "path": "flows/FLOW-010.md",
+        "sha256": "67535113c48b17fd12a863226059e4357ca3ca34331a8419552bbd6ebd19a51d"
+      },
+      {
+        "path": "flows/FLOW-011.md",
+        "sha256": "2b4c98b6391d4b287175be6a33fe07d54962f5622c2ae2ef59eec456c39d452a"
+      },
+      {
+        "path": "flows/FLOW-012.md",
+        "sha256": "b1b0dd648e459bd58b96884d4d6d0d689b563fbb42a057a5b5822b7dce4f1445"
+      },
+      {
+        "path": "product.md",
+        "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+      },
+      {
+        "path": "quality.md",
+        "sha256": "6868ee6f004cd8b4a74d4a4527169390b7cd6a1376d8c8ed9802a92d1bf828b5"
+      },
+      {
+        "path": "screens/SCREEN-001.md",
+        "sha256": "d8cccba426510e77e8ac7771ef2695fdff57879b2c0ec96bd127bf48d5eb8334"
+      },
+      {
+        "path": "screens/SCREEN-002.md",
+        "sha256": "bed854dded59afb3071bc53c3b05b1362a290c91c9582c810ee3d4cf33a6700d"
+      },
+      {
+        "path": "screens/SCREEN-003.md",
+        "sha256": "173c3312f749f9d0e55ef6215185519648179841db97a4b651cee570dbbfe175"
+      },
+      {
+        "path": "screens/SCREEN-004.md",
+        "sha256": "c7b175fa9ddce9db302cd5dcba961c7f8fce3ee4f75519d0e51fdd309b7c039f"
+      },
+      {
+        "path": "screens/SCREEN-005.md",
+        "sha256": "b73dcf5bbb12035dfea452aead3ad168e828d6bfbb29722362df7278a0f1b787"
+      },
+      {
+        "path": "screens/SCREEN-006.md",
+        "sha256": "2ae33791c5e71ed0b96c2a26500f5f0df01626160206b11657df3ce0e84eb4e1"
+      },
+      {
+        "path": "screens/SCREEN-007.md",
+        "sha256": "1388da6472eec37bfa53798da5483fcb17f79e47342f485b85e2ce53d7c77f31"
+      },
+      {
+        "path": "screens/SCREEN-008.md",
+        "sha256": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+      },
+      {
+        "path": "screens/SCREEN-009.md",
+        "sha256": "4640c4ffeff3f82e848ad5df228f50683658c1ed245a78a5ed196a6927f197f7"
+      },
+      {
+        "path": "screens/SCREEN-010.md",
+        "sha256": "b90d8c2e9e278f8e5e8cc9f068d43a5124fe4715e3c35d33e631be4ebf30144a"
+      },
+      {
+        "path": "screens/SCREEN-011.md",
+        "sha256": "a791f10c10fadf0b62c790369942eb5c619eb0b96d6706381ebdf29b9aef40aa"
+      },
+      {
+        "path": "screens/SCREEN-012.md",
+        "sha256": "e3116c9f91fc1ffdb563b2852fb7ad6494a04af7f9d629980bc2e56acf6863b9"
+      },
+      {
+        "path": "screens/SCREEN-013.md",
+        "sha256": "4595b83917a9e218d54b6ee28fb2daeca6b84a0e360484a71d0dc7894b5983f4"
+      },
+      {
+        "path": "screens/SCREEN-014.md",
+        "sha256": "6d065359ada67e333b8ea5f37fb38472dd86f9d5d2645e3f397130dfbff50b91"
+      },
+      {
+        "path": "screens/SCREEN-015.md",
+        "sha256": "a919c525562dfc38cc39bffb64f774aa48190f39262dd2ddd5a8566557218276"
+      },
+      {
+        "path": "screens/SCREEN-016.md",
+        "sha256": "11acc57f638f5cc9f199718988420ee8c51604b1df4e2fc846670d1b99699b2f"
+      }
+    ]
+  },
+  "auditRequest": null,
+  "mode": "lean",
+  "nextAction": "Process migrated; 79 ACs and 12 gates preserved. For the next scoped change run affected checks. Before claiming full completion, run current final checks and a fresh independent audit; prior strict statuses are historical.",
+  "predecessor": {
+    "decision": "docs/decisions/DEC-20260920-lean-delivery.md",
+    "path": ".vibe/history/strict-557d1d32-ca12-457b-a937-41dbd56a7e8e.json",
+    "sha256": "c73d3eefc3b13a768b89d01af7e63ad4d7aacab6c3bfac53a14eff0d3d5fd200"
+  },
+  "requirements": {
+    "acceptanceScenarioIds": [
+      "AC-001",
+      "AC-002",
+      "AC-010",
+      "AC-011",
+      "AC-012",
+      "AC-013",
+      "AC-014",
+      "AC-015",
+      "AC-016",
+      "AC-017",
+      "AC-020",
+      "AC-021",
+      "AC-022",
+      "AC-023",
+      "AC-024",
+      "AC-025",
+      "AC-026",
+      "AC-027",
+      "AC-030",
+      "AC-031",
+      "AC-032",
+      "AC-033",
+      "AC-034",
+      "AC-035",
+      "AC-036",
+      "AC-037",
+      "AC-038",
+      "AC-039",
+      "AC-040",
+      "AC-050",
+      "AC-051",
+      "AC-052",
+      "AC-053",
+      "AC-054",
+      "AC-055",
+      "AC-056",
+      "AC-057",
+      "AC-060",
+      "AC-061",
+      "AC-062",
+      "AC-063",
+      "AC-064",
+      "AC-065",
+      "AC-066",
+      "AC-067",
+      "AC-068",
+      "AC-070",
+      "AC-071",
+      "AC-072",
+      "AC-073",
+      "AC-074",
+      "AC-080",
+      "AC-081",
+      "AC-082",
+      "AC-083",
+      "AC-084",
+      "AC-085",
+      "AC-090",
+      "AC-091",
+      "AC-092",
+      "AC-093",
+      "AC-094",
+      "AC-095",
+      "AC-100",
+      "AC-101",
+      "AC-102",
+      "AC-103",
+      "AC-104",
+      "AC-105",
+      "AC-106",
+      "AC-107",
+      "AC-110",
+      "AC-111",
+      "AC-112",
+      "AC-113",
+      "AC-120",
+      "AC-121",
+      "AC-122",
+      "AC-123"
+    ],
+    "excludedRequirementIds": [
+      "REQ-901",
+      "REQ-902",
+      "REQ-903",
+      "REQ-904",
+      "REQ-905",
+      "REQ-906",
+      "REQ-907",
+      "REQ-908",
+      "REQ-909"
+    ],
+    "managedOperationIds": [
+      "AdvertisingConsent:create",
+      "AdvertisingConsent:read",
+      "AdvertisingConsent:update",
+      "BackupArchive:create",
+      "BackupArchive:read",
+      "BackupArchive:reject-invalid",
+      "BackupArchive:restore",
+      "CrashReportingPreference:create",
+      "CrashReportingPreference:read",
+      "CrashReportingPreference:update",
+      "GrowBatch:abandon",
+      "GrowBatch:assign-overflow",
+      "GrowBatch:complete-harvest",
+      "GrowBatch:confirm-stage",
+      "GrowBatch:create",
+      "GrowBatch:delete",
+      "GrowBatch:fail",
+      "GrowBatch:read",
+      "GrowBatch:record-actual-mass",
+      "GrowBatch:repeat",
+      "GrowBatch:skip-stage",
+      "GrowBatch:start-growing",
+      "GrowBatch:start-soaking",
+      "GrowBatch:undo-stage",
+      "GrowBatch:update",
+      "GrowZone:create",
+      "GrowZone:delete",
+      "GrowZone:read",
+      "GrowZone:update",
+      "HarvestPlan:confirm-suggestion",
+      "HarvestPlan:create",
+      "HarvestPlan:delete",
+      "HarvestPlan:pause-resume",
+      "HarvestPlan:read",
+      "HarvestPlan:suggest-continuous-batch",
+      "HarvestPlan:update",
+      "Observation:attach-photo",
+      "Observation:create",
+      "Observation:delete",
+      "Observation:read",
+      "Observation:update",
+      "TraySizePreset:create",
+      "TraySizePreset:delete",
+      "TraySizePreset:read",
+      "TraySizePreset:update",
+      "UserGrowRecipe:create",
+      "UserGrowRecipe:delete",
+      "UserGrowRecipe:duplicate",
+      "UserGrowRecipe:read",
+      "UserGrowRecipe:update"
+    ],
+    "qualityGateIds": [
+      "QG-001",
+      "QG-002",
+      "QG-003",
+      "QG-004",
+      "QG-005",
+      "QG-006",
+      "QG-007",
+      "QG-008",
+      "QG-009",
+      "QG-010",
+      "QG-011",
+      "QG-012"
+    ],
+    "requirementIds": [
+      "REQ-001",
+      "REQ-002",
+      "REQ-003",
+      "REQ-004",
+      "REQ-005",
+      "REQ-006",
+      "REQ-007",
+      "REQ-008",
+      "REQ-009",
+      "REQ-010",
+      "REQ-011",
+      "REQ-012"
+    ]
+  },
+  "scenarios": {},
+  "schemaVersion": "1.0",
+  "updatedAt": "2026-09-20T18:45:47.005779Z"
+}
