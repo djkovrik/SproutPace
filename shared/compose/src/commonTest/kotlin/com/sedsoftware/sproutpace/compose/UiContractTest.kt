@@ -22,4 +22,16 @@ class UiContractTest {
         assertEquals(4, primary.size)
         assertTrue(UiScreen.SETTINGS !in primary)
     }
+
+    @Test fun modelListKeysAreNamespacedAcrossEntryKinds() {
+        val sharedIds = listOf("theme", "crash-reporting")
+        val keys = ModelListEntryKind.entries.flatMap { kind ->
+            sharedIds.map { id -> modelListKey(kind, id) }
+        }
+
+        assertEquals(keys.size, keys.distinct().size)
+        assertEquals("item:theme", modelListKey(ModelListEntryKind.ITEM, "theme"))
+        assertEquals("fact:theme", modelListKey(ModelListEntryKind.FACT, "theme"))
+        assertEquals("field:theme", modelListKey(ModelListEntryKind.FIELD, "theme"))
+    }
 }

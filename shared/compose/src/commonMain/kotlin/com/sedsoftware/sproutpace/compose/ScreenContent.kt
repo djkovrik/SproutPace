@@ -138,7 +138,9 @@ private fun ModelSinglePane(
         itemCollection(state, onAction, advertisingRuntime)
         if (!state.hidesContextForEmptyState() && state.facts.isNotEmpty()) {
             item { SectionHeading("section_details") }
-            items(state.facts, key = UiFact::id) { fact -> FactCard(fact) }
+            items(state.facts, key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
+                FactCard(fact)
+            }
         }
         actionItems(state, onAction)
         if (!state.hidesContextForEmptyState()) {
@@ -202,7 +204,9 @@ private fun ModelDetailPane(
         screenHero(state)
         if (!state.hidesContextForEmptyState() && state.facts.isNotEmpty()) {
             item { SectionHeading("section_details") }
-            items(state.facts, key = UiFact::id) { fact -> FactCard(fact) }
+            items(state.facts, key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
+                FactCard(fact)
+            }
         }
         actionItems(state, onAction)
         if (!state.hidesContextForEmptyState()) {
@@ -222,7 +226,9 @@ private fun androidx.compose.foundation.lazy.LazyListScope.fieldItems(
     val progressivelyDisclosed = state.screen in contextFieldScreens
     if (!progressivelyDisclosed || contextFieldsExpanded) {
         item { SectionHeading(if (progressivelyDisclosed) "section_action_details" else "section_form") }
-        items(state.fields, key = UiField::id) { field -> FieldControl(field, onAction) }
+        items(state.fields, key = { field -> modelListKey(ModelListEntryKind.FIELD, field.id) }) { field ->
+            FieldControl(field, onAction)
+        }
     }
     if (progressivelyDisclosed && state.variant != UiVariant.VALIDATION_ERROR) {
         item {
@@ -341,7 +347,10 @@ private fun androidx.compose.foundation.lazy.LazyListScope.itemCollection(
     advertisingRuntime: AdvertisingRuntime?,
 ) {
     if (state.items.isNotEmpty()) item { SectionHeading("section_items") }
-    itemsIndexed(state.items, key = { _, item -> item.id }) { index, item ->
+    itemsIndexed(
+        state.items,
+        key = { _, item -> modelListKey(ModelListEntryKind.ITEM, item.id) },
+    ) { index, item ->
         ItemCard(state.screen, item, onAction)
         val insertionIndex = state.inlineAdInsertionIndexOrNull()
         if (state.showInlineAd && insertionIndex != null && index == insertionIndex - 1) {
@@ -382,7 +391,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.actionItems(
     onAction: (UiAction) -> Unit,
 ) {
     if (state.actions.isNotEmpty()) item { SectionHeading("section_actions") }
-    items(state.actions, key = UiScreenAction::id) { action ->
+    items(state.actions, key = { action -> modelListKey(ModelListEntryKind.ACTION, action.id) }) { action ->
         val dispatch = { onAction(action.toAdvertisingUiAction() ?: UiAction.Submit(action.id)) }
         if (action.primary) {
             Button(
@@ -419,6 +428,17 @@ private fun androidx.compose.foundation.lazy.LazyListScope.actionItems(
         }
     }
 }
+
+internal enum class ModelListEntryKind(private val keyPrefix: String) {
+    ITEM("item"),
+    FACT("fact"),
+    ACTION("action"),
+    FIELD("field");
+
+    fun key(id: String): String = "$keyPrefix:$id"
+}
+
+internal fun modelListKey(kind: ModelListEntryKind, id: String): String = kind.key(id)
 
 @Composable
 private fun ItemCard(screen: UiScreen, item: UiItem, onAction: (UiAction) -> Unit) {
