@@ -38,7 +38,7 @@ This inventory records the production state verified on 2026-09-20. Every approv
 
 ## ASSET-001 platform derivatives
 
-The launcher and store exports are deterministic derivatives of the approved `logo_sproutpace.xml` geometry and palette. `docs/assets/generation/render-platform-icons.py` is the reproducible export source; no generated imagery or third-party artwork is involved. Exact file hashes, dimensions, alpha modes, and usage evidence are recorded under `platformDerivatives` in `asset-manifest.json`.
+Updated 2026-09-23: launcher and store exports derive from user-approved generated logo 1B-1. The approved reference and transparent source are retained in `docs/assets/source/`; provenance is in `generation/logo-1b-1.json`. `generation/render-platform-icons.py` deterministically exports all existing native slots and the 512px shared raster. The shared logo retains its Material primary tint. Exact file hashes, dimensions, alpha modes, and usage evidence are recorded in `asset-manifest.json`. Current verification is in `brand-refresh-review.md`.
 
 | Platform surface | Delivered inventory | Production usage | Validation |
 |---|---|---|---|
@@ -52,7 +52,7 @@ The launcher and store exports are deterministic derivatives of the approved `lo
 ## Visual evidence review
 
 - The clean Paparazzi recording contains 78 current snapshots: light/dark coverage for all 16 primary screens, exactly 16 compact RU/200% stress variants, five expanded adaptive variants, and the required behavioral/asset inspection states. The RU/200% contact sheet was inspected for Cyrillic glyph coverage, reflow, scrollability, non-color cues, and visible controls.
-- Logo: First Run and Settings light/dark goldens show the same tintable vector at its production 88dp and 64dp placements without clipping; the Settings mark remains distinguishable in both themes.
+- Logo (updated 2026-09-23): First Run and Settings light/dark goldens show the approved 1B-1 raster silhouette with semantic primary tint at 88dp and 64dp; the Settings mark remains distinguishable in both themes. See `brand-refresh-review.md` for current evidence.
 - Stage illustrations: `RecipeAssetInspectionPreview` renders all five vectors at the production 96×72dp size. Their silhouettes, strokes and semantic multicolor palette remain distinct on the light surface; no global tint is applied.
 - Empty-state illustration: dedicated Today, Trays and Plan light/dark goldens render the vector at 240×160dp. The inspected layouts preserve navigation clearance and theme contrast, and the image remains decorative beside localized explanatory copy.
 - Culture covers: `generated-catalog-contact-sheet.png` was inspected at original resolution and contains all eight labeled 768×480 outputs. `CatalogLoadedAdInspectionPreview` demonstrates production card placement; `RecipeAssetInspectionPreview` demonstrates the selected radish cover on SCREEN-008. The covers retain their neutral background and readable crop in light/dark cards without text embedded in the images.

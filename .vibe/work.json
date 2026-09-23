@@ -2,11 +2,11 @@
   "appSpec": "spec",
   "appSpecFingerprint": {
     "algorithm": "sha256",
-    "digest": "645ff2884a1dda3e2d969f8e89e1922014ff3ce10284b58117ee9a9bfb7bc50f",
+    "digest": "44a2f344f83a35b27d9599102b108cf35456f439aa431912d9e2dbbccd7770ad",
     "files": [
       {
         "path": "app-spec.json",
-        "sha256": "82ed53de16c088bfa9828058e3297c4c7a44c03514dbf4e0ad22838fbb0c981a"
+        "sha256": "060b435f6b00cdac581fb164dfb5b16368e56e145ef254632868fefc2bf56b81"
       },
       {
         "path": "data.md",
@@ -14,7 +14,7 @@
       },
       {
         "path": "design.md",
-        "sha256": "9a2c7862f680dcedfb762826900f893976ae43c85db87212508b51655cf73ad6"
+        "sha256": "d4a316854c7768f31c20b1b28e75cb557f44a5cc9a00e1e125ad2dc064aec224"
       },
       {
         "path": "domain.md",
@@ -144,7 +144,7 @@
   },
   "auditRequest": null,
   "mode": "lean",
-  "nextAction": "Process migrated; 79 ACs and 12 gates preserved. For the next scoped change run affected checks. Before claiming full completion, run current final checks and a fresh independent audit; prior strict statuses are historical.",
+  "nextAction": "Focused brand refresh complete locally: approved 1B-1 icons and palette A, 78 goldens verified, 140 Compose tests, Detekt, Android debug/release and iOS Kotlin compilation passed. See docs/assets/brand-refresh-review.md. Next: macOS native iOS validation; no full-app acceptance or release-readiness claim.",
   "predecessor": {
     "decision": "docs/decisions/DEC-20260920-lean-delivery.md",
     "path": ".vibe/history/strict-557d1d32-ca12-457b-a937-41dbd56a7e8e.json",
@@ -326,5 +326,6 @@
   },
   "scenarios": {},
   "schemaVersion": "1.0",
-  "updatedAt": "2026-09-20T18:45:47.005779Z"
+  "specDecision": "docs/design-review/brand-refresh-20260923.md",
+  "updatedAt": "2026-09-23T06:55:45.310804Z"
 }

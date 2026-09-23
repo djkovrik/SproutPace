@@ -5,82 +5,405 @@
     "provenance": {
       "method": "deterministic-raster-export",
       "source": {
-        "path": "shared/compose/src/commonMain/composeResources/drawable/logo_sproutpace.xml",
-        "sha256": "0ed54aca349d35a9f8d46c1cf55e6b0ae8b076fb88c359fa96a29e61f1785277"
+        "path": "docs/assets/source/logo-1b-1-transparent.png",
+        "sha256": "2f51c2ed3930fcc662946f318386fa0f2d6852a4fc2ef79d151a11b681b7b5a1"
+      },
+      "approvedReference": {
+        "path": "docs/assets/source/logo-1b-1-approved.png",
+        "sha256": "432d3e69afaf14ca29de3d52a8163df3d2fc2b70b7a2e0b85a288071865c765e"
       },
       "exportScript": {
         "path": "docs/assets/generation/render-platform-icons.py",
-        "sha256": "2656f7542cb3ec93c6145013f68f25cc9c79c8476453a4dbd41b36718925f5dc"
+        "sha256": "7def95bf7fa336c3a366f9e123a169656011e84402428bd13f1f797dfd43f116"
       },
-      "rights": "Deterministic native-platform derivatives of original ASSET-001 geometry; no third-party artwork or generated imagery is used."
+      "generationRecord": {
+        "path": "docs/assets/generation/logo-1b-1.json",
+        "sha256": "c890411c209b141c5b1648956952f708658f684a9defcdb8c3ccf9cfd89f83fb"
+      },
+      "rights": "Original generated logo selected by the user; deterministic native size/alpha exports."
     },
     "android": {
       "outputs": [
-        {"path":"androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml","sha256":"26310833a35076dfe3bdcd9fa469c5c7e36c26623eaf6009bf2d450f779189a3"},
-        {"path":"androidApp/src/main/res/mipmap-mdpi/ic_launcher.png","sha256":"42fa7e03a088e751c0b8b5a0a2425ce57d294f0eed3626ce3742d0ba586bcc4e","widthPx":48,"heightPx":48,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-mdpi/ic_launcher_background.png","sha256":"0b7d73a477ebec4c5772f83a5abb0ba5d7c16b30f7a9a88235603991c1135116","widthPx":108,"heightPx":108,"mode":"RGBA","alpha":"opaque"},
-        {"path":"androidApp/src/main/res/mipmap-mdpi/ic_launcher_foreground.png","sha256":"5d0b6166fe428f5759e7084112990f52183a77d62730d9de8ba67a148dba0999","widthPx":108,"heightPx":108,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-mdpi/ic_launcher_monochrome.png","sha256":"4906bcfe4641d9343f6d0a6012c87e368ab7c24bbd4ec7e808fc25155ffcbe53","widthPx":108,"heightPx":108,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-hdpi/ic_launcher.png","sha256":"2d1c490d57260eaf01bfd31bc597d508fc6d29ed86a6e1559388e0c73a1b23ad","widthPx":72,"heightPx":72,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-hdpi/ic_launcher_background.png","sha256":"a2500a2292bc4a315493f390fd4fe5089ef5c1aa5f05f6e5b3881bb21a688572","widthPx":162,"heightPx":162,"mode":"RGBA","alpha":"opaque"},
-        {"path":"androidApp/src/main/res/mipmap-hdpi/ic_launcher_foreground.png","sha256":"b59c152354afea49c8f0ac1023197e9cd8bb9f80256cddc3c2b390bbcc06db3b","widthPx":162,"heightPx":162,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-hdpi/ic_launcher_monochrome.png","sha256":"7370e89638b1b71f4a2e245c8f8680e656e0192946114660192e1e5d7c4bd478","widthPx":162,"heightPx":162,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xhdpi/ic_launcher.png","sha256":"5547043f1117e086296e50a285c8abfd9def610c7b641334f4bc47d17c81b571","widthPx":96,"heightPx":96,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xhdpi/ic_launcher_background.png","sha256":"19d3fbc6ca75381486b7a8e9f987ed8d90319ab55f0daecac110c92bddad3d62","widthPx":216,"heightPx":216,"mode":"RGBA","alpha":"opaque"},
-        {"path":"androidApp/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png","sha256":"afb37710cc6244208cda8e16a7ca7085f13a7e138ea197847a485c8fc928f209","widthPx":216,"heightPx":216,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xhdpi/ic_launcher_monochrome.png","sha256":"7030d2a626428050ecfe93559266f914260341b5a643770c4be4210d24aa94a5","widthPx":216,"heightPx":216,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xxhdpi/ic_launcher.png","sha256":"4ebacb98f354fccc99eeff687fc5ca06de29ffc83b9dea80ca8d62cbaf1e0c67","widthPx":144,"heightPx":144,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_background.png","sha256":"39e7f4833007df0141d2b32583db4645af858c876c2f04f39f2553f119dc6954","widthPx":324,"heightPx":324,"mode":"RGBA","alpha":"opaque"},
-        {"path":"androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png","sha256":"723c86fa5cb69735187c93390e37867246502e31ac3825d11c2a5a523e56d412","widthPx":324,"heightPx":324,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_monochrome.png","sha256":"0c48849b4a7c889fec8de1535ff3f6b514c8ddd7a4a0cf9a569196916924a19c","widthPx":324,"heightPx":324,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher.png","sha256":"cf8cbb33d0042853685a4581776b8dcba1ff9a471ab0c56ae949d3bd055134e4","widthPx":192,"heightPx":192,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_background.png","sha256":"bdcaa87d0690ce20a547538ad65a1a14ec34e0b104b9541079004773f0450355","widthPx":432,"heightPx":432,"mode":"RGBA","alpha":"opaque"},
-        {"path":"androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png","sha256":"1e317adf0433dd343024c3cb988463008fa57c9490575fc309832a61d069f18b","widthPx":432,"heightPx":432,"mode":"RGBA","alpha":"variable"},
-        {"path":"androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_monochrome.png","sha256":"9be4f1394c61a8fccd9577336f819c6158f16ac5a44d2ad4517f84fa508f4160","widthPx":432,"heightPx":432,"mode":"RGBA","alpha":"variable"}
+        {
+          "path": "androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+          "sha256": "26310833a35076dfe3bdcd9fa469c5c7e36c26623eaf6009bf2d450f779189a3"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher.png",
+          "sha256": "a3fb2461e649359bad599144110dc250e5a6c2d2e1b5a00fbb4e1b34d9a50d5d",
+          "widthPx": 48,
+          "heightPx": 48,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher_background.png",
+          "sha256": "40cf690183704b54c4d93fe369349676c04e2531bbba75c4177578404d25e0d6",
+          "widthPx": 108,
+          "heightPx": 108,
+          "mode": "RGBA",
+          "alpha": "opaque"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher_foreground.png",
+          "sha256": "3de7783b48c7ec50c88233073dd49d8e23bfbce83641f61d485da36f750525fc",
+          "widthPx": 108,
+          "heightPx": 108,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher_monochrome.png",
+          "sha256": "36087c7f591980b78e00a06c6c4dcf134ac04e32b99e917cce321ba7b1ee0c91",
+          "widthPx": 108,
+          "heightPx": 108,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher.png",
+          "sha256": "0f56a8eb0469447b8c31ec87c62cdbfd7f731079b67a4d96d14055b9129f7ffd",
+          "widthPx": 72,
+          "heightPx": 72,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher_background.png",
+          "sha256": "d68f9e75aa1f29c17b57b84d382de44047d885cdd3e8e8da1eb72a5edafe442b",
+          "widthPx": 162,
+          "heightPx": 162,
+          "mode": "RGBA",
+          "alpha": "opaque"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher_foreground.png",
+          "sha256": "a7332c537466cc02e4dcdfa68a3efe46ac7ce55253121520d5a6467aed73822b",
+          "widthPx": 162,
+          "heightPx": 162,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher_monochrome.png",
+          "sha256": "5ebacbc35a7ea6946580b12353cba7d65c10224892f6443b06a616d3c4aef2ad",
+          "widthPx": 162,
+          "heightPx": 162,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher.png",
+          "sha256": "856fadb05c90f1ab921f7e7ccae16d96a7a794d073a13dff8271c8d372ebe6c6",
+          "widthPx": 96,
+          "heightPx": 96,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher_background.png",
+          "sha256": "b31db9ab95de8670ae806a2147cd5a29298fe7f3007b1c7d65f4c33ead89c529",
+          "widthPx": 216,
+          "heightPx": 216,
+          "mode": "RGBA",
+          "alpha": "opaque"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png",
+          "sha256": "35b698868e8c8ff7bf5e7350baf9e15618be7eafc4adf7491cbecb32bd4ebc54",
+          "widthPx": 216,
+          "heightPx": 216,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher_monochrome.png",
+          "sha256": "f6c2b3aad1f35a113b0434b8a1b8cb94c4ed315b0af2210dc20e6cb8b456bc48",
+          "widthPx": 216,
+          "heightPx": 216,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+          "sha256": "98ddd787f9b87a5328e955b06e579c2f7a2d0715e3115d9b9472978f3b5fa616",
+          "widthPx": 144,
+          "heightPx": 144,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_background.png",
+          "sha256": "e1389476df3756980d301861f71c19edb5a57684258ff3a54a08b70857301b13",
+          "widthPx": 324,
+          "heightPx": 324,
+          "mode": "RGBA",
+          "alpha": "opaque"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png",
+          "sha256": "8e822fc3d2d4f929281e0a317403a20476ac33eea6f80b38575cd74ebed94d5a",
+          "widthPx": 324,
+          "heightPx": 324,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_monochrome.png",
+          "sha256": "8881880092c7f0a09db2d698c81bbbfb5d8e7a7d25fb87cd9ef28ee40ed36bbd",
+          "widthPx": 324,
+          "heightPx": 324,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+          "sha256": "f68bd9a28c5354d8c977061a3c2d17a2df3c94eaa778b38da5ee923d71932568",
+          "widthPx": 192,
+          "heightPx": 192,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_background.png",
+          "sha256": "215d34f53c48b1f56a6b2088628475ce382ce62e19e204ac0105cfe381153b33",
+          "widthPx": 432,
+          "heightPx": 432,
+          "mode": "RGBA",
+          "alpha": "opaque"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png",
+          "sha256": "107d2856551428fa84d8ee4a48ffaf79e7b216836b07981b6dc402826e7b59dc",
+          "widthPx": 432,
+          "heightPx": 432,
+          "mode": "RGBA",
+          "alpha": "variable"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_monochrome.png",
+          "sha256": "ad049e85c235492427f458aa87438691ec7d215b12146df5454316735c8916cf",
+          "widthPx": 432,
+          "heightPx": 432,
+          "mode": "RGBA",
+          "alpha": "variable"
+        }
       ],
       "usageEvidence": [
-        {"path":"androidApp/src/main/AndroidManifest.xml","sha256":"5663018068bb8e3c7381fbb5d874b5055a2e153cbad5b27bf864adcfdd6fd9d0","symbol":"android:icon=@mipmap/ic_launcher"},
-        {"path":"androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml","sha256":"26310833a35076dfe3bdcd9fa469c5c7e36c26623eaf6009bf2d450f779189a3","symbol":"adaptive foreground/background/monochrome mapping"}
+        {
+          "path": "androidApp/src/main/AndroidManifest.xml",
+          "sha256": "5663018068bb8e3c7381fbb5d874b5055a2e153cbad5b27bf864adcfdd6fd9d0",
+          "symbol": "android:icon=@mipmap/ic_launcher"
+        },
+        {
+          "path": "androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+          "sha256": "26310833a35076dfe3bdcd9fa469c5c7e36c26623eaf6009bf2d450f779189a3",
+          "symbol": "adaptive foreground/background/monochrome mapping"
+        }
       ],
       "validation": {
         "densityContract": "Legacy icons are 48/72/96/144/192 px and adaptive layers are 108/162/216/324/432 px for mdpi through xxxhdpi.",
         "maskAndAlpha": "Adaptive foreground and monochrome layers have real transparent padding; backgrounds are opaque; legacy exports preserve transparent rounded corners.",
-        "visualEvidence": {"path":"docs/assets/platform-icon-contact-sheet.png","sha256":"ca98853f99640b07481db9787a4cfdc923af6f26d63761d90df2fe812338a6f5"}
+        "visualEvidence": {
+          "path": "docs/assets/platform-icon-contact-sheet.png",
+          "sha256": "059bd46d99543b1ee0d253906caa0060d202e953e08d12e40c9788dee340c836"
+        }
       }
     },
     "ios": {
       "outputs": [
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x.png","sha256":"179914f3bf5368dd574717cbd1c4fe2f80ee618dcac02e1cce76858e57b60c5b","widthPx":40,"heightPx":40,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x~ipad.png","sha256":"179914f3bf5368dd574717cbd1c4fe2f80ee618dcac02e1cce76858e57b60c5b","widthPx":40,"heightPx":40,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@3x.png","sha256":"691293ff0537f25c0be30dbd44c870cfd47bc6fa9e694d22f22cd31e35780445","widthPx":60,"heightPx":60,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20~ipad.png","sha256":"01d38c3c7037467315e7582014162e650179fd7bb501d3e1679946a08ae024ed","widthPx":20,"heightPx":20,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29.png","sha256":"38abfb813a04f750f7465d40b29954938db35e6788d3ac87577bb6102dec0d3d","widthPx":29,"heightPx":29,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x.png","sha256":"6b632855e3c9bffa7d7e87eeb264267d27aac3864813f6349c7f68ef4494e216","widthPx":58,"heightPx":58,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x~ipad.png","sha256":"6b632855e3c9bffa7d7e87eeb264267d27aac3864813f6349c7f68ef4494e216","widthPx":58,"heightPx":58,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@3x.png","sha256":"e1f57abc7e9824f4dc4d03cd99b5b5f8cc88d75272ee5259a91351975e07aa11","widthPx":87,"heightPx":87,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29~ipad.png","sha256":"38abfb813a04f750f7465d40b29954938db35e6788d3ac87577bb6102dec0d3d","widthPx":29,"heightPx":29,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x.png","sha256":"3b4143f6cf15f48f6652c0c4a51822657a3d4eecb2e39f413f2177b3c00628c2","widthPx":80,"heightPx":80,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x~ipad.png","sha256":"3b4143f6cf15f48f6652c0c4a51822657a3d4eecb2e39f413f2177b3c00628c2","widthPx":80,"heightPx":80,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@3x.png","sha256":"5fb6619edc12d585ccafb73e38788c454438e0eb4f1ced4f5f896065b08c5b6e","widthPx":120,"heightPx":120,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40~ipad.png","sha256":"179914f3bf5368dd574717cbd1c4fe2f80ee618dcac02e1cce76858e57b60c5b","widthPx":40,"heightPx":40,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@2x~car.png","sha256":"5fb6619edc12d585ccafb73e38788c454438e0eb4f1ced4f5f896065b08c5b6e","widthPx":120,"heightPx":120,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@3x~car.png","sha256":"3c15cffb5960ac5daf893df2ddeda9b4fe24809224c95a3147e85f251e4e5282","widthPx":180,"heightPx":180,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-83.5@2x~ipad.png","sha256":"fd57eca02acdccaf1c50ad2fa3b5d80b4fc6bf68f8b30e84117306b9559f9e9a","widthPx":167,"heightPx":167,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x.png","sha256":"5fb6619edc12d585ccafb73e38788c454438e0eb4f1ced4f5f896065b08c5b6e","widthPx":120,"heightPx":120,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x~ipad.png","sha256":"3d1a19c99c8e500007af7d092c21ab271d6e9d42465ace5e977ae515108e381d","widthPx":152,"heightPx":152,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@3x.png","sha256":"3c15cffb5960ac5daf893df2ddeda9b4fe24809224c95a3147e85f251e4e5282","widthPx":180,"heightPx":180,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ios-marketing.png","sha256":"a6b8412722e3c01e7cf256f7efe03bbf5b65d963efd1087403d8ac06af2a4b85","widthPx":1024,"heightPx":1024,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ipad.png","sha256":"5c458a669416cdf82c465f0a5173ddb2adce69b07413aa022efd6d4eeda6f26c","widthPx":76,"heightPx":76,"mode":"RGB","alpha":"opaque"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json","sha256":"be4eb3cd64b0335e44e530e002d0d5f4ed12acaa6c93a75d6d9453a3b95a6f90"}
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x.png",
+          "sha256": "2193969d3165b483c955ecb9afbc9fd4e9ab0ff4394df83a89617575300336bc",
+          "widthPx": 40,
+          "heightPx": 40,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x~ipad.png",
+          "sha256": "2193969d3165b483c955ecb9afbc9fd4e9ab0ff4394df83a89617575300336bc",
+          "widthPx": 40,
+          "heightPx": 40,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@3x.png",
+          "sha256": "f52cf8966f09cc62c93924ef6fda3c66e62589b5d20c51fb449f35e52b8cd9a3",
+          "widthPx": 60,
+          "heightPx": 60,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20~ipad.png",
+          "sha256": "9194f0fceab3a72620aa0c13e5fdcd256a6b09d4b4e615079bd259c58bc119bf",
+          "widthPx": 20,
+          "heightPx": 20,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29.png",
+          "sha256": "c50b06a304497b2d9fc17fb9816a270fc1e3d1b1c81720507c47b7a3736a8e67",
+          "widthPx": 29,
+          "heightPx": 29,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x.png",
+          "sha256": "311d0db766cdbc636d82d9b68ae4ee67956ad1c2129b2440fda959ceb71a774d",
+          "widthPx": 58,
+          "heightPx": 58,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x~ipad.png",
+          "sha256": "311d0db766cdbc636d82d9b68ae4ee67956ad1c2129b2440fda959ceb71a774d",
+          "widthPx": 58,
+          "heightPx": 58,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@3x.png",
+          "sha256": "d82d9e4e15873d21db840e9c17343a8948134a7405e4d71a0f6a80a64459df95",
+          "widthPx": 87,
+          "heightPx": 87,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29~ipad.png",
+          "sha256": "c50b06a304497b2d9fc17fb9816a270fc1e3d1b1c81720507c47b7a3736a8e67",
+          "widthPx": 29,
+          "heightPx": 29,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x.png",
+          "sha256": "5c25ed021e3bc00c1f7b8b1074679cb6013f8c60460753aa42dbab6b25cd2842",
+          "widthPx": 80,
+          "heightPx": 80,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x~ipad.png",
+          "sha256": "5c25ed021e3bc00c1f7b8b1074679cb6013f8c60460753aa42dbab6b25cd2842",
+          "widthPx": 80,
+          "heightPx": 80,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@3x.png",
+          "sha256": "85c204737aa5c011fee03fed21676a13db5bd2d34871ac5b603b24e7a2e0a8b9",
+          "widthPx": 120,
+          "heightPx": 120,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40~ipad.png",
+          "sha256": "2193969d3165b483c955ecb9afbc9fd4e9ab0ff4394df83a89617575300336bc",
+          "widthPx": 40,
+          "heightPx": 40,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@2x~car.png",
+          "sha256": "85c204737aa5c011fee03fed21676a13db5bd2d34871ac5b603b24e7a2e0a8b9",
+          "widthPx": 120,
+          "heightPx": 120,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@3x~car.png",
+          "sha256": "30a4cb4953f41b88be939fd021561331de4d972d27a28c776695f9cd55ebea7c",
+          "widthPx": 180,
+          "heightPx": 180,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-83.5@2x~ipad.png",
+          "sha256": "b8ff747a68f5214f623824b02cef4b9ae6483787835bd5e7ef0760f72a832c2d",
+          "widthPx": 167,
+          "heightPx": 167,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x.png",
+          "sha256": "85c204737aa5c011fee03fed21676a13db5bd2d34871ac5b603b24e7a2e0a8b9",
+          "widthPx": 120,
+          "heightPx": 120,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x~ipad.png",
+          "sha256": "7826a6123409fd84ac6956426cf3a8064494b34bbbc624eab745eae5452ce474",
+          "widthPx": 152,
+          "heightPx": 152,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@3x.png",
+          "sha256": "30a4cb4953f41b88be939fd021561331de4d972d27a28c776695f9cd55ebea7c",
+          "widthPx": 180,
+          "heightPx": 180,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ios-marketing.png",
+          "sha256": "7eae16d1dca25ee43632ec62179299a45992e21a8df9b8be718718536b3e026f",
+          "widthPx": 1024,
+          "heightPx": 1024,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ipad.png",
+          "sha256": "802986496406f5df0d173e929f8825916a20cc7f20f8120daa0012f081f38d62",
+          "widthPx": 76,
+          "heightPx": 76,
+          "mode": "RGB",
+          "alpha": "opaque"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
+          "sha256": "be4eb3cd64b0335e44e530e002d0d5f4ed12acaa6c93a75d6d9453a3b95a6f90"
+        }
       ],
       "usageEvidence": [
-        {"path":"iosApp/iosApp.xcodeproj/project.pbxproj","sha256":"a2b32f8ef7c376b43b1c450733ac5daa9943f44ac680cfdaa7cb3d1366eff012","symbol":"ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon"},
-        {"path":"iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json","sha256":"be4eb3cd64b0335e44e530e002d0d5f4ed12acaa6c93a75d6d9453a3b95a6f90","symbol":"iPhone, iPad, CarPlay, and ios-marketing slot mapping"}
+        {
+          "path": "iosApp/iosApp.xcodeproj/project.pbxproj",
+          "sha256": "a2b32f8ef7c376b43b1c450733ac5daa9943f44ac680cfdaa7cb3d1366eff012",
+          "symbol": "ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon"
+        },
+        {
+          "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
+          "sha256": "be4eb3cd64b0335e44e530e002d0d5f4ed12acaa6c93a75d6d9453a3b95a6f90",
+          "symbol": "iPhone, iPad, CarPlay, and ios-marketing slot mapping"
+        }
       ],
       "validation": {
         "slotContract": "All 21 Contents.json slots resolve to their declared pixel dimensions, including the opaque 1024x1024 ios-marketing export.",
         "maskAndAlpha": "Every iOS/App Store PNG is opaque RGB and leaves corner masking to the operating system/store.",
-        "visualEvidence": {"path":"docs/assets/platform-icon-contact-sheet.png","sha256":"ca98853f99640b07481db9787a4cfdc923af6f26d63761d90df2fe812338a6f5"}
+        "visualEvidence": {
+          "path": "docs/assets/platform-icon-contact-sheet.png",
+          "sha256": "059bd46d99543b1ee0d253906caa0060d202e953e08d12e40c9788dee340c836"
+        }
       }
     }
   },
@@ -89,19 +412,23 @@
       "id": "ASSET-001",
       "outputs": [
         {
-          "path": "shared/compose/src/commonMain/composeResources/drawable/logo_sproutpace.xml",
-          "sha256": "0ed54aca349d35a9f8d46c1cf55e6b0ae8b076fb88c359fa96a29e61f1785277"
+          "path": "shared/compose/src/commonMain/composeResources/drawable/logo_sproutpace.png",
+          "sha256": "3c162c7992242e006808dd722fdb8944a9c9b0da16b990f422d9d52e6e85eacb"
         }
       ],
       "provenance": {
-        "method": "create-vector",
-        "source": "Original project-specific vector geometry created from ASSET-001 approved brief in spec/app-spec.json",
-        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+        "method": "generate-raster",
+        "source": "User-approved original ImageGen logo 1B-1",
+        "generationRecord": {
+          "path": "docs/assets/generation/logo-1b-1.json",
+          "sha256": "c890411c209b141c5b1648956952f708658f684a9defcdb8c3ccf9cfd89f83fb"
+        },
+        "rights": "Original generated artwork for SproutPace; no independent legal clearance asserted."
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "screenHero",
           "screenIds": [
             "SCREEN-001",
@@ -112,23 +439,23 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[32]_sproutpacepreviewskt.firstrunpreviews.01_first_run_dark_w393dp_h851dp_night.png",
-          "sha256": "40575b6cb20b83b3adc2fb14f0ea2326193bee26541a998cf79f7976d966daac"
+          "sha256": "26453a2cc35b458a4261ff63310f6dc22347ab7836fb471f88316f1f7a5f3255"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[33]_sproutpacepreviewskt.firstrunpreviews.01_first_run_light_w393dp_h851dp_day.png",
-          "sha256": "aee3ce21d8f797855159be443107ab07bef006a982e89fcec6bad9829c1b284f"
+          "sha256": "fd1eb11e1c704bcad1f30d257ea14c9040b09adab55e8f378f37eaaa51b04179"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[56]_sproutpacepreviewskt.settingspreviews.11_settings_dark_w393dp_h851dp_night.png",
-          "sha256": "e18e1ab71e1b3b0f360c94d5471f814dc5d758ac603bf07627d5cb26f587a0c2"
+          "sha256": "849aa77c31359245daa437df157bafe942916d106baa567d431ad09f65f88a35"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[57]_sproutpacepreviewskt.settingspreviews.11_settings_light_w393dp_h851dp_day.png",
-          "sha256": "3d9d209cec881545671eb8e553374e80d75e9824f14ff1f579492f22e68a4cbb"
+          "sha256": "bd2561de82961e628d5eabe9dce124efcbf01b6da498fa74390f5cebf106a8e0"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "path": "docs/assets/brand-refresh-review.md",
+          "sha256": "0c07cbd98155c6775e35130cceb5ae68df4f6acf633148600a163e6f4b9bef7e"
         }
       ],
       "blockers": []
@@ -261,7 +588,7 @@
         },
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "screenHero",
           "screenIds": [
             "SCREEN-011"
@@ -287,7 +614,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -350,7 +677,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -380,7 +707,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -411,7 +738,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-009",
@@ -438,7 +765,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-016",
@@ -465,7 +792,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-014",
@@ -492,7 +819,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-003",
@@ -519,7 +846,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -547,7 +874,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -558,11 +885,11 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "19a129c5050f5144957591c18decc2bb4de422edc59a4c2f7c44d47106a48bcf"
+          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -583,7 +910,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -594,11 +921,11 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "19a129c5050f5144957591c18decc2bb4de422edc59a4c2f7c44d47106a48bcf"
+          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -619,7 +946,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -630,11 +957,11 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "19a129c5050f5144957591c18decc2bb4de422edc59a4c2f7c44d47106a48bcf"
+          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -655,7 +982,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -666,11 +993,11 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "19a129c5050f5144957591c18decc2bb4de422edc59a4c2f7c44d47106a48bcf"
+          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -691,7 +1018,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -702,11 +1029,11 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "19a129c5050f5144957591c18decc2bb4de422edc59a4c2f7c44d47106a48bcf"
+          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -727,7 +1054,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "showsEmptyIllustration",
           "screenIds": [
             "SCREEN-002",
@@ -739,31 +1066,31 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[21]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "9b95eb55748727502674b050fbe45420a2475e1f1b12c1568553c45b902c955a"
+          "sha256": "ac5dd5046a95e4f1f4e52bc613a027f88482c46c80eb92152f4c5b6ac145dcac"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[22]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_light_w393dp_h851dp_day.png",
-          "sha256": "45d1610c47fe04b1d13f52a0b9e1561a5d3a016584f36d4a6e44ebaa3d1b5a57"
+          "sha256": "a08798178f17b2fa21a3ca920b8a362ef18f5e3886d63f176ef83a56446e10f0"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[23]_sproutpacepreviewskt.emptytodaypreview.empty_state_dark_w393dp_h851dp_night.png",
-          "sha256": "9f5d6230ca835bb9a95ece7c919cd2c1d722e6c73c90acb68dbca8b6d3277de9"
+          "sha256": "e1e5610747a7dce37e6bba5f79e0031752fc27049b4c4963ed0d8003006b1d55"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[24]_sproutpacepreviewskt.emptytodaypreview.empty_state_light_w393dp_h851dp_day.png",
-          "sha256": "317f0449b1d328ac45fe3d48b0a641052a6b4740d96ffc590411926d1dc1470c"
+          "sha256": "3d3ac3560da3b5a4b7b52ef8a491baefe89da13ab248204744a35094ff5d402a"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[25]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "ed9403c9a361cdfe14a66ddfaf7311e6f895131d9fb4a89b33ffa78b078d8e00"
+          "sha256": "17921f258ecea9b9869bbfc921d59327f5065b18c257c945d9357720f3d2b985"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[26]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_light_w393dp_h851dp_day.png",
-          "sha256": "faf3948f6c85cbe9eaf28240114e5cc02f3839fdc2c0eebb652058031b4ab3c6"
+          "sha256": "aad123fcec31ba5a9a2abc2da8085572be61bdce2e40097319dc3c4d157243af"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -788,7 +1115,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -807,15 +1134,15 @@
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
-          "sha256": "849b80214a253ca92c7d25b8ec13562da57144390aaa3f9d1c85fd5593ba6c5e"
+          "sha256": "4b99eca9baaaf91a01afc0f84afa3e90b4e3e33a9c7d3cbe85d40597572c3a64"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "19a129c5050f5144957591c18decc2bb4de422edc59a4c2f7c44d47106a48bcf"
+          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -840,7 +1167,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -859,7 +1186,7 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -884,7 +1211,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -903,7 +1230,7 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -928,7 +1255,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -947,7 +1274,7 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -972,7 +1299,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -991,7 +1318,7 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -1016,7 +1343,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1035,7 +1362,7 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -1060,7 +1387,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1079,7 +1406,7 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []
@@ -1104,7 +1431,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "2f1c0b38b073229e4c3b0fed04fa07705c3aa6a0d199962f536544e8f0713d2f",
+          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1123,7 +1450,7 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "694813b96c293e812253d1639d7e8c0239447e50e5e2e834be5cbfd4ab1003fa"
+          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
         }
       ],
       "blockers": []

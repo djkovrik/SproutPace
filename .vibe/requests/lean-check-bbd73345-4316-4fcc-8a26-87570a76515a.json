@@ -1,0 +1,12 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-daemon",
+    ":shared:compose:recordPaparazzi",
+    ":androidApp:assembleDebug",
+    "detekt"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -13,7 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.sedsoftware.sproutpace.data.ThemePreference
 
-private val LightColorScheme = lightColorScheme(
+internal val LightColorScheme = lightColorScheme(
     primary = PrimaryLight,
     onPrimary = OnPrimaryLight,
     primaryContainer = PrimaryContainerLight,
@@ -49,9 +49,21 @@ private val LightColorScheme = lightColorScheme(
     surfaceContainer = SurfaceContainerLight,
     surfaceContainerHigh = SurfaceContainerHighLight,
     surfaceContainerHighest = SurfaceContainerHighestLight,
+    primaryFixed = PrimaryContainerLight,
+    primaryFixedDim = PrimaryDark,
+    onPrimaryFixed = OnPrimaryDark,
+    onPrimaryFixedVariant = PrimaryContainerDark,
+    secondaryFixed = SecondaryContainerLight,
+    secondaryFixedDim = SecondaryDark,
+    onSecondaryFixed = OnSecondaryDark,
+    onSecondaryFixedVariant = SecondaryContainerDark,
+    tertiaryFixed = TertiaryContainerLight,
+    tertiaryFixedDim = TertiaryDark,
+    onTertiaryFixed = OnTertiaryDark,
+    onTertiaryFixedVariant = TertiaryContainerDark,
 )
 
-private val DarkColorScheme = darkColorScheme(
+internal val DarkColorScheme = darkColorScheme(
     primary = PrimaryDark,
     onPrimary = OnPrimaryDark,
     primaryContainer = PrimaryContainerDark,
@@ -87,6 +99,18 @@ private val DarkColorScheme = darkColorScheme(
     surfaceContainer = SurfaceContainerDark,
     surfaceContainerHigh = SurfaceContainerHighDark,
     surfaceContainerHighest = SurfaceContainerHighestDark,
+    primaryFixed = PrimaryContainerLight,
+    primaryFixedDim = PrimaryDark,
+    onPrimaryFixed = OnPrimaryDark,
+    onPrimaryFixedVariant = PrimaryContainerDark,
+    secondaryFixed = SecondaryContainerLight,
+    secondaryFixedDim = SecondaryDark,
+    onSecondaryFixed = OnSecondaryDark,
+    onSecondaryFixedVariant = SecondaryContainerDark,
+    tertiaryFixed = TertiaryContainerLight,
+    tertiaryFixedDim = TertiaryDark,
+    onTertiaryFixed = OnTertiaryDark,
+    onTertiaryFixedVariant = TertiaryContainerDark,
 )
 
 internal val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }

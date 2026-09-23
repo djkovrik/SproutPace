@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-23",
+  "tool": "image_gen.imagegen (built-in)",
+  "model": "not exposed by tool",
+  "selection": "User approved 1B-1 in this task before native icon export.",
+  "approvedSource": "docs/assets/source/logo-1b-1-approved.png",
+  "transparentSource": "docs/assets/source/logo-1b-1-transparent.png",
+  "prompt": "Use case: background-extraction. Exact production cutout of this already approved logo. Remove ONLY the ivory background to genuine alpha transparency, including the opening in the tray and negative spaces between leaves. Preserve the entire green logo exactly: same silhouette, colors, geometry, central connected bud, leaf shapes, tray, proportions, position and generous padding. No redesign or simplification. No added strokes, shadows, checkerboard, matte or background. Output one transparent PNG logo.",
+  "observedOutput": {"widthPx": 1254, "heightPx": 1254, "mode": "RGBA", "alphaRange": [0, 255]},
+  "export": "render-platform-icons.py crops optical bounds at alpha > 8, resizes with Lanczos, centers and derives a black monochrome layer from exactly the same alpha. Android foreground width is 48% of the 108dp layer, legacy/iOS artwork width 68%. iOS exports are opaque RGB. Shared 512px PNG uses theme tint, retaining the existing light/dark semantic treatment.",
+  "rights": "Original generated artwork created for this project; no independent trademark or legal clearance asserted."
+}

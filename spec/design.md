@@ -18,6 +18,12 @@ After implementation goldens exist, run first-release Lazyweb review over every 
 
 Use a calm botanical Material 3 system:
 
+Brand update approved 2026-09-23: logo 1B-1 and palette A (Forest & Lime).
+Light actions use forest green, dark actions use lime with dark-green content;
+surface elevations, inverse colors and outlines use botanical neutrals. Native
+icons preserve the full-color logo; in-app decorative marks retain semantic tint.
+See `../docs/design-review/brand-refresh-20260923.md` for the approved mapping.
+
 - warm neutral surfaces;
 - green primary roles;
 - restrained soil/gold tertiary accents;
@@ -173,4 +179,3 @@ Every primary screen has deterministic content and applicable empty/error/permis
 - protected consent and no-consent-needed states.
 
 ComposablePreviewScanner must discover production component-owned preview implementations and generate stable Paparazzi IDs. Record, inspect, approve, then verify goldens. First-release Lazyweb review covers all primary screens after approved goldens.
-

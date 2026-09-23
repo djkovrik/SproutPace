@@ -1,0 +1,12 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-daemon",
+    ":shared:compose:verifyPaparazzi",
+    ":androidApp:assembleRelease",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "timeoutSeconds": 1800
+}

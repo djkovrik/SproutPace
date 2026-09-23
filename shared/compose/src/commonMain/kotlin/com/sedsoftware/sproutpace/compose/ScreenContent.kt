@@ -247,7 +247,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.screenHero(state: Spr
     when (state.screen) {
         UiScreen.FIRST_RUN -> item {
             Image(
-                imageVector = vectorResource(Res.drawable.logo_sproutpace),
+                painter = painterResource(Res.drawable.logo_sproutpace),
                 contentDescription = null,
                 modifier = Modifier.size(88.dp),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
@@ -260,7 +260,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.screenHero(state: Spr
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Image(
-                    imageVector = vectorResource(Res.drawable.logo_sproutpace),
+                    painter = painterResource(Res.drawable.logo_sproutpace),
                     contentDescription = null,
                     modifier = Modifier.size(64.dp),
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),

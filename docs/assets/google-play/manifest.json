@@ -1,0 +1,42 @@
+[
+  {
+    "file": "app-icon-512.png",
+    "width": 512,
+    "height": 512,
+    "bytes": 70160,
+    "source_size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "file": "feature-graphic-01-1024x500.png",
+    "width": 1024,
+    "height": 500,
+    "bytes": 349891,
+    "source_size": [
+      1795,
+      876
+    ]
+  },
+  {
+    "file": "feature-graphic-02-1024x500.png",
+    "width": 1024,
+    "height": 500,
+    "bytes": 578118,
+    "source_size": [
+      1795,
+      876
+    ]
+  },
+  {
+    "file": "feature-graphic-03-1024x500.png",
+    "width": 1024,
+    "height": 500,
+    "bytes": 417961,
+    "source_size": [
+      1794,
+      876
+    ]
+  }
+]
