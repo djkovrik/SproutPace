@@ -86,7 +86,11 @@ internal fun typedPreviewState(
         actions = if (variant == UiVariant.EMPTY) listOfNotNull(emptyPreviewPrimaryAction(screen)) else base.actions,
         fields = base.fields.map { field ->
             field.copy(
-                value = realisticPreviewFieldValue(field.id),
+                value = if (screen == UiScreen.BATCH_EDITOR && field.id in batchEditorCorrectionPreviewFieldIds) {
+                    ""
+                } else {
+                    realisticPreviewFieldValue(field.id)
+                },
                 options = field.options.ifEmpty { realisticPreviewOptions(field.id, field.kind) },
                 errorKey = if (variant == UiVariant.VALIDATION_ERROR && field.required) "state_error_body" else null,
             )
@@ -104,6 +108,11 @@ internal fun typedPreviewState(
         state
     }
 }
+
+private val batchEditorCorrectionPreviewFieldIds = setOf(
+    "anchorState", "anchorAt", "actualSoakingAt", "actualSownAt", "actualBlackoutAt",
+    "actualLightAt", "actualHarvestReadyAt",
+)
 
 private fun emptyPreviewPrimaryAction(screen: UiScreen): UiScreenAction? = when (screen) {
     UiScreen.TODAY, UiScreen.TRAYS, UiScreen.PLAN ->
@@ -272,7 +281,7 @@ private val REALISTIC_PREVIEW_FIELD_VALUES = mapOf(
     "reason" to "Adjusted after observation",
     "actionId" to "check-moisture",
     "actualMassGrams" to "184",
-    "query" to "radish",
+    "query" to "",
     "supplier" to "Local seed shop",
     "cultivar" to "Sango",
     "seedLot" to "2026-08",

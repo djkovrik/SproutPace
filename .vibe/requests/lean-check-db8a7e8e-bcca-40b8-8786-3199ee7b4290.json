@@ -1,0 +1,8 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "detekt"
+  ],
+  "timeoutSeconds": 1800
+}

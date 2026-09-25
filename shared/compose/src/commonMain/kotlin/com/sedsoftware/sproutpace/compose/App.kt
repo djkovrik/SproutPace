@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
@@ -23,8 +25,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.sedsoftware.sproutpace.component.PermissionState
 import com.sedsoftware.sproutpace.component.ScreenFieldKind
@@ -212,6 +217,7 @@ fun SproutPaceApp(
 ) {
     BoxWithConstraints(modifier.fillMaxSize()) {
         var contextFieldsExpanded by remember(state.screen) { mutableStateOf(false) }
+        val largeTextNavigation = LocalDensity.current.fontScale >= NAVIGATION_ICON_ONLY_FONT_SCALE
         val layout = when {
             maxWidth < 600.dp -> UiLayout.COMPACT
             maxWidth < 840.dp -> UiLayout.MEDIUM
@@ -222,30 +228,18 @@ fun SproutPaceApp(
         val compact = layout == UiLayout.COMPACT
         LaunchedEffect(layout) { onAction(UiAction.SetLayout(layout)) }
         val topLevel = state.screen in primaryDestinations
+        val primaryFabAction = state.actions.firstOrNull { action ->
+                action.id == state.screen.fabActionId() &&
+                state.variant != UiVariant.EMPTY &&
+                !largeTextNavigation
+        }
         val body: @Composable () -> Unit = {
             Scaffold(
                 modifier = Modifier.semantics { testTag = "screen-${state.screen.name.lowercase()}" },
                 contentWindowInsets = WindowInsets.safeDrawing,
-                topBar = {
-                    TopAppBar(
-                        title = { Text(stringResource(state.screen.titleResource())) },
-                        navigationIcon = {
-                            if (!topLevel && state.screen != UiScreen.FIRST_RUN) {
-                                IconButton(onClick = { onAction(UiAction.Back) }) {
-                                    Icon(vectorResource(Res.drawable.ic_arrow_back), stringResource(Res.string.action_back))
-                                }
-                            }
-                        },
-                        actions = {
-                            if (state.screen == UiScreen.TODAY) {
-                                IconButton(onClick = { onAction(UiAction.Navigate(UiScreen.SETTINGS)) }) {
-                                    Icon(vectorResource(Res.drawable.ic_settings), stringResource(Res.string.action_settings))
-                                }
-                            }
-                        },
-                    )
-                },
+                topBar = { SproutPaceTopBar(state.screen, topLevel, onAction) },
                 bottomBar = { if (compact && topLevel) PrimaryBottomBar(state.selectedPrimary, onAction) },
+                floatingActionButton = { PrimaryFloatingActionButton(primaryFabAction, onAction) },
             ) { padding ->
                 ScreenContent(
                     state = state,
@@ -269,6 +263,60 @@ fun SproutPaceApp(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SproutPaceTopBar(screen: UiScreen, topLevel: Boolean, onAction: (UiAction) -> Unit) {
+    TopAppBar(
+        title = {
+            if (topLevel) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    ScreenTitle(screen, Modifier.weight(1f))
+                    IconButton(onClick = { onAction(UiAction.Navigate(UiScreen.SETTINGS)) }) {
+                        Icon(vectorResource(Res.drawable.ic_settings), stringResource(Res.string.action_settings))
+                    }
+                }
+            } else {
+                Text(stringResource(screen.titleResource()))
+            }
+        },
+        navigationIcon = {
+            if (!topLevel && screen != UiScreen.FIRST_RUN) {
+                IconButton(onClick = { onAction(UiAction.Back) }) {
+                    Icon(vectorResource(Res.drawable.ic_arrow_back), stringResource(Res.string.action_back))
+                }
+            }
+        },
+    )
+}
+
+@Composable
+private fun ScreenTitle(screen: UiScreen, modifier: Modifier = Modifier) = Text(
+    text = stringResource(screen.titleResource()),
+    maxLines = 1,
+    overflow = TextOverflow.Ellipsis,
+    modifier = modifier,
+)
+
+@Composable
+private fun PrimaryFloatingActionButton(action: UiScreenAction?, onAction: (UiAction) -> Unit) {
+    action ?: return
+    ExtendedFloatingActionButton(
+        onClick = { onAction(action.toAdvertisingUiAction() ?: UiAction.Submit(action.id)) },
+        icon = { Icon(imageVector = vectorResource(Res.drawable.ic_add), contentDescription = null) },
+        text = { Text(localizedText(action.labelKey)) },
+        modifier = Modifier.semantics { testTag = "action-${action.id}" },
+    )
+}
+
+internal fun UiScreen.fabActionId(): String? = when (this) {
+    UiScreen.TODAY, UiScreen.TRAYS -> "new-batch"
+    UiScreen.CATALOG -> "create-recipe"
+    else -> null
+}
+
 private data class Destination(val screen: UiScreen, val label: StringResource, val icon: DrawableResource)
 
 private val destinations = listOf(
@@ -281,16 +329,29 @@ private val destinations = listOf(
 private val primaryDestinations = destinations.map { it.screen }.toSet()
 
 @Composable
-private fun PrimaryBottomBar(selected: UiScreen, onAction: (UiAction) -> Unit) = NavigationBar(
-    modifier = Modifier.semantics { testTag = "primary-navigation-bottom" },
-) {
-    destinations.forEach { destination ->
-        NavigationBarItem(
-            selected = destination.screen == selected,
-            onClick = { onAction(UiAction.Navigate(destination.screen)) },
-            icon = { Icon(vectorResource(destination.icon), null) },
-            label = { Text(stringResource(destination.label)) },
-        )
+private fun PrimaryBottomBar(selected: UiScreen, onAction: (UiAction) -> Unit) {
+    val showLabels = LocalDensity.current.fontScale < NAVIGATION_ICON_ONLY_FONT_SCALE
+    NavigationBar(modifier = Modifier.semantics { testTag = "primary-navigation-bottom" }) {
+        destinations.forEach { destination ->
+            val label = stringResource(destination.label)
+            NavigationBarItem(
+                selected = destination.screen == selected,
+                onClick = { onAction(UiAction.Navigate(destination.screen)) },
+                icon = {
+                    Icon(
+                        imageVector = vectorResource(destination.icon),
+                        contentDescription = label.takeUnless { showLabels },
+                    )
+                },
+                label = if (showLabels) {
+                    {
+                        Text(text = label, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    }
+                } else {
+                    null
+                },
+            )
+        }
     }
 }
 
@@ -303,9 +364,17 @@ private fun PrimaryRail(selected: UiScreen, onAction: (UiAction) -> Unit) = Navi
             selected = destination.screen == selected,
             onClick = { onAction(UiAction.Navigate(destination.screen)) },
             icon = { Icon(vectorResource(destination.icon), null) },
-            label = { Text(stringResource(destination.label)) },
+            label = {
+                Text(
+                    text = stringResource(destination.label),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            },
         )
     }
 }
 
 internal fun UiScreen.titleResource(): StringResource = strictTextResource("screen_${name.lowercase()}_title")
+
+internal const val NAVIGATION_ICON_ONLY_FONT_SCALE = 1.8f

@@ -1,0 +1,9 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:compileKotlinAndroid",
+    ":shared:compose:allTests"
+  ],
+  "timeoutSeconds": 1800
+}

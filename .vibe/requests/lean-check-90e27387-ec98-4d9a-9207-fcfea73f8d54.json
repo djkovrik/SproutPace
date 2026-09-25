@@ -1,0 +1,9 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:testAndroid"
+  ],
+  "timeoutSeconds": 1800
+}

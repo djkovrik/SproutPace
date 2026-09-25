@@ -15,6 +15,23 @@ Patterns applied from that evidence:
 
 The root-owned post-golden Lazyweb review was completed against rendered Paparazzi output. The broad report is stored at `.lazyweb/design-improve/sproutpace-core-2026-09-20/report.html` with supporting evidence at [Lazyweb Agentic Search](https://www.lazyweb.com/agentic-search/b33bd652-1b1a-4279-ae3c-07cb61358220). Scope-safe findings were applied: realistic screen-specific fixtures, task/content-first ordering, progressive disclosure of contextual command inputs, one filled safe primary action, explicit destructive styling, and facts/actions before editing mechanics.
 
+The 2026-09-25 primary-tab refinement is grounded in [Lazyweb references for collection, weekly plan, and plant-library screens](https://www.lazyweb.com/agentic-search/7c9ca20b-6f26-47d9-871b-c7383c38fcb2). The accepted direction is shared across Today, Trays, Plan, and Catalog:
+
+- replace generic `Items / Details / Actions` framing with screen-owned information hierarchy;
+- use one expressive, role-correct summary surface per screen and keep the remaining collection visually calmer;
+- keep one persistent creation action as a labeled extended FAB, moving it inline at 200% text scale;
+- constrain linear reading surfaces to a readable width and let catalog content reflow into an adaptive grid;
+- use semantic M3 container/on-container pairs, typography roles, shape roles, and 48dp targets instead of screen-local styling;
+- preserve explicit text for status, selection, conflict, and overdue meaning rather than relying on color;
+- keep settings reachable from every primary top app bar and switch compact bottom navigation to labeled icons normally and icon-only controls with localized semantics at the declared text-stress scale.
+
+Screen-specific application:
+
+- **Today:** one primary-container next-action hero, then overdue and due-today groups.
+- **Trays:** peer tabs, a compact category overview, and scannable tray rows; expanded width retains list/detail structure.
+- **Plan:** a tertiary-container cadence summary followed by a chronological timeline; suggestions own their confirmation action and conflicts remain explicit.
+- **Catalog:** search first, concise offline-source context, then image-led cards in an adaptive grid; item and screen actions are not duplicated.
+
 A final focused review of the recorded Today empty state is stored at `.lazyweb/design-improve/sproutpace-final-2026-09-20/report.html`, with the [hosted Lazyweb report](https://www.lazyweb.com/report/lazyweb/638f6950-0f2c-40f2-b379-af92e1700f23/?source=create) and [supporting references](https://www.lazyweb.com/agentic-search/695cb246-c2bb-43d7-b499-c1eca8617a57). It exposed a real AppSpec mismatch rather than a stylistic preference: the preview used generic copy and equal-weight contextual commands instead of the screen-specific calm next step. The accepted correction uses the existing Today/Trays/Plan empty resources, makes the snapshot primary action the only filled empty-state CTA, and removes inapplicable fields, facts, and contextual commands. The suggested 40% illustration reduction was rejected because ASSET-021 has an approved 240 × 160 dp contract and the compact golden keeps the CTA visible.
 
 ## Material 3 and adaptive contract
