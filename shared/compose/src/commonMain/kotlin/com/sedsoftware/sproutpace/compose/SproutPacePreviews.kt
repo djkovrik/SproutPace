@@ -58,24 +58,7 @@ internal fun typedPreviewState(
     variant: UiVariant = UiVariant.CONTENT,
     showAd: Boolean = false,
 ): SproutPaceUiState {
-    val component: ScreenComponent = when (screen) {
-        UiScreen.FIRST_RUN -> FirstRunComponentPreview()
-        UiScreen.TODAY -> TodayComponentPreview()
-        UiScreen.TRAYS -> TraysComponentPreview()
-        UiScreen.BATCH_EDITOR -> BatchEditorComponentPreview()
-        UiScreen.BATCH_DETAIL -> BatchDetailComponentPreview()
-        UiScreen.PLAN -> PlanComponentPreview()
-        UiScreen.CATALOG -> CatalogComponentPreview()
-        UiScreen.RECIPE -> RecipeComponentPreview()
-        UiScreen.OBSERVATION_EDITOR -> ObservationEditorComponentPreview()
-        UiScreen.CLOSE_BATCH -> CloseBatchComponentPreview()
-        UiScreen.SETTINGS -> SettingsComponentPreview()
-        UiScreen.ZONES -> ZonesComponentPreview()
-        UiScreen.TRAY_SIZES -> TraySizesComponentPreview()
-        UiScreen.BACKUP_RESTORE -> BackupRestoreComponentPreview()
-        UiScreen.ADVERTISING_PRIVACY -> AdvertisingPrivacyComponentPreview()
-        UiScreen.NOTIFICATIONS -> NotificationsComponentPreview()
-    }
+    val component = previewComponent(screen)
     val base = component.model.value.toUiState()
     val state = base.copy(
         variant = variant,
@@ -107,6 +90,25 @@ internal fun typedPreviewState(
     } else {
         state
     }
+}
+
+private fun previewComponent(screen: UiScreen): ScreenComponent = when (screen) {
+    UiScreen.FIRST_RUN -> FirstRunComponentPreview()
+    UiScreen.TODAY -> TodayComponentPreview()
+    UiScreen.TRAYS -> TraysComponentPreview()
+    UiScreen.BATCH_EDITOR -> BatchEditorComponentPreview()
+    UiScreen.BATCH_DETAIL -> BatchDetailComponentPreview()
+    UiScreen.PLAN -> PlanComponentPreview()
+    UiScreen.CATALOG -> CatalogComponentPreview()
+    UiScreen.RECIPE -> RecipeComponentPreview()
+    UiScreen.OBSERVATION_EDITOR -> ObservationEditorComponentPreview()
+    UiScreen.CLOSE_BATCH -> CloseBatchComponentPreview()
+    UiScreen.SETTINGS -> SettingsComponentPreview()
+    UiScreen.ZONES -> ZonesComponentPreview()
+    UiScreen.TRAY_SIZES -> TraySizesComponentPreview()
+    UiScreen.BACKUP_RESTORE -> BackupRestoreComponentPreview()
+    UiScreen.ADVERTISING_PRIVACY -> AdvertisingPrivacyComponentPreview()
+    UiScreen.NOTIFICATIONS -> NotificationsComponentPreview()
 }
 
 private val batchEditorCorrectionPreviewFieldIds = setOf(

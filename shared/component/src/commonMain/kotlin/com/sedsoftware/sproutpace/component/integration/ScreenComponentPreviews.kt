@@ -63,12 +63,18 @@ private fun previewModel(screen: ScreenId) = ScreenModel(
     },
     fields = ScreenContractRegistry.contracts.getValue(screen).fields.map(::previewField),
     facts = ScreenContractRegistry.contracts.getValue(screen).facts,
-    actions = ScreenContractRegistry.contracts.getValue(screen).actions,
+    actions = ScreenContractRegistry.contracts.getValue(screen).actions.filter { action ->
+        screen != ScreenId.BATCH_DETAIL || action.id.value in previewBatchDetailActionIds
+    },
     validationErrors = if (screen == ScreenId.FIRST_RUN) {
         mapOf(ScreenFieldId("capacity") to TextKey("state_error_body"))
     } else {
         emptyMap()
     },
+)
+
+private val previewBatchDetailActionIds = setOf(
+    "confirm-stage", "skip-stage", "undo-stage", "add-observation", "close-batch", "delete-batch",
 )
 
 private fun previewPrimaryActionKey(screen: ScreenId): TextKey? = when (screen) {

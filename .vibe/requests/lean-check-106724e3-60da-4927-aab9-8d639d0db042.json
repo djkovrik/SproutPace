@@ -1,0 +1,11 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.RootUiAdapterTest",
+    ":androidApp:assembleDebug"
+  ],
+  "timeoutSeconds": 1800
+}

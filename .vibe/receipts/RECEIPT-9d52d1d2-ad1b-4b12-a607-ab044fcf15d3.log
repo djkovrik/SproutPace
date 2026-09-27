@@ -1,0 +1,7 @@
+Keyboard Tab could not reach text 'Continue'
+D:\Sources\Android\SproutPace\.vibe\scripts\run-android-ui-smoke.ps1:151 знак:5
++     throw "Keyboard Tab could not reach $description"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Keyboard Tab co...text 'Continue':String) [], RuntimeException
+    + FullyQualifiedErrorId : Keyboard Tab could not reach text 'Continue'
+ 

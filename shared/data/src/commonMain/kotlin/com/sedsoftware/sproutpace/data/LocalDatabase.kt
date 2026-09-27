@@ -56,6 +56,11 @@ class LocalDatabase(
 
     suspend fun snapshot(): ProductSnapshot = withContext(ioDispatcher) { snapshotNow() }
 
+    /** Startup-only check used before the root component is created. */
+    fun hasMinimumGrowingSetup(): Boolean = snapshotNow().let { snapshot ->
+        snapshot.zones.isNotEmpty() && snapshot.trayPresets.isNotEmpty() && snapshot.plans.isNotEmpty()
+    }
+
     suspend fun saveZone(zone: GrowZone): GrowZone = write {
         val order = snapshotNow().zones.indexOfFirst { it.id == zone.id }.takeIf { it >= 0 }
             ?: snapshotNow().zones.size

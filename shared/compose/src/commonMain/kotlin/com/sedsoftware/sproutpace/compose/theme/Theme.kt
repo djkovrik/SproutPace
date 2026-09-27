@@ -132,6 +132,8 @@ internal fun AppTheme(
         onThemeChanged(isDark)
         MaterialTheme(
             colorScheme = if (isDark) DarkColorScheme else LightColorScheme,
+            typography = SproutPaceTypography,
+            shapes = SproutPaceShapes,
             content = { Surface(content = content) }
         )
     }

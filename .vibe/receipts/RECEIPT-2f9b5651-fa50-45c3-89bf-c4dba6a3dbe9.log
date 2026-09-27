@@ -1,0 +1,7 @@
+Node has no clickable ancestor
+D:\Sources\Android\SproutPace\.vibe\scripts\run-android-ui-smoke.ps1:79 знак:5
++     throw "Node has no clickable ancestor"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Node has no clickable ancestor:String) [], RuntimeException
+    + FullyQualifiedErrorId : Node has no clickable ancestor
+ 

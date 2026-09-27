@@ -1,0 +1,7 @@
+Missing UI node with content description 'Today'
+D:\Sources\Android\SproutPace\.vibe\scripts\run-android-ui-smoke.ps1:67 знак:9
++         throw "Missing UI node with $description"
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Missing UI node...ription 'Today':String) [], RuntimeException
+    + FullyQualifiedErrorId : Missing UI node with content description 'Today'
+ 

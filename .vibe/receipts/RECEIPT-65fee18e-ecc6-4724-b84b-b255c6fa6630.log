@@ -1,0 +1,7 @@
+Missing UI node with text 'Step 1 of 3 ‚ú Growing zone'
+D:\Sources\Android\SproutPace\.vibe\scripts\run-android-ui-smoke.ps1:68 §­ ª:9
++         throw "Missing UI node with $description"
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Missing UI node...ú Growing zone':String) [], RuntimeException
+    + FullyQualifiedErrorId : Missing UI node with text 'Step 1 of 3 ‚ú Growing zone'
+ 

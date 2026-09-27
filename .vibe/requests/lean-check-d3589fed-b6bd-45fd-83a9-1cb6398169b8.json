@@ -1,0 +1,11 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:data:testAndroidHostTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.data.LocalDataAcceptanceTest"
+  ],
+  "timeoutSeconds": 1800
+}

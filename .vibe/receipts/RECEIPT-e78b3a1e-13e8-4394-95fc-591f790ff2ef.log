@@ -1,0 +1,7 @@
+Missing UI node with text 'Plan'
+D:\Sources\Android\SproutPace\.vibe\scripts\run-android-ui-smoke.ps1:68 знак:9
++         throw "Missing UI node with $description"
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Missing UI node with text 'Plan':String) [], RuntimeException
+    + FullyQualifiedErrorId : Missing UI node with text 'Plan'
+ 

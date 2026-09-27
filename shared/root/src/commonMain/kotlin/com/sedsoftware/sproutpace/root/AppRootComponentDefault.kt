@@ -21,6 +21,7 @@ import com.sedsoftware.sproutpace.component.integration.ScreenComponentFactory
 class AppRootComponentDefault(
     componentContext: ComponentContext,
     private val screenFactory: ScreenComponentFactory,
+    initialScreen: ScreenId = ScreenId.TODAY,
 ) : AppRootComponent, ComponentContext by componentContext {
     private val navigation = StackNavigation<AppRootComponent.Config>()
     private val confirmationNavigation = SlotNavigation<AppRootComponent.ConfirmationConfig>()
@@ -28,7 +29,7 @@ class AppRootComponentDefault(
     override val stack = childStack(
         source = navigation,
         serializer = AppRootComponent.Config.serializer(),
-        initialConfiguration = AppRootComponent.Config(ScreenId.TODAY),
+        initialConfiguration = AppRootComponent.Config(initialScreen),
         handleBackButton = true,
         childFactory = { config, context ->
             screenFactory.create(config.screen, context, config.stableId) { output -> onChildOutput(config, output) }

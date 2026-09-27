@@ -1,0 +1,33 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":shared:data:verifySqlDelightMigration",
+    ":shared:compose:verifyPaparazzi",
+    ":androidApp:assembleDebug",
+    ":androidApp:assembleRelease",
+    ":androidApp:bundleRelease",
+    ":shared:domain:compileKotlinIosSimulatorArm64",
+    ":shared:data:compileKotlinIosSimulatorArm64",
+    ":shared:component:compileKotlinIosSimulatorArm64",
+    ":shared:root:compileKotlinIosSimulatorArm64",
+    ":shared:platform:compileKotlinIosSimulatorArm64",
+    ":shared:monetization:compileKotlinIosSimulatorArm64",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    "koverXmlReport",
+    "koverVerify",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1"
+  ],
+  "timeoutSeconds": 1800
+}

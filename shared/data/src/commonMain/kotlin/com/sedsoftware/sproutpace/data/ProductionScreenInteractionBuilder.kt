@@ -1,6 +1,7 @@
 package com.sedsoftware.sproutpace.data
 
 import com.sedsoftware.sproutpace.component.ScreenContractRegistry
+import com.sedsoftware.sproutpace.component.ScreenActionDescriptor
 import com.sedsoftware.sproutpace.component.ScreenFact
 import com.sedsoftware.sproutpace.component.ScreenField
 import com.sedsoftware.sproutpace.component.ScreenFieldId
@@ -66,8 +67,60 @@ private fun ScreenSnapshot.withInteractionContract(
         },
         facts = (contract.facts + screenFacts(screen, stableId, workspace, preferences))
             .distinctBy(ScreenFact::id),
-        actions = contract.actions,
+        actions = visibleActions(screen, stableId, workspace, contract.actions),
     )
+}
+
+private fun visibleActions(
+    screen: ScreenId,
+    stableId: String?,
+    workspace: Workspace,
+    actions: List<ScreenActionDescriptor>,
+): List<ScreenActionDescriptor> {
+    if (screen != ScreenId.BATCH_DETAIL) return actions
+    val batch = stableId?.let { id -> workspace.batches.firstOrNull { it.id.value == id } } ?: return emptyList()
+    val visibleIds = batchDetailActionIds(batch)
+    return actions.filter { action -> action.id.value in visibleIds }
+}
+
+private fun batchDetailActionIds(batch: GrowBatch): Set<String> {
+    val configuredStates = batch.recipe.stages.map { stage ->
+        when (stage.stage) {
+            GrowStage.SOAKING -> BatchState.SOAKING
+            GrowStage.SOWN -> BatchState.SOWN
+            GrowStage.BLACKOUT_OR_WEIGHT -> BatchState.BLACKOUT_OR_WEIGHT
+            GrowStage.LIGHT_GROWTH -> BatchState.LIGHT_GROWTH
+            GrowStage.READY_FOR_HARVEST -> BatchState.READY_FOR_HARVEST
+        }
+    }
+    val stateIndex = configuredStates.indexOf(batch.state)
+    val hasNextStage = stateIndex >= 0 && stateIndex + 1 < configuredStates.size
+    val canSkipStage = stateIndex >= 0 && stateIndex + 2 < configuredStates.size
+    return buildSet {
+        add("add-observation")
+        add("delete-batch")
+        when (batch.state) {
+            BatchState.PLANNED -> {
+                add("confirm-sowing")
+                if (BatchState.SOAKING in configuredStates) add("start-soaking")
+            }
+            BatchState.SOAKING -> {
+                add("confirm-sowing")
+                add("schedule-soak-target")
+            }
+            BatchState.HARVESTED -> {
+                add("record-actual-mass")
+                add("repeat-batch")
+            }
+            BatchState.FAILED, BatchState.ABANDONED -> add("repeat-batch")
+            else -> Unit
+        }
+        if (!batch.state.isTerminal) add("close-batch")
+        if (!batch.state.isTerminal && batch.state != BatchState.SOAKING && hasNextStage) add("confirm-stage")
+        if (!batch.state.isTerminal && canSkipStage) add("skip-stage")
+        if (!batch.state.isTerminal && batch.events.isNotEmpty()) add("undo-stage")
+        if (batch.state.occupiesPlace && batch.placement is Placement.Unassigned) add("assign-overflow")
+    }
 }
 
 private fun fieldValues(
@@ -486,13 +539,12 @@ private fun planFacts(plan: HarvestPlan?, workspace: Workspace): List<ScreenFact
 } ?: listOf(valueFact("plan-count", "screen_plan_title", workspace.plans.size))
 
 private fun backupFacts(): List<ScreenFact> = buildList {
-    backupDocumentId()?.let { add(authoredFact("document-id", "screen_backup_restore_title", it)) }
     backupPreview()?.archive?.let { archive ->
-        add(authoredFact("created-at", "field_date", archive.createdAt.toString()))
+        add(authoredFact("restore-created-at", "field_date", archive.createdAt.toString()))
         archive.snapshot.manifest.recordCounts.entries.sortedBy { it.key }.forEach { (name, count) ->
-            add(authoredFact("record-count-$name", "screen_backup_restore_title", count.toString()))
+            add(authoredFact("restore-record-count-$name", "screen_backup_restore_title", count.toString()))
         }
-        add(valueFact("photo-count", "field_observation_note", archive.photos.size))
+        add(valueFact("restore-photo-count", "field_observation_note", archive.photos.size))
     }
 }
 

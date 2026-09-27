@@ -1,0 +1,5 @@
+WARNING: failed to clean up stale arg0 temp dirs: Отказано в доступе. (os error 5)
+WARNING: proceeding, even though we could not create PATH aliases: Отказано в доступе. (os error 5) at path "C:\\Users\\Sergey\\.codex\\tmp\\arg0\\codex-arg0CCJ0ez"
+2026-09-27T08:06:59.868181Z  WARN codex_state::runtime: failed to open state db at C:\Users\Sergey\.codex\state_5.sqlite: failed to open state DB at C:\Users\Sergey\.codex\state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-09-27T08:06:59.869660Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at C:\Users\Sergey\.codex: failed to open state DB at C:\Users\Sergey\.codex\state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database: error returned from database: (code: 8) attempt to write a readonly database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Отказано в доступе. (os error 5)

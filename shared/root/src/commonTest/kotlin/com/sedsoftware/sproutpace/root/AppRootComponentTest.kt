@@ -15,6 +15,27 @@ import kotlin.test.*
 
 class AppRootComponentTest {
     @Test
+    fun ac001_emptyWorkspaceCanStartAtFirstRunWithoutAddingBackHistory() = runTest {
+        val dispatcher = UnconfinedTestDispatcher(testScheduler)
+        val manager = object : ScreenDataManager {
+            override fun watch(screen: ScreenId, stableId: String?) = flowOf(ScreenSnapshot())
+            override suspend fun execute(screen: ScreenId, command: ScreenCommand) = Result.success(ScreenSnapshot())
+        }
+        val root = AppRootComponentDefault(
+            DefaultComponentContext(LifecycleRegistry()),
+            ScreenComponentFactory(
+                ScreenComponentDependencies(DefaultStoreFactory(), manager, dispatcher),
+            ),
+            initialScreen = ScreenId.FIRST_RUN,
+        )
+
+        assertEquals(ScreenId.FIRST_RUN, root.stack.value.active.configuration.screen)
+        assertEquals(1, root.stack.value.items.size)
+        root.back()
+        assertEquals(ScreenId.FIRST_RUN, root.stack.value.active.configuration.screen)
+    }
+
+    @Test
     fun ac031_batchDetailKeepsStableIdAndBackReturnsToToday() = runTest {
         val root = root(StateKeeperDispatcher(), UnconfinedTestDispatcher(testScheduler))
 

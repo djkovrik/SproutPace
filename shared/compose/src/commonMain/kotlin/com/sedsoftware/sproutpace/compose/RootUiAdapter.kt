@@ -155,7 +155,7 @@ internal class RootActionRouter(
             is UiAction.SelectTrayCategory -> updateField(TRAY_CATEGORY_FIELD_ID, action.category.id, choose = true)
             is UiAction.SetLayout -> active.onAction(ScreenAction.SetLayout(action.layout.toComponentLayout()))
             is UiAction.Navigate -> navigate(action.screen, null)
-            is UiAction.Submit -> submit(action.actionId)
+            is UiAction.Submit -> submit(action.actionId, action.subjectId)
             is UiAction.SubmitItem -> submitItem(action.operation, action.subjectId)
             is UiAction.RequestPlatform -> platformActions.perform(action.request) { result ->
                 action.request.fieldId?.let { fieldId ->
@@ -165,9 +165,12 @@ internal class RootActionRouter(
                     active.onAction(ScreenAction.EditField(ScreenFieldId(fieldId), result))
                 }
             }
-            is UiAction.RemovePhoto -> {
-                discardPendingPhoto(action.currentValue)
-                active.onAction(ScreenAction.EditField(ScreenFieldId(action.fieldId), REMOVE_PHOTO_VALUE))
+            is UiAction.ClearPickerSelection -> {
+                if (action.kind == PlatformActionKind.CHOOSE_PHOTO) {
+                    discardPendingPhoto(action.currentValue)
+                }
+                val clearedValue = if (action.kind == PlatformActionKind.CHOOSE_PHOTO) REMOVE_PHOTO_VALUE else ""
+                active.onAction(ScreenAction.EditField(ScreenFieldId(action.fieldId), clearedValue))
             }
         }
     }
@@ -219,10 +222,10 @@ internal class RootActionRouter(
         if (primary != null) root.select(primary) else root.open(target, stableId)
     }
 
-    private fun submit(actionId: String) {
+    private fun submit(actionId: String, subjectId: String? = null) {
         val navigation = navigationActions[actionId]
         if (navigation != null) {
-            navigate(navigation.screen, if (navigation.passSelection) selectedItemId() else null)
+            navigate(navigation.screen, if (navigation.passSelection) subjectId ?: selectedItemId() else null)
             return
         }
         val destination = destinationActions[actionId]
@@ -259,6 +262,7 @@ internal class RootActionRouter(
             "new-batch" to NavigationTarget(UiScreen.BATCH_EDITOR),
             "open-batch" to NavigationTarget(UiScreen.BATCH_DETAIL, passSelection = true),
             "add-observation" to NavigationTarget(UiScreen.OBSERVATION_EDITOR, passSelection = true),
+            "close-batch" to NavigationTarget(UiScreen.CLOSE_BATCH, passSelection = true),
             "use-recipe" to NavigationTarget(UiScreen.BATCH_EDITOR, passSelection = true),
             "open-recipe" to NavigationTarget(UiScreen.RECIPE, passSelection = true),
             "create-recipe" to NavigationTarget(UiScreen.RECIPE),
@@ -497,6 +501,9 @@ private val primaryActionIds = mapOf(
     "action_new_batch" to "new-batch",
     "action_save_batch" to "save-batch",
     "action_confirm_stage" to "confirm-stage",
+    "action_start_soaking" to "start-soaking",
+    "action_confirm_sowing" to "confirm-sowing",
+    "action_close_batch" to "close-batch",
     "action_confirm_suggestion" to "confirm-suggestion",
     "action_use_recipe" to "use-recipe",
     "action_save_observation" to "save-observation",

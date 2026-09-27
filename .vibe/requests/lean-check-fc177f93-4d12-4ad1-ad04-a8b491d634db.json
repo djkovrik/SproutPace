@@ -1,0 +1,8 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":androidApp:assembleDebug"
+  ],
+  "timeoutSeconds": 1800
+}

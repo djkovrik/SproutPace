@@ -3,6 +3,7 @@ package com.sedsoftware.sproutpace.root
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.sedsoftware.sproutpace.component.ScreenDataManager
+import com.sedsoftware.sproutpace.component.ScreenId
 import com.sedsoftware.sproutpace.component.integration.ScreenComponentDependencies
 import com.sedsoftware.sproutpace.component.integration.ScreenComponentFactory
 import kotlin.coroutines.CoroutineContext
@@ -13,6 +14,7 @@ data class AppRootDependencies(
     val isDebug: Boolean,
     val screenDataManager: ScreenDataManager,
     val mainContext: CoroutineContext,
+    val initialScreen: ScreenId = ScreenId.TODAY,
 )
 
 /** Manual composition root. Logging/time travel may only be wrapped into debugStoreFactory. */
@@ -22,6 +24,6 @@ class AppRootFactory(private val dependencies: AppRootDependencies) {
         val screenFactory = ScreenComponentFactory(
             ScreenComponentDependencies(selectedStoreFactory, dependencies.screenDataManager, dependencies.mainContext),
         )
-        return AppRootComponentDefault(componentContext, screenFactory)
+        return AppRootComponentDefault(componentContext, screenFactory, dependencies.initialScreen)
     }
 }

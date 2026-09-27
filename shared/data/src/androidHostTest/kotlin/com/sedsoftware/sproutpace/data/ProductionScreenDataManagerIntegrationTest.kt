@@ -669,6 +669,82 @@ class ProductionScreenDataManagerIntegrationTest {
     }
 
     @Test
+    fun batchDetailShowsOnlyActionsApplicableToTheCurrentLifecycleState() = runTest {
+        suspend fun detail() = manager.watch(ScreenId.BATCH_DETAIL, "batch-1").first()
+        fun ScreenSnapshot.actionIds() = actions.mapTo(mutableSetOf()) { it.id.value }
+
+        seedBatchPrerequisites()
+        val planned = detail()
+        assertEquals("action_start_soaking", planned.primaryActionKey?.value)
+        assertTrue("start-soaking" in planned.actionIds())
+        assertTrue("confirm-sowing" in planned.actionIds())
+        assertTrue("close-batch" in planned.actionIds())
+        assertFalse("confirm-stage" in planned.actionIds())
+        assertFalse("undo-stage" in planned.actionIds())
+        assertFalse("repeat-batch" in planned.actionIds())
+
+        execute(
+            ScreenId.BATCH_DETAIL,
+            ScreenCommand("start-soaking", "batch-1", mapOf("eventId" to "event-soak", "occurredAt" to "2026-09-20T08:00:00Z")),
+        )
+        val soaking = detail()
+        assertEquals("action_confirm_sowing", soaking.primaryActionKey?.value)
+        assertEquals(
+            setOf(
+                "confirm-sowing", "undo-stage", "skip-stage", "schedule-soak-target",
+                "delete-batch", "add-observation", "close-batch",
+            ),
+            soaking.actionIds(),
+        )
+
+        execute(
+            ScreenId.BATCH_DETAIL,
+            ScreenCommand(
+                "confirm-sowing", "batch-1",
+                mapOf("eventId" to "event-sown", "occurredAt" to "2026-09-20T09:00:00Z", "unassigned" to "true"),
+            ),
+        )
+        val sown = detail()
+        assertEquals("action_confirm_stage", sown.primaryActionKey?.value)
+        assertTrue("confirm-stage" in sown.actionIds())
+        assertTrue("skip-stage" in sown.actionIds())
+        assertTrue("assign-overflow" in sown.actionIds())
+        assertFalse("start-soaking" in sown.actionIds())
+        assertFalse("confirm-sowing" in sown.actionIds())
+
+        listOf(
+            Triple("event-blackout", "2026-09-20T10:00:00Z", "blackout_or_weight"),
+            Triple("event-light", "2026-09-20T11:00:00Z", "light_growth"),
+            Triple("event-ready", "2026-09-20T12:00:00Z", "ready_for_harvest"),
+        ).forEach { (eventId, occurredAt, nextState) ->
+            execute(
+                ScreenId.BATCH_DETAIL,
+                ScreenCommand(
+                    "confirm-stage", "batch-1",
+                    mapOf("eventId" to eventId, "occurredAt" to occurredAt, "nextState" to nextState),
+                    deduplicationKey = "confirm-stage:$eventId",
+                ),
+            )
+        }
+        val ready = detail()
+        assertEquals("action_close_batch", ready.primaryActionKey?.value)
+        assertTrue("close-batch" in ready.actionIds())
+        assertFalse("confirm-stage" in ready.actionIds())
+        assertFalse("skip-stage" in ready.actionIds())
+
+        execute(
+            ScreenId.CLOSE_BATCH,
+            ScreenCommand("close-harvest", "batch-1", mapOf("occurredAt" to "2026-09-20T13:00:00Z")),
+        )
+        val harvested = detail()
+        assertEquals(null, harvested.primaryActionKey)
+        assertEquals(
+            setOf("record-actual-mass", "delete-batch", "repeat-batch", "add-observation"),
+            harvested.actionIds(),
+        )
+    }
+
+    @Test
     fun allSixteenWatchesAreDeterministicAndLocaleNeutral() = runTest {
         seedBatchPrerequisites()
         savePlan()
@@ -686,7 +762,12 @@ class ProductionScreenDataManagerIntegrationTest {
             val contract = ScreenContractRegistry.contracts.getValue(screen)
             assertEquals(contract.fields.map { it.id }, first.fields.map { it.id }, "${screen.name} fields")
             assertTrue(first.facts.map { it.id }.containsAll(contract.facts.map { it.id }), "${screen.name} facts")
-            assertEquals(contract.actions, first.actions, "${screen.name} actions")
+            if (screen == ScreenId.BATCH_DETAIL) {
+                assertTrue(first.actions.isNotEmpty(), "${screen.name} actions")
+                assertTrue(contract.actions.containsAll(first.actions), "${screen.name} actions")
+            } else {
+                assertEquals(contract.actions, first.actions, "${screen.name} actions")
+            }
         }
     }
 
@@ -792,8 +873,10 @@ class ProductionScreenDataManagerIntegrationTest {
 
         val preview = manager.watch(ScreenId.BACKUP_RESTORE).first()
         assertEquals(opaqueDocumentId, preview.field("documentId"))
-        assertEquals(opaqueDocumentId, preview.facts.first { it.id == "document-id" }.authoredValue)
-        assertEquals("1", preview.facts.first { it.id == "record-count-batches" }.authoredValue)
+        assertTrue(preview.facts.none { it.id == "document-id" })
+        val restoreFacts = preview.facts.filter { it.id.startsWith("restore-") }
+        assertTrue(restoreFacts.isNotEmpty())
+        assertEquals("1", restoreFacts.first { it.id == "restore-record-count-batches" }.authoredValue)
         assertTrue(manager.execute(
             ScreenId.BACKUP_RESTORE,
             preview.prepared(ScreenId.BACKUP_RESTORE, "restore-backup"),

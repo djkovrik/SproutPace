@@ -40,7 +40,7 @@ internal class ProductionScreenSnapshotRenderer(
         workspace: Workspace,
         preferences: SettingsSnapshot,
     ): ScreenSnapshot = when (screen) {
-        ScreenId.FIRST_RUN -> firstRunSnapshot(workspace)
+        ScreenId.FIRST_RUN -> firstRunSnapshot()
         ScreenId.TODAY -> todaySnapshot(workspace)
         ScreenId.TRAYS -> traysSnapshot(workspace)
         ScreenId.BATCH_EDITOR -> batchEditorSnapshot(workspace, stableId)
@@ -58,14 +58,8 @@ internal class ProductionScreenSnapshotRenderer(
         ScreenId.NOTIFICATIONS -> notificationsSnapshot(preferences)
     }
 
-private fun firstRunSnapshot(workspace: Workspace): ScreenSnapshot {
-    val configured = workspace.zones.any { it.isLightCapable && it.capacity > 0 } &&
-        workspace.trays.isNotEmpty() && workspace.plans.isNotEmpty()
+private fun firstRunSnapshot(): ScreenSnapshot {
     return ScreenSnapshot(
-        items = listOf(
-            ScreenItem("catalog", titleKey = key("action_browse_catalog")),
-            ScreenItem("setup", titleKey = key(if (configured) "first_run_preview_title" else "first_run_step")),
-        ),
         primaryActionKey = key("action_continue"),
     )
 }
@@ -124,11 +118,23 @@ private suspend fun batchDetailSnapshot(workspace: Workspace, stableId: String?)
     return ScreenSnapshot(
         items = items,
         selectedItemId = batch.id.value,
-        primaryActionKey = if (batch.state.isTerminal) null else key("action_confirm_stage"),
+        primaryActionKey = batchDetailPrimaryAction(batch),
         conflictResolutionKeys = if (batch.placement is Placement.Unassigned) {
             listOf(key("choose_another_zone"), key("change_capacity"), key("leave_unassigned"))
         } else emptyList(),
     )
+}
+
+private fun batchDetailPrimaryAction(batch: GrowBatch): TextKey? = when (batch.state) {
+    BatchState.PLANNED -> if (batch.recipe.stages.any { it.stage == GrowStage.SOAKING }) {
+        key("action_start_soaking")
+    } else {
+        key("action_confirm_sowing")
+    }
+    BatchState.SOAKING -> key("action_confirm_sowing")
+    BatchState.SOWN, BatchState.BLACKOUT_OR_WEIGHT, BatchState.LIGHT_GROWTH -> key("action_confirm_stage")
+    BatchState.READY_FOR_HARVEST -> key("action_close_batch")
+    BatchState.HARVESTED, BatchState.FAILED, BatchState.ABANDONED -> null
 }
 
 private fun planSnapshot(workspace: Workspace, stableId: String?): ScreenSnapshot {

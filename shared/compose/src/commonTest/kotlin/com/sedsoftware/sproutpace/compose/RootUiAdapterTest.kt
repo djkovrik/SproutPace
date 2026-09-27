@@ -98,6 +98,19 @@ class RootUiAdapterTest {
         }
     }
 
+    @Test fun restoreFactsExposeTheDestructiveRestorePreviewVariant() {
+        val ui = ScreenModel(
+            screen = ScreenId.BACKUP_RESTORE,
+            loadState = LoadState.CONTENT,
+            titleKey = TextKey("screen_backup_restore_title"),
+            facts = listOf(
+                ScreenFact("restore-created-at", TextKey("field_date"), authoredValue = "2026-09-27T10:00:00Z"),
+            ),
+        ).toUiState()
+
+        assertEquals(UiVariant.RESTORE_PREVIEW, ui.variant)
+    }
+
     @Test fun eligibleVisitOpensConsentBeforeReturningAnyAdIdentifier() = runTest {
         val runtime = RecordingAdvertisingRuntime(AdPreparation.ConsentRequired("policy-7"))
         var consentNavigationCount = 0
@@ -316,6 +329,8 @@ class RootUiAdapterTest {
         assertEquals(ScreenId.SETTINGS, root.opened?.first)
         router.dispatch(UiAction.Submit("open-batch"))
         assertEquals(ScreenId.BATCH_DETAIL to "batch-7", root.opened)
+        router.dispatch(UiAction.Submit("open-batch", "batch-from-item"))
+        assertEquals(ScreenId.BATCH_DETAIL to "batch-from-item", root.opened)
         router.dispatch(UiAction.Back)
         assertEquals(1, root.backCount)
     }
@@ -443,13 +458,36 @@ class RootUiAdapterTest {
 
         router.dispatch(UiAction.RequestPlatform(PlatformActionRequest(PlatformActionKind.CHOOSE_PHOTO, "photoId")))
         assertTrue(component.actions.isEmpty())
-        router.dispatch(UiAction.RemovePhoto("photoId", draft))
+        router.dispatch(
+            UiAction.ClearPickerSelection("photoId", draft, PlatformActionKind.CHOOSE_PHOTO),
+        )
 
         assertEquals(
             PlatformActionRequest(PlatformActionKind.DISCARD_PENDING_PHOTO, opaqueValue = draft),
             requests.last(),
         )
         assertEquals(ScreenAction.EditField(ScreenFieldId("photoId"), REMOVE_PHOTO_VALUE), component.actions.single())
+    }
+
+    @Test fun clearingDocumentSelectionUsesBlankValueWithoutPhotoCleanup() {
+        val component = RecordingScreen()
+        val requests = mutableListOf<PlatformActionRequest>()
+        val router = RootActionRouter(
+            RecordingRoot(component),
+            component,
+            PlatformActionHandler { request, _ -> requests += request },
+        ) { null }
+
+        router.dispatch(
+            UiAction.ClearPickerSelection(
+                fieldId = "documentId",
+                currentValue = "content://downloads/backup",
+                kind = PlatformActionKind.CHOOSE_DOCUMENT,
+            ),
+        )
+
+        assertTrue(requests.isEmpty())
+        assertEquals(ScreenAction.EditField(ScreenFieldId("documentId"), ""), component.actions.single())
     }
 
     @Test fun cancellingObservationDraftDiscardsOnlyPendingPhoto() {

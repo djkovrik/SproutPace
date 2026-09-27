@@ -1,0 +1,7 @@
+Android notification permission controller did not open
+D:\Sources\Android\SproutPace\.vibe\scripts\run-android-ui-smoke.ps1:286 знак:9
++         throw "Android notification permission controller did not ope ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Android notific...er did not open:String) [], RuntimeException
+    + FullyQualifiedErrorId : Android notification permission controller did not open
+ 

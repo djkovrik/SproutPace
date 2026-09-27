@@ -1,0 +1,13 @@
+ADB failed: shell pm clear-permission-flags com.sedsoftware.sproutpace android.permission.POST_NOTIFICATIONS user-set,u
+ser-fixed
+Error: specified flag user-set,user-fixed is not one of [review-required, revoked-compat, revoke-when-requested, user-f
+ixed, user-set]
+D:\Sources\Android\SproutPace\.vibe\scripts\run-android-ui-smoke.ps1:31 знак:9
++         throw "ADB failed: $($Arguments -join ' ')`n$($output -join " ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (ADB failed: she...ixed, user-set]:String) [], RuntimeException
+    + FullyQualifiedErrorId : ADB failed: shell pm clear-permission-flags com.sedsoftware.sproutpace android.permissio 
+   n.POST_NOTIFICATIONS user-set,user-fixed
+    Error: specified flag user-set,user-fixed is not one of [review-required, revoked-compat, revoke-when-requested, u 
+   ser-fixed, user-set]
+ 

@@ -2,6 +2,7 @@ package com.sedsoftware.sproutpace.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LinearProgressIndicator
@@ -40,6 +42,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.RadioButton
@@ -60,10 +63,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.testTag
@@ -121,6 +128,7 @@ private fun ModelDrivenScreen(
     advertisingRuntime: AdvertisingRuntime?,
 ) {
     when (state.screen) {
+        UiScreen.FIRST_RUN -> FirstRunScreen(state, onAction)
         UiScreen.TODAY -> TodayScreen(
             state, contextFieldsExpanded, onContextFieldsExpandedChange, onAction,
         )
@@ -150,6 +158,153 @@ private fun ModelDrivenScreen(
         ModelSinglePane(state, contextFieldsExpanded, onContextFieldsExpandedChange, onAction, advertisingRuntime)
     }
 }
+
+internal enum class FirstRunStep(
+    val titleKey: String,
+    val bodyKey: String,
+) {
+    ZONE("first_run_step", "first_run_step_zone_body"),
+    TRAY("first_run_step_tray", "first_run_step_tray_body"),
+    PLAN("first_run_step_plan", "first_run_step_plan_body"),
+}
+
+@Composable
+private fun FirstRunScreen(
+    state: SproutPaceUiState,
+    onAction: (UiAction) -> Unit,
+) {
+    var stepIndex by remember { mutableIntStateOf(0) }
+    val firstInvalidStep = state.fields.firstNotNullOfOrNull { field ->
+        field.errorKey?.let { firstRunStepForField(field.id).ordinal }
+    }
+    LaunchedEffect(firstInvalidStep) {
+        if (firstInvalidStep != null) stepIndex = firstInvalidStep
+    }
+    val step = FirstRunStep.entries[stepIndex]
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(step) { focusRequester.requestFocus() }
+    val shape = state.fields.firstOrNull { it.id == "shape" }?.value
+    val visibleFields = state.fields.filter { field -> field.id in firstRunFieldIds(step, shape) }
+
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+        Column(
+            Modifier.fillMaxSize().widthIn(max = 640.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            LazyColumn(
+                modifier = Modifier.weight(1f).fillMaxWidth()
+                    .semantics { testTag = "first-run-steps" },
+                contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+                if (state.variant == UiVariant.VALIDATION_ERROR) {
+                    item { StatusCard("state_validation_title", "state_validation_body", warning = true) }
+                }
+                item {
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Image(
+                            painter = painterResource(Res.drawable.logo_sproutpace),
+                            contentDescription = null,
+                            modifier = Modifier.size(88.dp),
+                            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+                        )
+                        Text(localizedText("first_run_welcome"), style = MaterialTheme.typography.headlineMedium)
+                        Text(localizedText("first_run_promise"), style = MaterialTheme.typography.bodyLarge)
+                    }
+                }
+                item { FirstRunProgress(step, focusRequester) }
+                items(visibleFields, key = { field -> modelListKey(ModelListEntryKind.FIELD, field.id) }) { field ->
+                    FieldControl(field, onAction)
+                }
+            }
+            FirstRunBottomActions(
+                step = step,
+                onNext = {
+                    if (step == FirstRunStep.PLAN) onAction(UiAction.Submit("continue-setup")) else stepIndex += 1
+                },
+                onBack = { stepIndex -= 1 },
+                onSkip = { onAction(UiAction.Navigate(UiScreen.CATALOG)) },
+            )
+        }
+    }
+}
+
+@Composable
+private fun FirstRunBottomActions(
+    step: FirstRunStep,
+    onNext: () -> Unit,
+    onBack: () -> Unit,
+    onSkip: () -> Unit,
+) {
+    Surface(tonalElevation = 3.dp, shadowElevation = 3.dp) {
+        Column(
+            Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Button(
+                onClick = onNext,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).semantics {
+                    testTag = if (step == FirstRunStep.PLAN) "action-continue-setup" else "first-run-next"
+                },
+            ) { Text(localizedText(if (step == FirstRunStep.PLAN) "action_finish_setup" else "action_continue")) }
+            if (step != FirstRunStep.ZONE) {
+                OutlinedButton(
+                    onClick = onBack,
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
+                        .semantics { testTag = "first-run-back" },
+                ) { Text(localizedText("action_back")) }
+            }
+            TextButton(
+                onClick = onSkip,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
+                    .semantics { testTag = "first-run-browse-catalog" },
+            ) {
+                Text(localizedText(if (step == FirstRunStep.ZONE) "action_browse_catalog" else "action_skip_setup"))
+            }
+        }
+    }
+}
+
+@Composable
+private fun FirstRunProgress(step: FirstRunStep, focusRequester: FocusRequester) {
+    val progressText = localizedText(step.titleKey)
+    Column(
+        Modifier.fillMaxWidth().focusRequester(focusRequester).focusable()
+            .semantics {
+                heading()
+                stateDescription = progressText
+                testTag = "first-run-step-${step.ordinal + 1}"
+            },
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        Text(progressText, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.primary)
+        LinearProgressIndicator(
+            progress = { (step.ordinal + 1) / FirstRunStep.entries.size.toFloat() },
+            modifier = Modifier.fillMaxWidth().height(4.dp),
+        )
+        Text(localizedText(step.bodyKey), style = MaterialTheme.typography.bodyMedium)
+    }
+}
+
+private fun firstRunStepForField(fieldId: String): FirstRunStep = when (fieldId) {
+    in firstRunZoneFieldIds -> FirstRunStep.ZONE
+    in firstRunTrayAllFieldIds -> FirstRunStep.TRAY
+    else -> FirstRunStep.PLAN
+}
+
+internal fun firstRunFieldIds(step: FirstRunStep, shape: String?): Set<String> = when (step) {
+    FirstRunStep.ZONE -> firstRunZoneFieldIds
+    FirstRunStep.TRAY -> firstRunTrayFieldIds + when (shape) {
+        "circle" -> setOf("diameterCm")
+        else -> setOf("widthCm", "lengthCm")
+    }
+    FirstRunStep.PLAN -> firstRunPlanFieldIds
+}
+
+private val firstRunZoneFieldIds = setOf("zoneName", "type", "capacity")
+private val firstRunTrayFieldIds = setOf("trayName", "shape")
+private val firstRunTrayAllFieldIds = firstRunTrayFieldIds + setOf("widthCm", "lengthCm", "diameterCm")
+private val firstRunPlanFieldIds = setOf("cadenceDays", "cultureIds", "mode")
 
 @Composable
 private fun SettingsScreen(
@@ -913,12 +1068,12 @@ private fun TodayItemActions(item: UiItem, emphasized: Boolean, onAction: (UiAct
     item.actionId?.let { actionId ->
         if (emphasized) {
             Button(
-                onClick = { onAction(UiAction.Submit(actionId)) },
+                onClick = { onAction(UiAction.Submit(actionId, item.id)) },
                 modifier = Modifier.heightIn(min = 48.dp),
             ) { LabeledActionContent(actionId, "action_${actionId.replace('-', '_')}") }
         } else {
             TextButton(
-                onClick = { onAction(UiAction.Submit(actionId)) },
+                onClick = { onAction(UiAction.Submit(actionId, item.id)) },
                 modifier = Modifier.heightIn(min = 48.dp),
             ) { LabeledActionContent(actionId, "action_${actionId.replace('-', '_')}") }
         }
@@ -1334,9 +1489,18 @@ private fun CatalogSearchField(field: UiField, onAction: (UiAction) -> Unit) {
     OutlinedTextField(
         value = field.value,
         onValueChange = { onAction(UiAction.EditField(field.id, it)) },
-        label = { Text(localizedText(field.labelKey)) },
+        placeholder = { Text(localizedText(field.labelKey)) },
+        textStyle = MaterialTheme.typography.bodyLarge,
+        shape = MaterialTheme.shapes.extraLarge,
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+            focusedBorderColor = MaterialTheme.colorScheme.primary,
+            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+        ),
         singleLine = true,
-        modifier = Modifier.fillMaxWidth().semantics { testTag = "field-${field.id}" },
+        modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+            .semantics { testTag = "field-${field.id}" },
     )
 }
 
@@ -1395,12 +1559,12 @@ private fun ItemTextActions(item: UiItem, onAction: (UiAction) -> Unit, emphasiz
     item.actionId?.let { actionId ->
         if (emphasized) {
             Button(
-                onClick = { onAction(UiAction.Submit(actionId)) },
+                onClick = { onAction(UiAction.Submit(actionId, item.id)) },
                 modifier = Modifier.heightIn(min = 48.dp),
             ) { LabeledActionContent(actionId, "action_${actionId.replace('-', '_')}") }
         } else {
             TextButton(
-                onClick = { onAction(UiAction.Submit(actionId)) },
+                onClick = { onAction(UiAction.Submit(actionId, item.id)) },
                 modifier = Modifier.heightIn(min = 48.dp),
             ) { LabeledActionContent(actionId, "action_${actionId.replace('-', '_')}") }
         }
@@ -1424,7 +1588,7 @@ private fun selectableCardColors(selected: Boolean) = CardDefaults.cardColors(
 )
 
 private val focusedPrimaryScreens = setOf(UiScreen.TODAY, UiScreen.TRAYS, UiScreen.PLAN, UiScreen.CATALOG)
-private val dedicatedScreenLayouts = focusedPrimaryScreens + UiScreen.BATCH_EDITOR + UiScreen.SETTINGS
+private val dedicatedScreenLayouts = focusedPrimaryScreens + UiScreen.FIRST_RUN + UiScreen.BATCH_EDITOR + UiScreen.SETTINGS
 private val PRIMARY_CONTENT_MAX_WIDTH = 720.dp
 private val CATALOG_CONTENT_MAX_WIDTH = 1040.dp
 private val CATALOG_CARD_MIN_WIDTH = 240.dp
@@ -1441,14 +1605,14 @@ private fun ModelSinglePane(
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().semantics { testTag = "adaptive-single-pane" },
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
         screenHero(state)
         trayCategoryTabs(state, onAction)
         statusItems(state)
         itemCollection(state, onAction, advertisingRuntime)
-        if (!state.hidesContextForEmptyState() && state.facts.isNotEmpty()) {
+        if (!state.hidesContextForEmptyState() && state.showsSupportingFacts()) {
             item { SectionHeading("section_details") }
             items(state.facts, key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
                 FactCard(fact)
@@ -1530,7 +1694,7 @@ private fun ModelDetailPane(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         screenHero(state)
-        if (!state.hidesContextForEmptyState() && state.facts.isNotEmpty()) {
+        if (!state.hidesContextForEmptyState() && state.showsSupportingFacts()) {
             item { SectionHeading("section_details") }
             items(state.facts, key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
                 FactCard(fact)
@@ -1550,11 +1714,12 @@ private fun androidx.compose.foundation.lazy.LazyListScope.fieldItems(
     onAction: (UiAction) -> Unit,
 ) {
     if (state.screen == UiScreen.ADVERTISING_PRIVACY) return
-    if (state.fields.isEmpty()) return
+    val visibleFields = state.fields.filterNot { it.id in hiddenTechnicalFieldIds }
+    if (visibleFields.isEmpty()) return
     val progressivelyDisclosed = state.screen in contextFieldScreens
     if (!progressivelyDisclosed || contextFieldsExpanded) {
         item { SectionHeading(if (progressivelyDisclosed) "section_action_details" else "section_form") }
-        items(state.fields, key = { field -> modelListKey(ModelListEntryKind.FIELD, field.id) }) { field ->
+        items(visibleFields, key = { field -> modelListKey(ModelListEntryKind.FIELD, field.id) }) { field ->
             FieldControl(field, onAction)
         }
     }
@@ -1674,7 +1839,10 @@ private fun androidx.compose.foundation.lazy.LazyListScope.itemCollection(
     onAction: (UiAction) -> Unit,
     advertisingRuntime: AdvertisingRuntime?,
 ) {
-    if (state.items.isNotEmpty()) item { SectionHeading("section_items") }
+    if (!state.showsItemCollection()) return
+    state.itemSectionKey()?.let { headingKey ->
+        if (state.items.isNotEmpty()) item { SectionHeading(headingKey) }
+    }
     itemsIndexed(
         state.items,
         key = { _, item -> modelListKey(ModelListEntryKind.ITEM, item.id) },
@@ -1686,6 +1854,8 @@ private fun androidx.compose.foundation.lazy.LazyListScope.itemCollection(
         }
     }
 }
+
+internal fun SproutPaceUiState.showsItemCollection(): Boolean = screen != UiScreen.NOTIFICATIONS
 
 internal fun SproutPaceUiState.inlineAdInsertionIndexOrNull(): Int? = when {
     screen == UiScreen.CATALOG && items.size >= CATALOG_AD_MINIMUM_ITEMS -> CATALOG_AD_INSERTION_INDEX
@@ -1717,10 +1887,10 @@ internal fun UiScreen.emptyStateCopy(): Pair<String, String> = when (this) {
 private fun androidx.compose.foundation.lazy.LazyListScope.actionItems(
     state: SproutPaceUiState,
     onAction: (UiAction) -> Unit,
-    headingKey: String? = "section_actions",
+    headingKey: String? = null,
     excludedIds: Set<String> = emptySet(),
 ) {
-    val visibleActions = state.actions.filterNot { it.id in excludedIds }
+    val visibleActions = state.visibleScreenActions(excludedIds)
     if (visibleActions.isNotEmpty() && headingKey != null) item { SectionHeading(headingKey) }
     items(visibleActions, key = { action -> modelListKey(ModelListEntryKind.ACTION, action.id) }) { action ->
         ScreenActionButton(action, onAction)
@@ -1733,6 +1903,18 @@ private fun androidx.compose.foundation.lazy.LazyListScope.actionItems(
             ) { Text(localizedText("action_discard_changes")) }
         }
     }
+}
+
+internal fun SproutPaceUiState.visibleScreenActions(
+    excludedIds: Set<String> = emptySet(),
+): List<UiScreenAction> {
+    val itemActionIds = items.mapNotNull(UiItem::actionId).toSet()
+    val redundantFormActionIds = when (screen) {
+        UiScreen.CLOSE_BATCH -> closeBatchOutcomeShortcutIds
+        else -> emptySet()
+    }
+    val hiddenActionIds = excludedIds + itemActionIds + redundantFormActionIds
+    return actions.filterNot { it.id in hiddenActionIds }
 }
 
 @Composable
@@ -1748,20 +1930,31 @@ private fun ScreenActionButton(action: UiScreenAction, onAction: (UiAction) -> U
     } else {
         val destructive = action.id in destructiveActionIds
         val destructiveDescription = if (destructive) localizedText("state_destructive_action") else null
-        OutlinedButton(
-            onClick = dispatch,
-            enabled = action.enabled,
-            colors = if (destructive) {
-                ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.error)
-            } else {
-                ButtonDefaults.outlinedButtonColors()
-            },
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
-                .semantics {
-                    testTag = "action-${action.id}"
-                    destructiveDescription?.let { stateDescription = it }
-                },
-        ) { LabeledActionContent(action.id, action.labelKey) }
+        val actionModifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
+            .semantics {
+                testTag = "action-${action.id}"
+                destructiveDescription?.let { stateDescription = it }
+            }
+        if (destructive) {
+            TextButton(
+                onClick = dispatch,
+                enabled = action.enabled,
+                colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error),
+                modifier = actionModifier,
+            ) { LabeledActionContent(action.id, action.labelKey) }
+        } else if (action.id in lowEmphasisActionIds) {
+            OutlinedButton(
+                onClick = dispatch,
+                enabled = action.enabled,
+                modifier = actionModifier,
+            ) { LabeledActionContent(action.id, action.labelKey) }
+        } else {
+            FilledTonalButton(
+                onClick = dispatch,
+                enabled = action.enabled,
+                modifier = actionModifier,
+            ) { LabeledActionContent(action.id, action.labelKey) }
+        }
     }
 }
 
@@ -1778,23 +1971,22 @@ internal fun modelListKey(kind: ModelListEntryKind, id: String): String = kind.k
 
 @Composable
 private fun ItemCard(screen: UiScreen, item: UiItem, onAction: (UiAction) -> Unit) {
+    val selectableCard = itemCardIsSelectable(screen, item)
     val selectionDescription = localizedText(
         if (item.selected) "state_selected" else "state_not_selected",
     )
-    Card(
-        onClick = { onAction(UiAction.Select(item.id)) },
-        colors = CardDefaults.cardColors(
-            containerColor = if (item.selected) {
-                MaterialTheme.colorScheme.secondaryContainer
-            } else {
-                MaterialTheme.colorScheme.surfaceContainerLow
-            },
-        ),
-        modifier = Modifier.fillMaxWidth().semantics {
-            stateDescription = selectionDescription
-            testTag = "item-${item.id}"
+    val cardColors = CardDefaults.cardColors(
+        containerColor = if (item.selected) {
+            MaterialTheme.colorScheme.secondaryContainer
+        } else {
+            MaterialTheme.colorScheme.surfaceContainerLow
         },
-    ) {
+    )
+    val cardModifier = Modifier.fillMaxWidth().semantics {
+        if (selectableCard) stateDescription = selectionDescription
+        testTag = "item-${item.id}"
+    }
+    val content: @Composable () -> Unit = {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             if (screen in stageContentScreens) {
                 stageImage(item)?.let { image ->
@@ -1838,7 +2030,7 @@ private fun ItemCard(screen: UiScreen, item: UiItem, onAction: (UiAction) -> Uni
             item.stateKey?.let { Text(localizedText(it), style = MaterialTheme.typography.labelMedium) }
             item.actionId?.let { actionId ->
                 TextButton(
-                    onClick = { onAction(UiAction.Submit(actionId)) },
+                    onClick = { onAction(UiAction.Submit(actionId, item.id)) },
                     modifier = Modifier.heightIn(min = 48.dp),
                 ) { LabeledActionContent(actionId, "action_${actionId.replace('-', '_')}") }
             }
@@ -1851,12 +2043,24 @@ private fun ItemCard(screen: UiScreen, item: UiItem, onAction: (UiAction) -> Uni
             }
         }
     }
+    if (selectableCard) {
+        Card(
+            onClick = { onAction(UiAction.Select(item.id)) },
+            colors = cardColors,
+            modifier = cardModifier,
+        ) { content() }
+    } else {
+        Card(colors = cardColors, modifier = cardModifier) { content() }
+    }
 }
+
+internal fun itemCardIsSelectable(screen: UiScreen, item: UiItem): Boolean =
+    screen != UiScreen.FIRST_RUN && item.actionId == null && item.commands.isEmpty()
 
 @Composable
 private fun FactCard(fact: UiFact) {
     Surface(
-        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        color = MaterialTheme.colorScheme.surfaceContainer,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
     ) {
@@ -1907,6 +2111,7 @@ private fun TextEntryField(field: UiField, onAction: (UiAction) -> Unit) {
         },
         isError = errorText != null,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        shape = MaterialTheme.shapes.medium,
         singleLine = field.kind != ScreenFieldKind.TEXT || field.id !in multilineFieldIds,
         minLines = if (field.id in multilineFieldIds) 3 else 1,
     )
@@ -1997,11 +2202,14 @@ private fun PlatformPickerField(
     actionLabelKey: String,
     onAction: (UiAction) -> Unit,
 ) {
-    val hasPhoto = field.value.isNotBlank() && field.value != REMOVE_PHOTO_VALUE
+    val isPhoto = kind == PlatformActionKind.CHOOSE_PHOTO
+    val hasSelection = field.value.isNotBlank() && field.value != REMOVE_PHOTO_VALUE
     val statusKey = when {
-        field.value == REMOVE_PHOTO_VALUE -> "observation_photo_removed"
-        hasPhoto -> "observation_photo_selected"
-        else -> "observation_photo_none"
+        isPhoto && field.value == REMOVE_PHOTO_VALUE -> "observation_photo_removed"
+        isPhoto && hasSelection -> "observation_photo_selected"
+        isPhoto -> "observation_photo_none"
+        hasSelection -> "document_file_selected"
+        else -> "document_file_none"
     }
     Column(Modifier.fillMaxWidth().semantics { testTag = "field-${field.id}" }) {
         OutlinedTextField(
@@ -2024,17 +2232,32 @@ private fun PlatformPickerField(
             modifier = Modifier.heightIn(min = 48.dp).padding(top = 8.dp),
         ) {
             LabeledActionContent(
-                actionId = if (hasPhoto) "replace-photo" else "choose-photo",
-                labelKey = if (hasPhoto) "action_replace_photo" else actionLabelKey,
+                actionId = when {
+                    !hasSelection -> if (isPhoto) "choose-photo" else "choose-file"
+                    isPhoto -> "replace-photo"
+                    else -> "replace-file"
+                },
+                labelKey = when {
+                    !hasSelection -> actionLabelKey
+                    isPhoto -> "action_replace_photo"
+                    else -> "action_replace_file"
+                },
             )
         }
-        if (hasPhoto) {
+        if (hasSelection) {
             TextButton(
-                onClick = { onAction(UiAction.RemovePhoto(field.id, field.value)) },
+                onClick = {
+                    onAction(UiAction.ClearPickerSelection(field.id, field.value, kind))
+                },
                 enabled = !field.readOnly,
                 modifier = Modifier.heightIn(min = 48.dp)
                     .semantics { testTag = "remove-${field.id}" },
-            ) { LabeledActionContent("remove-photo", "action_remove_photo") }
+            ) {
+                LabeledActionContent(
+                    actionId = if (isPhoto) "remove-photo" else "remove-file",
+                    labelKey = if (isPhoto) "action_remove_photo" else "action_remove_file",
+                )
+            }
         }
         FieldError(field)
     }
@@ -2065,16 +2288,21 @@ private fun FieldError(field: UiField) {
 @Composable
 private fun SectionHeading(key: String) = Text(
     text = localizedText(key),
-    style = MaterialTheme.typography.titleSmall,
+    style = MaterialTheme.typography.titleMedium,
     color = MaterialTheme.colorScheme.primary,
     modifier = Modifier.padding(top = 8.dp).semantics { heading() },
 )
 
 @Composable
 private fun StatusCard(titleKey: String, bodyKey: String, warning: Boolean = false) {
-    val container = if (warning) MaterialTheme.colorScheme.errorContainer else MaterialTheme.colorScheme.surfaceContainerLow
-    val content = if (warning) MaterialTheme.colorScheme.onErrorContainer else MaterialTheme.colorScheme.onSurface
-    Surface(color = container, contentColor = content, shape = MaterialTheme.shapes.large) {
+    val container = if (warning) MaterialTheme.colorScheme.tertiaryContainer else MaterialTheme.colorScheme.surfaceContainerLow
+    val content = if (warning) MaterialTheme.colorScheme.onTertiaryContainer else MaterialTheme.colorScheme.onSurface
+    Surface(
+        color = container,
+        contentColor = content,
+        shape = MaterialTheme.shapes.large,
+        modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
+    ) {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(localizedText(titleKey), style = MaterialTheme.typography.titleMedium, modifier = Modifier.semantics { heading() })
             Text(localizedText(bodyKey), style = MaterialTheme.typography.bodyMedium)
@@ -2085,7 +2313,7 @@ private fun StatusCard(titleKey: String, bodyKey: String, warning: Boolean = fal
 @Composable
 private fun MessageState(titleKey: String, bodyKey: String, actionKey: String, onClick: () -> Unit) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().semantics { liveRegion = LiveRegionMode.Polite },
         contentPadding = PaddingValues(24.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -2167,13 +2395,37 @@ private val twoPaneScreens = setOf(
     UiScreen.ADVERTISING_PRIVACY,
 )
 
+private val supportingFactScreens = setOf(
+    UiScreen.BATCH_DETAIL,
+    UiScreen.RECIPE,
+    UiScreen.BACKUP_RESTORE,
+)
+
+private fun SproutPaceUiState.showsSupportingFacts(): Boolean =
+    facts.isNotEmpty() && screen in supportingFactScreens
+
+private fun SproutPaceUiState.itemSectionKey(): String? = when (screen) {
+    UiScreen.BATCH_DETAIL, UiScreen.RECIPE -> "batch_timeline"
+    else -> null
+}
+
 private val multilineFieldIds = setOf("text", "note", "reason", "assessment")
+private val hiddenTechnicalFieldIds = setOf("id", "newId", "eventId", "actionId")
 
 internal val contextFieldScreens = setOf(UiScreen.TODAY, UiScreen.TRAYS, UiScreen.BATCH_DETAIL, UiScreen.PLAN)
 
 private val destructiveActionIds = setOf(
     "delete-batch", "delete-observation", "delete-plan", "delete-recipe", "delete-tray-size",
     "delete-zone", "erase-all", "delete-all-data", "restore-backup", "undo-stage",
+)
+
+private val lowEmphasisActionIds = setOf(
+    "pause-plan", "resume-plan", "open-system-settings", "open-privacy-policy",
+    "close-harvest", "close-failed", "close-abandoned", "record-actual-mass",
+)
+
+private val closeBatchOutcomeShortcutIds = setOf(
+    "close-harvest", "close-failed", "close-abandoned", "record-actual-mass",
 )
 
 private val stageContentScreens = setOf(UiScreen.BATCH_DETAIL, UiScreen.RECIPE, UiScreen.CLOSE_BATCH)
@@ -2197,5 +2449,5 @@ private val backupActionIds = setOf(
 )
 private val repeatActionIds = setOf("repeat-batch", "duplicate-recipe", "undo-stage")
 private val completeActionIds = setOf(
-    "complete-action", "confirm-stage", "confirm-sowing", "confirm-suggestion", "save-outcome",
+    "close-batch", "complete-action", "confirm-stage", "confirm-sowing", "confirm-suggestion", "save-outcome",
 )

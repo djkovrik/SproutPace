@@ -19,7 +19,11 @@ import com.sedsoftware.sproutpace.domain.model.TrayShape
 import com.sedsoftware.sproutpace.domain.model.TraySizePreset
 import com.sedsoftware.sproutpace.domain.model.TraySizePresetId
 import com.sedsoftware.sproutpace.domain.model.UserGrowRecipe
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
 import kotlin.time.Clock
@@ -294,8 +298,11 @@ class LocalBackupService(
     override suspend fun createSnapshot(): Result<ProductSnapshot> = domainResult { createArchive().snapshot }
 
     suspend fun createArchive(): LocalBackupArchive = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
         val photos = files.exportAll().sortedBy { it.id.value }
+        currentCoroutineContext().ensureActive()
         val current = database.snapshot()
+        currentCoroutineContext().ensureActive()
         val integrity = photos.associate { it.id to it.sha256 }
         val manifest = SnapshotValidation.manifest(
             current.zones, current.trayPresets, current.recipes, current.batches,
@@ -314,13 +321,24 @@ class LocalBackupService(
         domainResult { SnapshotValidation.validate(snapshot) }
 
     suspend fun preview(archive: LocalBackupArchive): BackupPreview = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
         val reasons = mutableListOf<LocalDataErrorKey>()
         if (archive.formatVersion != LocalBackupArchiveCodec.FORMAT_VERSION) reasons += LocalDataErrorKey.ARCHIVE_UNSUPPORTED
         if (SnapshotValidation.validate(archive.snapshot) is RestoreValidation.Invalid) reasons += LocalDataErrorKey.ARCHIVE_INVALID
+        currentCoroutineContext().ensureActive()
         if (archive.photos.map { it.id }.distinct().size != archive.photos.size) reasons += LocalDataErrorKey.ARCHIVE_DUPLICATE_RECORD
-        if (archive.photos.any { Sha256.digest(it.bytes) != it.sha256 }) reasons += LocalDataErrorKey.ARCHIVE_CORRUPT_PHOTO
+        var corruptPhoto = false
+        for (photo in archive.photos) {
+            currentCoroutineContext().ensureActive()
+            if (Sha256.digest(photo.bytes) != photo.sha256) {
+                corruptPhoto = true
+                break
+            }
+        }
+        if (corruptPhoto) reasons += LocalDataErrorKey.ARCHIVE_CORRUPT_PHOTO
         val expected = archive.snapshot.manifest.photoIntegrity
         val actual = archive.photos.associate { it.id to it.sha256 }
+        currentCoroutineContext().ensureActive()
         if (expected != actual) reasons += LocalDataErrorKey.ARCHIVE_PHOTO_MISMATCH
         if (reasons.isEmpty()) BackupPreview.Valid(archive) else BackupPreview.Invalid(reasons.distinct())
     }
@@ -333,13 +351,18 @@ class LocalBackupService(
         val checked = preview(archive)
         if (checked is BackupPreview.Invalid) throw LocalDataException(checked.reasons.first())
         val previous = createArchive()
-        runCatching {
+        val failure = runCatching {
             files.replaceAll(archive.photos)
+            currentCoroutineContext().ensureActive()
             database.replace(archive.snapshot)
+            currentCoroutineContext().ensureActive()
             settings.replace(archive.preferences)
             reminders.replaceFutureReminders(archive.snapshot)
-        }.getOrElse { failure ->
-            compensate(previous, failure)
+            currentCoroutineContext().ensureActive()
+        }.exceptionOrNull()
+        if (failure != null) {
+            withContext(NonCancellable) { compensate(previous, failure) }
+            if (failure is CancellationException) throw failure
             throw LocalDataException(LocalDataErrorKey.RESTORE_FAILED, failure)
         }
     }
@@ -371,16 +394,22 @@ class LocalBackupService(
     private suspend fun documentRead(documentId: String): ByteArray {
         if (documentId.isBlank()) localDataFailure(LocalDataErrorKey.INVALID_COMMAND)
         val port = documents ?: localDataFailure(LocalDataErrorKey.DOCUMENT_READ_FAILED)
-        return runCatching { port.read(documentId) }
-            .getOrElse { localDataFailure(LocalDataErrorKey.DOCUMENT_READ_FAILED, it) }
-            ?: localDataFailure(LocalDataErrorKey.DOCUMENT_NOT_FOUND)
+        val result = runCatching { port.read(documentId) }
+        result.exceptionOrNull()?.let { failure ->
+            if (failure is CancellationException) throw failure
+            localDataFailure(LocalDataErrorKey.DOCUMENT_READ_FAILED, failure)
+        }
+        return result.getOrNull() ?: localDataFailure(LocalDataErrorKey.DOCUMENT_NOT_FOUND)
     }
 
     private suspend fun documentWrite(documentId: String, bytes: ByteArray) {
         if (documentId.isBlank()) localDataFailure(LocalDataErrorKey.INVALID_COMMAND)
         val port = documents ?: localDataFailure(LocalDataErrorKey.DOCUMENT_WRITE_FAILED)
-        runCatching { port.write(documentId, bytes) }
-            .getOrElse { localDataFailure(LocalDataErrorKey.DOCUMENT_WRITE_FAILED, it) }
+        val failure = runCatching { port.write(documentId, bytes) }.exceptionOrNull()
+        if (failure != null) {
+            if (failure is CancellationException) throw failure
+            localDataFailure(LocalDataErrorKey.DOCUMENT_WRITE_FAILED, failure)
+        }
     }
 }
 

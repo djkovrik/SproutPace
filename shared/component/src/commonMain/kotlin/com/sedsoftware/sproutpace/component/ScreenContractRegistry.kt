@@ -241,6 +241,7 @@ object ScreenContractRegistry {
                 operation("time-zone-change", CommandSubjectRequirement.NONE, argument("timeZoneId")),
                 subjectOperation("delete-batch"), subjectOperation("repeat-batch", argument("newId")),
             ),
+            actions = listOf(navigationAction("add-observation"), navigationAction("close-batch")),
         ),
         contract(
             ScreenId.PLAN,

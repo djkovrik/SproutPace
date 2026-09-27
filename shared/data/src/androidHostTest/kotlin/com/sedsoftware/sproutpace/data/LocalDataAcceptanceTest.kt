@@ -3,7 +3,11 @@ package com.sedsoftware.sproutpace.data
 import com.russhwolf.settings.MapSettings
 import com.sedsoftware.sproutpace.domain.catalog.SproutPaceCatalog
 import com.sedsoftware.sproutpace.domain.model.*
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Instant
@@ -33,6 +37,18 @@ class LocalDataAcceptanceTest {
         database.close()
         files.close()
         factory.close()
+    }
+
+    @Test fun ac001_startupSetupDetectionRequiresZoneTrayAndPlan() = runTest {
+        val fixture = fixture()
+        assertFalse(database.hasMinimumGrowingSetup())
+        database.saveZone(fixture.zone)
+        database.saveTrayPreset(fixture.tray)
+        assertFalse(database.hasMinimumGrowingSetup())
+
+        database.savePlan(fixture.plan)
+
+        assertTrue(database.hasMinimumGrowingSetup())
     }
 
     @Test fun ac013_deleteZonePreservesHistoricalZoneNameSnapshot() = runTest {
@@ -470,6 +486,97 @@ class LocalDataAcceptanceTest {
         }
     }
 
+    @Test fun qg012_cancellingBackupCreationPropagatesAndLeavesLiveStateUntouched() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val before = backup.createArchive()
+        val exportStarted = CompletableDeferred<Unit>()
+        val service = LocalBackupService(
+            database = database,
+            files = BlockingExportFileStore(files, exportStarted),
+            settings = settings,
+            ioDispatcher = Dispatchers.Unconfined,
+        )
+        val operation = async { service.createArchive() }
+        exportStarted.await()
+
+        operation.cancel()
+
+        assertFailsWith<CancellationException> { operation.await() }
+        assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+    }
+
+    @Test fun qg012_cancellingArchiveReadAndValidationPropagatesWithoutMutation() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val before = backup.createArchive()
+        val readStarted = CompletableDeferred<Unit>()
+        val service = LocalBackupService(
+            database = database,
+            files = files,
+            settings = settings,
+            ioDispatcher = Dispatchers.Unconfined,
+            documents = BlockingArchiveDocuments(readStarted = readStarted),
+        )
+        val operation = async { service.readPreview("picked-archive") }
+        readStarted.await()
+
+        operation.cancel()
+
+        assertFailsWith<CancellationException> { operation.await() }
+        assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+    }
+
+    @Test fun qg012_cancellingReplacementCompensatesDatabaseFilesSettingsAndReminders() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val target = backup.createArchive()
+        database.saveZone(GrowZone(GrowZoneId("current-zone"), "Current", GrowZoneType.DARK, 0))
+        settings.setTheme(ThemePreference.LIGHT)
+        files.write(PhotoId("current-photo"), byteArrayOf(7, 8, 9))
+        val before = backup.createArchive()
+        val reminderStarted = CompletableDeferred<Unit>()
+        val reminders = BlockingReminderReconciliation(reminderStarted)
+        val service = LocalBackupService(
+            database = database,
+            files = files,
+            settings = settings,
+            ioDispatcher = Dispatchers.Unconfined,
+            reminders = reminders,
+        )
+        val operation = async { service.replaceArchive(target) }
+        reminderStarted.await()
+
+        operation.cancel()
+
+        assertFailsWith<CancellationException> { operation.await() }
+        assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+        assertEquals(before.snapshot, reminders.compensatedWith)
+    }
+
+    @Test fun qg012_cancellingCsvWritePropagatesAndLeavesLiveStateUntouched() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val before = backup.createArchive()
+        val writeStarted = CompletableDeferred<Unit>()
+        val documents = BlockingArchiveDocuments(writeStarted = writeStarted)
+        val service = LocalBackupService(
+            database = database,
+            files = files,
+            settings = settings,
+            ioDispatcher = Dispatchers.Unconfined,
+            documents = documents,
+        )
+        val operation = async { service.writeCsv("picked-csv") }
+        writeStarted.await()
+
+        operation.cancel()
+
+        assertFailsWith<CancellationException> { operation.await() }
+        assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+        assertFalse(documents.writeCompleted)
+    }
+
     @Test fun ac090_ac091_archiveBytesAreDeterministicVersionedPortableAndDocumentBacked() = runTest {
         val fixture = fixture()
         seedCompleteFixture(fixture)
@@ -638,6 +745,51 @@ class LocalDataAcceptanceTest {
         val values = mutableMapOf<String, ByteArray>()
         override suspend fun read(documentId: String): ByteArray? = values[documentId]?.copyOf()
         override suspend fun write(documentId: String, bytes: ByteArray) { values[documentId] = bytes.copyOf() }
+    }
+
+    private class BlockingArchiveDocuments(
+        private val readStarted: CompletableDeferred<Unit>? = null,
+        private val writeStarted: CompletableDeferred<Unit>? = null,
+    ) : ArchiveDocumentPort {
+        var writeCompleted: Boolean = false
+            private set
+
+        override suspend fun read(documentId: String): ByteArray? {
+            requireNotNull(readStarted).complete(Unit)
+            awaitCancellation()
+        }
+
+        override suspend fun write(documentId: String, bytes: ByteArray) {
+            requireNotNull(writeStarted).complete(Unit)
+            awaitCancellation()
+        }
+    }
+
+    private class BlockingExportFileStore(
+        private val delegate: PrivateFileStore,
+        private val exportStarted: CompletableDeferred<Unit>,
+    ) : PrivateFileStore by delegate {
+        override suspend fun exportAll(): List<PrivatePhoto> {
+            exportStarted.complete(Unit)
+            awaitCancellation()
+        }
+    }
+
+    private class BlockingReminderReconciliation(
+        private val firstCallStarted: CompletableDeferred<Unit>,
+    ) : ReminderReconciliationPort {
+        private var shouldBlock = true
+        var compensatedWith: ProductSnapshot? = null
+            private set
+
+        override suspend fun replaceFutureReminders(snapshot: ProductSnapshot) {
+            if (shouldBlock) {
+                shouldBlock = false
+                firstCallStarted.complete(Unit)
+                awaitCancellation()
+            }
+            compensatedWith = snapshot
+        }
     }
 
     private class RecordingReminders(var failNext: Boolean = false) : ReminderReconciliationPort {

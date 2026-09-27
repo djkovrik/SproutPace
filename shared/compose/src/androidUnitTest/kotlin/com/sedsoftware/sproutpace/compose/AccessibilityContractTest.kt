@@ -1,6 +1,7 @@
 package com.sedsoftware.sproutpace.compose
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
@@ -18,6 +19,7 @@ class AccessibilityContractTest {
         assertTrue("checkbox role", source.contains("role = Role.Checkbox"))
         assertTrue("validation error semantics", source.contains("error(text)"))
         assertTrue("state descriptions", source.contains("stateDescription ="))
+        assertTrue("dynamic status announcements", source.contains("liveRegion = LiveRegionMode.Polite"))
         assertTrue("headings", source.contains("heading()"))
         assertTrue("context inputs are expandable", source.contains("toggle-context-fields"))
         assertTrue("destructive actions use error color", source.contains("contentColor = MaterialTheme.colorScheme.error"))
@@ -53,6 +55,28 @@ class AccessibilityContractTest {
             ).readText()
         }
         assertTrue("sample_* keys must not drive production UI", !Regex("sample_[a-z0-9_]+").containsMatchIn(productionSources))
+    }
+
+    @Test
+    fun productionScreensDoNotRequireTimeBasedMotionToCommunicateState() {
+        val productionSources = listOf("App.kt", "ScreenContent.kt").joinToString("\n") { name ->
+            projectFile(
+                "src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/$name",
+                "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/$name",
+            ).readText()
+        }
+        val timeBasedMotionApis = listOf(
+            "AnimatedContent(",
+            "AnimatedVisibility(",
+            "animateColorAsState(",
+            "animateDpAsState(",
+            "animateFloatAsState(",
+            "animateItem(",
+            "rememberInfiniteTransition(",
+        )
+        timeBasedMotionApis.forEach { api ->
+            assertFalse("Production state must remain understandable with reduced motion: $api", productionSources.contains(api))
+        }
     }
 
     private fun resourceKeys(file: File): Set<String> =

@@ -1,0 +1,9 @@
+2026-09-27T08:07:47.776001Z  WARN codex_core_plugins::loader: failed to parse plugin MCP config: expected value at line 1 column 1 path=C:\Users\Sergey\.codex\plugins\cache\lazyweb\lazyweb\0.1.1\.mcp.json
+2026-09-27T08:07:47.797663Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-09-27T08:07:47.797689Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-09-27T08:07:47.814727Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-09-27T08:07:47.849571Z  WARN codex_core_plugins::loader: failed to parse plugin MCP config: expected value at line 1 column 1 path=C:\Users\Sergey\.codex\plugins\cache\lazyweb\lazyweb\0.1.1\.mcp.json
+2026-09-27T08:07:47.896395Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-09-27T08:07:47.896423Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-09-27T08:08:14.069133Z  WARN codex_core_plugins::manager: failed to auto-upgrade configured marketplace marketplace="lazyweb" error=failed to validate upgraded marketplace root: invalid marketplace file `C:\Users\Sergey\.codex\.tmp/marketplaces\.staging\marketplace-upgrade-CC8PjB`: marketplace root does not contain a supported manifest
+2026-09-27T08:16:32.036225Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a0e1e7-ec82-71d0-9710-5bb551ac8a46 hook_name=legacy_notify error=Имя файла или его расширение имеет слишком большую длину. (os error 206)

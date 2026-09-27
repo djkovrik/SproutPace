@@ -163,10 +163,14 @@ sealed interface UiAction {
     data class EditField(val fieldId: String, val value: String) : UiAction
     data class ChooseOption(val fieldId: String, val optionId: String) : UiAction
     data class SelectTrayCategory(val category: TrayCategory) : UiAction
-    data class Submit(val actionId: String) : UiAction
+    data class Submit(val actionId: String, val subjectId: String? = null) : UiAction
     data class SubmitItem(val operation: String, val subjectId: String) : UiAction
     data class RequestPlatform(val request: PlatformActionRequest) : UiAction
-    data class RemovePhoto(val fieldId: String, val currentValue: String) : UiAction
+    data class ClearPickerSelection(
+        val fieldId: String,
+        val currentValue: String,
+        val kind: PlatformActionKind,
+    ) : UiAction
     data class SetLayout(val layout: UiLayout) : UiAction
     data object CancelDraft : UiAction
     data object Retry : UiAction

@@ -1,0 +1,2163 @@
+{
+  "completedAt": "2026-09-27T09:49:00Z",
+  "evidenceProfiles": {
+    "android-device-smoke": {
+      "assertion": "The current-fingerprint device run proves initial First Run routing, setup continuation, Today, Plan, Trays, Catalog and Batch Detail operation at 200% font scale, reachable keyboard actions, minimum targets, notification permission denial/recovery, manual notification-time persistence and process restart. It does not prove the native branches in F-001 or dynamic accessibility announcements/manual Plan-date interaction in F-002.",
+      "production": [
+        {
+          "path": ".vibe/scripts/run-android-ui-smoke.ps1",
+          "symbol": "Pixel 8 device suite"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-d03e30b9-6cbd-42bd-9763-2766e71454f2.json"
+      ],
+      "tests": [
+        {
+          "path": ".vibe/receipts/RECEIPT-d03e30b9-6cbd-42bd-9763-2766e71454f2.log",
+          "symbol": "executed assertions"
+        }
+      ]
+    },
+    "cancellation-delta": {
+      "assertion": "Cancellation is rethrown for archive document I/O, cooperative checks cover archive creation and validation, and restore cancellation executes non-cancellable compensation. Tests cancel creation, read/validation, replacement and CSV writing and assert unchanged database, files, settings and reminder reconciliation.",
+      "production": [
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+          "symbol": "LocalBackupService cancellation and compensation"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-f069c967-1dca-4ee8-8eab-8a8cfd27c50f.json",
+        ".vibe/receipts/RECEIPT-6a55fee4-b7df-45ff-84f5-c76ff8ef5bb1.json"
+      ],
+      "tests": [
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+          "symbol": "qg012 cancellation tests"
+        }
+      ]
+    },
+    "current-matrix": {
+      "assertion": "The current-fingerprint matrix passed Detekt, Android host tests, Compose compilation, SQLDelight migration verification, 78 Paparazzi goldens, Android debug/release/bundle builds, all iOS Simulator ARM64 Kotlin compilation tasks and Kover verification. Production wiring and assertions were inspected independently.",
+      "production": [
+        {
+          "path": "shared",
+          "symbol": "production modules"
+        },
+        {
+          "path": "androidApp",
+          "symbol": "Android application"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-6a55fee4-b7df-45ff-84f5-c76ff8ef5bb1.json"
+      ],
+      "tests": [
+        {
+          "path": "shared",
+          "symbol": "domain, data, component, root, platform, monetization and Compose suites"
+        }
+      ]
+    },
+    "delta-routing": {
+      "assertion": "Production startup now selects First Run until zone, tray and plan setup exists, without adding a synthetic back-stack entry. Item actions carry their own subject identifiers through the UI router instead of relying on incidental selection.",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt",
+          "symbol": "initialScreen selection"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt",
+          "symbol": "hasMinimumGrowingSetup"
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt",
+          "symbol": "explicit item subject routing"
+        },
+        {
+          "path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt",
+          "symbol": "initial configuration"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-6a55fee4-b7df-45ff-84f5-c76ff8ef5bb1.json"
+      ],
+      "tests": [
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt",
+          "symbol": "ac001_startupSetupDetectionRequiresZoneTrayAndPlan"
+        },
+        {
+          "path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt",
+          "symbol": "ac001_emptyWorkspaceCanStartAtFirstRunWithoutAddingBackHistory"
+        },
+        {
+          "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapterTest.kt",
+          "symbol": "explicit item subject routing"
+        }
+      ]
+    }
+  },
+  "findings": [
+    {
+      "evidence": [
+        ".vibe/scripts/run-android-ui-smoke.ps1",
+        ".vibe/receipts/RECEIPT-d03e30b9-6cbd-42bd-9763-2766e71454f2.json",
+        "spec/quality.md"
+      ],
+      "failedLink": "The expanded current-fingerprint Pixel 8 suite proves permission denial/recovery, restart, 200%-font task flows, keyboard reachability and manual notification-time persistence. It still does not drive the real photo/document picker create/open/cancel paths, actual daily/soak notification delivery and time-zone reconciliation, physical reminder cancellation after terminal/reset operations, or eligible/ineligible Yandex request and layout behavior.",
+      "id": "F-001",
+      "obligationIds": [
+        "AC-065",
+        "AC-066",
+        "AC-067",
+        "AC-068",
+        "AC-074",
+        "AC-082",
+        "AC-092",
+        "AC-095",
+        "GrowBatch:abandon",
+        "Observation:attach-photo",
+        "BackupArchive:restore",
+        "QG-002"
+      ],
+      "severity": "blocking",
+      "smallestProof": "Extend and execute the Android device suite for photo and document picker create/open/cancel, daily and soak delivery, restart/time-zone reconciliation, terminal/reset cancellation, and eligible/ineligible ad requests and layout.",
+      "summary": "Android native platform coverage is incomplete."
+    },
+    {
+      "evidence": [
+        "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt",
+        ".vibe/scripts/run-android-ui-smoke.ps1",
+        ".vibe/receipts/RECEIPT-d03e30b9-6cbd-42bd-9763-2766e71454f2.json",
+        "spec/design.md",
+        "spec/quality.md"
+      ],
+      "failedLink": "The new device run materially improves coverage by executing Today, Trays, Batch Detail, Plan and Catalog at 200% font scale and tabbing to representative actions. It does not assert logical accessibility traversal order, visible focus rendering, dynamic completed/rescheduled/conflict announcements, reduced-motion behavior, or manual Plan-date interaction. UIAutomator node presence and source-string scans do not prove those runtime behaviors.",
+      "id": "F-002",
+      "obligationIds": [
+        "AC-122",
+        "QG-007"
+      ],
+      "severity": "blocking",
+      "smallestProof": "Add executed assertions for semantic traversal order, visible focus, live state announcements, reduced motion and keyboard/manual Plan-date editing on the AC-122 screens, retaining the current 200%-font task flow.",
+      "summary": "The accessibility stress suite still omits required runtime assertions."
+    },
+    {
+      "evidence": [
+        ".vibe/audits/AUDIT-REQUEST-7d92e554-db17-4226-a0ed-6cac0ec58ce2/request.json",
+        ".vibe/receipts/RECEIPT-6a55fee4-b7df-45ff-84f5-c76ff8ef5bb1.json",
+        "spec/quality.md"
+      ],
+      "failedLink": "The request explicitly marks native iOS build/platform/macOS CI execution unavailable, and the remaining Android platform and accessibility findings prevent the local release check from passing.",
+      "id": "F-003",
+      "obligationIds": [
+        "AC-107",
+        "QG-002",
+        "QG-003",
+        "QG-004",
+        "QG-007"
+      ],
+      "severity": "blocking",
+      "smallestProof": "Close F-001 and F-002, then attach successful macOS/Xcode iOS build, platform and CI evidence for the same fingerprint and rerun release closure.",
+      "summary": "Release closure is incomplete."
+    }
+  ],
+  "inventory": {
+    "acceptanceScenarioIds": [
+      "AC-001",
+      "AC-002",
+      "AC-010",
+      "AC-011",
+      "AC-012",
+      "AC-013",
+      "AC-014",
+      "AC-015",
+      "AC-016",
+      "AC-017",
+      "AC-020",
+      "AC-021",
+      "AC-022",
+      "AC-023",
+      "AC-024",
+      "AC-025",
+      "AC-026",
+      "AC-027",
+      "AC-030",
+      "AC-031",
+      "AC-032",
+      "AC-033",
+      "AC-034",
+      "AC-035",
+      "AC-036",
+      "AC-037",
+      "AC-038",
+      "AC-039",
+      "AC-040",
+      "AC-050",
+      "AC-051",
+      "AC-052",
+      "AC-053",
+      "AC-054",
+      "AC-055",
+      "AC-056",
+      "AC-057",
+      "AC-060",
+      "AC-061",
+      "AC-062",
+      "AC-063",
+      "AC-064",
+      "AC-065",
+      "AC-066",
+      "AC-067",
+      "AC-068",
+      "AC-070",
+      "AC-071",
+      "AC-072",
+      "AC-073",
+      "AC-074",
+      "AC-080",
+      "AC-081",
+      "AC-082",
+      "AC-083",
+      "AC-084",
+      "AC-085",
+      "AC-090",
+      "AC-091",
+      "AC-092",
+      "AC-093",
+      "AC-094",
+      "AC-095",
+      "AC-100",
+      "AC-101",
+      "AC-102",
+      "AC-103",
+      "AC-104",
+      "AC-105",
+      "AC-106",
+      "AC-107",
+      "AC-110",
+      "AC-111",
+      "AC-112",
+      "AC-113",
+      "AC-120",
+      "AC-121",
+      "AC-122",
+      "AC-123"
+    ],
+    "excludedRequirementIds": [
+      "REQ-901",
+      "REQ-902",
+      "REQ-903",
+      "REQ-904",
+      "REQ-905",
+      "REQ-906",
+      "REQ-907",
+      "REQ-908",
+      "REQ-909"
+    ],
+    "managedOperationIds": [
+      "AdvertisingConsent:create",
+      "AdvertisingConsent:read",
+      "AdvertisingConsent:update",
+      "BackupArchive:create",
+      "BackupArchive:read",
+      "BackupArchive:reject-invalid",
+      "BackupArchive:restore",
+      "CrashReportingPreference:create",
+      "CrashReportingPreference:read",
+      "CrashReportingPreference:update",
+      "GrowBatch:abandon",
+      "GrowBatch:assign-overflow",
+      "GrowBatch:complete-harvest",
+      "GrowBatch:confirm-stage",
+      "GrowBatch:create",
+      "GrowBatch:delete",
+      "GrowBatch:fail",
+      "GrowBatch:read",
+      "GrowBatch:record-actual-mass",
+      "GrowBatch:repeat",
+      "GrowBatch:skip-stage",
+      "GrowBatch:start-growing",
+      "GrowBatch:start-soaking",
+      "GrowBatch:undo-stage",
+      "GrowBatch:update",
+      "GrowZone:create",
+      "GrowZone:delete",
+      "GrowZone:read",
+      "GrowZone:update",
+      "HarvestPlan:confirm-suggestion",
+      "HarvestPlan:create",
+      "HarvestPlan:delete",
+      "HarvestPlan:pause-resume",
+      "HarvestPlan:read",
+      "HarvestPlan:suggest-continuous-batch",
+      "HarvestPlan:update",
+      "Observation:attach-photo",
+      "Observation:create",
+      "Observation:delete",
+      "Observation:read",
+      "Observation:update",
+      "TraySizePreset:create",
+      "TraySizePreset:delete",
+      "TraySizePreset:read",
+      "TraySizePreset:update",
+      "UserGrowRecipe:create",
+      "UserGrowRecipe:delete",
+      "UserGrowRecipe:duplicate",
+      "UserGrowRecipe:read",
+      "UserGrowRecipe:update"
+    ],
+    "qualityGateIds": [
+      "QG-001",
+      "QG-002",
+      "QG-003",
+      "QG-004",
+      "QG-005",
+      "QG-006",
+      "QG-007",
+      "QG-008",
+      "QG-009",
+      "QG-010",
+      "QG-011",
+      "QG-012"
+    ],
+    "requirementIds": [
+      "REQ-001",
+      "REQ-002",
+      "REQ-003",
+      "REQ-004",
+      "REQ-005",
+      "REQ-006",
+      "REQ-007",
+      "REQ-008",
+      "REQ-009",
+      "REQ-010",
+      "REQ-011",
+      "REQ-012"
+    ]
+  },
+  "obligations": [
+    {
+      "evidenceRef": "delta-routing",
+      "id": "AC-001",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-001",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-002",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "evidenceRef": "delta-routing",
+      "id": "AC-002",
+      "result": "verified",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-002",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-010",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-010",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-011",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-011",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-012",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-012",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-012",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-013",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-013",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-014",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-014",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-014",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-015",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-015",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-016",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-016",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-017",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-017",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-020",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-020",
+      "result": "verified",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-020",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-021",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-021",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-021",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-022",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-022",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-023",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-023",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-024",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-024",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-025",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-025",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-026",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-026",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-027",
+      "result": "verified",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-027",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-027",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-030",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-030",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-031",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-031",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-032",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-032",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-032",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-033",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-033",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-034",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-035",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-035",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-036",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-036",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-036",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-037",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-037",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-037",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-038",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-038",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-038",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-039",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-039",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-039",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-040",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-040",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-040",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-050",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-050",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-050",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-051",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-051",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-052",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-052",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-052",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-053",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-053",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-054",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-054",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-055",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-055",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-055",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-056",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-056",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-057",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-057",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-060",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-060",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-060",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-061",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-061",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-061",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-062",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-062",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-062",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-063",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-063",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-064",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-064",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-064",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-065",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-065",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-066",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-066",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-067",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-067",
+      "result": "verified",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-068",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-068",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-070",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-070",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-071",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-071",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-072",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-072",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-073",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-074",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-074",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-080",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-080",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-080",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-081",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-081",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-081",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-082",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-082",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-083",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-083",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-084",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-084",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-084",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-085",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-085",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-090",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-090",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-090",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-091",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-091",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-092",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-092",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-093",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-093",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-093",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-094",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-094",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-095",
+      "result": "verified",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-095",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-095",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-100",
+      "result": "verified",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-100",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-100",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-101",
+      "result": "verified",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-101",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-101",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-102",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-102",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-103",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-103",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-104",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-104",
+      "result": "verified",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-104",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-105",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-105",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-106",
+      "result": "verified",
+      "surface": "network-mock-test"
+    },
+    {
+      "id": "AC-106",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-106",
+      "result": "verified",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-107",
+      "reason": "Requires macOS/Xcode.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "AC-107",
+      "result": "verified",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-110",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-110",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-111",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-111",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-112",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-112",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-112",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-113",
+      "result": "verified",
+      "surface": "repository-check"
+    },
+    {
+      "id": "AC-113",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-113",
+      "result": "verified",
+      "surface": "privacy-review"
+    },
+    {
+      "id": "AC-120",
+      "result": "verified",
+      "surface": "localization-contract-test"
+    },
+    {
+      "id": "AC-120",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-120",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-121",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-121",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-121",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-122",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-122",
+      "reason": "F-002",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "id": "AC-122",
+      "reason": "F-002",
+      "result": "gap",
+      "surface": "keyboard-test"
+    },
+    {
+      "id": "AC-123",
+      "result": "verified",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-123",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "QG-001",
+      "result": "verified",
+      "surface": "repository-check"
+    },
+    {
+      "id": "QG-001",
+      "result": "verified",
+      "surface": "unit-test"
+    },
+    {
+      "id": "QG-001",
+      "result": "verified",
+      "surface": "integration-test"
+    },
+    {
+      "id": "QG-001",
+      "result": "verified",
+      "surface": "static-analysis"
+    },
+    {
+      "id": "QG-001",
+      "result": "verified",
+      "surface": "coverage-check"
+    },
+    {
+      "id": "QG-001",
+      "result": "verified",
+      "surface": "localization-contract-test"
+    },
+    {
+      "id": "QG-002",
+      "result": "verified",
+      "surface": "android-build"
+    },
+    {
+      "id": "QG-002",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "android-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Requires macOS/Xcode.",
+      "result": "unavailable",
+      "surface": "ios-build"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Requires macOS/Xcode.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Requires macOS/Xcode.",
+      "result": "unavailable",
+      "surface": "macos-ci-check"
+    },
+    {
+      "id": "QG-004",
+      "reason": "F-003",
+      "result": "gap",
+      "surface": "release-check"
+    },
+    {
+      "assertion": "This delta audit compared all 409 snapshot hashes, inspected all 12 changed files and dependent behavior, rechecked every prior finding, executed the missing current-fingerprint device suite, and returned all 350 canonical pairs.",
+      "auditEvidence": true,
+      "id": "QG-004",
+      "result": "verified",
+      "surface": "acceptance-audit"
+    },
+    {
+      "condition": "Publication was not requested.",
+      "id": "QG-005",
+      "result": "not-applicable",
+      "surface": "publication-check"
+    },
+    {
+      "id": "QG-006",
+      "result": "verified",
+      "surface": "asset-check"
+    },
+    {
+      "id": "QG-006",
+      "result": "verified",
+      "surface": "asset-visual"
+    },
+    {
+      "id": "QG-007",
+      "result": "verified",
+      "surface": "preview-compile"
+    },
+    {
+      "id": "QG-007",
+      "result": "verified",
+      "surface": "screenshot-test"
+    },
+    {
+      "id": "QG-007",
+      "reason": "F-002",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "id": "QG-007",
+      "result": "verified",
+      "surface": "design-review"
+    },
+    {
+      "condition": "No release-candidate Firebase projects/configuration were supplied.",
+      "id": "QG-008",
+      "result": "not-applicable",
+      "surface": "firebase-config-check"
+    },
+    {
+      "condition": "No controlled release-candidate symbolication run was supplied.",
+      "id": "QG-008",
+      "result": "not-applicable",
+      "surface": "crash-symbolication-check"
+    },
+    {
+      "condition": "No production Yandex ad unit was supplied; production ads remain disabled.",
+      "id": "QG-009",
+      "result": "not-applicable",
+      "surface": "ad-config-check"
+    },
+    {
+      "condition": "No production Yandex ad unit was supplied; production ads remain disabled.",
+      "id": "QG-009",
+      "result": "not-applicable",
+      "surface": "ad-device-check"
+    },
+    {
+      "condition": "External distribution and final policy input are inactive.",
+      "id": "QG-010",
+      "result": "not-applicable",
+      "surface": "privacy-policy-check"
+    },
+    {
+      "condition": "External distribution is inactive.",
+      "id": "QG-010",
+      "result": "not-applicable",
+      "surface": "store-disclosure-check"
+    },
+    {
+      "id": "QG-011",
+      "result": "verified",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "QG-011",
+      "result": "verified",
+      "surface": "content-review"
+    },
+    {
+      "id": "QG-012",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "evidenceRef": "cancellation-delta",
+      "id": "QG-012",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "result": "verified",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "result": "verified",
+      "surface": "domain-test"
+    },
+    {
+      "id": "Observation:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:create",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:read",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:read",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:update",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:delete",
+      "result": "verified",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "result": "verified",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "F-001",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "result": "verified",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "result": "verified",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "result": "verified",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "result": "verified",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "result": "verified",
+      "surface": "component-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "result": "verified",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "result": "verified",
+      "surface": "settings-integration-test"
+    }
+  ],
+  "requestSha256": "fe0c0b7fde449df8cc4a2d610d27c8b11d6d03b15a946dc1ddd1129438d4c7b0",
+  "reviewedSources": [
+    "product.md",
+    "domain.md",
+    "data.md",
+    "design.md",
+    "quality.md",
+    "flows/FLOW-001.md",
+    "flows/FLOW-002.md",
+    "flows/FLOW-003.md",
+    "flows/FLOW-004.md",
+    "flows/FLOW-005.md",
+    "flows/FLOW-006.md",
+    "flows/FLOW-007.md",
+    "flows/FLOW-008.md",
+    "flows/FLOW-009.md",
+    "flows/FLOW-010.md",
+    "flows/FLOW-011.md",
+    "flows/FLOW-012.md",
+    "screens/SCREEN-001.md",
+    "screens/SCREEN-002.md",
+    "screens/SCREEN-003.md",
+    "screens/SCREEN-004.md",
+    "screens/SCREEN-005.md",
+    "screens/SCREEN-006.md",
+    "screens/SCREEN-007.md",
+    "screens/SCREEN-008.md",
+    "screens/SCREEN-009.md",
+    "screens/SCREEN-010.md",
+    "screens/SCREEN-011.md",
+    "screens/SCREEN-012.md",
+    "screens/SCREEN-013.md",
+    "screens/SCREEN-014.md",
+    "screens/SCREEN-015.md",
+    "screens/SCREEN-016.md"
+  ],
+  "startedAt": "2026-09-27T09:43:30Z",
+  "verdict": "GAPS"
+}

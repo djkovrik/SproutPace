@@ -152,6 +152,7 @@ class ProductionAppGraph internal constructor(
             isDebug = isDebug,
             screenDataManager = screenDataManager,
             mainContext = mainContext,
+            initialScreen = if (database.hasMinimumGrowingSetup()) ScreenId.TODAY else ScreenId.FIRST_RUN,
         ),
     ).create(DefaultComponentContext(lifecycleRegistry)).also { rootComponent = it }
     val root: AppRootComponent = ThemedAppRootComponent(productionRoot, productSettings.theme)
@@ -402,10 +403,12 @@ internal fun productionRootDependencies(
     isDebug: Boolean,
     screenDataManager: ScreenDataManager,
     mainContext: CoroutineContext,
+    initialScreen: ScreenId = ScreenId.TODAY,
 ): AppRootDependencies = AppRootDependencies(
     releaseStoreFactory = releaseStoreFactory,
     debugStoreFactory = debugStoreFactory,
     isDebug = isDebug,
     screenDataManager = screenDataManager,
     mainContext = mainContext,
+    initialScreen = initialScreen,
 )

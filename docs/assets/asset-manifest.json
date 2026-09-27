@@ -428,7 +428,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "screenHero",
           "screenIds": [
             "SCREEN-001",
@@ -439,19 +439,19 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[32]_sproutpacepreviewskt.firstrunpreviews.01_first_run_dark_w393dp_h851dp_night.png",
-          "sha256": "26453a2cc35b458a4261ff63310f6dc22347ab7836fb471f88316f1f7a5f3255"
+          "sha256": "8a837f86b1724b5ec7ba11b8c63119d09503a9db71083f6af502f687f3f4f3a1"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[33]_sproutpacepreviewskt.firstrunpreviews.01_first_run_light_w393dp_h851dp_day.png",
-          "sha256": "fd1eb11e1c704bcad1f30d257ea14c9040b09adab55e8f378f37eaaa51b04179"
+          "sha256": "9283de2a4d4d7025c4443821a15eb5c65a5d00f08d2f59a557d2f540701716a2"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[56]_sproutpacepreviewskt.settingspreviews.11_settings_dark_w393dp_h851dp_night.png",
-          "sha256": "849aa77c31359245daa437df157bafe942916d106baa567d431ad09f65f88a35"
+          "sha256": "4713feaefd3584ccb951335721b3c7b220d8bbfa2a56e6ec2a2e318976dfe699"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[57]_sproutpacepreviewskt.settingspreviews.11_settings_light_w393dp_h851dp_day.png",
-          "sha256": "bd2561de82961e628d5eabe9dce124efcbf01b6da498fa74390f5cebf106a8e0"
+          "sha256": "af6124bdc9ca8db969b5da6dfa56de3278b84d2a5d0e2b3f3ba8f1d873a6d2db"
         },
         {
           "path": "docs/assets/brand-refresh-review.md",
@@ -476,7 +476,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "2fe06bd41f06246ac4b6ff775d1c56785ed771374edbd697bb244447a29836d1",
+          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-002"
@@ -502,7 +502,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "2fe06bd41f06246ac4b6ff775d1c56785ed771374edbd697bb244447a29836d1",
+          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-003"
@@ -528,7 +528,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "2fe06bd41f06246ac4b6ff775d1c56785ed771374edbd697bb244447a29836d1",
+          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-006"
@@ -554,7 +554,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "2fe06bd41f06246ac4b6ff775d1c56785ed771374edbd697bb244447a29836d1",
+          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-007"
@@ -580,7 +580,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "2fe06bd41f06246ac4b6ff775d1c56785ed771374edbd697bb244447a29836d1",
+          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
           "symbol": "SproutPaceApp",
           "screenIds": [
             "SCREEN-002"
@@ -588,7 +588,7 @@
         },
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "screenHero",
           "screenIds": [
             "SCREEN-011"
@@ -614,7 +614,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -642,7 +642,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "2fe06bd41f06246ac4b6ff775d1c56785ed771374edbd697bb244447a29836d1",
+          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
           "symbol": "SproutPaceApp",
           "screenIds": [
             "SCREEN-004",
@@ -677,7 +677,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -707,7 +707,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -738,7 +738,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-009",
@@ -765,7 +765,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-016",
@@ -792,7 +792,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-014",
@@ -819,7 +819,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-003",
@@ -846,7 +846,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -874,7 +874,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -885,7 +885,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
+          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
@@ -910,7 +910,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -921,7 +921,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
+          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
@@ -946,7 +946,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -957,7 +957,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
+          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
@@ -982,7 +982,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -993,7 +993,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
+          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
@@ -1018,7 +1018,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1029,7 +1029,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
+          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
@@ -1054,7 +1054,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "showsEmptyIllustration",
           "screenIds": [
             "SCREEN-002",
@@ -1066,27 +1066,27 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[21]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "ac5dd5046a95e4f1f4e52bc613a027f88482c46c80eb92152f4c5b6ac145dcac"
+          "sha256": "3c080abc2d93e6ac5ef949bf2d65757c0375cf59264e4a686a6413f838757009"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[22]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_light_w393dp_h851dp_day.png",
-          "sha256": "a08798178f17b2fa21a3ca920b8a362ef18f5e3886d63f176ef83a56446e10f0"
+          "sha256": "c56cbadf67eed85bd1e573c4540ab429eecfef889e68d0593b65604e1895ae5d"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[23]_sproutpacepreviewskt.emptytodaypreview.empty_state_dark_w393dp_h851dp_night.png",
-          "sha256": "e1e5610747a7dce37e6bba5f79e0031752fc27049b4c4963ed0d8003006b1d55"
+          "sha256": "cc79c817f4759cb6edfdb6de4938cb678b824b3547515dc68857fd36d3c936af"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[24]_sproutpacepreviewskt.emptytodaypreview.empty_state_light_w393dp_h851dp_day.png",
-          "sha256": "3d3ac3560da3b5a4b7b52ef8a491baefe89da13ab248204744a35094ff5d402a"
+          "sha256": "a8d43e886d81d103f1ac1f62051e3f10daaf54a0124a08f71edecca5ff194f2b"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[25]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "17921f258ecea9b9869bbfc921d59327f5065b18c257c945d9357720f3d2b985"
+          "sha256": "28bc5e4fcce89c908aeb37539c22fbe1c788b3a1d221637584448a1bc6a9b9d9"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[26]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_light_w393dp_h851dp_day.png",
-          "sha256": "aad123fcec31ba5a9a2abc2da8085572be61bdce2e40097319dc3c4d157243af"
+          "sha256": "3d3fae2a35d1b3e75a4953d27e5310b2049ca894b61fe1cb76e8ddbd39c44898"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
@@ -1115,7 +1115,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1134,11 +1134,11 @@
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
-          "sha256": "4b99eca9baaaf91a01afc0f84afa3e90b4e3e33a9c7d3cbe85d40597572c3a64"
+          "sha256": "774041a9571e06278b96ba1dcc23b52085dc4a2da5883cdb980a353d0249f6c8"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "0150f5af45a4b63912e61342ae54ad7faeed5efd776f4662e3676ced17104352"
+          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
@@ -1167,7 +1167,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1211,7 +1211,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1255,7 +1255,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1299,7 +1299,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1343,7 +1343,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1387,7 +1387,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1431,7 +1431,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "a344e48f391ab009a849cd38483eecb2eb5a0ddf671520f10dd608b15e13ff81",
+          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",

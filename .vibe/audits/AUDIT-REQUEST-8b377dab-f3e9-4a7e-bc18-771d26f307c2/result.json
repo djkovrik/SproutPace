@@ -1,0 +1,362 @@
+{
+  "requestSha256": "3eb08aaa5b8ed0c8343f5b9413dba5d52c3ed2e150107729595ce60d3bdbaf75",
+  "startedAt": "2026-09-27T08:18:27.169579Z",
+  "completedAt": "2026-09-27T08:23:08.980394Z",
+  "inventory": {
+    "requirementIds": ["REQ-001", "REQ-002", "REQ-003", "REQ-004", "REQ-005", "REQ-006", "REQ-007", "REQ-008", "REQ-009", "REQ-010", "REQ-011", "REQ-012"],
+    "excludedRequirementIds": ["REQ-901", "REQ-902", "REQ-903", "REQ-904", "REQ-905", "REQ-906", "REQ-907", "REQ-908", "REQ-909"],
+    "acceptanceScenarioIds": ["AC-001", "AC-002", "AC-010", "AC-011", "AC-012", "AC-013", "AC-014", "AC-015", "AC-016", "AC-017", "AC-020", "AC-021", "AC-022", "AC-023", "AC-024", "AC-025", "AC-026", "AC-027", "AC-030", "AC-031", "AC-032", "AC-033", "AC-034", "AC-035", "AC-036", "AC-037", "AC-038", "AC-039", "AC-040", "AC-050", "AC-051", "AC-052", "AC-053", "AC-054", "AC-055", "AC-056", "AC-057", "AC-060", "AC-061", "AC-062", "AC-063", "AC-064", "AC-065", "AC-066", "AC-067", "AC-068", "AC-070", "AC-071", "AC-072", "AC-073", "AC-074", "AC-080", "AC-081", "AC-082", "AC-083", "AC-084", "AC-085", "AC-090", "AC-091", "AC-092", "AC-093", "AC-094", "AC-095", "AC-100", "AC-101", "AC-102", "AC-103", "AC-104", "AC-105", "AC-106", "AC-107", "AC-110", "AC-111", "AC-112", "AC-113", "AC-120", "AC-121", "AC-122", "AC-123"],
+    "managedOperationIds": ["AdvertisingConsent:create", "AdvertisingConsent:read", "AdvertisingConsent:update", "BackupArchive:create", "BackupArchive:read", "BackupArchive:reject-invalid", "BackupArchive:restore", "CrashReportingPreference:create", "CrashReportingPreference:read", "CrashReportingPreference:update", "GrowBatch:abandon", "GrowBatch:assign-overflow", "GrowBatch:complete-harvest", "GrowBatch:confirm-stage", "GrowBatch:create", "GrowBatch:delete", "GrowBatch:fail", "GrowBatch:read", "GrowBatch:record-actual-mass", "GrowBatch:repeat", "GrowBatch:skip-stage", "GrowBatch:start-growing", "GrowBatch:start-soaking", "GrowBatch:undo-stage", "GrowBatch:update", "GrowZone:create", "GrowZone:delete", "GrowZone:read", "GrowZone:update", "HarvestPlan:confirm-suggestion", "HarvestPlan:create", "HarvestPlan:delete", "HarvestPlan:pause-resume", "HarvestPlan:read", "HarvestPlan:suggest-continuous-batch", "HarvestPlan:update", "Observation:attach-photo", "Observation:create", "Observation:delete", "Observation:read", "Observation:update", "TraySizePreset:create", "TraySizePreset:delete", "TraySizePreset:read", "TraySizePreset:update", "UserGrowRecipe:create", "UserGrowRecipe:delete", "UserGrowRecipe:duplicate", "UserGrowRecipe:read", "UserGrowRecipe:update"],
+    "qualityGateIds": ["QG-001", "QG-002", "QG-003", "QG-004", "QG-005", "QG-006", "QG-007", "QG-008", "QG-009", "QG-010", "QG-011", "QG-012"]
+  },
+  "reviewedSources": ["product.md", "domain.md", "data.md", "design.md", "quality.md", "flows/FLOW-001.md", "flows/FLOW-002.md", "flows/FLOW-003.md", "flows/FLOW-004.md", "flows/FLOW-005.md", "flows/FLOW-006.md", "flows/FLOW-007.md", "flows/FLOW-008.md", "flows/FLOW-009.md", "flows/FLOW-010.md", "flows/FLOW-011.md", "flows/FLOW-012.md", "screens/SCREEN-001.md", "screens/SCREEN-002.md", "screens/SCREEN-003.md", "screens/SCREEN-004.md", "screens/SCREEN-005.md", "screens/SCREEN-006.md", "screens/SCREEN-007.md", "screens/SCREEN-008.md", "screens/SCREEN-009.md", "screens/SCREEN-010.md", "screens/SCREEN-011.md", "screens/SCREEN-012.md", "screens/SCREEN-013.md", "screens/SCREEN-014.md", "screens/SCREEN-015.md", "screens/SCREEN-016.md"],
+  "evidenceProfiles": {
+    "component-test": {
+      "production": [{"path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt", "symbol": "ScreenContractRegistry"}, {"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt", "symbol": "ProductionScreenDataManager"}],
+      "tests": [{"path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt", "symbol": "ScreenComponentContractTest"}, {"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManagerIntegrationTest.kt", "symbol": "ProductionScreenDataManagerIntegrationTest"}],
+      "assertion": "Typed components prepare production commands, preserve drafts and selection, require destructive confirmation, deduplicate callbacks, retain lifecycle state, and reach real data services.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "domain-test": {
+      "production": [{"path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine", "symbol": "domain engines"}],
+      "tests": [{"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain", "symbol": "domain test suites"}],
+      "assertion": "Pure tests assert geometry, recommendations, lifecycle legality, actual-date correction, skip/undo, stable scheduling, capacity and planner behavior.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "database-integration-test": {
+      "production": [{"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/LocalDatabase.kt", "symbol": "LocalDatabase"}, {"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt", "symbol": "ProductionScreenDataManager"}],
+      "tests": [{"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt", "symbol": "LocalDataAcceptanceTest"}, {"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt", "symbol": "LocalDatabaseIntegrationTest"}, {"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt", "symbol": "FileBackedRestartTest"}],
+      "assertion": "Tests exercise real SQLDelight persistence, restart, snapshots, referential integrity, failure rollback and production command routing.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "store-test": {
+      "production": [{"path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt", "symbol": "ScreenStoreProvider"}],
+      "tests": [{"path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenComponentContractTest.kt", "symbol": "duplicateCommandCallbacksInvokeManagerExactlyOnceWhileInFlight"}],
+      "assertion": "Retained stores assert intent preparation, reducer state, lifecycle retention, exactly-once execution, failure mapping and cancellation propagation.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "file-integration-test": {
+      "production": [{"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt", "symbol": "LocalBackupService"}, {"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PrivateFileStore.kt", "symbol": "LocalWorkspaceRepository"}],
+      "tests": [{"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt", "symbol": "LocalDataAcceptanceTest"}, {"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/FileBackedRestartTest.kt", "symbol": "FileBackedRestartTest"}],
+      "assertion": "Tests assert managed photo copy/replacement/deletion, archive and CSV I/O, opaque identifiers, rollback, restart and write-failure preservation.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "snapshot-roundtrip-test": {
+      "production": [{"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt", "symbol": "LocalBackupService"}, {"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt", "symbol": "SnapshotValidation"}],
+      "tests": [{"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt", "symbol": "qg012_completeArchiveRoundTripsEveryRelationshipStageScheduleUtf8AndMultiplePhotos"}],
+      "assertion": "Complete archives preview, replace and restart identically; repeated restore does not duplicate data and invalid archives roll back.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "platform-test": {
+      "production": [{"path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/PlatformContracts.kt", "symbol": "platform contracts"}, {"path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt", "symbol": "ProductionAppGraph"}],
+      "tests": [{"path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/PlatformServicesTest.kt", "symbol": "PlatformServicesTest"}, {"path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt", "symbol": "ReminderProductionIntegrationTest"}],
+      "assertion": "Deterministic platform seams assert permission states, stable IDs, notification reconciliation, erasure and crash-reporting behavior; exact native branches identified as gaps are excluded.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json", ".vibe/receipts/RECEIPT-3c1a4aed-b5c1-4c52-8788-9eec5a87cf60.json"]
+    },
+    "integration-test": {
+      "production": [{"path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt", "symbol": "ProductionAppGraph"}, {"path": "shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt", "symbol": "AppRootComponentDefault"}],
+      "tests": [{"path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt", "symbol": "ProductionAppGraphContractTest"}, {"path": "shared/root/src/commonTest/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentTest.kt", "symbol": "AppRootComponentTest"}],
+      "assertion": "Production graph and root tests assert navigation, reset, completion routing, lifecycle and real dependency assembly.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "ui-golden": {
+      "production": [{"path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt", "symbol": "ScreenContent"}, {"path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt", "symbol": "production previews"}],
+      "tests": [{"path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt", "symbol": "SproutPacePaparazzi"}, {"path": "shared/compose/src/androidUnitTest/snapshots/images", "symbol": "78 tracked goldens"}],
+      "assertion": "Paparazzi verifies deterministic light/dark, RU 200%, adaptive and risk-state renders; the lifecycle-action golden identified by F-004 is excluded.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "privacy-integration-test": {
+      "production": [{"path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyConsent.kt", "symbol": "PrivacyCoordinator"}],
+      "tests": [{"path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyCoordinatorTest.kt", "symbol": "PrivacyCoordinatorTest"}],
+      "assertion": "Freshness, policy binding, consent transitions, withdrawal, fail-closed behavior and persistence failures are asserted.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "network-mock-test": {
+      "production": [{"path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegion.kt", "symbol": "PrivacyRegionApi"}],
+      "tests": [{"path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/PrivacyRegionApiTest.kt", "symbol": "PrivacyRegionApiTest"}],
+      "assertion": "Strict endpoint schema, content type, size, UTF-8, expiry, redirect, HTTP and transport failures are controlled and fail closed.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "ad-lifecycle-test": {
+      "production": [{"path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt", "symbol": "AdvertisingCoordinator"}],
+      "tests": [{"path": "shared/monetization/src/commonTest/kotlin/com/sedsoftware/sproutpace/monetization/AdvertisingLifecycleTest.kt", "symbol": "AdvertisingLifecycleTest"}],
+      "assertion": "Tests prove approved positions, consent-before-initialization, no-request branches, withdrawal disposal, retry limits and safe-disabled preview/iOS hosts.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "settings-integration-test": {
+      "production": [{"path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/AppSettings.kt", "symbol": "MultiplatformProductSettings"}],
+      "tests": [{"path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ReminderSettingsIntegrationTest.kt", "symbol": "ReminderSettingsIntegrationTest"}, {"path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionSettingsRuntimeTest.kt", "symbol": "ProductionSettingsRuntimeTest"}],
+      "assertion": "Typed preferences, defaults, persistence, backup compatibility and live effective state are asserted.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "catalog-contract-test": {
+      "production": [{"path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt", "symbol": "SproutPaceCatalog"}],
+      "tests": [{"path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/SetupAndCatalogTest.kt", "symbol": "SetupAndCatalogTest"}],
+      "assertion": "Exactly eight stable IDs, version/date, stage and density metadata, safety keys, source metadata and garden-cress identity are asserted.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "localization-contract-test": {
+      "production": [{"path": "shared/compose/src/commonMain/composeResources/values/strings.xml", "symbol": "English resources"}, {"path": "shared/compose/src/commonMain/composeResources/values-ru/strings.xml", "symbol": "Russian resources"}],
+      "tests": [{"path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt", "symbol": "englishAndRussianProductionResourcesHaveIdenticalKeys"}, {"path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/LocalizedTextContractTest.kt", "symbol": "LocalizedTextContractTest"}],
+      "assertion": "EN/RU key parity, strict resolution and production-resource-only UI paths are asserted.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "repository-check": {
+      "production": [{"path": "build.gradle.kts", "symbol": "repository build"}, {"path": ".github/workflows/AnalysisAndTest.yml", "symbol": "CI workflow"}],
+      "tests": [{"path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt", "symbol": "repository source contracts"}],
+      "assertion": "Repository structure, privacy constraints and production source contracts were inspected and the applicable matrix passed.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "unit-test": {
+      "production": [{"path": "shared", "symbol": "owned product code"}],
+      "tests": [{"path": "shared", "symbol": "Android host/common test suites"}],
+      "assertion": "All configured owned-code unit and host suites passed on the frozen fingerprint.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "static-analysis": {
+      "production": [{"path": "detekt/base-config.yml", "symbol": "Detekt configuration"}],
+      "tests": [{"path": "build.gradle.kts", "symbol": "detekt task"}],
+      "assertion": "Detekt completed successfully without weakening the configured gate.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "coverage-check": {
+      "production": [{"path": "build.gradle.kts", "symbol": "Kover configuration"}],
+      "tests": [{"path": "shared", "symbol": "owned-code tests"}],
+      "assertion": "Kover report and verification tasks passed on the frozen fingerprint.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "android-build": {
+      "production": [{"path": "androidApp/build.gradle.kts", "symbol": "Android application"}],
+      "tests": [{"path": "androidApp", "symbol": "assembleDebug/assembleRelease/bundleRelease"}],
+      "assertion": "Android debug, release APK and release bundle tasks passed.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "asset-check": {
+      "production": [{"path": "shared/compose/src/commonMain/composeResources/drawable", "symbol": "runtime assets"}],
+      "tests": [{"path": "docs/assets/asset-manifest.json", "symbol": "asset manifest"}],
+      "assertion": "Asset validator confirmed runtime files, hashes, provenance, production references and required metadata.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-0f950fdf-076e-4701-af7b-0a08871c5509.json"]
+    },
+    "asset-visual": {
+      "production": [{"path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt", "symbol": "asset rendering"}],
+      "tests": [{"path": "shared/compose/src/androidUnitTest/snapshots/images", "symbol": "asset-bearing goldens"}],
+      "assertion": "Culture, stage, empty-state and brand assets were inspected in production goldens and contact sheets.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-0f950fdf-076e-4701-af7b-0a08871c5509.json", ".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "preview-compile": {
+      "production": [{"path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt", "symbol": "production previews"}],
+      "tests": [{"path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PreviewSmokeTest.kt", "symbol": "PreviewSmokeTest"}],
+      "assertion": "Compose compilation and nonzero deterministic preview discovery passed.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "screenshot-test": {
+      "production": [{"path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt", "symbol": "ScreenContent"}],
+      "tests": [{"path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/paparazzi/SproutPacePaparazzi.kt", "symbol": "Paparazzi verification"}],
+      "assertion": "All 78 tracked screenshots matched their frozen goldens.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "content-review": {
+      "production": [{"path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt", "symbol": "SproutPaceCatalog"}],
+      "tests": [{"path": "spec/product.md", "symbol": "approved catalog sources and boundaries"}],
+      "assertion": "Catalog identity, source metadata, ranges, metric density, safety and non-diagnostic boundaries match the approved specification.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    },
+    "privacy-review": {
+      "production": [{"path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/CrashReporting.kt", "symbol": "CrashReportingCoordinator"}, {"path": "shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt", "symbol": "AdvertisingCoordinator"}],
+      "tests": [{"path": "shared/platform/src/commonTest/kotlin/com/sedsoftware/sproutpace/platform/CrashReportingRuntimeTest.kt", "symbol": "CrashReportingRuntimeTest"}],
+      "assertion": "Production reporting and advertising paths contain no user identifiers, product-content logging, Analytics or unsafe test-host collection.",
+      "receiptRefs": [".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json"]
+    }
+  },
+  "obligations": [
+    {"id":"AC-001","surface":"component-test","result":"verified"},{"id":"AC-001","surface":"ui-golden","result":"verified"},
+    {"id":"AC-002","surface":"component-test","result":"verified"},{"id":"AC-002","surface":"integration-test","result":"verified"},{"id":"AC-002","surface":"ui-golden","result":"verified"},
+    {"id":"AC-010","surface":"component-test","result":"verified"},{"id":"AC-010","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-011","surface":"component-test","result":"verified"},{"id":"AC-011","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-012","surface":"component-test","result":"verified"},{"id":"AC-012","surface":"domain-test","result":"verified"},{"id":"AC-012","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-013","surface":"component-test","result":"verified"},{"id":"AC-013","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-014","surface":"component-test","result":"verified"},{"id":"AC-014","surface":"domain-test","result":"verified"},{"id":"AC-014","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-015","surface":"component-test","result":"verified"},{"id":"AC-015","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-016","surface":"component-test","result":"verified"},{"id":"AC-016","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-017","surface":"component-test","result":"verified"},{"id":"AC-017","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-020","surface":"component-test","result":"verified"},{"id":"AC-020","surface":"catalog-contract-test","result":"verified"},{"id":"AC-020","surface":"ui-golden","result":"verified"},
+    {"id":"AC-021","surface":"component-test","result":"verified"},{"id":"AC-021","surface":"domain-test","result":"verified"},{"id":"AC-021","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-022","surface":"component-test","result":"verified"},{"id":"AC-022","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-023","surface":"component-test","result":"verified"},{"id":"AC-023","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-024","surface":"component-test","result":"verified"},{"id":"AC-024","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-025","surface":"component-test","result":"verified"},{"id":"AC-025","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-026","surface":"domain-test","result":"verified"},{"id":"AC-026","surface":"component-test","result":"verified"},
+    {"id":"AC-027","surface":"catalog-contract-test","result":"verified"},{"id":"AC-027","surface":"component-test","result":"verified"},{"id":"AC-027","surface":"ui-golden","result":"verified"},
+    {"id":"AC-030","surface":"component-test","result":"verified"},{"id":"AC-030","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-031","surface":"component-test","result":"verified"},{"id":"AC-031","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-032","surface":"component-test","result":"verified"},{"id":"AC-032","surface":"domain-test","result":"verified"},{"id":"AC-032","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-033","surface":"component-test","result":"verified"},{"id":"AC-033","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-034","surface":"component-test","result":"verified"},{"id":"AC-034","surface":"database-integration-test","result":"verified"},{"id":"AC-034","surface":"file-integration-test","result":"verified"},
+    {"id":"AC-035","surface":"domain-test","result":"verified"},{"id":"AC-035","surface":"component-test","result":"gap","reason":"F-004"},
+    {"id":"AC-036","surface":"domain-test","result":"verified"},{"id":"AC-036","surface":"component-test","result":"gap","reason":"F-004"},{"id":"AC-036","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-037","surface":"domain-test","result":"verified"},{"id":"AC-037","surface":"store-test","result":"verified"},{"id":"AC-037","surface":"component-test","result":"gap","reason":"F-004"},
+    {"id":"AC-038","surface":"domain-test","result":"verified"},{"id":"AC-038","surface":"component-test","result":"gap","reason":"F-004"},{"id":"AC-038","surface":"ui-golden","result":"gap","reason":"F-004"},
+    {"id":"AC-039","surface":"domain-test","result":"verified"},{"id":"AC-039","surface":"store-test","result":"verified"},{"id":"AC-039","surface":"component-test","result":"gap","reason":"F-004"},
+    {"id":"AC-040","surface":"domain-test","result":"verified"},{"id":"AC-040","surface":"store-test","result":"verified"},{"id":"AC-040","surface":"component-test","result":"gap","reason":"F-004"},
+    {"id":"AC-050","surface":"component-test","result":"verified"},{"id":"AC-050","surface":"domain-test","result":"verified"},{"id":"AC-050","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-051","surface":"component-test","result":"verified"},{"id":"AC-051","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-052","surface":"domain-test","result":"verified"},{"id":"AC-052","surface":"component-test","result":"verified"},{"id":"AC-052","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-053","surface":"component-test","result":"verified"},{"id":"AC-053","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-054","surface":"domain-test","result":"verified"},{"id":"AC-054","surface":"component-test","result":"verified"},
+    {"id":"AC-055","surface":"domain-test","result":"verified"},{"id":"AC-055","surface":"component-test","result":"verified"},{"id":"AC-055","surface":"ui-golden","result":"verified"},
+    {"id":"AC-056","surface":"component-test","result":"verified"},{"id":"AC-056","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-057","surface":"domain-test","result":"verified"},{"id":"AC-057","surface":"component-test","result":"verified"},
+    {"id":"AC-060","surface":"store-test","result":"verified"},{"id":"AC-060","surface":"component-test","result":"verified"},{"id":"AC-060","surface":"ui-golden","result":"verified"},
+    {"id":"AC-061","surface":"store-test","result":"verified"},{"id":"AC-061","surface":"component-test","result":"verified"},{"id":"AC-061","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-062","surface":"domain-test","result":"verified"},{"id":"AC-062","surface":"store-test","result":"verified"},{"id":"AC-062","surface":"component-test","result":"verified"},
+    {"id":"AC-063","surface":"store-test","result":"verified"},{"id":"AC-063","surface":"component-test","result":"verified"},
+    {"id":"AC-064","surface":"platform-test","result":"verified"},{"id":"AC-064","surface":"component-test","result":"verified"},{"id":"AC-064","surface":"ui-golden","result":"verified"},
+    {"id":"AC-065","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"AC-065","surface":"component-test","result":"verified"},
+    {"id":"AC-066","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"AC-066","surface":"component-test","result":"verified"},
+    {"id":"AC-067","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"AC-067","surface":"integration-test","result":"verified"},
+    {"id":"AC-068","surface":"domain-test","result":"verified"},{"id":"AC-068","surface":"platform-test","result":"gap","reason":"F-001"},
+    {"id":"AC-070","surface":"component-test","result":"verified"},{"id":"AC-070","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-071","surface":"component-test","result":"verified"},{"id":"AC-071","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-072","surface":"component-test","result":"verified"},{"id":"AC-072","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-073","surface":"component-test","result":"verified"},{"id":"AC-073","surface":"database-integration-test","result":"verified"},{"id":"AC-073","surface":"file-integration-test","result":"verified"},
+    {"id":"AC-074","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"AC-074","surface":"file-integration-test","result":"verified"},{"id":"AC-074","surface":"component-test","result":"verified"},
+    {"id":"AC-080","surface":"domain-test","result":"verified"},{"id":"AC-080","surface":"component-test","result":"verified"},{"id":"AC-080","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-081","surface":"domain-test","result":"verified"},{"id":"AC-081","surface":"component-test","result":"verified"},{"id":"AC-081","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-082","surface":"component-test","result":"verified"},{"id":"AC-082","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"AC-082","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-083","surface":"component-test","result":"gap","reason":"F-004"},{"id":"AC-083","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-084","surface":"component-test","result":"verified"},{"id":"AC-084","surface":"database-integration-test","result":"verified"},{"id":"AC-084","surface":"ui-golden","result":"verified"},
+    {"id":"AC-085","surface":"domain-test","result":"verified"},{"id":"AC-085","surface":"database-integration-test","result":"verified"},
+    {"id":"AC-090","surface":"snapshot-roundtrip-test","result":"verified"},{"id":"AC-090","surface":"file-integration-test","result":"verified"},{"id":"AC-090","surface":"component-test","result":"verified"},
+    {"id":"AC-091","surface":"snapshot-roundtrip-test","result":"verified"},{"id":"AC-091","surface":"component-test","result":"verified"},
+    {"id":"AC-092","surface":"snapshot-roundtrip-test","result":"verified"},{"id":"AC-092","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"AC-092","surface":"component-test","result":"verified"},
+    {"id":"AC-093","surface":"snapshot-roundtrip-test","result":"verified"},{"id":"AC-093","surface":"component-test","result":"verified"},{"id":"AC-093","surface":"ui-golden","result":"verified"},
+    {"id":"AC-094","surface":"file-integration-test","result":"verified"},{"id":"AC-094","surface":"component-test","result":"verified"},
+    {"id":"AC-095","surface":"integration-test","result":"verified"},{"id":"AC-095","surface":"file-integration-test","result":"verified"},{"id":"AC-095","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"AC-095","surface":"component-test","result":"verified"},
+    {"id":"AC-100","surface":"ad-lifecycle-test","result":"verified"},{"id":"AC-100","surface":"component-test","result":"verified"},{"id":"AC-100","surface":"ui-golden","result":"verified"},
+    {"id":"AC-101","surface":"ad-lifecycle-test","result":"verified"},{"id":"AC-101","surface":"component-test","result":"verified"},{"id":"AC-101","surface":"ui-golden","result":"verified"},
+    {"id":"AC-102","surface":"privacy-integration-test","result":"verified"},{"id":"AC-102","surface":"component-test","result":"verified"},
+    {"id":"AC-103","surface":"privacy-integration-test","result":"verified"},{"id":"AC-103","surface":"settings-integration-test","result":"verified"},
+    {"id":"AC-104","surface":"privacy-integration-test","result":"verified"},{"id":"AC-104","surface":"ad-lifecycle-test","result":"verified"},{"id":"AC-104","surface":"component-test","result":"verified"},
+    {"id":"AC-105","surface":"privacy-integration-test","result":"verified"},{"id":"AC-105","surface":"component-test","result":"verified"},
+    {"id":"AC-106","surface":"network-mock-test","result":"verified"},{"id":"AC-106","surface":"privacy-integration-test","result":"verified"},{"id":"AC-106","surface":"ad-lifecycle-test","result":"verified"},
+    {"id":"AC-107","surface":"ios-platform-test","result":"unavailable","reason":"Requires macOS/Xcode."},{"id":"AC-107","surface":"ad-lifecycle-test","result":"verified"},
+    {"id":"AC-110","surface":"platform-test","result":"verified"},{"id":"AC-110","surface":"settings-integration-test","result":"verified"},
+    {"id":"AC-111","surface":"platform-test","result":"verified"},{"id":"AC-111","surface":"settings-integration-test","result":"verified"},
+    {"id":"AC-112","surface":"platform-test","result":"verified"},{"id":"AC-112","surface":"component-test","result":"verified"},{"id":"AC-112","surface":"settings-integration-test","result":"verified"},
+    {"id":"AC-113","surface":"repository-check","result":"verified"},{"id":"AC-113","surface":"platform-test","result":"verified"},{"id":"AC-113","surface":"privacy-review","result":"verified"},
+    {"id":"AC-120","surface":"localization-contract-test","result":"verified"},{"id":"AC-120","surface":"component-test","result":"verified"},{"id":"AC-120","surface":"ui-golden","result":"verified"},
+    {"id":"AC-121","surface":"settings-integration-test","result":"verified"},{"id":"AC-121","surface":"component-test","result":"verified"},{"id":"AC-121","surface":"ui-golden","result":"verified"},
+    {"id":"AC-122","surface":"ui-golden","result":"verified"},{"id":"AC-122","surface":"accessibility-test","result":"gap","reason":"F-002"},{"id":"AC-122","surface":"keyboard-test","result":"gap","reason":"F-002"},
+    {"id":"AC-123","surface":"integration-test","result":"verified"},{"id":"AC-123","surface":"component-test","result":"verified"},
+    {"id":"QG-001","surface":"repository-check","result":"verified"},{"id":"QG-001","surface":"unit-test","result":"verified"},{"id":"QG-001","surface":"integration-test","result":"verified"},{"id":"QG-001","surface":"static-analysis","result":"verified"},{"id":"QG-001","surface":"coverage-check","result":"verified"},{"id":"QG-001","surface":"localization-contract-test","result":"verified"},
+    {"id":"QG-002","surface":"android-build","result":"verified"},{"id":"QG-002","surface":"android-platform-test","result":"gap","reason":"F-001"},
+    {"id":"QG-003","surface":"ios-build","result":"unavailable","reason":"Requires macOS/Xcode."},{"id":"QG-003","surface":"ios-platform-test","result":"unavailable","reason":"Requires macOS/Xcode."},{"id":"QG-003","surface":"macos-ci-check","result":"unavailable","reason":"Requires macOS/Xcode."},
+    {"id":"QG-004","surface":"release-check","result":"gap","reason":"F-003"},{"id":"QG-004","surface":"acceptance-audit","result":"verified","auditEvidence":true,"assertion":"This independent audit inventoried all canonical pairs and traced production wiring, assertions, receipts, goldens and lifecycle/failure branches."},
+    {"id":"QG-005","surface":"publication-check","result":"not-applicable","condition":"Publication was not requested."},
+    {"id":"QG-006","surface":"asset-check","result":"verified"},{"id":"QG-006","surface":"asset-visual","result":"verified"},
+    {"id":"QG-007","surface":"preview-compile","result":"verified"},{"id":"QG-007","surface":"screenshot-test","result":"verified"},{"id":"QG-007","surface":"accessibility-test","result":"gap","reason":"F-002"},{"id":"QG-007","surface":"design-review","result":"gap","reason":"F-004"},
+    {"id":"QG-008","surface":"firebase-config-check","result":"not-applicable","condition":"No release-candidate Firebase projects/configuration were supplied."},{"id":"QG-008","surface":"crash-symbolication-check","result":"not-applicable","condition":"No controlled release-candidate symbolication run was supplied."},
+    {"id":"QG-009","surface":"ad-config-check","result":"not-applicable","condition":"No production Yandex ad unit was supplied; production ads remain disabled."},{"id":"QG-009","surface":"ad-device-check","result":"not-applicable","condition":"No production Yandex ad unit was supplied; production ads remain disabled."},
+    {"id":"QG-010","surface":"privacy-policy-check","result":"not-applicable","condition":"External distribution and final policy input are inactive."},{"id":"QG-010","surface":"store-disclosure-check","result":"not-applicable","condition":"External distribution is inactive."},
+    {"id":"QG-011","surface":"catalog-contract-test","result":"verified"},{"id":"QG-011","surface":"content-review","result":"verified"},
+    {"id":"QG-012","surface":"snapshot-roundtrip-test","result":"verified"},{"id":"QG-012","surface":"file-integration-test","result":"gap","reason":"F-005"},
+    {"id":"GrowZone:create","surface":"component-test","result":"verified"},{"id":"GrowZone:create","surface":"database-integration-test","result":"verified"},
+    {"id":"GrowZone:read","surface":"component-test","result":"verified"},{"id":"GrowZone:read","surface":"database-integration-test","result":"verified"},
+    {"id":"GrowZone:update","surface":"component-test","result":"verified"},{"id":"GrowZone:update","surface":"database-integration-test","result":"verified"},{"id":"GrowZone:update","surface":"domain-test","result":"verified"},
+    {"id":"GrowZone:delete","surface":"component-test","result":"verified"},{"id":"GrowZone:delete","surface":"database-integration-test","result":"verified"},
+    {"id":"TraySizePreset:create","surface":"component-test","result":"verified"},{"id":"TraySizePreset:create","surface":"database-integration-test","result":"verified"},{"id":"TraySizePreset:create","surface":"domain-test","result":"verified"},
+    {"id":"TraySizePreset:read","surface":"component-test","result":"verified"},{"id":"TraySizePreset:read","surface":"database-integration-test","result":"verified"},
+    {"id":"TraySizePreset:update","surface":"component-test","result":"verified"},{"id":"TraySizePreset:update","surface":"database-integration-test","result":"verified"},
+    {"id":"TraySizePreset:delete","surface":"component-test","result":"verified"},{"id":"TraySizePreset:delete","surface":"database-integration-test","result":"verified"},
+    {"id":"UserGrowRecipe:create","surface":"component-test","result":"verified"},{"id":"UserGrowRecipe:create","surface":"database-integration-test","result":"verified"},{"id":"UserGrowRecipe:create","surface":"domain-test","result":"verified"},
+    {"id":"UserGrowRecipe:read","surface":"component-test","result":"verified"},{"id":"UserGrowRecipe:read","surface":"database-integration-test","result":"verified"},
+    {"id":"UserGrowRecipe:update","surface":"component-test","result":"verified"},{"id":"UserGrowRecipe:update","surface":"database-integration-test","result":"verified"},
+    {"id":"UserGrowRecipe:delete","surface":"component-test","result":"verified"},{"id":"UserGrowRecipe:delete","surface":"database-integration-test","result":"verified"},
+    {"id":"UserGrowRecipe:duplicate","surface":"component-test","result":"verified"},{"id":"UserGrowRecipe:duplicate","surface":"database-integration-test","result":"verified"},
+    {"id":"GrowBatch:create","surface":"component-test","result":"verified"},{"id":"GrowBatch:create","surface":"database-integration-test","result":"verified"},
+    {"id":"GrowBatch:read","surface":"component-test","result":"verified"},{"id":"GrowBatch:read","surface":"database-integration-test","result":"verified"},
+    {"id":"GrowBatch:update","surface":"component-test","result":"verified"},{"id":"GrowBatch:update","surface":"database-integration-test","result":"verified"},{"id":"GrowBatch:update","surface":"domain-test","result":"verified"},
+    {"id":"GrowBatch:delete","surface":"component-test","result":"verified"},{"id":"GrowBatch:delete","surface":"database-integration-test","result":"verified"},{"id":"GrowBatch:delete","surface":"file-integration-test","result":"verified"},
+    {"id":"GrowBatch:start-soaking","surface":"component-test","result":"gap","reason":"F-004"},{"id":"GrowBatch:start-soaking","surface":"domain-test","result":"verified"},
+    {"id":"GrowBatch:start-growing","surface":"component-test","result":"gap","reason":"F-004"},{"id":"GrowBatch:start-growing","surface":"database-integration-test","result":"verified"},{"id":"GrowBatch:start-growing","surface":"domain-test","result":"verified"},
+    {"id":"GrowBatch:confirm-stage","surface":"component-test","result":"gap","reason":"F-004"},{"id":"GrowBatch:confirm-stage","surface":"domain-test","result":"verified"},{"id":"GrowBatch:confirm-stage","surface":"store-test","result":"verified"},
+    {"id":"GrowBatch:assign-overflow","surface":"component-test","result":"gap","reason":"F-004"},{"id":"GrowBatch:assign-overflow","surface":"domain-test","result":"verified"},{"id":"GrowBatch:assign-overflow","surface":"ui-golden","result":"verified"},
+    {"id":"GrowBatch:undo-stage","surface":"component-test","result":"gap","reason":"F-004"},{"id":"GrowBatch:undo-stage","surface":"domain-test","result":"verified"},{"id":"GrowBatch:undo-stage","surface":"store-test","result":"verified"},
+    {"id":"GrowBatch:skip-stage","surface":"component-test","result":"gap","reason":"F-004"},{"id":"GrowBatch:skip-stage","surface":"domain-test","result":"verified"},{"id":"GrowBatch:skip-stage","surface":"store-test","result":"verified"},
+    {"id":"GrowBatch:complete-harvest","surface":"component-test","result":"verified"},{"id":"GrowBatch:complete-harvest","surface":"database-integration-test","result":"verified"},{"id":"GrowBatch:complete-harvest","surface":"domain-test","result":"verified"},
+    {"id":"GrowBatch:fail","surface":"component-test","result":"verified"},{"id":"GrowBatch:fail","surface":"database-integration-test","result":"verified"},{"id":"GrowBatch:fail","surface":"domain-test","result":"verified"},
+    {"id":"GrowBatch:abandon","surface":"component-test","result":"verified"},{"id":"GrowBatch:abandon","surface":"database-integration-test","result":"verified"},{"id":"GrowBatch:abandon","surface":"platform-test","result":"gap","reason":"F-001"},
+    {"id":"GrowBatch:repeat","surface":"component-test","result":"gap","reason":"F-004"},{"id":"GrowBatch:repeat","surface":"database-integration-test","result":"verified"},
+    {"id":"GrowBatch:record-actual-mass","surface":"database-integration-test","result":"verified"},{"id":"GrowBatch:record-actual-mass","surface":"domain-test","result":"verified"},
+    {"id":"HarvestPlan:create","surface":"component-test","result":"verified"},{"id":"HarvestPlan:create","surface":"database-integration-test","result":"verified"},{"id":"HarvestPlan:create","surface":"domain-test","result":"verified"},
+    {"id":"HarvestPlan:read","surface":"component-test","result":"verified"},{"id":"HarvestPlan:read","surface":"database-integration-test","result":"verified"},
+    {"id":"HarvestPlan:update","surface":"component-test","result":"verified"},{"id":"HarvestPlan:update","surface":"database-integration-test","result":"verified"},{"id":"HarvestPlan:update","surface":"domain-test","result":"verified"},
+    {"id":"HarvestPlan:delete","surface":"component-test","result":"verified"},{"id":"HarvestPlan:delete","surface":"database-integration-test","result":"verified"},
+    {"id":"HarvestPlan:pause-resume","surface":"component-test","result":"verified"},{"id":"HarvestPlan:pause-resume","surface":"domain-test","result":"verified"},
+    {"id":"HarvestPlan:confirm-suggestion","surface":"component-test","result":"verified"},{"id":"HarvestPlan:confirm-suggestion","surface":"database-integration-test","result":"verified"},
+    {"id":"HarvestPlan:suggest-continuous-batch","surface":"component-test","result":"verified"},{"id":"HarvestPlan:suggest-continuous-batch","surface":"domain-test","result":"verified"},
+    {"id":"Observation:create","surface":"component-test","result":"verified"},{"id":"Observation:create","surface":"database-integration-test","result":"verified"},
+    {"id":"Observation:read","surface":"component-test","result":"verified"},{"id":"Observation:read","surface":"database-integration-test","result":"verified"},
+    {"id":"Observation:update","surface":"component-test","result":"verified"},{"id":"Observation:update","surface":"database-integration-test","result":"verified"},
+    {"id":"Observation:delete","surface":"component-test","result":"verified"},{"id":"Observation:delete","surface":"database-integration-test","result":"verified"},{"id":"Observation:delete","surface":"file-integration-test","result":"verified"},
+    {"id":"Observation:attach-photo","surface":"component-test","result":"verified"},{"id":"Observation:attach-photo","surface":"file-integration-test","result":"verified"},{"id":"Observation:attach-photo","surface":"platform-test","result":"gap","reason":"F-001"},
+    {"id":"BackupArchive:create","surface":"component-test","result":"verified"},{"id":"BackupArchive:create","surface":"file-integration-test","result":"verified"},{"id":"BackupArchive:create","surface":"snapshot-roundtrip-test","result":"verified"},
+    {"id":"BackupArchive:read","surface":"component-test","result":"verified"},{"id":"BackupArchive:read","surface":"snapshot-roundtrip-test","result":"verified"},
+    {"id":"BackupArchive:restore","surface":"component-test","result":"verified"},{"id":"BackupArchive:restore","surface":"platform-test","result":"gap","reason":"F-001"},{"id":"BackupArchive:restore","surface":"snapshot-roundtrip-test","result":"verified"},
+    {"id":"BackupArchive:reject-invalid","surface":"component-test","result":"verified"},{"id":"BackupArchive:reject-invalid","surface":"snapshot-roundtrip-test","result":"verified"},{"id":"BackupArchive:reject-invalid","surface":"ui-golden","result":"verified"},
+    {"id":"AdvertisingConsent:create","surface":"component-test","result":"verified"},{"id":"AdvertisingConsent:create","surface":"privacy-integration-test","result":"verified"},
+    {"id":"AdvertisingConsent:read","surface":"privacy-integration-test","result":"verified"},{"id":"AdvertisingConsent:read","surface":"settings-integration-test","result":"verified"},
+    {"id":"AdvertisingConsent:update","surface":"ad-lifecycle-test","result":"verified"},{"id":"AdvertisingConsent:update","surface":"component-test","result":"verified"},{"id":"AdvertisingConsent:update","surface":"privacy-integration-test","result":"verified"},
+    {"id":"CrashReportingPreference:create","surface":"platform-test","result":"verified"},{"id":"CrashReportingPreference:create","surface":"settings-integration-test","result":"verified"},
+    {"id":"CrashReportingPreference:read","surface":"platform-test","result":"verified"},{"id":"CrashReportingPreference:read","surface":"settings-integration-test","result":"verified"},
+    {"id":"CrashReportingPreference:update","surface":"component-test","result":"verified"},{"id":"CrashReportingPreference:update","surface":"platform-test","result":"verified"},{"id":"CrashReportingPreference:update","surface":"settings-integration-test","result":"verified"}
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "severity": "blocking",
+      "summary": "Android native platform coverage is incomplete.",
+      "obligationIds": ["AC-065", "AC-066", "AC-067", "AC-068", "AC-074", "AC-082", "AC-092", "AC-095", "GrowBatch:abandon", "Observation:attach-photo", "BackupArchive:restore", "QG-002"],
+      "failedLink": "The Pixel 8 smoke proves permission denial/recovery, keyboard activation, minimum targets, manual notification-time persistence, settings recovery and process restart, but it never drives the real photo/document pickers, notification delivery and time-zone branches, physical reminder cancellation/erasure, or advertising eligibility/no-request behavior.",
+      "smallestProof": "Extend and execute the Android device suite on the frozen snapshot for photo and document picker create/open/cancel, daily and soak delivery, restart/time-zone reconciliation, terminal/reset cancellation, and eligible/ineligible ad requests and layout.",
+      "evidence": [".vibe/scripts/run-android-ui-smoke.ps1", ".vibe/receipts/RECEIPT-3c1a4aed-b5c1-4c52-8788-9eec5a87cf60.json", "spec/quality.md"]
+    },
+    {
+      "id": "F-002",
+      "severity": "blocking",
+      "summary": "The approved accessibility and keyboard matrix is not executed.",
+      "obligationIds": ["AC-122", "QG-007"],
+      "failedLink": "Goldens cover RU at 200% and source tests scan semantics APIs, while the device smoke exercises only Today, Settings and Notifications. SCREEN-001, SCREEN-003, SCREEN-005, SCREEN-006 and SCREEN-007 lack runtime reading/focus order, keyboard activation, announcements, manual date entry and 200%-font task-completion assertions.",
+      "smallestProof": "Run semantic traversal, visible focus, keyboard/pointer activation, state announcements, minimum targets and 200%-font task completion across every AC-122 screen and representative form/date controls.",
+      "evidence": ["shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt", ".vibe/scripts/run-android-ui-smoke.ps1", "spec/flows/FLOW-012.md", "spec/quality.md"]
+    },
+    {
+      "id": "F-003",
+      "severity": "blocking",
+      "summary": "Release closure is incomplete.",
+      "obligationIds": ["AC-107", "QG-002", "QG-003", "QG-004", "QG-007", "QG-012"],
+      "failedLink": "The request explicitly marks native iOS build/platform/macOS CI execution unavailable, and the remaining Android, accessibility, lifecycle-action and backup-cancellation findings prevent the local release check from passing.",
+      "smallestProof": "Close the local findings, then attach successful macOS/Xcode iOS build, platform and CI evidence for the same fingerprint and rerun release closure.",
+      "evidence": [".vibe/audits/AUDIT-REQUEST-8b377dab-f3e9-4a7e-bc18-771d26f307c2/request.json", ".vibe/receipts/RECEIPT-ab3640b2-ce96-49e5-8200-68001f9a9666.json", "spec/quality.md"]
+    },
+    {
+      "id": "F-004",
+      "severity": "blocking",
+      "summary": "Batch-detail lifecycle actions are exposed without state-dependent applicability.",
+      "obligationIds": ["AC-035", "AC-036", "AC-037", "AC-038", "AC-039", "AC-040", "AC-083", "GrowBatch:start-soaking", "GrowBatch:start-growing", "GrowBatch:confirm-stage", "GrowBatch:assign-overflow", "GrowBatch:undo-stage", "GrowBatch:skip-stage", "GrowBatch:repeat", "QG-007"],
+      "failedLink": "ScreenComponentDefault falls back to every ScreenContractRegistry action and RootUiAdapter.visibleActions maps all descriptors as enabled. The accepted expanded Batch Detail golden visibly offers Confirm stage, Start soaking, Confirm sowing, Assign overflow, Undo, Skip and Schedule soak target together for a sown batch. ProductionScreenSnapshotRenderer supplies state facts but no state-filtered actions. Domain engines may reject illegal transitions, but the production component and accepted design surface still present inapplicable operations.",
+      "smallestProof": "Derive Batch Detail actions from the selected batch state, recipe applicability, placement, latest event and terminal status; add component assertions for every lifecycle state and regenerate/review the affected goldens.",
+      "evidence": ["shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt", "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt", "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt", "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[27]_sproutpacepreviewskt.expandedbatchdetailpreview.expanded_batch_detail_w1100dp_h800dp.png", "docs/design-review/production-ui-redesign-20260927.md"]
+    },
+    {
+      "id": "F-005",
+      "severity": "blocking",
+      "summary": "QG-012 has no backup/archive cancellation proof.",
+      "obligationIds": ["QG-012"],
+      "failedLink": "Archive tests cover complete round-trip, repeat restore, malformed/unsupported/missing/corrupt photos, rollback, CSV and write failure, but no test cancels backup, validation, restore or export work and asserts that live database, files and reminders remain unchanged.",
+      "smallestProof": "Add deterministic cancellation tests at backup creation, archive read/validation, staged replacement and CSV write boundaries, asserting cancellation propagation and unchanged database/files/reminders.",
+      "evidence": ["shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDataAcceptanceTest.kt", "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/LocalDatabaseIntegrationTest.kt", "spec/quality.md"]
+    }
+  ],
+  "verdict": "GAPS"
+}

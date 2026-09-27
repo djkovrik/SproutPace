@@ -1,0 +1,23 @@
+{
+    "schemaVersion":  "1.0",
+    "emulator":  "emulator-5554",
+    "packageName":  "com.sedsoftware.sproutpace",
+    "densityDpi":  420,
+    "fontScaleStress":  2,
+    "minimumTargetPixels":  126,
+    "checks":  {
+                   "today-accessibility-tree":  "passed",
+                   "minimum-48dp-targets":  "passed",
+                   "keyboard-focus-and-activation":  "passed",
+                   "permission-denied-recovery":  "passed",
+                   "permission-request-and-denial":  "passed",
+                   "system-settings-recovery":  "passed",
+                   "process-restart":  "passed",
+                   "manual-time-entry-and-restart-persistence":  "passed",
+                   "first-run-and-plan-200-percent":  "passed",
+                   "trays-200-percent":  "passed",
+                   "catalog-200-percent":  "passed",
+                   "batch-detail-200-percent":  "passed"
+               },
+    "completedAt":  "2026-09-27T09:38:53.2183661Z"
+}
