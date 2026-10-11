@@ -1,0 +1,314 @@
+[
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[100]_productionscenariopreviewskt.correctionscenario.04_correction_ru_200_w393dp_h1100dp_ru_font_2_0f.png",
+    "sha256": "ff0e54cbcf2c303fb66698f4873983bc60511863cc2dadf65c949365aad332e5",
+    "sheet": 1,
+    "slot": 1,
+    "width": 357,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[101]_productionscenariopreviewskt.cressscenario.08_garden_cress_ru_200_w393dp_h1100dp_ru_font_2_0f.png",
+    "sha256": "0d36d7a13c21950d5b6656aa96ddee82b85967c778b82b3d343a4e9b0d67c946",
+    "sheet": 1,
+    "slot": 2,
+    "width": 357,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[10]_sproutpacepreviewskt.capacityconflictpreview.capacity_conflict_light_w393dp_h851dp_day.png",
+    "sha256": "b1a3a62bcd6964e6d5187197610ff6694092dba6148d20d3213c67bf5bf2b8c0",
+    "sheet": 1,
+    "slot": 3,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[110]_productionscenariopreviewskt.expandedrecipescenario.08_expanded_stages_and_sources_w1100dp_h1000dp.png",
+    "sha256": "adae7014c3c9425be51b7dea864a59885eb35754d17ccb73bebb2ec767c8397f",
+    "sheet": 1,
+    "slot": 4,
+    "width": 1000,
+    "height": 909
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[11]_sproutpacepreviewskt.cataloghiddenadofflineinspectionpreview.07_catalog_hidden_ad_offline_inspection_w393dp_h1800dp.png",
+    "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281",
+    "sheet": 1,
+    "slot": 5,
+    "width": 218,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
+    "sha256": "67c89570a593acbe556261ede5a113575c588369f2994a14da3ba7d27bdd08b2",
+    "sheet": 1,
+    "slot": 6,
+    "width": 218,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[13]_sproutpacepreviewskt.catalogpreviews.07_catalog_dark_w393dp_h851dp_night.png",
+    "sha256": "71ce0ca33bb263ef8d9e5174a19971c13f6c33276fd37cac7a91ac5b236d3814",
+    "sheet": 2,
+    "slot": 1,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[14]_sproutpacepreviewskt.catalogpreviews.07_catalog_light_w393dp_h851dp_day.png",
+    "sha256": "7affdb60370b9bd592579ad487553db764999182595329e5ee3eb8c36e8082f4",
+    "sheet": 2,
+    "slot": 2,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[151]_productionscenariopreviewskt.selectedrecipeexpandedscenario.07_selected_recipe_expanded_dark_ru_200_w1100dp_h1400dp_ru_font_2_0f_night.png",
+    "sha256": "36299476fa95e818304ca96e71f680b61ad25dca418913249dc17e6fa2ef6ba6",
+    "sheet": 2,
+    "slot": 3,
+    "width": 785,
+    "height": 999
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[152]_productionscenariopreviewskt.selectedrecipeexpandedscenario.07_selected_recipe_expanded_light_w1100dp_h1100dp.png",
+    "sha256": "04b39828cfb98cb82abda9945f56d3e8cdf53fd85c385cda747e5f53c9c052da",
+    "sheet": 2,
+    "slot": 4,
+    "width": 1000,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[15]_sproutpacepreviewskt.catalogpreviews.07_catalog_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
+    "sha256": "df0f26b339ebaffd4e76f9fb72cc14e365d30647ea860af8a96f1fb43932277d",
+    "sheet": 2,
+    "slot": 5,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[187]_remainingriskpreviewskt.longpersonalrecipe.07_long_personal_recipe_ru_200_w700dp_h1200dp_ru_font_2_0f.png",
+    "sha256": "b3f2581671c46bb1399c2994dae46bc530aa435b0a8f29a4065c2721cdc3c34d",
+    "sheet": 2,
+    "slot": 6,
+    "width": 583,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[192]_remainingriskpreviewskt.longestsourceurl.08_longest_bundled_source_url_ru_200_w1100dp_h1400dp_ru_font_2_0f.png",
+    "sha256": "4f52ff3e71ad2b562ca62dbc3e9ae4a25078736fb9dc4e41c849f2b85cf3aa9e",
+    "sheet": 3,
+    "slot": 1,
+    "width": 785,
+    "height": 999
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[195]_remainingriskpreviewskt.noimagecatalog.07_personal_recipe_missing_optional_image_w393dp_h1200dp.png",
+    "sha256": "10313c8cb7357a4851e1a661602f5d7192f11de4c4ce12fcfa6f03fbdb37e0b5",
+    "sheet": 3,
+    "slot": 2,
+    "width": 327,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[201]_remainingriskpreviewskt.outdatedrecipe.08_outdated_source_review_ru_200_w700dp_h1800dp_ru_font_2_0f.png",
+    "sha256": "0d502fb9130363e6c4c3e0acf4940404e22f9ee03bfe50dfcea028e423f28a4d",
+    "sheet": 3,
+    "slot": 3,
+    "width": 388,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[204]_remainingriskpreviewskt.planfixeddate.06_fixed_harvest_date_dark_w700dp_h1200dp_night.png",
+    "sha256": "5eb55d86e6f7f66a02bfd4ba506988202bae39fd24c4edd5c1cf14d35d2886a2",
+    "sheet": 3,
+    "slot": 4,
+    "width": 583,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[205]_remainingriskpreviewskt.planfixeddate.06_fixed_harvest_date_light_w393dp_h1200dp.png",
+    "sha256": "14710735177d06f7606d1293b0a18229094366fc9c52cefaa528dc12c2a5ade3",
+    "sheet": 3,
+    "slot": 5,
+    "width": 327,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[206]_remainingriskpreviewskt.planlongculturenames.06_longest_culture_names_ru_200_compact_w393dp_h1400dp_ru_font_2_0f.png",
+    "sha256": "8cfab09b8863d72c188a68086fac08ad70b1ed9cc1b1abdd07d8132c30284d18",
+    "sheet": 3,
+    "slot": 6,
+    "width": 280,
+    "height": 999
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[207]_remainingriskpreviewskt.planlongculturenames.06_longest_culture_names_ru_200_expanded_w1100dp_h1400dp_ru_font_2_0f.png",
+    "sha256": "6df25dcbe6dc98aa9f7d907c37fc749f7ea4426375b4fe7562362bc89ff73ce2",
+    "sheet": 4,
+    "slot": 1,
+    "width": 785,
+    "height": 999
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[208]_remainingriskpreviewskt.repeatbatchinputs.04_repeat_production_inputs_dark_w393dp_h1100dp_night.png",
+    "sha256": "0bf4deec376b7c78f003c45b590932351e37cbd5dfb6ef34fde01ebf52f684d3",
+    "sheet": 4,
+    "slot": 2,
+    "width": 357,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[209]_remainingriskpreviewskt.repeatbatchinputs.04_repeat_production_inputs_light_w393dp_h1100dp.png",
+    "sha256": "e03dc45f26fb2bdcbf34639011d1ab783bc550c85422cedbfeb8b5f5f7c1c0f9",
+    "sheet": 4,
+    "slot": 3,
+    "width": 357,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[212]_remainingriskpreviewskt.scientificsearch.07_scientific_search_w393dp_h851dp.png",
+    "sha256": "91192ecd27bf66331f1b9c2a0d9117b49afc8580fe38b552842a117da7925477",
+    "sheet": 4,
+    "slot": 4,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[225]_remainingriskpreviewskt.sourceopenfailure.08_source_open_failure_expanded_w1100dp_h1200dp.png",
+    "sha256": "2c4b91f0d8320a904ce8705a7aba5bcea3784b6aaf921a313222192c3ce76ebc",
+    "sheet": 4,
+    "slot": 5,
+    "width": 916,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+    "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3",
+    "sheet": 4,
+    "slot": 6,
+    "width": 218,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+    "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0",
+    "sheet": 5,
+    "slot": 1,
+    "width": 218,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+    "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281",
+    "sheet": 5,
+    "slot": 2,
+    "width": 218,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[29]_sproutpacepreviewskt.expandedplanpreview.expanded_plan_w1100dp_h800dp.png",
+    "sha256": "40a1906e2f80f3931178c574c57822fd0c3b56006d82e5ddf206b80ed70dde8c",
+    "sheet": 5,
+    "slot": 3,
+    "width": 1000,
+    "height": 727
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[45]_sproutpacepreviewskt.planpreviews.06_plan_dark_w393dp_h851dp_night.png",
+    "sha256": "f3c86730484511c310a6e5d8045de709e8f57bb129561704d7e3042f1994e530",
+    "sheet": 5,
+    "slot": 4,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[46]_sproutpacepreviewskt.planpreviews.06_plan_light_w393dp_h851dp_day.png",
+    "sha256": "7c2f1cfd8360e1e74e8ab7ebab3630c278b497c2f84137644c3c7160017796e7",
+    "sheet": 5,
+    "slot": 5,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[47]_sproutpacepreviewskt.planpreviews.06_plan_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
+    "sha256": "fdb46a72b6f834c64b6bd3a72d4bf14a491d0a74bfd261fd8523b4380ba6eb85",
+    "sheet": 5,
+    "slot": 6,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
+    "sha256": "506a8b99019cb3411c61481f450f7d7dbf6f34d9a00167dfd683aa74ef9d4100",
+    "sheet": 6,
+    "slot": 1,
+    "width": 218,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[53]_sproutpacepreviewskt.recipepreviews.08_recipe_dark_w393dp_h851dp_night.png",
+    "sha256": "e29d8e783ecb6ed0564e48bc828f527e19f7f1edd250c447b6bbc19aefcc2f14",
+    "sheet": 6,
+    "slot": 2,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[54]_sproutpacepreviewskt.recipepreviews.08_recipe_light_w393dp_h851dp_day.png",
+    "sha256": "52d203604f2d4e9e9ca0333f64ceb011a8c1a19eddeedc156d987419d48b8da7",
+    "sheet": 6,
+    "slot": 3,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[55]_sproutpacepreviewskt.recipepreviews.08_recipe_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
+    "sha256": "95a5bcda701f892190e2f07a9ad7274fa726c8c1cc3e0e11b6c0599e7f40711d",
+    "sheet": 6,
+    "slot": 4,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[6]_sproutpacepreviewskt.batcheditorpreviews.04_batch_editor_dark_w393dp_h851dp_night.png",
+    "sha256": "2e0779bd8a452ffc3f49ea19668ee70c38d2f3b7761d385eae0fb418b020302f",
+    "sheet": 6,
+    "slot": 5,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[7]_sproutpacepreviewskt.batcheditorpreviews.04_batch_editor_light_w393dp_h851dp_day.png",
+    "sha256": "9cbf39ce50ad27a928ab09c74cc7a69ffeba73466b4ceefd8db1d9e6026a7bac",
+    "sheet": 6,
+    "slot": 6,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[8]_sproutpacepreviewskt.batcheditorpreviews.04_batch_editor_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
+    "sha256": "e3c65c6b7f6ca69b246b835cf1bfd439b08e455a34da7fc13636ebaaf08db723",
+    "sheet": 7,
+    "slot": 1,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[99]_productionscenariopreviewskt.correctionscenario.04_correction_light_w393dp_h851dp.png",
+    "sha256": "b4c56979234f62eb5db407be06c5ccd47d36d4fda66fa5672b44e91d067eac3f",
+    "sheet": 7,
+    "slot": 2,
+    "width": 461,
+    "height": 1000
+  },
+  {
+    "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[9]_sproutpacepreviewskt.capacityconflictpreview.capacity_conflict_dark_w393dp_h851dp_night.png",
+    "sha256": "81dc81651e241d757bcb646d7a532182a5e3276cfcbda8196dc59050538db265",
+    "sheet": 7,
+    "slot": 3,
+    "width": 461,
+    "height": 1000
+  }
+]

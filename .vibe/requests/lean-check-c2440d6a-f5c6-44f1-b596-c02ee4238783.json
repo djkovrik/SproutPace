@@ -1,0 +1,12 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:recordPaparazzi",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    "--quiet"
+  ],
+  "timeoutSeconds": 1800
+}

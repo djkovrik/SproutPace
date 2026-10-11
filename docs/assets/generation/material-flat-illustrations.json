@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-11",
+  "method": "generate-raster",
+  "tool": "built-in image_gen",
+  "referenceDirectory": "docs/assets/illustration-candidates-20261011/material-flat",
+  "referencePrompts": "docs/assets/illustration-candidates-20261011/material-flat/prompts.json",
+  "authorization": "User approved flat candidates and explicitly requested keeping PNG rather than converting to XML.",
+  "export": "Byte-for-byte copies of the six selected transparent PNG candidates into Compose drawable resources. Shared full-color artwork in both themes, no tint. Stages 96x72dp; empty shelf 240x160dp."
+}

@@ -86,11 +86,14 @@ class UiPreviewContractTest {
 
     @Test
     fun approvedCustomAssetInspectionPreviewIsDiscoverableAndTallEnough() {
-        val recipe = SproutPacePreviewCatalog.cases
-            .map { it.preview.previewInfo }
-            .singleOrNull { it.name == "08 Recipe Asset Inspection" }
-        assertTrue("Missing Recipe custom-asset inspection preview", recipe != null)
-        assertTrue("Recipe asset inspection must expose all stage artwork", recipe != null && recipe.heightDp >= 1800)
+        val infos = SproutPacePreviewCatalog.cases.map { it.preview.previewInfo }
+        listOf("08 Recipe Asset Inspection", "08 Recipe Asset Inspection Dark").forEach { name ->
+            val recipe = infos.singleOrNull { it.name == name }
+            assertTrue("Missing Recipe custom-asset inspection preview: $name", recipe != null)
+            assertTrue("Recipe asset inspection must expose all stage artwork", recipe != null && recipe.heightDp >= 1800)
+            val expectedNight = name.endsWith("Dark")
+            assertEquals(expectedNight, recipe!!.uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES)
+        }
     }
 
     @Test

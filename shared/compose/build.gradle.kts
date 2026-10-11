@@ -47,6 +47,8 @@ abstract class GenerateComposablePreviewPaparazziTests : DefaultTask() {
             """
             package $packageName
 
+            import android.view.ViewGroup.LayoutParams
+            import androidx.compose.ui.platform.ComposeView
             import app.cash.paparazzi.Paparazzi
             import com.sedsoftware.sproutpace.compose.paparazzi.PreviewCase
             import com.sedsoftware.sproutpace.compose.paparazzi.SproutPacePaparazziPreviewRule
@@ -74,11 +76,16 @@ abstract class GenerateComposablePreviewPaparazziTests : DefaultTask() {
                 @Test
                 fun snapshot() {
                     paparazzi.configureComposeResources()
-                    paparazzi.snapshot(name = case.id) {
-                        SproutPacePreviewContent(case.preview.previewInfo) {
-                            case.preview()
+                    val view = ComposeView(paparazzi.context).apply {
+                        layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+                        setContent {
+                            SproutPacePreviewContent(case.preview.previewInfo) {
+                                case.preview()
+                            }
                         }
                     }
+                    // Capture the settled static UI, not the first composition frame.
+                    paparazzi.snapshot(view, name = case.id, offsetMillis = 1_000L)
                 }
             }
             """.trimIndent(),

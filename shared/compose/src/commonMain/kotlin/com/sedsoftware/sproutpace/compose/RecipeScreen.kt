@@ -103,7 +103,7 @@ internal fun RecipeScreen(
 private fun RecipeHeader(item: UiItem, guide: RecipeGuideProjection) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         guide.cultureId?.let(::cultureImage)?.let { image ->
-            Image(painterResource(image), null, Modifier.fillMaxWidth().height(156.dp), contentScale = ContentScale.Crop)
+            Image(painterResource(image), null, Modifier.fillMaxWidth().height(156.dp), contentScale = ContentScale.Fit)
         }
         Text(localizedOrAuthored(item.titleKey, item.authoredTitle), style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.semantics { heading() })

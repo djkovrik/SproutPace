@@ -1,0 +1,56 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-11",
+  "reference": "stage_harvest.png style; culture_radish generated result as family reference",
+  "export": "Original generated PNG bytes copied into Compose resources, no vector conversion.",
+  "assets": [
+    {
+      "name": "culture_radish",
+      "prompt": "Use case: stylized-concept. Create one production PNG illustration for SproutPace culture_radish. Reference image 1 is STYLE ONLY: match its simple flat Material Design botanical illustration, forest-green shallow tray, sage rim, lime leaves. Draw RADISH MICROGREENS: 9 short pink/red stems, each paired with broad heart-shaped green cotyledons; uneven natural but tidy heights. Entire tray and every leaf fully visible. Straight front view, narrow soil opening, no visible roots or cutaway. Strict flat solid geometric fills, rounded silhouettes, no outlines, no realism, no texture, no gradient, no glow, no cast shadow. Tray #105C3B, rim #D3E8C1, soil #765B2D, leaves #A5D66D and medium green; pink stems. Landscape 3:2 canvas; artwork occupies central 80% width and 65% height, 10% clear padding all sides. Genuine transparent background and transparent gaps between stems. No scissors, sun, labels, text, watermark or frame. Crisp readable as 64dp thumbnail and 156dp high recipe illustration.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-32554cd7-ea3a-4f6c-94ef-ad2673aa1c84.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_radish.png"
+    },
+    {
+      "name": "culture_broccoli",
+      "prompt": "Use case: stylized-concept. One production PNG for SproutPace culture_broccoli. Match reference's flat Material botanical style and exact shallow forest-green tray with pale sage rim. Subject: BROCCOLI microgreens: 11 short pale green stems carrying small paired rounded kidney-shaped cotyledons, blue-green and lime foliage. No mature broccoli florets. Straight front view, entire tray and all foliage visible, centered landscape 3:2 with generous 10% transparent padding. Flat geometric solid fills, rounded simple shapes, sparse readable foliage, no realism, no roots or cutaway, no gradients or textures or shadows or glow. Soil narrow ochre-brown opening. Genuine transparent background and empty gaps. No tools, text, labels, frame or scenery. Match consistent family proportions. Readable at64dp thumbnail and156dp recipe.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-4cad722c-7497-464f-90d5-171993381436.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_broccoli.png"
+    },
+    {
+      "name": "culture_arugula",
+      "prompt": "Use case: stylized-concept. One production PNG for SproutPace culture_arugula. Match reference's flat Material botanical style and exact shallow forest-green tray with pale sage rim. Subject: ARUGULA microgreens: 10 slender pale green stems with narrow oval cotyledons and a few small elongated gently lobed young leaves. Clearly lighter, thinner foliage than broccoli. Straight front view, entire tray and all foliage visible, centered landscape 3:2 with generous 10% transparent padding. Flat geometric solid fills, rounded simple shapes, sparse readable foliage, no realism, no roots or cutaway, no gradients or textures or shadows or glow. Soil narrow ochre-brown opening. Genuine transparent background and empty gaps. No tools, text, labels, frame or scenery. Match consistent family proportions. Readable at64dp thumbnail and156dp recipe.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-91fe3c92-cf8c-42b3-8e63-9528459af248.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_arugula.png"
+    },
+    {
+      "name": "culture_mustard",
+      "prompt": "Use case: stylized-concept. One production PNG for SproutPace culture_mustard. Match reference's flat Material botanical style and same shallow forest-green tray with pale sage rim. Subject: MUSTARD microgreens: 11 short slim pale stems with small paired heart/kidney cotyledons, mostly lime and sage green with three muted burgundy-purple pairs; compact delicate canopy, no flowers. Straight front view, entire tray and all foliage visible, centered landscape3:2 with10% transparent padding. Flat solid geometric fills, simple rounded shapes, sparse readable foliage, no realism, roots, cutaway, gradient, texture, shadow or glow. Brown soil opening. Genuine transparent background and gaps. No tools, labels, text, frame or scenery. Readable at64dp thumbnail and156dp recipe.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-726196b2-caad-4549-a07b-6cde9b442fe9.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_mustard.png"
+    },
+    {
+      "name": "culture_pea",
+      "prompt": "Use case: stylized-concept. One production PNG for SproutPace culture_pea. Match reference's flat Material botanical style and same shallow forest-green tray with pale sage rim. Subject: PEA SHOOTS: 7 taller green stems with two levels of paired oval leaves and a few delicate curling tendrils rising from tips; three pale ochre round peas just visible in soil. No pods or flowers. Straight front view, entire tray and all foliage visible, centered landscape3:2 with10% transparent padding. Flat solid geometric fills, simple rounded shapes, sparse readable foliage, no realism, roots, cutaway, gradient, texture, shadow or glow. Brown soil opening. Genuine transparent background and gaps. No tools, labels, text, frame or scenery. Readable at64dp thumbnail and156dp recipe.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-963f2135-5b11-4ba6-9dc3-d50e195089c9.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_pea.png"
+    },
+    {
+      "name": "culture_sunflower",
+      "prompt": "Use case: stylized-concept. One production PNG for SproutPace culture_sunflower. Match reference's flat Material botanical style and same shallow forest-green tray with pale sage rim. Subject: SUNFLOWER microgreens: 8 stout pale green stems bearing large thick paired oval dark-green/lime cotyledons, two small dark gray seed hulls on leaf tips. No flowers or sunflower heads. Straight front view, entire tray and all foliage visible, centered landscape3:2 with10% transparent padding. Flat solid geometric fills, simple rounded shapes, sparse readable foliage, no realism, roots, cutaway, gradient, texture, shadow or glow. Brown soil opening. Genuine transparent background and gaps. No tools, labels, text, frame or scenery. Readable at64dp thumbnail and156dp recipe.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-4dd4ad71-3db9-4563-94fc-1cc4368c7d75.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_sunflower.png"
+    },
+    {
+      "name": "culture_basil",
+      "prompt": "Use case: stylized-concept. One production PNG for SproutPace culture_basil. Match reference's flat Material botanical style and same shallow forest-green tray with pale sage rim. Subject: BASIL young microgreens: 9 medium short green stems, lower small oval cotyledons and upper paired pointed oval emerald/sage leaves; simple one pale central vein per larger leaf, not realistic texture. Straight front view, entire tray and all foliage visible, centered landscape3:2 with10% transparent padding. Flat solid geometric fills, simple rounded shapes, sparse readable foliage, no realism, roots, cutaway, gradient, texture, shadow or glow. Brown soil opening. Genuine transparent background and gaps. No tools, labels, text, frame or scenery. Readable at64dp thumbnail and156dp recipe.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-7ce77d2e-d483-41f4-9c59-cce7041ddb98.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_basil.png"
+    },
+    {
+      "name": "culture_garden_cress",
+      "prompt": "Use case: stylized-concept. One production PNG for SproutPace culture_garden_cress. Match reference flat Material botanical family and same shallow forest-green tray with pale sage rim. GARDEN CRESS (Lepidium sativum), not watercress: 15 fine pale green short stems with tiny paired rounded clover-like cotyledons, lime and sage colors; low delicate canopy. Straight front view, entire tray and every leaf visible. Centered landscape3:2 with10% transparent padding. Flat solid geometric fills, simple rounded shapes, no realism, roots, cutaway, gradients, textures, shadows or glow. Narrow brown soil opening. Genuine transparent background and gaps. No tools, text, labels, frame or scenery. Recognizable at64dp thumbnail and156dp recipe.",
+      "selectedOutput": "C:\\Users\\Sergey\\.codex\\generated_images\\01a12bbc-4dda-79a1-80d0-9c4526b427d0\\exec-3a8cd5a2-74b7-46fc-8373-fb6434116707.png",
+      "runtimePath": "shared/compose/src/commonMain/composeResources/drawable/culture_garden_cress.png"
+    }
+  ]
+}

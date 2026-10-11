@@ -1,0 +1,17 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:compose:verifyPaparazzi",
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:compileKotlinIosArm64",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":androidApp:assembleDebug",
+    ":androidApp:assembleRelease",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1"
+  ],
+  "timeoutSeconds": 1800
+}

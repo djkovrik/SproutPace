@@ -432,7 +432,7 @@
           "screenIds": [
             "SCREEN-001"
           ],
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db"
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d"
         },
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
@@ -440,7 +440,7 @@
           "screenIds": [
             "SCREEN-011"
           ],
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db"
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d"
         }
       ],
       "visualEvidence": [
@@ -624,7 +624,7 @@
         },
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "SettingsBrandHeader",
           "screenIds": [
             "SCREEN-011"
@@ -656,7 +656,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -710,7 +710,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[4]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_light_w393dp_h851dp_day.png",
-          "sha256": "ec8957dd89f91e3a5f00932ef00843a253b7b6b993d0efb25dc03e9c2bbfaf76"
+          "sha256": "70352a2a119df69aeb257fac5850dec75d3eccf9a8cafbacffd939400cc8a32e"
         }
       ],
       "blockers": [],
@@ -733,7 +733,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -770,7 +770,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -808,7 +808,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-009",
@@ -842,7 +842,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-016",
@@ -876,7 +876,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-014",
@@ -910,7 +910,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-003",
@@ -921,7 +921,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[122]_productionscenariopreviewskt.harvestedscenario.05_harvested_light_w393dp_h851dp_day.png",
-          "sha256": "6ff467f681c39597b8158d4c7f93af0efb67f37c4b019455ba42d4c02093301b"
+          "sha256": "2af68c301d2c54b29ecda77bd605b08aeed706a9d9561998409d3edbf72c1265"
         }
       ],
       "blockers": [],
@@ -944,7 +944,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -956,7 +956,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[4]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_light_w393dp_h851dp_day.png",
-          "sha256": "ec8957dd89f91e3a5f00932ef00843a253b7b6b993d0efb25dc03e9c2bbfaf76"
+          "sha256": "70352a2a119df69aeb257fac5850dec75d3eccf9a8cafbacffd939400cc8a32e"
         }
       ],
       "blockers": [],
@@ -967,19 +967,23 @@
       "id": "ASSET-016",
       "outputs": [
         {
-          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_soaking.xml",
-          "sha256": "7910e30eab02ab58dc1f793489da1d47ec1b0fb9c969c813e0f95128bdd84b0c"
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_soaking.png",
+          "sha256": "64365f3a6f4d55caa35d00e67080cdf29ed03b275c3a3553d51308a334d409e4"
         }
       ],
       "provenance": {
-        "method": "create-vector",
-        "source": "Original project-specific vector geometry created from ASSET-016 approved brief in spec/app-spec.json",
-        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+        "method": "generate-raster",
+        "source": "User-approved imagegen Material-flat PNG candidates; docs/assets/illustration-candidates-20261011/material-flat",
+        "rights": "Generated artwork approved by the user; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/material-flat-illustrations.json",
+          "sha256": "984192899acb0c3cc56bbc5afbf1e3076a58ab09df56f20ffd76dcfc623e49db"
+        }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -990,42 +994,42 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[154]_productionscenariopreviewskt.soakingscenario.05_soaking_dark_w393dp_h851dp_night.png",
-          "sha256": "9448570a1c7d75e7d5af76eaaffb900a5261f12d2d1fb341b2ed6e63eb9f91bf"
+          "sha256": "a4afc92848eb0cf54e9f3b259833124da186587617620c1d923c3a1efe0761eb"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[155]_productionscenariopreviewskt.soakingscenario.05_soaking_light_w393dp_h851dp_day.png",
-          "sha256": "2274e51c65771dc7b547db670231a5b52233478cc6921b41068de456b84b3119"
+          "sha256": "92d711cbb7136840d76031759a79fed59f381a2775cac652cc67c09090ebd377"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/illustration-review-20261011/review.md",
+          "sha256": "80424538529c7d68bcf68814c8513ef864019167ed5ce36dfd834d6088df7822"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: reviewed final production goldens in both themes, including small stage art, empty states, RU/200% and adaptive consumers. Original approved PNG shapes retained, without tint or vector conversion. See bounded review for transparency and contrast findings; not a full-app release declaration."
     },
     {
       "id": "ASSET-017",
       "outputs": [
         {
-          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_sown.xml",
-          "sha256": "728af8c57f3a5195bd988aa4e1deb2da3d6dc285fc1083fe28f583209b9a8599"
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_sown.png",
+          "sha256": "579d038fe176777b420c06015cb980a9f5a7d26f07fd440625be4397c4fcae69"
         }
       ],
       "provenance": {
-        "method": "create-vector",
-        "source": "Original project-specific vector geometry created from ASSET-017 approved brief in spec/app-spec.json",
-        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+        "method": "generate-raster",
+        "source": "User-approved imagegen Material-flat PNG candidates; docs/assets/illustration-candidates-20261011/material-flat",
+        "rights": "Generated artwork approved by the user; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/material-flat-illustrations.json",
+          "sha256": "984192899acb0c3cc56bbc5afbf1e3076a58ab09df56f20ffd76dcfc623e49db"
+        }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1035,39 +1039,43 @@
       ],
       "visualEvidence": [
         {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
+        },
+        {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c"
+          "sha256": "506a8b99019cb3411c61481f450f7d7dbf6f34d9a00167dfd683aa74ef9d4100"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/illustration-review-20261011/review.md",
+          "sha256": "80424538529c7d68bcf68814c8513ef864019167ed5ce36dfd834d6088df7822"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: reviewed final production goldens in both themes, including small stage art, empty states, RU/200% and adaptive consumers. Original approved PNG shapes retained, without tint or vector conversion. See bounded review for transparency and contrast findings; not a full-app release declaration."
     },
     {
       "id": "ASSET-018",
       "outputs": [
         {
-          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_blackout.xml",
-          "sha256": "c5a6e7804a23e443b19941e21e313f4e19e67609f075c3cc52bc2010648004c7"
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_blackout.png",
+          "sha256": "d8b055490324036128ce7e667dac879dbfdfb4627d42c6864d686a58f1cba28a"
         }
       ],
       "provenance": {
-        "method": "create-vector",
-        "source": "Original project-specific vector geometry created from ASSET-018 approved brief in spec/app-spec.json",
-        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+        "method": "generate-raster",
+        "source": "User-approved imagegen Material-flat PNG candidates; docs/assets/illustration-candidates-20261011/material-flat",
+        "rights": "Generated artwork approved by the user; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/material-flat-illustrations.json",
+          "sha256": "984192899acb0c3cc56bbc5afbf1e3076a58ab09df56f20ffd76dcfc623e49db"
+        }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1077,39 +1085,43 @@
       ],
       "visualEvidence": [
         {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
+        },
+        {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c"
+          "sha256": "506a8b99019cb3411c61481f450f7d7dbf6f34d9a00167dfd683aa74ef9d4100"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/illustration-review-20261011/review.md",
+          "sha256": "80424538529c7d68bcf68814c8513ef864019167ed5ce36dfd834d6088df7822"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: reviewed final production goldens in both themes, including small stage art, empty states, RU/200% and adaptive consumers. Original approved PNG shapes retained, without tint or vector conversion. See bounded review for transparency and contrast findings; not a full-app release declaration."
     },
     {
       "id": "ASSET-019",
       "outputs": [
         {
-          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_light_growth.xml",
-          "sha256": "0da3d9b127d42503458add8d952e2c6f31a94caf6bf9f5e486444fbf19b0af57"
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_light_growth.png",
+          "sha256": "fe8994e2519ab63c6ed20830a7196961fefbe18e31497b42b3cf704a6cca3f85"
         }
       ],
       "provenance": {
-        "method": "create-vector",
-        "source": "Original project-specific vector geometry created from ASSET-019 approved brief in spec/app-spec.json",
-        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+        "method": "generate-raster",
+        "source": "User-approved imagegen Material-flat PNG candidates; docs/assets/illustration-candidates-20261011/material-flat",
+        "rights": "Generated artwork approved by the user; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/material-flat-illustrations.json",
+          "sha256": "984192899acb0c3cc56bbc5afbf1e3076a58ab09df56f20ffd76dcfc623e49db"
+        }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1119,39 +1131,43 @@
       ],
       "visualEvidence": [
         {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
+        },
+        {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c"
+          "sha256": "506a8b99019cb3411c61481f450f7d7dbf6f34d9a00167dfd683aa74ef9d4100"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/illustration-review-20261011/review.md",
+          "sha256": "80424538529c7d68bcf68814c8513ef864019167ed5ce36dfd834d6088df7822"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: reviewed final production goldens in both themes, including small stage art, empty states, RU/200% and adaptive consumers. Original approved PNG shapes retained, without tint or vector conversion. See bounded review for transparency and contrast findings; not a full-app release declaration."
     },
     {
       "id": "ASSET-020",
       "outputs": [
         {
-          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_harvest.xml",
-          "sha256": "3948e37477ffb98f6ecb8541c4830ce1ed716e2a063091a748af9e46f43e2287"
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_harvest.png",
+          "sha256": "c0967e810a21d27d8522ccf2a76ea3f6b3d0fa43268af63a36b56d1f5d70be69"
         }
       ],
       "provenance": {
-        "method": "create-vector",
-        "source": "Original project-specific vector geometry created from ASSET-020 approved brief in spec/app-spec.json",
-        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+        "method": "generate-raster",
+        "source": "User-approved imagegen Material-flat PNG candidates; docs/assets/illustration-candidates-20261011/material-flat",
+        "rights": "Generated artwork approved by the user; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/material-flat-illustrations.json",
+          "sha256": "984192899acb0c3cc56bbc5afbf1e3076a58ab09df56f20ffd76dcfc623e49db"
+        }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1161,39 +1177,43 @@
       ],
       "visualEvidence": [
         {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
+        },
+        {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c"
+          "sha256": "506a8b99019cb3411c61481f450f7d7dbf6f34d9a00167dfd683aa74ef9d4100"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/illustration-review-20261011/review.md",
+          "sha256": "80424538529c7d68bcf68814c8513ef864019167ed5ce36dfd834d6088df7822"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: reviewed final production goldens in both themes, including small stage art, empty states, RU/200% and adaptive consumers. Original approved PNG shapes retained, without tint or vector conversion. See bounded review for transparency and contrast findings; not a full-app release declaration."
     },
     {
       "id": "ASSET-021",
       "outputs": [
         {
-          "path": "shared/compose/src/commonMain/composeResources/drawable/illustration_empty_today.xml",
-          "sha256": "0e46d37d567b451a2690f473f68acebe4d6b8d4da24428dad373b7e875094113"
+          "path": "shared/compose/src/commonMain/composeResources/drawable/illustration_empty_today.png",
+          "sha256": "e17f4ba29785e05b3444185722f973b8c00edcf48eb23521061c310831ee2402"
         }
       ],
       "provenance": {
-        "method": "create-vector",
-        "source": "Original project-specific vector geometry created from ASSET-021 approved brief in spec/app-spec.json",
-        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+        "method": "generate-raster",
+        "source": "User-approved imagegen Material-flat PNG candidates; docs/assets/illustration-candidates-20261011/material-flat",
+        "rights": "Generated artwork approved by the user; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/material-flat-illustrations.json",
+          "sha256": "984192899acb0c3cc56bbc5afbf1e3076a58ab09df56f20ffd76dcfc623e49db"
+        }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "statusItems",
           "screenIds": [
             "SCREEN-002",
@@ -1205,62 +1225,62 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[21]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "0abf2a45730a61558ee8d032756e8d889daab838152daefec03ba64ded2eb0f9"
+          "sha256": "be586a8135f218dafb420108ffd1285cc5b0e904c533b249bac231e49122281e"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[22]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_light_w393dp_h851dp_day.png",
-          "sha256": "6165a3ccc771399f28f9a1f21105aa5d606c6294c3d060034df4f50f8fcf5c56"
+          "sha256": "e7bd65363cc9e4b4490dd29c9fa19af122281f9512309c1e8d47178d10e47efe"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[23]_sproutpacepreviewskt.emptytodaypreview.empty_state_dark_w393dp_h851dp_night.png",
-          "sha256": "9881396e08d42b28f17d231c58cb401fd73d14df5d5cea828847d5ec9c9af43e"
+          "sha256": "8a3508e76f0a6a672ee8496a2bd8e2eb31f7ffc7ff37825608777ae0171ca274"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[24]_sproutpacepreviewskt.emptytodaypreview.empty_state_light_w393dp_h851dp_day.png",
-          "sha256": "d3b4e58d540b6113ffa60088f1ae6f185c32de5b580c3e3d1f5c3094aef10c69"
+          "sha256": "153560e3e6447da546462b70a5d516f9e7420a2ebd1f7ff567469b2a2a2ca2e6"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[25]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "a00fdaa622d40d0b4f222da1e618b0a4e3931222da8000541b0d80cba9722e44"
+          "sha256": "dbe424257b054f3f0922cdaa24e2a560589354860ae8295863843c42e63ddab1"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[26]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_light_w393dp_h851dp_day.png",
-          "sha256": "187a15f54b4cf310d5b0a0b1274f543dcb63d519a764ca6da89fcf929f332185"
+          "sha256": "ec6deec76e51037370919a0244cc37be04263cf74d9430a896379c6956481eca"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/illustration-review-20261011/review.md",
+          "sha256": "80424538529c7d68bcf68814c8513ef864019167ed5ce36dfd834d6088df7822"
         }
       ],
       "blockers": [],
       "usageNotes": "TodayScreen, TraysScreen and PlanScreen call statusItems for their actual empty state.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: reviewed final production goldens in both themes, including small stage art, empty states, RU/200% and adaptive consumers. Original approved PNG shapes retained, without tint or vector conversion. See bounded review for transparency and contrast findings; not a full-app release declaration."
     },
     {
       "id": "ASSET-022",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_radish.png",
-          "sha256": "ecba319170ad3caa1b9fade886ec6020b9c53871c5b0f970844d040cb9cf9b01"
+          "sha256": "3893d99159be034745aa338ee0058f1eedfd3478d288d32d1f15e2f22abba062",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1270,55 +1290,47 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
-          "sha256": "b57e529578963bf4835f068aad68161e863861e495ec99a672bb74ae03892c61"
-        },
-        {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c"
-        },
-        {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     },
     {
       "id": "ASSET-023",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_broccoli.png",
-          "sha256": "d435df8fae4c50364db82f2e633a86abb96930db8f651aff219baa721b3f304c"
+          "sha256": "100bab1ce94d1700a5187ba7145751cbd44af3627172e9df29fcc39d7f95327d",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1328,47 +1340,47 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     },
     {
       "id": "ASSET-024",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_arugula.png",
-          "sha256": "97a625d76ed73ac2a15950aeb7385b4ba057e64ac0d2d404b3abbd9a4b5380d1"
+          "sha256": "c5e4def9f5c4585aa1bd8e8df50d6c94bc775cdba186d5c92d10322ae192ce1e",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1378,47 +1390,47 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     },
     {
       "id": "ASSET-025",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_mustard.png",
-          "sha256": "0c9e73b48e7dc48cf0f63d4eb5706694d14168ebb5a8b90a4e7726bcaee81ad6"
+          "sha256": "c5c6d3b0cd77bccb66b3f2aacff199e757578491c3be1812336c969c6ba6bdf8",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1428,47 +1440,47 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     },
     {
       "id": "ASSET-026",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_pea.png",
-          "sha256": "bd61d734e5db617ed3682f99b1be5640c9c21de5d4748d4888ee6f7df52d47bb"
+          "sha256": "6a452ba447ccefe247d09aed53ad57bd73a90f3fd1031859c14f7d66d2c5d60b",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1478,47 +1490,47 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     },
     {
       "id": "ASSET-027",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_sunflower.png",
-          "sha256": "5d581ab5551c125cd4a56e35ab0b069de7a3e3a62ef9e6ae1de2a512b8ce089d"
+          "sha256": "4344b21418fb3ceadcd2264344a053f2730d0ca8580295c74b01006d23b1ec56",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1528,47 +1540,47 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     },
     {
       "id": "ASSET-028",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_basil.png",
-          "sha256": "096c057fdcf5ea3539d7628159fa01a2d7a0b1323f1e365a072c305a7d9ef609"
+          "sha256": "035d691ce24244d160f18d6fdb3f3e57de6ff13435fef6db2fae990cba7a0e45",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1578,47 +1590,47 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     },
     {
       "id": "ASSET-029",
       "outputs": [
         {
           "path": "shared/compose/src/commonMain/composeResources/drawable/culture_garden_cress.png",
-          "sha256": "ae4716a157709d0a38950e458db991a89145f7f45c8bba216d36d6ad0a6119a4"
+          "sha256": "e069b563ffd8e25bb68bee427c14368daca98e5f0dbc4abfb937e0bc26933394",
+          "widthPx": 1536,
+          "heightPx": 1024,
+          "mode": "RGBA",
+          "alpha": "variable"
         }
       ],
       "provenance": {
         "method": "generate-raster",
-        "source": "Codex built-in image_gen generation session; no input/reference images used",
-        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "source": "Built-in image_gen, flat botanical family matching approved stage_harvest PNG.",
+        "rights": "Project-generated artwork requested by user; no independent legal clearance asserted.",
         "generationRecord": {
-          "path": "docs/assets/generation/catalog-covers.json",
-          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+          "path": "docs/assets/generation/material-flat-cultures.json",
+          "sha256": "86b4bc2afb95d9c14a3cc398afe67ab5466e0d117c57c50d14a365e47f2bbf48"
         }
       },
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1628,25 +1640,21 @@
       ],
       "visualEvidence": [
         {
-          "path": "docs/assets/generated-catalog-contact-sheet.png",
-          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "docs/assets/visual-review.md",
-          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
-          "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
-        },
-        {
-          "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "path": "docs/assets/culture-review-20261011/review.md",
+          "sha256": "8205473affff8129990a11fd18b87a5eb9e8fd784205e0ca562fb8d96970df0a"
         }
       ],
       "blockers": [],
       "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
-      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
+      "visualReview": "2026-10-11: all eight cultures fully visible in production catalog light/dark; Fit avoids cropping at all image placements. See culture review for phone/adaptive/RU200% and thumbnail checks."
     }
   ],
   "deliveryBlockers": []

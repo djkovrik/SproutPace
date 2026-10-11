@@ -850,7 +850,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorBasics(
                         Image(
                             painter = painterResource(cover),
                             contentDescription = null,
-                            contentScale = ContentScale.Crop,
+                            contentScale = ContentScale.Fit,
                             modifier = Modifier.size(width = 112.dp, height = 84.dp),
                         )
                         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -1532,7 +1532,7 @@ private fun PlanTimelineCard(item: UiItem, onAction: (UiAction) -> Unit) {
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Fit,
                     modifier = Modifier.size(64.dp),
                 )
             } ?: Surface(
@@ -1684,7 +1684,7 @@ private fun CatalogCultureCard(item: UiItem, onAction: (UiAction) -> Unit) {
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Fit,
                     modifier = Modifier.fillMaxWidth().height(124.dp),
                 )
             }
@@ -1935,7 +1935,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.screenHero(state: Spr
                         Image(
                             painter = painterResource(cover),
                             contentDescription = null,
-                            contentScale = ContentScale.Crop,
+                            contentScale = ContentScale.Fit,
                             modifier = Modifier.size(width = 192.dp, height = 120.dp),
                         )
                     }
@@ -1951,7 +1951,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.statusItems(state: Sp
             item {
                 Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Image(
-                        imageVector = vectorResource(Res.drawable.illustration_empty_today),
+                        painter = painterResource(Res.drawable.illustration_empty_today),
                         contentDescription = null,
                         modifier = Modifier.size(width = 240.dp, height = 160.dp),
                     )
@@ -2153,7 +2153,7 @@ private fun ItemCard(screen: UiScreen, item: UiItem, onAction: (UiAction) -> Uni
             if (screen in stageContentScreens) {
                 stageImage(item)?.let { image ->
                     Image(
-                        imageVector = vectorResource(image),
+                        painter = painterResource(image),
                         contentDescription = null,
                         modifier = Modifier.size(width = 96.dp, height = 72.dp),
                     )
@@ -2546,7 +2546,7 @@ internal fun stageImage(key: String): DrawableResource? = when (key) {
 @Composable
 internal fun StageIllustration(stageKey: String?) {
     stageKey?.let(::stageImage)?.let { image ->
-        Image(vectorResource(image), null, Modifier.size(width = 96.dp, height = 72.dp))
+        Image(painterResource(image), null, Modifier.size(width = 96.dp, height = 72.dp))
     }
 }
 
