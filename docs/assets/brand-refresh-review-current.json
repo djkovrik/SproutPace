@@ -2,7 +2,7 @@
   "reviewDate": "2026-10-11",
   "auditFinding": "F10 / AUDIT-REQUEST-6a3cda00-3e14-4047-a53d-094f45ead16f",
   "status": "BOUNDED_CURRENT_EVIDENCE",
-  "manifestSha256": "fd2679bc6594708c65df386626e832a14f79e63f3d7b14b30f85df1e99bf9a3e",
+  "manifestSha256": "11139b1157452a0e857e11ff029e827b0bf8a40238c83f8b2ed17fb73262cf6d",
   "assetCount": 29,
   "referenceChecks": {
     "total": 200,
@@ -93,7 +93,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -684,7 +684,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -720,7 +720,7 @@
       "visualEvidenceChecks": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c",
           "matchesRecorded": true
         },
         {
@@ -730,7 +730,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -766,7 +766,7 @@
       "visualEvidenceChecks": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c",
           "matchesRecorded": true
         },
         {
@@ -776,7 +776,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -812,7 +812,7 @@
       "visualEvidenceChecks": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c",
           "matchesRecorded": true
         },
         {
@@ -822,7 +822,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -858,7 +858,7 @@
       "visualEvidenceChecks": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c",
           "matchesRecorded": true
         },
         {
@@ -868,7 +868,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -940,7 +940,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -990,12 +990,12 @@
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
-          "sha256": "812c9df2f89067731ded91c920beb256234986f9e7eaae483e796f0d224cf6e8",
+          "sha256": "b57e529578963bf4835f068aad68161e863861e495ec99a672bb74ae03892c61",
           "matchesRecorded": true
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c",
           "matchesRecorded": true
         },
         {
@@ -1005,7 +1005,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1060,7 +1060,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1115,7 +1115,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1170,7 +1170,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1225,7 +1225,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1280,7 +1280,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1335,7 +1335,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1390,7 +1390,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53",
           "matchesRecorded": true
         }
       ],
@@ -1796,5 +1796,6 @@
   "record10Refresh": {
     "reviewDocumentSha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
     "scope": "Parent inspected15 changed production captures including Close identity and Zone forecast. All asset artifact/source/usage and individual visual binding hashes unchanged; only full review-document bindings refreshed. No additional native/runtime claim."
-  }
+  },
+  "catalogV2Refresh": "Reviewed catalog content delta only; no asset image, provenance or native runtime claim changed."
 }

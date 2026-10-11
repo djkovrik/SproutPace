@@ -1,0 +1,183 @@
+{
+  "status": "VISUALLY_REVIEWED",
+  "reviewedOn": "2026-10-11",
+  "changed": [
+    {
+      "file": "p_P_snapshot[101]_productionscenariopreviewskt.cressscenario.08_garden_cress_ru_200_w393dp_h1100dp_ru_font_2_0f.png",
+      "beforeSha256": "96fce5dcf68bc8cc71e23321ddef71c7d13a136483e20094c6c09f9e72d21580",
+      "sha256": "0524ce4aa9d652d7973da387527b780a041c72e210c10735f990ad5b98c5c863",
+      "sheet": 1
+    },
+    {
+      "file": "p_P_snapshot[110]_productionscenariopreviewskt.expandedrecipescenario.08_expanded_stages_and_sources_w1100dp_h1000dp.png",
+      "beforeSha256": "a767ba71f42369b5379992cb95b397a1dfbc4a0ad61a89e6a9f12605db93cc83",
+      "sha256": "25f533bf8ed76de6b9e2e28e34cc4c404d63998cf53279720b0e883b24542fee",
+      "sheet": 1
+    },
+    {
+      "file": "p_P_snapshot[11]_sproutpacepreviewskt.cataloghiddenadofflineinspectionpreview.07_catalog_hidden_ad_offline_inspection_w393dp_h1800dp.png",
+      "beforeSha256": "fc6d1cebde1f41cc1096729d7ffd6b98b77f4d2b389968ba55d4efbf628a2c20",
+      "sha256": "14bdb9e8253841b68e5cc656e87ff5f0bb00d2bae9d7f654403c7d9166e3e59b",
+      "sheet": 1
+    },
+    {
+      "file": "p_P_snapshot[127]_productionscenariopreviewskt.invalidrecipescenario.08_invalid_range_ru_200_w700dp_h1100dp_ru_font_2_0f.png",
+      "beforeSha256": "7383e4b7928b32d3e884df5da8ad6414d600956b24539cc84e66eebdea7fbbd6",
+      "sha256": "d7de8c2112864465dbe8731a00df8eac6943f578600394d8cf37d8290b4f1dd1",
+      "sheet": 1
+    },
+    {
+      "file": "p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
+      "beforeSha256": "812c9df2f89067731ded91c920beb256234986f9e7eaae483e796f0d224cf6e8",
+      "sha256": "b57e529578963bf4835f068aad68161e863861e495ec99a672bb74ae03892c61",
+      "sheet": 1
+    },
+    {
+      "file": "p_P_snapshot[13]_sproutpacepreviewskt.catalogpreviews.07_catalog_dark_w393dp_h851dp_night.png",
+      "beforeSha256": "8d5b1b3b52d0dd5d65136c78d715677f640460f901e2b4c2217399e8f91436d1",
+      "sha256": "8e49d2191581f3b1210c9026f0299fd4974fb0ffbefc0945de824cbb9791dcfa",
+      "sheet": 1
+    },
+    {
+      "file": "p_P_snapshot[14]_sproutpacepreviewskt.catalogpreviews.07_catalog_light_w393dp_h851dp_day.png",
+      "beforeSha256": "0ce20060ba04dea39edd8a78fd67364c4a725d7288e0ae361f71ed51829eb4af",
+      "sha256": "fb43cf22b7c690aff2d9b75abf892fc982d22f20802e9d79a536ba3590da6eb5",
+      "sheet": 2
+    },
+    {
+      "file": "p_P_snapshot[151]_productionscenariopreviewskt.selectedrecipeexpandedscenario.07_selected_recipe_expanded_dark_ru_200_w1100dp_h1400dp_ru_font_2_0f_night.png",
+      "beforeSha256": "691463e12f59c28c4d53e7e23aac4819f68631db749c75fdc40d82741882c080",
+      "sha256": "7f2c282d792c353785bb125cc89725f18681d7c097fc83be345f0ddbfc1f5ebf",
+      "sheet": 2
+    },
+    {
+      "file": "p_P_snapshot[152]_productionscenariopreviewskt.selectedrecipeexpandedscenario.07_selected_recipe_expanded_light_w1100dp_h1100dp.png",
+      "beforeSha256": "147599aff1e6131539f22cfa1c89d795f0f66c9fb137e48580ad4d5f46332f3e",
+      "sha256": "e30ce00a0526af6ba3c411586da8c4fac55d38db1ea4526f90f3cad70eb8888f",
+      "sheet": 2
+    },
+    {
+      "file": "p_P_snapshot[159]_remainingriskpreviewskt.batchconflictsummary.04_capacity_conflict_summary_w700dp_h1100dp.png",
+      "beforeSha256": "3ca60efcb2ca455de4328103222c5c652e290f9bcaab6a37a5f4cb3b82853045",
+      "sha256": "38b5480f0a4ee69ca75f689449fec775acb2c7e4b1b88e29a8d4ad4ff4b31892",
+      "sheet": 2
+    },
+    {
+      "file": "p_P_snapshot[15]_sproutpacepreviewskt.catalogpreviews.07_catalog_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
+      "beforeSha256": "9b93b110b7485327d97d3e2c82af167eb4f3face326a2fe2e91271ed76ff2ef7",
+      "sha256": "b619188f578902164165eea5f1187715526998cb1bf1a6857c8c60c1f8a78caf",
+      "sheet": 2
+    },
+    {
+      "file": "p_P_snapshot[187]_remainingriskpreviewskt.longpersonalrecipe.07_long_personal_recipe_ru_200_w700dp_h1200dp_ru_font_2_0f.png",
+      "beforeSha256": "6367bece436681cb9659bc33076b8b45afd1e37cfd49f1f50d464759432bc6b2",
+      "sha256": "0c29709ea9617654794075cb6d37fb0514ac14172701e51384e580cf14ee4eee",
+      "sheet": 2
+    },
+    {
+      "file": "p_P_snapshot[192]_remainingriskpreviewskt.longestsourceurl.08_longest_bundled_source_url_ru_200_w1100dp_h1400dp_ru_font_2_0f.png",
+      "beforeSha256": "02e7cd46336cbd01d4e5bbdb14bfb626c28d0cabc6c2c4220dee6450149202b8",
+      "sha256": "1dfe866a21e46a84ab8b247c4e44c93268772b130b9824bd7791b3a32ac273ed",
+      "sheet": 3
+    },
+    {
+      "file": "p_P_snapshot[193]_remainingriskpreviewskt.needsresolutionsuggestion.04_needs_resolution_suggestion_dark_ru_200_w700dp_h1400dp_ru_font_2_0f_night.png",
+      "beforeSha256": "6024506dd8115ffd2bbfe2e78addd9c43e1f7b5d5861c4172970799ec9b994d7",
+      "sha256": "4838bc30155acc87bde3f525929082556c1ec70458e8b870eff0643caa24e7ec",
+      "sheet": 3
+    },
+    {
+      "file": "p_P_snapshot[194]_remainingriskpreviewskt.needsresolutionsuggestion.04_needs_resolution_suggestion_light_w393dp_h1300dp.png",
+      "beforeSha256": "1348cf046033dfb3fdaa43160bcc770660c4f827df87c5a31e9435dd22ea4479",
+      "sha256": "bfdc4b4e52f8d3d8d6e0e11b964ff00ac7806907390d379c673be5b110539652",
+      "sheet": 3
+    },
+    {
+      "file": "p_P_snapshot[195]_remainingriskpreviewskt.noimagecatalog.07_personal_recipe_missing_optional_image_w393dp_h1200dp.png",
+      "beforeSha256": "4ff1d9c23db6cba184173282c53afbb282af88f51e09382396786ca7055beb93",
+      "sha256": "bc6c9c89c2f30afad6f15d1f32ea5ec05bd3096ec0348923944deb4ccc4cc636",
+      "sheet": 3
+    },
+    {
+      "file": "p_P_snapshot[201]_remainingriskpreviewskt.outdatedrecipe.08_outdated_source_review_ru_200_w700dp_h1800dp_ru_font_2_0f.png",
+      "beforeSha256": "02ef26e8761c886681a4156305ea0200d3ba26b180ec1678c54f30b93b3803e9",
+      "sha256": "7c43db176e8aee30b8f61f8f4ee55347d32d29b8b8f0934956285425450cc115",
+      "sheet": 3
+    },
+    {
+      "file": "p_P_snapshot[204]_remainingriskpreviewskt.planfixeddate.06_fixed_harvest_date_dark_w700dp_h1200dp_night.png",
+      "beforeSha256": "f045ae5e6392dc572af6abcaa4cd76e8d0e5dd994270779bcde739b022ad77a3",
+      "sha256": "ab18720ede3212ca497e3462d33e977ff097665facb90b59256825910966113c",
+      "sheet": 3
+    },
+    {
+      "file": "p_P_snapshot[205]_remainingriskpreviewskt.planfixeddate.06_fixed_harvest_date_light_w393dp_h1200dp.png",
+      "beforeSha256": "946ac3713c2b8b08da6eff8bf39614b4363baadce1d6f499b3e83d1260cb5371",
+      "sha256": "1982eb1df18133fef93fb374d3a31ffecb95fe4b0263be4f1505049b57a58698",
+      "sheet": 4
+    },
+    {
+      "file": "p_P_snapshot[206]_remainingriskpreviewskt.planlongculturenames.06_longest_culture_names_ru_200_compact_w393dp_h1400dp_ru_font_2_0f.png",
+      "beforeSha256": "362316f7db247884d835ebb1a5119ac43abfcbed9a55837c559ecfb49fc2c3db",
+      "sha256": "88d7a26543341e7dadd1492902f8ab838f5a0ce5f671d8237d9a22bec5e9afaa",
+      "sheet": 4
+    },
+    {
+      "file": "p_P_snapshot[207]_remainingriskpreviewskt.planlongculturenames.06_longest_culture_names_ru_200_expanded_w1100dp_h1400dp_ru_font_2_0f.png",
+      "beforeSha256": "465d3bbf4e81f3ffcbfb958a32faa9c09d799b6a7bf36f917272d2edd5e4aed2",
+      "sha256": "b06c97b0c29cad9cba42caf73c5a33bc73e883aed9c7da51decc6e23633849fe",
+      "sheet": 4
+    },
+    {
+      "file": "p_P_snapshot[212]_remainingriskpreviewskt.scientificsearch.07_scientific_search_w393dp_h851dp.png",
+      "beforeSha256": "b71a772f10da1670522e1bcd91aec29192432bf8db5ec2b583ddad8a8ee0801f",
+      "sha256": "2a4ef7096508ec32baf1f38e1a34bcef1029ed91514ae16839f801dedfee033a",
+      "sheet": 4
+    },
+    {
+      "file": "p_P_snapshot[213]_remainingriskpreviewskt.searchempty.07_search_empty_dark_ru_200_w700dp_h1100dp_ru_font_2_0f_night.png",
+      "beforeSha256": "232b19fdfc2609efe0d4c7cbdc8e7d22c4bf1de3d77f3c220b83dfe4a2b0978f",
+      "sha256": "1efaa0b327b5081f5186fe9423dc5edbdd00bbaaae821e5b8cc61739d0e86146",
+      "sheet": 4
+    },
+    {
+      "file": "p_P_snapshot[214]_remainingriskpreviewskt.searchempty.07_search_empty_light_w393dp_h851dp.png",
+      "beforeSha256": "ac62596ad7d4a959e5591dbe66b66603b8dbd9d94052c9edbbbc1f32e3e3161f",
+      "sha256": "d6e372080bc570851bf6e9bc28b76fa677113269683ad0441d468320d6c690a1",
+      "sheet": 4
+    },
+    {
+      "file": "p_P_snapshot[225]_remainingriskpreviewskt.sourceopenfailure.08_source_open_failure_expanded_w1100dp_h1200dp.png",
+      "beforeSha256": "704dbacdcd568cebfecb82498194cfaca7cf395bba948688876381a3730f517c",
+      "sha256": "f039cdf7dfdd37b4ec22953c6590badcd0ac03847373b15790166b702a54be91",
+      "sheet": 5
+    },
+    {
+      "file": "p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
+      "beforeSha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+      "sha256": "32b366fe4f852d53cfa219ac1eecfa21d9595b48c392873aa3a8fbd08e5a011c",
+      "sheet": 5
+    },
+    {
+      "file": "p_P_snapshot[53]_sproutpacepreviewskt.recipepreviews.08_recipe_dark_w393dp_h851dp_night.png",
+      "beforeSha256": "45efcc1c4d08345ae5010b01dc21cfda27da894311332cb8b160b9ddb885b452",
+      "sha256": "6c952976ebf2bd7fb10f68b6191e8bca5cfb382ea9eca2f52020202b13eae6ac",
+      "sheet": 5
+    },
+    {
+      "file": "p_P_snapshot[54]_sproutpacepreviewskt.recipepreviews.08_recipe_light_w393dp_h851dp_day.png",
+      "beforeSha256": "936bbe41ea392abe825f31a1e3456d5505fe29a74a6d62289fc736d936ea51d5",
+      "sha256": "fb079c33e4fbf76a97896b1b5685bca39dbea452ce1a5171b226a9ba79e2ce09",
+      "sheet": 5
+    },
+    {
+      "file": "p_P_snapshot[55]_sproutpacepreviewskt.recipepreviews.08_recipe_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
+      "beforeSha256": "b880b168f6ccdb377bb5ee49924949cffcff432f66d4b4f508e9cc65ec83b312",
+      "sha256": "b7aa2cb657b2b9e50932f46ee9ce740eb1117b60c5231e8126767d79b527e3eb",
+      "sheet": 5
+    }
+  ],
+  "unchangedCount": 202,
+  "totalCount": 231,
+  "notes": "Catalog v2: parent inspected all 29 intentional changed captures in five contact sheets, plus full-size expanded recipe and RU200 source-risk views. New rates, total windows, v2 metadata/source and longer EN/RU content render without new visible clipping. 202 captures unchanged; all 231 retained. Content-only change, existing layout/interaction research retained. Screenshot review does not prove runtime scrolling or accessibility."
+}

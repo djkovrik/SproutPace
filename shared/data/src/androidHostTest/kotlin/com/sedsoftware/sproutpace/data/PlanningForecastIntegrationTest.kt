@@ -10,6 +10,9 @@ import com.sedsoftware.sproutpace.domain.model.BatchId
 import com.sedsoftware.sproutpace.domain.model.BatchState
 import com.sedsoftware.sproutpace.domain.model.BatchOutcome
 import com.sedsoftware.sproutpace.domain.model.CultureId
+import com.sedsoftware.sproutpace.domain.model.DurationRange
+import com.sedsoftware.sproutpace.domain.model.LocalizationKey
+import com.sedsoftware.sproutpace.domain.model.SourceMetadata
 import com.sedsoftware.sproutpace.domain.model.GrowBatch
 import com.sedsoftware.sproutpace.domain.model.GrowZone
 import com.sedsoftware.sproutpace.domain.model.GrowStage
@@ -40,8 +43,38 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
+import kotlin.time.Duration.Companion.days
 
 class PlanningForecastIntegrationTest {
+    @Test fun catalogUpdatePreservesStoredV1NumbersSourcesAndInstructionKeys() = runTest {
+        database.saveZone(zone)
+        val current = batch(zone)
+        val oldSource = SourceMetadata(
+            "https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home",
+            LocalizationKey("source_penn_state_growing_guide"),
+            LocalDate(2026, 9, 20),
+        )
+        val oldDensity = current.recipe.density.copy(gramsPerSquareCentimetre = 0.028, version = 1, source = oldSource)
+        val oldStages = current.recipe.stages.map { stage ->
+            val duration = when (stage.stage) {
+                GrowStage.BLACKOUT_OR_WEIGHT -> DurationRange(3.days, 4.days)
+                GrowStage.LIGHT_GROWTH -> DurationRange(7.days, 10.days)
+                else -> stage.duration
+            }
+            stage.copy(duration = duration, guidanceKey = stage.guidanceKey?.let {
+                LocalizationKey(it.value.replace("_v2_", "_"))
+            })
+        }
+        val historical = current.copy(recipe = current.recipe.copy(density = oldDensity, stages = oldStages))
+        database.saveBatch(historical)
+        val restored = database.snapshot().batches.single()
+        assertEquals(historical.recipe, restored.recipe)
+        assertEquals(historical.recipe, DomainJsonCodec().decodeBatch(DomainJsonCodec().encodeBatch(restored)).recipe)
+        assertEquals(1, restored.recipe.density.version)
+        assertEquals(2, SproutPaceCatalog.cultures.first().seedDensity.version)
+        assertTrue(restored.recipe.stages.none { it.guidanceKey!!.value.contains("_v2_") })
+    }
+
     private lateinit var factory: TestSqlDriverFactory
     private lateinit var database: LocalDatabase
     private lateinit var manager: ProductionScreenDataManager
@@ -133,7 +166,8 @@ class PlanningForecastIntegrationTest {
     @Test fun zonesIncludeProposalDemandAndDarkToLightCommittedDemand() = runTest {
         database.saveZone(zone)
         database.savePlan(plan("plan"))
-        assertEquals(LocalDate(2026, 10, 12), manager.watch(ScreenId.ZONES).first().items.single().occupancy?.futureConflict?.date)
+        // V2 radish takes at most 12 days from sowing: consecutive proposals overlap on Oct 14.
+        assertEquals(LocalDate(2026, 10, 14), manager.watch(ScreenId.ZONES).first().items.single().occupancy?.futureConflict?.date)
         database.savePlan(plan("plan").copy(paused = true))
         assertEquals(null, manager.watch(ScreenId.ZONES).first().items.single().occupancy?.futureConflict)
         val dark = zone.copy(id = GrowZoneId("dark"), type = GrowZoneType.DARK)
@@ -141,7 +175,7 @@ class PlanningForecastIntegrationTest {
         database.saveZone(zone.copy(capacity = 0))
         database.saveBatch(batch(dark))
         val light = manager.watch(ScreenId.ZONES).first().items.single { it.id == zone.id.value }.occupancy
-        assertEquals(LocalDate(2026, 10, 14), light?.futureConflict?.date)
+        assertEquals(LocalDate(2026, 10, 12), light?.futureConflict?.date)
         assertEquals(0, light?.occupied)
         assertEquals(PlanEntryStatus.NEEDS_RESOLUTION, manager.watch(ScreenId.PLAN).first().items.single().planEntry?.status)
     }

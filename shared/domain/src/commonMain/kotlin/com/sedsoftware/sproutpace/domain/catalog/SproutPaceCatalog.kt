@@ -13,66 +13,79 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
 object SproutPaceCatalog {
-    const val VERSION: Int = 1
-    val reviewedOn: LocalDate = LocalDate(2026, 9, 20)
+    const val VERSION: Int = 2
+    val reviewedOn: LocalDate = LocalDate(2026, 10, 11)
 
-    private val pennState = SourceMetadata(
-        url = "https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home",
-        titleKey = LocalizationKey("source_penn_state_growing_guide"),
+    private val utahState = SourceMetadata(
+        url = "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+        titleKey = LocalizationKey("source_utah_state_growing_guide"),
         reviewedOn = reviewedOn,
     )
-    private val pennStateAbcs = SourceMetadata(
-        url = "https://extension.psu.edu/the-abcs-of-microgreens",
-        titleKey = LocalizationKey("source_penn_state_abcs"),
+    private val mustardGuide = SourceMetadata(
+        url = "https://deliseeds.com/products/green-mustard-microgreens-seeds",
+        titleKey = LocalizationKey("source_deliseeds_mustard"),
+        reviewedOn = reviewedOn,
+    )
+    private val cressGuide = SourceMetadata(
+        url = "https://deliseeds.com/products/cress-microgreens-seeds",
+        titleKey = LocalizationKey("source_deliseeds_cress"),
         reviewedOn = reviewedOn,
     )
 
     val cultures: List<BuiltInCulture> = listOf(
-        culture("radish", 0.028, soak = null, blackoutDays = 3..4, harvestDays = 7..10),
-        culture("broccoli", 0.022, soak = null, blackoutDays = 3..4, harvestDays = 8..12),
-        culture("arugula", 0.018, soak = null, blackoutDays = 3..4, harvestDays = 8..12),
-        culture("mustard", 0.020, soak = null, blackoutDays = 3..4, harvestDays = 7..10),
-        culture("pea", 0.085, soak = 8..12, blackoutDays = 3..5, harvestDays = 10..14),
-        culture("sunflower", 0.090, soak = 8..12, blackoutDays = 3..5, harvestDays = 9..13),
-        culture("basil", 0.014, soak = null, blackoutDays = 4..6, harvestDays = 14..21),
-        culture("garden_cress", 0.018, soak = null, blackoutDays = 2..3, harvestDays = 7..10),
+        culture("radish", 42.0, NOMINAL_1020_AREA, utahState, null, 1..2, 8..12),
+        culture("broccoli", 28.0, NOMINAL_1020_AREA, utahState, null, 2..4, 8..12),
+        culture("arugula", 10.0, NOMINAL_1020_AREA, utahState, null, 1..2, 6..8),
+        culture("mustard", 10.0, SUPPLIER_TRAY_AREA, mustardGuide, null, 3..4, 8..12),
+        culture("pea", 150.0, NOMINAL_1020_AREA, utahState, 6..6, 3..3, 8..10),
+        culture("sunflower", 48.0, NOMINAL_1020_AREA, utahState, 12..12, 3..3, 9..10),
+        culture("basil", 28.0, NOMINAL_1020_AREA, utahState, null, 4..7, 12..16),
+        culture("garden_cress", 10.0, SUPPLIER_TRAY_AREA, cressGuide, null, 3..5, 8..12),
     )
 
     val cultureIds: Set<CultureId> = cultures.mapTo(linkedSetOf()) { it.id }
 
     private fun culture(
         id: String,
-        density: Double,
+        seedGrams: Double,
+        referenceAreaCm2: Double,
+        source: SourceMetadata,
         soak: IntRange?,
         blackoutDays: IntRange,
-        harvestDays: IntRange,
+        sowToHarvestDays: IntRange,
     ): BuiltInCulture {
+        // Source ranges are retained in the culture-specific guidance and provenance.
+        // Use the upper covered duration as a planning allowance, then subtract it
+        // from BOTH harvest endpoints. Independent stage sums now reproduce the
+        // source's sow-to-harvest window; light duration is an app allocation, not a trial result.
+        val coveredDays = blackoutDays.last
+        require(sowToHarvestDays.first >= coveredDays)
         val stageList = buildList {
             soak?.let {
                 add(
                     StageGuidance(
                         GrowStage.SOAKING,
                         DurationRange(it.first.hours, it.last.hours),
-                        LocalizationKey("culture_${id}_soaking"),
+                        LocalizationKey("culture_${id}_v2_soaking"),
                     ),
                 )
             }
-            add(StageGuidance(GrowStage.SOWN, DurationRange(0.hours, 0.hours), LocalizationKey("culture_${id}_sowing")))
+            add(StageGuidance(GrowStage.SOWN, DurationRange(0.hours, 0.hours), LocalizationKey("culture_${id}_v2_sowing")))
             add(
                 StageGuidance(
                     GrowStage.BLACKOUT_OR_WEIGHT,
-                    DurationRange(blackoutDays.first.days, blackoutDays.last.days),
-                    LocalizationKey("culture_${id}_blackout"),
+                    DurationRange(coveredDays.days, coveredDays.days),
+                    LocalizationKey("culture_${id}_v2_blackout"),
                 ),
             )
             add(
                 StageGuidance(
                     GrowStage.LIGHT_GROWTH,
-                    DurationRange(harvestDays.first.days, harvestDays.last.days),
-                    LocalizationKey("culture_${id}_light_growth"),
+                    DurationRange((sowToHarvestDays.first - coveredDays).days, (sowToHarvestDays.last - coveredDays).days),
+                    LocalizationKey("culture_${id}_v2_light_growth"),
                 ),
             )
-            add(StageGuidance(GrowStage.READY_FOR_HARVEST, DurationRange(0.hours, 0.hours), LocalizationKey("culture_${id}_harvest")))
+            add(StageGuidance(GrowStage.READY_FOR_HARVEST, DurationRange(0.hours, 0.hours), LocalizationKey("culture_${id}_v2_harvest")))
         }
         return BuiltInCulture(
             id = CultureId(id),
@@ -80,9 +93,9 @@ object SproutPaceCatalog {
             scientificNameKey = LocalizationKey("culture_${id}_scientific_name"),
             illustrationResourceName = "culture_${id}_cover",
             stages = stageList,
-            seedDensity = SeedDensity(density, VERSION, pennState),
-            substrateNoteKey = LocalizationKey("culture_${id}_substrate_note"),
-            lightingNoteKey = LocalizationKey("culture_${id}_lighting_note"),
+            seedDensity = SeedDensity(seedGrams / referenceAreaCm2, VERSION, source),
+            substrateNoteKey = LocalizationKey("culture_${id}_v2_substrate_note"),
+            lightingNoteKey = LocalizationKey("culture_${id}_v2_lighting_note"),
             safetyNoteKeys = listOf(
                 LocalizationKey("safety_untreated_seed"),
                 LocalizationKey("safety_clean_container"),
@@ -92,7 +105,13 @@ object SproutPaceCatalog {
                 LocalizationKey("safety_allergy_awareness"),
                 LocalizationKey("safety_images_not_diagnostic"),
             ),
-            sources = listOf(pennState, pennStateAbcs),
+            sources = listOf(source),
         )
     }
 }
+
+// USU says 1020, without an internal growing area: nominal 10 × 20 in is
+// an explicit normalization assumption, not a measurement of the user's tray.
+private const val NOMINAL_1020_AREA = 1290.32
+// Deliseeds explicitly specifies 25 × 50 cm; do not substitute nominal inches.
+private const val SUPPLIER_TRAY_AREA = 1250.0

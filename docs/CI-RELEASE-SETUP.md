@@ -43,6 +43,7 @@ The Xcode build uses `CODE_SIGNING_ALLOWED=NO`, targets a generic iOS Simulator,
 
 ## Quality-gate status
 
+- [x] **QG-011 — catalog accepted, 2026-10-11, version 2.** [Acceptance record](catalog-audit/2026-10-11/v2/acceptance.json) and [independent catalog-only PASS](catalog-audit/2026-10-11/v2/independent-audit.json) close the catalog F07 evidence gap. Eight source derivations, explicit total-cycle timing, EN/RU guidance, historical snapshot preservation and current tests/goldens are verified. This does not close full-app F04/F05/F06 or claim physical growing trials, iOS runtime acceptance, or release readiness. Renew this acceptance when its catalog/calculation/resource inputs change.
 - [x] The domain, data, component, root, platform, monetization, and Compose Android host suites contain behavior-level coverage; Kover is pinned to the committed baseline and the current aggregate line coverage exceeds it.
 - [x] The Paparazzi baseline covers all sixteen primary screens in light/dark, RU at 200% text, adaptive layouts, and the required error, permission, conflict, restore, privacy, ad, and empty states. Baseline updates use `:shared:compose:recordPaparazzi`; CI blocks on `:shared:compose:verifyPaparazzi`.
 - [x] Approved goldens were inspected and reviewed through the required post-golden Lazyweb design pass; accepted findings and scope exclusions are recorded in `docs/design-review/product-ui-material-contract.md`.

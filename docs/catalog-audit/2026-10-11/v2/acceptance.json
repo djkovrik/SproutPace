@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "gateId": "QG-011",
+  "status": "accepted",
+  "acceptedOn": "2026-10-11",
+  "catalogVersion": 2,
+  "scope": "Catalog version, formulas, source substantiation, offline EN/RU resources and safety content",
+  "independentVerdict": "PASS",
+  "independentAudit": "docs/catalog-audit/2026-10-11/v2/independent-audit.json",
+  "externalReview": "docs/catalog-audit/2026-10-11/external-review-result.json",
+  "dispositionsAndSourceDerivations": "docs/catalog-audit/2026-10-11/v2/resolution.json",
+  "acceptedSnapshot": "docs/catalog-audit/2026-10-11/v2/catalog-review.json",
+  "acceptedSnapshotSha256": "0bee38a42dbd6b711d0bfcd0a022b8e893ccbff40568efc1b1700c40c657ae59",
+  "visualReview": "docs/catalog-audit/2026-10-11/v2/visual-review.json",
+  "executionReceipt": ".vibe/receipts/RECEIPT-eff64f23-f7c1-4c9e-abbe-7541ea0bcd5e.json",
+  "checks": {
+    "hostTests": {"passed": 719, "failures": 0},
+    "paparazzi": {"verified": 231, "changedAndInspected": 29, "unchanged": 202},
+    "newResourceKeysPerLocale": 53,
+    "detekt": "passed",
+    "sqlDelightMigration": "passed",
+    "androidDebugReleaseAndBundle": "passed",
+    "iosKotlinCompilationTasks": 14,
+    "koverVerify": "passed",
+    "koverLines": {"covered": 5288, "missed": 736},
+    "assetAndVisualManifestValidators": "passed"
+  },
+  "historicalFinding": {
+    "id": "F07",
+    "audit": ".vibe/audits/AUDIT-REQUEST-af6b124d-6fd4-49a2-aa9f-de7a1f7054e7/audit.json",
+    "currentDisposition": "resolved by this bounded catalog acceptance; original historical report unchanged"
+  },
+  "limits": [
+    "Source ranges and documented planning adaptations are starting recommendations, not physical grow validation.",
+    "Existing batch/personal-recipe snapshots retain v1 numerical values and localized instruction keys.",
+    "Windows iOS compilation does not establish xcodebuild or iOS runtime acceptance.",
+    "Full-app F04/F05/F06 and conditional external release requirements remain separate; this is not global release readiness."
+  ],
+  "revalidation": "After catalog, calculation, relevant resource or consumer changes, recheck affected tests/source derivations and renew this bounded acceptance. Input hashes are in acceptedSnapshot and independentAudit."
+}

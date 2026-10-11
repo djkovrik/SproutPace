@@ -69,7 +69,7 @@ class ProductionUxRegressionTest {
                 assertEquals(1, changed.events.size)
                 val rebuiltLight = changed.actions.single { it.id == light.id }
                 assertEquals(ScheduledActionStatus.PENDING, rebuiltLight.status)
-                assertEquals(DueMoment.ElapsedTarget(Instant.parse("2026-10-14T10:00:00Z")), rebuiltLight.due)
+                assertEquals(DueMoment.ElapsedTarget(Instant.parse("2026-10-12T10:00:00Z")), rebuiltLight.due)
                 detail.onAction(ScreenAction.Execute(preview.command))
                 assertEquals(changed, database.snapshot().batches.single())
                 assertTrue(reminderSource.currentPlan().soakReminders.isEmpty())

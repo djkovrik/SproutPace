@@ -1,5 +1,7 @@
 # Catalog source review — 2026-10-10
 
+Historical version-1 findings below were resolved by the [version-2 catalog acceptance on 2026-10-11](catalog-audit/2026-10-11/v2/acceptance.json). This document retains the original evidence limits; the acceptance record and independent review describe the current catalog.
+
 Scope: the eight bundled cultures in [SproutPaceCatalog.kt](../shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt), against [QG-011](../spec/quality.md#catalog-quality). This review does not change catalog values, version 1, its recorded 2026-09-20 content-review date, or the approved specification. It identifies evidence still needed; it is not a content-quality pass.
 
 ## Confirmed sources and limits

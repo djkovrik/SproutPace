@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "agent/grok-4.5",
+  "reviewedAt": "2026-10-11",
+  "snapshotGitHead": "f1cad571de4b3b94178d39d24e7a95d624274b2f",
+  "catalogVersion": 1,
+  "verdict": "gaps",
+  "scopeAndLimitations": [
+    "Independent static review of the eight built-in recipes using only the provided catalog-review.json package plus mandatory internet search for source currency and primary tables.",
+    "No physical grow trials were performed; no claim is made that values have been experimentally validated.",
+    "Penn State Extension pages (primary cited sources) returned restricted access (403 / retrieval failure) for full content on 2026-10-11; specific numerical claims cannot be verified against the live primary documents.",
+    "USU Extension table (January 2026 update) and secondary commercial/extension sources were used for comparative ranges only; they are not the catalog's declared sources.",
+    "Unit conversions assume the package's nominal 1020 area of 1290.32 cm² solely for cross-source comparison; actual tray internal area is culture- and hardware-dependent.",
+    "Timing semantics follow the package semantics note: LIGHT_GROWTH holds the Kotlin harvestDays value and is added after BLACKOUT_OR_WEIGHT; interpretation of original intent is unresolved.",
+    "UI, accessibility, runtime coverage and non-catalog product features are out of scope."
+  ],
+  "checkedFields": [
+    {"cultureId": "radish", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "radish", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home", "https://extension.psu.edu/the-abcs-of-microgreens", "https://extension.psu.edu/microgreens-seed-density-calculator/"]},
+    {"cultureId": "radish", "fieldPath": "stages.BLACKOUT_OR_WEIGHT.duration", "status": "adaptation", "evidenceUrls": ["https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "radish", "fieldPath": "stages.LIGHT_GROWTH.duration", "status": "adaptation", "evidenceUrls": ["https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "broccoli", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "broccoli", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home", "https://extension.psu.edu/the-abcs-of-microgreens"]},
+    {"cultureId": "arugula", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "arugula", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home", "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "mustard", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "mustard", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home"]},
+    {"cultureId": "pea", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "pea", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home", "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "pea", "fieldPath": "stages.SOAKING.duration", "status": "adaptation", "evidenceUrls": ["https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "sunflower", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "sunflower", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home", "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "sunflower", "fieldPath": "stages.SOAKING.duration", "status": "supported", "evidenceUrls": ["https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "basil", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "basil", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home", "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens"]},
+    {"cultureId": "garden_cress", "fieldPath": "scientificName", "status": "supported", "evidenceUrls": []},
+    {"cultureId": "garden_cress", "fieldPath": "seedDensity.value", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home"]},
+    {"cultureId": null, "fieldPath": "stages.*.guidance", "status": "adaptation", "evidenceUrls": []},
+    {"cultureId": null, "fieldPath": "substrateNote", "status": "adaptation", "evidenceUrls": []},
+    {"cultureId": null, "fieldPath": "lightingNote", "status": "adaptation", "evidenceUrls": []},
+    {"cultureId": null, "fieldPath": "safety", "status": "supported", "evidenceUrls": []},
+    {"cultureId": null, "fieldPath": "sources", "status": "unverifiable", "evidenceUrls": ["https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home", "https://extension.psu.edu/the-abcs-of-microgreens"]}
+  ],
+  "findings": [
+    {
+      "id": "CAT-001",
+      "cultureId": null,
+      "fieldPath": "seedDensity.value",
+      "severity": "high",
+      "category": "attribution",
+      "claim": "All eight seedDensity values cite sourceId=pennState with numericalDerivation=null. The cited Penn State materials describe a general seeds-per-area range and provide a downloadable calculator, but do not publish the exact g/cm² constants used in the catalog. No primary table, calculator version, seed-weight assumptions, germination adjustment or area definition is recorded.",
+      "currentValue": "0.014–0.09 g/cm² (all cultures)",
+      "evidence": [
+        {
+          "url": "https://extension.psu.edu/the-abcs-of-microgreens",
+          "title": "The ABCs of Microgreens (Penn State Extension)",
+          "accessedOn": "2026-10-11",
+          "sourceDate": null,
+          "locator": "seed-density section (search-index / secondary extracts)",
+          "shortQuoteOrParaphrase": "Optimal seed density ranges from 2 seeds per square inch for larger seeds up to 12 seeds per square inch for smaller seeds; a Microgreens Seed Density Calculator is offered.",
+          "accessMethod": "search_index"
+        },
+        {
+          "url": "https://extension.psu.edu/microgreens-seed-density-calculator/",
+          "title": "Microgreens Seed Density Calculator",
+          "accessedOn": "2026-10-11",
+          "sourceDate": null,
+          "locator": "product description",
+          "shortQuoteOrParaphrase": "Excel tool that selects species from a drop-down and uses an internal small database of average seed weights; full database values are not published on the page.",
+          "accessMethod": "full_page"
+        }
+      ],
+      "conditionsAndUnitConversion": "Catalog stores mass density (g/cm²). Penn State materials primarily discuss seeds per unit area plus average seed weight. Conversion requires species-specific seed mass and optional germinability; none of these inputs are recorded in the catalog.",
+      "proposedChange": {
+        "value": null,
+        "unit": "g/cm²",
+        "referencePoint": "per culture, with recorded seed-mass and germination assumptions",
+        "rationale": "Either publish the calculator inputs/outputs that produced each constant, or replace the single sourceId with a traceable primary table (or mark the values as internal adaptations)."
+      },
+      "confidence": "high",
+      "openQuestions": [
+        "Which version of the Penn State calculator (or internal table) supplied the eight constants?",
+        "Were average seed weights and germination percentages applied, or was a pure mass-density target used?"
+      ]
+    },
+    {
+      "id": "CAT-002",
+      "cultureId": null,
+      "fieldPath": "seedDensity.value",
+      "severity": "high",
+      "category": "numerical",
+      "claim": "When the catalog densities are converted to grams per nominal 1020 tray (1290.32 cm²) they diverge substantially from the concrete USU Extension Table 1 (updated January 2026) for several cultures. Divergence alone is not proof of error, but combined with missing derivation it leaves the numbers unsupported.",
+      "currentValue": {
+        "radish": 36.13,
+        "broccoli": 28.39,
+        "arugula": 23.23,
+        "mustard": 25.81,
+        "pea": 109.68,
+        "sunflower": 116.13,
+        "basil": 18.06,
+        "garden_cress": 23.23
+      },
+      "evidence": [
+        {
+          "url": "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+          "title": "Grow Your Own Microgreens (USU Extension)",
+          "accessedOn": "2026-10-11",
+          "sourceDate": "2026-01",
+          "locator": "Table 1. General Guidelines for Growing Microgreens",
+          "shortQuoteOrParaphrase": "Arugula 10 g, Basil 28 g, Broccoli 28 g, Pea 150 g, Radish (champion/purple) 42 g, Sunflower 48 g per 1020 tray.",
+          "accessMethod": "full_page"
+        }
+      ],
+      "conditionsAndUnitConversion": "Nominal area 10×20 in = 1290.32 cm² used only for comparison. USU does not list mustard or garden cress; conditions (media, weight, temperature, light schedule) may differ from the catalog's assumptions.",
+      "proposedChange": {
+        "value": null,
+        "unit": "g per actual tray area",
+        "referencePoint": "document primary source, seed lot assumptions and tray-area definition",
+        "rationale": "Priority cultures for re-examination: arugula (catalog ~2.3× USU), sunflower (catalog ~2.4× USU), pea (catalog ~0.73× USU), basil (catalog ~0.65× USU)."
+      },
+      "confidence": "medium",
+      "openQuestions": [
+        "Do the catalog densities intentionally target a different production style (higher/lower canopy density) than USU?",
+        "What internal growing area does the MeasurementEngine assume for a user-defined tray?"
+      ]
+    },
+    {
+      "id": "CAT-003",
+      "cultureId": null,
+      "fieldPath": "stages.LIGHT_GROWTH.duration",
+      "severity": "high",
+      "category": "timing_semantics",
+      "claim": "Package semantics state that Kotlin harvestDays is assigned exclusively to LIGHT_GROWTH and that BLACKOUT_OR_WEIGHT is added sequentially. If the original literature numbers represented total days from sowing to harvest, the current model double-counts the blackout interval. The original intent is not recorded, so the values cannot be confirmed as correct or incorrect—only as ambiguous.",
+      "currentValue": "LIGHT_GROWTH holds harvestDays; total sow-to-harvest = BLACKOUT + LIGHT_GROWTH (presoak excluded from planned duration)",
+      "evidence": [
+        {
+          "url": "",
+          "title": "catalog-review.json semantics",
+          "accessedOn": "2026-10-11",
+          "sourceDate": "2026-10-11",
+          "locator": "semantics.durations / derivedChecks.sowToHarvestDurationDays",
+          "shortQuoteOrParaphrase": "Kotlin harvestDays is assigned to LIGHT_GROWTH, not total time from sowing. BatchPlanningEngine sums stage maxima.",
+          "accessMethod": "full_page"
+        },
+        {
+          "url": "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+          "title": "USU Table 1",
+          "accessedOn": "2026-10-11",
+          "sourceDate": "2026-01",
+          "locator": "Covered time + Estimated time to harvest",
+          "shortQuoteOrParaphrase": "Arugula covered 1-2 d, harvest 6-8 d total; Basil covered 4-7 d, harvest 12-16 d total; Pea covered 3 d, harvest 8-10 d total.",
+          "accessMethod": "full_page"
+        }
+      ],
+      "conditionsAndUnitConversion": "USU 'Estimated time to harvest' is total from sowing. Catalog derived sowToHarvest = blackout + light. Example: arugula catalog 11-16 d vs USU 6-8 d; basil 18-27 d vs USU 12-16 d.",
+      "proposedChange": {
+        "value": null,
+        "unit": "days",
+        "referencePoint": "clarify whether harvestDays was intended as light-only or total",
+        "rationale": "Document the design decision. If literature totals were used, either move the total into a separate field or subtract the blackout window when assigning LIGHT_GROWTH."
+      },
+      "confidence": "medium",
+      "openQuestions": [
+        "What exact source numbers were transcribed into the original harvestDays fields?",
+        "Does the planner UI present the summed range or the LIGHT_GROWTH range to the user?"
+      ]
+    },
+    {
+      "id": "CAT-004",
+      "cultureId": null,
+      "fieldPath": "stages.*.guidance",
+      "severity": "medium",
+      "category": "completeness",
+      "claim": "All cultures share the same resolvedResourceKey set (guidance_sowing, guidance_blackout, guidance_light_growth, guidance_harvest, guidance_substrate, guidance_lighting). The texts are intentionally generic. Culture-specific agronomic cues (mucilage of arugula/cress, hull retention of sunflower, longer blackout for basil, weight amount for BLACKOUT_OR_WEIGHT, airflow needs) are absent.",
+      "currentValue": "Identical alias texts for every culture",
+      "evidence": [
+        {
+          "url": "",
+          "title": "catalog-review.json cultures[].stages[].guidance.resolvedResourceKey",
+          "accessedOn": "2026-10-11",
+          "sourceDate": "2026-10-11",
+          "locator": "all eight culture records",
+          "shortQuoteOrParaphrase": "Only seven unique guidance resource keys exist across the entire catalog.",
+          "accessMethod": "full_page"
+        }
+      ],
+      "conditionsAndUnitConversion": "Product scope permits personal recipes and notes; the built-in catalog itself supplies only shared text.",
+      "proposedChange": {
+        "value": null,
+        "unit": null,
+        "referencePoint": "optional culture-specific overrides",
+        "rationale": "At minimum surface the fact that BLACKOUT_OR_WEIGHT may include physical weight (2–5 lb per USU) and that mucilaginous seeds require different moisture management."
+      },
+      "confidence": "high",
+      "openQuestions": []
+    },
+    {
+      "id": "CAT-005",
+      "cultureId": "pea",
+      "fieldPath": "stages.SOAKING.duration",
+      "severity": "low",
+      "category": "numerical",
+      "claim": "Pea soaking window 8–12 h is longer than the 6 h stated by USU; sunflower 8–12 h matches USU 12 h. Both cultures correctly include a SOAKING stage while the other six omit it.",
+      "currentValue": {"pea": "8-12 hours", "sunflower": "8-12 hours"},
+      "evidence": [
+        {
+          "url": "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+          "title": "USU Table 1",
+          "accessedOn": "2026-10-11",
+          "sourceDate": "2026-01",
+          "locator": "Seed presoak column",
+          "shortQuoteOrParaphrase": "Pea 6 hours; Sunflower 12 hours.",
+          "accessMethod": "full_page"
+        }
+      ],
+      "conditionsAndUnitConversion": "Overnight 8–12 h is a common home-grower practice also mentioned in Penn State step-by-step extracts.",
+      "proposedChange": {
+        "value": "6-12",
+        "unit": "hours",
+        "referencePoint": "from start of soak",
+        "rationale": "Widen or annotate the pea range to acknowledge shorter literature values; not a safety issue."
+      },
+      "confidence": "medium",
+      "openQuestions": []
+    },
+    {
+      "id": "CAT-006",
+      "cultureId": "garden_cress",
+      "fieldPath": "scientificName",
+      "severity": "low",
+      "category": "taxonomy",
+      "claim": "Scientific name Lepidium sativum is correct for garden cress and matches the product specification that explicitly excludes watercress.",
+      "currentValue": "Lepidium sativum",
+      "evidence": [],
+      "conditionsAndUnitConversion": "",
+      "proposedChange": {
+        "value": null,
+        "unit": null,
+        "referencePoint": null,
+        "rationale": "No change required."
+      },
+      "confidence": "high",
+      "openQuestions": []
+    },
+    {
+      "id": "CAT-007",
+      "cultureId": null,
+      "fieldPath": "sources",
+      "severity": "medium",
+      "category": "attribution",
+      "claim": "Both runtime source URLs returned restricted or failed retrieval on the review date. Indexed fragments and the calculator product page are reachable, but the full versioned articles that would substantiate the eight constants are not. A secondary USU page that does contain a concrete table is present in product.md yet is not listed among the two runtime sourceIds.",
+      "currentValue": ["pennState", "pennStateAbcs"],
+      "evidence": [
+        {
+          "url": "https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home",
+          "title": "A Step-By-Step Guide for Growing Microgreens at Home",
+          "accessedOn": "2026-10-11",
+          "sourceDate": "2026-09-20",
+          "locator": "full page",
+          "shortQuoteOrParaphrase": "Retrieval failed (consistent with earlier 403 reports).",
+          "accessMethod": "full_page"
+        },
+        {
+          "url": "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+          "title": "USU Grow Your Own Microgreens",
+          "accessedOn": "2026-10-11",
+          "sourceDate": "2026-01",
+          "locator": "full page + Table 1",
+          "shortQuoteOrParaphrase": "Accessible; contains concrete g/1020 values and stage timings.",
+          "accessMethod": "full_page"
+        }
+      ],
+      "conditionsAndUnitConversion": "",
+      "proposedChange": {
+        "value": null,
+        "unit": null,
+        "referencePoint": null,
+        "rationale": "Either restore reliable access to the cited Penn State pages (or archive them) or add a third sourceId that actually publishes the numbers used."
+      },
+      "confidence": "high",
+      "openQuestions": [
+        "Is an archived or PDF version of the Penn State guides retained by the project?"
+      ]
+    },
+    {
+      "id": "CAT-008",
+      "cultureId": null,
+      "fieldPath": "safety",
+      "severity": "low",
+      "category": "safety",
+      "claim": "The seven shared safety statements cover untreated seed, clean equipment, drinking water, drainage, excess moisture, allergies and non-diagnostic images. They satisfy the topics listed in the product specification for the offline catalog. Full food-safety completeness (pathogen control, post-harvest handling, high-risk populations) is outside the stated scope of this limited review.",
+      "currentValue": "seven shared safety keys",
+      "evidence": [],
+      "conditionsAndUnitConversion": "",
+      "proposedChange": {
+        "value": null,
+        "unit": null,
+        "referencePoint": null,
+        "rationale": "No change required for the MVP catalog; optional future expansion could reference FDA sprouting guidance."
+      },
+      "confidence": "medium",
+      "openQuestions": []
+    }
+  ],
+  "unavailableSources": [
+    {
+      "url": "https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home",
+      "reason": "Full-page retrieval failed / previously reported 403 on 2026-10-11",
+      "accessedOn": "2026-10-11"
+    },
+    {
+      "url": "https://extension.psu.edu/the-abcs-of-microgreens",
+      "reason": "Full-page retrieval failed; only search-index and secondary extracts available",
+      "accessedOn": "2026-10-11"
+    }
+  ],
+  "summary": "Verdict: gaps. Scientific names are correct (including garden_cress = Lepidium sativum). Safety texts cover the required MVP topics. Soaking is present only for the two large-seeded cultures that conventionally need it. The dominant gaps are (1) complete absence of recorded numerical derivation for all eight seed densities despite a single cited Penn State source that does not publish those exact constants, (2) restricted accessibility of the two primary URLs, (3) ambiguous timing semantics that may double-count the blackout interval if the original literature numbers were totals from sowing, and (4) entirely generic stage guidance that supplies no culture-specific agronomic cues. Comparative ranges from the accessible USU January 2026 table show large deviations for arugula, sunflower, pea and basil; these are signals for re-examination, not automatic replacements. Priority for remediation: document or replace the density constants, clarify the harvestDays vs. total-duration model, and consider adding at least one fully accessible primary table to the runtime source list."
+}

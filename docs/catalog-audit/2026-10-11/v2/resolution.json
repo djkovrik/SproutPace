@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": 2,
+  "reviewedOn": "2026-10-11",
+  "status": "verified",
+  "sourceReview": [
+    {
+      "id": "utahState",
+      "url": "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+      "kind": "university_extension",
+      "sourceDate": "2026-01",
+      "accessedOn": "2026-10-11",
+      "access": "full_page",
+      "locator": "Table 1; General Guidelines; Germinate in the Dark",
+      "conditions": "Seed-starting mix/coir/mat; 18-hour light; source temperatures 74/72/68 F for germination/lights-on/lights-off. Home windowsill conditions differ.",
+      "limitation": "1020 inner area not specified. Nominal 10 x 20 inches is explicitly an app normalization. Harvest is interpreted as sow-to-harvest from sequence, not explicitly defined in table. Radish rows are champion/purple, generalized to radish."
+    },
+    {
+      "id": "mustardGuide",
+      "url": "https://deliseeds.com/products/green-mustard-microgreens-seeds",
+      "kind": "seed_supplier_guidance_not_trial",
+      "sourceDate": null,
+      "accessedOn": "2026-10-11",
+      "access": "full_page",
+      "locator": "Cultivation Data; Growing Instructions",
+      "conditions": "Brassica juncea; 25 x 50 cm; seed-starting mix; 18–22 C; no soak.",
+      "limitation": "10–15 g published; select lower 10 g starting rate for home use. No cultivar/seed-lot universality claim."
+    },
+    {
+      "id": "cressGuide",
+      "url": "https://deliseeds.com/products/cress-microgreens-seeds",
+      "kind": "seed_supplier_guidance_not_trial",
+      "sourceDate": null,
+      "accessedOn": "2026-10-11",
+      "access": "full_page",
+      "locator": "Cultivation Data; Growing Instructions",
+      "conditions": "Lepidium sativum; 25 x 50 cm; coir/fine potting soil; no soak.",
+      "limitation": "8–12 days at cotyledon stage interpreted from sowing sequence. Conflicting misting instructions omitted; no published-update date inferred."
+    }
+  ],
+  "derivation": [
+    {
+      "cultureId": "radish",
+      "sourceId": "utahState",
+      "seedGrams": 42,
+      "areaCm2": 1290.32,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "1–2",
+      "plannedCoveredDays": 2,
+      "sowToHarvestDays": [
+        8,
+        12
+      ],
+      "lightGrowthDays": [
+        6,
+        10
+      ],
+      "soakHours": null
+    },
+    {
+      "cultureId": "broccoli",
+      "sourceId": "utahState",
+      "seedGrams": 28,
+      "areaCm2": 1290.32,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "2–4",
+      "plannedCoveredDays": 4,
+      "sowToHarvestDays": [
+        8,
+        12
+      ],
+      "lightGrowthDays": [
+        4,
+        8
+      ],
+      "soakHours": null
+    },
+    {
+      "cultureId": "arugula",
+      "sourceId": "utahState",
+      "seedGrams": 10,
+      "areaCm2": 1290.32,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "1–2",
+      "plannedCoveredDays": 2,
+      "sowToHarvestDays": [
+        6,
+        8
+      ],
+      "lightGrowthDays": [
+        4,
+        6
+      ],
+      "soakHours": null
+    },
+    {
+      "cultureId": "mustard",
+      "sourceId": "mustardGuide",
+      "seedGrams": 10,
+      "areaCm2": 1250,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "3–4",
+      "plannedCoveredDays": 4,
+      "sowToHarvestDays": [
+        8,
+        12
+      ],
+      "lightGrowthDays": [
+        4,
+        8
+      ],
+      "soakHours": null
+    },
+    {
+      "cultureId": "pea",
+      "sourceId": "utahState",
+      "seedGrams": 150,
+      "areaCm2": 1290.32,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "3",
+      "plannedCoveredDays": 3,
+      "sowToHarvestDays": [
+        8,
+        10
+      ],
+      "lightGrowthDays": [
+        5,
+        7
+      ],
+      "soakHours": 6
+    },
+    {
+      "cultureId": "sunflower",
+      "sourceId": "utahState",
+      "seedGrams": 48,
+      "areaCm2": 1290.32,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "3",
+      "plannedCoveredDays": 3,
+      "sowToHarvestDays": [
+        9,
+        10
+      ],
+      "lightGrowthDays": [
+        6,
+        7
+      ],
+      "soakHours": 12
+    },
+    {
+      "cultureId": "basil",
+      "sourceId": "utahState",
+      "seedGrams": 28,
+      "areaCm2": 1290.32,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "4–7",
+      "plannedCoveredDays": 7,
+      "sowToHarvestDays": [
+        12,
+        16
+      ],
+      "lightGrowthDays": [
+        5,
+        9
+      ],
+      "soakHours": null
+    },
+    {
+      "cultureId": "garden_cress",
+      "sourceId": "cressGuide",
+      "seedGrams": 10,
+      "areaCm2": 1250,
+      "densityFormula": "seedGrams / areaCm2",
+      "germinationAdjustment": "none",
+      "sourceCoveredDays": "3–5",
+      "plannedCoveredDays": 5,
+      "sowToHarvestDays": [
+        8,
+        12
+      ],
+      "lightGrowthDays": [
+        3,
+        7
+      ],
+      "soakHours": null
+    }
+  ],
+  "timingDecision": "Keep published covered ranges in localized guidance. Use their upper endpoint as a fixed planning allowance. Light duration = total endpoints minus that allowance; sum of stages reproduces source total window. This is an explicit app adaptation, not measured independent light-stage bounds. Actual confirmations recalculate future actions; date is guidance. Presoak is before sowing and excluded from harvest totals.",
+  "snapshotCompatibility": "V2 stages use new localized keys; historical v1 keys, source titles and stored recipe values remain unchanged. No migration of existing batches or personal recipes.",
+  "dispositions": [
+    {
+      "id": "CAT-001",
+      "decision": "accepted",
+      "resolution": "Every density now has a traceable mass, area, source and no-germination-adjustment assumption; no Penn State exact-number attribution."
+    },
+    {
+      "id": "CAT-002",
+      "decision": "accepted_as_evidence_gap",
+      "resolution": "Disagreement was not proof of numerical error. V2 intentionally adopts documented starting rates instead of undocumented constants."
+    },
+    {
+      "id": "CAT-003",
+      "decision": "accepted_as_ambiguity",
+      "resolution": "No retrospective claim of original intent; v2 explicitly separates total harvest window and derived remaining light interval."
+    },
+    {
+      "id": "CAT-004",
+      "decision": "accepted",
+      "resolution": "New per-culture EN/RU keys provide sowing, actual covered range, timing reference, source-specific medium/rate and lighting assumptions. Supplier seeds differ from USU method."
+    },
+    {
+      "id": "CAT-005",
+      "decision": "accepted_as_source_alignment",
+      "resolution": "V2 pea6h and sunflower12h match selected USU protocol; old8–12h was not proven unsafe or universally incorrect."
+    },
+    {
+      "id": "CAT-006",
+      "decision": "no_change_positive_finding",
+      "resolution": "Lepidium sativum identity remains unchanged."
+    },
+    {
+      "id": "CAT-007",
+      "decision": "accepted_attribution_fix",
+      "resolution": "Current numeric source links are directly accessible and included in runtime recipes; Penn State remains for historical snapshots. Tool403 not treated as proof of globally dead links."
+    },
+    {
+      "id": "CAT-008",
+      "decision": "no_change_positive_finding",
+      "resolution": "Required safety topics retained; no broader clinical/pathogen-control approval claimed."
+    }
+  ],
+  "scope": "QG-011 catalog content/implementation only. No physical trials or whole-app release PASS."
+}

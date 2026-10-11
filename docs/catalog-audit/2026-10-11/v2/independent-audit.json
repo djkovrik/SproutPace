@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent catalog_acceptance subagent",
+  "reviewedAt": "2026-10-11T07:01:01.1125833Z",
+  "catalogVersion": 2,
+  "gate": "QG-011",
+  "verdict": "PASS",
+  "scope": "Bounded catalog content and implementation acceptance only; not full-app acceptance or release readiness.",
+  "sourceEvidence": [
+    "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+    "https://deliseeds.com/products/green-mustard-microgreens-seeds",
+    "https://deliseeds.com/products/cress-microgreens-seeds"
+  ],
+  "reviewedSources": [
+    "spec/app-spec.json",
+    "spec/quality.md",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RecipeScreen.kt",
+    "tools/export_catalog_audit.py",
+    "docs/catalog-audit/2026-10-11/v2/resolution.json"
+  ],
+  "verified": [
+    "Eight stable culture IDs, dated version2, source titles and direct primary URLs.",
+    "Primary sources independently opened and numeric inputs compared; supplier guidance distinguished from university extension and physical trials.",
+    "Seed mass divided by explicit reference area; nominal1020 area1290.32cm2 is declared adaptation, supplier25x50cm uses1250cm2; no germination adjustment.",
+    "Fixed covered maximum plus derived light range reproduces sow-to-harvest window; soak precedes sowing. Allocation is disclosed as app planning adaptation.",
+    "EN/RU current resources and historical aliases resolve; no changes to old stage guidance/source strings. RU presoak-time ambiguity corrected.",
+    "Historical recipe numbers, source, version, date and instruction keys survive database and JSON round-trip.",
+    "Export inputSha256 independently matched all current input bytes.",
+    "Representative full-size snapshots110 expanded recipe and192 RU200 source-risk inspected independently; no new visible overlap or clipping. All29 changed image hashes match visual-review manifest."
+  ],
+  "tests": {
+    "finalMatrix": "Completed exit0; BUILD SUCCESSFUL. Receipt tasks include affected/all host suites,Detekt,Compose compilation,SQLDelight migration,Paparazzi,Androiddebug/release/AAB,14 iOS Kotlin compilation tasks,Kover verification.",
+    "LocalizedTextContractTest": "3 passed,0 failures/errors/skipped",
+    "CatalogV2Test": "3 passed,0 failures/errors/skipped",
+    "PlanningForecastIntegrationTest": "11 passed,0 failures/errors/skipped"
+  },
+  "dispositions": {
+    "CAT-006": "Positive identity finding preserved",
+    "CAT-002": "Closed as evidence gap; conflicting recommendations were not proof of error",
+    "F07": "Catalog gap resolved for QG-011; historical full-app audit remains immutable",
+    "CAT-003": "Closed: total versus light timing explicit",
+    "CAT-008": "Positive safety-content finding preserved",
+    "CAT-001": "Closed: traceable densities and areas",
+    "CAT-005": "Closed by chosen source alignment,not universal invalidity of older soak values",
+    "CAT-007": "Closed: accessible direct numerical sources; historical source metadata preserved",
+    "CAT-004": "Closed: culture-specific localized guidance and provenance"
+  },
+  "findings": [],
+  "limitations": [
+    "No physical grow trials performed or required by QG-011; timings and densities remain initial guidance.",
+    "Snapshot review does not prove runtime scrolling or accessibility. Existing production LazyColumn wiring inspected.",
+    "iOS Kotlin compilation is not iOS Simulator execution or xcodebuild; macOS runtime gates unverified by this Windows audit.",
+    "Full-app F04,F05,F06 remain outside scope and unresolved by this PASS."
+  ],
+  "evidenceSha256": {
+    "docs/catalog-audit/2026-10-11/v2/catalog-review.json": "0bee38a42dbd6b711d0bfcd0a022b8e893ccbff40568efc1b1700c40c657ae59",
+    "docs/catalog-audit/2026-10-11/v2/visual-review.json": "d19ed323caf07805d73ed658d1e7d16fe0378a64b2ff41166c41f5709aa587b3",
+    ".vibe/receipts/RECEIPT-eff64f23-f7c1-4c9e-abbe-7541ea0bcd5e.json": "a042c754df3919f43af27eefd9e832ced81636364ca1a67bb45861a95053d97f",
+    ".vibe/receipts/RECEIPT-eff64f23-f7c1-4c9e-abbe-7541ea0bcd5e.log": "af515b1b87dd3f17c4eeb3261cd2746bfc482c89d1924e79221e8036035367a1"
+  }
+}

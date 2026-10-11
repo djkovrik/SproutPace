@@ -1,0 +1,1458 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-10-11",
+  "gitHead": "f1cad571de4b3b94178d39d24e7a95d624274b2f",
+  "catalogVersion": 2,
+  "recordedReviewedOn": "2026-10-11",
+  "purpose": "Independent content review; not an import format, source substantiation or physical grow validation.",
+  "semantics": {
+    "seedMass": "areaCm2 * densityGPerCm2; no germination adjustment in MeasurementEngine",
+    "durations": "Covered allowance = source covered maximum; light = total harvest endpoints minus allowance. This is an app planning allocation, not a source-measured light interval. Original covered ranges remain in guidance.",
+    "planning": "BatchPlanningEngine sums stage maxima; derived range sums minima/maxima and excludes presoak.",
+    "1020": "Comparison assumption only: nominal 10 x 20 inches = 1290.32 cm²; actual internal growing area may differ.",
+    "missingSoak": "Stage absent in app, not a scientific proof of prohibition.",
+    "weight": "BLACKOUT_OR_WEIGHT combines concepts. Source-specific localized guidance describes weight where applicable; weighted/unweighted transitions are not separate scheduled stages."
+  },
+  "sources": [
+    {
+      "id": "utahState",
+      "url": "https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens",
+      "title": {
+        "key": "source_utah_state_growing_guide",
+        "resolvedResourceKey": "source_utah_state_growing_guide",
+        "en": "Utah State University: microgreens growing table",
+        "ru": "Университет штата Юта: таблица выращивания микрозелени"
+      },
+      "recordedReviewedOn": "2026-10-11"
+    },
+    {
+      "id": "mustardGuide",
+      "url": "https://deliseeds.com/products/green-mustard-microgreens-seeds",
+      "title": {
+        "key": "source_deliseeds_mustard",
+        "resolvedResourceKey": "source_deliseeds_mustard",
+        "en": "Deliseeds: green mustard supplier guide",
+        "ru": "Deliseeds: рекомендации поставщика для горчицы"
+      },
+      "recordedReviewedOn": "2026-10-11"
+    },
+    {
+      "id": "cressGuide",
+      "url": "https://deliseeds.com/products/cress-microgreens-seeds",
+      "title": {
+        "key": "source_deliseeds_cress",
+        "resolvedResourceKey": "source_deliseeds_cress",
+        "en": "Deliseeds: garden cress supplier guide",
+        "ru": "Deliseeds: рекомендации поставщика для кресс-салата"
+      },
+      "recordedReviewedOn": "2026-10-11"
+    }
+  ],
+  "cultures": [
+    {
+      "id": "radish",
+      "name": {
+        "key": "culture_radish_name",
+        "resolvedResourceKey": "culture_radish",
+        "en": "Radish",
+        "ru": "Редис"
+      },
+      "scientificName": {
+        "key": "culture_radish_scientific_name",
+        "resolvedResourceKey": "scientific_radish",
+        "en": "Raphanus sativus",
+        "ru": "Raphanus sativus"
+      },
+      "seedDensity": {
+        "value": 0.0325500651001302,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "utahState",
+        "numericalDerivation": {
+          "seedGrams": 42.0,
+          "areaCm2": 1290.32,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "nominal 10 x 20 inches, not measured internal area"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          1,
+          2
+        ],
+        "sowToHarvestDays": [
+          8,
+          12
+        ],
+        "plannedCoveredDays": 2
+      },
+      "stages": [
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_radish_v2_sowing",
+            "resolvedResourceKey": "culture_radish_v2_sowing",
+            "en": "Sow dry radish seed evenly; do not presoak.",
+            "ru": "Сейте сухие семена редиса равномерно, без замачивания."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 2,
+            "max": 2,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_radish_v2_blackout",
+            "resolvedResourceKey": "culture_radish_v2_blackout",
+            "en": "Source covered period: 1–2 days. The plan allows 2 days; confirm the actual move to light. USU uses 0.9–2.3 kg over a 1020 tray initially, then a raised cover once rooted. This is not a weight recommendation for every tray.",
+            "ru": "Период под укрытием по источнику: 1–2 дн. В плане — 2 дн.; подтвердите фактический перенос на свет. В USU сначала используют груз 0,9–2,3 кг на лоток 1020, затем при укоренении — приподнятое укрытие. Такой груз подходит не для любого лотка."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 6,
+            "max": 10,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_radish_v2_light_growth",
+            "resolvedResourceKey": "culture_radish_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_radish_v2_harvest",
+            "resolvedResourceKey": "culture_radish_v2_harvest",
+            "en": "Starting window: 8–12 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 8–12 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_radish_v2_substrate_note",
+        "resolvedResourceKey": "culture_radish_v2_substrate_note",
+        "en": "Use clean seed-starting mix, coir or a growing mat. The starting rate is normalized from a nominal 10 × 20 inch tray; enter your actual growing dimensions.",
+        "ru": "Используйте чистый грунт для рассады, кокосовый субстрат или мат. Норма пересчитана с условного лотка 10 × 20 дюймов; вводите свои размеры площади посева."
+      },
+      "lightingNote": {
+        "key": "culture_radish_v2_lighting_note",
+        "resolvedResourceKey": "culture_radish_v2_lighting_note",
+        "en": "Use sunlight or a grow light with airflow. Source conditions use 18 hours of light daily; home conditions can change timing.",
+        "ru": "Обеспечьте солнечный свет или лампу и проветривание. В источнике — 18 часов света в сутки; дома сроки могут отличаться."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "utahState"
+      ],
+      "illustrationResourceName": "culture_radish_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 42.0,
+        "sowToHarvestDurationDays": {
+          "min": 8,
+          "max": 12
+        },
+        "plannedDurationDays": 12
+      }
+    },
+    {
+      "id": "broccoli",
+      "name": {
+        "key": "culture_broccoli_name",
+        "resolvedResourceKey": "culture_broccoli",
+        "en": "Broccoli",
+        "ru": "Брокколи"
+      },
+      "scientificName": {
+        "key": "culture_broccoli_scientific_name",
+        "resolvedResourceKey": "scientific_broccoli",
+        "en": "Brassica oleracea",
+        "ru": "Brassica oleracea"
+      },
+      "seedDensity": {
+        "value": 0.021700043400086803,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "utahState",
+        "numericalDerivation": {
+          "seedGrams": 28.0,
+          "areaCm2": 1290.32,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "nominal 10 x 20 inches, not measured internal area"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          2,
+          4
+        ],
+        "sowToHarvestDays": [
+          8,
+          12
+        ],
+        "plannedCoveredDays": 4
+      },
+      "stages": [
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_broccoli_v2_sowing",
+            "resolvedResourceKey": "culture_broccoli_v2_sowing",
+            "en": "Sow broccoli seed dry in an even layer.",
+            "ru": "Сейте сухие семена брокколи ровным слоем."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 4,
+            "max": 4,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_broccoli_v2_blackout",
+            "resolvedResourceKey": "culture_broccoli_v2_blackout",
+            "en": "Source covered period: 2–4 days. The plan allows 4 days; confirm the actual move to light. USU uses 0.9–2.3 kg over a 1020 tray initially, then a raised cover once rooted. This is not a weight recommendation for every tray.",
+            "ru": "Период под укрытием по источнику: 2–4 дн. В плане — 4 дн.; подтвердите фактический перенос на свет. В USU сначала используют груз 0,9–2,3 кг на лоток 1020, затем при укоренении — приподнятое укрытие. Такой груз подходит не для любого лотка."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 4,
+            "max": 8,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_broccoli_v2_light_growth",
+            "resolvedResourceKey": "culture_broccoli_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_broccoli_v2_harvest",
+            "resolvedResourceKey": "culture_broccoli_v2_harvest",
+            "en": "Starting window: 8–12 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 8–12 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_broccoli_v2_substrate_note",
+        "resolvedResourceKey": "culture_broccoli_v2_substrate_note",
+        "en": "Use clean seed-starting mix, coir or a growing mat. The starting rate is normalized from a nominal 10 × 20 inch tray; enter your actual growing dimensions.",
+        "ru": "Используйте чистый грунт для рассады, кокосовый субстрат или мат. Норма пересчитана с условного лотка 10 × 20 дюймов; вводите свои размеры площади посева."
+      },
+      "lightingNote": {
+        "key": "culture_broccoli_v2_lighting_note",
+        "resolvedResourceKey": "culture_broccoli_v2_lighting_note",
+        "en": "Use sunlight or a grow light with airflow. Source conditions use 18 hours of light daily; home conditions can change timing.",
+        "ru": "Обеспечьте солнечный свет или лампу и проветривание. В источнике — 18 часов света в сутки; дома сроки могут отличаться."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "utahState"
+      ],
+      "illustrationResourceName": "culture_broccoli_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 28.0,
+        "sowToHarvestDurationDays": {
+          "min": 8,
+          "max": 12
+        },
+        "plannedDurationDays": 12
+      }
+    },
+    {
+      "id": "arugula",
+      "name": {
+        "key": "culture_arugula_name",
+        "resolvedResourceKey": "culture_arugula",
+        "en": "Arugula",
+        "ru": "Руккола"
+      },
+      "scientificName": {
+        "key": "culture_arugula_scientific_name",
+        "resolvedResourceKey": "scientific_arugula",
+        "en": "Eruca vesicaria",
+        "ru": "Eruca vesicaria"
+      },
+      "seedDensity": {
+        "value": 0.007750015500031001,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "utahState",
+        "numericalDerivation": {
+          "seedGrams": 10.0,
+          "areaCm2": 1290.32,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "nominal 10 x 20 inches, not measured internal area"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          1,
+          2
+        ],
+        "sowToHarvestDays": [
+          6,
+          8
+        ],
+        "plannedCoveredDays": 2
+      },
+      "stages": [
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_arugula_v2_sowing",
+            "resolvedResourceKey": "culture_arugula_v2_sowing",
+            "en": "Sow arugula dry; do not presoak or crowd the seeds.",
+            "ru": "Сейте рукколу без замачивания, не загущайте посев."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 2,
+            "max": 2,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_arugula_v2_blackout",
+            "resolvedResourceKey": "culture_arugula_v2_blackout",
+            "en": "Source covered period: 1–2 days. The plan allows 2 days; confirm the actual move to light. USU uses 0.9–2.3 kg over a 1020 tray initially, then a raised cover once rooted. This is not a weight recommendation for every tray.",
+            "ru": "Период под укрытием по источнику: 1–2 дн. В плане — 2 дн.; подтвердите фактический перенос на свет. В USU сначала используют груз 0,9–2,3 кг на лоток 1020, затем при укоренении — приподнятое укрытие. Такой груз подходит не для любого лотка."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 4,
+            "max": 6,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_arugula_v2_light_growth",
+            "resolvedResourceKey": "culture_arugula_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_arugula_v2_harvest",
+            "resolvedResourceKey": "culture_arugula_v2_harvest",
+            "en": "Starting window: 6–8 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 6–8 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_arugula_v2_substrate_note",
+        "resolvedResourceKey": "culture_arugula_v2_substrate_note",
+        "en": "Use clean seed-starting mix, coir or a growing mat. The starting rate is normalized from a nominal 10 × 20 inch tray; enter your actual growing dimensions.",
+        "ru": "Используйте чистый грунт для рассады, кокосовый субстрат или мат. Норма пересчитана с условного лотка 10 × 20 дюймов; вводите свои размеры площади посева."
+      },
+      "lightingNote": {
+        "key": "culture_arugula_v2_lighting_note",
+        "resolvedResourceKey": "culture_arugula_v2_lighting_note",
+        "en": "Use sunlight or a grow light with airflow. Source conditions use 18 hours of light daily; home conditions can change timing.",
+        "ru": "Обеспечьте солнечный свет или лампу и проветривание. В источнике — 18 часов света в сутки; дома сроки могут отличаться."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "utahState"
+      ],
+      "illustrationResourceName": "culture_arugula_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 10.0,
+        "sowToHarvestDurationDays": {
+          "min": 6,
+          "max": 8
+        },
+        "plannedDurationDays": 8
+      }
+    },
+    {
+      "id": "mustard",
+      "name": {
+        "key": "culture_mustard_name",
+        "resolvedResourceKey": "culture_mustard",
+        "en": "Mustard",
+        "ru": "Горчица"
+      },
+      "scientificName": {
+        "key": "culture_mustard_scientific_name",
+        "resolvedResourceKey": "scientific_mustard",
+        "en": "Brassica juncea",
+        "ru": "Brassica juncea"
+      },
+      "seedDensity": {
+        "value": 0.008,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "mustardGuide",
+        "numericalDerivation": {
+          "seedGrams": 10.0,
+          "areaCm2": 1250.0,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "explicit 25 x 50 cm; mustard selects lower 10 g endpoint"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          3,
+          4
+        ],
+        "sowToHarvestDays": [
+          8,
+          12
+        ],
+        "plannedCoveredDays": 4
+      },
+      "stages": [
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_mustard_v2_sowing",
+            "resolvedResourceKey": "culture_mustard_v2_sowing",
+            "en": "Sow mustard dry: wet seeds become sticky. Avoid surface saturation.",
+            "ru": "Сейте горчицу сухой: влажные семена слипаются. Не заливайте поверхность."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 4,
+            "max": 4,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_mustard_v2_blackout",
+            "resolvedResourceKey": "culture_mustard_v2_blackout",
+            "en": "Source covered period: 3–4 days. The plan allows 4 days; confirm the actual move to light.",
+            "ru": "Период под укрытием по источнику: 3–4 дн. В плане — 4 дн.; подтвердите фактический перенос на свет."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 4,
+            "max": 8,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_mustard_v2_light_growth",
+            "resolvedResourceKey": "culture_mustard_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_mustard_v2_harvest",
+            "resolvedResourceKey": "culture_mustard_v2_harvest",
+            "en": "Starting window: 8–12 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 8–12 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_mustard_v2_substrate_note",
+        "resolvedResourceKey": "culture_mustard_v2_substrate_note",
+        "en": "Use clean seed-starting mix. Starting rate: 10 g per 25 × 50 cm, from the supplier; adjust for your seed lot.",
+        "ru": "Используйте чистый грунт для рассады. Начальная норма поставщика: 10 г на 25 × 50 см; уточняйте её для своей партии семян."
+      },
+      "lightingNote": {
+        "key": "culture_mustard_v2_lighting_note",
+        "resolvedResourceKey": "culture_mustard_v2_lighting_note",
+        "en": "Provide light and airflow after uncovering; bottom-water without leaving standing water.",
+        "ru": "После снятия укрытия обеспечьте свет и проветривание; поливайте снизу без застоя воды."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "mustardGuide"
+      ],
+      "illustrationResourceName": "culture_mustard_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 10.32256,
+        "sowToHarvestDurationDays": {
+          "min": 8,
+          "max": 12
+        },
+        "plannedDurationDays": 12
+      }
+    },
+    {
+      "id": "pea",
+      "name": {
+        "key": "culture_pea_name",
+        "resolvedResourceKey": "culture_pea",
+        "en": "Pea",
+        "ru": "Горох"
+      },
+      "scientificName": {
+        "key": "culture_pea_scientific_name",
+        "resolvedResourceKey": "scientific_pea",
+        "en": "Pisum sativum",
+        "ru": "Pisum sativum"
+      },
+      "seedDensity": {
+        "value": 0.11625023250046501,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "utahState",
+        "numericalDerivation": {
+          "seedGrams": 150.0,
+          "areaCm2": 1290.32,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "nominal 10 x 20 inches, not measured internal area"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          3,
+          3
+        ],
+        "sowToHarvestDays": [
+          8,
+          10
+        ],
+        "plannedCoveredDays": 3
+      },
+      "stages": [
+        {
+          "stage": "SOAKING",
+          "duration": {
+            "min": 6,
+            "max": 6,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_pea_v2_soaking",
+            "resolvedResourceKey": "culture_pea_v2_soaking",
+            "en": "Soak peas for 6 hours in drinking water, then drain.",
+            "ru": "Замочите горох на 6 часов в питьевой воде, затем слейте воду."
+          }
+        },
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_pea_v2_sowing",
+            "resolvedResourceKey": "culture_pea_v2_sowing",
+            "en": "Drain soaked peas and distribute evenly.",
+            "ru": "Слейте воду после замачивания гороха и распределите семена равномерно."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 3,
+            "max": 3,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_pea_v2_blackout",
+            "resolvedResourceKey": "culture_pea_v2_blackout",
+            "en": "Source covered period: 3 days. The plan allows 3 days; confirm the actual move to light. USU uses 0.9–2.3 kg over a 1020 tray initially, then a raised cover once rooted. This is not a weight recommendation for every tray.",
+            "ru": "Период под укрытием по источнику: 3 дн. В плане — 3 дн.; подтвердите фактический перенос на свет. В USU сначала используют груз 0,9–2,3 кг на лоток 1020, затем при укоренении — приподнятое укрытие. Такой груз подходит не для любого лотка."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 5,
+            "max": 7,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_pea_v2_light_growth",
+            "resolvedResourceKey": "culture_pea_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_pea_v2_harvest",
+            "resolvedResourceKey": "culture_pea_v2_harvest",
+            "en": "Starting window: 8–10 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 8–10 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_pea_v2_substrate_note",
+        "resolvedResourceKey": "culture_pea_v2_substrate_note",
+        "en": "Use clean seed-starting mix, coir or a growing mat. The starting rate is normalized from a nominal 10 × 20 inch tray; enter your actual growing dimensions.",
+        "ru": "Используйте чистый грунт для рассады, кокосовый субстрат или мат. Норма пересчитана с условного лотка 10 × 20 дюймов; вводите свои размеры площади посева."
+      },
+      "lightingNote": {
+        "key": "culture_pea_v2_lighting_note",
+        "resolvedResourceKey": "culture_pea_v2_lighting_note",
+        "en": "Use sunlight or a grow light with airflow. Source conditions use 18 hours of light daily; home conditions can change timing.",
+        "ru": "Обеспечьте солнечный свет или лампу и проветривание. В источнике — 18 часов света в сутки; дома сроки могут отличаться."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "utahState"
+      ],
+      "illustrationResourceName": "culture_pea_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 150.0,
+        "sowToHarvestDurationDays": {
+          "min": 8,
+          "max": 10
+        },
+        "plannedDurationDays": 10
+      }
+    },
+    {
+      "id": "sunflower",
+      "name": {
+        "key": "culture_sunflower_name",
+        "resolvedResourceKey": "culture_sunflower",
+        "en": "Sunflower",
+        "ru": "Подсолнечник"
+      },
+      "scientificName": {
+        "key": "culture_sunflower_scientific_name",
+        "resolvedResourceKey": "scientific_sunflower",
+        "en": "Helianthus annuus",
+        "ru": "Helianthus annuus"
+      },
+      "seedDensity": {
+        "value": 0.0372000744001488,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "utahState",
+        "numericalDerivation": {
+          "seedGrams": 48.0,
+          "areaCm2": 1290.32,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "nominal 10 x 20 inches, not measured internal area"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          3,
+          3
+        ],
+        "sowToHarvestDays": [
+          9,
+          10
+        ],
+        "plannedCoveredDays": 3
+      },
+      "stages": [
+        {
+          "stage": "SOAKING",
+          "duration": {
+            "min": 12,
+            "max": 12,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_sunflower_v2_soaking",
+            "resolvedResourceKey": "culture_sunflower_v2_soaking",
+            "en": "Soak sunflower seed for 12 hours in drinking water, then drain.",
+            "ru": "Замочите подсолнечник на 12 часов в питьевой воде, затем слейте воду."
+          }
+        },
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_sunflower_v2_sowing",
+            "resolvedResourceKey": "culture_sunflower_v2_sowing",
+            "en": "Drain soaked sunflower seed before sowing.",
+            "ru": "Перед посевом слейте воду после замачивания подсолнечника."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 3,
+            "max": 3,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_sunflower_v2_blackout",
+            "resolvedResourceKey": "culture_sunflower_v2_blackout",
+            "en": "Source covered period: 3 days. The plan allows 3 days; confirm the actual move to light. USU uses 0.9–2.3 kg over a 1020 tray initially, then a raised cover once rooted. This is not a weight recommendation for every tray.",
+            "ru": "Период под укрытием по источнику: 3 дн. В плане — 3 дн.; подтвердите фактический перенос на свет. В USU сначала используют груз 0,9–2,3 кг на лоток 1020, затем при укоренении — приподнятое укрытие. Такой груз подходит не для любого лотка."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 6,
+            "max": 7,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_sunflower_v2_light_growth",
+            "resolvedResourceKey": "culture_sunflower_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_sunflower_v2_harvest",
+            "resolvedResourceKey": "culture_sunflower_v2_harvest",
+            "en": "Starting window: 9–10 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 9–10 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_sunflower_v2_substrate_note",
+        "resolvedResourceKey": "culture_sunflower_v2_substrate_note",
+        "en": "Use clean seed-starting mix, coir or a growing mat. The starting rate is normalized from a nominal 10 × 20 inch tray; enter your actual growing dimensions.",
+        "ru": "Используйте чистый грунт для рассады, кокосовый субстрат или мат. Норма пересчитана с условного лотка 10 × 20 дюймов; вводите свои размеры площади посева."
+      },
+      "lightingNote": {
+        "key": "culture_sunflower_v2_lighting_note",
+        "resolvedResourceKey": "culture_sunflower_v2_lighting_note",
+        "en": "Use sunlight or a grow light with airflow. Source conditions use 18 hours of light daily; home conditions can change timing.",
+        "ru": "Обеспечьте солнечный свет или лампу и проветривание. В источнике — 18 часов света в сутки; дома сроки могут отличаться."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "utahState"
+      ],
+      "illustrationResourceName": "culture_sunflower_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 48.0,
+        "sowToHarvestDurationDays": {
+          "min": 9,
+          "max": 10
+        },
+        "plannedDurationDays": 10
+      }
+    },
+    {
+      "id": "basil",
+      "name": {
+        "key": "culture_basil_name",
+        "resolvedResourceKey": "culture_basil",
+        "en": "Basil",
+        "ru": "Базилик"
+      },
+      "scientificName": {
+        "key": "culture_basil_scientific_name",
+        "resolvedResourceKey": "scientific_basil",
+        "en": "Ocimum basilicum",
+        "ru": "Ocimum basilicum"
+      },
+      "seedDensity": {
+        "value": 0.021700043400086803,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "utahState",
+        "numericalDerivation": {
+          "seedGrams": 28.0,
+          "areaCm2": 1290.32,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "nominal 10 x 20 inches, not measured internal area"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          4,
+          7
+        ],
+        "sowToHarvestDays": [
+          12,
+          16
+        ],
+        "plannedCoveredDays": 7
+      },
+      "stages": [
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_basil_v2_sowing",
+            "resolvedResourceKey": "culture_basil_v2_sowing",
+            "en": "Sow basil dry without presoak; keep the medium moist, not flooded.",
+            "ru": "Сейте базилик без замачивания; увлажняйте субстрат, не заливая его."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 7,
+            "max": 7,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_basil_v2_blackout",
+            "resolvedResourceKey": "culture_basil_v2_blackout",
+            "en": "Source covered period: 4–7 days. The plan allows 7 days; confirm the actual move to light. USU uses 0.9–2.3 kg over a 1020 tray initially, then a raised cover once rooted. This is not a weight recommendation for every tray.",
+            "ru": "Период под укрытием по источнику: 4–7 дн. В плане — 7 дн.; подтвердите фактический перенос на свет. В USU сначала используют груз 0,9–2,3 кг на лоток 1020, затем при укоренении — приподнятое укрытие. Такой груз подходит не для любого лотка."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 5,
+            "max": 9,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_basil_v2_light_growth",
+            "resolvedResourceKey": "culture_basil_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_basil_v2_harvest",
+            "resolvedResourceKey": "culture_basil_v2_harvest",
+            "en": "Starting window: 12–16 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 12–16 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_basil_v2_substrate_note",
+        "resolvedResourceKey": "culture_basil_v2_substrate_note",
+        "en": "Use clean seed-starting mix, coir or a growing mat. The starting rate is normalized from a nominal 10 × 20 inch tray; enter your actual growing dimensions.",
+        "ru": "Используйте чистый грунт для рассады, кокосовый субстрат или мат. Норма пересчитана с условного лотка 10 × 20 дюймов; вводите свои размеры площади посева."
+      },
+      "lightingNote": {
+        "key": "culture_basil_v2_lighting_note",
+        "resolvedResourceKey": "culture_basil_v2_lighting_note",
+        "en": "Use sunlight or a grow light with airflow. Source conditions use 18 hours of light daily; home conditions can change timing.",
+        "ru": "Обеспечьте солнечный свет или лампу и проветривание. В источнике — 18 часов света в сутки; дома сроки могут отличаться."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "utahState"
+      ],
+      "illustrationResourceName": "culture_basil_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 28.0,
+        "sowToHarvestDurationDays": {
+          "min": 12,
+          "max": 16
+        },
+        "plannedDurationDays": 16
+      }
+    },
+    {
+      "id": "garden_cress",
+      "name": {
+        "key": "culture_garden_cress_name",
+        "resolvedResourceKey": "culture_cress",
+        "en": "Garden cress",
+        "ru": "Кресс-салат"
+      },
+      "scientificName": {
+        "key": "culture_garden_cress_scientific_name",
+        "resolvedResourceKey": "scientific_cress",
+        "en": "Lepidium sativum",
+        "ru": "Lepidium sativum"
+      },
+      "seedDensity": {
+        "value": 0.008,
+        "unit": "g/cm²",
+        "version": 2,
+        "sourceId": "cressGuide",
+        "numericalDerivation": {
+          "seedGrams": 10.0,
+          "areaCm2": 1250.0,
+          "formula": "seedGrams / areaCm2",
+          "germinationAdjustment": "none",
+          "assumption": "explicit 25 x 50 cm; mustard selects lower 10 g endpoint"
+        }
+      },
+      "sourceTiming": {
+        "coveredDays": [
+          3,
+          5
+        ],
+        "sowToHarvestDays": [
+          8,
+          12
+        ],
+        "plannedCoveredDays": 5
+      },
+      "stages": [
+        {
+          "stage": "SOWN",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_garden_cress_v2_sowing",
+            "resolvedResourceKey": "culture_garden_cress_v2_sowing",
+            "en": "Do not soak garden cress: seeds form a gel. Sow a thin single layer.",
+            "ru": "Не замачивайте кресс-салат: семена образуют гель. Сейте тонким слоем."
+          }
+        },
+        {
+          "stage": "BLACKOUT_OR_WEIGHT",
+          "duration": {
+            "min": 5,
+            "max": 5,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_garden_cress_v2_blackout",
+            "resolvedResourceKey": "culture_garden_cress_v2_blackout",
+            "en": "Source covered period: 3–5 days. The plan allows 5 days; confirm the actual move to light.",
+            "ru": "Период под укрытием по источнику: 3–5 дн. В плане — 5 дн.; подтвердите фактический перенос на свет."
+          }
+        },
+        {
+          "stage": "LIGHT_GROWTH",
+          "duration": {
+            "min": 3,
+            "max": 7,
+            "unit": "days"
+          },
+          "guidance": {
+            "key": "culture_garden_cress_v2_light_growth",
+            "resolvedResourceKey": "culture_garden_cress_v2_light_growth",
+            "en": "This interval is the remaining time after the planned cover period, not the full crop cycle. Check moisture and airflow.",
+            "ru": "Это остаток срока после запланированного укрытия, а не весь цикл. Следите за влажностью и проветриванием."
+          }
+        },
+        {
+          "stage": "READY_FOR_HARVEST",
+          "duration": {
+            "min": 0,
+            "max": 0,
+            "unit": "hours"
+          },
+          "guidance": {
+            "key": "culture_garden_cress_v2_harvest",
+            "resolvedResourceKey": "culture_garden_cress_v2_harvest",
+            "en": "Starting window: 8–12 days from sowing, excluding any presoak. Judge readiness by the crop, not the date alone.",
+            "ru": "Начальный ориентир: 8–12 дн. от посева, не включая время замачивания. Оценивайте готовность по растениям, а не только по дате."
+          }
+        }
+      ],
+      "substrateNote": {
+        "key": "culture_garden_cress_v2_substrate_note",
+        "resolvedResourceKey": "culture_garden_cress_v2_substrate_note",
+        "en": "Use clean coir or fine potting mix. Starting rate: 10 g per 25 × 50 cm, from the supplier; adjust for your seed lot.",
+        "ru": "Используйте чистый кокосовый субстрат или мелкий грунт. Начальная норма поставщика: 10 г на 25 × 50 см; уточняйте её для своей партии семян."
+      },
+      "lightingNote": {
+        "key": "culture_garden_cress_v2_lighting_note",
+        "resolvedResourceKey": "culture_garden_cress_v2_lighting_note",
+        "en": "Provide light and airflow after uncovering; bottom-water without leaving standing water.",
+        "ru": "После снятия укрытия обеспечьте свет и проветривание; поливайте снизу без застоя воды."
+      },
+      "safety": [
+        {
+          "key": "safety_untreated_seed",
+          "resolvedResourceKey": "safety_untreated_seed",
+          "en": "Use seed intended for sprouting or food growing and not chemically treated.",
+          "ru": "Используйте семена для проращивания или пищевых культур без химической обработки."
+        },
+        {
+          "key": "safety_clean_container",
+          "resolvedResourceKey": "safety_clean_container",
+          "en": "Clean trays, tools, and work surfaces before use.",
+          "ru": "Очищайте лотки, инструменты и рабочие поверхности перед использованием."
+        },
+        {
+          "key": "safety_drinking_water",
+          "resolvedResourceKey": "safety_drinking_water",
+          "en": "Use drinking-quality water.",
+          "ru": "Используйте питьевую воду."
+        },
+        {
+          "key": "safety_drainage",
+          "resolvedResourceKey": "safety_drainage",
+          "en": "Allow excess water to drain.",
+          "ru": "Обеспечьте отвод лишней воды."
+        },
+        {
+          "key": "safety_avoid_excess_moisture",
+          "resolvedResourceKey": "safety_avoid_excess_moisture",
+          "en": "Avoid standing water and excessive moisture.",
+          "ru": "Не допускайте застоя воды и избыточной влажности."
+        },
+        {
+          "key": "safety_allergy_awareness",
+          "resolvedResourceKey": "safety_allergy_awareness",
+          "en": "Consider seed and food allergies before use.",
+          "ru": "Учитывайте аллергию на семена и пищевые продукты."
+        },
+        {
+          "key": "safety_images_not_diagnostic",
+          "resolvedResourceKey": "safety_images_not_diagnostic",
+          "en": "Photos and appearance are records, not safety or disease diagnostics.",
+          "ru": "Фото и внешний вид служат записью, а не диагностикой безопасности или заболеваний."
+        }
+      ],
+      "sourceIds": [
+        "cressGuide"
+      ],
+      "illustrationResourceName": "culture_garden_cress_cover",
+      "derivedChecks": {
+        "nominal1020AreaCm2": 1290.32,
+        "seedGramsForNominal1020": 10.32256,
+        "sowToHarvestDurationDays": {
+          "min": 8,
+          "max": 12
+        },
+        "plannedDurationDays": 12
+      }
+    }
+  ],
+  "inputSha256": {
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt": "4b86bad465175b9dc8506afe8ae66d48d863c65c7684098e4e80d14ac2a6756d",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt": "e8e488a5d93b6ac0902be8d7d0d6f6010ec47b86dd0cb09c9558eae109e5a281",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt": "4f5ae174aae3b54fb40c8b7f6340c0d78d920f2bdbfca702845960f8fc0ae7db",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt": "a9a344b71df735949f42849b1fb501a57379187e8aa8f2e9ae86a57d57cc8cf1",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchPlanningEngine.kt": "cce1cf727ce05e83cbb879c9dbdb326e69b69582566cc88882a4c02bf9978c8b",
+    "shared/compose/src/commonMain/composeResources/values/catalog_v2.xml": "f527192d43661304c6a3dafd6556da9b354ccd0fdbf8df9ef81b24983167e144",
+    "shared/compose/src/commonMain/composeResources/values/csv_export.xml": "67268e3f421d4633ba9ce2a20f770c0bfac5347ac49bcd30e3dca03ed29d7944",
+    "shared/compose/src/commonMain/composeResources/values/decimal_format.xml": "1c989c0938931a4609c00a2972f440e01d3e352437e0e1eb089c11a08c3e1a3f",
+    "shared/compose/src/commonMain/composeResources/values/picker_errors.xml": "1060c8b69400a37b2dfa810d561570ff726fb0e11924a0b173554e59c9917bfb",
+    "shared/compose/src/commonMain/composeResources/values/strings.xml": "fc399ac16359ef97c5b7660da4e9d62b84d5a383dfddb6c6a8842bedc14558ba",
+    "shared/compose/src/commonMain/composeResources/values/ux_metadata.xml": "299a41e8c6c847659f4fe7f08d754b854265c2a8c6863242084af4c9bea7de51",
+    "shared/compose/src/commonMain/composeResources/values/ux_notifications.xml": "9703ee64710ebe3080b83ef12639f0d0b36a6f23d9bc3f7780d578f6e3ee7b6c",
+    "shared/compose/src/commonMain/composeResources/values/ux_observation.xml": "06c844fedf4ec28b4f9db6ef0afbd017daff24ea18f4858ec9908994e20e6caa",
+    "shared/compose/src/commonMain/composeResources/values/ux_privacy.xml": "eaea4714adacc83496c349a71d45f101615a4c199e64d21b39ecf82edd7ec769",
+    "shared/compose/src/commonMain/composeResources/values/zone_forecast.xml": "59f81a5b6a85b9613da378e5a10c8faa8ea85e17fcbf7efccf367e3539311486",
+    "shared/compose/src/commonMain/composeResources/values-ru/catalog_v2.xml": "518d35dc92dedb9208220a01bb40494866f2a8ef93077e635512ae32f2d61763",
+    "shared/compose/src/commonMain/composeResources/values-ru/csv_export.xml": "99ca5f221fc54829909c643d0f363737c58459045c72fc59d322cbb105aa3be5",
+    "shared/compose/src/commonMain/composeResources/values-ru/decimal_format.xml": "5d1ada83f1005cf0504b91bbf2e086f3dcaffb4ad06dafecf9243ad7cb3bbbc0",
+    "shared/compose/src/commonMain/composeResources/values-ru/picker_errors.xml": "dabe3e4b1749f0b09dc87db6b96b8bb3f96250c760566f8a64b2bb9009f83409",
+    "shared/compose/src/commonMain/composeResources/values-ru/strings.xml": "847de08a23bc9382911a2aae741a3053a06eae8d63c00503c8bce0ab30e66919",
+    "shared/compose/src/commonMain/composeResources/values-ru/ux_metadata.xml": "3164d57a415b24ca940c067c21849dc9a129f0b713f911e4544f88b0fddfdf9b",
+    "shared/compose/src/commonMain/composeResources/values-ru/ux_notifications.xml": "b02e84d6e373cd2d90b0581d2a9eb13bf732f97b8f86d6b138843eaf0fda69c7",
+    "shared/compose/src/commonMain/composeResources/values-ru/ux_observation.xml": "1a0e1324b09bb0a960579862af1cb777827ca68d7e5e4eaebc2356d0915a5a72",
+    "shared/compose/src/commonMain/composeResources/values-ru/ux_privacy.xml": "49ecf6e695452874c2b042fa7cd527c78a0bb976ba867d497cad01353fff880e",
+    "shared/compose/src/commonMain/composeResources/values-ru/zone_forecast.xml": "428a8f6b0bbf0be0f44d18d94be961f251174b89558b52e61477ba5698cd88be",
+    "spec/app-spec.json": "060b435f6b00cdac581fb164dfb5b16368e56e145ef254632868fefc2bf56b81",
+    "spec/product.md": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d",
+    "spec/data.md": "4ff7cab6d90cdebd9da2b0b210f56ae342ee254688a2559b4c8efe813dd447df",
+    "spec/domain.md": "e7a2943624feff738ca0deb8ddf2732ecc96ee0a37aa74cf6f73d8632fde6a1f",
+    "spec/quality.md": "6868ee6f004cd8b4a74d4a4527169390b7cd6a1376d8c8ed9802a92d1bf828b5",
+    "spec/flows/FLOW-003.md": "94b0b5985314fb85f953c6dbe594d10ad2d7b11b0718766ad757f99d45726280",
+    "spec/screens/SCREEN-008.md": "1fe5f5ff5cfe5e6ef59347a1ba25ce79262718148d7ae7973c893dc3d1370749"
+  },
+  "specContext": {
+    "spec/product.md": "# Product\n\n## Product promise\n\n**SproutPace** helps a home grower with several trays know what each tray needs next and plan repeated harvests within the places actually available.\n\n- Store name EN: **SproutPace: Microgreens**\n- Store name RU: **SproutPace: Микрозелень**\n- Promise EN: **Know what each tray needs next.**\n- Promise RU: **Понятный следующий шаг для каждого лотка.**\n\nThe name describes a growing rhythm; it must never imply that the app accelerates biological growth. Brand, domain, trademark, and store-name availability must be rechecked before publication.\n\n## Problem and audience\n\nThe primary user is a home grower who manages a small set of concurrent trays and may still be completing a first cycle. The user may grow on a windowsill, under a lamp, or use both. They need to coordinate soaking, sowing, blackout/weight, light growth, moisture checks, harvest, and the next sow without maintaining a spreadsheet or accepting an impossible capacity plan.\n\nThe product is intended for adults managing home growing. It is not directed to children. Android is the first publication target in all store-supported countries; the interface is EN/RU with English fallback. iOS is fully implemented and verified in the current scope but not published.\n\n## Core outcome\n\nThe primary planning goal is a user-selected harvest frequency across a rotation of cultures. A secondary continuous-queue mode suggests the next batch so another tray approaches harvest after the preceding one. Neither mode models household consumption or guarantees continuous food availability.\n\nThe first-value loop is:\n\n1. Define at least one light growing zone and a tray size.\n2. Choose harvest cadence and cultures.\n3. Accept a feasible proposed batch.\n4. Confirm real stage changes and see recalculated future actions.\n5. Complete or close the batch.\n6. Start or accept the next cycle without an external calendar or spreadsheet.\n\n## MVP scope\n\n- Four stable destinations: Today, Trays, Plan, and Catalog.\n- Optional first-run setup; catalog browsing remains available before setup.\n- Named light and dark zones with integer place capacity. One growing batch occupies one practical place; geometry packing is out of scope.\n- Rectangular and circular metric tray-size presets.\n- Eight built-in cultures: radish, broccoli, arugula, mustard, pea, sunflower, basil, and garden cress (`Lepidium sativum`, not watercress).\n- Versioned offline catalog with source metadata, EN/RU resource keys, ranges, food-safety guidance, and metric seed-density calculations.\n- Personal recipes, supplier/variety/seed-lot notes, substrate choice, optional germination percentage, and immutable per-batch recipe snapshots.\n- Batch stages: optional soaking, sown, blackout/weight when applicable, light growth, ready for harvest, and terminal harvested/failed/abandoned outcomes.\n- Manual confirmation, correction, last-transition undo, explicit stage skip, capacity conflict resolution, and temporary unassigned placement.\n- Today actions, one conditional daily summary, and a separate best-effort target-time soak reminder without Android exact-alarm permission.\n- Cadence plan, future capacity validation, explicit confirmation before creating suggested batches, and continuous-queue suggestions.\n- Dated observations with optional local photo.\n- History, optional actual harvest mass, repeat-as-new-batch, explicit permanent deletion, and no trash.\n- Local full backup/replace restore with photos and relationships; photo-free CSV history export.\n- Local data reset.\n- Two approved Android inline Yandex ad placements with fail-closed privacy gating; iOS production ads disabled because no iOS ad project/ID exists in scope.\n- Firebase Crashlytics on Android and iOS release builds, default on with Settings opt-out, no Firebase Analytics.\n- Light/dark/system theme, EN/RU, accessibility, adaptive widths, and offline-first core.\n\n## Non-goals\n\nThe excluded requirements REQ-901 through REQ-909 are normative. In particular, the MVP has no account, cloud sync, app backend, AI/OCR diagnosis, IoT, social network, commerce, farm inventory, subscription, paid tray limit, video lessons, consumption/storage tracking, predicted yield, monthly calendar, Analytics, attribution, fullscreen/rewarded/app-open ads, iOS publication, or iOS production ads.\n\n## Product principles\n\n- Record reality before protecting the plan: an actual stage change may be saved even when configured capacity is full.\n- Never shift a user-confirmed date silently.\n- A forecast is a range or suggestion, not a biological guarantee.\n- No streaks, artificial daily check-ins, or growth-speed promises.\n- Core actions never wait for network, advertising, or Crashlytics.\n- Ads never cover primary content or appear in a critical grow action.\n- User-authored names, notes, recipes, and photographs remain user data.\n\n## Success criteria\n\nThe MVP succeeds when a home grower can configure places, follow one batch to a recorded outcome, and create or accept a second cycle without an external spreadsheet. The leading product signal is progression to the second cycle, not a daily streak. Because product analytics are excluded, validate this through pilot task testing and interviews rather than hidden event collection.\n\n## Assumptions and limitations\n\n- Exact culture ranges vary by seed lot, cultivar, tray, medium, light, temperature, and user technique.\n- Seed mass is a metric recommendation derived from growing area and versioned density guidance, always editable for a batch.\n- Physical validation of several real cycles is not yet complete and must not be claimed.\n- Built-in catalog maintenance is intentionally lightweight: change a simple catalog version and review date, update source metadata, and pass QG-011. No external approval, signature, or attestation workflow exists.\n- Final privacy-policy URL/copy, Firebase files, Android Yandex ad ID, signing, store accounts, and publication state are external inputs tracked by quality gates.\n\n## Evidence used during product definition\n\n- [Penn State: A Step-By-Step Guide for Growing Microgreens at Home](https://extension.psu.edu/a-step-by-step-guide-for-growing-microgreens-at-home)\n- [Penn State: The ABCs of Microgreens](https://extension.psu.edu/the-abcs-of-microgreens)\n- [Penn State: Growing Microgreens](https://extension.psu.edu/growing-microgreens)\n- [Penn State: Ensuring Food Safety in Microgreens Production](https://extension.psu.edu/ensuring-food-safety-in-microgreens-production)\n- [Utah State University: Grow Your Own Microgreens](https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens)\n- [Utah State University: Garden Cress](https://extension.usu.edu/yardandgarden/research/garden-cress-in-the-garden)\n- [Lazyweb advertising placement evidence](https://www.lazyweb.com/agentic-search/2c55a632-370e-4a01-9e89-a6a5198460e8), used qualitatively; no matching measured experiment was found.\n\n",
+    "spec/data.md": "# Data\n\n## Local persistence\n\nUse a shared Kotlin Multiplatform database for relational product data, typed Multiplatform Settings for small preferences/privacy caches, and private app storage for imported observation photos. Managers own persistence boundaries; Stores never call database or platform APIs directly.\n\nExpected local records include:\n\n- grow zones and capacity;\n- tray-size presets;\n- personal recipes and recipe stages;\n- grow batches with immutable recipe, tray, substrate, culture, supplier/cultivar/lot, and zone-name snapshots;\n- stage events and derived scheduled actions;\n- harvest plans and suggestions;\n- observations and photo references;\n- terminal outcomes and optional actual mass;\n- notification preferences and stable scheduled IDs;\n- theme preference;\n- Crashlytics collection preference;\n- one versioned advertising privacy payload containing only the minimal endpoint response, current choice, and matching policy version.\n\nUse stable language-neutral IDs and foreign keys. Do not persist resolved built-in translations.\n\n## Managed operations\n\n`app-spec.json#managedEntities` is authoritative. Important consequences:\n\n- Deleting zones, presets, or recipes does not erase immutable batch snapshots.\n- Delete and terminal batch outcomes are different operations.\n- Backup archives are immutable external files; create another archive rather than updating one.\n- Ad-consent withdrawal is an update, not deletion.\n- Crash reporting always has a default-on release preference and is disabled by updating that preference.\n\n## Built-in catalog\n\nShip catalog content as versioned, deterministic local seed/reference data with stable culture IDs and string-resource keys. Recommended structure:\n\n- `catalogVersion`: a simple monotonic content version;\n- `reviewedOn`: content update date;\n- culture ID and scientific/common-name resource keys;\n- source URL/title metadata;\n- stage applicability and duration ranges;\n- blackout/weight and presoak flags/ranges;\n- metric density input and its source/version;\n- substrate/lighting notes as resource keys;\n- safety note keys;\n- illustration resource name.\n\nUpdating the catalog needs no external approval, signature, or attestation. It must change the version/date, preserve IDs where semantics are unchanged, document sources, and pass QG-011. A breaking identity change requires an explicit migration.\n\n## Localized text storage\n\nThe complete English key set lives in `shared/compose/src/commonMain/composeResources/values/strings.xml`; Russian lives in `values-ru/strings.xml`. Catalog seed data and database rows contain only IDs/resource keys. Resolve keys to generated `Res.string.*` accessors at the presentation boundary.\n\nUser-authored recipe names, supplier/lot notes, observations, and batch notes are stored verbatim and are not resource strings. Native-only Android/iOS permission and platform text uses native localized resources with English base and Russian addition.\n\n## Backup archive\n\nThe full backup is a versioned local archive selected through the platform document provider. It contains:\n\n- a manifest with schema/version and counts;\n- all product records and stable relationships;\n- app-owned observation photos with integrity metadata;\n- user preferences needed to restore product behavior;\n- no Crashlytics server data, advertising SDK cache, detected country/IP, advertising ID, or secrets.\n\nBefore restore, parse and validate the complete archive, show a localized preview, and require explicit replacement confirmation. Replacement is transactional: stage files and database content, commit both, then rebuild only future reminders. Invalid or unsupported archives leave existing data and files untouched. Restoring the same archive again replaces rather than merges, so it cannot duplicate records.\n\nCSV export contains a localized or documented stable header contract for batch history, culture/recipe identity, relevant dates, outcome, actual mass, and user notes as appropriate. It excludes photographs and does not serve as a restorable backup.\n\n## Remote APIs\n\n### Privacy-region endpoint\n\nUse `GET https://168.222.252.178/v1/privacy/region` exactly as defined by the monetization contract. Send no query parameters or user/install/location identifiers. Accept only strict schema 1 JSON with exact JSON content type, a supported policy version string, and `expiresAt` no more than 72 hours ahead. Reject redirects, non-200 responses, malformed/oversized/non-UTF-8 bodies, unknown schema, stale/overlong expiry, and transport failures.\n\nThe endpoint is an accepted shared service. Do not create a backend, alternative service, live qualification, readiness attestation, or endpoint-specific release gate.\n\n### Yandex Ads\n\nSend only the configured ad-unit ID unless a later approved privacy inventory adds something. No product data, notes, schedules, culture choices, photos, user ID, location, or account data enters an ad request. Debug/test uses test IDs; previews and automated tests make no real requests.\n\n### Firebase Crashlytics\n\nCrashlytics is configured separately for Android and iOS release/release-candidate builds. Do not add Firebase Analytics. Do not set a user ID or log user-authored text, crop/recipe selections, schedules, photos, advertising state, or breadcrumbs. Allowed context is limited to app version, platform/build, stack traces, ANR/fatal data, selected technical non-fatals, and reviewed non-PII technical keys.\n\nThe release default is collection enabled. The persisted user toggle disables or re-enables future collection according to the platform SDK contract. Local reset does not claim to delete reports already sent to Firebase.\n\n## Offline and cache behavior\n\n- Core database, catalog, photos, plan, history, backup, export, and Settings work offline.\n- A valid privacy-region response may be cached only until its accepted expiry, clamped to 72 hours.\n- Missing/stale privacy data disables ads for that launch; it does not delay app startup or core screens.\n- Crash reports may remain queued by the native SDK contract, but upload never blocks the UI.\n- There is no cloud sync, merge policy, login token, or remote product cache.\n\n## Retention and erasure\n\nProduct data remains until the user deletes individual records, uses Delete all local data, clears app storage, or uninstalls. Delete all removes database rows, private photos, product/settings state, ad-consent payload, and scheduled reminders, then returns to first run. It explains that previously sent Crashlytics reports and externally saved backup/CSV files are not deleted.\n\n",
+    "spec/domain.md": "# Domain\n\n## Glossary\n\n- **Grow zone**: a named physical area with a type and integer place capacity. Types are natural light, grow light, and dark.\n- **Place**: the user's practical unit for one tray; SproutPace does not solve geometric packing.\n- **Tray-size preset**: rectangular width/length or circular diameter in centimetres.\n- **Built-in culture**: versioned app-owned catalog entry with stable ID and localized resource keys.\n- **User grow recipe**: user-authored stages and guidance, clearly separated from built-in content.\n- **Recipe snapshot**: immutable copy of the parameters used to create a batch.\n- **Grow batch**: one planned or actual cultivation cycle.\n- **Stage event**: a user-confirmed actual transition with timestamp and optional skip/correction context.\n- **Scheduled action**: a derived next action for a batch; it is not a habit streak.\n- **Harvest plan**: cadence, selected culture rotation, mode, and future suggestions.\n- **Observation**: dated private text with an optional app-owned local photo.\n- **Outcome**: harvested, failed, or abandoned terminal state.\n- **Continuous queue**: a planner mode that suggests a next batch; it does not track consumption or stored harvest.\n\n## Stable built-in identities\n\nThe first catalog version contains these language-neutral IDs:\n\n| Stable ID | EN key | RU key meaning |\n| --- | --- | --- |\n| `radish` | `culture_radish_name` | редис |\n| `broccoli` | `culture_broccoli_name` | брокколи |\n| `arugula` | `culture_arugula_name` | руккола |\n| `mustard` | `culture_mustard_name` | горчица |\n| `pea` | `culture_pea_name` | горох |\n| `sunflower` | `culture_sunflower_name` | подсолнечник |\n| `basil` | `culture_basil_name` | базилик |\n| `garden_cress` | `culture_garden_cress_name` | кресс-салат |\n\n`garden_cress` means `Lepidium sativum`; do not label it Watercress or model `Nasturtium officinale` as the same culture.\n\n## Grow-zone invariants\n\n- Capacity is a non-negative integer.\n- At least one light-capable place is required before the planner can call a plan feasible.\n- A dark zone is optional. Covered or stacked germination on a light shelf continues to occupy that light place.\n- Soaking occupies no grow place.\n- A sown or growing batch occupies at most one configured place, or is explicitly `unassigned` with a visible warning.\n- Moving between zones releases the prior place and claims the new place as one transaction.\n- An actual stage event is never rejected solely because configured capacity is full; use another place, change capacity, or record `unassigned`.\n- Historical batches preserve zone-name snapshots when a zone is renamed or deleted.\n\n## Tray and seed recommendation invariants\n\n- Rectangular area is width × length; circular area is π × diameter² ÷ 4.\n- All persisted dimensions use metric units.\n- Recommended seed mass is derived from area and the recipe's versioned density input, then displayed in grams.\n- The recommendation is editable per batch and never represented as a guarantee.\n- Supplier, cultivar, seed-lot text, and germination percentage are optional user data.\n\n## Recipe invariants\n\n- Built-in recipes are read-only, versioned, source-attributed, and resolved through resource keys.\n- A built-in recipe may be duplicated into a user recipe.\n- Personal recipes support create/read/update/delete/duplicate.\n- Changing or deleting a recipe never mutates a batch's recipe snapshot.\n- Built-in instructions use ranges for soaking, blackout/weight, transition-to-light, and harvest window when supported by sources.\n- Food-safety guidance covers untreated/microgreen-intended seed, food-safe clean containers, drinking water, drainage, avoiding excessive moisture, and allergy awareness.\n- Photographs and illustrations are not diagnostic references.\n\n## Batch state machine\n\nPlanned batches may proceed through only applicable states:\n\n`planned → soaking? → sown → blackout_or_weight? → light_growth → ready_for_harvest → harvested`\n\nFrom any non-terminal state the user may close as `failed` or `abandoned`. A recipe may omit soaking or blackout/weight. A user may explicitly skip a configured stage; the event remains recorded.\n\nTerminal outcomes are historical records, not deletion. Permanent deletion is a separate confirmed operation. Repeating creates a new planned batch with a new ID and snapshot; it never reopens or mutates the original.\n\n## Scheduling rules\n\n- Recommended dates are projections until the user confirms the real event.\n- Confirming an early or late stage recalculates only dependent future actions from the actual transition.\n- An explicitly user-fixed harvest date is never changed silently; conflicts are shown.\n- Undo reverses only the most recent transition, restores the preceding state, and cancels/rebuilds affected future reminders idempotently.\n- Short soak duration uses elapsed-time semantics. Calendar actions use local civil date/time and follow a changed time zone.\n- Notification identifiers are stable by action ID so restart, restore, undo, and rescheduling cannot create duplicates.\n- Android exact-alarm special access is not requested. Delivery near a soak target is best-effort and the authoritative due state remains visible in-app.\n\n## Planner rules\n\n- A harvest plan has a cadence, selected rotation, mode (`cadence` or `continuous_queue`), and paused state.\n- Suggestions use recipe ranges and known place capacity; they are never batches until confirmed.\n- A plan with unresolved overlap is labeled `needs_resolution`; the UI offers another date, another zone, or capacity change.\n- Confirmed dates are not shifted silently.\n- Editing, pausing, or deleting a plan changes future suggestions only. Confirmed and active batches persist.\n- Continuous queue means another batch is approaching harvest; it does not guarantee edible stock at home.\n\n## Observation and outcome rules\n\n- Observations are ordered by actual timestamp and preserve user text verbatim.\n- Photo files are private app-owned data selected through the system picker and linked by stable observation ID.\n- Deleting an observation removes its linked file. Deleting a batch removes all linked observation files.\n- Harvest outcome accepts optional actual mass, note, and result assessment. There is no predicted mass.\n- Harvested, failed, and abandoned outcomes all release capacity and cancel future reminders.\n\n## Error semantics\n\n- Managers return Kotlin `Result` and preserve the original failure cause.\n- Persistence/file failures do not partially report success.\n- Restore validates into a staging boundary before replacement; any invalid archive leaves current data untouched.\n- Capacity conflicts are domain results with resolution choices, not generic exceptions.\n- Network, privacy endpoint, advertising, and Crashlytics failures never fail a core product operation.\n- Coroutine cancellation is never swallowed by broad error capture.\n\n",
+    "spec/quality.md": "# Quality\n\n## Non-functional requirements\n\n- Core local operations remain usable without network and do not wait for ads, privacy lookup, or Crashlytics.\n- Database and file mutations are transactional where partial success could break relationships.\n- Today and batch detail open from local state without visible network delay.\n- Image import, hashing, backup, restore, and CSV export do not block the main thread and expose cancellation/failure cleanly.\n- Notification scheduling, restart, undo, restore, and time-zone changes are idempotent.\n- Sensitive/user-authored content is absent from logs, ad requests, and Crashlytics.\n\n## Test matrix\n\nUse deterministic clocks, IDs, file systems, notification schedulers, region responses, ad hosts, Crashlytics facades, and catalog fixtures.\n\nRequired repository coverage:\n\n- domain tests for tray area, seed mass, stage applicability, early/late transitions, skip/undo, elapsed soak duration, local civil scheduling, cadence/continuous suggestions, and capacity conflicts;\n- manager/persistence tests for every managed CRUD operation, snapshot immutability, terminal outcomes, referential integrity, photo cleanup, restart, and failure cause preservation;\n- MVIKotlin Store tests for intent/action/message/reducer behavior, cancellation, retries, exactly-once completion, and no production mutation outside Stores;\n- Decompose component tests for public component models, navigation outputs, tabs, editors, destructive confirmation, permission recovery, and expanded list-detail behavior;\n- notification tests for summary grouping, no-work silence, soak target, permission denial, restart/restore idempotence, cancellation, and time-zone change;\n- backup/archive tests in QG-012;\n- privacy/network/ad lifecycle tests in QG-009 consumer scope only;\n- Crashlytics facade/config tests proving release default-on, opt-out persistence, build-type disabling, and no Analytics/user identifiers;\n- EN/RU resource completeness, stable catalog key mapping, system locale changes, unsupported-locale EN fallback, native fallback resources, and hardcoded-string scan;\n- Detekt with no auto-regenerated baseline;\n- filtered Kover baseline measured on owned product code before selecting a fixed threshold;\n- applicable Gradle compilation/test tasks through the repository wrapper.\n\nQG-001 owns this matrix. Warnings are reported separately from failures.\n\n## Android platform gate\n\nQG-002 requires:\n\n- release/test build and process-restart smoke;\n- notification permission denied/granted flows and system-settings recovery;\n- best-effort soak target without `USE_EXACT_ALARM` or `SCHEDULE_EXACT_ALARM` declarations;\n- system photo picker and document create/open flows;\n- Yandex automatic initialization disabled until the privacy gate permits it;\n- Android Yandex manifest/SDK linkage, debug test IDs, release ID guard, no overlap/inset defects, and no request in ineligible states;\n- Crashlytics Android configuration, mapping upload path, opt-out behavior, and controlled test crash for release candidate;\n- Compose resources, EN/RU/native strings, system theme/insets, and platform accessibility smoke.\n\n## iOS platform gate\n\nQG-003 requires evidence from macOS and CI for both declared iOS targets:\n\n- framework/app compilation and native entry point;\n- notification authorization/denial, scheduling, cancellation, restart, and time-zone behavior;\n- photo and document pickers plus private file persistence;\n- Firebase Crashlytics Apple configuration, dSYM upload/symbolication path, opt-out behavior, and controlled test crash;\n- Yandex integration remains safe-disabled without an iOS production ad unit; no production ad request occurs;\n- Compose/native EN/RU resources, system theme/safe areas, VoiceOver, and expanded/compact behavior.\n\nAbsence of a Mac receipt is an unresolved required platform gate, not evidence of success.\n\n## Visual quality gate\n\nQG-007 requires:\n\n- component-owned preview implementations, not local Compose-only fakes;\n- nonzero ComposablePreviewScanner discovery;\n- early production render smoke containing real theme/font/resources in light/dark and RU at 200%;\n- applicable content/empty/error/offline/permission/conflict/destructive states for all primary screens;\n- compact and expanded layouts;\n- Paparazzi record, human inspection, approval, and verify with stable IDs;\n- accessibility inspection for reading order, labels, state announcements, focus, contrast, non-color cues, 48dp targets, reduced motion, clipping, and EN/RU glyphs;\n- first-release Lazyweb review of the full primary-screen golden set and disposition of every blocking finding.\n\n## Catalog quality\n\nQG-011 verifies:\n\n- exactly the approved eight stable culture IDs, including `garden_cress` as `Lepidium sativum` and no watercress alias;\n- catalog version and review date;\n- reachable source metadata and concise original paraphrases rather than copied instructions;\n- stage ranges, applicability, density units/formulas, metric display, and editable recommendation behavior;\n- food-safety copy and non-diagnostic image/copy boundaries;\n- complete EN/RU resource keys and offline resolution;\n- simple internal versioning only—no external approval, signature, attestation, or invented physical-test receipt.\n\n## Backup quality\n\nQG-012 uses fixtures covering every managed entity, historical snapshots, stage events, schedules, observations, UTF-8 EN/RU/user text, and multiple photo files.\n\nVerify create → preview → replace restore → restart equality; future-only reminder rebuild; overdue in-app actions; no completed reminders; repeat restore without duplicates; invalid/malformed/unsupported archive rollback; cancellation; insufficient storage/write failure; missing/corrupt photo rejection; and CSV escaping/encoding without photos.\n\n## Advertising and privacy verification\n\nUse the canonical endpoint and test only the consuming app. Controlled responses cover fresh cache, expired cache, protected, non-protected, unknown, malformed/oversized/non-JSON/non-UTF-8, redirect, 429, 503, timeout, TLS/captive/offline, unknown schema, overlong expiry, policy change, accept, decline, withdrawal, and restart.\n\nAssert:\n\n- at most one refresh path and a maximum 72-hour accepted cache;\n- app-owned consent appears only when required;\n- no Yandex SDK initialization or load before eligibility;\n- `YandexAds.setUserConsent(...)` precedes every allowed initialization;\n- decline/unresolved/stale/error/no-ID states produce no init, request, or visible slot;\n- withdrawal stops future requests without affecting product data;\n- only SCREEN-007 after item four and SCREEN-003 History after item five are eligible;\n- previews/tests use safe-disabled hosts and no real requests;\n- no endpoint smoke, readiness attestation, backend gate, alternative endpoint, CMP/TCF claim, mediation, Google demand, advertising ID, ATT, or location inference is added.\n\n## Crashlytics verification\n\n- Release default is enabled; user can disable/re-enable from Settings and the choice survives restart.\n- Preview, debug, unit, screenshot, and automated test hosts do not upload.\n- Firebase Analytics is absent and breadcrumb collection is not enabled.\n- No user ID, notes, photos, culture/recipe, schedule, advertising state, or private data is logged as keys/messages.\n- Only reviewed technical non-fatals are recorded.\n- Android mapping and iOS dSYM symbolication are proven on controlled release-candidate crashes when QG-008 applies.\n- Privacy disclosures explain default collection, opt-out, and that local reset cannot erase reports already sent.\n\n## Accessibility and localization\n\nRequire base EN and complete RU Compose Multiplatform resources with identical keys; OS-only locale selection; no language picker, locale preference, or app-specific override. Unsupported locales fall back to EN. Native-only text follows the same default/additional locale contract.\n\nAll screens support 200% text, screen readers, keyboard/pointer input where exposed, visible focus, reduced motion, 48dp targets, logical heading/order, manual date/time input, and non-color cues. Production previews use production resources and fonts.\n\n## Architecture checks\n\nReject custom generic Success/Failure wrappers, nested `Result<Result<T>>`, lost nullable successes, swallowed cancellation, duplicate mutable state ownership, component-to-database calls, raw Store state exposed as UI model, stateful Compose previews, dependency cycles, and incorrect lifecycle/resource ownership.\n\nRequire Decompose public components, MVIKotlin Stores for independent mutable/async state (read-only children may project parent state), injectable service or Manager boundaries returning Kotlin `Result`, pure reducers, immutable component models, manual DI/factories, and separate preview components. The screenshot host remains the Compose UI/resource-owning module unless a documented build limitation requires the approved dedicated-host alternative.\n\n## Asset delivery\n\nQG-006 follows the asset contract. Every ASSET item must have a delivered runtime file, manifest hash, provenance/rights, reachable production usage, and applicable visual evidence. Generated culture covers need generation records and source/rights notes. Standard Material vectors use standard-icon evidence only when unchanged and correctly identified. All resources compile on Android and iOS and render at declared sizes in production previews.\n\nPlatform launcher/store icon derivatives are verified with platform-specific mask/background/export rules even though the shared logo source is in Compose Resources.\n\n## External configuration\n\n- QG-005: Android store publication, signing, store listing, countries, current name check, and publication result only when publishing.\n- QG-008: separate Firebase Android/iOS app registrations, configuration files, symbol upload, and controlled readable crash reports for release candidates.\n- QG-009: Android Yandex project/ad unit and device verification when production ads are enabled. No iOS production ad project is required in scope.\n- QG-010: final privacy-policy URL/copy and store/platform disclosures when externally distributing.\n\nDo not invent credentials, IDs, URLs, console state, publication success, or external receipts. Do not create a release gate for the accepted shared privacy endpoint.\n\n## Release acceptance\n\nQG-004 requires:\n\n- strict AppSpec validation and canonical inventory parity;\n- all active ACs verified on their declared surfaces;\n- QG-001, QG-002, QG-003, QG-006, QG-007, QG-011, and QG-012 current and successful;\n- each conditional external gate either proven when its condition is active or clearly reported as inactive/blocked-external;\n- build/test CI for Android and iOS; publishing automation only when publication scope is explicitly activated;\n- pinned tested dependency/SDK versions; separate upgrades use authoritative release/migration sources and verify artifact availability;\n- one frozen integration matrix and independent acceptance audit with current fingerprints;\n- separate reporting of locally verified, implementation complete, and release ready.\n\nValidator success alone does not prove product content, platform behavior, external configuration, physical grow validation, implementation completion, or release readiness.\n\n## Delivery and verification boundaries\n\nThe approved process transition is recorded in `../docs/decisions/DEC-20260920-lean-delivery.md`. Lean delivery is current: one owner per complete scenario, direct checks with execution logs, compact `.vibe/work.json`/recovery notes, early production-root integration, risk-based golden review and independent final audit. Strict ledger/assignment/handoff history is preserved but not extended. Do not import historical verified claims as current proof.\n\nUse affected tests during iteration and one complete applicable matrix at a stable snapshot. After bounded fixes the same independent auditor reviews changed code and dependent behavior; changes to AppSpec or broad architecture start a fresh audit. Known gaps are auditable and prevent false completion. Preserve all approved acceptance surfaces, existing tests and goldens. Future visual variants cover primary screens in light/dark and distinct risk states; choose additional stress combinations by risk/pairwise coverage without reducing explicit screen contracts. Record shared M3 choices once and inspect every affected screen locally; reuse or group external review by screen family.\n\nArchitecture flexibility governs future work and does not require rewriting existing tested modules/Stores. Existing lint and coverage thresholds remain binding; any actual policy change needs a scoped decision, never a workaround for a failed test.\n\n",
+    "spec/flows/FLOW-003.md": "# FLOW-003 — Browse catalog and manage recipes\n\nLinked requirements: REQ-003  \nLinked screens: SCREEN-004, SCREEN-005, SCREEN-007, SCREEN-008\n\n## Goal\n\nUse versioned, sourced offline guidance and maintain personal recipes without changing past batches.\n\n## Entry and exit conditions\n\nEnter from Catalog or a recipe selector. Exit after reading guidance, selecting a recipe, or saving/deleting a personal recipe.\n\n## Ordered steps\n\n1. Browse built-in and personal entries.\n2. Open ranges, source metadata, safety guidance, and seed recommendation inputs.\n3. Use, duplicate, create, edit, or delete a personal recipe.\n4. Return a stable recipe ID/snapshot to the calling flow.\n\n## Branches and resume\n\nBuilt-in entries are read-only. Invalid personal values remain in the editor with actionable errors. Offline state does not remove bundled content.\n\n## AC-020\n\nGiven the app is offline or online\nWhen the user opens SCREEN-007 or a built-in entry on SCREEN-008\nThen all eight stable cultures, catalog version/review date, localized ranges, source metadata, and illustrations are readable from bundled data.\n\n## AC-021\n\nGiven the user opens personal recipe creation on SCREEN-008\nWhen they save a valid name and stage configuration\nThen a new UserGrowRecipe is persisted and appears separately from the built-in catalog on SCREEN-007.\n\n## AC-022\n\nGiven a UserGrowRecipe was saved\nWhen the app restarts and SCREEN-007 or SCREEN-008 opens\nThen its user-authored name, stages, substrate, supplier/variety/lot notes, and optional germination value are restored.\n\n## AC-023\n\nGiven a UserGrowRecipe has already produced a GrowBatch on SCREEN-005\nWhen the recipe is edited on SCREEN-008\nThen future batches use the update and the existing batch retains its original snapshot.\n\n## AC-024\n\nGiven a UserGrowRecipe is referenced by old batches\nWhen the user confirms recipe deletion on SCREEN-008\nThen the recipe is removed from SCREEN-007 future choices and referenced SCREEN-003/SCREEN-005 history stays readable.\n\n## AC-025\n\nGiven a built-in or personal recipe is open on SCREEN-008\nWhen the user chooses Duplicate\nThen a new editable UserGrowRecipe is created with copied parameters and a distinct identity.\n\n## AC-026\n\nGiven SCREEN-004 or SCREEN-008 has a valid tray area and recipe density\nWhen the recommendation is evaluated\nThen seed mass is displayed in grams as an editable recommendation without a yield promise.\n\n## AC-027\n\nGiven a built-in recipe is open on SCREEN-008 without network\nWhen the user reads safety and source sections\nThen original localized safety guidance and stored source metadata remain available and no image is presented as diagnostic evidence.\n\n",
+    "spec/screens/SCREEN-008.md": "# SCREEN-008 — Recipe detail and editor\n\nLinked flows: FLOW-001, FLOW-004, FLOW-006  \nLinked requirements: REQ-001, REQ-004, REQ-006\n\n## Purpose and hierarchy\n\nRead a bundled guide or create/edit a personal recipe with stage guidance, typical ranges, source links, review date, and a simple local version. Built-in content is read-only; personal content is editable.\n\n## States\n\n- Bundled detail with provenance and Use recipe.\n- Personal create/edit with validation.\n- Outdated-review metadata warning without external approval workflow.\n- Local save/delete failure with retained input.\n- Offline: content and editing work; external source link reports connectivity only when opened.\n\n## Actions and iconography\n\nUse recipe opens SCREEN-004; Save, Edit, Duplicate, Delete, and Open source appear by mode. Use labeled Material actions and standard edit/copy/delete/link icons. No signature, approver, or attestation control exists.\n\n## Text layout expectations\n\nStage ranges always pair value and unit. Source title/URL may wrap; version and review date remain readable. EN/RU built-in content uses shared resource keys; personal content is preserved verbatim.\n\n## Responsive, accessibility, and insets\n\nCompact stacks culture header, stages, and provenance. Expanded places structured stages beside supporting metadata/editor. Form errors are programmatically associated; links state destination. One scaffold owns insets.\n\n## Allowed ad slots\n\nNone.\n\n## Asset requirements\n\nApplicable ASSET-022–029 culture cover; ASSET-016–020 stage vectors; standard edit, copy, delete, source, save, and navigation icons.\n\n## Preview and golden matrix\n\nBundled radish detail light/dark; garden cress RU 200%; personal create/edit; invalid range; overdue review warning; long source URL; offline source-open failure; expanded stages.\n"
+  },
+  "implementationContext": {
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/catalog/SproutPaceCatalog.kt": "package com.sedsoftware.sproutpace.domain.catalog\n\nimport com.sedsoftware.sproutpace.domain.model.BuiltInCulture\nimport com.sedsoftware.sproutpace.domain.model.CultureId\nimport com.sedsoftware.sproutpace.domain.model.DurationRange\nimport com.sedsoftware.sproutpace.domain.model.GrowStage\nimport com.sedsoftware.sproutpace.domain.model.LocalizationKey\nimport com.sedsoftware.sproutpace.domain.model.SeedDensity\nimport com.sedsoftware.sproutpace.domain.model.SourceMetadata\nimport com.sedsoftware.sproutpace.domain.model.StageGuidance\nimport kotlinx.datetime.LocalDate\nimport kotlin.time.Duration.Companion.days\nimport kotlin.time.Duration.Companion.hours\n\nobject SproutPaceCatalog {\n    const val VERSION: Int = 2\n    val reviewedOn: LocalDate = LocalDate(2026, 10, 11)\n\n    private val utahState = SourceMetadata(\n        url = \"https://extension.usu.edu/yardandgarden/research/grow-your-own-microgreens\",\n        titleKey = LocalizationKey(\"source_utah_state_growing_guide\"),\n        reviewedOn = reviewedOn,\n    )\n    private val mustardGuide = SourceMetadata(\n        url = \"https://deliseeds.com/products/green-mustard-microgreens-seeds\",\n        titleKey = LocalizationKey(\"source_deliseeds_mustard\"),\n        reviewedOn = reviewedOn,\n    )\n    private val cressGuide = SourceMetadata(\n        url = \"https://deliseeds.com/products/cress-microgreens-seeds\",\n        titleKey = LocalizationKey(\"source_deliseeds_cress\"),\n        reviewedOn = reviewedOn,\n    )\n\n    val cultures: List<BuiltInCulture> = listOf(\n        culture(\"radish\", 42.0, NOMINAL_1020_AREA, utahState, null, 1..2, 8..12),\n        culture(\"broccoli\", 28.0, NOMINAL_1020_AREA, utahState, null, 2..4, 8..12),\n        culture(\"arugula\", 10.0, NOMINAL_1020_AREA, utahState, null, 1..2, 6..8),\n        culture(\"mustard\", 10.0, SUPPLIER_TRAY_AREA, mustardGuide, null, 3..4, 8..12),\n        culture(\"pea\", 150.0, NOMINAL_1020_AREA, utahState, 6..6, 3..3, 8..10),\n        culture(\"sunflower\", 48.0, NOMINAL_1020_AREA, utahState, 12..12, 3..3, 9..10),\n        culture(\"basil\", 28.0, NOMINAL_1020_AREA, utahState, null, 4..7, 12..16),\n        culture(\"garden_cress\", 10.0, SUPPLIER_TRAY_AREA, cressGuide, null, 3..5, 8..12),\n    )\n\n    val cultureIds: Set<CultureId> = cultures.mapTo(linkedSetOf()) { it.id }\n\n    private fun culture(\n        id: String,\n        seedGrams: Double,\n        referenceAreaCm2: Double,\n        source: SourceMetadata,\n        soak: IntRange?,\n        blackoutDays: IntRange,\n        sowToHarvestDays: IntRange,\n    ): BuiltInCulture {\n        // Source ranges are retained in the culture-specific guidance and provenance.\n        // Use the upper covered duration as a planning allowance, then subtract it\n        // from BOTH harvest endpoints. Independent stage sums now reproduce the\n        // source's sow-to-harvest window; light duration is an app allocation, not a trial result.\n        val coveredDays = blackoutDays.last\n        require(sowToHarvestDays.first >= coveredDays)\n        val stageList = buildList {\n            soak?.let {\n                add(\n                    StageGuidance(\n                        GrowStage.SOAKING,\n                        DurationRange(it.first.hours, it.last.hours),\n                        LocalizationKey(\"culture_${id}_v2_soaking\"),\n                    ),\n                )\n            }\n            add(StageGuidance(GrowStage.SOWN, DurationRange(0.hours, 0.hours), LocalizationKey(\"culture_${id}_v2_sowing\")))\n            add(\n                StageGuidance(\n                    GrowStage.BLACKOUT_OR_WEIGHT,\n                    DurationRange(coveredDays.days, coveredDays.days),\n                    LocalizationKey(\"culture_${id}_v2_blackout\"),\n                ),\n            )\n            add(\n                StageGuidance(\n                    GrowStage.LIGHT_GROWTH,\n                    DurationRange((sowToHarvestDays.first - coveredDays).days, (sowToHarvestDays.last - coveredDays).days),\n                    LocalizationKey(\"culture_${id}_v2_light_growth\"),\n                ),\n            )\n            add(StageGuidance(GrowStage.READY_FOR_HARVEST, DurationRange(0.hours, 0.hours), LocalizationKey(\"culture_${id}_v2_harvest\")))\n        }\n        return BuiltInCulture(\n            id = CultureId(id),\n            nameKey = LocalizationKey(\"culture_${id}_name\"),\n            scientificNameKey = LocalizationKey(\"culture_${id}_scientific_name\"),\n            illustrationResourceName = \"culture_${id}_cover\",\n            stages = stageList,\n            seedDensity = SeedDensity(seedGrams / referenceAreaCm2, VERSION, source),\n            substrateNoteKey = LocalizationKey(\"culture_${id}_v2_substrate_note\"),\n            lightingNoteKey = LocalizationKey(\"culture_${id}_v2_lighting_note\"),\n            safetyNoteKeys = listOf(\n                LocalizationKey(\"safety_untreated_seed\"),\n                LocalizationKey(\"safety_clean_container\"),\n                LocalizationKey(\"safety_drinking_water\"),\n                LocalizationKey(\"safety_drainage\"),\n                LocalizationKey(\"safety_avoid_excess_moisture\"),\n                LocalizationKey(\"safety_allergy_awareness\"),\n                LocalizationKey(\"safety_images_not_diagnostic\"),\n            ),\n            sources = listOf(source),\n        )\n    }\n}\n\n// USU says 1020, without an internal growing area: nominal 10 × 20 in is\n// an explicit normalization assumption, not a measurement of the user's tray.\nprivate const val NOMINAL_1020_AREA = 1290.32\n// Deliseeds explicitly specifies 25 × 50 cm; do not substitute nominal inches.\nprivate const val SUPPLIER_TRAY_AREA = 1250.0\n",
+    "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/LocalizedText.kt": "package com.sedsoftware.sproutpace.compose\n\nimport androidx.compose.runtime.Composable\nimport org.jetbrains.compose.resources.StringResource\nimport org.jetbrains.compose.resources.stringResource\nimport sproutpace.shared.compose.generated.resources.*\n\n/** The only presentation-boundary resolver for stable bundled text keys. */\ninternal fun strictTextResource(key: String): StringResource =\n    requireNotNull(Res.allStringResources[key] ?: catalogTextAlias(key)) {\n        \"Unknown bundled TextKey '$key'\"\n    }\n\n@Composable\ninternal fun localizedText(key: String): String = stringResource(strictTextResource(key))\n\n@Composable\ninternal fun localizedOrAuthored(key: String?, authored: String?): String = when {\n    authored != null -> authored\n    key != null -> localizedText(key)\n    else -> error(\"Localized or authored text is required\")\n}\n\n/**\n * Version 2 guidance resolves directly. These aliases preserve version 1 recipe snapshots.\n * This finite table keeps that many-to-one resource mapping explicit and rejects unknown cultures/suffixes.\n */\nprivate fun catalogTextAlias(key: String): StringResource? {\n    directCatalogAliases[key]?.let { return it }\n    val prefix = catalogPrefixes.firstOrNull(key::startsWith) ?: return null\n    return when (key.removePrefix(prefix)) {\n        \"soaking\" -> Res.string.guidance_soaking\n        \"sowing\" -> Res.string.guidance_sowing\n        \"blackout\" -> Res.string.guidance_blackout\n        \"light_growth\" -> Res.string.guidance_light_growth\n        \"harvest\" -> Res.string.guidance_harvest\n        \"substrate_note\" -> Res.string.guidance_substrate\n        \"lighting_note\" -> Res.string.guidance_lighting\n        else -> null\n    }\n}\n\nprivate val catalogPrefixes = listOf(\n    \"culture_garden_cress_\", \"culture_sunflower_\", \"culture_broccoli_\", \"culture_mustard_\",\n    \"culture_arugula_\", \"culture_radish_\", \"culture_basil_\", \"culture_pea_\",\n)\n\nprivate val directCatalogAliases = mapOf(\n    \"culture_radish_name\" to Res.string.culture_radish,\n    \"culture_broccoli_name\" to Res.string.culture_broccoli,\n    \"culture_arugula_name\" to Res.string.culture_arugula,\n    \"culture_mustard_name\" to Res.string.culture_mustard,\n    \"culture_pea_name\" to Res.string.culture_pea,\n    \"culture_sunflower_name\" to Res.string.culture_sunflower,\n    \"culture_basil_name\" to Res.string.culture_basil,\n    \"culture_garden_cress_name\" to Res.string.culture_cress,\n    \"culture_radish_scientific_name\" to Res.string.scientific_radish,\n    \"culture_broccoli_scientific_name\" to Res.string.scientific_broccoli,\n    \"culture_arugula_scientific_name\" to Res.string.scientific_arugula,\n    \"culture_mustard_scientific_name\" to Res.string.scientific_mustard,\n    \"culture_pea_scientific_name\" to Res.string.scientific_pea,\n    \"culture_sunflower_scientific_name\" to Res.string.scientific_sunflower,\n    \"culture_basil_scientific_name\" to Res.string.scientific_basil,\n    \"culture_garden_cress_scientific_name\" to Res.string.scientific_cress,\n)\n",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Recipe.kt": "package com.sedsoftware.sproutpace.domain.model\n\nimport kotlinx.datetime.LocalDate\nimport kotlin.time.Duration\n\nenum class GrowStage { SOAKING, SOWN, BLACKOUT_OR_WEIGHT, LIGHT_GROWTH, READY_FOR_HARVEST }\n\ndata class DurationRange(val minimum: Duration, val maximum: Duration) {\n    init {\n        require(!minimum.isNegative() && !maximum.isNegative())\n        require(minimum <= maximum)\n    }\n}\n\ndata class StageGuidance(\n    val stage: GrowStage,\n    val duration: DurationRange,\n    val instructionKey: LocalizationKey,\n)\n\ndata class SourceMetadata(\n    val url: String,\n    val titleKey: LocalizationKey,\n    val reviewedOn: LocalDate,\n) {\n    init { require(url.startsWith(\"https://\")) }\n}\n\ndata class SeedDensity(\n    val gramsPerSquareCentimetre: Double,\n    val version: Int,\n    val source: SourceMetadata,\n) {\n    init {\n        require(gramsPerSquareCentimetre.isFinite() && gramsPerSquareCentimetre > 0.0)\n        require(version > 0)\n    }\n}\n\ndata class BuiltInCulture(\n    val id: CultureId,\n    val nameKey: LocalizationKey,\n    val scientificNameKey: LocalizationKey,\n    val illustrationResourceName: String,\n    val stages: List<StageGuidance>,\n    val seedDensity: SeedDensity,\n    val substrateNoteKey: LocalizationKey,\n    val lightingNoteKey: LocalizationKey,\n    val safetyNoteKeys: List<LocalizationKey>,\n    val sources: List<SourceMetadata>,\n) {\n    init {\n        require(illustrationResourceName.matches(Regex(\"[a-z][a-z0-9_]*\")))\n        require(stages.isNotEmpty() && stages.map { it.stage }.distinct().size == stages.size)\n        require(safetyNoteKeys.isNotEmpty())\n        require(sources.isNotEmpty())\n    }\n}\n\ndata class RecipeStage(\n    val stage: GrowStage,\n    val duration: DurationRange,\n    val guidanceKey: LocalizationKey? = null,\n    val userGuidance: String? = null,\n) {\n    init { require(guidanceKey != null || !userGuidance.isNullOrBlank()) }\n}\n\ndata class UserGrowRecipe(\n    val id: RecipeId,\n    val name: String,\n    val cultureId: CultureId?,\n    val stages: List<RecipeStage>,\n    val density: SeedDensity,\n    val substrate: String,\n    val supplier: String? = null,\n    val cultivar: String? = null,\n    val seedLot: String? = null,\n    val germinationPercentage: Percentage? = null,\n) {\n    init {\n        require(name.isNotBlank())\n        require(stages.isNotEmpty())\n        require(stages.map { it.stage }.distinct().size == stages.size)\n        require(substrate.isNotBlank())\n    }\n}\n\ndata class RecipeSnapshot(\n    val sourceRecipeId: RecipeId?,\n    val builtInCultureId: CultureId?,\n    val nameSnapshot: String?,\n    val stages: List<RecipeStage>,\n    val density: SeedDensity,\n) {\n    init {\n        require(sourceRecipeId != null || builtInCultureId != null)\n        require(stages.isNotEmpty())\n    }\n}\n\ndata class TraySnapshot(val nameSnapshot: String, val shape: TrayShape) {\n    init { require(nameSnapshot.isNotBlank()) }\n}\n",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/MeasurementEngine.kt": "package com.sedsoftware.sproutpace.domain.engine\n\nimport com.sedsoftware.sproutpace.domain.model.PositiveGrams\nimport com.sedsoftware.sproutpace.domain.model.SeedDensity\nimport com.sedsoftware.sproutpace.domain.model.TrayShape\n\nobject MeasurementEngine {\n    fun trayAreaSquareCentimetres(shape: TrayShape): Double = shape.areaSquareCentimetres\n\n    fun recommendedSeedMass(shape: TrayShape, density: SeedDensity): PositiveGrams =\n        PositiveGrams(shape.areaSquareCentimetres * density.gramsPerSquareCentimetre)\n}\n",
+    "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchPlanningEngine.kt": "package com.sedsoftware.sproutpace.domain.engine\n\nimport com.sedsoftware.sproutpace.domain.model.BatchId\nimport com.sedsoftware.sproutpace.domain.model.BatchState\nimport com.sedsoftware.sproutpace.domain.model.DueMoment\nimport com.sedsoftware.sproutpace.domain.model.GrowBatch\nimport com.sedsoftware.sproutpace.domain.model.GrowStage\nimport com.sedsoftware.sproutpace.domain.model.RecipeStage\nimport com.sedsoftware.sproutpace.domain.model.ScheduledAction\nimport com.sedsoftware.sproutpace.domain.model.ScheduledActionId\nimport kotlinx.datetime.Instant\nimport kotlinx.datetime.LocalDate\nimport kotlinx.datetime.LocalDateTime\nimport kotlinx.datetime.LocalTime\nimport kotlinx.datetime.TimeZone\nimport kotlinx.datetime.toInstant\nimport kotlinx.datetime.toLocalDateTime\nimport kotlin.time.Duration\n\n/** Pure creation/correction rules for AC-030 and AC-032. */\nobject BatchPlanningEngine {\n    /** Reverse the same maximum-duration schedule used for a newly planned batch. */\n    fun sowDateForHarvest(\n        stages: List<RecipeStage>,\n        harvestDate: LocalDate,\n        timeZoneId: String,\n    ): LocalDate {\n        val sowIndex = stages.indexOfFirst { it.stage == GrowStage.SOWN }\n        val harvestIndex = stages.indexOfFirst { it.stage == GrowStage.READY_FOR_HARVEST }\n        require(sowIndex >= 0 && harvestIndex > sowIndex)\n        val zone = TimeZone.of(timeZoneId)\n        val harvestAt = LocalDateTime(harvestDate, plannedActionTime).toInstant(zone)\n        return (harvestAt - stages.subList(sowIndex, harvestIndex).totalMaximumDuration()).toLocalDateTime(zone).date\n    }\n\n    fun plannedActions(\n        batchId: BatchId,\n        stages: List<RecipeStage>,\n        plannedSowDate: LocalDate,\n        fixedStageDates: Map<GrowStage, LocalDate>,\n        timeZoneId: String,\n    ): List<ScheduledAction> {\n        val sowIndex = stages.indexOfFirst { it.stage == GrowStage.SOWN }\n        require(sowIndex >= 0) { \"A planned batch requires a sown stage\" }\n        val zone = TimeZone.of(timeZoneId)\n        val sowAt = LocalDateTime(plannedSowDate, plannedActionTime).toInstant(zone)\n        return stages.mapIndexed { index, stage ->\n            val projected = if (index < sowIndex) {\n                sowAt - stages.subList(index, sowIndex).totalMaximumDuration()\n            } else {\n                sowAt + stages.subList(sowIndex, index).totalMaximumDuration()\n            }\n            val fixedDate = fixedStageDates[stage.stage]\n            val due = if (fixedDate == null) {\n                projected.toLocalDateTime(zone)\n            } else {\n                LocalDateTime(fixedDate, plannedActionTime)\n            }\n            ScheduledAction(\n                id = ScheduledActionId(\"planned:${batchId.value}:${stage.stage.name.lowercase()}\"),\n                batchId = batchId,\n                stage = stage.stage,\n                due = DueMoment.CivilTime(due, timeZoneId),\n                userFixed = fixedDate != null,\n            )\n        }\n    }\n\n    fun applyFixedDates(\n        actions: List<ScheduledAction>,\n        fixedStageDates: Map<GrowStage, LocalDate>,\n        timeZoneId: String,\n    ): List<ScheduledAction> = actions.map { action ->\n        val stage = action.stage ?: return@map action\n        val fixedDate = fixedStageDates[stage]\n        when {\n            fixedDate != null -> action.copy(\n                due = DueMoment.CivilTime(LocalDateTime(fixedDate, plannedActionTime), timeZoneId),\n                userFixed = true,\n            )\n            action.userFixed -> action.copy(userFixed = false)\n            else -> action\n        }\n    }\n\n    fun correctActualEventDates(\n        batch: GrowBatch,\n        correctedDates: Map<BatchState, Instant>,\n    ): GrowBatch {\n        if (correctedDates.isEmpty()) return batch\n        val missing = correctedDates.keys - batch.events.mapTo(mutableSetOf()) { it.to }\n        require(missing.isEmpty()) { \"Cannot correct an actual date for a stage without an event: $missing\" }\n        val events = batch.events.map { event ->\n            correctedDates[event.to]?.let { corrected ->\n                if (corrected == event.occurredAt) event else event.copy(\n                    occurredAt = corrected,\n                    priorOccurredAt = event.priorOccurredAt + event.occurredAt,\n                )\n            } ?: event\n        }\n        require(events.zipWithNext().all { (first, second) -> first.occurredAt <= second.occurredAt }) {\n            \"Corrected actual dates must preserve event order\"\n        }\n        return batch.copy(events = events)\n    }\n\n    private fun List<RecipeStage>.totalMaximumDuration(): Duration =\n        fold(Duration.ZERO) { total, stage -> total + stage.duration.maximum }\n\n    private val plannedActionTime = LocalTime(hour = 9, minute = 0)\n}\n"
+  }
+}

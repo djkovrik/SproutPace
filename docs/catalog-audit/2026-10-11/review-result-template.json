@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "agent/model/version",
+  "reviewedAt": "YYYY-MM-DD",
+  "snapshotGitHead": "copy gitHead from catalog-review.json",
+  "catalogVersion": 1,
+  "verdict": "supported | gaps | material_errors | unable_to_verify",
+  "scopeAndLimitations": [],
+  "checkedFields": [
+    {"cultureId": "radish", "fieldPath": "seedDensity.value", "status": "supported | contradicted | unverifiable | adaptation", "evidenceUrls": []}
+  ],
+  "findings": [
+    {
+      "id": "CAT-001",
+      "cultureId": "radish",
+      "fieldPath": "seedDensity.value",
+      "severity": "high | medium | low",
+      "category": "numerical | timing_semantics | attribution | safety | translation | taxonomy | completeness",
+      "claim": "",
+      "currentValue": null,
+      "evidence": [{"url": "", "title": "", "accessedOn": "", "sourceDate": null, "locator": "table/section/page", "shortQuoteOrParaphrase": "", "accessMethod": "full_page | pdf | search_index"}],
+      "conditionsAndUnitConversion": "",
+      "proposedChange": {"value": null, "unit": null, "referencePoint": null, "rationale": ""},
+      "confidence": "high | medium | low",
+      "openQuestions": []
+    }
+  ],
+  "unavailableSources": [],
+  "summary": "Replace example rows and enum alternatives with actual review results."
+}

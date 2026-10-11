@@ -1,10 +1,20 @@
 package com.sedsoftware.sproutpace.compose
 
 import com.sedsoftware.sproutpace.component.ScreenContractRegistry
+import com.sedsoftware.sproutpace.domain.catalog.SproutPaceCatalog
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
 class LocalizedTextContractTest {
+    @Test
+    fun currentCatalogKeysResolveAlongsideHistoricalAliases() {
+        SproutPaceCatalog.cultures.forEach { culture ->
+            (listOf(culture.nameKey, culture.scientificNameKey, culture.substrateNoteKey, culture.lightingNoteKey) +
+                culture.stages.map { it.instructionKey } + culture.safetyNoteKeys + culture.sources.map { it.titleKey })
+                .forEach { strictTextResource(it.value) }
+        }
+    }
+
     @Test
     fun everyTypedScreenContractKeyResolvesStrictly() {
         ScreenContractRegistry.contracts.values.forEach { contract ->

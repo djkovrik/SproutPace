@@ -1,0 +1,13 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-daemon",
+    "--no-configuration-cache",
+    "-I",
+    ".vibe/scripts/ux-cache.init.gradle",
+    "detekt",
+    ":shared:compose:recordPaparazzi"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -1,5 +1,7 @@
 # UX recovery — 2026-10-10
 
+Current bounded follow-up — 2026-10-11: catalog v2 accepted for QG-011. User supplied external review and authorized genuine fixes. Source-derived rates, explicit sow-to-harvest allocation, accessible runtime sources and53 EN/RU keys implemented; old v1 snapshot keys/numbers preserved. Independent catalog-only PASS: docs/catalog-audit/2026-10-11/v2/independent-audit.json. Gate record: acceptance.json in same folder. Matrix eff64f23 PASS719tests231goldens,Detekt,migration,Android debug/release/AAB,14iOS Kotlin compiles,Kover5288/6024lines. Inspected29 changed goldens202unchanged; asset/visual validatorsPASS. F07 resolved by bounded acceptance; original full-app audit remains historical. No app/test/resource changes after matrix. F04/F05/F06 and native iOS runtime remain open; no global completion. Next action: only separately requested remaining coverage/native/accessibility evidence; preserve emulator data. Earlier notes below are chronological history.
+
 Request docs/design-review/ui-ux-implementation-prompt-20261010.txt. Preserve user file/all changes. Baseline9e599a1. Lean only, no strict runner/upgrades/publication/secrets/commits.
 
 UX01–17 implementation and231 reviewed goldens complete before independent audit. All original78 retained. record7 delta104 inspected; other127 unchanged. Visual hash review docs/design-review/ux-preview-review.json; assets docs/assets/asset-manifest.json. Lazyweb f59d10e6-3490-470f-af14-056f7a840a24 + cc15eb62-6316-46b3-8c47-962be97be60c.

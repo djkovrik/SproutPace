@@ -22,7 +22,7 @@ internal fun localizedOrAuthored(key: String?, authored: String?): String = when
 }
 
 /**
- * The local catalog deliberately shares guidance copy while retaining stable per-culture domain keys.
+ * Version 2 guidance resolves directly. These aliases preserve version 1 recipe snapshots.
  * This finite table keeps that many-to-one resource mapping explicit and rejects unknown cultures/suffixes.
  */
 private fun catalogTextAlias(key: String): StringResource? {

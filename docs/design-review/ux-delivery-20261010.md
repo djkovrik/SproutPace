@@ -50,6 +50,8 @@ Recovery uses a persistent previous-workspace archive spanning photos, database 
 
 ## Remaining limits and next evidence
 
+Catalog follow-up, 2026-10-11: the historical F07 references below are superseded for catalog v2 by [QG-011 acceptance](../catalog-audit/2026-10-11/v2/acceptance.json) and its independent bounded PASS. F04/F05/F06 remain separate open obligations. The final catalog matrix passed 719 host tests, 231 goldens, Android builds and 14 iOS Kotlin compilations; this is not full-app acceptance.
+
 The fresh full audit [6a3cda00](../../.vibe/audits/AUDIT-REQUEST-6a3cda00-3e14-4047-a53d-094f45ead16f/audit.json) returned GAPS against the 691-test snapshot. Its three high findings led to another bounded correction: Repeat now opens a retained prefilled draft and saves only on explicit Save; shared date-interval allocation accounts for committed and competing planned demand across light/dark zones; Today stage work navigates to lifecycle/outcome screens, while stale bare complete/skip commands are rejected. Production tests assert cancel-without-write, preserved historical snapshots, overlapping capacity and actual lifecycle events. Final executions and the subsequent audit must supersede the prior snapshot before these are accepted.
 
 Current supporting evidence: [Lazyweb screen-family review](../../.lazyweb/design-improve/final-ux-20261010/report.html), [selected real references](https://www.lazyweb.com/agentic-search/8c09737d-977c-4729-aef6-6bfb28d06b7e), and [asset/derivative inspection](../assets/brand-refresh-review-current.json). The local review labels pending versus reviewed hashes explicitly; references do not constitute an automated Lazyweb acceptance verdict.
