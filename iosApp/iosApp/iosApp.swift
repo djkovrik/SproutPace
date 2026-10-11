@@ -585,7 +585,7 @@ final class NativeCrashReportingBridge: IosCrashReportingBridge {
 #endif
     }
 
-    func setCollectionEnabled(enabled: Bool) -> Bool {
+    func setCollectionEnabled(enabled_ enabled: Bool) -> Bool {
 #if canImport(FirebaseCore) && canImport(FirebaseCrashlytics)
         guard isConfigured else { return false }
         if FirebaseApp.app() == nil { FirebaseApp.configure() }

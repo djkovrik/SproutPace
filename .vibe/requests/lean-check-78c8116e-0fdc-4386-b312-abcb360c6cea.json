@@ -1,0 +1,9 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    ":shared:compose:verifyPaparazzi"
+  ],
+  "timeoutSeconds": 1800
+}

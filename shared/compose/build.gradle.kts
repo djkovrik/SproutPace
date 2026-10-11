@@ -119,7 +119,7 @@ kotlin {
             implementation(project(":shared:component"))
             implementation(project(":shared:data"))
             implementation(project(":shared:monetization"))
-            implementation(project(":shared:platform"))
+            api(project(":shared:platform"))
             implementation(project(":shared:root"))
             implementation(libs.decompose)
             implementation(libs.essenty.lifecycle)
@@ -186,6 +186,8 @@ kotlin {
                 framework {
                     baseName = "compose"
                     isStatic = true
+                    // Swift implements IosCrashReportingBridge from this module.
+                    export(project(":shared:platform"))
                 }
             }
         }
@@ -216,6 +218,9 @@ tasks.matching { it.name == "deleteAndroidMainPaparazziSnapshots" }.configureEac
 
 tasks.withType<Test>().configureEach {
     reports.html.required.set(true)
+    // Golden timestamps were reviewed in Europe/Moscow. Keep host tests
+    // reproducible on developer machines and CI runners (which use UTC).
+    systemProperty("user.timezone", "Europe/Moscow")
 }
 
 room {
