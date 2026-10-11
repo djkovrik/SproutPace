@@ -35,6 +35,7 @@ import com.sedsoftware.sproutpace.component.ZonesComponent
 import com.sedsoftware.sproutpace.component.titleKey
 import com.sedsoftware.sproutpace.component.store.ScreenStore
 import com.sedsoftware.sproutpace.component.store.ScreenStoreProvider
+import com.sedsoftware.sproutpace.component.store.SavedScreenDraft
 import kotlin.coroutines.CoroutineContext
 
 data class ScreenComponentDependencies(
@@ -50,15 +51,21 @@ abstract class StoredScreenComponent(
     dependencies: ScreenComponentDependencies,
     private val output: (ScreenOutput) -> Unit,
 ) : ScreenComponent, ComponentContext by componentContext {
+    private val restoredDraft = stateKeeper.consume("screen-draft", SavedScreenDraft.serializer())
     private val store = instanceKeeper.getStore(key = "${screen.name}:${stableId.orEmpty()}") {
         ScreenStoreProvider(
             dependencies.storeFactory, dependencies.manager, screen, stableId, dependencies.mainContext,
+            restoredDraft = restoredDraft,
         ).provide()
     }
 
     override val model: Value<ScreenModel> = StoreValue(store) { it.toModel() }
 
     init {
+        stateKeeper.register("screen-draft", SavedScreenDraft.serializer()) {
+            SavedScreenDraft(store.state.draftValues.mapKeys { it.key.value },
+                store.state.dirtyFields.mapTo(mutableSetOf()) { it.value }, store.state.snapshot.selectedItemId)
+        }
         val disposable = store.labels(observer(onNext = { label ->
             when (label) {
                 is ScreenStore.Label.Completed -> output(ScreenOutput.Completed(label.command.operation, label.command.subjectId))
@@ -72,7 +79,10 @@ abstract class StoredScreenComponent(
             }
         }))
         lifecycle.subscribe(object : com.arkivanov.essenty.lifecycle.Lifecycle.Callbacks {
-            override fun onDestroy() = disposable.dispose()
+            override fun onDestroy() {
+                disposable.dispose()
+                stateKeeper.unregister("screen-draft")
+            }
         })
     }
 
@@ -80,11 +90,13 @@ abstract class StoredScreenComponent(
         when (action) {
             ScreenAction.Back -> output(ScreenOutput.Back)
             ScreenAction.Retry -> store.accept(ScreenStore.Intent.Retry)
+            is ScreenAction.ReportFailure -> store.accept(ScreenStore.Intent.ReportFailure(action.key))
             is ScreenAction.Select -> store.accept(ScreenStore.Intent.Select(action.id))
             is ScreenAction.EditField -> store.accept(ScreenStore.Intent.EditField(action.fieldId, action.value))
             is ScreenAction.ChooseOption -> store.accept(ScreenStore.Intent.EditField(action.fieldId, action.optionId))
             is ScreenAction.Submit -> store.accept(ScreenStore.Intent.Submit(action.actionId))
             ScreenAction.CancelDraft -> store.accept(ScreenStore.Intent.CancelDraft)
+            ScreenAction.ConfirmStagePreview -> store.accept(ScreenStore.Intent.ConfirmStagePreview)
             is ScreenAction.SetLayout -> store.accept(ScreenStore.Intent.SetLayout(action.mode))
             is ScreenAction.Execute -> {
                 val destructiveOperation = action.command.destructiveOperation
@@ -104,10 +116,10 @@ abstract class StoredScreenComponent(
 
 private fun ScreenStore.State.toModel(): ScreenModel {
     val contract = ScreenContractRegistry.contracts.getValue(screen)
-    val sourceFields = snapshot.fields.ifEmpty { contract.fields }
+    val sourceFields = if (snapshot.hasInteractionContract) snapshot.fields else snapshot.fields.ifEmpty { contract.fields }
     val fields = sourceFields.map { value -> value.copy(value = draftValues[value.id] ?: value.value) }
-    val facts = snapshot.facts.ifEmpty { contract.facts }
-    val actions = snapshot.actions.ifEmpty { contract.actions }
+    val facts = if (snapshot.hasInteractionContract) snapshot.facts else snapshot.facts.ifEmpty { contract.facts }
+    val actions = if (snapshot.hasInteractionContract) snapshot.actions else snapshot.actions.ifEmpty { contract.actions }
     return ScreenModel(
         screen = screen,
         loadState = when {
@@ -119,6 +131,7 @@ private fun ScreenStore.State.toModel(): ScreenModel {
         titleKey = titleKey(screen),
         items = snapshot.items,
         selectedItemId = snapshot.selectedItemId,
+        plans = snapshot.plans,
         primaryActionKey = snapshot.primaryActionKey,
         errorKey = errorKey,
         permissionState = snapshot.permissionState,
@@ -133,6 +146,16 @@ private fun ScreenStore.State.toModel(): ScreenModel {
         actions = actions,
         validationErrors = validationErrors,
         hasUnsavedChanges = dirtyFields.isNotEmpty(),
+        setupState = snapshot.setupState,
+        stagePreview = stagePreview,
+        completionRevision = completionRevision,
+        detail = detailSnapshot?.takeIf { snapshot.selectedItemId != null }?.let { detail ->
+            ScreenStore.State(
+                screen = if (screen == ScreenId.TRAYS) ScreenId.BATCH_DETAIL else ScreenId.RECIPE,
+                snapshot = detail,
+                loading = false,
+            ).toModel()
+        },
     )
 }
 

@@ -4,6 +4,7 @@ import androidx.compose.ui.window.ComposeUIViewController
 import com.sedsoftware.sproutpace.compose.App
 import com.sedsoftware.sproutpace.compose.IosProductionAppGraph
 import com.sedsoftware.sproutpace.compose.PlatformActionHandler
+import com.sedsoftware.sproutpace.compose.PlatformActionFailure
 import com.sedsoftware.sproutpace.compose.PlatformActionKind
 import com.sedsoftware.sproutpace.compose.PlatformActionRequest
 import com.sedsoftware.sproutpace.component.pendingPhotoDraftValue
@@ -16,6 +17,10 @@ import platform.UIKit.setStatusBarStyle
 
 interface IosPlatformActionResult {
     fun accept(value: String)
+    fun fail() = Unit
+    fun acceptDocument(location: String, displayName: String) {
+        accept(com.sedsoftware.sproutpace.data.SelectedBackupDocument(location, displayName).encode())
+    }
 }
 
 interface IosPlatformActionBridge {
@@ -43,6 +48,11 @@ private class IosPlatformActionHandler(
 ) : PlatformActionHandler {
     override fun perform(request: PlatformActionRequest, onResult: (String) -> Unit) {
         val result = object : IosPlatformActionResult {
+            override fun fail() {
+                val failure = if (request.kind == PlatformActionKind.CREATE_DOCUMENT)
+                    PlatformActionFailure.DOCUMENT_DESTINATION else PlatformActionFailure.DOCUMENT_IMPORT
+                request.onFailure?.invoke(failure)
+            }
             override fun accept(value: String) {
                 if (value.isNotBlank()) onResult(value)
             }
@@ -54,9 +64,14 @@ private class IosPlatformActionHandler(
                 val mediaType = request.mediaType
                 if (!suggestedName.isNullOrBlank() && !mediaType.isNullOrBlank()) {
                     platformActions.createDocument(suggestedName, mediaType, result)
+                } else {
+                    result.fail()
                 }
             }
             PlatformActionKind.CHOOSE_PHOTO -> platformActions.choosePhoto(object : IosPlatformActionResult {
+                override fun fail() {
+                    request.onFailure?.invoke(PlatformActionFailure.PHOTO_IMPORT)
+                }
                 override fun accept(value: String) {
                     if (value.isNotBlank()) onResult(pendingPhotoDraftValue(value))
                 }

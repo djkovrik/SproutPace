@@ -8,6 +8,9 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Instant
@@ -15,6 +18,47 @@ import kotlinx.datetime.LocalDateTime
 import kotlin.test.*
 
 class LocalDataAcceptanceTest {
+    @Test fun cancelledEraseRestoresAllStateBeforePropagatingCancellation() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val before = backup.createArchive()
+        var reconciliations = 0
+        val interrupted = LocalBackupService(database, files, settings, Dispatchers.Unconfined,
+            reminders = ReminderReconciliationPort {
+                reconciliations++
+                if (reconciliations == 1) {
+                    currentCoroutineContext().cancel()
+                    awaitCancellation()
+                }
+                currentCoroutineContext().ensureActive()
+            })
+        val worker = async { interrupted.eraseAll() }
+        assertFailsWith<CancellationException> { worker.await() }
+        assertEquals(2, reconciliations)
+        assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+        assertNull(files.readRecoveryArchive())
+    }
+
+    @Test fun localizedCsvHeadersAreInjectedAndEscapedWithoutChangingAuthoredValues() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val headers = listOf("Партия", "Культура", "Рецепт", "Статус", "Дата результата", "Масса, г", "Заметка")
+        val snapshot = database.snapshot()
+        val russian = BatchHistoryCsv.encode(snapshot, headers).decodeToString()
+        val english = BatchHistoryCsv.encode(snapshot).decodeToString()
+        assertTrue(russian.startsWith("Партия,Культура,Рецепт,Статус,Дата результата,\"Масса, г\",Заметка\r\n"))
+        assertEquals(english.substringAfter("\r\n"), russian.substringAfter("\r\n"))
+        assertTrue(russian.contains("Хороший, свежий"))
+        assertFalse(russian.contains("photo-1"))
+        val documents = mutableMapOf<String, ByteArray>()
+        val service = LocalBackupService(database, files, settings, Dispatchers.Unconfined,
+            documents = object : ArchiveDocumentPort {
+                override suspend fun read(documentId: String) = documents[documentId]
+                override suspend fun write(documentId: String, bytes: ByteArray) { documents[documentId] = bytes }
+            }, csvHeaders = { headers })
+        service.writeCsv("picked-destination")
+        assertContentEquals(russian.encodeToByteArray(), documents.getValue("picked-destination"))
+    }
     private lateinit var factory: TestSqlDriverFactory
     private lateinit var database: LocalDatabase
     private lateinit var files: InMemoryPrivateFileStore
@@ -51,15 +95,48 @@ class LocalDataAcceptanceTest {
         assertTrue(database.hasMinimumGrowingSetup())
     }
 
-    @Test fun ac013_deleteZonePreservesHistoricalZoneNameSnapshot() = runTest {
+    @Test fun ac013_deleteZoneUnassignsCurrentBatchesAndPreservesHistory() = runTest {
         val fixture = fixture()
         database.saveZone(fixture.zone)
-        database.saveBatch(fixture.activeBatch)
+        val planned = fixture.activeBatch.copy(id = BatchId("planned"), state = BatchState.PLANNED,
+            events = emptyList(), actions = emptyList())
+        val historical = fixture.terminalBatch.copy(placement = fixture.activeBatch.placement)
+        val otherZone = fixture.zone.copy(id = GrowZoneId("other-zone"), name = "Other shelf")
+        val unrelated = fixture.activeBatch.copy(id = BatchId("other-batch"),
+            placement = Placement.Assigned(otherZone.id, otherZone.name), events = emptyList(), actions = emptyList())
+        database.saveZone(otherZone)
+        listOf(fixture.activeBatch, planned, historical, unrelated).forEach { database.saveBatch(it) }
+        val manager = ProductionScreenDataManager(database, settings)
 
-        database.deleteZone(fixture.zone.id)
+        manager.execute(com.sedsoftware.sproutpace.component.ScreenId.ZONES,
+            com.sedsoftware.sproutpace.component.ScreenCommand("delete-zone", fixture.zone.id.value)).getOrThrow()
 
-        assertTrue(database.snapshot().zones.isEmpty())
-        assertEquals(fixture.activeBatch.placement, database.snapshot().batches.single().placement)
+        val saved = database.snapshot()
+        assertEquals(listOf(otherZone), saved.zones)
+        val unassigned = Placement.Unassigned(fixture.zone.name)
+        assertEquals(fixture.activeBatch.copy(placement = unassigned), saved.batches[0])
+        assertEquals(planned.copy(placement = unassigned), saved.batches[1])
+        assertEquals(historical, saved.batches[2])
+        assertEquals(unrelated, saved.batches[3])
+        val trays = manager.watch(com.sedsoftware.sproutpace.component.ScreenId.TRAYS).first()
+        assertEquals("state_temporarily_unassigned_title",
+            trays.items.first { it.id == fixture.activeBatch.id.value }.supportingKey?.value)
+        val detail = manager.watch(com.sedsoftware.sproutpace.component.ScreenId.BATCH_DETAIL,
+            fixture.activeBatch.id.value).first()
+        assertTrue(detail.conflictResolutionKeys.isNotEmpty())
+
+        manager.execute(com.sedsoftware.sproutpace.component.ScreenId.BATCH_DETAIL,
+            com.sedsoftware.sproutpace.component.ScreenCommand("undo-stage", fixture.activeBatch.id.value)).getOrThrow()
+        assertEquals(unassigned, database.snapshot().batches.first().placement)
+        assertEquals(historical, database.snapshot().batches.first { it.id == historical.id })
+    }
+
+    @Test fun savingCurrentBatchWithMissingZoneNormalizesOnlyCurrentPlacement() = runTest {
+        val fixture = fixture()
+        val expected = fixture.activeBatch.copy(placement = Placement.Unassigned(fixture.zone.name))
+        assertEquals(expected, database.saveBatch(fixture.activeBatch))
+        assertEquals(expected, database.snapshot().batches.single())
+        assertEquals(fixture.activeBatch.events, expected.events)
     }
 
     @Test fun ac015_savedMetricTrayRestoresItsNameShapeAndDimensions() = runTest {
@@ -165,6 +242,7 @@ class LocalDataAcceptanceTest {
 
     @Test fun ac053_deletePlanPreservesRelatedBatches() = runTest {
         val fixture = fixture()
+        database.saveZone(fixture.zone)
         database.savePlan(fixture.plan)
         database.saveBatch(fixture.activeBatch)
 

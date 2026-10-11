@@ -19,7 +19,7 @@ object BatchLifecycleEngine {
     fun startSoaking(batch: GrowBatch, eventId: StageEventId, occurredAt: Instant): BatchChange {
         require(batch.state == BatchState.PLANNED)
         require(batch.recipe.stages.any { it.stage == GrowStage.SOAKING })
-        return transition(batch, eventId, occurredAt, BatchState.SOAKING, Placement.None)
+        return transition(batch, eventId, occurredAt, BatchState.SOAKING, batch.placement)
     }
 
     fun confirmSowing(

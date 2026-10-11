@@ -1,0 +1,23 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-daemon",
+    "--no-configuration-cache",
+    "-I",
+    ".vibe/scripts/ux-cache.init.gradle",
+    "--continue",
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*Production*",
+    "--tests",
+    "*RootUiAdapterTest",
+    "--tests",
+    "*SuggestionEditorIntegrationTest"
+  ],
+  "timeoutSeconds": 1800
+}

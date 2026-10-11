@@ -1,0 +1,6 @@
+Exception in thread "main" java.io.FileNotFoundException: C:\Users\Sergey\.gradle\wrapper\dists\gradle-9.5.1-bin\iq79hdu3mqx29lgffhp8bfmx\gradle-9.5.1-bin.zip.lck (�������� � �������)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:67)

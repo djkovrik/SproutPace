@@ -1,0 +1,221 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no cached configuration is available for tasks: :shared:compose:testAndroidHostTest --tests com.sedsoftware.sproutpace.compose.ProductionUxRegressionTest --tests com.sedsoftware.sproutpace.compose.BackupProductionProjectionTest --tests com.sedsoftware.sproutpace.compose.ProductionPreviewProjectionTest
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+
+> Task :shared:component:compileAndroidMain
+w: file:///D:/Sources/Android/SproutPace/shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenInteractionContracts.kt:238:46 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenProjections.kt:17:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenProjections.kt:22:16 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt:145:28 The corresponding parameter in the supertype 'Value' is named 'observer'. This may cause problems when calling this function with named arguments.
+
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:compose:convertXmlValueResourcesForCommonMain
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain
+> Task :shared:compose:generateResourceAccessorsForCommonMain
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :shared:compose:packageAndroidMainResources UP-TO-DATE
+> Task :shared:compose:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:compose:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:compose:generateComposeResClass UP-TO-DATE
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+
+> Task :shared:data:compileAndroidMain
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt:70:20 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt:80:14 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt:123:25 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt:296:28 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:164:74 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:167:73 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:168:100 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:175:42 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:191:9 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:196:37 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:197:43 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt:226:42 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt:84:28 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt:723:68 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt:729:66 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt:748:50 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt:749:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenFixtures.kt:82:80 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenFixtures.kt:84:87 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenFixtures.kt:104:41 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenFixtures.kt:133:17 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenFixtures.kt:145:35 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenFixtures.kt:148:23 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenInteractionBuilder.kt:33:28 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt:39:28 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/RecipeBatchCommandHandler.kt:30:28 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/RecipeBatchCommandHandler.kt:206:63 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar
+> Task :shared:monetization:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:monetization:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:monetization:compileAndroidMain
+> Task :shared:monetization:androidPreBuild UP-TO-DATE
+> Task :shared:monetization:preAndroidMainBuild UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:platform:compileAndroidMain
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :shared:root:compileAndroidMain FAILED
+e: Incremental compilation failed: The following FqNames can't be derived from DirtyData.dirtyLookupSymbols: com.sedsoftware.sproutpace.component.DestructiveOperation.
+DirtyData = DirtyData(dirtyLookupSymbols=[LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=CancelDraft, scope=com.sedsoftware.sproutpace.component.ScreenAction), LookupSymbol(name=serializer, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=Companion, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=ScreenModel, scope=com.sedsoftware.sproutpace.component)], dirtyClassesFqNames=[com.sedsoftware.sproutpace.component.ScreenModel, com.sedsoftware.sproutpace.component.DestructiveOperation.Companion, com.sedsoftware.sproutpace.component.ScreenAction.CancelDraft, com.sedsoftware.sproutpace.component.DestructiveOperation], dirtyClassesFqNamesForceRecompile=[])
+java.lang.IllegalStateException: The following FqNames can't be derived from DirtyData.dirtyLookupSymbols: com.sedsoftware.sproutpace.component.DestructiveOperation.
+DirtyData = DirtyData(dirtyLookupSymbols=[LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=CancelDraft, scope=com.sedsoftware.sproutpace.component.ScreenAction), LookupSymbol(name=serializer, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=Companion, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=ScreenModel, scope=com.sedsoftware.sproutpace.component)], dirtyClassesFqNames=[com.sedsoftware.sproutpace.component.ScreenModel, com.sedsoftware.sproutpace.component.DestructiveOperation.Companion, com.sedsoftware.sproutpace.component.ScreenAction.CancelDraft, com.sedsoftware.sproutpace.component.DestructiveOperation], dirtyClassesFqNamesForceRecompile=[])
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.toProgramSymbols(ClasspathChangesComputer.kt:362)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeFineGrainedKotlinClassChanges(ClasspathChangesComputer.kt:262)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeKotlinClassChanges(ClasspathChangesComputer.kt:162)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeClassChanges(ClasspathChangesComputer.kt:135)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeChangedAndImpactedSet(ClasspathChangesComputer.kt:85)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeClasspathChanges(ClasspathChangesComputer.kt:53)
+	at org.jetbrains.kotlin.incremental.dirtyFiles.ClasspathSnapshotBasedImpactDeterminer.determineChangedAndImpactedSymbols(ClasspathSnapshotBasedImpactDeterminer.kt:40)
+	at org.jetbrains.kotlin.incremental.dirtyFiles.JvmSourcesToCompileCalculator.calculateSourcesToCompileImpl(JvmSourcesToCompileCalculator.kt:40)
+	at org.jetbrains.kotlin.incremental.dirtyFiles.JvmSourcesToCompileCalculator.calculateWithClasspathSnapshot(JvmSourcesToCompileCalculator.kt:96)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.calculateSourcesToCompile(IncrementalJvmCompilerRunner.kt:68)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.calculateSourcesToCompile(IncrementalJvmCompilerRunner.kt:26)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally$lambda$0$compile(IncrementalCompilerRunner.kt:247)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally(IncrementalCompilerRunner.kt:289)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:130)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:782)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:108)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:2046)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+java.lang.RuntimeException: Incremental compilation failed: The following FqNames can't be derived from DirtyData.dirtyLookupSymbols: com.sedsoftware.sproutpace.component.DestructiveOperation.
+DirtyData = DirtyData(dirtyLookupSymbols=[LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=CancelDraft, scope=com.sedsoftware.sproutpace.component.ScreenAction), LookupSymbol(name=serializer, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=Companion, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=ScreenModel, scope=com.sedsoftware.sproutpace.component)], dirtyClassesFqNames=[com.sedsoftware.sproutpace.component.ScreenModel, com.sedsoftware.sproutpace.component.DestructiveOperation.Companion, com.sedsoftware.sproutpace.component.ScreenAction.CancelDraft, com.sedsoftware.sproutpace.component.DestructiveOperation], dirtyClassesFqNamesForceRecompile=[])
+java.lang.IllegalStateException: The following FqNames can't be derived from DirtyData.dirtyLookupSymbols: com.sedsoftware.sproutpace.component.DestructiveOperation.
+DirtyData = DirtyData(dirtyLookupSymbols=[LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=CancelDraft, scope=com.sedsoftware.sproutpace.component.ScreenAction), LookupSymbol(name=serializer, scope=com.sedsoftware.sproutpace.component.DestructiveOperation.Companion), LookupSymbol(name=<SAM-CONSTRUCTOR>, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=Companion, scope=com.sedsoftware.sproutpace.component.DestructiveOperation), LookupSymbol(name=ScreenModel, scope=com.sedsoftware.sproutpace.component)], dirtyClassesFqNames=[com.sedsoftware.sproutpace.component.ScreenModel, com.sedsoftware.sproutpace.component.DestructiveOperation.Companion, com.sedsoftware.sproutpace.component.ScreenAction.CancelDraft, com.sedsoftware.sproutpace.component.DestructiveOperation], dirtyClassesFqNamesForceRecompile=[])
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.toProgramSymbols(ClasspathChangesComputer.kt:362)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeFineGrainedKotlinClassChanges(ClasspathChangesComputer.kt:262)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeKotlinClassChanges(ClasspathChangesComputer.kt:162)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeClassChanges(ClasspathChangesComputer.kt:135)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeChangedAndImpactedSet(ClasspathChangesComputer.kt:85)
+	at org.jetbrains.kotlin.incremental.classpathDiff.ClasspathChangesComputer.computeClasspathChanges(ClasspathChangesComputer.kt:53)
+	at org.jetbrains.kotlin.incremental.dirtyFiles.ClasspathSnapshotBasedImpactDeterminer.determineChangedAndImpactedSymbols(ClasspathSnapshotBasedImpactDeterminer.kt:40)
+	at org.jetbrains.kotlin.incremental.dirtyFiles.JvmSourcesToCompileCalculator.calculateSourcesToCompileImpl(JvmSourcesToCompileCalculator.kt:40)
+	at org.jetbrains.kotlin.incremental.dirtyFiles.JvmSourcesToCompileCalculator.calculateWithClasspathSnapshot(JvmSourcesToCompileCalculator.kt:96)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.calculateSourcesToCompile(IncrementalJvmCompilerRunner.kt:68)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.calculateSourcesToCompile(IncrementalJvmCompilerRunner.kt:26)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally$lambda$0$compile(IncrementalCompilerRunner.kt:247)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally(IncrementalCompilerRunner.kt:289)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:130)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:782)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:108)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:2046)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+	at org.jetbrains.kotlin.buildtools.internal.KotlinLoggerMessageCollectorAdapter.report(KotlinLoggerMessageCollectorAdapter.kt:33)
+	at org.jetbrains.kotlin.cli.common.messages.MessageCollector.report$default(MessageCollector.kt:12)
+	at org.jetbrains.kotlin.daemon.client.BasicCompilerServicesWithResultsFacadeServerKt.reportFromDaemon(BasicCompilerServicesWithResultsFacadeServer.kt:58)
+	at org.jetbrains.kotlin.daemon.client.BasicCompilerServicesWithResultsFacadeServer.report(BasicCompilerServicesWithResultsFacadeServer.kt:37)
+	at org.jetbrains.kotlin.buildtools.internal.BtaCompilerServicesWithResultsFacade.report(BaseCompilationOperationImpl.kt:365)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+e: file:///D:/Sources/Android/SproutPace/shared/root/src/commonMain/kotlin/com/sedsoftware/sproutpace/root/AppRootComponentDefault.kt:170:99 Smart cast to 'String' is impossible, because 'stableId' is a public API property declared in different module.
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':shared:root:compileAndroidMain' (registered by plugin 'com.android.internal.kotlin.multiplatform.library').
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 58s
+35 actionable tasks: 19 executed, 16 up-to-date
+Configuration cache entry stored.

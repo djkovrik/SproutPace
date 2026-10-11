@@ -165,6 +165,8 @@ kotlin {
             kotlin.setSrcDirs(listOf("src/androidUnitTest/kotlin"))
             kotlin.srcDir(generateComposablePreviewPaparazziTests)
             dependencies {
+                implementation(libs.sqldelight.sqlite.driver)
+                implementation("com.russhwolf:multiplatform-settings-test:1.3.0")
                 implementation(libs.test.junit4)
                 implementation(libs.test.composable.preview.scanner.android)
                 // Android KMP host tests only generate dependency R classes for

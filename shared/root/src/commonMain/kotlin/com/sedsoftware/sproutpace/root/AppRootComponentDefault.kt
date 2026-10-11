@@ -1,6 +1,9 @@
 package com.sedsoftware.sproutpace.root
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.Cancellation
+import com.arkivanov.essenty.backhandler.BackCallback
+import com.arkivanov.essenty.lifecycle.Lifecycle
 import com.arkivanov.decompose.router.slot.ChildSlot
 import com.arkivanov.decompose.router.slot.SlotNavigation
 import com.arkivanov.decompose.router.slot.activate
@@ -13,6 +16,9 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
 import com.sedsoftware.sproutpace.component.LayoutMode
+import com.sedsoftware.sproutpace.component.DestructiveOperation
+import com.sedsoftware.sproutpace.component.ScreenCommand
+import com.sedsoftware.sproutpace.component.ScreenFieldId
 import com.sedsoftware.sproutpace.component.ScreenId
 import com.sedsoftware.sproutpace.component.ScreenAction
 import com.sedsoftware.sproutpace.component.ScreenOutput
@@ -30,7 +36,7 @@ class AppRootComponentDefault(
         source = navigation,
         serializer = AppRootComponent.Config.serializer(),
         initialConfiguration = AppRootComponent.Config(initialScreen),
-        handleBackButton = true,
+        handleBackButton = false,
         childFactory = { config, context ->
             screenFactory.create(config.screen, context, config.stableId) { output -> onChildOutput(config, output) }
         },
@@ -39,26 +45,67 @@ class AppRootComponentDefault(
     override val confirmation: Value<ChildSlot<AppRootComponent.ConfirmationConfig, ConfirmationComponent>> = childSlot(
         source = confirmationNavigation,
         serializer = AppRootComponent.ConfirmationConfig.serializer(),
-        handleBackButton = true,
+        handleBackButton = false,
         childFactory = { config, _ ->
-            ConfirmationComponentDefault(
+            lateinit var component: ConfirmationComponent
+            component = ConfirmationComponentDefault(
                 config = config,
                 onConfirm = { confirmed ->
-                    confirmationNavigation.dismiss { dismissed ->
-                        if (dismissed) dispatchConfirmed(confirmed)
+                    if (isCurrentConfirmation(component)) {
+                        confirmationNavigation.dismiss { dismissed ->
+                            if (dismissed) dispatchConfirmed(confirmed)
+                        }
                     }
                 },
-                onCancel = { confirmationNavigation.dismiss() },
+                onCancel = {
+                    if (isCurrentConfirmation(component)) confirmationNavigation.dismiss()
+                },
             )
+            component
         },
     )
 
+    init {
+        val callback = BackCallback(isEnabled = false, onBack = ::back)
+        backHandler.register(callback)
+        fun updateBackEnabled() {
+            callback.isEnabled = confirmation.value.child != null || stack.value.backStack.isNotEmpty() ||
+                stack.value.active.instance.model.value.hasUnsavedChanges
+        }
+        var modelSubscription: Cancellation? = null
+        val stackSubscription = stack.subscribe { childStack ->
+            modelSubscription?.cancel()
+            modelSubscription = childStack.active.instance.model.subscribe { updateBackEnabled() }
+            updateBackEnabled()
+        }
+        val confirmationSubscription = confirmation.subscribe { updateBackEnabled() }
+        lifecycle.subscribe(object : Lifecycle.Callbacks {
+            override fun onDestroy() {
+                modelSubscription?.cancel()
+                stackSubscription.cancel()
+                confirmationSubscription.cancel()
+                backHandler.unregister(callback)
+            }
+        })
+    }
+
     override fun select(destination: PrimaryDestination) {
-        navigation.replaceAll(AppRootComponent.Config(destination.screen))
+        requestNavigation(AppRootComponent.PendingNavigation.Select(AppRootComponent.Config(destination.screen)))
     }
 
     override fun open(screen: ScreenId, stableId: String?) {
-        navigation.pushNew(AppRootComponent.Config(screen, stableId))
+        requestNavigation(AppRootComponent.PendingNavigation.Open(AppRootComponent.Config(screen, stableId)))
+    }
+
+    override fun openDependency(screen: ScreenId) {
+        val field = when (screen) {
+            ScreenId.ZONES -> "zoneId"
+            ScreenId.TRAY_SIZES -> "trayId"
+            else -> return
+        }
+        if (stack.value.active.configuration.screen != ScreenId.BATCH_EDITOR || confirmation.value.child != null) return
+        val id = "dependency-${screen.name.lowercase()}-${kotlin.random.Random.nextLong().toULong()}"
+        navigation.pushNew(AppRootComponent.Config(screen = screen, stableId = id, returnField = field))
     }
 
     override fun openDeepLink(link: DeepLink): Boolean {
@@ -69,7 +116,9 @@ class AppRootComponentDefault(
     }
 
     override fun back() {
-        confirmationNavigation.dismiss { dismissed -> if (!dismissed) navigation.pop() }
+        confirmationNavigation.dismiss { dismissed ->
+            if (!dismissed) requestNavigation(AppRootComponent.PendingNavigation.Back)
+        }
     }
 
     override fun dismissConfirmation() { confirmationNavigation.dismiss() }
@@ -110,9 +159,30 @@ class AppRootComponentDefault(
 
     private fun onCompleted(source: AppRootComponent.Config, output: ScreenOutput.Completed) {
         if (stack.value.active.configuration != source) return
+        val dependencyOperation = when (source.screen) {
+            ScreenId.ZONES -> "save-zone"
+            ScreenId.TRAY_SIZES -> "save-tray-size"
+            else -> null
+        }
+        val parent = stack.value.backStack.lastOrNull()
+        val savedId = output.stableId
+        if (source.returnField != null && output.operation == dependencyOperation && savedId != null &&
+            parent?.configuration?.screen == ScreenId.BATCH_EDITOR
+        ) {
+            parent.instance.onAction(ScreenAction.ChooseOption(ScreenFieldId(source.returnField), savedId))
+            navigation.pop()
+            return
+        }
         when {
+            source.screen in setOf(ScreenId.ZONES, ScreenId.TRAY_SIZES) &&
+                output.operation in setOf(
+                    "save-zone", "update-zone", "delete-zone",
+                    "save-tray-size", "update-tray-size", "delete-tray-size",
+                ) -> {
+                navigation.pop()
+            }
             source.screen == ScreenId.FIRST_RUN && output.operation == "continue-setup" -> {
-                select(PrimaryDestination.PLAN)
+                navigation.replaceAll(AppRootComponent.Config(ScreenId.PLAN))
             }
             source.screen == ScreenId.BATCH_DETAIL && output.operation == "delete-batch" -> {
                 select(PrimaryDestination.TRAYS)
@@ -138,7 +208,55 @@ class AppRootComponentDefault(
     private fun dispatchConfirmed(config: AppRootComponent.ConfirmationConfig) {
         val active = stack.value.active
         if (active.configuration == config.source) {
-            active.instance.onAction(ScreenAction.ExecuteConfirmed(config.command))
+            val pending = config.pendingNavigation
+            if (pending != null) {
+                active.instance.onAction(ScreenAction.CancelDraft)
+                performNavigation(pending)
+            } else {
+                active.instance.onAction(ScreenAction.ExecuteConfirmed(config.command))
+            }
+        }
+    }
+
+    private fun isCurrentConfirmation(component: ConfirmationComponent): Boolean =
+        confirmation.value.child?.instance === component
+
+    private fun requestNavigation(pending: AppRootComponent.PendingNavigation) {
+        if (confirmation.value.child != null) return
+        val active = stack.value.active
+        if (pending is AppRootComponent.PendingNavigation.Open && pending.destination == active.configuration) return
+        if (pending is AppRootComponent.PendingNavigation.Select && pending.destination == active.configuration &&
+            stack.value.backStack.isEmpty()
+        ) return
+        val preservingSetup = active.configuration.screen == ScreenId.FIRST_RUN &&
+            pending is AppRootComponent.PendingNavigation.Select
+        if (active.instance.model.value.hasUnsavedChanges && !preservingSetup) {
+            confirmationNavigation.activate(
+                AppRootComponent.ConfirmationConfig(
+                    source = active.configuration,
+                    command = ScreenCommand("discard-changes", active.configuration.stableId),
+                    destructiveOperation = DestructiveOperation.DISCARD_CHANGES,
+                    pendingNavigation = pending,
+                ),
+            )
+        } else {
+            performNavigation(pending)
+        }
+    }
+
+    private fun performNavigation(pending: AppRootComponent.PendingNavigation) {
+        when (pending) {
+            AppRootComponent.PendingNavigation.Back -> navigation.pop()
+            is AppRootComponent.PendingNavigation.Open -> {
+                if (pending.destination.screen == ScreenId.FIRST_RUN) {
+                    navigation.replaceAll(pending.destination)
+                } else navigation.pushNew(pending.destination)
+            }
+            is AppRootComponent.PendingNavigation.Select -> {
+                val setup = stack.value.items.firstOrNull { it.configuration.screen == ScreenId.FIRST_RUN }?.configuration
+                if (setup == null) navigation.replaceAll(pending.destination)
+                else navigation.replaceAll(setup, pending.destination)
+            }
         }
     }
 

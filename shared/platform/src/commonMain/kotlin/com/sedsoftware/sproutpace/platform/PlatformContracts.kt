@@ -1,5 +1,7 @@
 package com.sedsoftware.sproutpace.platform
 
+import kotlinx.coroutines.sync.withLock
+
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.jvm.JvmInline
 
@@ -72,24 +74,31 @@ data class PhysicalReminder(
     val fireAtEpochMillis: Long,
     val titleKey: NativeTextKey,
     val bodyKey: NativeTextKey,
+    val civilDateTime: kotlinx.datetime.LocalDateTime? = null,
 )
 
 data class ReminderPlan(
     val currentOrOverdueWorkCount: Int,
     val dailySummary: PhysicalReminder?,
     val soakReminders: List<PhysicalReminder>,
+    val summaryWindowWorkCount: Int = currentOrOverdueWorkCount,
+    val dailyEvaluationEnabled: Boolean = false,
+    val dailySummaries: List<PhysicalReminder> = emptyList(),
 ) {
     init {
         require(currentOrOverdueWorkCount >= 0)
+        require(summaryWindowWorkCount >= 0)
         require(dailySummary == null || dailySummary.kind == ReminderKind.DAILY_SUMMARY)
         require(soakReminders.all { it.kind == ReminderKind.SOAK })
+        require(dailySummaries.all { it.kind == ReminderKind.DAILY_SUMMARY })
     }
 
     fun futurePhysicalReminders(nowEpochMillis: Long): List<PhysicalReminder> = buildList {
-        if (currentOrOverdueWorkCount > 0) {
+        if (dailyEvaluationEnabled || summaryWindowWorkCount > 0) {
             dailySummary?.takeIf { it.fireAtEpochMillis > nowEpochMillis }?.let(::add)
         }
         addAll(soakReminders.filter { it.fireAtEpochMillis > nowEpochMillis })
+        addAll(dailySummaries.filter { it.fireAtEpochMillis > nowEpochMillis })
     }.distinctBy { it.id }
 }
 
@@ -102,12 +111,20 @@ enum class ReconciliationReason {
     PERMISSION_RESTORED,
     RESTORE_COMPLETED,
     PRODUCT_DATA_CHANGED,
+    REMINDER_DELIVERED,
 }
 
 interface ReminderDriver {
+    /** Slots available to this driver after accounting for requests owned by other app features. */
+    suspend fun pendingCapacity(): Int? = null
     suspend fun registeredIds(): Set<PhysicalReminderId>
     suspend fun schedule(reminder: PhysicalReminder): Result<Unit>
     suspend fun cancel(id: PhysicalReminderId): Result<Unit>
+}
+
+fun remainingReminderCapacity(totalLimit: Int, otherPendingCount: Int): Int {
+    require(totalLimit >= 0 && otherPendingCount >= 0)
+    return (totalLimit - otherPendingCount).coerceAtLeast(0)
 }
 
 data class ReminderReconciliationResult(
@@ -116,6 +133,15 @@ data class ReminderReconciliationResult(
     val cancelled: Set<PhysicalReminderId>,
     val failed: Map<PhysicalReminderId, PlatformFailure>,
 )
+
+class ReminderReconciliationException(
+    val failures: Map<PhysicalReminderId, PlatformFailure>,
+) : Exception("reminder_schedule_failed")
+
+fun ReminderReconciliationResult.requireSuccessful(): ReminderReconciliationResult {
+    if (failed.isNotEmpty()) throw ReminderReconciliationException(failed)
+    return this
+}
 
 class ReminderReconciler(private val driver: ReminderDriver) {
     suspend fun reconcile(
@@ -129,7 +155,7 @@ class ReminderReconciler(private val driver: ReminderDriver) {
         ) {
             return ReminderReconciliationResult(reason, emptySet(), emptySet(), emptyMap())
         }
-        val desired = if (permission == PermissionState.Granted) {
+        val candidates = if (permission == PermissionState.Granted) {
             plan.futurePhysicalReminders(nowEpochMillis).associateBy { it.id }
         } else {
             emptyMap()
@@ -138,6 +164,12 @@ class ReminderReconciler(private val driver: ReminderDriver) {
         val cancelled = linkedSetOf<PhysicalReminderId>()
         val scheduled = linkedSetOf<PhysicalReminderId>()
         val failures = linkedMapOf<PhysicalReminderId, PlatformFailure>()
+        val capacity = driver.pendingCapacity()?.coerceAtLeast(0) ?: candidates.size
+        val desired = candidates.values.sortedWith(compareBy({ it.fireAtEpochMillis }, { it.id.value }))
+            .take(capacity).associateBy { it.id }
+        (candidates.keys - desired.keys).forEach { id ->
+            failures[id] = PlatformFailure.Rejected("reminder_capacity_exceeded")
+        }
 
         (existing - desired.keys).sortedBy { it.value }.forEach { id ->
             driver.cancel(id).fold(
@@ -169,7 +201,17 @@ class ReminderLifecycleCoordinator(
     private val reconciler: ReminderReconciler,
     private val clock: EpochMillisClock,
 ) {
-    suspend fun reconcile(reason: ReconciliationReason): ReminderReconciliationResult =
+    private val reconciliationMutex = kotlinx.coroutines.sync.Mutex()
+
+    suspend fun reconcile(
+        reason: ReconciliationReason,
+        beforeReconcile: suspend () -> Unit = {},
+    ): ReminderReconciliationResult = reconciliationMutex.withLock {
+        beforeReconcile()
+        reconcileUnlocked(reason)
+    }
+
+    private suspend fun reconcileUnlocked(reason: ReconciliationReason): ReminderReconciliationResult =
         reconciler.reconcile(
             plan = planSource.currentPlan(),
             nowEpochMillis = clock.now(),
@@ -177,12 +219,19 @@ class ReminderLifecycleCoordinator(
             reason = reason,
         )
 
+    /** Decision and next registration share the same ownership as foreground/restore reconciliation. */
+    suspend fun onDelivery(decide: suspend () -> Boolean): Boolean = reconciliationMutex.withLock {
+        val shouldNotify = decide()
+        reconcileUnlocked(ReconciliationReason.REMINDER_DELIVERED).requireSuccessful()
+        shouldNotify
+    }
+
     suspend fun onRestoreCompleted(): ReminderReconciliationResult =
         reconcile(ReconciliationReason.RESTORE_COMPLETED)
 
-    suspend fun onHostResume(): ReminderReconciliationResult {
+    suspend fun onHostResume(): ReminderReconciliationResult = reconciliationMutex.withLock {
         permissionService.onHostResume()
-        return reconciler.reconcile(
+        reconciler.reconcile(
             plan = planSource.currentPlan(),
             nowEpochMillis = clock.now(),
             permission = permissionService.state.value,
@@ -191,7 +240,10 @@ class ReminderLifecycleCoordinator(
     }
 }
 
-private fun Throwable.toPlatformFailure(code: String): PlatformFailure = PlatformFailure.Io(code)
+private fun Throwable.toPlatformFailure(code: String): PlatformFailure {
+    if (this is kotlinx.coroutines.CancellationException) throw this
+    return PlatformFailure.Io(code)
+}
 
 enum class PickedContentKind { PHOTO, BACKUP_ARCHIVE }
 

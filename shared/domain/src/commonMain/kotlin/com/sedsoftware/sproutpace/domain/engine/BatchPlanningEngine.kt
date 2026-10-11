@@ -19,6 +19,20 @@ import kotlin.time.Duration
 
 /** Pure creation/correction rules for AC-030 and AC-032. */
 object BatchPlanningEngine {
+    /** Reverse the same maximum-duration schedule used for a newly planned batch. */
+    fun sowDateForHarvest(
+        stages: List<RecipeStage>,
+        harvestDate: LocalDate,
+        timeZoneId: String,
+    ): LocalDate {
+        val sowIndex = stages.indexOfFirst { it.stage == GrowStage.SOWN }
+        val harvestIndex = stages.indexOfFirst { it.stage == GrowStage.READY_FOR_HARVEST }
+        require(sowIndex >= 0 && harvestIndex > sowIndex)
+        val zone = TimeZone.of(timeZoneId)
+        val harvestAt = LocalDateTime(harvestDate, plannedActionTime).toInstant(zone)
+        return (harvestAt - stages.subList(sowIndex, harvestIndex).totalMaximumDuration()).toLocalDateTime(zone).date
+    }
+
     fun plannedActions(
         batchId: BatchId,
         stages: List<RecipeStage>,

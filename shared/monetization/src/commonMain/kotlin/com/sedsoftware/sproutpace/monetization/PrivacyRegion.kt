@@ -59,7 +59,7 @@ class KtorPrivacyRegionApi(
         explicitNulls = true
     },
 ) : PrivacyRegionApi {
-    override suspend fun fetch(): Result<PrivacyRegion> = runCatching {
+    override suspend fun fetch(): Result<PrivacyRegion> = cancellableResult {
         val now = clock.now().also { require(it >= 0L) { "Clock must return Unix epoch milliseconds" } }
         val response = client.get(PRIVACY_REGION_ENDPOINT) {
             accept(ContentType.Application.Json)

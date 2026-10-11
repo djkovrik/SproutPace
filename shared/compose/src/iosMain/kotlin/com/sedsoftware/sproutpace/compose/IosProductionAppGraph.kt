@@ -14,6 +14,7 @@ import com.sedsoftware.sproutpace.platform.PermissionState
 import com.sedsoftware.sproutpace.platform.PhysicalReminder
 import com.sedsoftware.sproutpace.platform.PhysicalReminderId
 import com.sedsoftware.sproutpace.platform.ReminderDriver
+import com.sedsoftware.sproutpace.platform.remainingReminderCapacity
 import com.sedsoftware.sproutpace.platform.IosCrashReportingBridge
 import com.sedsoftware.sproutpace.platform.IosCrashReportingDriver
 import com.sedsoftware.sproutpace.root.AppRootComponent
@@ -23,8 +24,12 @@ import kotlinx.cinterop.usePinned
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.datetime.number
 import platform.Foundation.NSBundle
 import platform.Foundation.NSData
+import platform.Foundation.NSDateComponents
+import platform.Foundation.NSCalendar
+import platform.Foundation.NSCalendarIdentifierGregorian
 import platform.Foundation.NSError
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.NSURL
@@ -42,6 +47,7 @@ import platform.UserNotifications.UNAuthorizationStatusNotDetermined
 import platform.UserNotifications.UNAuthorizationStatusProvisional
 import platform.UserNotifications.UNNotificationRequest
 import platform.UserNotifications.UNTimeIntervalNotificationTrigger
+import platform.UserNotifications.UNCalendarNotificationTrigger
 import platform.UserNotifications.UNUserNotificationCenter
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -54,10 +60,12 @@ class IosProductionAppGraph(isDebug: Boolean, crashReportingBridge: IosCrashRepo
     private val graph = ProductionAppGraph(
         driverFactory = IosSqlDriverFactory(),
         settings = NSUserDefaultsSettings(NSUserDefaults.standardUserDefaults),
+        flushPreferences = { check(NSUserDefaults.standardUserDefaults.synchronize()) { "preferences_flush_failed" } },
         privateFileStore = IosPrivateFileStore(),
         pendingPhotoImportStore = IosPendingPhotoImportStore(),
         documentPort = IosArchiveDocumentPort(),
         reminderDriver = IosReminderDriver(),
+        summaryHorizonDays = IOS_SUMMARY_HORIZON_DAYS,
         notificationPermissionService = notificationPermissionService,
         crashReportingDriver = IosCrashReportingDriver(crashReportingBridge),
         ioDispatcher = Dispatchers.Default,
@@ -148,6 +156,14 @@ internal class IosArchiveDocumentPort : ArchiveDocumentPort {
 internal class IosReminderDriver(
     private val center: UNUserNotificationCenter = UNUserNotificationCenter.currentNotificationCenter(),
 ) : ReminderDriver {
+    override suspend fun pendingCapacity(): Int = suspendCoroutine { continuation ->
+        center.getPendingNotificationRequestsWithCompletionHandler { requests ->
+            val otherRequests = requests.orEmpty().filterIsInstance<UNNotificationRequest>()
+                .count { !it.identifier.startsWith(APP_REMINDER_PREFIX) }
+            continuation.resume(remainingReminderCapacity(IOS_PENDING_REQUEST_BUDGET, otherRequests))
+        }
+    }
+
     override suspend fun registeredIds(): Set<PhysicalReminderId> = suspendCoroutine { continuation ->
         center.getPendingNotificationRequestsWithCompletionHandler { requests ->
             val ids = requests.orEmpty().filterIsInstance<UNNotificationRequest>()
@@ -165,7 +181,17 @@ internal class IosReminderDriver(
         }
         val nowSeconds = Clock.System.now().toEpochMilliseconds() / MILLIS_PER_SECOND
         val seconds = max(1.0, reminder.fireAtEpochMillis / MILLIS_PER_SECOND - nowSeconds)
-        val trigger = UNTimeIntervalNotificationTrigger.triggerWithTimeInterval(seconds, repeats = false)
+        val trigger = reminder.civilDateTime?.let { civil ->
+            val components = NSDateComponents().apply {
+                calendar = NSCalendar.calendarWithIdentifier(NSCalendarIdentifierGregorian)
+                year = civil.year.toLong()
+                month = civil.month.number.toLong()
+                day = civil.day.toLong()
+                hour = civil.hour.toLong()
+                minute = civil.minute.toLong()
+            }
+            UNCalendarNotificationTrigger.triggerWithDateMatchingComponents(components, repeats = false)
+        } ?: UNTimeIntervalNotificationTrigger.triggerWithTimeInterval(seconds, repeats = false)
         val request = UNNotificationRequest.requestWithIdentifier(reminder.id.value, content, trigger)
         center.addNotificationRequest(request) { error -> continuation.resume(error.asResult()) }
     }
@@ -188,3 +214,6 @@ internal class IosReminderDriver(
         const val MILLIS_PER_SECOND = 1_000.0
     }
 }
+
+private const val IOS_SUMMARY_HORIZON_DAYS = 30
+private const val IOS_PENDING_REQUEST_BUDGET = 64

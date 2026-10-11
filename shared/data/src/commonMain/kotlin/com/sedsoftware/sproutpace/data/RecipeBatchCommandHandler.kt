@@ -1,6 +1,7 @@
 package com.sedsoftware.sproutpace.data
 
 import com.sedsoftware.sproutpace.component.ScreenCommand
+import com.sedsoftware.sproutpace.component.BatchRepeatDraft
 import com.sedsoftware.sproutpace.domain.catalog.SproutPaceCatalog
 import com.sedsoftware.sproutpace.domain.engine.ActionScheduleCorrection
 import com.sedsoftware.sproutpace.domain.engine.BatchLifecycleEngine
@@ -31,11 +32,12 @@ internal class RecipeBatchCommandHandler(
     private val today: () -> LocalDate,
 ) {
     suspend fun saveRecipe(command: ScreenCommand) {
+        require(SproutPaceCatalog.cultures.none { it.id.value == command.subject() }) { "Built-in guides are read-only" }
         val culture = SproutPaceCatalog.cultures.firstOrNull { it.id.value == command.required("cultureId") }
             ?: error("Unknown culture")
         val existing = loadWorkspace().recipes.firstOrNull { it.id.value == command.subject() }
         val stages = if (command.arguments.containsKey("stage1")) {
-            command.authoredRecipeStages()
+            command.recipeDraftStages(existing, culture)
         } else {
             existing?.stages ?: error("Recipe stage configuration is required")
         }
@@ -44,7 +46,7 @@ internal class RecipeBatchCommandHandler(
             name = command.required("name"),
             cultureId = culture.id,
             stages = stages,
-            density = culture.seedDensity,
+            density = existing?.takeIf { it.cultureId == culture.id }?.density ?: culture.seedDensity,
             substrate = command.required("substrate"),
             supplier = command.updatedOptional("supplier", existing?.supplier),
             cultivar = command.updatedOptional("cultivar", existing?.cultivar),
@@ -57,22 +59,31 @@ internal class RecipeBatchCommandHandler(
 
     suspend fun duplicateRecipe(command: ScreenCommand) {
         val workspace = loadWorkspace()
-        val source = workspace.recipes.firstOrNull { it.id.value == command.subject() }
-            ?: throw LocalDataException(LocalDataErrorKey.INVALID_COMMAND)
         val targetId = RecipeId(command.required("newId"))
         require(workspace.recipes.none { it.id == targetId })
-        database.saveRecipe(source.copy(
-            id = targetId,
-            name = command.arguments["name"]?.takeIf(String::isNotBlank) ?: source.name,
-        ))
+        val source = workspace.recipes.firstOrNull { it.id.value == command.subject() }
+        val duplicate = if (source != null) {
+            source.copy(id = targetId, name = command.optional("name") ?: source.name)
+        } else {
+            val culture = SproutPaceCatalog.cultures.firstOrNull { it.id.value == command.subject() }
+                ?: throw LocalDataException(LocalDataErrorKey.INVALID_COMMAND)
+            UserGrowRecipe(
+                id = targetId,
+                name = command.required("name"),
+                cultureId = culture.id,
+                stages = culture.stages.map { RecipeStage(it.stage, it.duration, guidanceKey = it.instructionKey) },
+                density = culture.seedDensity,
+                substrate = command.required("substrate"),
+            )
+        }
+        database.saveRecipe(duplicate)
     }
 
     suspend fun saveBatch(command: ScreenCommand) {
         val workspace = loadWorkspace()
         val recipeId = command.arguments["recipeId"]
         val recipeSnapshot = recipeSnapshot(workspace, recipeId, command.arguments["cultureId"])
-        val tray = workspace.trays.firstOrNull { it.id.value == command.required("trayId") }
-            ?: error("Unknown tray")
+        val tray = traySnapshot(workspace, command.required("trayId"))
         val sourceRecipe = workspace.recipes.firstOrNull { it.id.value == recipeId }
         val recommended = MeasurementEngine.recommendedSeedMass(tray.shape, recipeSnapshot.density)
         val plannedSowDate = command.optional("plannedSowDate")?.let(LocalDate::parse) ?: today()
@@ -81,13 +92,13 @@ internal class RecipeBatchCommandHandler(
         database.saveBatch(GrowBatch(
             id = batchId,
             recipe = recipeSnapshot,
-            tray = TraySnapshot(tray.name, tray.shape),
+            tray = tray,
             substrateSnapshot = command.optional("substrate") ?: sourceRecipe?.substrate
                 ?: command.required("substrate"),
             recommendedSeedMass = recommended,
             actualSeedMass = command.optional("actualSeedMassGrams")?.let(::positiveGrams) ?: recommended,
             state = BatchState.PLANNED,
-            placement = Placement.None,
+            placement = if (command.optional("zoneId") != null) placement(command, workspace) else Placement.None,
             events = emptyList(),
             actions = BatchPlanningEngine.plannedActions(
                 batchId, recipeSnapshot.stages, plannedSowDate, command.fixedStageDates(), timeZoneId,
@@ -118,6 +129,7 @@ internal class RecipeBatchCommandHandler(
     }
 
     private fun recipeSnapshot(workspace: Workspace, recipeId: String?, cultureId: String?): RecipeSnapshot = when {
+        BatchRepeatDraft.snapshotSource(recipeId) != null -> repeatSource(workspace, recipeId).recipe
         recipeId != null -> workspace.recipes.firstOrNull { it.id.value == recipeId }?.let {
             RecipeSnapshot(it.id, it.cultureId, it.name, it.stages, it.density)
         } ?: error("Unknown recipe")
@@ -131,6 +143,18 @@ internal class RecipeBatchCommandHandler(
             )
         } ?: error("Unknown culture")
         else -> error("recipeId or cultureId is required")
+    }
+
+    private fun traySnapshot(workspace: Workspace, choice: String): TraySnapshot =
+        if (BatchRepeatDraft.snapshotSource(choice) != null) repeatSource(workspace, choice).tray else {
+            val tray = workspace.trays.firstOrNull { it.id.value == choice } ?: error("Unknown tray")
+            TraySnapshot(tray.name, tray.shape)
+        }
+
+    private fun repeatSource(workspace: Workspace, choice: String?): GrowBatch {
+        val source = workspace.batch(requireNotNull(BatchRepeatDraft.snapshotSource(choice)))
+        require(source.state.isTerminal) { "Only terminal batches can be repeated" }
+        return source
     }
 
     private fun selectedTray(command: ScreenCommand, workspace: Workspace): TraySizePreset? =

@@ -3,12 +3,43 @@ package com.sedsoftware.sproutpace.compose
 import android.content.res.Configuration.UI_MODE_NIGHT_MASK
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import com.sedsoftware.sproutpace.compose.paparazzi.SproutPacePreviewCatalog
+import com.sedsoftware.sproutpace.compose.paparazzi.deviceFor
+import com.android.resources.ScreenOrientation
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
 
 class UiPreviewContractTest {
+    @Test
+    fun landscapePreviewsKeepDeclaredOrientationAndAspectRatio() {
+        val info = SproutPacePreviewCatalog.cases.map { it.preview.previewInfo }
+            .first { it.name == "16 Expanded Notifications" }
+        val device = deviceFor(info)
+        assertEquals(ScreenOrientation.LANDSCAPE, device.orientation)
+        assertTrue(device.screenWidth > device.screenHeight)
+        assertEquals(info.widthDp.toDouble() / info.heightDp, device.screenWidth.toDouble() / device.screenHeight, 0.001)
+    }
+
+    @Test
+    fun productionScenariosAndActualConfirmationDialogsAreDiscoverable() {
+        val names = SproutPacePreviewCatalog.cases.map { it.preview.previewInfo.name }.toSet()
+        val required = setOf(
+            "03 Active Light", "03 Active Dark", "03 History RU 200 Outcomes",
+            "04 Correction Light", "04 Invalid Mass EN", "05 Planned Light", "05 Soaking Dark",
+            "05 Ready Light", "05 Harvested Dark", "05 Failed Light", "05 Abandoned Dark",
+            "05 Skipped Stage RU 200", "08 Personal Edit Light", "08 Personal Create Medium",
+            "08 Garden Cress RU 200", "08 Invalid Range RU 200", "08 Expanded Stages And Sources",
+            "09 Edit Observation RU 200", "10 Failed Outcome Light", "10 Abandoned Outcome Dark",
+            "12 Edit Zone Expanded", "12 Invalid Capacity RU 200", "13 Circle Editor RU 200",
+            "14 Actual Restore Counts RU 200", "14 Actual Restore Counts Expanded",
+            "14 Replace Restore Dialog EN", "14 Replace Restore Dialog RU 200",
+            "04 Discard Draft Dialog EN", "04 Discard Draft Dialog RU 200", "05 Undo Stage Dialog Dark",
+            "16 Disabled Notifications Light", "16 Disabled Notifications RU 200",
+        )
+        assertTrue("Missing production scenario captures: ${required - names}", names.containsAll(required))
+    }
+
     @Test
     fun everyPrimaryScreenHasLightAndDarkCoverage() {
         val names = SproutPacePreviewCatalog.cases.map { it.preview.previewInfo.name }.toSet()
@@ -22,16 +53,17 @@ class UiPreviewContractTest {
     @Test
     fun localeFontScaleAndAdaptiveStressVariantsAreExecutable() {
         val infos = SproutPacePreviewCatalog.cases.map { it.preview.previewInfo }
-        val russianLargeText = infos.filter { it.locale == "ru" && it.fontScale == 2f }
+        val primaryStressNames = PRIMARY_SCREEN_NAMES.mapTo(linkedSetOf()) { "$it RU 200%" }
+        val russianLargeText = infos.filter { it.locale == "ru" && it.fontScale == 2f && it.name in primaryStressNames }
         assertEquals(
             "Every primary screen must render the compact RU/200% accessibility stress case",
-            PRIMARY_SCREEN_NAMES.mapTo(linkedSetOf()) { "$it RU 200%" },
+            primaryStressNames,
             russianLargeText.mapTo(linkedSetOf()) { it.name },
         )
         assertTrue(russianLargeText.all { it.widthDp == 393 && it.heightDp == 851 })
         assertEquals(
             ADAPTIVE_PREVIEW_NAMES,
-            infos.filter { it.widthDp >= 840 }.mapTo(linkedSetOf()) { it.name },
+            infos.filter { it.widthDp >= 840 && it.name in ADAPTIVE_PREVIEW_NAMES }.mapTo(linkedSetOf()) { it.name },
         )
         assertTrue(infos.any { it.uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES })
         assertTrue(infos.any { it.uiMode and UI_MODE_NIGHT_MASK != UI_MODE_NIGHT_YES })

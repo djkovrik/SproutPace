@@ -1,0 +1,519 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-10",
+  "status": "VISUALLY_REVIEWED_PENDING_FINAL_VERIFY",
+  "declarationCount": 231,
+  "notes": [
+    "Original 78 declarations preserved; added production scenario captures are in ProductionScenarioPreviews.kt.",
+    "Production domain fixtures replace fabricated UI items, field values, and facts. Drafts are explicit user-input variants and validation errors come from ScreenContractRegistry.prepareCommand.",
+    "Confirmation captures render the actual RootConfirmationDialog with operation-specific copy. Permission overrides represent platform states and use the same production permission-action policy.",
+    "All 231 declared images rendered and visually inspected; hash-bound review is ux-preview-review.json. Final Paparazzi verification is a separate executed gate.",
+    "Available-photo fixture contains an 8x8 RGB diagnostic pattern generated with Pillow; PNG chunk CRC and Pillow verify/load passed. Archive fixture contains zero photos. It tests real image decoding, not representative photographic composition.",
+    "All inventoried required scenario categories have declarations and reviewed captures. Landscape harness orientation was corrected after record1 review; full final matrix remains separate."
+  ],
+  "screens": [
+    {
+      "screen": "SCREEN-001",
+      "specification": "spec/screens/SCREEN-001.md",
+      "requiredMatrix": "EN compact welcome light/dark; RU 200% setup; notification denied; invalid dimensions; expanded completion; setup-skipped path.",
+      "actualPreviewDeclarations": [
+        "01 First run Light",
+        "01 First run Dark",
+        "01 First run RU 200%",
+        "Validation error Light",
+        "Validation error Dark",
+        "01 Tray Step EN",
+        "01 Tray Step RU 200",
+        "01 Plan Date Step Dark",
+        "01 Plan Date Step RU 200",
+        "01 Invalid Tray Dimensions RU 200",
+        "01 Setup Skipped Today Light",
+        "01 Setup Skipped Today Dark",
+        "01 Expanded Completion",
+        "01 Permission Denied Optional Step Light",
+        "01 Permission Denied Optional Step Dark RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-002",
+      "specification": "spec/screens/SCREEN-002.md",
+      "requiredMatrix": "EN compact mixed due work light/dark; RU 200%; all-clear empty; overdue; capacity conflict; notification denied; offline; long user batch name; expanded supporting pane.",
+      "actualPreviewDeclarations": [
+        "02 Today Light",
+        "02 Today Dark",
+        "02 Today RU 200%",
+        "Expanded today",
+        "Empty state Light",
+        "Empty state Dark",
+        "02 Long Names RU 200",
+        "02 Capacity Conflict RU 200",
+        "02 Permission Denied Work Remains Light",
+        "02 Permission Denied Work Remains Dark"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-003",
+      "specification": "spec/screens/SCREEN-003.md",
+      "requiredMatrix": "Planned/Active/History content in light/dark; each empty state; RU 200%; long names; expanded list-detail; offline hidden-ad; eligible six-record History with ad; failed/abandoned outcomes.",
+      "actualPreviewDeclarations": [
+        "03 Trays Light",
+        "03 Trays Dark",
+        "03 Trays RU 200%",
+        "03 Trays History Loaded Ad",
+        "03 Trays History Loaded Ad Inspection",
+        "Expanded list detail",
+        "03 Trays Empty Light",
+        "03 Trays Empty Dark",
+        "03 Active Light",
+        "03 Active Dark",
+        "03 History Dark",
+        "03 History RU 200 Outcomes",
+        "03 Selected Batch Expanded Light",
+        "03 Selected Batch Expanded Dark RU 200",
+        "03 Empty Active Light",
+        "03 Empty Active Dark",
+        "03 Empty History Light",
+        "03 Empty History Dark",
+        "03 Long Names RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-004",
+      "specification": "spec/screens/SCREEN-004.md",
+      "requiredMatrix": "Create light/dark; edit; repeat; RU 200%; invalid dimensions/date; capacity conflict; needs-resolution save; long recipe name; expanded summary.",
+      "actualPreviewDeclarations": [
+        "04 Batch editor Light",
+        "04 Batch editor Dark",
+        "04 Batch editor RU 200%",
+        "04 Correction Light",
+        "04 Correction RU 200",
+        "04 Invalid Mass EN",
+        "04 Discard Draft Dialog EN",
+        "04 Discard Draft Dialog RU 200",
+        "04 Save Correction Dialog RU",
+        "04 Tray Step EN",
+        "04 Tray Step RU 200",
+        "04 Date Step Dark",
+        "04 Date Step RU 200",
+        "04 Expanded Summary",
+        "04 Repeat Production Inputs Light",
+        "04 Repeat Production Inputs Dark",
+        "04 Invalid Date RU 200",
+        "04 Capacity Conflict Summary",
+        "04 Long Recipe Name",
+        "04 Needs Resolution Suggestion Light",
+        "04 Needs Resolution Suggestion Dark RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-005",
+      "specification": "spec/screens/SCREEN-005.md",
+      "requiredMatrix": "Each lifecycle stage light/dark; ready with fixed date; skipped stage; temporary unassigned; observations with photo; terminal outcomes; RU 200%; long note; offline; expanded timeline.",
+      "actualPreviewDeclarations": [
+        "05 Batch detail Light",
+        "05 Batch detail Dark",
+        "05 Batch detail RU 200%",
+        "Expanded batch detail",
+        "Temporarily unassigned Light",
+        "Temporarily unassigned Dark",
+        "05 Planned Light",
+        "05 Planned Dark",
+        "05 Soaking Light",
+        "05 Soaking Dark",
+        "05 Sown Light",
+        "05 Sown Dark",
+        "05 Blackout Light",
+        "05 Blackout Dark",
+        "05 Ready Light",
+        "05 Ready Dark",
+        "05 Harvested Light",
+        "05 Harvested Dark",
+        "05 Failed Light",
+        "05 Failed Dark",
+        "05 Abandoned Light",
+        "05 Abandoned Dark",
+        "05 Skipped Stage RU 200",
+        "05 Undo Stage Dialog Dark",
+        "05 Available Photo Light",
+        "05 Available Photo Dark",
+        "05 Long Names RU 200",
+        "05 Ready Fixed Date Light",
+        "05 Ready Fixed Date Dark"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-006",
+      "specification": "spec/screens/SCREEN-006.md",
+      "requiredMatrix": "Mixed confirmed/suggested timeline light/dark; empty; future conflict; needs resolution; RU 200%; long culture name; fixed date; expanded capacity pane; offline.",
+      "actualPreviewDeclarations": [
+        "06 Plan Light",
+        "06 Plan Dark",
+        "06 Plan RU 200%",
+        "Expanded plan",
+        "06 Plan Empty Light",
+        "06 Plan Empty Dark",
+        "Capacity conflict Light",
+        "Capacity conflict Dark",
+        "06 Fixed Harvest Date Light",
+        "06 Fixed Harvest Date Dark",
+        "06 Longest Culture Names RU 200 Compact",
+        "06 Longest Culture Names RU 200 Expanded"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-007",
+      "specification": "spec/screens/SCREEN-007.md",
+      "requiredMatrix": "EN compact catalog light/dark; RU 200%; expanded grid; personal recipes; search-empty; offline hidden-ad; eligible ad; missing optional image fallback; long personal recipe name.",
+      "actualPreviewDeclarations": [
+        "07 Catalog Light",
+        "07 Catalog Dark",
+        "07 Catalog RU 200%",
+        "07 Catalog Loaded Ad Inspection",
+        "07 Catalog Hidden Ad Offline Inspection",
+        "Expanded catalog",
+        "07 Selected Recipe Expanded Light",
+        "07 Selected Recipe Expanded Dark RU 200",
+        "07 Search Empty Light",
+        "07 Search Empty Dark RU 200",
+        "07 Scientific Search",
+        "07 Long Personal Recipe RU 200",
+        "07 Personal Recipe Missing Optional Image"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-008",
+      "specification": "spec/screens/SCREEN-008.md",
+      "requiredMatrix": "Bundled radish detail light/dark; garden cress RU 200%; personal create/edit; invalid range; overdue review warning; long source URL; offline source-open failure; expanded stages.",
+      "actualPreviewDeclarations": [
+        "08 Recipe Light",
+        "08 Recipe Dark",
+        "08 Recipe RU 200%",
+        "08 Recipe Asset Inspection",
+        "08 Personal Edit Light",
+        "08 Personal Edit Dark",
+        "08 Personal Edit RU 200",
+        "08 Personal Create Medium",
+        "08 Garden Cress RU 200",
+        "08 Invalid Range RU 200",
+        "08 Expanded Stages And Sources",
+        "08 Outdated Source Review RU 200",
+        "08 Source Open Failure Expanded",
+        "08 Longest Bundled Source URL RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-009",
+      "specification": "spec/screens/SCREEN-009.md",
+      "requiredMatrix": "Empty create light/dark; note plus photo; edit; RU 200%; long note; picker failure; delete confirmation; local save error; expanded photo pane.",
+      "actualPreviewDeclarations": [
+        "09 Observation Light",
+        "09 Observation Dark",
+        "09 Observation RU 200%",
+        "09 Edit Observation RU 200",
+        "09 Actual Photo Expanded",
+        "09 Actual Photo Dark",
+        "09 Long Note RU 200",
+        "09 Delete Observation Dialog RU 200",
+        "09 Save Failure Retains Note",
+        "09 Photo Import Failure Light",
+        "09 Photo Import Failure Dark RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-010",
+      "specification": "spec/screens/SCREEN-010.md",
+      "requiredMatrix": "Each outcome light/dark; harvested with mass; RU 200%; invalid mass/date; long reason; save failure; compact full-screen and expanded modal.",
+      "actualPreviewDeclarations": [
+        "10 Close batch Light",
+        "10 Close batch Dark",
+        "10 Close batch RU 200%",
+        "10 Failed Outcome Light",
+        "10 Failed Outcome Dark",
+        "10 Abandoned Outcome Dark",
+        "10 Abandoned Outcome Light",
+        "10 Harvest Mass RU 200",
+        "10 Invalid Mass Light",
+        "10 Expanded Outcome",
+        "10 Invalid Date RU 200",
+        "10 Save Failure Retains Outcome",
+        "10 Long Reason RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-011",
+      "specification": "spec/screens/SCREEN-011.md",
+      "requiredMatrix": "EN compact light/dark; RU 200%; notification denied; consent-management row shown/hidden; Crashlytics off and init-failed; expanded list-detail; destructive reset confirmation.",
+      "actualPreviewDeclarations": [
+        "11 Settings Light",
+        "11 Settings Dark",
+        "11 Settings RU 200%",
+        "11 Settings Privacy Management",
+        "Destructive confirmation Light",
+        "Destructive confirmation Dark",
+        "11 Crash Reporting Unavailable Light",
+        "11 Crash Reporting Unavailable RU 200",
+        "11 Permission Denied Settings Light",
+        "11 Permission Denied Settings Dark RU 200",
+        "11 Settings Notification Detail Expanded",
+        "11 Settings Notification Detail Expanded Dark RU 200",
+        "11 Settings Backup Detail Expanded"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-012",
+      "specification": "spec/screens/SCREEN-012.md",
+      "requiredMatrix": "Light/dark zones with occupancy; empty; add/edit; invalid capacity; referenced delete; future conflict; RU 200%; expanded list-detail; offline.",
+      "actualPreviewDeclarations": [
+        "12 Zones Light",
+        "12 Zones Dark",
+        "12 Zones RU 200%",
+        "12 Add Zone Light",
+        "12 Edit Zone Expanded",
+        "12 Invalid Capacity RU 200",
+        "12 Long Names RU 200",
+        "12 Empty Zones Light",
+        "12 Empty Zones Dark",
+        "12 Referenced Zone Delete Dialog",
+        "12 Future Conflict Expanded"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-013",
+      "specification": "spec/screens/SCREEN-013.md",
+      "requiredMatrix": "Mixed preset list light/dark; empty; rectangle editor; circle editor; invalid values; referenced delete; RU 200%; long name; expanded list-detail.",
+      "actualPreviewDeclarations": [
+        "13 Tray sizes Light",
+        "13 Tray sizes Dark",
+        "13 Tray sizes RU 200%",
+        "13 Rectangle Editor Medium",
+        "13 Rectangle Editor Expanded",
+        "13 Circle Editor RU 200",
+        "13 Invalid Dimensions Light",
+        "13 Empty Trays Light",
+        "13 Empty Trays Dark",
+        "13 Referenced Tray Delete Dialog",
+        "13 Long Tray Name RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-014",
+      "specification": "spec/screens/SCREEN-014.md",
+      "requiredMatrix": "Idle light/dark; valid preview; replacement confirmation; invalid archive; in-progress export; failed write; success; RU 200%; expanded preview; delete-all confirmation.",
+      "actualPreviewDeclarations": [
+        "14 Backup Light",
+        "14 Backup Dark",
+        "14 Backup RU 200%",
+        "Local error Light",
+        "Local error Dark",
+        "14 Actual Restore Counts RU 200",
+        "14 Actual Restore Counts Expanded",
+        "14 Export Progress Light",
+        "14 Replace Restore Dialog EN",
+        "14 Replace Restore Dialog RU 200",
+        "14 Backup Created Light",
+        "14 Backup Created Dark",
+        "14 Restore Completed RU 200",
+        "14 CSV Completed Expanded",
+        "14 Write Failure EN",
+        "14 Write Failure RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-015",
+      "specification": "spec/screens/SCREEN-015.md",
+      "requiredMatrix": "First decision EN/RU light/dark; RU 200%; accepted with withdrawal; declined; stale endpoint; endpoint failure; changed policy version; expanded decision surface.",
+      "actualPreviewDeclarations": [
+        "15 Privacy Light",
+        "15 Privacy Dark",
+        "15 Privacy RU 200%",
+        "15 Privacy Accepted Withdrawal",
+        "15 Stale Privacy Light",
+        "15 Stale Privacy Dark RU 200",
+        "15 Endpoint Failure Light",
+        "15 Endpoint Failure Dark",
+        "15 Changed Policy Expanded",
+        "15 Declined Privacy Light",
+        "15 Declined Privacy Dark"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    },
+    {
+      "screen": "SCREEN-016",
+      "specification": "spec/screens/SCREEN-016.md",
+      "requiredMatrix": "Enabled at 09:00 light/dark; disabled; permission not requested/denied/permanently denied; soak applicable; schedule error; RU 200%; expanded settings; offline.",
+      "actualPreviewDeclarations": [
+        "16 Notifications Light",
+        "16 Notifications Dark",
+        "16 Notifications RU 200%",
+        "Permission denied Light",
+        "Permission denied Dark",
+        "16 Disabled Notifications Light",
+        "16 Disabled Notifications RU 200",
+        "16 Permission Granted Dark",
+        "16 Permission Retry RU",
+        "16 Expanded Notifications",
+        "16 Schedule Failure Light",
+        "16 Schedule Failure Dark RU 200"
+      ],
+      "productionFixture": {
+        "renderer": "ProductionScreenSnapshotRenderer",
+        "interaction": "ProductionScreenInteractionBuilder",
+        "timezone": "UTC",
+        "now": "2026-10-10T10:00:00Z",
+        "component": "supplied ScreenModel through component-owned Preview",
+        "uiAdapter": "ScreenModel.toUiState"
+      },
+      "missingDedicatedScenarioPreviews": [],
+      "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
+    }
+  ]
+}

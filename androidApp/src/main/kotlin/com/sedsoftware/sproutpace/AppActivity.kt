@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import com.sedsoftware.sproutpace.compose.App
 import com.sedsoftware.sproutpace.compose.AndroidProductionAppGraph
 import com.sedsoftware.sproutpace.compose.PlatformActionHandler
+import com.sedsoftware.sproutpace.compose.PlatformActionFailure
 import com.sedsoftware.sproutpace.compose.PlatformActionKind
 import com.sedsoftware.sproutpace.compose.PlatformActionRequest
 import com.sedsoftware.sproutpace.component.pendingPhotoDraftValue
@@ -27,6 +28,7 @@ import kotlinx.coroutines.launch
 
 class AppActivity : ComponentActivity() {
     private var pendingDestinationResult: ((String) -> Unit)? = null
+    private var pendingDestinationFailure: ((PlatformActionFailure) -> Unit)? = null
     val systemPickerHost: AndroidSystemPickerHost by lazy(LazyThreadSafetyMode.NONE) {
         AndroidSystemPickerHost(this)
     }
@@ -47,11 +49,13 @@ class AppActivity : ComponentActivity() {
         when (request.kind) {
             PlatformActionKind.CHOOSE_DOCUMENT -> importPickedContent(
                 kind = PickedContentKind.BACKUP_ARCHIVE,
+                request = request,
                 onResult = onResult,
             )
             PlatformActionKind.CREATE_DOCUMENT -> createDocumentDestination(request, onResult)
             PlatformActionKind.CHOOSE_PHOTO -> importPickedContent(
                 kind = PickedContentKind.PHOTO,
+                request = request,
                 onResult = onResult,
             )
             PlatformActionKind.DISCARD_PENDING_PHOTO -> lifecycleScope.launch {
@@ -67,6 +71,7 @@ class AppActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bindRootBackNavigation(appGraph.root)
         appGraph.notificationPermissionService.attach(this, notificationPermissionLauncher)
         systemPickerHost
         enableEdgeToEdge()
@@ -104,15 +109,29 @@ class AppActivity : ComponentActivity() {
         super.onDestroy()
     }
 
-    private fun importPickedContent(kind: PickedContentKind, onResult: (String) -> Unit) {
+    private fun importPickedContent(
+        kind: PickedContentKind,
+        request: PlatformActionRequest,
+        onResult: (String) -> Unit,
+    ) {
         lifecycleScope.launch {
+            val failure = if (kind == PickedContentKind.PHOTO) PlatformActionFailure.PHOTO_IMPORT
+                else PlatformActionFailure.DOCUMENT_IMPORT
             systemPickerHost.pickAndImport(kind)
+                .onFailure { error ->
+                    if (error is kotlinx.coroutines.CancellationException) throw error
+                    request.onFailure?.invoke(failure)
+                }
                 .getOrNull()
                 ?.let { imported ->
-                    when (kind) {
+                    val value = when (kind) {
                         PickedContentKind.PHOTO -> imported.pendingToken?.let(::pendingPhotoDraftValue)
-                        PickedContentKind.BACKUP_ARCHIVE -> imported.appOwnedPath
+                        PickedContentKind.BACKUP_ARCHIVE -> imported.appOwnedPath?.let { path ->
+                            com.sedsoftware.sproutpace.data.SelectedBackupDocument(path, imported.displayName).encode()
+                        }
                     }
+                    if (value.isNullOrBlank()) request.onFailure?.invoke(failure)
+                    value
                 }
                 ?.takeIf(String::isNotBlank)
                 ?.let(onResult)
@@ -123,22 +142,37 @@ class AppActivity : ComponentActivity() {
         request: PlatformActionRequest,
         onResult: (String) -> Unit,
     ) {
-        val suggestedName = request.suggestedName?.takeIf(String::isNotBlank) ?: return
-        if (pendingDestinationResult != null) return
+        val suggestedName = request.suggestedName?.takeIf(String::isNotBlank)
+        if (suggestedName == null || pendingDestinationResult != null) {
+            request.onFailure?.invoke(PlatformActionFailure.DOCUMENT_DESTINATION)
+            return
+        }
         val launcher = when (request.mediaType) {
             BACKUP_MEDIA_TYPE -> backupDestinationLauncher
             CSV_MEDIA_TYPE -> csvDestinationLauncher
-            else -> return
+            else -> {
+                request.onFailure?.invoke(PlatformActionFailure.DOCUMENT_DESTINATION)
+                return
+            }
         }
         pendingDestinationResult = onResult
+        pendingDestinationFailure = request.onFailure
         runCatching { launcher.launch(suggestedName) }
-            .onFailure { pendingDestinationResult = null }
+            .onFailure {
+                pendingDestinationResult = null
+                pendingDestinationFailure = null
+                request.onFailure?.invoke(PlatformActionFailure.DOCUMENT_DESTINATION)
+            }
     }
 
     private fun completeDestination(uri: Uri?) {
         val result = pendingDestinationResult
+        val failure = pendingDestinationFailure
         pendingDestinationResult = null
-        uri?.takeIf { it.scheme == "content" }?.toString()?.let { value -> result?.invoke(value) }
+        pendingDestinationFailure = null
+        if (uri == null) return
+        if (uri.scheme == "content") result?.invoke(uri.toString())
+        else failure?.invoke(PlatformActionFailure.DOCUMENT_DESTINATION)
     }
 
     private fun openSystemSettings() {

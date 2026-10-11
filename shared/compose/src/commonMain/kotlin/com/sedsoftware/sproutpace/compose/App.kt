@@ -3,9 +3,13 @@ package com.sedsoftware.sproutpace.compose
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -16,6 +20,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -29,6 +34,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.sedsoftware.sproutpace.component.PermissionState
@@ -73,6 +80,13 @@ data class UiItem(
     val selected: Boolean,
     val commands: List<UiItemCommand> = emptyList(),
     val photo: UiPhoto? = null,
+    val batch: com.sedsoftware.sproutpace.component.BatchIdentity? = null,
+    val task: com.sedsoftware.sproutpace.component.TaskProjection? = null,
+    val occupancy: com.sedsoftware.sproutpace.component.ZoneOccupancy? = null,
+    val planEntry: com.sedsoftware.sproutpace.component.PlanEntryProjection? = null,
+    val recipe: com.sedsoftware.sproutpace.component.RecipeGuideProjection? = null,
+    val history: com.sedsoftware.sproutpace.component.BatchHistoryProjection? = null,
+    val snapshotStage: com.sedsoftware.sproutpace.component.RecipeStageProjection? = null,
 )
 
 class UiPhoto(val id: String, bytes: ByteArray?, val contentDescriptionKey: String) {
@@ -86,7 +100,8 @@ class UiPhoto(val id: String, bytes: ByteArray?, val contentDescriptionKey: Stri
 
 data class UiItemCommand(val operation: String, val subjectId: String)
 
-data class UiOption(val id: String, val labelKey: String?, val authoredLabel: String?)
+data class UiOption(val id: String, val labelKey: String?, val authoredLabel: String?,
+    val batchIdentity: com.sedsoftware.sproutpace.component.BatchIdentity? = null)
 
 data class UiField(
     val id: String,
@@ -118,6 +133,7 @@ data class SproutPaceUiState(
     val screen: UiScreen = UiScreen.TODAY,
     val variant: UiVariant = UiVariant.CONTENT,
     val selectedPrimary: UiScreen = UiScreen.TODAY,
+    val selectedItemId: String? = null,
     val busy: Boolean = false,
     val offline: Boolean = true,
     val permissionState: PermissionState = PermissionState.NOT_REQUIRED,
@@ -131,6 +147,12 @@ data class SproutPaceUiState(
     val conflictKeys: List<String> = emptyList(),
     val hasUnsavedChanges: Boolean = false,
     val errorKey: String? = null,
+    val setupState: com.sedsoftware.sproutpace.component.WorkspaceSetupState? = null,
+    val plans: List<com.sedsoftware.sproutpace.component.PlanSummaryProjection> = emptyList(),
+    val detail: SproutPaceUiState? = null,
+    val settingsContext: SproutPaceUiState? = null,
+    val stagePreview: com.sedsoftware.sproutpace.component.StageChangeProjection? = null,
+    val completionRevision: Long = 0,
 )
 
 enum class PlatformActionKind {
@@ -149,7 +171,14 @@ data class PlatformActionRequest(
     val suggestedName: String? = null,
     val mediaType: String? = null,
     val opaqueValue: String? = null,
+    val onFailure: ((PlatformActionFailure) -> Unit)? = null,
 )
+
+enum class PlatformActionFailure(val textKey: String) {
+    PHOTO_IMPORT("error_photo_import_failed"),
+    DOCUMENT_IMPORT("error_document_read_failed"),
+    DOCUMENT_DESTINATION("error_document_write_failed"),
+}
 
 fun interface PlatformActionHandler {
     fun perform(request: PlatformActionRequest, onResult: (String) -> Unit)
@@ -158,13 +187,14 @@ fun interface PlatformActionHandler {
 val NoOpPlatformActionHandler = PlatformActionHandler { _, _ -> }
 
 sealed interface UiAction {
+    data object ConfirmStagePreview : UiAction
     data class Navigate(val screen: UiScreen) : UiAction
     data class Select(val id: String) : UiAction
     data class EditField(val fieldId: String, val value: String) : UiAction
     data class ChooseOption(val fieldId: String, val optionId: String) : UiAction
     data class SelectTrayCategory(val category: TrayCategory) : UiAction
     data class Submit(val actionId: String, val subjectId: String? = null) : UiAction
-    data class SubmitItem(val operation: String, val subjectId: String) : UiAction
+    data class SubmitItem(val operation: String, val subjectId: String, val arguments: Map<String, String> = emptyMap()) : UiAction
     data class RequestPlatform(val request: PlatformActionRequest) : UiAction
     data class ClearPickerSelection(
         val fieldId: String,
@@ -220,7 +250,8 @@ fun SproutPaceApp(
     advertisingRuntime: AdvertisingRuntime? = null,
 ) {
     BoxWithConstraints(modifier.fillMaxSize()) {
-        var contextFieldsExpanded by remember(state.screen) { mutableStateOf(false) }
+        val displayState = state.withLocalizedCatalogSearch()
+        var contextFieldsExpanded by remember(displayState.screen) { mutableStateOf(false) }
         val largeTextNavigation = LocalDensity.current.fontScale >= NAVIGATION_ICON_ONLY_FONT_SCALE
         val layout = when {
             maxWidth < 600.dp -> UiLayout.COMPACT
@@ -231,25 +262,25 @@ fun SproutPaceApp(
         }
         val compact = layout == UiLayout.COMPACT
         LaunchedEffect(layout) { onAction(UiAction.SetLayout(layout)) }
-        val topLevel = state.screen in primaryDestinations
-        val primaryFabAction = state.actions.firstOrNull { action ->
-                action.id == state.screen.fabActionId() &&
-                state.variant != UiVariant.EMPTY &&
+        val topLevel = displayState.screen in primaryDestinations
+        val primaryFabAction = displayState.actions.firstOrNull { action ->
+                action.id == displayState.screen.fabActionId() &&
+                displayState.variant != UiVariant.EMPTY &&
                 !largeTextNavigation
         }
         val body: @Composable () -> Unit = {
             Scaffold(
-                modifier = Modifier.semantics { testTag = "screen-${state.screen.name.lowercase()}" },
+                modifier = Modifier.semantics { testTag = "screen-${displayState.screen.name.lowercase()}" },
                 contentWindowInsets = WindowInsets.safeDrawing,
-                topBar = { SproutPaceTopBar(state.screen, topLevel, onAction) },
-                bottomBar = { if (compact && topLevel) PrimaryBottomBar(state.selectedPrimary, onAction) },
+                topBar = { SproutPaceTopBar(displayState.screen, topLevel, onAction) },
+                bottomBar = { if (compact && topLevel) PrimaryBottomBar(displayState.selectedPrimary, onAction) },
                 floatingActionButton = { PrimaryFloatingActionButton(primaryFabAction, onAction) },
             ) { padding ->
                 ScreenContent(
-                    state = state,
+                    state = displayState,
                     layout = layout,
                     padding = padding,
-                    contextFieldsExpanded = contextFieldsExpanded || state.variant == UiVariant.VALIDATION_ERROR,
+                    contextFieldsExpanded = contextFieldsExpanded || displayState.variant == UiVariant.VALIDATION_ERROR,
                     onContextFieldsExpandedChange = { contextFieldsExpanded = it },
                     onAction = onAction,
                     advertisingRuntime = advertisingRuntime,
@@ -258,7 +289,7 @@ fun SproutPaceApp(
         }
         if (!compact && topLevel) {
             Row(Modifier.fillMaxSize()) {
-                PrimaryRail(state.selectedPrimary, onAction)
+                PrimaryRail(displayState.selectedPrimary, onAction)
                 Box(Modifier.weight(1f).fillMaxSize()) { body() }
             }
         } else {
@@ -283,7 +314,12 @@ private fun SproutPaceTopBar(screen: UiScreen, topLevel: Boolean, onAction: (UiA
                     }
                 }
             } else {
-                Text(stringResource(screen.titleResource()))
+                Text(
+                    text = if (screen == UiScreen.ADVERTISING_PRIVACY) localizedText("navigation_privacy_title")
+                        else stringResource(screen.titleResource()),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                )
             }
         },
         navigationIcon = {
@@ -334,34 +370,43 @@ private val primaryDestinations = destinations.map { it.screen }.toSet()
 
 @Composable
 private fun PrimaryBottomBar(selected: UiScreen, onAction: (UiAction) -> Unit) {
-    val showLabels = LocalDensity.current.fontScale < NAVIGATION_ICON_ONLY_FONT_SCALE
-    NavigationBar(modifier = Modifier.semantics { testTag = "primary-navigation-bottom" }) {
-        destinations.forEach { destination ->
-            val label = stringResource(destination.label)
-            NavigationBarItem(
-                selected = destination.screen == selected,
-                onClick = { onAction(UiAction.Navigate(destination.screen)) },
-                icon = {
-                    Icon(
-                        imageVector = vectorResource(destination.icon),
-                        contentDescription = label.takeUnless { showLabels },
-                    )
-                },
-                label = if (showLabels) {
-                    {
-                        Text(text = label, maxLines = 1, overflow = TextOverflow.Ellipsis)
+    val fontScale = LocalDensity.current.fontScale
+    if (fontScale >= NAVIGATION_ICON_ONLY_FONT_SCALE) {
+        Surface(color = MaterialTheme.colorScheme.surfaceContainer) {
+            Column(Modifier.fillMaxWidth().semantics { testTag = "primary-navigation-bottom" }) {
+                destinations.chunked(2).forEach { row ->
+                    Row(Modifier.fillMaxWidth().heightIn(min = 80.dp)) {
+                        row.forEach { PrimaryDestinationItem(it, selected, onAction) }
                     }
-                } else {
-                    null
-                },
-            )
+                }
+            }
         }
+        return
+    }
+    NavigationBar(modifier = Modifier.heightIn(min = navigationBarMinimumHeight(fontScale).dp)
+        .semantics { testTag = "primary-navigation-bottom" }) {
+        destinations.forEach { PrimaryDestinationItem(it, selected, onAction) }
     }
 }
 
 @Composable
+private fun RowScope.PrimaryDestinationItem(destination: Destination, selected: UiScreen, onAction: (UiAction) -> Unit) {
+    NavigationBarItem(
+        selected = destination.screen == selected,
+        onClick = { onAction(UiAction.Navigate(destination.screen)) },
+        icon = { Icon(vectorResource(destination.icon), contentDescription = null) },
+        label = {
+            Text(stringResource(destination.label), maxLines = 2, textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.labelMedium, overflow = TextOverflow.Ellipsis)
+        },
+        alwaysShowLabel = true,
+    )
+}
+
+@Composable
 private fun PrimaryRail(selected: UiScreen, onAction: (UiAction) -> Unit) = NavigationRail(
-    modifier = Modifier.semantics { testTag = "primary-navigation-rail" },
+    modifier = Modifier.widthIn(min = if (LocalDensity.current.fontScale >= NAVIGATION_ICON_ONLY_FONT_SCALE) 160.dp else 96.dp)
+        .semantics { testTag = "primary-navigation-rail" },
 ) {
     destinations.forEach { destination ->
         NavigationRailItem(
@@ -371,7 +416,8 @@ private fun PrimaryRail(selected: UiScreen, onAction: (UiAction) -> Unit) = Navi
             label = {
                 Text(
                     text = stringResource(destination.label),
-                    maxLines = 1,
+                    maxLines = 2,
+                    textAlign = TextAlign.Center,
                     overflow = TextOverflow.Ellipsis,
                 )
             },
@@ -381,4 +427,9 @@ private fun PrimaryRail(selected: UiScreen, onAction: (UiAction) -> Unit) = Navi
 
 internal fun UiScreen.titleResource(): StringResource = strictTextResource("screen_${name.lowercase()}_title")
 
+internal fun navigationBarMinimumHeight(fontScale: Float): Float = NAVIGATION_BAR_BASE_HEIGHT_DP * fontScale.coerceIn(1f, 2f)
+
+private const val NAVIGATION_BAR_BASE_HEIGHT_DP = 80f
+
+// Shared threshold for moving large-text actions into content; labels always remain visible.
 internal const val NAVIGATION_ICON_ONLY_FONT_SCALE = 1.8f

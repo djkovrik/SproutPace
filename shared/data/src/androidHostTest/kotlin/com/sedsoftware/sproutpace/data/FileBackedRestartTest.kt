@@ -16,8 +16,78 @@ import java.nio.file.Files
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
+import kotlin.test.assertFailsWith
+import kotlin.test.assertNotNull
 
 class FileBackedRestartTest {
+    @Test fun interruptedRestoreRecoversCompletePreviousWorkspaceAfterDatabaseReopen() = runTest {
+        listOf(false, true).forEach { databaseWasReplaced ->
+            val root = Files.createTempDirectory("sproutpace-recovery-").toFile()
+            val url = "jdbc:sqlite:${File(root, "workspace.db").absolutePath}"
+            val factory = TestSqlDriverFactory(url = url)
+            val database = LocalDatabase(factory, Dispatchers.Unconfined)
+            val photos = AndroidPrivateFileStore(File(root, "photos"))
+            val preferencesFile = File(root, "preferences.archive")
+            val settings = FileProductSettings(preferencesFile)
+            val fixture = restartFixture()
+            database.saveZone(fixture.zone)
+            database.saveTrayPreset(fixture.tray)
+            database.saveRecipe(fixture.recipe)
+            database.saveBatch(fixture.batch)
+            database.saveObservation(fixture.observation)
+            photos.write(requireNotNull(fixture.observation.photoId), fixture.photo)
+            settings.replace(ProductPreferences(theme = ThemePreference.DARK))
+            val service = LocalBackupService(database, photos, settings, Dispatchers.Unconfined)
+            val previous = service.createArchive()
+
+            // Persist exactly the production rollback record, then stop at either crash window.
+            photos.writeRecoveryArchive(LocalBackupArchiveCodec().encode(previous))
+            photos.replaceAll(emptyList())
+            if (databaseWasReplaced) {
+                database.erase()
+                settings.clearProductState()
+            }
+            database.close()
+            factory.close()
+            photos.close()
+
+            val reopenedFactory = TestSqlDriverFactory(url = url, initializeSchema = false)
+            val reopened = LocalDatabase(reopenedFactory, Dispatchers.Unconfined)
+            val reopenedPhotos = AndroidPrivateFileStore(File(root, "photos"))
+            val reopenedSettings = FileProductSettings(preferencesFile)
+            val failedRecovery = LocalBackupService(reopened, reopenedPhotos, reopenedSettings, Dispatchers.Unconfined,
+                reminders = ReminderReconciliationPort { error("Physical reminders unavailable") })
+            assertFailsWith<LocalDataException> { failedRecovery.recoverPendingReplacement() }
+            assertNotNull(reopenedPhotos.readRecoveryArchive())
+            val reminderSnapshots = mutableListOf<ProductSnapshot>()
+            val recovery = LocalBackupService(reopened, reopenedPhotos, reopenedSettings, Dispatchers.Unconfined,
+                reminders = ReminderReconciliationPort { reminderSnapshots += it })
+            recovery.recoverPendingReplacement()
+            assertEquals(previous, recovery.createArchive().copy(createdAt = previous.createdAt))
+            assertEquals(listOf(previous.snapshot), reminderSnapshots)
+            assertNull(reopenedPhotos.readRecoveryArchive())
+            recovery.recoverPendingReplacement()
+            assertEquals(1, reminderSnapshots.size)
+            reopened.close()
+            reopenedFactory.close()
+            reopenedPhotos.close()
+            root.deleteRecursively()
+        }
+    }
+
+    @Test fun nativePhotoDirectoryRecoversInterruptedRenameBeforeJournalRecovery() = runTest {
+        val root = Files.createTempDirectory("sproutpace-photo-swap-").toFile()
+        val directory = File(root, "photos")
+        val files = AndroidPrivateFileStore(directory)
+        files.write(PhotoId("original"), byteArrayOf(1, 2))
+        assertTrue(directory.renameTo(File(root, "photos.previous")))
+        val reopened = AndroidPrivateFileStore(directory)
+        assertContentEquals(byteArrayOf(1, 2), reopened.read(PhotoId("original")))
+        root.deleteRecursively()
+    }
+
     @Test fun assignedHistoryAndPrivatePhotosSurviveActualCloseAndReopen() = runTest {
         val root = Files.createTempDirectory("sproutpace-reopen-").toFile()
         val databaseFile = File(root, "sproutpace.db")
@@ -124,7 +194,28 @@ class FileBackedRestartTest {
     )
 }
 
+private class FileProductSettings(
+    private val file: File,
+    private val delegate: ProductSettings = MultiplatformProductSettings(MapSettings()),
+) : ProductSettings by delegate {
+    init {
+        if (file.exists()) delegate.replace(LocalBackupArchiveCodec().decode(file.readBytes()).preferences)
+    }
+    override fun replace(value: ProductPreferences) {
+        delegate.replace(value)
+        val empty = ProductSnapshot(BackupManifest(1, 1, emptyMap(), emptyMap()),
+            emptyList(), emptyList(), emptyList(), emptyList(), emptyList(), emptyList())
+        file.writeBytes(LocalBackupArchiveCodec().encode(LocalBackupArchive(empty, emptyList(), value)))
+    }
+    override fun clearProductState() = replace(ProductPreferences())
+}
+
 private class TestFilePrivateStore(private val root: File) : PrivateFileStore {
+    private val journal = File(root.parentFile, "${root.name}.recovery")
+    override suspend fun readRecoveryArchive(): ByteArray? = journal.takeIf(File::isFile)?.readBytes()
+    override suspend fun writeRecoveryArchive(bytes: ByteArray?) {
+        if (bytes == null) check(!journal.exists() || journal.delete()) else journal.writeBytes(bytes)
+    }
     init { check(root.mkdirs() || root.isDirectory) }
     override suspend fun read(id: PhotoId): ByteArray? = file(id).takeIf(File::isFile)?.readBytes()
     override suspend fun write(id: PhotoId, bytes: ByteArray) { file(id).writeBytes(bytes) }

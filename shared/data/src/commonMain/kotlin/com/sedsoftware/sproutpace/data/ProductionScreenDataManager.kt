@@ -1,10 +1,10 @@
 package com.sedsoftware.sproutpace.data
 
 import com.sedsoftware.sproutpace.component.PermissionState
+import com.sedsoftware.sproutpace.component.isImmediatePreference
 import com.sedsoftware.sproutpace.component.ScreenCommand
 import com.sedsoftware.sproutpace.component.ScreenContractRegistry
 import com.sedsoftware.sproutpace.component.ScreenDataManager
-import com.sedsoftware.sproutpace.component.ScreenFact
 import com.sedsoftware.sproutpace.component.ScreenField
 import com.sedsoftware.sproutpace.component.ScreenFieldId
 import com.sedsoftware.sproutpace.component.ScreenId
@@ -61,6 +61,8 @@ import com.sedsoftware.sproutpace.domain.model.UserGrowRecipe
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.datetime.Instant
@@ -83,41 +85,59 @@ class ProductionScreenDataManager(
     private val pendingPhotos: PendingPhotoImportStore? = null,
     private val now: () -> Instant = { Clock.System.now() },
     private val today: () -> LocalDate = { Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date },
+    private val timeZone: () -> TimeZone = { TimeZone.currentSystemDefault() },
+    private val draftIdentity: () -> String = { kotlin.uuid.Uuid.random().toString() },
 ) : ScreenDataManager {
     private val commandMutex = Mutex()
     private val completedCommands = mutableMapOf<String, CompletedCommand>()
     private var lastBackupDocumentId: String? = null
     private var lastBackupPreview: BackupPreview.Valid? = null
+    private var validatedBackupDocumentId: String? = null
+    private var backupResultKey: String? = null
     private val snapshotRenderer = ProductionScreenSnapshotRenderer(
-        database = database,
-        workspaceRepository = workspaceRepository,
         now = now,
         today = today,
+        timeZone = timeZone,
     )
     private val interactionBuilder = ProductionScreenInteractionBuilder(
         now = now,
         today = today,
         backupDocumentId = { lastBackupDocumentId },
         backupPreview = { lastBackupPreview },
+        timeZone = timeZone,
     )
     private val recipeBatchCommands = RecipeBatchCommandHandler(database, ::loadWorkspace, now, today)
 
-    override fun watch(screen: ScreenId, stableId: String?): Flow<ScreenSnapshot> =
-        combine(workspaceFlow(), settingsFlow()) { workspace, preferences ->
-            render(screen, stableId, workspace, preferences)
-        }
+    override fun watch(screen: ScreenId, stableId: String?): Flow<ScreenSnapshot> = flow {
+        val identities = DraftIdentitySession(draftIdentity())
+        emitAll(combine(workspaceFlow(), settingsFlow()) { workspace, preferences ->
+            render(screen, stableId, workspace, preferences, identities)
+        })
+    }
 
+    /**
+     * Reusing an invocation returns its committed result. New user actions must use a newly prepared
+     * command or [ScreenCommand.newInvocation]; commands without an invocation retain their explicit
+     * deduplication key as a legacy caller-supplied identity.
+     */
     override suspend fun execute(screen: ScreenId, command: ScreenCommand): Result<ScreenSnapshot> =
         runCatching {
             commandMutex.withLock {
-                completedCommands[command.deduplicationKey]?.let { completed ->
-                    require(completed.command == command) { "Deduplication key reused for another command" }
+                completedCommands[command.executionKey]?.takeUnless {
+                    (command.isImmediatePreference && command.invocationId == null) || command.operation in BACKUP_OPERATIONS
+                }?.let { completed ->
+                    require(completed.command.operation == command.operation &&
+                        completed.command.subjectId == command.subjectId && completed.command.arguments == command.arguments) {
+                        "Invocation identity reused for another command"
+                    }
                     return@withLock completed.snapshot
                 }
                 validateOperation(screen, command.operation)
                 applyCommand(screen, command)
                 val rendered = render(screen, command.subjectId, loadWorkspace(), loadSettings())
-                completedCommands[command.deduplicationKey] = CompletedCommand(command, rendered)
+                if ((!command.isImmediatePreference || command.invocationId != null) && command.operation !in BACKUP_OPERATIONS) {
+                    completedCommands[command.executionKey] = CompletedCommand(command, rendered)
+                }
                 rendered
             }
         }.fold(
@@ -130,6 +150,16 @@ class ProductionScreenDataManager(
                 )
             },
         )
+
+    override suspend fun previewStage(command: ScreenCommand): Result<com.sedsoftware.sproutpace.component.StageChangeProjection> =
+        runCatching {
+            val workspace = loadWorkspace()
+            val batch = workspace.batch(command.subject())
+            val targetPlacement = if (command.operation == "confirm-sowing" || command.arguments["zoneId"] != null) {
+                placement(command, workspace)
+            } else batch.placement
+            stageTransition(batch, command, targetPlacement).preview(batch, command)
+        }.onFailure { if (it is CancellationException) throw it }
 
     private fun workspaceFlow(): Flow<Workspace> {
         val core = combine(
@@ -187,9 +217,16 @@ class ProductionScreenDataManager(
         stableId: String?,
         workspace: Workspace,
         preferences: SettingsSnapshot,
+        draftIdentities: DraftIdentitySession = DraftIdentitySession(draftIdentity()),
     ): ScreenSnapshot {
-        val base = snapshotRenderer.snapshot(screen, stableId, workspace, preferences)
-        return interactionBuilder.apply(base, screen, stableId, workspace, preferences)
+        val photos = if (screen == ScreenId.BATCH_DETAIL || screen == ScreenId.OBSERVATION_EDITOR) {
+            workspace.observations.mapNotNull { it.photoId }.distinct().mapNotNull { id ->
+                runCatching { workspaceRepository?.readPhoto(id) }.getOrNull()?.let { id to it }
+            }.toMap()
+        } else emptyMap()
+        val base = snapshotRenderer.snapshot(screen, stableId, workspace, preferences, photos)
+        val result = interactionBuilder.apply(base, screen, stableId, workspace, preferences, draftIdentities)
+        return if (screen == ScreenId.BACKUP_RESTORE) result.withBackupResult(backupResultKey) else result
     }
 
     private suspend fun applyCommand(screen: ScreenId, command: ScreenCommand) {
@@ -216,9 +253,12 @@ class ProductionScreenDataManager(
             "set-theme" -> settings.setTheme(command.enum("theme"))
             "set-crash-reporting" -> settings.setCrashReportingEnabled(command.boolean("enabled"))
             "update-notifications" -> {
-                settings.setNotificationsEnabled(command.boolean("dailySummaryEnabled"))
-                settings.setSummaryTime(command.summaryLocalTime("summaryTime"))
-                settings.setSoakRemindersEnabled(command.boolean("soakRemindersEnabled"))
+                val daily = command.boolean("dailySummaryEnabled")
+                val time = command.summaryLocalTime("summaryTime")
+                val soak = command.boolean("soakRemindersEnabled")
+                settings.setNotificationsEnabled(daily)
+                settings.setSummaryTime(time)
+                settings.setSoakRemindersEnabled(soak)
             }
             "record-consent" -> recordConsent(command)
             else -> error("Unsupported operation: ${command.operation}")
@@ -230,7 +270,6 @@ class ProductionScreenDataManager(
             "save-batch" -> saveBatch(command)
             "correct-batch" -> correctBatch(command)
             "delete-batch" -> requiredWorkspaceRepository().deleteBatch(BatchId(command.subject()))
-            "repeat-batch" -> repeatBatch(command)
             "start-soaking" -> startSoaking(command)
             "confirm-sowing" -> confirmSowing(command)
             "confirm-stage" -> confirmStage(command)
@@ -266,42 +305,25 @@ class ProductionScreenDataManager(
 
     private suspend fun confirmSowing(command: ScreenCommand) = changeBatch(command) { batch ->
         val eventId = StageEventId(command.required("eventId"))
-        existingEvent(batch, eventId) ?: BatchLifecycleEngine.confirmSowing(
-            batch,
-            eventId,
-            command.instant("occurredAt"),
-            placement(command, loadWorkspace()),
-        )
+        existingEvent(batch, eventId) ?: stageTransition(batch, command, placement(command, loadWorkspace()))
     }
 
     private suspend fun confirmStage(command: ScreenCommand) = changeBatch(command) { batch ->
         val eventId = StageEventId(command.required("eventId"))
-        existingEvent(batch, eventId) ?: BatchLifecycleEngine.confirmStage(
-            batch,
-            eventId,
-            command.instant("occurredAt"),
-            command.enum("nextState"),
-            command.arguments["zoneId"]?.let { placement(command, loadWorkspace()) } ?: batch.placement,
-        )
+        existingEvent(batch, eventId) ?: stageTransition(batch, command,
+            command.arguments["zoneId"]?.let { placement(command, loadWorkspace()) } ?: batch.placement)
     }
 
     private suspend fun skipStage(command: ScreenCommand) = changeBatch(command) { batch ->
         val eventId = StageEventId(command.required("eventId"))
-        existingEvent(batch, eventId) ?: BatchLifecycleEngine.skipStage(
-            batch,
-            eventId,
-            command.instant("occurredAt"),
-            command.enum("skippedState"),
-            command.required("reason"),
-            command.enum("resultingState"),
-        )
+        existingEvent(batch, eventId) ?: stageTransition(batch, command, batch.placement)
     }
 
     private suspend fun applyActionCommand(command: ScreenCommand) {
         when (command.operation) {
-            "complete-action" -> updateAction(command) { it.copy(status = ScheduledActionStatus.COMPLETED) }
+            "complete-action" -> updateAction(command, nonStageOnly = true) { it.copy(status = ScheduledActionStatus.COMPLETED) }
             "snooze" -> updateAction(command) { SchedulingEngine.snooze(it, command.due()) }
-            "skip-action" -> updateAction(command) { it.copy(status = ScheduledActionStatus.SKIPPED) }
+            "skip-action" -> updateAction(command, nonStageOnly = true) { it.copy(status = ScheduledActionStatus.SKIPPED) }
             "schedule-soak-target" -> scheduleSoakTarget(command)
             "time-zone-change" -> updateAllCivilActions(command.required("timeZoneId"))
             else -> error("Unsupported action operation: ${command.operation}")
@@ -319,19 +341,46 @@ class ProductionScreenDataManager(
     }
 
     private suspend fun applyBackupCommand(command: ScreenCommand) {
-        val documentId = command.arguments["documentId"]?.takeIf(String::isNotBlank)
-        lastBackupDocumentId = documentId
+        val selectedDocument = command.arguments["documentId"]?.takeIf(String::isNotBlank)
+        val documentId = selectedDocument?.let { SelectedBackupDocument.decode(it).location }
+        backupResultKey = null
+        lastBackupDocumentId = selectedDocument
         when (command.operation) {
-            "create-backup" -> requiredBackupService().writeArchive(requireNotNull(documentId))
-            "preview-restore" -> when (val preview = requiredBackupService().readPreview(requireNotNull(documentId))) {
-                is BackupPreview.Invalid -> throw LocalDataException(preview.reasons.first())
-                is BackupPreview.Valid -> lastBackupPreview = preview
+            "create-backup" -> {
+                requiredBackupService().writeArchive(requireNotNull(documentId))
+                backupResultKey = "backup_created"
             }
-            "restore-backup" -> requiredBackupService().replaceFromDocument(requireNotNull(documentId))
-            "export-csv" -> requiredBackupService().writeCsv(requireNotNull(documentId))
+            "cancel-restore-preview" -> {
+                lastBackupPreview = null
+                validatedBackupDocumentId = null
+                lastBackupDocumentId = null
+            }
+            "preview-restore" -> {
+                lastBackupPreview = null
+                validatedBackupDocumentId = null
+                when (val preview = requiredBackupService().readPreview(requireNotNull(documentId))) {
+                    is BackupPreview.Invalid -> throw LocalDataException(preview.reasons.first())
+                    is BackupPreview.Valid -> {
+                        lastBackupPreview = preview
+                        validatedBackupDocumentId = documentId
+                    }
+                }
+            }
+            "restore-backup" -> {
+                require(lastBackupPreview != null && documentId == validatedBackupDocumentId)
+                requiredBackupService().replaceFromDocument(requireNotNull(documentId))
+                lastBackupPreview = null
+                validatedBackupDocumentId = null
+                backupResultKey = "backup_restored"
+            }
+            "export-csv" -> {
+                requiredBackupService().writeCsv(requireNotNull(documentId))
+                backupResultKey = "backup_csv_exported"
+            }
             "erase-all", "delete-all-data" -> {
                 requiredBackupService().eraseAll()
                 lastBackupPreview = null
+                validatedBackupDocumentId = null
             }
             else -> error("Unsupported backup operation: ${command.operation}")
         }
@@ -436,21 +485,6 @@ class ProductionScreenDataManager(
 
     private suspend fun correctBatch(command: ScreenCommand) = recipeBatchCommands.correctBatch(command)
 
-    private suspend fun repeatBatch(command: ScreenCommand) {
-        val workspace = loadWorkspace()
-        val source = workspace.batch(command.subject())
-        val newId = BatchId(command.required("newId"))
-        require(workspace.batches.none { it.id == newId })
-        database.saveBatch(source.copy(
-            id = newId,
-            state = BatchState.PLANNED,
-            placement = Placement.None,
-            events = emptyList(),
-            actions = emptyList(),
-            outcome = null,
-        ))
-    }
-
     private suspend fun changeBatch(
         command: ScreenCommand,
         change: suspend (GrowBatch) -> com.sedsoftware.sproutpace.domain.model.BatchChange,
@@ -462,11 +496,16 @@ class ProductionScreenDataManager(
     private fun existingEvent(batch: GrowBatch, eventId: StageEventId) =
         batch.events.firstOrNull { it.id == eventId }?.let { com.sedsoftware.sproutpace.domain.model.BatchChange(batch) }
 
-    private suspend fun updateAction(command: ScreenCommand, transform: (ScheduledAction) -> ScheduledAction) {
+    private suspend fun updateAction(
+        command: ScreenCommand,
+        nonStageOnly: Boolean = false,
+        transform: (ScheduledAction) -> ScheduledAction,
+    ) {
         val actionId = ScheduledActionId(command.subject())
         val workspace = loadWorkspace()
         val batch = workspace.batches.firstOrNull { candidate -> candidate.actions.any { it.id == actionId } } ?: error("Unknown action")
         val current = batch.actions.first { it.id == actionId }
+        require(!nonStageOnly || current.stage == null) { "Stage actions require their lifecycle confirmation" }
         if (current.status != ScheduledActionStatus.PENDING) return
         val changed = transform(current)
         if (changed == current) return
@@ -583,7 +622,7 @@ private const val FIRST_RUN_ZONE_ID = "first-run-zone"
 private const val FIRST_RUN_TRAY_ID = "first-run-tray"
 private const val FIRST_RUN_PLAN_ID = "first-run-plan"
 private val BATCH_LIFECYCLE_OPERATIONS = setOf(
-    "save-batch", "correct-batch", "delete-batch", "repeat-batch", "start-soaking", "confirm-sowing",
+    "save-batch", "correct-batch", "delete-batch", "start-soaking", "confirm-sowing",
     "confirm-stage", "assign-overflow", "undo-stage", "skip-stage",
 )
 private val ACTION_OPERATIONS = setOf(
@@ -594,6 +633,7 @@ private val OUTCOME_AND_OBSERVATION_OPERATIONS = setOf(
     "save-observation", "delete-observation",
 )
 private val BACKUP_OPERATIONS = setOf(
+    "cancel-restore-preview",
     "create-backup", "preview-restore", "restore-backup", "export-csv", "erase-all", "delete-all-data",
 )
 private val FIRST_RUN_ARGUMENTS = setOf(
@@ -602,12 +642,12 @@ private val FIRST_RUN_ARGUMENTS = setOf(
 private val OPERATIONS = mapOf(
     ScreenId.FIRST_RUN to setOf("continue-setup"),
     ScreenId.TODAY to setOf("complete-action", "snooze", "skip-action", "time-zone-change"),
-    ScreenId.TRAYS to setOf("delete-batch", "repeat-batch"),
+    ScreenId.TRAYS to setOf("delete-batch"),
     ScreenId.BATCH_EDITOR to setOf("save-batch", "correct-batch"),
     ScreenId.BATCH_DETAIL to setOf(
         "start-soaking", "confirm-sowing", "confirm-stage", "assign-overflow", "undo-stage", "skip-stage",
         "schedule-soak-target", "record-actual-mass", "complete-action", "skip-action", "time-zone-change",
-        "delete-batch", "repeat-batch",
+        "delete-batch",
     ),
     ScreenId.PLAN to setOf("save-plan", "update-plan", "pause-plan", "resume-plan", "confirm-suggestion", "delete-plan"),
     ScreenId.CATALOG to emptySet(),
@@ -620,7 +660,7 @@ private val OPERATIONS = mapOf(
     ScreenId.ZONES to setOf("save-zone", "update-zone", "delete-zone"),
     ScreenId.TRAY_SIZES to setOf("save-tray-size", "update-tray-size", "delete-tray-size"),
     ScreenId.BACKUP_RESTORE to setOf(
-        "create-backup", "preview-restore", "restore-backup", "export-csv", "erase-all", "delete-all-data",
+        "create-backup", "preview-restore", "restore-backup", "export-csv", "erase-all", "delete-all-data", "cancel-restore-preview",
     ),
     ScreenId.ADVERTISING_PRIVACY to setOf("record-consent"),
     ScreenId.NOTIFICATIONS to setOf("update-notifications"),
@@ -708,10 +748,10 @@ private fun ScreenCommand.summaryLocalTime(name: String): SummaryLocalTime {
     return value
 }
 
-private fun ScreenCommand.instant(name: String): Instant =
+internal fun ScreenCommand.instant(name: String): Instant =
     runCatching { Instant.parse(required(name)) }.getOrElse { error("Invalid $name") }
 
-private inline fun <reified T : Enum<T>> ScreenCommand.enum(name: String): T = enumValue(required(name))
+internal inline fun <reified T : Enum<T>> ScreenCommand.enum(name: String): T = enumValue(required(name))
 
 private fun ScreenCommand.due(): DueMoment = when (required("dueKind")) {
     "elapsed" -> DueMoment.ElapsedTarget(instant("dueAt"))

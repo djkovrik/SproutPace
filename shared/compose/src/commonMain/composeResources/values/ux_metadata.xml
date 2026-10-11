@@ -1,0 +1,5 @@
+<resources>
+    <string name="restore_archive_filename">File name</string>
+    <string name="schedule_timezone_context">Schedule time zone: %1$s</string>
+    <string name="event_timezone_context">Local time: %1$s</string>
+</resources>

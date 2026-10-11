@@ -1,0 +1,3 @@
+<resources>
+    <string name="error_photo_import_failed">Could not open this photo. Try another photo. Your current selection is unchanged.</string>
+</resources>

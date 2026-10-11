@@ -1,0 +1,9 @@
+<resources>
+    <string name="csv_batch_id">ID партии</string>
+    <string name="csv_culture_id">ID культуры</string>
+    <string name="csv_recipe_name">Рецепт</string>
+    <string name="csv_state">Состояние</string>
+    <string name="csv_outcome_at">Дата результата</string>
+    <string name="csv_actual_mass">Фактическая масса (г)</string>
+    <string name="csv_note">Заметка</string>
+</resources>

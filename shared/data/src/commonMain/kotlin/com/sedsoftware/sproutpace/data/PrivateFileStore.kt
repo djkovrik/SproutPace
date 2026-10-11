@@ -16,12 +16,18 @@ interface PrivateFileStore : AutoCloseable {
     /** Replaces the complete private photo set. Implementations must stage and atomically swap. */
     suspend fun replaceAll(photos: List<PrivatePhoto>)
     suspend fun clear()
+    /** Durable rollback archive outside the replaceable photo directory; null commits the replacement. */
+    suspend fun readRecoveryArchive(): ByteArray?
+    suspend fun writeRecoveryArchive(bytes: ByteArray?)
     override fun close()
 }
 
 class InMemoryPrivateFileStore : PrivateFileStore {
     private val values = linkedMapOf<PhotoId, PrivatePhoto>()
     var failNextReplace: Throwable? = null
+    private var recoveryArchive: ByteArray? = null
+    override suspend fun readRecoveryArchive() = recoveryArchive?.copyOf()
+    override suspend fun writeRecoveryArchive(bytes: ByteArray?) { recoveryArchive = bytes?.copyOf() }
 
     override suspend fun read(id: PhotoId) = values[id]?.bytes?.copyOf()
     override suspend fun write(id: PhotoId, bytes: ByteArray) {

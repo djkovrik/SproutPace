@@ -1,0 +1,4 @@
+<resources>
+    <string name="zone_future_conflict">Capacity forecast for %1$s: %2$d places needed, zone capacity %3$d</string>
+    <string name="zone_future_conflict_basis">Forecast includes planned batches and plan suggestions. Current places stay occupied until a batch is closed or moved.</string>
+</resources>

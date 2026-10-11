@@ -16,6 +16,7 @@ interface AppRootComponent {
 
     fun select(destination: PrimaryDestination)
     fun open(screen: ScreenId, stableId: String? = null)
+    fun openDependency(screen: ScreenId) = open(screen)
     fun openDeepLink(link: DeepLink): Boolean
     fun back()
     fun dismissConfirmation()
@@ -24,19 +25,31 @@ interface AppRootComponent {
     fun presentation(layoutMode: LayoutMode): NavigationPresentation
 
     @Serializable
-    data class Config(val screen: ScreenId, val stableId: String? = null)
+    data class Config(val screen: ScreenId, val stableId: String? = null, val returnField: String? = null)
 
     @Serializable
     data class ConfirmationConfig(
         val source: Config,
         val command: ScreenCommand,
         val destructiveOperation: DestructiveOperation,
+        val pendingNavigation: PendingNavigation? = null,
     ) {
         init {
             require(command.destructiveOperation == destructiveOperation) {
                 "Confirmation classification must match the serialized command"
             }
+            require(pendingNavigation == null || destructiveOperation == DestructiveOperation.DISCARD_CHANGES)
         }
+    }
+
+    @Serializable
+    sealed interface PendingNavigation {
+        @Serializable
+        data object Back : PendingNavigation
+        @Serializable
+        data class Open(val destination: Config) : PendingNavigation
+        @Serializable
+        data class Select(val destination: Config) : PendingNavigation
     }
 }
 

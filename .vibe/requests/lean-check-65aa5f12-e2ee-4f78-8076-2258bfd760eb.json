@@ -1,0 +1,16 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-daemon",
+    "--no-configuration-cache",
+    "-I",
+    ".vibe/scripts/ux-cache.init.gradle",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*ProductionLifecycleFlowTest",
+    "--tests",
+    "*ProductionUxRegressionTest"
+  ],
+  "timeoutSeconds": 1800
+}

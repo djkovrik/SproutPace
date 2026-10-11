@@ -1,0 +1,28 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no cached configuration is available for tasks: :shared:data:testAndroidHostTest :shared:root:testAndroidHostTest detekt :androidApp:assembleDebug :shared:compose:recordPaparazzi
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Querying the mapped value of and(list(interface org.gradle.api.file.Directory, flatmap(provider(?)) + item(flatmap(provider(task 'kspAndroidHostTest', class com.google.devtools.ksp.gradle.KspAATask)))), and(list(interface org.gradle.api.file.Directory, []), list(interface org.gradle.api.file.Directory, []))) before task ':shared:compose:kspAndroidHostTest' has completed is not supported
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 24s
+Configuration cache entry discarded due to serialization error.

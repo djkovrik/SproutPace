@@ -1,0 +1,16 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-daemon",
+    "-I",
+    ".vibe/scripts/ux-cache.init.gradle",
+    "--continue",
+    ":shared:data:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    "detekt",
+    ":androidApp:assembleDebug",
+    ":shared:compose:recordPaparazzi"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -3,6 +3,8 @@ package com.sedsoftware.sproutpace.compose
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import com.sedsoftware.sproutpace.component.ScreenId
+import com.sedsoftware.sproutpace.data.ProductionScreenFixtures
 
 class TypedUiPreviewMatrixTest {
     @Test
@@ -34,24 +36,57 @@ class TypedUiPreviewMatrixTest {
     }
 
     @Test
-    fun typedFixturesCarryContractFieldsFactsAndActions() {
+    fun typedFixturesPreserveProductionFieldsAndFactsRatherThanInventingContent() {
         UiScreen.entries.forEach { screen ->
             val state = typedPreviewState(screen)
+            val source = ProductionScreenFixtures.snapshot(ScreenId.valueOf(screen.name))
             assertEquals(screen, state.screen)
-            assertTrue(state.fields.isNotEmpty(), "$screen fields")
-            assertTrue(state.facts.isNotEmpty(), "$screen facts")
-            assertTrue(state.actions.isNotEmpty(), "$screen actions")
+            assertEquals(source.fields.filterNot { screen == UiScreen.TRAYS && it.id.value == "category" }
+                .associate { it.id.value to it.value }, state.fields.associate { it.id to it.value }, "$screen fields")
+            if (screen == UiScreen.ADVERTISING_PRIVACY) {
+                assertEquals("2026-10", state.facts.single { it.id == "policy-version" }.authoredValue)
+                assertEquals("privacy_undecided", state.facts.single { it.id == "privacy-applicability" }.valueKey)
+            } else if (screen == UiScreen.TRAYS) {
+                assertEquals(state.items.size.toString(), state.facts.single { it.id == "batch-count" }.authoredValue)
+                assertEquals(source.facts.filterNot { it.id == "batch-count" }.map { Triple(it.id, it.valueKey?.value, it.authoredValue) },
+                    state.facts.filterNot { it.id == "batch-count" }.map { Triple(it.id, it.valueKey, it.authoredValue) })
+            } else {
+                assertEquals(source.facts.map { Triple(it.id, it.valueKey?.value, it.authoredValue) },
+                    state.facts.map { Triple(it.id, it.valueKey, it.authoredValue) }, "$screen facts")
+            }
             assertTrue(state.fields.none { it.errorKey != null }, "$screen success fixture must not fake validation")
-            assertTrue(state.items.none { it.id == "preview" || it.authoredTitle?.contains("preview", ignoreCase = true) == true })
+            assertTrue(state.items.all { item -> source.items.any { it.id == item.id } }, "$screen must retain real item identities")
+        }
+    }
+
+    @Test
+    fun validationPreviewsUseActionableErrorsFromProductionCommandValidation() {
+        val scenarios = listOf(
+            UiScreen.FIRST_RUN to ProductionScreenFixtures.Scenario.CONTENT,
+            UiScreen.BATCH_EDITOR to ProductionScreenFixtures.Scenario.CONTENT,
+            UiScreen.RECIPE to ProductionScreenFixtures.Scenario.PERSONAL_RECIPE,
+            UiScreen.ZONES to ProductionScreenFixtures.Scenario.EDIT_ZONE,
+            UiScreen.TRAY_SIZES to ProductionScreenFixtures.Scenario.EDIT_TRAY,
+            UiScreen.CLOSE_BATCH to ProductionScreenFixtures.Scenario.CONTENT,
+        )
+        scenarios.forEach { (screen, scenario) ->
+            val errors = typedPreviewState(screen, UiVariant.VALIDATION_ERROR, scenario = scenario)
+                .fields.mapNotNull { it.errorKey }
+            assertTrue(errors.isNotEmpty(), "$screen needs a real invalid draft")
+            assertTrue(errors.all { it.startsWith("validation_") }, "$screen must use corrective copy")
         }
     }
 
     @Test
     fun taskScreensProgressivelyDiscloseContextualCommandInputs() {
         assertEquals(
-            setOf(UiScreen.TODAY, UiScreen.TRAYS, UiScreen.BATCH_DETAIL, UiScreen.PLAN),
+            setOf(UiScreen.TODAY, UiScreen.BATCH_DETAIL, UiScreen.PLAN),
             contextFieldScreens,
         )
-        contextFieldScreens.forEach { screen -> assertTrue(typedPreviewState(screen).fields.isNotEmpty()) }
+        contextFieldScreens.filterNot { it == UiScreen.TODAY }.forEach { screen ->
+            assertTrue(typedPreviewState(screen).fields.isNotEmpty())
+        }
+        assertTrue(typedPreviewState(UiScreen.TODAY).fields.isEmpty(), "Today uses row-targeted time controls")
+        assertTrue(typedPreviewState(UiScreen.TRAYS).fields.isEmpty(), "Repeat opens its own retained editor")
     }
 }

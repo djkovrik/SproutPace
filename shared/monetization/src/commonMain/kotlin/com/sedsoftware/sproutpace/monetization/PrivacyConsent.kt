@@ -26,10 +26,10 @@ class ProductSettingsPrivacyStore(private val settings: ProductSettings) : Priva
 class PrivacyRepository(
     private val store: PrivatePrivacyStore,
 ) {
-    fun read(nowEpochMillis: Long): AdvertisingPrivacyState? = runCatching { store.readState() }
+    fun read(nowEpochMillis: Long): AdvertisingPrivacyState? = cancellableResult { store.readState() }
         .getOrNull()?.takeIf { it.isFreshAndValid(nowEpochMillis) }
 
-    fun readForRefresh(nowEpochMillis: Long): AdvertisingPrivacyState? = runCatching { store.readState() }
+    fun readForRefresh(nowEpochMillis: Long): AdvertisingPrivacyState? = cancellableResult { store.readState() }
         .getOrNull()?.takeIf { it.isContractValid(nowEpochMillis) }
 
     fun write(region: PrivacyRegion, decision: ConsentDecision?) {
@@ -49,23 +49,25 @@ class PrivacyRepository(
 
     fun clear() = store.clearState()
 
-    private fun AdvertisingPrivacyState.isFreshAndValid(now: Long): Boolean {
-        if (!isContractValid(now)) return false
-        return expiresAtEpochMillis > now
-    }
+    companion object {
+        fun isFresh(state: AdvertisingPrivacyState, now: Long): Boolean = state.isFreshAndValid(now)
 
-    private fun AdvertisingPrivacyState.isContractValid(now: Long): Boolean {
-        val lifetime = expiresAtEpochMillis - fetchedAtEpochMillis
-        return payloadVersion == ADVERTISING_PRIVACY_PAYLOAD_VERSION &&
-            endpoint == PRIVACY_REGION_ENDPOINT &&
-            schemaVersion == PRIVACY_REGION_SCHEMA_VERSION &&
-            POLICY_VERSION.matches(policyVersion) &&
-            fetchedAtEpochMillis in 0..now &&
-            lifetime in 1..PRIVACY_CACHE_MAX_AGE_MILLIS
-    }
+        private fun AdvertisingPrivacyState.isFreshAndValid(now: Long): Boolean {
+            if (!isContractValid(now)) return false
+            return expiresAtEpochMillis > now
+        }
 
-    private companion object {
-        val POLICY_VERSION = Regex("[A-Za-z0-9][A-Za-z0-9._-]{0,127}")
+        private fun AdvertisingPrivacyState.isContractValid(now: Long): Boolean {
+            val lifetime = expiresAtEpochMillis - fetchedAtEpochMillis
+            return payloadVersion == ADVERTISING_PRIVACY_PAYLOAD_VERSION &&
+                endpoint == PRIVACY_REGION_ENDPOINT &&
+                schemaVersion == PRIVACY_REGION_SCHEMA_VERSION &&
+                POLICY_VERSION.matches(policyVersion) &&
+                fetchedAtEpochMillis in 0..now &&
+                lifetime in 1..PRIVACY_CACHE_MAX_AGE_MILLIS
+        }
+
+        private val POLICY_VERSION = Regex("[A-Za-z0-9][A-Za-z0-9._-]{0,127}")
     }
 }
 
@@ -94,7 +96,7 @@ class PrivacyCoordinator(
     private val mutex = Mutex()
 
     suspend fun resolve(): PrivacyEligibility = mutex.withLock {
-        runCatching { resolveLocked() }.getOrElse {
+        cancellableResult { resolveLocked() }.getOrElse {
             PrivacyEligibility.Disabled(DisabledReason.REGION_UNAVAILABLE)
         }
     }
@@ -107,10 +109,10 @@ class PrivacyCoordinator(
         return payload.toEligibility()
     }
 
-    fun recordDecision(decision: ConsentDecision): Boolean = runCatching {
+    fun recordDecision(decision: ConsentDecision): Boolean = cancellableResult {
         val now = clock.now()
-        val payload = repository.read(now) ?: return@runCatching false
-        if (!payload.consentRequired) return@runCatching false
+        val payload = repository.read(now) ?: return@cancellableResult false
+        if (!payload.consentRequired) return@cancellableResult false
         repository.write(
             payload.toRegion(),
             decision,
@@ -123,6 +125,7 @@ class PrivacyCoordinator(
     private suspend fun refresh(now: Long): AdvertisingPrivacyState? {
         val previous = repository.readForRefresh(now)
         val region = api.fetch().getOrElse {
+            if (it is kotlinx.coroutines.CancellationException) throw it
             return null
         }
         val preservedConsent = previous?.choice?.toDecision()?.takeIf {

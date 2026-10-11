@@ -1,0 +1,1800 @@
+{
+  "reviewDate": "2026-10-11",
+  "auditFinding": "F10 / AUDIT-REQUEST-6a3cda00-3e14-4047-a53d-094f45ead16f",
+  "status": "BOUNDED_CURRENT_EVIDENCE",
+  "manifestSha256": "fd2679bc6594708c65df386626e832a14f79e63f3d7b14b30f85df1e99bf9a3e",
+  "assetCount": 29,
+  "referenceChecks": {
+    "total": 200,
+    "mismatches": []
+  },
+  "checks": [
+    {
+      "command": "python docs/assets/generation/validate-brand-icons.py",
+      "exitCode": 0,
+      "result": "PASS: 20 Android PNGs, 21 iOS slots, identical monochrome alpha, 66dp safe circle."
+    },
+    {
+      "command": "python C:/Users/Sergey/.codex/skills/vibe-assets-creator/scripts/validate-assets.py --app-spec-root D:/Sources/Android/SproutPace/spec --repository D:/Sources/Android/SproutPace",
+      "exitCode": 0,
+      "result": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "assets": [
+    {
+      "id": "ASSET-001",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/logo_sproutpace.png",
+          "sha256": "3c162c7992242e006808dd722fdb8944a9c9b0da16b990f422d9d52e6e85eacb",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "User-approved original ImageGen logo 1B-1",
+        "generationRecord": {
+          "path": "docs/assets/generation/logo-1b-1.json",
+          "sha256": "c890411c209b141c5b1648956952f708658f684a9defcdb8c3ccf9cfd89f83fb"
+        },
+        "rights": "Original generated artwork for SproutPace; no independent legal clearance asserted."
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "FirstRunScreen",
+          "screenIds": [
+            "SCREEN-001"
+          ],
+          "symbolPresent": true
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "SettingsBrandHeader",
+          "screenIds": [
+            "SCREEN-011"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[32]_sproutpacepreviewskt.firstrunpreviews.01_first_run_dark_w393dp_h851dp_night.png",
+          "sha256": "50e2623c6138f8399f73e3f7ba02f8df674a6eb8df9c88c5abd7e3353ec68938",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[33]_sproutpacepreviewskt.firstrunpreviews.01_first_run_light_w393dp_h851dp_day.png",
+          "sha256": "2c09f5039aab321f5116a380728660c16dbae50a285339483202957760d22dfa",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[56]_sproutpacepreviewskt.settingspreviews.11_settings_dark_w393dp_h851dp_night.png",
+          "sha256": "6d071ca320f3dbe495402459d3d9958beffc89292ecf4847ea03bc369595da15",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[57]_sproutpacepreviewskt.settingspreviews.11_settings_light_w393dp_h851dp_day.png",
+          "sha256": "a07e1459018489a6cfae37a4f5e7a14114870141e2f5034226a93c15c58ab808",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/brand-refresh-review.md",
+          "sha256": "0c07cbd98155c6775e35130cceb5ae68df4f6acf633148600a163e6f4b9bef7e",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-002",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_today.xml",
+          "sha256": "fb974263dc07ed621bb375587b8eef248e8c4f594beec3f552c873426a575ab2",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/calendar_today/materialsymbolsrounded/calendar_today_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "matchesRecorded": true,
+          "symbol": "destinations",
+          "screenIds": [
+            "SCREEN-002"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-003",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_trays.xml",
+          "sha256": "7238813c44d27f9c5c6265f182dd9211ff35a715b882fdcd7e7672a6f4f40aa8",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/inventory_2/materialsymbolsrounded/inventory_2_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "matchesRecorded": true,
+          "symbol": "destinations",
+          "screenIds": [
+            "SCREEN-003"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-004",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_plan.xml",
+          "sha256": "cbe89562d82e56989d20933e05afc8237fed7fba9419c65e4fc21ed8078014f5",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/event_upcoming/materialsymbolsrounded/event_upcoming_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "matchesRecorded": true,
+          "symbol": "destinations",
+          "screenIds": [
+            "SCREEN-006"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-005",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_nav_catalog.xml",
+          "sha256": "1d284da319428a9db57503a0f433d5e2c4d660948f080faa8af43b3820409154",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/menu_book/materialsymbolsrounded/menu_book_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "matchesRecorded": true,
+          "symbol": "destinations",
+          "screenIds": [
+            "SCREEN-007"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-006",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_settings.xml",
+          "sha256": "a8e2344e1667c55b34a5f7ff3a1f857d4af9f6f0b0a4741ac4f7504d2a11aec2",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/settings/materialsymbolsrounded/settings_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "matchesRecorded": true,
+          "symbol": "SproutPaceTopBar",
+          "screenIds": [
+            "SCREEN-002"
+          ],
+          "symbolPresent": true
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "SettingsBrandHeader",
+          "screenIds": [
+            "SCREEN-011"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-007",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_add.xml",
+          "sha256": "40790fca4656e04b725fccaf6cd2c0dc08af2e17f8fdbed276e4d8ace151e11d",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/add/materialsymbolsrounded/add_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-002",
+            "SCREEN-003",
+            "SCREEN-004"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-008",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_arrow_back.xml",
+          "sha256": "5e4b78ac70844af9338326b81cb0320432b943c228d7b8925e6c3a2bcb345141",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/arrow_back/materialsymbolsrounded/arrow_back_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "matchesRecorded": true,
+          "symbol": "SproutPaceTopBar",
+          "screenIds": [
+            "SCREEN-004",
+            "SCREEN-005",
+            "SCREEN-008",
+            "SCREEN-009",
+            "SCREEN-010",
+            "SCREEN-012",
+            "SCREEN-013",
+            "SCREEN-014",
+            "SCREEN-015",
+            "SCREEN-016"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[4]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_light_w393dp_h851dp_day.png",
+          "sha256": "ec8957dd89f91e3a5f00932ef00843a253b7b6b993d0efb25dc03e9c2bbfaf76",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Back arrow visible in Batch top app bar. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-009",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_edit.xml",
+          "sha256": "a1862c4a827af94875a7464fffa54f3fc044e2aa3c34806724b8d74d894586bc",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/edit/materialsymbolsrounded/edit_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-005",
+            "SCREEN-008",
+            "SCREEN-009",
+            "SCREEN-012",
+            "SCREEN-013"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[108]_productionscenariopreviewskt.editzonescenario.12_edit_zone_expanded_w1100dp_h1000dp.png",
+          "sha256": "8c1d482f95d983aa0fd5205a16d8d552f08feb9b3dc147820d0b0205861f3a13",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Edit pencil visible in Edit growing zone heading and Save button. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-010",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_delete.xml",
+          "sha256": "11c0fc782036556ed11497a53b874d513db281163bc6b590c47beec4d9309334",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/delete/materialsymbolsrounded/delete_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-005",
+            "SCREEN-008",
+            "SCREEN-009",
+            "SCREEN-012",
+            "SCREEN-013",
+            "SCREEN-011"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[108]_productionscenariopreviewskt.editzonescenario.12_edit_zone_expanded_w1100dp_h1000dp.png",
+          "sha256": "8c1d482f95d983aa0fd5205a16d8d552f08feb9b3dc147820d0b0205861f3a13",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Delete trash icon visible beside Delete this record. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-011",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_add_photo.xml",
+          "sha256": "628361b1304b4c28d71412329f43e92b5c8a057d69e0075d93de9a76033ea3e5",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/add_a_photo/materialsymbolsrounded/add_a_photo_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-009",
+            "SCREEN-005"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[41]_sproutpacepreviewskt.observationpreviews.09_observation_light_w393dp_h851dp_day.png",
+          "sha256": "80898c5472ddfeb951284ecc64d3bb716c7970662e47d5715cd6db917da93283",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Camera-plus icon visible beside Choose photo. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-012",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_notifications.xml",
+          "sha256": "7ad0af604b71eeb10b514eb4645607bad37a2d02dfe8772debb533089ef26c25",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/notifications/materialsymbolsrounded/notifications_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-016",
+            "SCREEN-002"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[38]_sproutpacepreviewskt.notificationspreviews.16_notifications_light_w393dp_h851dp_day.png",
+          "sha256": "fe5db8d4bfbec2d7fd4cc224214143d92c7a894a756def4b9ecd0e3ee4ea6aec",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Bell icon visible beside Allow notifications. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-013",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_backup.xml",
+          "sha256": "c9688e2975e22f47a4f3fa29f2f7ec5ffd1346161c66e53c1960020c6ec51a45",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/backup/materialsymbolsrounded/backup_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-014",
+            "SCREEN-011"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[1]_sproutpacepreviewskt.backuppreviews.14_backup_light_w393dp_h851dp_day.png",
+          "sha256": "2836263e9f5bf1e21d75ce9a04d26d0c7634f24fc3d84e599229c98f5e5ceacf",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Cloud upload icon visible beside Create backup and Choose archive to preview. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-014",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_repeat.xml",
+          "sha256": "06b3f6f1bd6b210e1f5b0fa0a56da3b0694949013a1e376a0f76383b82ccd215",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/replay/materialsymbolsrounded/replay_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-003",
+            "SCREEN-005"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[122]_productionscenariopreviewskt.harvestedscenario.05_harvested_light_w393dp_h851dp_day.png",
+          "sha256": "6ff467f681c39597b8158d4c7f93af0efb67f37c4b019455ba42d4c02093301b",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Repeat arrow visible beside Repeat batch on actual harvested batch detail. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-015",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/ic_check_circle.xml",
+          "sha256": "e939790179dededf60482effcc74c423c298dfe62c39c99a49266fe8b6a5f7b6",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "reuse",
+        "source": "https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/symbols/android/check_circle/materialsymbolsrounded/check_circle_24px.xml",
+        "rights": "Google Material Symbols, Apache License 2.0; https://github.com/google/material-design-icons/blob/27e9ef1dbeedc13d682fece4a58e1eda4cb0961a/LICENSE"
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "actionIcon",
+          "screenIds": [
+            "SCREEN-002",
+            "SCREEN-005",
+            "SCREEN-010"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[4]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_light_w393dp_h851dp_day.png",
+          "sha256": "ec8957dd89f91e3a5f00932ef00843a253b7b6b993d0efb25dc03e9c2bbfaf76",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check.",
+      "currentVisualInspection": "2026-10-10: Check-circle icon visible beside Confirm stage. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
+    },
+    {
+      "id": "ASSET-016",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_soaking.xml",
+          "sha256": "7910e30eab02ab58dc1f793489da1d47ec1b0fb9c969c813e0f95128bdd84b0c",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "create-vector",
+        "source": "Original project-specific vector geometry created from ASSET-016 approved brief in spec/app-spec.json",
+        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "stageImage",
+          "screenIds": [
+            "SCREEN-005",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[154]_productionscenariopreviewskt.soakingscenario.05_soaking_dark_w393dp_h851dp_night.png",
+          "sha256": "9448570a1c7d75e7d5af76eaaffb900a5261f12d2d1fb341b2ed6e63eb9f91bf",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[155]_productionscenariopreviewskt.soakingscenario.05_soaking_light_w393dp_h851dp_day.png",
+          "sha256": "2274e51c65771dc7b547db670231a5b52233478cc6921b41068de456b84b3119",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-017",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_sown.xml",
+          "sha256": "728af8c57f3a5195bd988aa4e1deb2da3d6dc285fc1083fe28f583209b9a8599",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "create-vector",
+        "source": "Original project-specific vector geometry created from ASSET-017 approved brief in spec/app-spec.json",
+        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "stageImage",
+          "screenIds": [
+            "SCREEN-005",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-018",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_blackout.xml",
+          "sha256": "c5a6e7804a23e443b19941e21e313f4e19e67609f075c3cc52bc2010648004c7",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "create-vector",
+        "source": "Original project-specific vector geometry created from ASSET-018 approved brief in spec/app-spec.json",
+        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "stageImage",
+          "screenIds": [
+            "SCREEN-005",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-019",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_light_growth.xml",
+          "sha256": "0da3d9b127d42503458add8d952e2c6f31a94caf6bf9f5e486444fbf19b0af57",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "create-vector",
+        "source": "Original project-specific vector geometry created from ASSET-019 approved brief in spec/app-spec.json",
+        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "stageImage",
+          "screenIds": [
+            "SCREEN-005",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-020",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/stage_harvest.xml",
+          "sha256": "3948e37477ffb98f6ecb8541c4830ce1ed716e2a063091a748af9e46f43e2287",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "create-vector",
+        "source": "Original project-specific vector geometry created from ASSET-020 approved brief in spec/app-spec.json",
+        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "stageImage",
+          "screenIds": [
+            "SCREEN-005",
+            "SCREEN-010"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-021",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/illustration_empty_today.xml",
+          "sha256": "0e46d37d567b451a2690f473f68acebe4d6b8d4da24428dad373b7e875094113",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "create-vector",
+        "source": "Original project-specific vector geometry created from ASSET-021 approved brief in spec/app-spec.json",
+        "rights": "Original geometry created for this project in this assignment; no third-party artwork adapted and no independent legal clearance asserted."
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "statusItems",
+          "screenIds": [
+            "SCREEN-002",
+            "SCREEN-003",
+            "SCREEN-006"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[21]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_dark_w393dp_h851dp_night.png",
+          "sha256": "0abf2a45730a61558ee8d032756e8d889daab838152daefec03ba64ded2eb0f9",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[22]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_light_w393dp_h851dp_day.png",
+          "sha256": "6165a3ccc771399f28f9a1f21105aa5d606c6294c3d060034df4f50f8fcf5c56",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[23]_sproutpacepreviewskt.emptytodaypreview.empty_state_dark_w393dp_h851dp_night.png",
+          "sha256": "9881396e08d42b28f17d231c58cb401fd73d14df5d5cea828847d5ec9c9af43e",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[24]_sproutpacepreviewskt.emptytodaypreview.empty_state_light_w393dp_h851dp_day.png",
+          "sha256": "d3b4e58d540b6113ffa60088f1ae6f185c32de5b580c3e3d1f5c3094aef10c69",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[25]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_dark_w393dp_h851dp_night.png",
+          "sha256": "a00fdaa622d40d0b4f222da1e618b0a4e3931222da8000541b0d80cba9722e44",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[26]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_light_w393dp_h851dp_day.png",
+          "sha256": "187a15f54b4cf310d5b0a0b1274f543dcb63d519a764ca6da89fcf929f332185",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-022",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_radish.png",
+          "sha256": "ecba319170ad3caa1b9fade886ec6020b9c53871c5b0f970844d040cb9cf9b01",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
+          "sha256": "812c9df2f89067731ded91c920beb256234986f9e7eaae483e796f0d224cf6e8",
+          "matchesRecorded": true
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-023",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_broccoli.png",
+          "sha256": "d435df8fae4c50364db82f2e633a86abb96930db8f651aff219baa721b3f304c",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-024",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_arugula.png",
+          "sha256": "97a625d76ed73ac2a15950aeb7385b4ba057e64ac0d2d404b3abbd9a4b5380d1",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-025",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_mustard.png",
+          "sha256": "0c9e73b48e7dc48cf0f63d4eb5706694d14168ebb5a8b90a4e7726bcaee81ad6",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-026",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_pea.png",
+          "sha256": "bd61d734e5db617ed3682f99b1be5640c9c21de5d4748d4888ee6f7df52d47bb",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-027",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_sunflower.png",
+          "sha256": "5d581ab5551c125cd4a56e35ab0b069de7a3e3a62ef9e6ae1de2a512b8ce089d",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-028",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_basil.png",
+          "sha256": "096c057fdcf5ea3539d7628159fa01a2d7a0b1323f1e365a072c305a7d9ef609",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    },
+    {
+      "id": "ASSET-029",
+      "outputChecks": [
+        {
+          "path": "shared/compose/src/commonMain/composeResources/drawable/culture_garden_cress.png",
+          "sha256": "ae4716a157709d0a38950e458db991a89145f7f45c8bba216d36d6ad0a6119a4",
+          "matchesRecorded": true
+        }
+      ],
+      "provenance": {
+        "method": "generate-raster",
+        "source": "Codex built-in image_gen generation session; no input/reference images used",
+        "rights": "AI-generated output with no third-party input image or public photography; no independent legal clearance asserted.",
+        "generationRecord": {
+          "path": "docs/assets/generation/catalog-covers.json",
+          "sha256": "0c7d52436dbc95126ce9d3cc2e580a165bfd729f6031dac76da23b3bf5e7403b"
+        }
+      },
+      "usageChecks": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "matchesRecorded": true,
+          "symbol": "cultureImage",
+          "screenIds": [
+            "SCREEN-007",
+            "SCREEN-008"
+          ],
+          "symbolPresent": true
+        }
+      ],
+      "visualEvidenceChecks": [
+        {
+          "path": "docs/assets/generated-catalog-contact-sheet.png",
+          "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/visual-review.md",
+          "sha256": "f71f2a4e5341aad9cbbd5ec548757d034412b4ae2e9bddd94b906d68cd0f8885",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/assets/ASSET-INVENTORY.md",
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01",
+          "matchesRecorded": true
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+          "matchesRecorded": true
+        }
+      ],
+      "scope": "Manifest reference integrity and declared source chain; dynamic reachability is established by the referenced screen review, not this hash check."
+    }
+  ],
+  "platformReferenceChecks": [
+    {
+      "path": "docs/assets/source/logo-1b-1-transparent.png",
+      "sha256": "2f51c2ed3930fcc662946f318386fa0f2d6852a4fc2ef79d151a11b681b7b5a1",
+      "matchesRecorded": true
+    },
+    {
+      "path": "docs/assets/source/logo-1b-1-approved.png",
+      "sha256": "432d3e69afaf14ca29de3d52a8163df3d2fc2b70b7a2e0b85a288071865c765e",
+      "matchesRecorded": true
+    },
+    {
+      "path": "docs/assets/generation/render-platform-icons.py",
+      "sha256": "7def95bf7fa336c3a366f9e123a169656011e84402428bd13f1f797dfd43f116",
+      "matchesRecorded": true
+    },
+    {
+      "path": "docs/assets/generation/logo-1b-1.json",
+      "sha256": "c890411c209b141c5b1648956952f708658f684a9defcdb8c3ccf9cfd89f83fb",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "sha256": "26310833a35076dfe3bdcd9fa469c5c7e36c26623eaf6009bf2d450f779189a3",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "sha256": "a3fb2461e649359bad599144110dc250e5a6c2d2e1b5a00fbb4e1b34d9a50d5d",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher_background.png",
+      "sha256": "40cf690183704b54c4d93fe369349676c04e2531bbba75c4177578404d25e0d6",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher_foreground.png",
+      "sha256": "3de7783b48c7ec50c88233073dd49d8e23bfbce83641f61d485da36f750525fc",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-mdpi/ic_launcher_monochrome.png",
+      "sha256": "36087c7f591980b78e00a06c6c4dcf134ac04e32b99e917cce321ba7b1ee0c91",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "sha256": "0f56a8eb0469447b8c31ec87c62cdbfd7f731079b67a4d96d14055b9129f7ffd",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher_background.png",
+      "sha256": "d68f9e75aa1f29c17b57b84d382de44047d885cdd3e8e8da1eb72a5edafe442b",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher_foreground.png",
+      "sha256": "a7332c537466cc02e4dcdfa68a3efe46ac7ce55253121520d5a6467aed73822b",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-hdpi/ic_launcher_monochrome.png",
+      "sha256": "5ebacbc35a7ea6946580b12353cba7d65c10224892f6443b06a616d3c4aef2ad",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "sha256": "856fadb05c90f1ab921f7e7ccae16d96a7a794d073a13dff8271c8d372ebe6c6",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher_background.png",
+      "sha256": "b31db9ab95de8670ae806a2147cd5a29298fe7f3007b1c7d65f4c33ead89c529",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png",
+      "sha256": "35b698868e8c8ff7bf5e7350baf9e15618be7eafc4adf7491cbecb32bd4ebc54",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xhdpi/ic_launcher_monochrome.png",
+      "sha256": "f6c2b3aad1f35a113b0434b8a1b8cb94c4ed315b0af2210dc20e6cb8b456bc48",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "sha256": "98ddd787f9b87a5328e955b06e579c2f7a2d0715e3115d9b9472978f3b5fa616",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_background.png",
+      "sha256": "e1389476df3756980d301861f71c19edb5a57684258ff3a54a08b70857301b13",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png",
+      "sha256": "8e822fc3d2d4f929281e0a317403a20476ac33eea6f80b38575cd74ebed94d5a",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_monochrome.png",
+      "sha256": "8881880092c7f0a09db2d698c81bbbfb5d8e7a7d25fb87cd9ef28ee40ed36bbd",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "sha256": "f68bd9a28c5354d8c977061a3c2d17a2df3c94eaa778b38da5ee923d71932568",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_background.png",
+      "sha256": "215d34f53c48b1f56a6b2088628475ce382ce62e19e204ac0105cfe381153b33",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png",
+      "sha256": "107d2856551428fa84d8ee4a48ffaf79e7b216836b07981b6dc402826e7b59dc",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_monochrome.png",
+      "sha256": "ad049e85c235492427f458aa87438691ec7d215b12146df5454316735c8916cf",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/AndroidManifest.xml",
+      "sha256": "b5e5476c080772bf5123ed415148630c2abcf3ec0e228bbf53057d340514eaac",
+      "matchesRecorded": true
+    },
+    {
+      "path": "androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "sha256": "26310833a35076dfe3bdcd9fa469c5c7e36c26623eaf6009bf2d450f779189a3",
+      "matchesRecorded": true
+    },
+    {
+      "path": "docs/assets/platform-icon-contact-sheet.png",
+      "sha256": "059bd46d99543b1ee0d253906caa0060d202e953e08d12e40c9788dee340c836",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x.png",
+      "sha256": "2193969d3165b483c955ecb9afbc9fd4e9ab0ff4394df83a89617575300336bc",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@2x~ipad.png",
+      "sha256": "2193969d3165b483c955ecb9afbc9fd4e9ab0ff4394df83a89617575300336bc",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20@3x.png",
+      "sha256": "f52cf8966f09cc62c93924ef6fda3c66e62589b5d20c51fb449f35e52b8cd9a3",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-20~ipad.png",
+      "sha256": "9194f0fceab3a72620aa0c13e5fdcd256a6b09d4b4e615079bd259c58bc119bf",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29.png",
+      "sha256": "c50b06a304497b2d9fc17fb9816a270fc1e3d1b1c81720507c47b7a3736a8e67",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x.png",
+      "sha256": "311d0db766cdbc636d82d9b68ae4ee67956ad1c2129b2440fda959ceb71a774d",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@2x~ipad.png",
+      "sha256": "311d0db766cdbc636d82d9b68ae4ee67956ad1c2129b2440fda959ceb71a774d",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29@3x.png",
+      "sha256": "d82d9e4e15873d21db840e9c17343a8948134a7405e4d71a0f6a80a64459df95",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-29~ipad.png",
+      "sha256": "c50b06a304497b2d9fc17fb9816a270fc1e3d1b1c81720507c47b7a3736a8e67",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x.png",
+      "sha256": "5c25ed021e3bc00c1f7b8b1074679cb6013f8c60460753aa42dbab6b25cd2842",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@2x~ipad.png",
+      "sha256": "5c25ed021e3bc00c1f7b8b1074679cb6013f8c60460753aa42dbab6b25cd2842",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40@3x.png",
+      "sha256": "85c204737aa5c011fee03fed21676a13db5bd2d34871ac5b603b24e7a2e0a8b9",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-40~ipad.png",
+      "sha256": "2193969d3165b483c955ecb9afbc9fd4e9ab0ff4394df83a89617575300336bc",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@2x~car.png",
+      "sha256": "85c204737aa5c011fee03fed21676a13db5bd2d34871ac5b603b24e7a2e0a8b9",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-60@3x~car.png",
+      "sha256": "30a4cb4953f41b88be939fd021561331de4d972d27a28c776695f9cd55ebea7c",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-83.5@2x~ipad.png",
+      "sha256": "b8ff747a68f5214f623824b02cef4b9ae6483787835bd5e7ef0760f72a832c2d",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x.png",
+      "sha256": "85c204737aa5c011fee03fed21676a13db5bd2d34871ac5b603b24e7a2e0a8b9",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@2x~ipad.png",
+      "sha256": "7826a6123409fd84ac6956426cf3a8064494b34bbbc624eab745eae5452ce474",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon@3x.png",
+      "sha256": "30a4cb4953f41b88be939fd021561331de4d972d27a28c776695f9cd55ebea7c",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ios-marketing.png",
+      "sha256": "7eae16d1dca25ee43632ec62179299a45992e21a8df9b8be718718536b3e026f",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ipad.png",
+      "sha256": "802986496406f5df0d173e929f8825916a20cc7f20f8120daa0012f081f38d62",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "be4eb3cd64b0335e44e530e002d0d5f4ed12acaa6c93a75d6d9453a3b95a6f90",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp.xcodeproj/project.pbxproj",
+      "sha256": "a2b32f8ef7c376b43b1c450733ac5daa9943f44ac680cfdaa7cb3d1366eff012",
+      "matchesRecorded": true
+    },
+    {
+      "path": "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "be4eb3cd64b0335e44e530e002d0d5f4ed12acaa6c93a75d6d9453a3b95a6f90",
+      "matchesRecorded": true
+    },
+    {
+      "path": "docs/assets/platform-icon-contact-sheet.png",
+      "sha256": "059bd46d99543b1ee0d253906caa0060d202e953e08d12e40c9788dee340c836",
+      "matchesRecorded": true
+    }
+  ],
+  "catalogOriginalAvailability": [
+    {
+      "id": "ASSET-022",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-902f4b4c-244f-43a0-8578-14ea16a1658e.png",
+      "exists": true
+    },
+    {
+      "id": "ASSET-023",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-20d3a666-de04-49ce-b44c-6525e2329a98.png",
+      "exists": true
+    },
+    {
+      "id": "ASSET-024",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-945861f3-6e0e-4a93-8fb3-009aa3d9217b.png",
+      "exists": true
+    },
+    {
+      "id": "ASSET-025",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-ef365f5b-e841-4064-bcb7-a42ee21d9ec8.png",
+      "exists": true
+    },
+    {
+      "id": "ASSET-026",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-e9ed9966-387c-4ac9-86b3-5237152b73f4.png",
+      "exists": true
+    },
+    {
+      "id": "ASSET-027",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-442b4192-378d-4bba-a5a5-bf2914751e65.png",
+      "exists": true
+    },
+    {
+      "id": "ASSET-028",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-e7b2f6eb-931b-4f7a-a58e-4a732b7072f1.png",
+      "exists": true
+    },
+    {
+      "id": "ASSET-029",
+      "path": "C:/Users/Sergey/.codex/generated_images/01a0bd6c-8241-7173-ad1c-825640a3cb64/exec-8f58c46c-5195-41c5-a7a7-a3fe0ca95ea8.png",
+      "exists": true
+    }
+  ],
+  "storeExports": [
+    {
+      "path": "docs/assets/google-play/app-icon-512.png",
+      "sha256": "aaf6fcd576e57499252d6b43d9a381e2d4efc7e5f0dbdf6f7650f196c8c589e4",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null
+    },
+    {
+      "path": "docs/assets/google-play/feature-graphic-01-1024x500.png",
+      "sha256": "4ff52c1d9407769d4e28771b03cdbf8ce11c674a095e4b9a9031f428233fd012",
+      "size": [
+        1024,
+        500
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null
+    },
+    {
+      "path": "docs/assets/google-play/feature-graphic-02-1024x500.png",
+      "sha256": "be88d5d3eccc0b2c11666810ae608ce6a7b3c6fbb802e2efd7f0e997ab582bbd",
+      "size": [
+        1024,
+        500
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null
+    },
+    {
+      "path": "docs/assets/google-play/feature-graphic-03-1024x500.png",
+      "sha256": "b7c78e761b53bf76ea91eca10acf1869ac7e97e0f1c73dbb270bee62c5199cf8",
+      "size": [
+        1024,
+        500
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null
+    }
+  ],
+  "visualInspection": [
+    {
+      "path": "docs/assets/platform-icon-contact-sheet.png",
+      "sha256": "059bd46d99543b1ee0d253906caa0060d202e953e08d12e40c9788dee340c836",
+      "findings": "Inspected five Android densities: legacy tiles, circular adaptive crops and monochrome silhouettes. Leaves and tray remain within circle with visible margin; no clipped edge or duplicate background art. iOS 20/167/180/1024px examples preserve the sprout/tray silhouette; 20px internal detail naturally reduces. Solid ivory background and square iOS export edges are visible."
+    },
+    {
+      "path": "docs/assets/generated-catalog-contact-sheet.png",
+      "sha256": "74904ac69ffb94005ab68870bd764072476d7ee78ba32f0c61ea857d3a461203",
+      "findings": "Inspected all eight covers: cohesive tray/plant illustration family; no visible crop of tray/foliage, text, watermark or checkerboard. These are illustrative botanical images, not independent species/content verification."
+    },
+    {
+      "path": "docs/assets/google-play/app-icon-512.png",
+      "sha256": "aaf6fcd576e57499252d6b43d9a381e2d4efc7e5f0dbdf6f7650f196c8c589e4",
+      "findings": "Inspected full 512px icon: centered sprout/tray, opaque ivory rectangular background, no baked rounded corners or visible clipping."
+    }
+  ],
+  "remainingBoundaries": [
+    "Declared symbol presence and hash equality do not independently establish every runtime branch. Current parent-owned production-screen review supplies that complementary evidence.",
+    "Catalog originals remain absolute local generation-cache paths; accessible on this machine is not a portable source archive. No external artwork/license verification or legal/trademark clearance is asserted.",
+    "Native slot/mask/alpha inspection is file-level evidence. Android launcher variants and native iOS/App Store rendering/submission are not executed by this review.",
+    "Google Play feature graphics have size/hash inventory only in this review; they were not visually inspected here. They are separate store marketing derivatives, not counted among the 29 in-app assets.",
+    "Record9 bindings are current at this manifest hash. File-level visual evidence does not prove routing or notification execution; subsequent source or capture changes require reference revalidation."
+  ],
+  "record9Refresh": {
+    "changedUniqueReferences": {
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt": {
+        "previous": "c13c709f89188231a818c9ab9518757f3395fa1292e9300978acc0287f85278d",
+        "current": "397602a4d34f9cb99aee0e31fa892e07fa899d56ff85a641721d07e51870d0e6"
+      },
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png": {
+        "previous": "6683ace77c73863e0616e7e2ddff16b67c6e8b7539f3ef2c5673fccbf2fe6c44",
+        "current": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c"
+      }
+    },
+    "capture63Inspection": "Inspected final full-size Today light capture: one Close batch primary with check-circle and one Open batch secondary; no duplicate Open control. Settings, New batch plus, and all four bottom navigation icons remain visible and unclipped. No product-interaction claim from pixels.",
+    "checks": "Asset validator and native icon validator rerun directly after refresh; no formal lean receipt."
+  },
+  "decimalSummaryUsageRefresh": {
+    "sourcePath": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+    "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+    "record": "33612/e48f0a49",
+    "scope": "Usage hash only after localized positive-decimal summary formatting. All existing visual bindings remain byte-identical; no new visual or runtime claim.",
+    "reviewDocumentSha256": "5c847ccec0dbe2341e38bf18612e4ebf07ae0a65bb860e12c91b2ae5b85ca028"
+  },
+  "record10Refresh": {
+    "reviewDocumentSha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508",
+    "scope": "Parent inspected15 changed production captures including Close identity and Zone forecast. All asset artifact/source/usage and individual visual binding hashes unchanged; only full review-document bindings refreshed. No additional native/runtime claim."
+  }
+}

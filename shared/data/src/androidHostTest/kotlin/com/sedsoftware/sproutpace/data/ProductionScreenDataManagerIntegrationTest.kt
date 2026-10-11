@@ -146,17 +146,18 @@ class ProductionScreenDataManagerIntegrationTest {
         saveTray()
         savePlan()
         val firstRun = manager.watch(ScreenId.FIRST_RUN).first()
-        assertEquals("Grow shelf", firstRun.field("zoneName"))
+        assertEquals("", firstRun.field("zoneName"))
         assertEquals("grow_light", firstRun.field("type"))
         assertEquals("1", firstRun.field("capacity"))
-        assertEquals("10 x 20 tray", firstRun.field("trayName"))
+        assertEquals("", firstRun.field("trayName"))
         assertEquals("rectangle", firstRun.field("shape"))
         assertEquals("25.4", firstRun.field("widthCm"))
         assertEquals("50.8", firstRun.field("lengthCm"))
         assertEquals("7", firstRun.field("cadenceDays"))
         assertEquals("radish", firstRun.field("cultureIds"))
         assertEquals("continuous_queue", firstRun.field("mode"))
-        val command = firstRun.prepared(ScreenId.FIRST_RUN, "continue-setup")
+        val command = firstRun.prepared(ScreenId.FIRST_RUN, "continue-setup",
+            mapOf("zoneName" to "Kitchen shelf", "trayName" to "My tray"))
 
         execute(ScreenId.FIRST_RUN, command)
         val afterFirst = database.snapshot()
@@ -191,7 +192,7 @@ class ProductionScreenDataManagerIntegrationTest {
         saveZone()
         val before = database.snapshot()
         val valid = manager.watch(ScreenId.FIRST_RUN).first()
-            .prepared(ScreenId.FIRST_RUN, "continue-setup")
+            .prepared(ScreenId.FIRST_RUN, "continue-setup", mapOf("zoneName" to "Kitchen shelf", "trayName" to "My tray"))
         val invalidCommands = listOf(
             valid.copy(
                 arguments = valid.arguments + ("type" to "dark"),
@@ -307,6 +308,9 @@ class ProductionScreenDataManagerIntegrationTest {
         assertEquals("Updated peas", batches.getValue("batch-2").recipe.nameSnapshot)
         assertEquals("hemp mat", batches.getValue("batch-2").substrateSnapshot)
         assertEquals(originalSnapshot.stages, batches.getValue("batch-2").recipe.stages)
+        val detail = manager.watch(ScreenId.BATCH_DETAIL, "batch-1").first()
+        assertEquals("My peas", detail.facts.single { it.id == "recipe-snapshot" }.authoredValue)
+        assertEquals(originalSnapshot.stages.map { it.userGuidance }, detail.items.mapNotNull { it.snapshotStage }.map { it.authoredGuidance })
     }
 
     @Test
@@ -508,7 +512,8 @@ class ProductionScreenDataManagerIntegrationTest {
         savePlan(mode = "cadence")
 
         val initial = manager.watch(ScreenId.PLAN).first()
-        assertTrue(initial.items.any { it.id == "plan-1" })
+        assertEquals("plan-1", initial.plans.single().id)
+        assertEquals(listOf("pea", "radish"), initial.plans.single().cultureIds)
         assertTrue(initial.items.any { it.id.startsWith("plan-1:") })
         assertEquals(3, initial.conflictResolutionKeys.size)
         assertTrue(database.snapshot().batches.isEmpty())
@@ -522,16 +527,18 @@ class ProductionScreenDataManagerIntegrationTest {
         )
         execute(ScreenId.PLAN, ScreenCommand("pause-plan", "plan-1"))
         assertTrue(database.snapshot().plans.single().paused)
+        assertTrue(manager.watch(ScreenId.PLAN).first().items.isEmpty())
+        assertTrue(manager.watch(ScreenId.TODAY).first().items.isEmpty())
         execute(ScreenId.PLAN, ScreenCommand("resume-plan", "plan-1"))
         val resumed = manager.watch(ScreenId.PLAN).first()
         assertFalse(database.snapshot().plans.single().paused)
         assertEquals(5, database.snapshot().plans.single().cadence.value)
-        assertTrue(resumed.items.any { it.id == "plan-1:0" })
-        assertTrue(
-            manager.watch(ScreenId.TODAY).first().items.any { it.id.startsWith("plan-1:continuous:") },
-        )
+        val continuous = resumed.items.single()
+        assertTrue(continuous.id.startsWith("plan-1:continuous:"))
+        assertEquals(continuous, manager.watch(ScreenId.TODAY).first().items.single())
+        assertEquals(3, resumed.conflictResolutionKeys.size)
 
-        execute(ScreenId.PLAN, ScreenCommand("confirm-suggestion", "plan-1:0"))
+        execute(ScreenId.PLAN, ScreenCommand("confirm-suggestion", continuous.id))
         assertTrue(database.snapshot().batches.isEmpty())
     }
 
@@ -546,7 +553,8 @@ class ProductionScreenDataManagerIntegrationTest {
         assertEquals("soak:batch-1", scheduled.id.value)
         assertTrue(
             manager.watch(ScreenId.TODAY).first().items.any { item ->
-                item.commands.any { it.subjectId == scheduled.id.value }
+                item.task?.actionId == scheduled.id.value &&
+                    item.commands.any { it.operation == "open-batch" && it.subjectId == scheduled.batchId.value }
             },
         )
 
@@ -577,19 +585,21 @@ class ProductionScreenDataManagerIntegrationTest {
     }
 
     @Test
-    fun ac061Ac063_completeAndSkipUseExplicitActionTargetsAndKeepLaterBatchWork() = runTest {
+    fun ac061Ac063_nonStageCompletionAndSkipKeepLaterBatchWork() = runTest {
         seedBatchPrerequisites()
         execute(
             ScreenId.BATCH_DETAIL,
             ScreenCommand("schedule-soak-target", "batch-1", mapOf("dueAt" to "2026-09-20T10:30:00Z")),
         )
-        val batch = database.snapshot().batches.single()
+        val batch = database.snapshot().batches.single().let { value ->
+            value.copy(actions = value.actions.map { it.copy(stage = null) })
+        }
         val second = ScheduledAction(
-            ScheduledActionId("sow:batch-1"), batch.id, GrowStage.SOWN,
+            ScheduledActionId("sow:batch-1"), batch.id, null,
             DueMoment.ElapsedTarget(Instant.parse("2026-09-20T11:00:00Z")),
         )
         val later = ScheduledAction(
-            ScheduledActionId("light:batch-1"), batch.id, GrowStage.LIGHT_GROWTH,
+            ScheduledActionId("light:batch-1"), batch.id, null,
             DueMoment.ElapsedTarget(Instant.parse("2026-09-21T10:00:00Z")),
         )
         database.saveBatch(batch.copy(actions = batch.actions + second + later))
@@ -692,10 +702,12 @@ class ProductionScreenDataManagerIntegrationTest {
         assertEquals(
             setOf(
                 "confirm-sowing", "undo-stage", "skip-stage", "schedule-soak-target",
-                "delete-batch", "add-observation", "close-batch",
+                "delete-batch", "add-observation", "close-batch", "edit-batch",
             ),
             soaking.actionIds(),
         )
+        assertEquals(Instant.parse("2026-09-20T08:00:00Z"), soaking.items.single { it.id == "event:event-soak" }.history?.occurredAt)
+        assertTrue(soaking.items.filter { it.task != null }.any { it.task?.fixed == true })
 
         execute(
             ScreenId.BATCH_DETAIL,
@@ -757,16 +769,23 @@ class ProductionScreenDataManagerIntegrationTest {
             }
             val first = manager.watch(screen, stableId).first()
             val second = manager.watch(screen, stableId).first()
-            assertEquals(first, second, screen.name)
+            // Independent subscriptions have independent creation/copy identities; persisted projections stay exact.
+            fun com.sedsoftware.sproutpace.component.ScreenSnapshot.withoutDraftIdentities() = copy(
+                fields = fields.filterNot { it.id.value == "id" || it.id.value == "newId" },
+            )
+            assertEquals(first.withoutDraftIdentities(), second.withoutDraftIdentities(), screen.name)
             assertTrue(first.items.all { it.titleKey != null || !it.authoredTitle.isNullOrBlank() }, screen.name)
             val contract = ScreenContractRegistry.contracts.getValue(screen)
-            assertEquals(contract.fields.map { it.id }, first.fields.map { it.id }, "${screen.name} fields")
-            assertTrue(first.facts.map { it.id }.containsAll(contract.facts.map { it.id }), "${screen.name} facts")
-            if (screen == ScreenId.BATCH_DETAIL) {
-                assertTrue(first.actions.isNotEmpty(), "${screen.name} actions")
-                assertTrue(contract.actions.containsAll(first.actions), "${screen.name} actions")
-            } else {
-                assertEquals(contract.actions, first.actions, "${screen.name} actions")
+            val expectedFields = if (screen == ScreenId.TODAY) emptyList() else contract.fields.map { it.id }
+            assertEquals(expectedFields, first.fields.map { it.id }, "${screen.name} fields")
+            assertTrue(first.hasInteractionContract, "${screen.name} explicit interactions")
+            assertTrue(first.facts.none { it.id.endsWith("-summary") }, "${screen.name} has no synthetic summary")
+            assertEquals(first.facts.size, first.facts.map { it.id }.distinct().size)
+            assertTrue(first.actions.filter { it.operation != null }.all {
+                it.operation in contract.operations
+            }, "${screen.name} production operations belong to the contract")
+            if (screen == ScreenId.RECIPE) {
+                assertEquals(setOf("use-recipe", "duplicate-recipe"), first.actions.map { it.id.value }.toSet())
             }
         }
     }
@@ -801,7 +820,9 @@ class ProductionScreenDataManagerIntegrationTest {
         execute(ScreenId.BATCH_EDITOR, batch.prepared(ScreenId.BATCH_EDITOR, "correct-batch"))
 
         val createBatch = manager.watch(ScreenId.BATCH_EDITOR).first()
-        val createBatchCommand = createBatch.prepared(ScreenId.BATCH_EDITOR, "save-batch")
+        val createBatchCommand = createBatch.prepared(ScreenId.BATCH_EDITOR, "save-batch", overrides = mapOf(
+            "cultureId" to "pea", "trayId" to "tray-1", "substrate" to "coco coir",
+        ))
         execute(ScreenId.BATCH_EDITOR, createBatchCommand)
         assertTrue(database.snapshot().batches.any { it.id.value == createBatchCommand.subjectId })
 
@@ -869,10 +890,13 @@ class ProductionScreenDataManagerIntegrationTest {
 
         val created = manager.watch(ScreenId.BACKUP_RESTORE).first()
         assertEquals(opaqueDocumentId, created.field("documentId"))
-        execute(ScreenId.BACKUP_RESTORE, created.prepared(ScreenId.BACKUP_RESTORE, "preview-restore"))
+        val namedSelection = SelectedBackupDocument(opaqueDocumentId, "Урожай — October 2026.zip").encode()
+        execute(ScreenId.BACKUP_RESTORE, created.prepared(ScreenId.BACKUP_RESTORE, "preview-restore",
+            overrides = mapOf("documentId" to namedSelection)))
 
         val preview = manager.watch(ScreenId.BACKUP_RESTORE).first()
-        assertEquals(opaqueDocumentId, preview.field("documentId"))
+        assertEquals(namedSelection, preview.field("documentId"))
+        assertEquals("Урожай — October 2026.zip", preview.facts.single { it.id == "restore-file-name" }.authoredValue)
         assertTrue(preview.facts.none { it.id == "document-id" })
         val restoreFacts = preview.facts.filter { it.id.startsWith("restore-") }
         assertTrue(restoreFacts.isNotEmpty())
@@ -1039,10 +1063,18 @@ class ProductionScreenDataManagerIntegrationTest {
             ScreenId.RECIPE,
             ScreenCommand("duplicate-recipe", "recipe-1", mapOf("newId" to "recipe-copy", "name" to "Copy")),
         )
-        execute(
-            ScreenId.TRAYS,
-            ScreenCommand("repeat-batch", "batch-1", mapOf("newId" to "batch-repeat")),
-        )
+        execute(ScreenId.CLOSE_BATCH, ScreenCommand("close-abandoned", "batch-1", mapOf("occurredAt" to NOW)))
+        val original = database.snapshot().batches.single()
+        val repeatEditor = manager.watch(ScreenId.BATCH_EDITOR,
+            com.sedsoftware.sproutpace.component.BatchRepeatDraft.route("batch-1")).first()
+        assertEquals(listOf(original), database.snapshot().batches)
+        val repeatedSave = assertIs<CommandPreparation.Ready>(ScreenContractRegistry.prepareCommand(
+            ScreenId.BATCH_EDITOR, ScreenActionId("save-batch"), null,
+            repeatEditor.fields.associate { it.id to it.value } + (ScreenFieldId("id") to "batch-repeat"),
+        )).command
+        execute(ScreenId.BATCH_EDITOR, repeatedSave)
+        execute(ScreenId.BATCH_EDITOR, repeatedSave)
+        assertEquals(original, database.snapshot().batches.single { it.id == original.id })
         assertEquals(BatchState.PLANNED, database.snapshot().batches.first { it.id.value == "batch-repeat" }.state)
         assertTrue(database.snapshot().batches.first { it.id.value == "batch-repeat" }.events.isEmpty())
 
@@ -1063,6 +1095,35 @@ class ProductionScreenDataManagerIntegrationTest {
         execute(ScreenId.BACKUP_RESTORE, ScreenCommand("delete-all-data"))
         assertTrue(database.snapshot().batches.isEmpty())
         assertTrue(files.exportAll().isEmpty())
+    }
+
+    @Test
+    fun repeatDraftKeepsHistoricalSnapshotsAfterLiveRecipeAndTrayChange() = runTest {
+        seedBatchPrerequisites()
+        execute(ScreenId.CLOSE_BATCH, ScreenCommand("close-abandoned", "batch-1", mapOf("occurredAt" to NOW)))
+        val original = database.snapshot().batches.single()
+        val workspace = database.snapshot()
+        database.saveRecipe(workspace.recipes.single().copy(name = "Changed live recipe", substrate = "Changed substrate"))
+        database.saveTrayPreset(workspace.trayPresets.single().copy(name = "Changed live tray"))
+        val route = com.sedsoftware.sproutpace.component.BatchRepeatDraft.route(original.id.value)
+        val editor = manager.watch(ScreenId.BATCH_EDITOR, route).first()
+        assertEquals(listOf(original), database.snapshot().batches)
+        val draft = editor.fields.associate { it.id to it.value }
+        val command = assertIs<CommandPreparation.Ready>(ScreenContractRegistry.prepareCommand(
+            ScreenId.BATCH_EDITOR, ScreenActionId("save-batch"), route, draft,
+        )).command
+        assertTrue(manager.execute(ScreenId.TRAYS, ScreenCommand("repeat-batch", original.id.value)).isFailure)
+        execute(ScreenId.BATCH_EDITOR, command)
+        execute(ScreenId.BATCH_EDITOR, command)
+        val batches = database.snapshot().batches
+        assertEquals(2, batches.size)
+        assertEquals(original, batches.single { it.id == original.id })
+        val repeated = batches.single { it.id != original.id }
+        assertEquals(original.recipe, repeated.recipe)
+        assertEquals(original.tray, repeated.tray)
+        assertEquals(original.substrateSnapshot, repeated.substrateSnapshot)
+        assertEquals(BatchState.PLANNED, repeated.state)
+        assertTrue(repeated.events.isEmpty())
     }
 
     private suspend fun seedBatchPrerequisites() {

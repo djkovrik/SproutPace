@@ -12,10 +12,12 @@ import com.sedsoftware.sproutpace.component.TextKey
 internal interface ScreenStore : Store<ScreenStore.Intent, ScreenStore.State, ScreenStore.Label> {
     sealed interface Intent {
         data object Retry : Intent
+        data class ReportFailure(val key: TextKey) : Intent
         data class Select(val id: String) : Intent
         data class EditField(val fieldId: ScreenFieldId, val value: String) : Intent
         data class Submit(val actionId: ScreenActionId) : Intent
         data object CancelDraft : Intent
+        data object ConfirmStagePreview : Intent
         data class Execute(val command: ScreenCommand) : Intent
         data class SetLayout(val mode: LayoutMode) : Intent
     }
@@ -31,6 +33,10 @@ internal interface ScreenStore : Store<ScreenStore.Intent, ScreenStore.State, Sc
         val draftValues: Map<ScreenFieldId, String> = emptyMap(),
         val dirtyFields: Set<ScreenFieldId> = emptySet(),
         val validationErrors: Map<ScreenFieldId, TextKey> = emptyMap(),
+        val restoredFields: Set<ScreenFieldId> = emptySet(),
+        val detailSnapshot: ScreenSnapshot? = null,
+        val stagePreview: com.sedsoftware.sproutpace.component.StageChangeProjection? = null,
+        val completionRevision: Long = 0,
     )
 
     sealed interface Label {

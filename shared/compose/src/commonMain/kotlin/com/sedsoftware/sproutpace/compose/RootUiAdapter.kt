@@ -61,20 +61,23 @@ internal fun RootApp(
         ?: ThemePreference.SYSTEM
     val advertisingRuntime = (root as? AdvertisingRuntimeOwner)?.advertisingRuntime
     val privacyState = advertisingRuntime?.privacyState?.collectAsState()?.value
+    val networkAvailable = advertisingRuntime?.networkAvailable?.collectAsState()?.value == true
     AppTheme(theme, onThemeChanged) {
     val stack by root.stack.asComposeState()
     val activeComponent = stack.active.instance
     val model by activeComponent.model.asComposeState()
     val confirmationSlot by root.confirmation.asComposeState()
+    val settingsComponent = stack.backStack.lastOrNull { it.configuration.screen == ScreenId.SETTINGS }?.instance
+    val settingsModel = settingsComponent?.model?.asComposeState()?.value
     val baseUiState = model.toUiState(
         selectedPrimary = selectedPrimaryScreen(
             active = stack.active.configuration.screen,
             backStack = stack.backStack.map { it.configuration.screen },
         ),
-    )
+    ).withSettingsContext(settingsModel)
     var adUnitId by remember(activeComponent) { mutableStateOf<String?>(null) }
-    val advertisingVisit = remember(activeComponent) { AdvertisingVisitGate() }
-    val placement = baseUiState.adPlacementRequestOrNull()
+    val advertisingVisit = remember(activeComponent, networkAvailable) { AdvertisingVisitGate() }
+    val placement = baseUiState.adPlacementRequestOrNull(networkAvailable)
     LaunchedEffect(activeComponent, placement) {
         if (placement == null || advertisingRuntime == null) {
             adUnitId = null
@@ -87,7 +90,8 @@ internal fun RootApp(
     }
     val uiState = baseUiState
         .withAdvertisingPrivacy(privacyState)
-        .copy(showInlineAd = adUnitId != null, inlineAdUnitId = adUnitId)
+        .copy(showInlineAd = networkAvailable && adUnitId != null,
+            inlineAdUnitId = adUnitId.takeIf { networkAvailable })
     val router = remember(root, activeComponent, platformActions) {
         RootActionRouter(root, activeComponent, platformActions) { activeComponent.model.value.selectedItemId }
     }
@@ -113,21 +117,24 @@ internal fun RootApp(
             }
         },
     )
-        confirmationSlot.child?.instance?.let { confirmation -> RootConfirmationDialog(confirmation) }
+        confirmationSlot.child?.instance?.let { confirmation ->
+            RootConfirmationDialog(confirmation, baseUiState)
+        }
     }
 }
 
 @Composable
-private fun RootConfirmationDialog(component: ConfirmationComponent) {
+internal fun RootConfirmationDialog(component: ConfirmationComponent, source: SproutPaceUiState? = null) {
+    val copy = confirmationCopy(component.destructiveOperation)
     AlertDialog(
         onDismissRequest = component::cancel,
-        title = { Text(stringResource(Res.string.confirmation_title)) },
-        text = { Text(stringResource(Res.string.confirmation_body)) },
+        title = { Text(localizedText(copy.title)) },
+        text = { ConfirmationBody(component.command, source, copy.body) },
         confirmButton = {
-            TextButton(onClick = component::confirm) { Text(stringResource(Res.string.action_confirm_delete)) }
+            TextButton(onClick = component::confirm) { Text(localizedText(copy.confirm)) }
         },
         dismissButton = {
-            TextButton(onClick = component::cancel) { Text(stringResource(Res.string.action_back)) }
+            TextButton(onClick = component::cancel) { Text(localizedText("temporal_cancel")) }
         },
     )
 }
@@ -156,8 +163,10 @@ internal class RootActionRouter(
             is UiAction.SetLayout -> active.onAction(ScreenAction.SetLayout(action.layout.toComponentLayout()))
             is UiAction.Navigate -> navigate(action.screen, null)
             is UiAction.Submit -> submit(action.actionId, action.subjectId)
-            is UiAction.SubmitItem -> submitItem(action.operation, action.subjectId)
-            is UiAction.RequestPlatform -> platformActions.perform(action.request) { result ->
+            UiAction.ConfirmStagePreview -> active.onAction(ScreenAction.ConfirmStagePreview)
+            is UiAction.SubmitItem -> submitItem(action.operation, action.subjectId, action.arguments)
+            is UiAction.RequestPlatform -> platformActions.perform(action.request.withFailureHandler()) { result ->
+                if (result.isBlank()) return@perform
                 action.request.fieldId?.let { fieldId ->
                     if (action.request.kind == PlatformActionKind.CHOOSE_PHOTO) {
                         discardPendingPhoto(currentPhotoDraft())
@@ -192,11 +201,14 @@ internal class RootActionRouter(
         val operation = when (active.model.value.screen to fieldId) {
             ScreenId.SETTINGS to "theme" -> "set-theme"
             ScreenId.SETTINGS to "enabled" -> "set-crash-reporting"
+            ScreenId.NOTIFICATIONS to "dailySummaryEnabled",
+            ScreenId.NOTIFICATIONS to "soakRemindersEnabled",
+            ScreenId.NOTIFICATIONS to "summaryTime" -> "update-notifications"
             else -> return
         }
         val draft = active.model.value.fields.associate { it.id to it.value } + (id to value)
         val preparation = ScreenContractRegistry.prepareCommand(
-            screen = ScreenId.SETTINGS,
+            screen = active.model.value.screen,
             actionId = ScreenActionId(operation),
             currentSubjectId = null,
             draft = draft,
@@ -204,12 +216,16 @@ internal class RootActionRouter(
         if (preparation is CommandPreparation.Ready) active.onAction(ScreenAction.Execute(preparation.command))
     }
 
-    private fun submitItem(operation: String, subjectId: String) {
+    private fun submitItem(operation: String, subjectId: String, arguments: Map<String, String>) {
+        if (operation in navigationActions || operation == "repeat-batch") {
+            submit(operation, subjectId)
+            return
+        }
         val preparation = ScreenContractRegistry.prepareCommand(
             screen = active.model.value.screen,
             actionId = ScreenActionId(operation),
             currentSubjectId = subjectId,
-            draft = emptyMap(),
+            draft = arguments.mapKeys { ScreenFieldId(it.key) },
         )
         if (preparation is CommandPreparation.Ready) {
             active.onAction(ScreenAction.Execute(preparation.command))
@@ -218,48 +234,72 @@ internal class RootActionRouter(
 
     private fun navigate(screen: UiScreen, stableId: String?) {
         val target = screen.toScreenId()
+        if (active.model.value.screen == ScreenId.BATCH_EDITOR && target in setOf(ScreenId.ZONES, ScreenId.TRAY_SIZES)) {
+            root.openDependency(target)
+            return
+        }
         val primary = PrimaryDestination.entries.firstOrNull { it.screen == target }
         if (primary != null) root.select(primary) else root.open(target, stableId)
     }
 
     private fun submit(actionId: String, subjectId: String? = null) {
         val navigation = navigationActions[actionId]
-        if (navigation != null) {
-            navigate(navigation.screen, if (navigation.passSelection) subjectId ?: selectedItemId() else null)
-            return
-        }
         val destination = destinationActions[actionId]
-        if (destination != null) {
-            var consumed = false
-            platformActions.perform(
-                PlatformActionRequest(
-                    kind = PlatformActionKind.CREATE_DOCUMENT,
-                    fieldId = DOCUMENT_FIELD_ID,
-                    suggestedName = destination.suggestedName,
-                    mediaType = destination.mediaType,
-                ),
-            ) { result ->
-                if (consumed || result.isBlank()) return@perform
+        val platform = platformActionIds[actionId]
+        when {
+            actionId == "repeat-batch" -> (subjectId ?: selectedItemId())?.let {
+                root.open(ScreenId.BATCH_EDITOR, com.sedsoftware.sproutpace.component.BatchRepeatDraft.route(it))
+            }
+            actionId == "edit-plan" && subjectId != null -> root.open(ScreenId.PLAN, subjectId)
+            actionId == "new-zone" || actionId == "new-tray-size" -> {
+                val target = if (actionId == "new-zone") UiScreen.ZONES else UiScreen.TRAY_SIZES
+                val prefix = if (target == UiScreen.ZONES) "zone" else "tray"
+                navigate(target, "$prefix-${kotlin.time.Clock.System.now().toEpochMilliseconds()}")
+            }
+            actionId == "preview-restore" -> selectDocument(actionId, PlatformActionRequest(
+                PlatformActionKind.CHOOSE_DOCUMENT, DOCUMENT_FIELD_ID,
+            ))
+            navigation != null -> navigate(
+                navigation.screen, if (navigation.passSelection) subjectId ?: selectedItemId() else null,
+            )
+            destination != null -> selectDocument(actionId, PlatformActionRequest(
+                kind = PlatformActionKind.CREATE_DOCUMENT,
+                fieldId = DOCUMENT_FIELD_ID,
+                suggestedName = destination.suggestedName,
+                mediaType = destination.mediaType,
+            ))
+            platform != null -> platformActions.perform(PlatformActionRequest(platform)) { }
+            else -> active.onAction(ScreenAction.Submit(ScreenActionId(actionId)))
+        }
+    }
+
+    private fun selectDocument(actionId: String, request: PlatformActionRequest) {
+        var consumed = false
+        platformActions.perform(request.withFailureHandler()) { result ->
+            if (!consumed && result.isNotBlank()) {
                 consumed = true
                 active.onAction(ScreenAction.EditField(ScreenFieldId(DOCUMENT_FIELD_ID), result))
                 active.onAction(ScreenAction.Submit(ScreenActionId(actionId)))
             }
-            return
         }
-        val platform = platformActionIds[actionId]
-        if (platform != null) {
-            platformActions.perform(PlatformActionRequest(platform)) { }
-            return
-        }
-        active.onAction(ScreenAction.Submit(ScreenActionId(actionId)))
     }
+
+    private fun PlatformActionRequest.withFailureHandler() = copy(onFailure = { failure ->
+        active.onAction(ScreenAction.ReportFailure(com.sedsoftware.sproutpace.component.TextKey(failure.textKey)))
+    })
 
     private data class NavigationTarget(val screen: UiScreen, val passSelection: Boolean = false)
     private data class DestinationDocument(val suggestedName: String, val mediaType: String)
 
     private companion object {
         val navigationActions = mapOf(
+            "edit-zone" to NavigationTarget(UiScreen.ZONES, passSelection = true),
+            "edit-tray-size" to NavigationTarget(UiScreen.TRAY_SIZES, passSelection = true),
+            "resume-setup" to NavigationTarget(UiScreen.FIRST_RUN),
+            "open-plan" to NavigationTarget(UiScreen.PLAN),
             "new-batch" to NavigationTarget(UiScreen.BATCH_EDITOR),
+            "confirm-suggestion" to NavigationTarget(UiScreen.BATCH_EDITOR, passSelection = true),
+            "edit-batch" to NavigationTarget(UiScreen.BATCH_EDITOR, passSelection = true),
             "open-batch" to NavigationTarget(UiScreen.BATCH_DETAIL, passSelection = true),
             "add-observation" to NavigationTarget(UiScreen.OBSERVATION_EDITOR, passSelection = true),
             "close-batch" to NavigationTarget(UiScreen.CLOSE_BATCH, passSelection = true),
@@ -286,19 +326,19 @@ internal class RootActionRouter(
     }
 }
 
-internal fun SproutPaceUiState.adPlacementRequestOrNull(): AdPlacementRequest? = when {
-    offline -> null
+internal fun SproutPaceUiState.adPlacementRequestOrNull(networkAvailable: Boolean = !offline): AdPlacementRequest? = when {
+    !networkAvailable -> null
     screen == UiScreen.CATALOG && items.size >= MIN_CATALOG_ITEMS -> AdPlacementRequest(
         surface = AdSurface.CATALOG,
         realItemCount = items.size,
-        offline = offline,
+        offline = false,
         slotIndex = InlineAdPlacementPolicy.CATALOG_INSERTION_INDEX,
     )
     screen == UiScreen.TRAYS && trayCategory == TrayCategory.HISTORY && items.size >= MIN_HISTORY_ITEMS -> {
         AdPlacementRequest(
             surface = AdSurface.HISTORY,
             realItemCount = items.size,
-            offline = offline,
+            offline = false,
             slotIndex = InlineAdPlacementPolicy.HISTORY_INSERTION_INDEX,
         )
     }
@@ -338,6 +378,7 @@ internal suspend fun handleAdvertisingAction(
 
 internal fun SproutPaceUiState.withAdvertisingPrivacy(
     privacy: AdvertisingPrivacyState?,
+    nowEpochMillis: Long = kotlin.time.Clock.System.now().toEpochMilliseconds(),
 ): SproutPaceUiState {
     if (screen != UiScreen.ADVERTISING_PRIVACY) return this
     val policy = UiScreenAction(
@@ -347,7 +388,10 @@ internal fun SproutPaceUiState.withAdvertisingPrivacy(
         enabled = true,
         primary = false,
     )
-    val actions = when (privacy?.choice) {
+    val available = privacy?.let {
+        com.sedsoftware.sproutpace.monetization.PrivacyRepository.isFresh(it, nowEpochMillis) && it.consentRequired
+    } == true
+    val actions = when (privacy?.choice.takeIf { available }) {
         ConsentChoice.ACCEPTED -> listOf(
             UiScreenAction(ACTION_WITHDRAW, "action_withdraw_advertising_consent", null, true, false),
             policy,
@@ -359,7 +403,18 @@ internal fun SproutPaceUiState.withAdvertisingPrivacy(
         )
         null -> listOf(policy)
     }
-    return copy(actions = actions)
+    val status = when {
+        privacy == null -> "privacy_endpoint_unavailable"
+        com.sedsoftware.sproutpace.monetization.PrivacyRepository.isFresh(privacy, nowEpochMillis) &&
+            !privacy.consentRequired -> "privacy_not_required"
+        !available -> "privacy_endpoint_stale"
+        else -> "privacy_${privacy.choice.name.lowercase()}"
+    }
+    return copy(actions = actions, items = items.map { if (it.id == "privacy") it.copy(stateKey = status) else it },
+        facts = listOfNotNull(
+        UiFact("privacy-applicability", "privacy_heading", status, null),
+        privacy?.takeIf { available }?.let { UiFact("policy-version", "privacy_policy_version", null, it.policyVersion) },
+    ))
 }
 
 internal fun UiScreenAction.toAdvertisingUiAction(): UiAction? = when (id) {
@@ -381,26 +436,37 @@ internal fun ScreenModel.toUiState(
 ): SproutPaceUiState {
     val contract = ScreenContractRegistry.contracts.getValue(screen)
     val trayCategory = trayCategory()
-    val variant = uiVariant()
+    val visible = visibleItems(trayCategory)
+    val variant = if (screen == ScreenId.TRAYS && loadState == LoadState.CONTENT && visible.isEmpty()) {
+        UiVariant.EMPTY
+    } else uiVariant()
     return SproutPaceUiState(
         screen = screen.toUiScreen(),
         variant = variant,
         selectedPrimary = selectedPrimary,
+        selectedItemId = selectedItemId,
         busy = busy,
         offline = offline,
         permissionState = permissionState,
         trayCategory = trayCategory,
         showInlineAd = showInlineAdSlot,
-        items = visibleItems(trayCategory).map { it.toUiItem(selectedItemId) },
+        items = visible.map { it.toUiItem(selectedItemId) },
         fields = fields.filterNot { screen == ScreenId.TRAYS && it.id.value == TRAY_CATEGORY_FIELD_ID }
             .map { it.toUiField(validationErrors[it.id]?.value) },
         facts = facts.map { fact ->
-            UiFact(fact.id, fact.labelKey.value, fact.valueKey?.value, fact.authoredValue)
+            if (screen == ScreenId.TRAYS && fact.id == "batch-count") {
+                UiFact(fact.id, trayCategory.labelKey, null, visible.size.toString())
+            } else UiFact(fact.id, fact.labelKey.value, fact.valueKey?.value, fact.authoredValue)
         },
         actions = visibleActions(contract, variant),
         conflictKeys = conflictResolutionKeys.map { it.value },
         hasUnsavedChanges = hasUnsavedChanges,
         errorKey = errorKey?.value,
+        setupState = setupState,
+        plans = plans,
+        detail = detail?.toUiState(selectedPrimary = selectedPrimary),
+        stagePreview = stagePreview,
+        completionRevision = completionRevision,
     )
 }
 
@@ -413,10 +479,11 @@ private fun ScreenModel.trayCategory(): TrayCategory = fields
 private fun ScreenModel.visibleItems(trayCategory: TrayCategory): List<ScreenItem> = if (screen == ScreenId.TRAYS) {
     items.filter { item ->
         when (trayCategory) {
-            TrayCategory.PLANNED -> item.stateKey?.value == "option_batch_state_planned"
-            TrayCategory.HISTORY -> item.stateKey?.value in TERMINAL_BATCH_STATE_KEYS
-            TrayCategory.ACTIVE -> item.stateKey?.value != "option_batch_state_planned" &&
-                item.stateKey?.value !in TERMINAL_BATCH_STATE_KEYS
+            TrayCategory.PLANNED -> item.batch?.state == com.sedsoftware.sproutpace.domain.model.BatchState.PLANNED
+            TrayCategory.HISTORY -> item.batch?.state?.isTerminal == true
+            TrayCategory.ACTIVE -> item.batch?.state?.let {
+                it != com.sedsoftware.sproutpace.domain.model.BatchState.PLANNED && !it.isTerminal
+            } == true
         }
     }
 } else {
@@ -425,7 +492,7 @@ private fun ScreenModel.visibleItems(trayCategory: TrayCategory): List<ScreenIte
 
 private fun ScreenModel.uiVariant(): UiVariant = when {
     destructiveConfirmationKey != null -> UiVariant.DESTRUCTIVE_CONFIRMATION
-    loadState == LoadState.LOADING || busy -> UiVariant.PROGRESS
+    loadState == LoadState.LOADING -> UiVariant.PROGRESS
     loadState == LoadState.ERROR -> UiVariant.ERROR
     validationErrors.isNotEmpty() -> UiVariant.VALIDATION_ERROR
     permissionState == PermissionState.DENIED || permissionState == PermissionState.PERMANENTLY_DENIED -> {
@@ -443,7 +510,7 @@ private fun ScreenModel.uiVariant(): UiVariant = when {
 
 private fun ScreenModel.visibleActions(contract: ScreenContract, variant: UiVariant): List<UiScreenAction> {
     val snapshotPrimaryAction = primaryActionKey?.let { key -> primaryAction(key.value, contract) }
-    if (variant == UiVariant.EMPTY) return listOfNotNull(snapshotPrimaryAction)
+    if (variant == UiVariant.EMPTY && screen != ScreenId.PLAN) return listOfNotNull(snapshotPrimaryAction)
     val mappedActions = actions.map { descriptor ->
         UiScreenAction(
             id = descriptor.id.value,
@@ -466,6 +533,13 @@ private fun ScreenItem.toUiItem(selectedItemId: String?) = UiItem(
     selected = id == selectedItemId,
     commands = commands.map { command -> UiItemCommand(command.operation, command.subjectId) },
     photo = photo?.toUiPhoto(),
+    batch = batch,
+    task = task,
+    occupancy = occupancy,
+    planEntry = planEntry,
+    recipe = recipe,
+    history = history,
+    snapshotStage = snapshotStage,
 )
 
 private fun ScreenField.toUiField(errorKey: String?) = UiField(
@@ -475,7 +549,7 @@ private fun ScreenField.toUiField(errorKey: String?) = UiField(
     value = value,
     required = required,
     readOnly = readOnly,
-    options = options.map { option -> UiOption(option.id, option.labelKey?.value, option.authoredLabel) },
+    options = options.map { option -> UiOption(option.id, option.labelKey?.value, option.authoredLabel, option.batchIdentity) },
     errorKey = errorKey,
 )
 
@@ -497,9 +571,13 @@ private fun ScreenPhoto.toUiPhoto() = UiPhoto(id, bytes, contentDescriptionKey.v
 
 private const val TRAY_CATEGORY_FIELD_ID = "category"
 private val primaryActionIds = mapOf(
+    "action_resume_setup" to "resume-setup",
+    "action_open_plan" to "open-plan",
+    "action_save_recipe" to "save-recipe",
     "action_continue" to "continue-setup",
     "action_new_batch" to "new-batch",
     "action_save_batch" to "save-batch",
+    "action_save_plan" to "save-plan",
     "action_confirm_stage" to "confirm-stage",
     "action_start_soaking" to "start-soaking",
     "action_confirm_sowing" to "confirm-sowing",
@@ -513,14 +591,32 @@ private val primaryActionIds = mapOf(
     "action_accept" to ACTION_ACCEPT,
     "action_request_permission" to "request-notification-permission",
 )
-private val TERMINAL_BATCH_STATE_KEYS = setOf(
-    "option_batch_state_harvested",
-    "option_batch_state_failed",
-    "option_batch_state_abandoned",
-)
 
 internal fun ScreenId.toUiScreen(): UiScreen = UiScreen.valueOf(name)
 internal fun UiScreen.toScreenId(): ScreenId = ScreenId.valueOf(name)
+
+internal fun SproutPaceUiState.contextualFormFields(): List<UiField> {
+    val values = fields.associate { it.id to it.value }
+    return fields.filter { field ->
+        when {
+            field.id == "id" -> false
+            screen == UiScreen.OBSERVATION_EDITOR && field.id == "batchId" -> values["batchId"].isNullOrBlank()
+            screen == UiScreen.TRAY_SIZES && field.id in setOf("widthCm", "lengthCm") -> values["shape"] != "circle"
+            screen == UiScreen.TRAY_SIZES && field.id == "diameterCm" -> values["shape"] == "circle"
+            screen == UiScreen.CLOSE_BATCH && field.id in setOf("actualMassGrams", "assessment") -> values["outcome"] == "harvested"
+            screen == UiScreen.CLOSE_BATCH && field.id == "reason" -> values["outcome"] != "harvested"
+            else -> true
+        }
+    }
+}
+
+internal fun fieldHelpKey(field: UiField): String? = when (field.id) {
+    "widthCm", "lengthCm", "diameterCm" -> "form_help_centimetres"
+    "actualMassGrams", "actualSeedMassGrams" -> "form_help_grams"
+    "capacity" -> "form_help_places"
+    "cadenceDays" -> "form_help_days"
+    else -> null
+}
 
 internal fun selectedPrimaryScreen(active: ScreenId, backStack: List<ScreenId>): UiScreen =
     (listOf(active) + backStack.asReversed()).firstOrNull { candidate ->

@@ -1,31 +1,25 @@
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = 'Stop'
 
-$contract = Get-Content -Raw -LiteralPath "docs/design-review/production-ui-redesign-20260927.md"
-$goldens = @(Get-ChildItem -LiteralPath "shared/compose/src/androidUnitTest/snapshots/images" -Filter "*.png")
-
-$requiredContractMarkers = @(
-    "0d8da7b5-4c89-4516-99bb-ce0e2b7d76ba",
-    "Blocking findings: none",
-    "all 78 tracked Paparazzi goldens",
-    "run-android-ui-smoke.ps1",
-    "macOS Simulator execution"
-)
-
-foreach ($marker in $requiredContractMarkers) {
-    if (-not $contract.Contains($marker)) {
-        throw "Missing design-review contract marker: $marker"
+$coverage = Get-Content -Raw -LiteralPath 'docs/design-review/ux-preview-coverage.json' | ConvertFrom-Json
+$review = Get-Content -Raw -LiteralPath 'docs/design-review/ux-preview-review.json' | ConvertFrom-Json
+$goldenRoot = 'shared/compose/src/androidUnitTest/snapshots/images'
+$goldens = @(Get-ChildItem -LiteralPath $goldenRoot -Filter '*.png')
+if ($review.status -ne 'VISUALLY_REVIEWED') { throw 'Current visual inspection is incomplete' }
+if ($coverage.declarationCount -ne $goldens.Count -or $review.images.Count -ne $goldens.Count) {
+    throw 'Preview declarations, generated images and reviewed images differ'
+}
+if (@($coverage.screens).Count -ne 16) { throw 'All 16 screen matrices are required' }
+foreach ($screen in $coverage.screens) {
+    if (@($screen.missingDedicatedScenarioPreviews).Count -ne 0) {
+        throw "Missing scenario coverage: $($screen.screen)"
     }
 }
-
-1..16 | ForEach-Object {
-    $screenId = "SCREEN-{0:D3}" -f $_
-    if (-not $contract.Contains($screenId)) {
-        throw "Missing screen review marker: $screenId"
-    }
+$original = @($goldens | Where-Object { $_.Name -match '_sproutpacepreviewskt\.' })
+if ($original.Count -ne 78) { throw 'The original 78 production preview cases must remain present' }
+foreach ($golden in $goldens) {
+    $entries = @($review.images | Where-Object { $_.file -ceq $golden.Name })
+    if ($entries.Count -ne 1) { throw "Missing or duplicate review: $($golden.Name)" }
+    $hash = (Get-FileHash -LiteralPath $golden.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($hash -cne $entries[0].sha256) { throw "Image changed after review: $($golden.Name)" }
 }
-
-if ($goldens.Count -ne 78) {
-    throw "Expected 78 reviewed Paparazzi goldens, found $($goldens.Count)"
-}
-
-Write-Output "Current production UI review evidence is complete for all 16 screens and 78 goldens."
+Write-Output "Visual review hashes match all $($goldens.Count) production images across 16 screens. Runtime and platform checks are separate."

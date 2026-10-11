@@ -1,0 +1,96 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :detekt
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :shared:domain:compileAndroidMain
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ActionScheduleEngine.kt:18:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ActionScheduleEngine.kt:99:47 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt:19:75 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt:28:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt:39:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt:51:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt:140:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt:151:54 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchPlanningEngine.kt:88:41 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt:22:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt:28:31 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt:37:43 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt:84:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt:88:34 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt:95:34 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt:101:34 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/ObservationAndBackup.kt:8:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar
+> Task :shared:domain:androidJar UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar
+
+> Task :shared:domain:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchPlanningEngineTest.kt:50:26 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchPlanningEngineTest.kt:60:27 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt:25:77 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt:26:81 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt:11:18 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt:11:28 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt:130:22 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt:151:26 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:domain:koverFindJar UP-TO-DATE
+> Task :shared:domain:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:domain:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:testAndroidHostTest
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:component:compileAndroidMain
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+
+> Task :shared:data:compileAndroidMain
+e: file:///D:/Sources/Android/SproutPace/shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PlannedSuggestion.kt:37:32 Smart cast to 'LocalDate' is impossible, because 'date' is a public API property declared in different module.
+
+> Task :shared:data:compileAndroidMain FAILED
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:androidJar UP-TO-DATE
+> Task :shared:data:koverFindJar UP-TO-DATE
+> Task :shared:data:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:data:processAndroidHostTestJavaRes NO-SOURCE
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':shared:data:compileAndroidMain' (registered by plugin 'com.android.internal.kotlin.multiplatform.library').
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 48s
+20 actionable tasks: 11 executed, 9 up-to-date

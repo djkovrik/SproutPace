@@ -14,6 +14,14 @@ import com.yandex.mobile.ads.common.YandexAds
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
@@ -103,7 +111,13 @@ class AndroidAdvertisingRuntime(
     configuration: AdConfiguration,
     private val productSettings: ProductSettings,
     clock: EpochMillisClock = EpochMillisClock { System.currentTimeMillis() },
+    workspaceReady: StateFlow<Boolean> = MutableStateFlow(true),
 ) : AdvertisingRuntime {
+    private val connectivity = AndroidAdConnectivity(context)
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    override val networkAvailable = combine(connectivity.available, workspaceReady) { connected, ready ->
+        connected && ready
+    }.stateIn(scope, SharingStarted.Eagerly, false)
     private val httpClient = HttpClient(OkHttp) { configurePrivacyRegionClient() }
     val sdk = AndroidYandexAdsDriver(context)
     val privacy = PrivacyCoordinator(
@@ -114,7 +128,9 @@ class AndroidAdvertisingRuntime(
     val controller = AdvertisingController(privacy, sdk, configuration)
     override val privacyState = productSettings.privacyState
 
-    override suspend fun prepare(request: AdPlacementRequest) = controller.prepare(request)
+    override suspend fun prepare(request: AdPlacementRequest) = controller.prepare(
+        request.copy(offline = request.offline || !networkAvailable.value),
+    )
     override suspend fun acceptConsent() = controller.acceptConsent()
     override suspend fun declineConsent() = controller.declineConsent()
     override suspend fun withdrawConsent() = controller.withdrawConsent()
@@ -142,6 +158,8 @@ class AndroidAdvertisingRuntime(
     }
 
     override fun close() {
+        connectivity.close()
+        scope.cancel()
         httpClient.close()
     }
 }

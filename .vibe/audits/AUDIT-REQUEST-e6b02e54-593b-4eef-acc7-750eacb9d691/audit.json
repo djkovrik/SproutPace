@@ -1,0 +1,2633 @@
+{
+  "closedFindings": [
+    {
+      "id": "F01",
+      "reason": "Repeat still opens a retained prefilled draft and persists only on explicit Save. Previously inspected production routing and file-backed cancellation/reopen assertions are unchanged. F12 separately prevents current execution qualification."
+    },
+    {
+      "id": "F03",
+      "reason": "Stage tasks still route to lifecycle/outcome handling; the manager rejects status-only stage completion/skip. Previously inspected confirmation, event, placement, duplicate and rebuilt-work assertions remain unchanged. F12 separately prevents current execution qualification."
+    },
+    {
+      "id": "F08",
+      "reason": "Current bounded reference-backed design review includes the 15-image supplement, all 231 matching review hashes and 32 matching primary hashes. Runtime accessibility is explicitly excluded from this closure.",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-26ba1587-9e33-43c0-bd4a-9e5735671906.json"
+      ]
+    },
+    {
+      "id": "F10",
+      "reason": "All current manifest and review references checked without mismatch. Asset artifacts and native derivatives retain prior inspected hashes; updated production captures were inspected. Current asset/icon validators pass.",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-5760b8d9-ffa6-4c67-bae7-ad22bec10d5b.json",
+        ".vibe/receipts/RECEIPT-72736108-0b59-4573-a1b3-b9c334304d52.json"
+      ]
+    }
+  ],
+  "completedAt": "2026-10-11T05:49:34Z",
+  "deltaReview": {
+    "appSpecUnchanged": true,
+    "appSpecValidationErrors": [],
+    "assetChecks": {
+      "assetCount": 29,
+      "hashMismatches": [],
+      "manifestReferencesChecked": 200,
+      "reviewReferencesChecked": 207
+    },
+    "baselineAuditHashVerified": true,
+    "baselineAuditSha256": "50ddd7dc8d3fb1b8d6346ac055b392a6d882398e2c101da1d37c5d2a698e21da",
+    "baselineRequest": ".vibe/audits/AUDIT-REQUEST-29560ca5-b95d-4b57-ac50-e8c1d057ca9b/request.json",
+    "baselineRequestSha256": "14f9222cd6d917334ef762bf59bcfafca5f7bc33c1b281a75f91f9f39a2a186c",
+    "changedFileCount": 31,
+    "changedGoldenCount": 15,
+    "changedTextFiles": [
+      "docs/assets/asset-manifest.json",
+      "docs/assets/brand-refresh-review-current.json",
+      "docs/design-review/ux-delivery-20261010.md",
+      "docs/design-review/ux-preview-review.json",
+      "shared/compose/src/commonMain/composeResources/values-ru/zone_forecast.xml",
+      "shared/compose/src/commonMain/composeResources/values/zone_forecast.xml",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ContextualFormsScreen.kt",
+      "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionPreviewProjectionTest.kt",
+      "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt",
+      "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/ZoneForecastTest.kt",
+      "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PlannedSuggestion.kt",
+      "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt",
+      "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/WorkspaceProjections.kt",
+      "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ContinuousQueueEngine.kt",
+      "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ForecastCapacityEngine.kt",
+      "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContinuousQueueTest.kt"
+    ],
+    "inspection": "Compared both snapshot inventories and verified every current listed file hash. Inspected all changed text files, all 15 changed goldens, production forecast consumers, continuous scheduling, Today ordering and close-form rendering. Rechecked prior findings and all baseline production/test anchor existence. Unchanged normative review and unaffected behavioral analysis were carried forward by hash.",
+    "modifications": "No source, tests, configuration, AppSpec, work state or audit/launch artifact was edited. Only ignored visual-inspection contact sheets and check-runner logs/receipts were produced.",
+    "priorFindings": {
+      "F01": "Previously closed; retained Repeat routing and assertions unchanged. Execution requalification is affected by F12.",
+      "F02": "Production inconsistency addressed; targeted assertions inspected. Formal closure awaits F12 requalification.",
+      "F03": "Previously closed; lifecycle routing and status-only mutation guards remain present. Execution requalification is affected by F12.",
+      "F04": "Open; new manager tests do not replace missing connected component/Store assertions.",
+      "F05": "Open; newer bounded Android smoke improves evidence but does not complete native acceptance.",
+      "F06": "Open.",
+      "F07": "Open.",
+      "F08": "Remains closed for bounded design-review evidence.",
+      "F10": "Remains closed for repository asset-delivery evidence.",
+      "F11": "Calendar substitution addressed; rollover, accepted-slot suppression and outcome advancement assertions inspected. Formal closure awaits F12 requalification."
+    },
+    "scopeDecision": "Bounded corrections remain suitable for delta review. AppSpec, module architecture, persistence schema and platform contracts are unchanged. A fresh full audit is not required solely because the audit-side Gradle invocation could not access its cache.",
+    "visualReview": {
+      "changedGoldenIndices": [
+        9,
+        10,
+        16,
+        17,
+        18,
+        78,
+        79,
+        111,
+        112,
+        120,
+        126,
+        177,
+        182,
+        186,
+        200
+      ],
+      "hashMismatches": [],
+      "lazyweb": "No callable lazyweb_get_workflows tool was available. Inspected the existing local reference-backed screen-family report, its October 11 supplement and current primary-image hashes.",
+      "observations": "Close forms now display culture, tray, zone and sow date. Failed/abandoned reasons, validation, save failure and sticky actions remain readable in inspected captures. Zones explicitly distinguishes actual occupancy from committed/proposed demand. Content below a viewport is not treated as evidence of inaccessible scrolling.",
+      "primaryImageHashCount": 32,
+      "reviewedImageHashCount": 231,
+      "unchangedGoldenCount": 216
+    },
+    "workspaceDigest": "ce6dba86af9ce49bfdb9643980540925e7b0e31f7d8bced20f44c3e07449fcf0",
+    "workspaceMatchesRequest": true,
+    "workspaceUnchangedDuringAudit": true
+  },
+  "executionEvidence": {
+    "auditRerun": ".vibe/receipts/RECEIPT-ea47d4d9-3eb9-45b4-b5f5-ef41aed7fb87.json",
+    "auditRerunExitCode": 1,
+    "auditRerunFailure": "Gradle wrapper could not open C:\\Users\\Sergey\\.gradle\\wrapper\\dists\\gradle-9.5.1-bin\\iq79hdu3mqx29lgffhp8bfmx\\gradle-9.5.1-bin.zip.lck because access was denied. No Gradle task or application assertion ran in this attempt.",
+    "auditRerunLogHashVerified": true,
+    "commandReceiptChecks": "Completed successfully; log hashes and both workspace fingerprints match. They establish current visual-review bindings and asset validation, not substitute execution for product tests.",
+    "currentIndependentCommandReceipts": [
+      ".vibe/receipts/RECEIPT-26ba1587-9e33-43c0-bd4a-9e5735671906.json",
+      ".vibe/receipts/RECEIPT-5760b8d9-ffa6-4c67-bae7-ad22bec10d5b.json",
+      ".vibe/receipts/RECEIPT-72736108-0b59-4573-a1b3-b9c334304d52.json"
+    ],
+    "earlierMatchingMatrix": ".vibe/receipts/RECEIPT-84b5ecdb-e97d-4d35-bf03-85db994796cc.json",
+    "earlierMatrixLogHashVerified": true,
+    "earlierMatrixResult": "BUILD SUCCESSFUL in 4m 6s; 366 tasks, 65 executed and 301 up-to-date.",
+    "earlierMatrixStartAndEndFingerprintsMatch": true,
+    "hostTestXml": {
+      "component": 78,
+      "compose": 382,
+      "data": 116,
+      "domain": 60,
+      "errors": 0,
+      "failures": 0,
+      "monetization": 27,
+      "platform": 21,
+      "root": 30,
+      "skipped": 0,
+      "total": 714
+    },
+    "qualificationRule": "lean_delivery.py rejects reuse when the latest current execution with identical argv has nonzero exitCode. Consequently Gradle-backed rows are gaps under F12 despite the corroborated earlier successful log and XML. These downgrades report an execution-qualification problem, not newly observed application failures.",
+    "receiptMetadata": "The earlier matrix filename and embedded receiptId differ. The audit-generated runner receipt exhibits the same naming behavior; this mismatch alone is not treated as fabricated execution evidence."
+  },
+  "findings": [
+    {
+      "assessment": "The previous cumulative-start calculation is removed. Zones and saved Plan rows consume shared allocations. Tests distinguish separated and overlapping saved batches, assert matching conflict dates, include proposal and dark-to-light demand, and preserve actual occupancy semantics.",
+      "id": "F02",
+      "production": [
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PlannedSuggestion.kt",
+          "symbol": "workspaceForecast"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PlannedSuggestion.kt",
+          "symbol": "zoneConflict"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt",
+          "symbol": "planSnapshot"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt",
+          "symbol": "zonesSnapshot"
+        }
+      ],
+      "requiredChange": "No further correction to the originally identified inconsistency was established in this review. Obtain a qualifying successful matrix after F12; retain separate F04 component-resolution gaps.",
+      "severity": "medium",
+      "status": "addressed-awaiting-execution-requalification",
+      "tests": [
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt",
+          "symbol": "zonesAndSavedPlanRowsUseSameIntervalsAndConflictDates"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt",
+          "symbol": "zonesIncludeProposalDemandAndDarkToLightCommittedDemand"
+        }
+      ],
+      "title": "Shared forecast now replaces inconsistent Zones accumulation"
+    },
+    {
+      "evidence": [
+        "ScreenComponentContractTest still uses ScenarioManager, assertCommandScenario and assertSnapshotScenario to supply prepared business results for many acceptance scenarios.",
+        "The new planning tests exercise real storage and production projections, but do not exercise all declared component input, confirmation, cancellation, recreation and resolution paths."
+      ],
+      "id": "F04",
+      "requiredChange": "For the F04 matrix rows, identify or add connected assertions through the real component/Store and production behavior. External ports may be controlled; the business result being claimed must not be supplied by a fixture.",
+      "severity": "medium",
+      "status": "open",
+      "title": "Remaining component and Store claims exceed connected assertions",
+      "verification": "Tests should fail if production routing, mutations, calculations or required restart/cancellation behavior is disconnected."
+    },
+    {
+      "evidence": [
+        "The newer lifecycle and planning smoke reports cover bounded Android setup, save/restart, Repeat, close context, actual occupancy and equal-time Today ordering, tied to recorded APK hashes.",
+        "They do not establish complete alarm delivery/cancellation, reboot/time-zone recovery, picker failure, process recovery or applicable configured native SDK behavior.",
+        "The four exact macOS/Xcode pairs remain unavailable."
+      ],
+      "id": "F05",
+      "requiredChange": "Complete the remaining current native Android scenarios and obtain current macOS native build/runtime/CI evidence. Keep inactive external qualification conditions separate.",
+      "severity": "medium",
+      "status": "open",
+      "title": "Native platform acceptance remains incomplete",
+      "verification": "Bind observations to the tested build and assert real native outcomes, including failure and recovery branches."
+    },
+    {
+      "evidence": [
+        "AccessibilityContractTest checks source declarations for roles, headings, target size, errors and live regions.",
+        "The runtime reports explicitly do not prove TalkBack traversal/spoken order, complete keyboard operation or full docked-IME/focus behavior.",
+        "Changed goldens establish visible layout only."
+      ],
+      "id": "F06",
+      "requiredChange": "Supply meaningful semantics/focus/keyboard assertions and bounded native screen-reader review for primary flows and risky forms/dialogs.",
+      "severity": "medium",
+      "status": "open",
+      "title": "Accessibility and keyboard behavior remain unverified",
+      "verification": "Demonstrate logical traversal, spoken labels/state, announcements, visible focus, focus restoration and complete keyboard operation at required scales."
+    },
+    {
+      "evidence": [
+        "Catalog values and docs/catalog-source-review-20261010.md are unchanged.",
+        "Exact per-culture density/range derivations remain absent.",
+        "harvestDays remains used as LIGHT_GROWTH duration and accumulated with blackout; total-cycle versus light-stage interpretation remains unresolved."
+      ],
+      "id": "F07",
+      "requiredChange": "Document primary-source numerical derivations, units, assumptions and range interpretation for all eight cultures, identifying app estimates honestly.",
+      "severity": "medium",
+      "status": "open",
+      "title": "Catalog numerical derivation remains unresolved",
+      "verification": "Resource completeness, stable IDs and screenshots must not substitute for numerical content substantiation."
+    },
+    {
+      "assessment": "The production caller no longer substitutes today for actual harvest. Initial targets use persisted anchors; accepted active fixed slots suppress new suggestions; terminal outcomes advance rotation using the later target/outcome date. Assertions cover calendar rollover, stale editor suppression, legacy accepted targets and actual harvest influence. Batches still lack persisted plan ownership, so identical culture/target coverage is derived globally; unique attribution is not claimed.",
+      "id": "F11",
+      "production": [
+        {
+          "path": "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/ContinuousQueueEngine.kt",
+          "symbol": "next"
+        },
+        {
+          "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PlannedSuggestion.kt",
+          "symbol": "workspaceForecast"
+        }
+      ],
+      "requiredChange": "Obtain a qualifying successful matrix after F12. Complete the separate F04 component recreation and interaction assertions before claiming those surfaces verified.",
+      "severity": "medium",
+      "status": "addressed-awaiting-execution-requalification",
+      "tests": [
+        {
+          "path": "shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContinuousQueueTest.kt",
+          "symbol": "terminalSlotsAdvanceRotationUsingLaterOfFixedTargetAndActualOutcome"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt",
+          "symbol": "continuousCandidateSurvivesRolloverAndAcceptedBatchSuppressesUntilTerminalOutcome"
+        },
+        {
+          "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt",
+          "symbol": "legacyCalendarTargetRemainsCoveredAfterRolloverAndHarvestAdvancesFromActualDate"
+        }
+      ],
+      "title": "Continuous queue now derives from persisted targets and outcomes"
+    },
+    {
+      "classification": "Infrastructure/execution-qualification gap; not an observed application test regression. No additional pair is labeled unavailable.",
+      "evidence": [
+        ".vibe/receipts/RECEIPT-ea47d4d9-3eb9-45b4-b5f5-ef41aed7fb87.json records the audit-side matrix attempt with exitCode 1 at the unchanged requested fingerprint.",
+        "Its log shows access denial opening the Gradle wrapper cache lock before tasks execute.",
+        "The earlier current matrix log and 714 passing test XML results were inspected and corroborated, but the lean validator explicitly rejects older success after a failed latest identical invocation."
+      ],
+      "id": "F12",
+      "requiredChange": "Run the same applicable final matrix through the lean Gradle runner on a host with permitted Gradle cache access, then perform a bounded evidence recheck against the unchanged snapshot.",
+      "severity": "medium",
+      "status": "open",
+      "title": "Latest Gradle execution cannot qualify acceptance because its cache lock was inaccessible",
+      "verification": "A newer completed exit-zero receipt must have matching start/end fingerprints and a verified log. Recheck affected rows and close F02/F11 where their inspected assertions execute successfully."
+    }
+  ],
+  "inventory": {
+    "acceptanceScenarioIds": [
+      "AC-001",
+      "AC-002",
+      "AC-010",
+      "AC-011",
+      "AC-012",
+      "AC-013",
+      "AC-014",
+      "AC-015",
+      "AC-016",
+      "AC-017",
+      "AC-020",
+      "AC-021",
+      "AC-022",
+      "AC-023",
+      "AC-024",
+      "AC-025",
+      "AC-026",
+      "AC-027",
+      "AC-030",
+      "AC-031",
+      "AC-032",
+      "AC-033",
+      "AC-034",
+      "AC-035",
+      "AC-036",
+      "AC-037",
+      "AC-038",
+      "AC-039",
+      "AC-040",
+      "AC-050",
+      "AC-051",
+      "AC-052",
+      "AC-053",
+      "AC-054",
+      "AC-055",
+      "AC-056",
+      "AC-057",
+      "AC-060",
+      "AC-061",
+      "AC-062",
+      "AC-063",
+      "AC-064",
+      "AC-065",
+      "AC-066",
+      "AC-067",
+      "AC-068",
+      "AC-070",
+      "AC-071",
+      "AC-072",
+      "AC-073",
+      "AC-074",
+      "AC-080",
+      "AC-081",
+      "AC-082",
+      "AC-083",
+      "AC-084",
+      "AC-085",
+      "AC-090",
+      "AC-091",
+      "AC-092",
+      "AC-093",
+      "AC-094",
+      "AC-095",
+      "AC-100",
+      "AC-101",
+      "AC-102",
+      "AC-103",
+      "AC-104",
+      "AC-105",
+      "AC-106",
+      "AC-107",
+      "AC-110",
+      "AC-111",
+      "AC-112",
+      "AC-113",
+      "AC-120",
+      "AC-121",
+      "AC-122",
+      "AC-123"
+    ],
+    "excludedRequirementIds": [
+      "REQ-901",
+      "REQ-902",
+      "REQ-903",
+      "REQ-904",
+      "REQ-905",
+      "REQ-906",
+      "REQ-907",
+      "REQ-908",
+      "REQ-909"
+    ],
+    "managedOperationIds": [
+      "AdvertisingConsent:create",
+      "AdvertisingConsent:read",
+      "AdvertisingConsent:update",
+      "BackupArchive:create",
+      "BackupArchive:read",
+      "BackupArchive:reject-invalid",
+      "BackupArchive:restore",
+      "CrashReportingPreference:create",
+      "CrashReportingPreference:read",
+      "CrashReportingPreference:update",
+      "GrowBatch:abandon",
+      "GrowBatch:assign-overflow",
+      "GrowBatch:complete-harvest",
+      "GrowBatch:confirm-stage",
+      "GrowBatch:create",
+      "GrowBatch:delete",
+      "GrowBatch:fail",
+      "GrowBatch:read",
+      "GrowBatch:record-actual-mass",
+      "GrowBatch:repeat",
+      "GrowBatch:skip-stage",
+      "GrowBatch:start-growing",
+      "GrowBatch:start-soaking",
+      "GrowBatch:undo-stage",
+      "GrowBatch:update",
+      "GrowZone:create",
+      "GrowZone:delete",
+      "GrowZone:read",
+      "GrowZone:update",
+      "HarvestPlan:confirm-suggestion",
+      "HarvestPlan:create",
+      "HarvestPlan:delete",
+      "HarvestPlan:pause-resume",
+      "HarvestPlan:read",
+      "HarvestPlan:suggest-continuous-batch",
+      "HarvestPlan:update",
+      "Observation:attach-photo",
+      "Observation:create",
+      "Observation:delete",
+      "Observation:read",
+      "Observation:update",
+      "TraySizePreset:create",
+      "TraySizePreset:delete",
+      "TraySizePreset:read",
+      "TraySizePreset:update",
+      "UserGrowRecipe:create",
+      "UserGrowRecipe:delete",
+      "UserGrowRecipe:duplicate",
+      "UserGrowRecipe:read",
+      "UserGrowRecipe:update"
+    ],
+    "qualityGateIds": [
+      "QG-001",
+      "QG-002",
+      "QG-003",
+      "QG-004",
+      "QG-005",
+      "QG-006",
+      "QG-007",
+      "QG-008",
+      "QG-009",
+      "QG-010",
+      "QG-011",
+      "QG-012"
+    ],
+    "requirementIds": [
+      "REQ-001",
+      "REQ-002",
+      "REQ-003",
+      "REQ-004",
+      "REQ-005",
+      "REQ-006",
+      "REQ-007",
+      "REQ-008",
+      "REQ-009",
+      "REQ-010",
+      "REQ-011",
+      "REQ-012"
+    ]
+  },
+  "obligations": [
+    {
+      "id": "AC-001",
+      "reason": "F04: complete production browse-without-setup and resume assertions remain missing.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-001",
+      "reason": "F12: inspected first-run captures retain reviewed hashes, but current screenshot execution qualification is blocked.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-002",
+      "reason": "F04: the complete setup-to-first-plan component scenario remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-002",
+      "reason": "F04/F12: forecast consistency is corrected, but complete setup assertions and qualifying execution remain missing.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-002",
+      "reason": "F12: inspected setup/suggestion captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-010",
+      "reason": "F04: prepared zone results do not prove authored inputs reaching production persistence.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-010",
+      "reason": "F12: prior SQL-backed zone persistence proof awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-011",
+      "reason": "F04: recreated production zone components are not exercised against reopened storage.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-011",
+      "reason": "F12: actual zone close/reopen assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "F04/F12: shared forecast fixes the inconsistency, but full production component update/resolution and qualifying execution remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "F12: capacity counts and resolution assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "F12: zone update and new shared interval projection assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-013",
+      "reason": "F04: production confirmation/cancel and resulting zone deletion remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-013",
+      "reason": "F12: deletion, unassignment, history preservation and safe undo assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "F04: complete metric-input validation and production component save remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "F12: metric geometry and invalid-dimension assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "F12: tray identity, shape and dimension persistence assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-015",
+      "reason": "F04: supplied restored snapshots do not prove production component recreation.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-015",
+      "reason": "F12: actual tray preset/snapshot reopening assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-016",
+      "reason": "F04: production preset editing and subsequent selection require connected assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-016",
+      "reason": "F12: preset update and immutable batch-snapshot assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-017",
+      "reason": "F04: confirmed deletion and cancellation are not connected to real persistence in this scenario.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-017",
+      "reason": "F12: preset deletion with preserved historical snapshots awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "F04: prepared catalog results do not establish complete offline production resolution through the component.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "F12: eight stable catalog IDs and version assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "F12: unchanged inspected catalog captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-021",
+      "reason": "F04: complete authored-recipe creation through the production component remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-021",
+      "reason": "F12: authored recipe validation assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-021",
+      "reason": "F12: production recipe persistence assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-022",
+      "reason": "F04: component recreation with restored authored recipe fields remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-022",
+      "reason": "F12: actual recipe storage reopening assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-023",
+      "reason": "F04: production recipe edit followed by existing-batch inspection requires connected assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-023",
+      "reason": "F12: recipe update without batch-snapshot mutation awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-024",
+      "reason": "F04: delete confirmation/cancel and retained-history navigation remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-024",
+      "reason": "F12: recipe deletion preserving referenced history awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-025",
+      "reason": "F04: both duplication origins need production component assertions beyond prepared results.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-025",
+      "reason": "F12: distinct recipe duplication with unchanged source awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-026",
+      "reason": "F12: area-times-density and separate actual-mass assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-026",
+      "reason": "F04: prepared mass text does not prove live production recalculation and editable override.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "F12: bundled safety keys and source metadata assertions await qualifying execution; numerical fidelity remains F07.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "F04/F07: complete production resource resolution and numerical content fidelity remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "F12: inspected guidance/source captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-030",
+      "reason": "F04: complete general batch-creation inputs remain insufficiently asserted through the production component.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-030",
+      "reason": "F12: selected planned placement persistence and forecast/current-occupancy assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-031",
+      "reason": "F04: complete recreated list/detail component behavior remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-031",
+      "reason": "F12: actual batch, event, snapshot and observation reopening assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "F04: editor correction and production schedule recomputation need connected component assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "F12: correction preserving history, stable IDs and fixed dates awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "F12: production correction persistence and scheduling assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-033",
+      "reason": "F04: generic confirmation forwarding does not establish production deletion/cancellation.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-033",
+      "reason": "F12: planned deletion without terminal/trash records awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "F04: production destructive routing and resulting navigation remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "F12: batch/observation cascade deletion assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "F12: deletion of associated managed photo bytes awaits qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-035",
+      "reason": "F12: soaking retains planned intent without occupying capacity; its inspected assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-035",
+      "reason": "F04: complete soaking timestamp/confirmation input remains unproven through the production component.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "F12: actual sowing event and one-place occupancy assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "F12: connected sowing preview/confirmation/state/placement assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "F12: production sowing persistence assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "F12: dependent future scheduling after actual transitions awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "F04: sowing coverage does not establish all subsequent-stage and fixed-conflict retained Store scenarios.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "F04: complete subsequent-stage confirmation behavior remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "F12: explicit unassigned overflow behavior awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "F04: choosing the actual overflow resolution through the component remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "F12: inspected conflict/unassigned captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-039",
+      "reason": "F12: latest-transition undo and stable rebuilt actions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-039",
+      "reason": "F04: production undo persistence and reminder reconciliation are not established by forwarding assertions.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-039",
+      "reason": "F04: production undo confirmation/cancel and resulting state remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "F12: explicit reasoned skip and next-stage assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "F12: retained skip rejection, event/reason persistence and duplicate protection await qualifying execution.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "F12: connected reasoned stage-skip assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "F04: authored plan creation through the production component remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "F12: cadence/rotation suggestion generation without automatic batches awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "F12: persisted plan configuration and unchanged batch storage await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-051",
+      "reason": "F04/F12: deterministic continuous projections are corrected, but full component recreation and qualifying execution remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-051",
+      "reason": "F12: actual plan reopening and current deterministic projection assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "F12: plan updates without confirmed-batch mutation await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "F04: production cadence editing and preserved confirmed batches need connected component assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "F12: production cadence/mode persistence assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-053",
+      "reason": "F04: production plan deletion/cancellation remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-053",
+      "reason": "F12: plan deletion retaining related batches awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-054",
+      "reason": "F12: pause suppressing suggestions without changing existing batches awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-054",
+      "reason": "F04: manager-level pause tests do not complete the production component pause/resume scenario.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "F12: interval allocation, alternative routes, dark/light phases and committed-demand assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "F04/F12: shared projections now agree, but complete production component resolution behavior and qualifying execution remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "F12: inspected dated conflict and resolution presentation requires qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-056",
+      "reason": "F04: suggestion navigation, cancellation and explicit Save need a complete connected component assertion.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-056",
+      "reason": "F12: confirm-suggestion without batch insertion awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-057",
+      "reason": "F11/F12: new persisted queue, rotation, active-slot suppression and terminal-outcome assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-057",
+      "reason": "F04/F12: the production calculation is corrected and manager-tested; complete component evaluation assertions and qualifying execution remain missing.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "F04: complete retained Today lifecycle under changing production actions remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "F12: unique task grouping and new equal-time lifecycle-order assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "F12: inspected Today captures retain reviewed hashes but lack qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-061",
+      "reason": "F12: lifecycle-only stage completion and duplicate protection await qualifying execution.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-061",
+      "reason": "F12: item navigation and connected lifecycle confirmation await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-061",
+      "reason": "F12: idempotent non-stage completion and persisted stage events/rebuilt work await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "F12: snooze preserving stable action identity awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "F04: production Store snooze and reminder replacement remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "F04: complete time-input-to-persisted-snooze component behavior remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-063",
+      "reason": "F12: reasoned stage skip and duplicate protection await qualifying execution.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-063",
+      "reason": "F12: non-stage-only simple skip and explicit stage lifecycle handling await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "F05: complete current native permission/recovery behavior remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "F04/F05: permission decoration and bounded smoke do not complete production recovery acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "F12: inspected permission-denied guidance captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-065",
+      "reason": "F05: controlled drivers do not prove native delivery and one-summary-per-day behavior.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-065",
+      "reason": "F04: complete summary configuration/delivery component scenario remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-066",
+      "reason": "F05: actual best-effort soak delivery and cancellation lack complete native proof.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-066",
+      "reason": "F04/F05: complete soak-target interaction and scheduling outcome remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-067",
+      "reason": "F05: native restart/reboot/time-change delivery matrix remains incomplete.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-067",
+      "reason": "F12: production reminder reconciliation with controlled drivers awaits qualifying execution.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-068",
+      "reason": "F12: civil-time versus elapsed-target timezone assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-068",
+      "reason": "F05: actual native timezone reconciliation and delivery remain unverified.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-070",
+      "reason": "F12: real router/component observation persistence assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-070",
+      "reason": "F12: dated chronological observation persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-071",
+      "reason": "F04: complete recreated observation presentation remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-071",
+      "reason": "F12: actual observation/photo-link reopening assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-072",
+      "reason": "F04: production editor update/cancel and adjacent timeline preservation require complete assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-072",
+      "reason": "F12: observation update retaining identity and unrelated entries awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "F04: production confirmation/cancel and refreshed observation list remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "F12: observation deletion and photo-link removal await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "F12: managed photo-byte deletion awaits qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "F05: complete current native picker cancellation/failure/restart behavior remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "F12: private-byte reopening and failed-replacement compensation await qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "F04/F05: complete picker callback, retained draft and cancellation behavior require connected assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "F12: harvest placement release and pending-action cancellation await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "F12: Today outcome navigation and connected harvest closure await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "F12: explicit harvest outcome and actual mass persistence await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "F12: failure capacity release and optional reason assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "F04: failed-outcome input, cancellation and save remain insufficiently asserted through production components.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "F12: distinct failed-outcome persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "F12: real-router abandonment and reopened terminal history await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "F05: actual native reminder removal after abandonment remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "F12: abandonment persistence and pending-action cancellation await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-083",
+      "reason": "F12: retained prefilled Repeat draft, discard-without-write and explicit Save assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-083",
+      "reason": "F12: distinct repeat identity, immutable original and actual reopen assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "F12: original terminal events/observations after Repeat and recreation await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "F12: terminal outcome, snapshots, observations and mass readback await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "F12: inspected history/detail captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-085",
+      "reason": "F12: actual mass restricted to harvested outcomes awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-085",
+      "reason": "F12: actual rather than forecast mass persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "F12: complete archive and unchanged live-state assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "F12: deterministic versioned archive document roundtrip awaits qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "F04/F05: complete production document creation/cancel/failure flow remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-091",
+      "reason": "F12: validated archive preview metadata/count assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-091",
+      "reason": "F04: complete production picker/preview/cancel behavior remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "F12: exact repeated replacement without duplicate rows/files awaits qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "F05: complete current native restore/reminder/restart acceptance remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "F04: confirmation, busy/cancel, recovery and replacement require complete production component assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "F12: corrupt, missing, duplicate and unsupported archive rejection awaits qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "F04: prepared invalid results do not establish production rejection with unchanged live data.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "F12: inspected invalid/archive-failure captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-094",
+      "reason": "F12: UTF-8 CSV escaping, actual mass and photo-byte exclusion await qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-094",
+      "reason": "F04/F05: complete production export selection/cancel/failure behavior remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F12: erase reconciliation and post-commit root output await qualifying execution.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F12: product database, managed photo and settings erasure await qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F05: native reminder removal and restart after reset lack complete current proof.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F04: actual reset confirmation/cancel and root return remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "F12: exact approved inline-slot eligibility assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "F04: full mounted component/ad-view lifecycle remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "F12: inspected non-network ad presentation captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-101",
+      "reason": "F12: unavailable/ineligible/SDK-failure suppression awaits qualifying execution.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-101",
+      "reason": "F04: mounted-slot removal across prohibited transitions remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-101",
+      "reason": "F12: inspected offline/core-screen captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-102",
+      "reason": "F12: protected consent preventing SDK calls until acceptance awaits qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-102",
+      "reason": "F04: first eligible visit, consent navigation and mounted-root return remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-103",
+      "reason": "F12: fresh policy-matched consent reuse assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-103",
+      "reason": "F12: canonical privacy payload restore and erase assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "F12: withdrawal eligibility and preserved product records await qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "F12: withdrawal disposal and request/initialization prevention await qualifying execution.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "F04: mounted Settings withdrawal and actual ad-view removal remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-105",
+      "reason": "F12: changed-policy rejection of prior acceptance awaits qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-105",
+      "reason": "F04: policy-change re-prompt and preserved navigation need connected component assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "F12: exact endpoint and fail-closed transport/schema/content/expiry assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "network-mock-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "F12: stale/unknown eligibility and concurrency assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "F12: unavailable eligibility never becoming a ready ad awaits qualifying execution.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-107",
+      "reason": "Exact request-declared macOS/Xcode boundary. Unchanged iOS safe-disabled wiring was retained; native execution is unavailable.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "AC-107",
+      "reason": "F12: iOS/automated-host suppression of privacy resolution and SDK initialization awaits qualifying execution.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-110",
+      "reason": "F05: configured native release-default collection is not established by controlled-driver tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-110",
+      "reason": "F12: default-on independent crash preference and persistence await qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-111",
+      "reason": "F05: actual enabled native collection after process restart remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-111",
+      "reason": "F12: restored crash preference snapshot assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "F05: native future-upload behavior after toggles remains unverified.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "F12: real retained router/component crash-toggle assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "F12: returning preference values persisting without incorrect deduplication awaits qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-113",
+      "reason": "F12: unchanged optional wiring and guarded recording were reviewed, but supporting executed checks cannot currently qualify.",
+      "result": "gap",
+      "surface": "repository-check"
+    },
+    {
+      "id": "AC-113",
+      "reason": "F05: enabled native SDK behavior and exclusions remain incompletely evidenced.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-113",
+      "reason": "F12: unchanged minimal crash boundaries were reviewed; supporting runtime-test execution cannot currently qualify.",
+      "result": "gap",
+      "surface": "privacy-review"
+    },
+    {
+      "id": "AC-120",
+      "reason": "F12: matching production EN/RU keys, including forecast resources, await qualifying contract-test execution.",
+      "result": "gap",
+      "surface": "localization-contract-test"
+    },
+    {
+      "id": "AC-120",
+      "reason": "F04/F06: OS locale switching and unsupported-locale fallback through recreated components remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-120",
+      "reason": "F12: changed RU/200% captures were inspected but require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-121",
+      "reason": "F12: repeated theme preference persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-121",
+      "reason": "F12: real retained router light/dark/light assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-121",
+      "reason": "F12: current primary light/dark hashes match review, but screenshot execution cannot currently qualify.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-122",
+      "reason": "F12: all 15 changed risk captures were inspected and 216 retain reviewed hashes; qualifying screenshot execution is blocked.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-122",
+      "reason": "F06: actual traversal, spoken state, focus order and announcements remain unproven.",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "id": "AC-122",
+      "reason": "F06: complete keyboard operation and visible focus across workflows remain unproven.",
+      "result": "gap",
+      "surface": "keyboard-test"
+    },
+    {
+      "id": "AC-123",
+      "reason": "F04/F05: no complete current offline matrix establishes every required saved workflow.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-123",
+      "reason": "F04: offline flags and local fixtures do not prove every core component workflow under network failure.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F04/F12: AppSpec validates, but acceptance assertions and current execution qualification remain incomplete.",
+      "result": "gap",
+      "surface": "repository-check"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F12: earlier matching XML records 714 passing tests, but the latest identical matrix invocation failed before Gradle tasks and invalidates reuse.",
+      "result": "gap",
+      "surface": "unit-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F04/F12: new forecast assertions are meaningful; remaining connected scenario coverage and qualifying execution are incomplete.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F12: earlier Detekt success is superseded for qualification by the latest failed identical matrix invocation.",
+      "result": "gap",
+      "surface": "static-analysis"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F12: earlier Kover success cannot qualify after the latest failed identical matrix invocation.",
+      "result": "gap",
+      "surface": "coverage-check"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F12: current localization contract assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "localization-contract-test"
+    },
+    {
+      "id": "QG-002",
+      "reason": "F12: earlier debug/release/bundle success is corroborated but cannot qualify after the latest failed identical matrix invocation.",
+      "result": "gap",
+      "surface": "android-build"
+    },
+    {
+      "id": "QG-002",
+      "reason": "F05/F06: bounded newer smoke does not complete Android native and accessibility acceptance.",
+      "result": "gap",
+      "surface": "android-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Exact request-declared macOS/Xcode boundary; Windows task results do not prove native iOS build/linkage.",
+      "result": "unavailable",
+      "surface": "ios-build"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Exact request-declared macOS/Xcode boundary; Simulator/device execution is unavailable.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Exact request-declared boundary; no current executed macOS CI result is available.",
+      "result": "unavailable",
+      "surface": "macos-ci-check"
+    },
+    {
+      "id": "QG-004",
+      "reason": "F04/F05/F06/F07/F12 remain open, F02/F11 await execution requalification, and required native iOS pairs are unavailable.",
+      "result": "gap",
+      "surface": "release-check"
+    },
+    {
+      "assertion": "Independent delta audit verified request/baseline identities, unchanged normative inventory, every snapshot hash and all 350 canonical pairs; inspected all changed files and consumers, all 15 changed goldens and prior findings; attempted suspect execution through the lean runner and reports its infrastructure failure without claiming application test failure.",
+      "auditEvidence": true,
+      "id": "QG-004",
+      "result": "verified",
+      "surface": "acceptance-audit"
+    },
+    {
+      "id": "QG-005",
+      "reason": "The conditional production-store publication gate is inactive: publication is not requested or being performed.",
+      "result": "not-applicable",
+      "surface": "publication-check"
+    },
+    {
+      "assertion": "All 200 manifest references and 207 current review references match actual files. Current asset validator and native icon validator pass for 29 assets, 20 Android PNGs and 21 iOS slots.",
+      "id": "QG-006",
+      "production": [
+        {
+          "path": "docs/assets/asset-manifest.json",
+          "symbol": "platformDerivatives"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-5760b8d9-ffa6-4c67-bae7-ad22bec10d5b.json",
+        ".vibe/receipts/RECEIPT-72736108-0b59-4573-a1b3-b9c334304d52.json"
+      ],
+      "result": "verified",
+      "surface": "asset-check",
+      "tests": [
+        {
+          "path": "docs/assets/generation/validate-brand-icons.py",
+          "symbol": "assert"
+        }
+      ]
+    },
+    {
+      "assertion": "Native derivative and artwork hashes retain prior independent visual inspection. All 15 changed production captures were inspected; no new artwork clipping defect was observed. Current icon checks establish sizes, alpha equivalence, opaque iOS backgrounds and 66dp mask safety.",
+      "id": "QG-006",
+      "production": [
+        {
+          "path": "docs/assets/asset-manifest.json",
+          "symbol": "visualEvidence"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-72736108-0b59-4573-a1b3-b9c334304d52.json",
+        ".vibe/receipts/RECEIPT-26ba1587-9e33-43c0-bd4a-9e5735671906.json"
+      ],
+      "result": "verified",
+      "surface": "asset-visual",
+      "tests": [
+        {
+          "path": "docs/assets/generation/validate-brand-icons.py",
+          "symbol": "assert"
+        }
+      ]
+    },
+    {
+      "id": "QG-007",
+      "reason": "F12: earlier Compose/preview compilation cannot qualify after the latest failed identical matrix invocation.",
+      "result": "gap",
+      "surface": "preview-compile"
+    },
+    {
+      "id": "QG-007",
+      "reason": "F12: all review hashes match and changed images were inspected, but latest Gradle execution prevents qualifying Paparazzi reuse.",
+      "result": "gap",
+      "surface": "screenshot-test"
+    },
+    {
+      "id": "QG-007",
+      "reason": "F06: runtime traversal, announcements, focus and full keyboard operation remain unproven.",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "assertion": "Inspected the local Lazyweb-reference screen-family report and October 11 supplement, all 15 changed goldens and their production context. Independently verified 231 review hashes and 32 primary hashes; remaining 216 captures retain reviewed hashes. Runtime scrolling, IME and accessibility are not inferred from images.",
+      "id": "QG-007",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ContextualFormsScreen.kt",
+          "symbol": "ContextualEditor"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-26ba1587-9e33-43c0-bd4a-9e5735671906.json"
+      ],
+      "result": "verified",
+      "surface": "design-review",
+      "tests": [
+        {
+          "path": ".vibe/scripts/verify-final-design-review.ps1",
+          "symbol": "VISUALLY_REVIEWED"
+        }
+      ]
+    },
+    {
+      "id": "QG-008",
+      "reason": "The conditional Crashlytics-enabled release/RC gate is inactive; audited default Firebase configuration remains safely disabled.",
+      "result": "not-applicable",
+      "surface": "firebase-config-check"
+    },
+    {
+      "id": "QG-008",
+      "reason": "No Crashlytics-enabled release/RC activates the conditional symbolication gate.",
+      "result": "not-applicable",
+      "surface": "crash-symbolication-check"
+    },
+    {
+      "id": "QG-009",
+      "reason": "No production-advertising Android RC is enabled; production ad configuration remains absent.",
+      "result": "not-applicable",
+      "surface": "ad-config-check"
+    },
+    {
+      "id": "QG-009",
+      "reason": "The conditional production advertising qualification gate is inactive.",
+      "result": "not-applicable",
+      "surface": "ad-device-check"
+    },
+    {
+      "id": "QG-010",
+      "reason": "The external-distribution condition is inactive; this audit does not prepare a build for external distribution.",
+      "result": "not-applicable",
+      "surface": "privacy-policy-check"
+    },
+    {
+      "id": "QG-010",
+      "reason": "No external distribution or store submission activates this conditional gate.",
+      "result": "not-applicable",
+      "surface": "store-disclosure-check"
+    },
+    {
+      "id": "QG-011",
+      "reason": "F12: stable catalog identity, version and localization-key assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "QG-011",
+      "reason": "F07: numerical density/range derivations and harvestDays interpretation remain unresolved.",
+      "result": "gap",
+      "surface": "content-review"
+    },
+    {
+      "id": "QG-012",
+      "reason": "F12: complete relationships, events, schedules, UTF-8 and photo roundtrip assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "QG-012",
+      "reason": "F12: persistent recovery journal, actual reopen and cancellation compensation assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "reason": "F04: complete authored production component save remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "reason": "F12: zone-field SQL persistence assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "reason": "F04: production component recreation/readback remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "reason": "F12: actual zone storage reopening assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "F04/F12: shared forecast corrects previous inconsistency; component update/resolution and qualifying execution remain incomplete.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "F12: persisted updates and shared dated forecast assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "F12: explicit capacity counts and resolutions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "reason": "F04: production confirmation/cancel and refreshed state remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "reason": "F12: deletion/unassignment with preserved history and safe undo awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "F04: metric input validation and production component save remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "F12: tray identity, name, shape and dimension persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "F12: metric geometry and invalid-dimension rejection await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "reason": "F04: restored production selection/list behavior remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "reason": "F12: actual preset reopening assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "reason": "F04: production edit/save and subsequent selection need connected assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "reason": "F12: preset updates preserving existing batch snapshots await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "reason": "F04: production confirmation/cancellation remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "reason": "F12: deletion retaining historical tray snapshots awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "F04: complete authored production component flow remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "F12: production authored recipe and stage persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "F12: authored configuration validation awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "reason": "F04: actual component restoration remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "reason": "F12: actual recipe storage restart assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "reason": "F04: production editing followed by existing-batch inspection remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "reason": "F12: recipe/substrate snapshot preservation after updates awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "reason": "F04: production confirmation/cancel and history navigation remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "reason": "F12: deletion preserving referenced terminal batches awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "reason": "F04: both duplication origins need complete production component assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "reason": "F12: distinct duplicate identity, copied parameters and unchanged source await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "reason": "F04: complete general production creation inputs remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "reason": "F12: planned placement persistence and forecast/current occupancy separation await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "reason": "F04: complete restored list/detail component behavior remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "reason": "F12: actual batch/event/snapshot/observation restart assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "F04: editor correction and retained production schedule behavior remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "F12: production correction and scheduling persistence await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "F12: correction preserving history, stable IDs and fixed dates awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "F04: destructive routing/cancellation and resulting navigation remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "F12: batch/observation deletion without terminal-history creation awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "F12: associated managed photo deletion awaits qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "reason": "F04: actual soaking input/confirmation through the production component remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "reason": "F12: planned intent retention without actual occupancy awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "F12: retained preview confirmation and exactly-once SOWN placement assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "F12: actual sowing placement/event persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "F12: sowing occupies one configured place; its assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "F04: complete subsequent-stage/fixed-conflict component behavior remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "F12: actual transitions updating dependent dates without moving fixed dates await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "F04: sowing proof does not close all subsequent-stage retained Store scenarios.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "F04: production selection of an unassigned resolution remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "F12: explicit unassigned reality recording awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "F12: inspected conflict/unassigned captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "F04: production undo confirmation/cancel and resulting state remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "F12: latest-event reversal and duplicate-free rebuilt actions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "F04: connected undo persistence/reminder reconciliation remains unproven.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "F12: explicit reason/event persistence rather than task-status-only skip awaits qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "F12: reason requirement and applicable next-stage assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "F12: retained exactly-once skipped-event assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "F12: explicit outcome closure and placement release through the production component await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "F12: explicit harvest outcome/released placement persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "F12: harvest capacity release and pending-work cancellation await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "F04: full failed-outcome input/cancel/save component behavior remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "F12: distinct failed-outcome persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "F12: failure capacity release and optional reason retention await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "F12: real router abandonment and retained history assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "F12: distinct abandonment and pending-action cancellation await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "F05: actual native reminder cancellation remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "reason": "F12: prefilled retained draft, discard-without-write and explicit Save assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "reason": "F12: copied snapshots, independent identity, unchanged original and actual reopen assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "reason": "F12: optional actual harvest mass persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "reason": "F12: actual mass restricted to harvested outcomes awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "F04: complete authored production plan-creation scenario remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "F12: plan persistence without automatic batch creation awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "F12: positive cadence and rotation suggestion assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "reason": "F04/F12: deterministic persisted queue is corrected; complete recreated component proof and qualifying execution remain missing.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "reason": "F12: actual plan configuration reopening and current projection assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "F04: production cadence editing and preservation of confirmed batches need connected assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "F12: cadence/mode persistence without unintended batch creation awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "F12: cadence updates preserving confirmed batches await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "reason": "F04: production delete confirmation/cancel remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "reason": "F12: plan deletion retaining related batches awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "reason": "F04: full production component pause/resume is not established by prepared results or manager projections alone.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "reason": "F12: pause suppressing suggestions without changing batches awaits qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "reason": "F04: complete editor navigation/cancel/explicit-Save production assertion remains missing.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "reason": "F12: confirm-suggestion without insertion awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "reason": "F04/F12: production queue logic is corrected and manager-tested; complete component evaluation and qualifying execution remain missing.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "reason": "F11/F12: new persisted-slot, rotation and actual-outcome assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "Observation:create",
+      "reason": "F12: real router/component observation save through production storage awaits qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:create",
+      "reason": "F12: authored dated chronological observation persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:read",
+      "reason": "F04: complete recreated observation presentation remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:read",
+      "reason": "F12: observation fields and photo linkage surviving actual reopen await qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:update",
+      "reason": "F04: complete production editor save/cancel remains insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:update",
+      "reason": "F12: update preserving identity and unrelated timeline entries awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "F04: production confirmation/cancel and refreshed list remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "F12: observation/photo-link deletion awaits qualifying execution.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "F12: associated managed private-byte removal awaits qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "F04/F05: complete production picker callback/draft/cancel behavior remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "F12: private-byte reopen and failed-replacement compensation await qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "F05: complete current native picker/cancel/failure/restart behavior remains unverified.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "F04/F05: full production document creation/cancel/failure flow remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "F12: deterministic versioned archive document roundtrip awaits qualifying execution.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "F12: complete records/preferences/photos archive without live mutation awaits qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "reason": "F04: complete production picker/preview/cancel path remains unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "reason": "F12: validated version/counts/replacement preview awaits qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "F04: confirmation, busy/cancel, recovery and completion need complete production assertions.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "F05: complete current native restore/reminder/restart acceptance remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "F12: exact repeated replacement without duplicate rows/files awaits qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "F04: production validation failure with unchanged live data remains insufficiently asserted through the component.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "F12: invalid integrity, duplicate and unsupported content rejection awaits qualifying execution.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "F12: inspected invalid/failure-state captures require qualifying screenshot execution.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "reason": "F04: first eligible visit and mounted consent navigation remain insufficiently asserted.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "reason": "F12: protected consent preventing SDK calls until acceptance awaits qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "reason": "F12: fresh policy-matched consent reuse awaits qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "reason": "F12: canonical privacy payload exact restore/erase awaits qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "F12: withdrawal disposal and future request/initialization prevention await qualifying execution.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "F04: mounted Settings withdrawal and actual ad-view removal remain unproven.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "F12: updated consent eligibility bound to accepted policy awaits qualifying execution.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "reason": "F05: configured native release-default collection remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "reason": "F12: default-on independent crash preference persistence awaits qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "reason": "F05: actual native collection state after restart remains unverified.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "reason": "F12: exact restored preference snapshot awaits qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "F12: real router/component repeated crash toggles and checked-state assertions await qualifying execution.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "F05: configured native future-upload behavior after toggling remains unproven.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "F12: returning crash preference values persisting without incorrect deduplication awaits qualifying execution.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    }
+  ],
+  "requestSha256": "31a23bffd2b86ce2cdb3411232b27380c49bca8774b458c7ee1f9f66ce0ed139",
+  "reviewedSources": [
+    "data.md",
+    "design.md",
+    "domain.md",
+    "flows/FLOW-001.md",
+    "flows/FLOW-002.md",
+    "flows/FLOW-003.md",
+    "flows/FLOW-004.md",
+    "flows/FLOW-005.md",
+    "flows/FLOW-006.md",
+    "flows/FLOW-007.md",
+    "flows/FLOW-008.md",
+    "flows/FLOW-009.md",
+    "flows/FLOW-010.md",
+    "flows/FLOW-011.md",
+    "flows/FLOW-012.md",
+    "product.md",
+    "quality.md",
+    "screens/SCREEN-001.md",
+    "screens/SCREEN-002.md",
+    "screens/SCREEN-003.md",
+    "screens/SCREEN-004.md",
+    "screens/SCREEN-005.md",
+    "screens/SCREEN-006.md",
+    "screens/SCREEN-007.md",
+    "screens/SCREEN-008.md",
+    "screens/SCREEN-009.md",
+    "screens/SCREEN-010.md",
+    "screens/SCREEN-011.md",
+    "screens/SCREEN-012.md",
+    "screens/SCREEN-013.md",
+    "screens/SCREEN-014.md",
+    "screens/SCREEN-015.md",
+    "screens/SCREEN-016.md"
+  ],
+  "startedAt": "2026-10-11T05:45:27Z",
+  "verdict": "GAPS"
+}

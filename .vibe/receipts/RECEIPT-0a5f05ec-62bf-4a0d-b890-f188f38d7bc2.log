@@ -1,0 +1,3 @@
+Ошибка при проверке AuthorizationManager.
+    + CategoryInfo          : Ошибка безопасности: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnauthorizedAccess

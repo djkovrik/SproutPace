@@ -9,7 +9,11 @@ import kotlinx.coroutines.flow.Flow
 interface ScreenDataManager {
     fun watch(screen: ScreenId, stableId: String? = null): Flow<ScreenSnapshot>
     suspend fun execute(screen: ScreenId, command: ScreenCommand): Result<ScreenSnapshot>
+    suspend fun previewStage(command: ScreenCommand): Result<StageChangeProjection> =
+        Result.failure(UnsupportedOperationException("Stage preview is unavailable"))
 }
+
+interface ScreenFailure { val errorKey: TextKey }
 
 data class ScreenSnapshot(
     val items: List<ScreenItem> = emptyList(),
@@ -23,6 +27,10 @@ data class ScreenSnapshot(
     val fields: List<ScreenField> = emptyList(),
     val facts: List<ScreenFact> = emptyList(),
     val actions: List<ScreenActionDescriptor> = emptyList(),
+    /** Explicit production interactions may intentionally contain no fields or actions. */
+    val hasInteractionContract: Boolean = false,
+    val setupState: WorkspaceSetupState? = null,
+    val plans: List<PlanSummaryProjection> = emptyList(),
 )
 
 object EmptyScreenDataManager : ScreenDataManager {

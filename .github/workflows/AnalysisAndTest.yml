@@ -107,6 +107,13 @@ jobs:
       - name: Compile and test Kotlin iOS targets
         run: >-
           ./gradlew --stacktrace
+          :shared:domain:compileKotlinIosArm64
+          :shared:data:compileKotlinIosArm64
+          :shared:component:compileKotlinIosArm64
+          :shared:root:compileKotlinIosArm64
+          :shared:platform:compileKotlinIosArm64
+          :shared:monetization:compileKotlinIosArm64
+          :shared:compose:compileKotlinIosArm64
           :shared:domain:compileKotlinIosSimulatorArm64
           :shared:data:compileKotlinIosSimulatorArm64
           :shared:component:compileKotlinIosSimulatorArm64

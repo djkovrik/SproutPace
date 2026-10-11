@@ -6,7 +6,7 @@ import com.sedsoftware.sproutpace.monetization.AdConfiguration
 import com.sedsoftware.sproutpace.monetization.AdHostMode
 import com.sedsoftware.sproutpace.monetization.AdPlatform
 
-class SproutPaceApplication : Application() {
+class SproutPaceApplication : Application(), com.sedsoftware.sproutpace.platform.AndroidReminderRuntimeOwner {
     lateinit var graph: AndroidProductionAppGraph
         private set
 
@@ -24,6 +24,14 @@ class SproutPaceApplication : Application() {
             ),
         )
     }
+
+    override suspend fun reconcileReminderEnvironment(reason: com.sedsoftware.sproutpace.platform.ReconciliationReason) =
+        graph.reconcileReminderEnvironment(reason)
+
+    override suspend fun evaluateReminderDelivery(
+        id: com.sedsoftware.sproutpace.platform.PhysicalReminderId,
+        fireAtEpochMillis: Long,
+    ): Boolean = graph.evaluateReminderDelivery(id, fireAtEpochMillis)
 
     override fun onTerminate() {
         graph.close()

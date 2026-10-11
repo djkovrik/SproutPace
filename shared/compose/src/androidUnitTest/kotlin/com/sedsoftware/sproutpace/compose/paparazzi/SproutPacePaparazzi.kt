@@ -22,6 +22,7 @@ import com.android.resources.NightMode
 import com.android.resources.ScreenRatio
 import com.android.resources.ScreenRound
 import com.android.resources.ScreenSize
+import com.android.resources.ScreenOrientation
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.PreviewContextConfigurationEffect
 import org.jetbrains.compose.resources.setResourceReaderAndroidContext
@@ -47,7 +48,8 @@ internal object SproutPacePreviewCatalog {
             .includePrivatePreviews()
             .getPreviews()
             .map { preview -> PreviewCase(stableId(preview), preview) }
-            .sortedBy(PreviewCase::id)
+            // Preserve the original 78 parameter indices when additional scenario files are added.
+            .sortedWith(compareBy({ !it.id.startsWith("SproutPacePreviewsKt.") }, PreviewCase::id))
             .also { discovered ->
                 check(discovered.isNotEmpty()) { "No production Compose previews were discovered" }
                 val collisions = discovered.groupBy(PreviewCase::id).filterValues { it.size > 1 }
@@ -82,7 +84,7 @@ internal object SproutPacePaparazziPreviewRule {
             environment = detectEnvironment().copy(compileSdkVersion = 37),
             deviceConfig = deviceFor(info),
             renderingMode = if (info.widthDp > 0 && info.heightDp > 0) {
-                SessionParams.RenderingMode.FULL_EXPAND
+                SessionParams.RenderingMode.NORMAL
             } else {
                 SessionParams.RenderingMode.SHRINK
             },
@@ -131,7 +133,7 @@ private fun ResizeComposable(
     Box(modifier) { content() }
 }
 
-private fun deviceFor(info: AndroidPreviewInfo): DeviceConfig =
+internal fun deviceFor(info: AndroidPreviewInfo): DeviceConfig =
     baseDevice(info.device)
         .resizeToPreview(info.widthDp, info.heightDp)
         .copy(
@@ -163,5 +165,8 @@ private fun DeviceConfig.resizeToPreview(widthDp: Int, heightDp: Int): DeviceCon
     return copy(
         screenWidth = if (widthDp > 0) ceil(widthDp * densityScale).toInt() else screenWidth,
         screenHeight = if (heightDp > 0) ceil(heightDp * densityScale).toInt() else screenHeight,
+        orientation = if (widthDp > 0 && heightDp > 0) {
+            if (widthDp > heightDp) ScreenOrientation.LANDSCAPE else ScreenOrientation.PORTRAIT
+        } else orientation,
     )
 }

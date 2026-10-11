@@ -1,0 +1,7 @@
+<resources>
+    <string name="catalog_version_label">Версия каталога</string>
+    <string name="privacy_endpoint_unavailable">Не удалось проверить требования к конфиденциальности. Реклама отключена; решение не требуется до получения актуального ответа.</string>
+    <string name="privacy_endpoint_stale">Требования к конфиденциальности нужно проверить снова. Реклама отключена; выбор станет доступен после получения актуального ответа.</string>
+    <string name="privacy_not_required">По текущим региональным правилам решение о согласии не требуется.</string>
+    <string name="privacy_policy_version">Текущая версия политики конфиденциальности</string>
+</resources>

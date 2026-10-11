@@ -1,0 +1,18 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-daemon",
+    "--no-configuration-cache",
+    "-I",
+    ".vibe/scripts/ux-cache.init.gradle",
+    "--continue",
+    "detekt",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileKotlinIosSimulatorArm64",
+    ":shared:compose:recordPaparazzi",
+    ":androidApp:assembleDebug"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -11,11 +11,31 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.sedsoftware.sproutpace.platform.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withTimeout
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 private const val ACTION_DELIVER_REMINDER = "com.sedsoftware.sproutpace.action.DELIVER_REMINDER"
 private const val EXTRA_ID = "physical_reminder_id"
 private const val EXTRA_TITLE_KEY = "title_key"
 private const val EXTRA_BODY_KEY = "body_key"
+private const val EXTRA_FIRE_AT = "fire_at_epoch_millis"
+private const val EXTRA_KIND = "reminder_kind"
+private const val RECEIVER_WORK_TIMEOUT_MILLIS = 8_000L
+private val receiverScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+private val deliveryMutex = Mutex()
+
+interface AndroidReminderRuntimeOwner {
+    suspend fun reconcileReminderEnvironment(reason: ReconciliationReason)
+    suspend fun evaluateReminderDelivery(id: PhysicalReminderId, fireAtEpochMillis: Long): Boolean
+}
 private const val REMINDER_CHANNEL_ID = "reminders.v1"
 
 class AndroidReminderDriver(private val context: Context) : ReminderDriver {
@@ -54,6 +74,29 @@ class ReminderDeliveryReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action != ACTION_DELIVER_REMINDER) return
         val payload = intent.reminderPayload() ?: return
+        val pending = goAsync()
+        receiverScope.launch {
+            runReminderBroadcast(
+                work = {
+                    withTimeout(RECEIVER_WORK_TIMEOUT_MILLIS) {
+                        deliveryMutex.withLock { deliver(context.applicationContext, payload) }
+                    }
+                },
+                onFailure = { AndroidReconciliationSignalStore(context).record(ReconciliationReason.REMINDER_DELIVERED) },
+                finish = pending::finish,
+            )
+        }
+    }
+
+    private suspend fun deliver(context: Context, payload: ReminderPayload) {
+        val runtime = context as? AndroidReminderRuntimeOwner ?: error("reminder_runtime_unavailable")
+        val preferences = context.getSharedPreferences("physical_reminders.v1", Context.MODE_PRIVATE)
+        // Reconciliation retires obsolete soak IDs and replaces the stable daily alarm atomically.
+        // Removing IDs here could erase a registration made by a concurrent cold-start reconciliation.
+        val token = if (payload.kind == ReminderKind.DAILY_SUMMARY) {
+            SimpleDateFormat("yyyy-MM-dd", Locale.ROOT).format(Date())
+        } else payload.fireAt.toString()
+        val claimKey = "delivered:${payload.id}"
         ensureChannel(context)
         val notification = NotificationCompat.Builder(context, REMINDER_CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_popup_reminder)
@@ -61,14 +104,13 @@ class ReminderDeliveryReceiver : BroadcastReceiver() {
             .setContentText(context.getString(payload.body.resourceId()))
             .setAutoCancel(true)
             .build()
-        runCatching {
-            NotificationManagerCompat.from(context)
-                .notify(PhysicalReminderId(payload.id).requestCode(), notification)
-        }
-        context.getSharedPreferences("physical_reminders.v1", Context.MODE_PRIVATE).let { preferences ->
-            val ids = preferences.getStringSet("ids", emptySet()).orEmpty().toMutableSet().apply { remove(payload.id) }
-            preferences.edit().putStringSet("ids", ids).apply()
-        }
+        deliverReminderOnce(
+            token = token,
+            evaluateAndRearm = { runtime.evaluateReminderDelivery(PhysicalReminderId(payload.id), payload.fireAt) },
+            readClaim = { preferences.getString(claimKey, null) },
+            writeClaim = { claim -> check(preferences.edit().putString(claimKey, claim).commit()) },
+            post = { NotificationManagerCompat.from(context).notify(PhysicalReminderId(payload.id).requestCode(), notification) },
+        )
     }
 }
 
@@ -80,7 +122,23 @@ class ReminderEnvironmentReceiver : BroadcastReceiver() {
             Intent.ACTION_TIMEZONE_CHANGED -> ReconciliationReason.TIME_ZONE_CHANGED
             else -> return
         }
-        AndroidReconciliationSignalStore(context).record(reason)
+        val signals = AndroidReconciliationSignalStore(context)
+        signals.record(reason)
+        val pending = goAsync()
+        receiverScope.launch {
+            runReminderBroadcast(
+                work = {
+                    withTimeout(RECEIVER_WORK_TIMEOUT_MILLIS) {
+                        val runtime = context.applicationContext as? AndroidReminderRuntimeOwner
+                            ?: error("reminder_runtime_unavailable")
+                        runtime.reconcileReminderEnvironment(reason)
+                        signals.acknowledge(reason)
+                    }
+                },
+                onFailure = { signals.record(reason) },
+                finish = pending::finish,
+            )
+        }
     }
 }
 
@@ -93,10 +151,15 @@ class AndroidReconciliationSignalStore(context: Context) {
         check(preferences.edit().putStringSet("reasons", reasons).commit())
     }
 
-    fun consume(): Set<ReconciliationReason> {
+    fun acknowledge(reason: ReconciliationReason) {
+        val reasons = preferences.getStringSet("reasons", emptySet()).orEmpty().toMutableSet()
+        reasons -= reason.name
+        check(preferences.edit().putStringSet("reasons", reasons).commit())
+    }
+
+    fun pending(): Set<ReconciliationReason> {
         val reasons = preferences.getStringSet("reasons", emptySet()).orEmpty()
             .mapNotNullTo(linkedSetOf()) { runCatching { ReconciliationReason.valueOf(it) }.getOrNull() }
-        preferences.edit().remove("reasons").apply()
         return reasons
     }
 }
@@ -107,6 +170,8 @@ private fun PhysicalReminder.pendingIntent(context: Context): PendingIntent = Pe
     Intent(context, ReminderDeliveryReceiver::class.java)
         .setAction(ACTION_DELIVER_REMINDER)
         .putExtra(EXTRA_ID, id.value)
+        .putExtra(EXTRA_FIRE_AT, fireAtEpochMillis)
+        .putExtra(EXTRA_KIND, kind.name)
         .putExtra(EXTRA_TITLE_KEY, titleKey.name)
         .putExtra(EXTRA_BODY_KEY, bodyKey.name),
     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
@@ -115,13 +180,24 @@ private fun PhysicalReminder.pendingIntent(context: Context): PendingIntent = Pe
 private fun Intent.nativeText(extra: String): NativeTextKey? =
     getStringExtra(extra)?.let { runCatching { NativeTextKey.valueOf(it) }.getOrNull() }
 
-private data class ReminderPayload(val id: String, val title: NativeTextKey, val body: NativeTextKey)
+private data class ReminderPayload(
+    val id: String,
+    val title: NativeTextKey,
+    val body: NativeTextKey,
+    val kind: ReminderKind,
+    val fireAt: Long,
+)
 
 private fun Intent.reminderPayload(): ReminderPayload? {
     val id = getStringExtra(EXTRA_ID)
     val title = nativeText(EXTRA_TITLE_KEY)
     val body = nativeText(EXTRA_BODY_KEY)
-    return if (id != null && title != null && body != null) ReminderPayload(id, title, body) else null
+    val kind = getStringExtra(EXTRA_KIND)?.let { runCatching { ReminderKind.valueOf(it) }.getOrNull() }
+    val fireAt = getLongExtra(EXTRA_FIRE_AT, -1)
+    if (fireAt < 0) return null
+    return if (id != null && title != null && body != null && kind != null) {
+        ReminderPayload(id, title, body, kind, fireAt)
+    } else null
 }
 
 private fun NativeTextKey.resourceId(): Int = when (this) {

@@ -238,12 +238,12 @@ class ScreenComponentContractTest {
         val expected = mapOf(
             ScreenId.FIRST_RUN to setOf("continue-setup"),
             ScreenId.TODAY to setOf("complete-action", "snooze", "skip-action", "time-zone-change"),
-            ScreenId.TRAYS to setOf("delete-batch", "repeat-batch"),
+            ScreenId.TRAYS to setOf("delete-batch"),
             ScreenId.BATCH_EDITOR to setOf("save-batch", "correct-batch"),
             ScreenId.BATCH_DETAIL to setOf(
                 "start-soaking", "confirm-sowing", "confirm-stage", "assign-overflow", "undo-stage",
                 "skip-stage", "schedule-soak-target", "record-actual-mass", "time-zone-change",
-                "complete-action", "skip-action", "delete-batch", "repeat-batch",
+                "complete-action", "skip-action", "delete-batch",
             ),
             ScreenId.PLAN to setOf(
                 "save-plan", "update-plan", "pause-plan", "resume-plan", "confirm-suggestion", "delete-plan",
@@ -258,7 +258,7 @@ class ScreenComponentContractTest {
             ScreenId.ZONES to setOf("save-zone", "update-zone", "delete-zone"),
             ScreenId.TRAY_SIZES to setOf("save-tray-size", "update-tray-size", "delete-tray-size"),
             ScreenId.BACKUP_RESTORE to setOf(
-                "create-backup", "preview-restore", "restore-backup", "export-csv", "erase-all", "delete-all-data",
+                "create-backup", "preview-restore", "restore-backup", "export-csv", "erase-all", "delete-all-data", "cancel-restore-preview",
             ),
             ScreenId.ADVERTISING_PRIVACY to setOf("record-consent"),
             ScreenId.NOTIFICATIONS to setOf("update-notifications"),
@@ -281,7 +281,7 @@ class ScreenComponentContractTest {
                 "field_plan_mode",
             ),
             ScreenId.TODAY to setOf("field_due_kind", "field_due_at", "field_local_date_time", "field_time_zone"),
-            ScreenId.TRAYS to setOf("field_tray_category", "field_new_id"),
+            ScreenId.TRAYS to setOf("field_tray_category"),
             ScreenId.BATCH_EDITOR to setOf(
                 "field_batch_id", "field_recipe_selector", "field_culture_selector", "field_tray_selector",
                 "field_substrate", "field_actual_seed_mass", "field_zone_selector", "field_anchor_state",
@@ -296,7 +296,7 @@ class ScreenComponentContractTest {
                 "field_event_id", "field_occurred_at", "field_next_state", "field_zone_selector",
                 "field_leave_unassigned", "field_skipped_state", "field_skip_reason", "field_resulting_state",
                 "field_due_at", "field_scheduled_action_selector", "field_actual_harvest_mass",
-                "field_time_zone", "field_new_id",
+                "field_time_zone",
             ),
             ScreenId.PLAN to setOf(
                 "field_plan_id", "field_plan_anchor_date", "field_plan_cadence_days",
@@ -791,7 +791,7 @@ class ScreenComponentContractTest {
         component.onAction(ScreenAction.Execute(ScreenCommand("complete-action")))
 
         assertEquals(listOf(ScreenCommand("complete-action", "action-1")), manager.commands)
-        assertEquals(TextKey("state_error_body"), component.model.value.validationErrors[ScreenFieldId("id")])
+        assertEquals(TextKey("validation_required_selection"), component.model.value.validationErrors[ScreenFieldId("id")])
     }
 
     @Test

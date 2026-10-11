@@ -1,0 +1,7 @@
+<resources>
+    <string name="catalog_version_label">Catalog version</string>
+    <string name="privacy_endpoint_unavailable">Privacy requirements could not be checked. Ads stay off and no decision is needed until a fresh response is available.</string>
+    <string name="privacy_endpoint_stale">Privacy requirements need to be checked again. Ads stay off and decision controls wait for a fresh response.</string>
+    <string name="privacy_not_required">The current regional policy does not require a consent decision.</string>
+    <string name="privacy_policy_version">Current privacy policy version</string>
+</resources>

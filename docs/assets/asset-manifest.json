@@ -192,7 +192,7 @@
       "usageEvidence": [
         {
           "path": "androidApp/src/main/AndroidManifest.xml",
-          "sha256": "5663018068bb8e3c7381fbb5d874b5055a2e153cbad5b27bf864adcfdd6fd9d0",
+          "sha256": "b5e5476c080772bf5123ed415148630c2abcf3ec0e228bbf53057d340514eaac",
           "symbol": "android:icon=@mipmap/ic_launcher"
         },
         {
@@ -428,37 +428,49 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
-          "symbol": "screenHero",
+          "symbol": "FirstRunScreen",
           "screenIds": [
-            "SCREEN-001",
+            "SCREEN-001"
+          ],
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db"
+        },
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+          "symbol": "SettingsBrandHeader",
+          "screenIds": [
             "SCREEN-011"
-          ]
+          ],
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db"
         }
       ],
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[32]_sproutpacepreviewskt.firstrunpreviews.01_first_run_dark_w393dp_h851dp_night.png",
-          "sha256": "8a837f86b1724b5ec7ba11b8c63119d09503a9db71083f6af502f687f3f4f3a1"
+          "sha256": "50e2623c6138f8399f73e3f7ba02f8df674a6eb8df9c88c5abd7e3353ec68938"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[33]_sproutpacepreviewskt.firstrunpreviews.01_first_run_light_w393dp_h851dp_day.png",
-          "sha256": "9283de2a4d4d7025c4443821a15eb5c65a5d00f08d2f59a557d2f540701716a2"
+          "sha256": "2c09f5039aab321f5116a380728660c16dbae50a285339483202957760d22dfa"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[56]_sproutpacepreviewskt.settingspreviews.11_settings_dark_w393dp_h851dp_night.png",
-          "sha256": "4713feaefd3584ccb951335721b3c7b220d8bbfa2a56e6ec2a2e318976dfe699"
+          "sha256": "6d071ca320f3dbe495402459d3d9958beffc89292ecf4847ea03bc369595da15"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[57]_sproutpacepreviewskt.settingspreviews.11_settings_light_w393dp_h851dp_day.png",
-          "sha256": "af6124bdc9ca8db969b5da6dfa56de3278b84d2a5d0e2b3f3ba8f1d873a6d2db"
+          "sha256": "a07e1459018489a6cfae37a4f5e7a14114870141e2f5034226a93c15c58ab808"
         },
         {
           "path": "docs/assets/brand-refresh-review.md",
           "sha256": "0c07cbd98155c6775e35130cceb5ae68df4f6acf633148600a163e6f4b9bef7e"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-002",
@@ -476,15 +488,21 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-002"
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c"
+        }
+      ],
+      "blockers": [],
+      "visualReviewNotes": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-003",
@@ -502,15 +520,21 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-003"
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c"
+        }
+      ],
+      "blockers": [],
+      "visualReviewNotes": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-004",
@@ -528,15 +552,21 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-006"
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c"
+        }
+      ],
+      "blockers": [],
+      "visualReviewNotes": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-005",
@@ -554,15 +584,21 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-007"
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c"
+        }
+      ],
+      "blockers": [],
+      "visualReviewNotes": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-006",
@@ -580,23 +616,29 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
-          "symbol": "SproutPaceApp",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "symbol": "SproutPaceTopBar",
           "screenIds": [
             "SCREEN-002"
           ]
         },
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
-          "symbol": "screenHero",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "symbol": "SettingsBrandHeader",
           "screenIds": [
             "SCREEN-011"
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c"
+        }
+      ],
+      "blockers": [],
+      "visualReviewNotes": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-007",
@@ -614,7 +656,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -623,8 +665,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[63]_sproutpacepreviewskt.todaypreviews.02_today_light_w393dp_h851dp_day.png",
+          "sha256": "8aa21b131d06ca2a538a76712933687e96405a1f11296b61bde6065d10870d3c"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Bottom navigation shows the distinct Today calendar, Trays container, Plan calendar-arrow and Catalog book icons; top bar shows settings gear; New batch shows plus. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-008",
@@ -642,8 +691,8 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6b90675ebf29eec664ed1de883e5635434940d1353b9923faf2305f3658a1e62",
-          "symbol": "SproutPaceApp",
+          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "symbol": "SproutPaceTopBar",
           "screenIds": [
             "SCREEN-004",
             "SCREEN-005",
@@ -658,8 +707,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[4]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_light_w393dp_h851dp_day.png",
+          "sha256": "ec8957dd89f91e3a5f00932ef00843a253b7b6b993d0efb25dc03e9c2bbfaf76"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Back arrow visible in Batch top app bar. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-009",
@@ -677,7 +733,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -688,8 +744,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[108]_productionscenariopreviewskt.editzonescenario.12_edit_zone_expanded_w1100dp_h1000dp.png",
+          "sha256": "8c1d482f95d983aa0fd5205a16d8d552f08feb9b3dc147820d0b0205861f3a13"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Edit pencil visible in Edit growing zone heading and Save button. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-010",
@@ -707,7 +770,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -719,8 +782,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[108]_productionscenariopreviewskt.editzonescenario.12_edit_zone_expanded_w1100dp_h1000dp.png",
+          "sha256": "8c1d482f95d983aa0fd5205a16d8d552f08feb9b3dc147820d0b0205861f3a13"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Delete trash icon visible beside Delete this record. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-011",
@@ -738,7 +808,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-009",
@@ -746,8 +816,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[41]_sproutpacepreviewskt.observationpreviews.09_observation_light_w393dp_h851dp_day.png",
+          "sha256": "80898c5472ddfeb951284ecc64d3bb716c7970662e47d5715cd6db917da93283"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Camera-plus icon visible beside Choose photo. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-012",
@@ -765,7 +842,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-016",
@@ -773,8 +850,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[38]_sproutpacepreviewskt.notificationspreviews.16_notifications_light_w393dp_h851dp_day.png",
+          "sha256": "fe5db8d4bfbec2d7fd4cc224214143d92c7a894a756def4b9ecd0e3ee4ea6aec"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Bell icon visible beside Allow notifications. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-013",
@@ -792,7 +876,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-014",
@@ -800,8 +884,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[1]_sproutpacepreviewskt.backuppreviews.14_backup_light_w393dp_h851dp_day.png",
+          "sha256": "2836263e9f5bf1e21d75ce9a04d26d0c7634f24fc3d84e599229c98f5e5ceacf"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Cloud upload icon visible beside Create backup and Choose archive to preview. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-014",
@@ -819,7 +910,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-003",
@@ -827,8 +918,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[122]_productionscenariopreviewskt.harvestedscenario.05_harvested_light_w393dp_h851dp_day.png",
+          "sha256": "6ff467f681c39597b8158d4c7f93af0efb67f37c4b019455ba42d4c02093301b"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Repeat arrow visible beside Repeat batch on actual harvested batch detail. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-015",
@@ -846,7 +944,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -855,8 +953,15 @@
           ]
         }
       ],
-      "visualEvidence": [],
-      "blockers": []
+      "visualEvidence": [
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[4]_sproutpacepreviewskt.batchdetailpreviews.05_batch_detail_light_w393dp_h851dp_day.png",
+          "sha256": "ec8957dd89f91e3a5f00932ef00843a253b7b6b993d0efb25dc03e9c2bbfaf76"
+        }
+      ],
+      "blockers": [],
+      "usageNotes": "Shared actionIcon mapping is consumed through LabeledActionContent by reachable dedicated screen controls, contextual editors, platform picker fields and batch actions; text labels and action dispatch are retained.",
+      "visualReviewNotes": "2026-10-10: Check-circle icon visible beside Confirm stage. This binding establishes visible icon rendering in this captured production layout; it does not prove interaction behavior. Bindings compared after record9; unchanged captures retain their earlier inspection."
     },
     {
       "id": "ASSET-016",
@@ -874,7 +979,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -884,15 +989,25 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[154]_productionscenariopreviewskt.soakingscenario.05_soaking_dark_w393dp_h851dp_night.png",
+          "sha256": "9448570a1c7d75e7d5af76eaaffb900a5261f12d2d1fb341b2ed6e63eb9f91bf"
+        },
+        {
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[155]_productionscenariopreviewskt.soakingscenario.05_soaking_light_w393dp_h851dp_day.png",
+          "sha256": "2274e51c65771dc7b547db670231a5b52233478cc6921b41068de456b84b3119"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-017",
@@ -910,7 +1025,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -921,14 +1036,20 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-018",
@@ -946,7 +1067,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -957,14 +1078,20 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-019",
@@ -982,7 +1109,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -993,14 +1120,20 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-020",
@@ -1018,7 +1151,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1029,14 +1162,20 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared stageImage mapping is rendered by StageIllustration in RecipeStageCard and BatchHistoryCard; harvest also appears in ContextualEditor for harvested outcomes. Generic ItemCard is not the reachability evidence for dedicated screens.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-021",
@@ -1054,8 +1193,8 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
-          "symbol": "showsEmptyIllustration",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
+          "symbol": "statusItems",
           "screenIds": [
             "SCREEN-002",
             "SCREEN-003",
@@ -1066,34 +1205,40 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[21]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "3c080abc2d93e6ac5ef949bf2d65757c0375cf59264e4a686a6413f838757009"
+          "sha256": "0abf2a45730a61558ee8d032756e8d889daab838152daefec03ba64ded2eb0f9"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[22]_sproutpacepreviewskt.emptyplanpreview.06_plan_empty_light_w393dp_h851dp_day.png",
-          "sha256": "c56cbadf67eed85bd1e573c4540ab429eecfef889e68d0593b65604e1895ae5d"
+          "sha256": "6165a3ccc771399f28f9a1f21105aa5d606c6294c3d060034df4f50f8fcf5c56"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[23]_sproutpacepreviewskt.emptytodaypreview.empty_state_dark_w393dp_h851dp_night.png",
-          "sha256": "cc79c817f4759cb6edfdb6de4938cb678b824b3547515dc68857fd36d3c936af"
+          "sha256": "9881396e08d42b28f17d231c58cb401fd73d14df5d5cea828847d5ec9c9af43e"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[24]_sproutpacepreviewskt.emptytodaypreview.empty_state_light_w393dp_h851dp_day.png",
-          "sha256": "a8d43e886d81d103f1ac1f62051e3f10daaf54a0124a08f71edecca5ff194f2b"
+          "sha256": "d3b4e58d540b6113ffa60088f1ae6f185c32de5b580c3e3d1f5c3094aef10c69"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[25]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_dark_w393dp_h851dp_night.png",
-          "sha256": "28bc5e4fcce89c908aeb37539c22fbe1c788b3a1d221637584448a1bc6a9b9d9"
+          "sha256": "a00fdaa622d40d0b4f222da1e618b0a4e3931222da8000541b0d80cba9722e44"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[26]_sproutpacepreviewskt.emptytrayspreview.03_trays_empty_light_w393dp_h851dp_day.png",
-          "sha256": "3d3fae2a35d1b3e75a4953d27e5310b2049ca894b61fe1cb76e8ddbd39c44898"
+          "sha256": "187a15f54b4cf310d5b0a0b1274f543dcb63d519a764ca6da89fcf929f332185"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "TodayScreen, TraysScreen and PlanScreen call statusItems for their actual empty state.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-022",
@@ -1115,7 +1260,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1134,18 +1279,24 @@
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
-          "sha256": "774041a9571e06278b96ba1dcc23b52085dc4a2da5883cdb980a353d0249f6c8"
+          "sha256": "812c9df2f89067731ded91c920beb256234986f9e7eaae483e796f0d224cf6e8"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[52]_sproutpacepreviewskt.recipeassetinspectionpreview.08_recipe_asset_inspection_w393dp_h1800dp.png",
-          "sha256": "378dc9972970c22508f5103b2a93827b29e12a198945fe1c05e136f82144af01"
+          "sha256": "048055138d1666183583fffec0ddd60a9b04b99c43feb139bd1fbfdab6c56356"
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-023",
@@ -1167,7 +1318,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1186,10 +1337,16 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-024",
@@ -1211,7 +1368,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1230,10 +1387,16 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-025",
@@ -1255,7 +1418,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1274,10 +1437,16 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-026",
@@ -1299,7 +1468,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1318,10 +1487,16 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-027",
@@ -1343,7 +1518,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1362,10 +1537,16 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-028",
@@ -1387,7 +1568,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1406,10 +1587,16 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     },
     {
       "id": "ASSET-029",
@@ -1431,7 +1618,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "e4d02ce4b0e2526686ff9deafa4e6bf3d724bfeeaa35614427350a7c99a3d228",
+          "sha256": "50370a3906f076c066c7693448cdc3847c490e5054c3a2feaa65a4344e5f84db",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1450,10 +1637,16 @@
         },
         {
           "path": "docs/assets/ASSET-INVENTORY.md",
-          "sha256": "1c43c91e4f7b6368ac32ae1384943aeb04b038a30c601f7c2f3de64f6cfea963"
+          "sha256": "da66dd5bc71a67803c2899e7b2957bce30168fa4558b2b9b4d8182e2acaade01"
+        },
+        {
+          "path": "docs/design-review/ux-preview-review.json",
+          "sha256": "25415e8385dd7d2786a9df677a9b5fdd5f1498ca7e8d0e1bac066af93dee5508"
         }
       ],
-      "blockers": []
+      "blockers": [],
+      "usageNotes": "Shared cultureImage mapping is rendered by CatalogCultureCard and RecipeHeader in RecipeScreen.kt with actual culture IDs.",
+      "visualReview": "2026-10-10 record7: current production captures reviewed after dedicated-screen asset restoration; all 104 changed captures inspected across sheets001-009. Full-size soaking154/155 verifies ASSET016 in both themes; tall recipe52 visibly verifies sowing, blackout, light growth and harvest at 96x72dp. Existing artwork/contact-sheet evidence retained for unchanged asset files. No new blocking visual findings; runtime accessibility and platform validation are separate evidence."
     }
   ],
   "deliveryBlockers": []

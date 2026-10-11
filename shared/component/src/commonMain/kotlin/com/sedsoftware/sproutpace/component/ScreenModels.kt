@@ -38,6 +38,13 @@ data class ScreenItem(
     val actionId: String? = null,
     val commands: List<ScreenItemCommand> = emptyList(),
     val photo: ScreenPhoto? = null,
+    val batch: BatchIdentity? = null,
+    val task: TaskProjection? = null,
+    val occupancy: ZoneOccupancy? = null,
+    val planEntry: PlanEntryProjection? = null,
+    val recipe: RecipeGuideProjection? = null,
+    val history: BatchHistoryProjection? = null,
+    val snapshotStage: RecipeStageProjection? = null,
 ) {
     init {
         require(id.isNotBlank())
@@ -79,16 +86,23 @@ data class ScreenModel(
     val actions: List<ScreenActionDescriptor> = emptyList(),
     val validationErrors: Map<ScreenFieldId, TextKey> = emptyMap(),
     val hasUnsavedChanges: Boolean = false,
+    val setupState: WorkspaceSetupState? = null,
+    val plans: List<PlanSummaryProjection> = emptyList(),
+    val detail: ScreenModel? = null,
+    val stagePreview: StageChangeProjection? = null,
+    val completionRevision: Long = 0,
 )
 
 sealed interface ScreenAction {
     data object Retry : ScreenAction
+    data class ReportFailure(val key: TextKey) : ScreenAction
     data object Back : ScreenAction
     data class Select(val id: String) : ScreenAction
     data class EditField(val fieldId: ScreenFieldId, val value: String) : ScreenAction
     data class ChooseOption(val fieldId: ScreenFieldId, val optionId: String) : ScreenAction
     data class Submit(val actionId: ScreenActionId) : ScreenAction
     data object CancelDraft : ScreenAction
+    data object ConfirmStagePreview : ScreenAction
     data class Execute(val command: ScreenCommand) : ScreenAction
     /** Trusted post-confirmation path used by the root confirmation slot. */
     data class ExecuteConfirmed(val command: ScreenCommand) : ScreenAction
@@ -101,14 +115,21 @@ data class ScreenCommand(
     val subjectId: String? = null,
     val arguments: Map<String, String> = emptyMap(),
     val deduplicationKey: String = listOfNotNull(operation, subjectId).joinToString(":"),
+    val invocationId: String? = null,
 ) {
     init {
         require(operation.matches(Regex("[a-z][a-z0-9_-]*")))
         require(deduplicationKey.isNotBlank())
+        require(invocationId == null || invocationId.isNotBlank())
     }
 
     val destructiveOperation: DestructiveOperation?
         get() = DestructiveCommandClassifier.classify(operation)
+
+    /** A new user submission; retain this command for callbacks, confirmation and retries. */
+    fun newInvocation(): ScreenCommand = copy(invocationId = kotlin.uuid.Uuid.random().toString())
+
+    val executionKey: String get() = invocationId ?: deduplicationKey
 }
 
 @Serializable

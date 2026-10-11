@@ -3,9 +3,11 @@ package com.sedsoftware.sproutpace.compose
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -58,6 +60,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -96,7 +99,19 @@ internal fun ScreenContent(
     onAction: (UiAction) -> Unit,
     advertisingRuntime: AdvertisingRuntime? = null,
 ) {
-    Box(Modifier.fillMaxSize().padding(padding)) {
+    Box(Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding)) {
+        if (state.keepsContentOnFailure()) {
+            Column(Modifier.fillMaxSize()) {
+                if (state.errorKey != null && state.screen in setOf(UiScreen.FIRST_RUN, UiScreen.BATCH_EDITOR, UiScreen.PLAN)) {
+                    Text(localizedText(state.errorKey), color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(16.dp))
+                }
+                Box(Modifier.weight(1f)) {
+                    ModelDrivenScreen(state, layout, contextFieldsExpanded, onContextFieldsExpandedChange, onAction, advertisingRuntime)
+                    if (state.busy) LinearProgressIndicator(Modifier.fillMaxWidth())
+                }
+            }
+            return@Box
+        }
         when (state.variant) {
             UiVariant.ERROR -> MessageState(
                 titleKey = "state_error_title",
@@ -115,8 +130,16 @@ internal fun ScreenContent(
                 state, layout, contextFieldsExpanded, onContextFieldsExpandedChange, onAction, advertisingRuntime,
             )
         }
+        if (state.busy) androidx.compose.material3.LinearProgressIndicator(Modifier.fillMaxWidth().align(Alignment.TopCenter))
     }
 }
+
+internal fun SproutPaceUiState.keepsContentOnFailure(): Boolean =
+    screen in setOf(UiScreen.NOTIFICATIONS, UiScreen.BACKUP_RESTORE) ||
+        ((fields.isNotEmpty() || items.isNotEmpty()) && screen in setOf(
+            UiScreen.FIRST_RUN, UiScreen.BATCH_EDITOR, UiScreen.BATCH_DETAIL, UiScreen.RECIPE, UiScreen.PLAN,
+            UiScreen.OBSERVATION_EDITOR, UiScreen.CLOSE_BATCH, UiScreen.ZONES, UiScreen.TRAY_SIZES,
+        ))
 
 @Composable
 private fun ModelDrivenScreen(
@@ -127,6 +150,17 @@ private fun ModelDrivenScreen(
     onAction: (UiAction) -> Unit,
     advertisingRuntime: AdvertisingRuntime?,
 ) {
+    if (layout >= UiLayout.EXPANDED && (state.screen == UiScreen.SETTINGS || state.settingsContext != null)) {
+        SettingsListDetail(state, onAction) {
+            ModelDrivenScreen(state, UiLayout.MEDIUM, contextFieldsExpanded, onContextFieldsExpandedChange,
+                onAction, advertisingRuntime)
+        }
+        return
+    }
+    if (layout >= UiLayout.EXPANDED && state.screen in setOf(UiScreen.TRAYS, UiScreen.CATALOG)) {
+        PrimaryListDetailScreen(state, onAction, advertisingRuntime)
+        return
+    }
     when (state.screen) {
         UiScreen.FIRST_RUN -> FirstRunScreen(state, onAction)
         UiScreen.TODAY -> TodayScreen(
@@ -140,7 +174,13 @@ private fun ModelDrivenScreen(
         )
         UiScreen.CATALOG -> CatalogScreen(state, onAction, advertisingRuntime)
         UiScreen.BATCH_EDITOR -> BatchEditorScreen(state, layout, onAction)
+        UiScreen.BATCH_DETAIL -> BatchDetailScreen(state, onAction)
         UiScreen.SETTINGS -> SettingsScreen(state, layout, onAction)
+        UiScreen.RECIPE -> RecipeScreen(state, layout, onAction)
+        UiScreen.NOTIFICATIONS -> NotificationsScreen(state, onAction)
+        UiScreen.BACKUP_RESTORE -> BackupRestoreScreen(state, onAction)
+        UiScreen.OBSERVATION_EDITOR, UiScreen.CLOSE_BATCH, UiScreen.ZONES, UiScreen.TRAY_SIZES ->
+            ContextualFormsScreen(state, layout, onAction)
         else -> Unit
     }
     if (state.screen in dedicatedScreenLayouts) return
@@ -169,13 +209,16 @@ internal enum class FirstRunStep(
 }
 
 @Composable
-private fun FirstRunScreen(
+internal fun FirstRunScreen(
     state: SproutPaceUiState,
     onAction: (UiAction) -> Unit,
+    initialStepIndex: Int = 0,
 ) {
-    var stepIndex by remember { mutableIntStateOf(0) }
     val firstInvalidStep = state.fields.firstNotNullOfOrNull { field ->
         field.errorKey?.let { firstRunStepForField(field.id).ordinal }
+    }
+    var stepIndex by rememberSaveable(state.selectedItemId) {
+        mutableIntStateOf(firstInvalidStep ?: initialStepIndex.coerceIn(0, FirstRunStep.entries.lastIndex))
     }
     LaunchedEffect(firstInvalidStep) {
         if (firstInvalidStep != null) stepIndex = firstInvalidStep
@@ -215,6 +258,29 @@ private fun FirstRunScreen(
                 item { FirstRunProgress(step, focusRequester) }
                 items(visibleFields, key = { field -> modelListKey(ModelListEntryKind.FIELD, field.id) }) { field ->
                     FieldControl(field, onAction)
+                }
+                if (step == FirstRunStep.PLAN) item {
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(localizedText("notifications_permission"), style = MaterialTheme.typography.titleMedium)
+                        Text(localizedText(notificationPermissionStatusKey(state.permissionState)))
+                        Text(localizedText("notifications_permission_body"))
+                        if (state.permissionState in setOf(
+                                com.sedsoftware.sproutpace.component.PermissionState.NOT_REQUESTED,
+                                com.sedsoftware.sproutpace.component.PermissionState.DENIED,
+                            )) {
+                            OutlinedButton(onClick = { onAction(UiAction.Submit("request-notification-permission")) }) {
+                                Text(localizedText("action_request_permission"))
+                            }
+                        }
+                        if (state.permissionState in setOf(
+                                com.sedsoftware.sproutpace.component.PermissionState.DENIED,
+                                com.sedsoftware.sproutpace.component.PermissionState.PERMANENTLY_DENIED,
+                            )) {
+                            TextButton(onClick = { onAction(UiAction.Submit("open-system-settings")) }) {
+                                Text(localizedText("action_open_settings"))
+                            }
+                        }
+                    }
                 }
             }
             FirstRunBottomActions(
@@ -328,6 +394,7 @@ private fun SettingsScreen(
                 bottom = 32.dp,
             ),
         ) {
+            item { SettingsBrandHeader() }
             settingsGrowingSection(onAction)
             settingsPreferencesSection(state, themeField, crashField, { themePickerOpen = true }, onAction)
             settingsDataSection(privacyVisible, onAction)
@@ -344,6 +411,14 @@ private fun SettingsScreen(
                 themePickerOpen = false
             },
         )
+    }
+}
+
+@Composable
+private fun SettingsBrandHeader() {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+        Image(painterResource(Res.drawable.logo_sproutpace), null, Modifier.size(64.dp))
+        Icon(vectorResource(Res.drawable.ic_settings), null, Modifier.size(24.dp))
     }
 }
 
@@ -591,7 +666,7 @@ private fun ThemePickerDialog(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         RadioButton(selected = option.id == field.value, onClick = null)
-                        Text(localizedOrAuthored(option.labelKey, option.authoredLabel))
+                        Text(optionDisplayText(option))
                     }
                 }
             }
@@ -616,16 +691,27 @@ internal fun batchEditorSubmitAction(state: SproutPaceUiState): UiScreenAction? 
 
 private val batchEditorBasicFieldIds = setOf("recipeId", "cultureId", "trayId")
 private val batchEditorCoreDetailFieldIds = setOf("substrate", "actualSeedMassGrams", "plannedSowDate", "zoneId")
-private val batchEditorHiddenFieldIds = setOf("id")
+private val batchEditorHiddenFieldIds = setOf("id", "timeZoneId")
 
 @Composable
-private fun BatchEditorScreen(
+internal fun BatchEditorScreen(
     state: SproutPaceUiState,
     layout: UiLayout,
     onAction: (UiAction) -> Unit,
+    initialStepIndex: Int = 0,
 ) {
+    state.facts.firstOrNull { it.id == "suggestion-unavailable" }?.let { fact ->
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
+            Text(localizedOrAuthored(fact.valueKey, fact.authoredValue))
+            TextButton(onClick = { onAction(UiAction.Back) }) { Text(localizedText("action_back")) }
+        }
+        return
+    }
     val firstErrorField = state.fields.firstOrNull { it.errorKey != null }
-    var stepIndex by remember { mutableIntStateOf(0) }
+    var stepIndex by rememberSaveable(state.selectedItemId) {
+        mutableIntStateOf(firstErrorField?.let { batchEditorStepForField(it.id).ordinal }
+            ?: initialStepIndex.coerceIn(0, BatchEditorStep.entries.lastIndex))
+    }
     var advancedExpanded by remember { mutableStateOf(false) }
     LaunchedEffect(firstErrorField?.id) {
         firstErrorField?.let { stepIndex = batchEditorStepForField(it.id).ordinal }
@@ -642,7 +728,22 @@ private fun BatchEditorScreen(
                 contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                if (state.variant == UiVariant.VALIDATION_ERROR) statusItems(state)
+                if (state.variant in setOf(UiVariant.VALIDATION_ERROR, UiVariant.CONFLICT, UiVariant.TEMPORARILY_UNASSIGNED)) {
+                    statusItems(state.copy(conflictKeys = emptyList()))
+                }
+                if (state.variant == UiVariant.CONFLICT || state.conflictKeys.isNotEmpty()) item {
+                    Column {
+                        TextButton(onClick = { stepIndex = BatchEditorStep.DETAILS.ordinal }) {
+                            Text(localizedText("choose_another_date"))
+                        }
+                        TextButton(onClick = { stepIndex = BatchEditorStep.DETAILS.ordinal }) {
+                            Text(localizedText("choose_another_zone"))
+                        }
+                        TextButton(onClick = { onAction(UiAction.Navigate(UiScreen.ZONES)) }) {
+                            Text(localizedText("change_capacity"))
+                        }
+                    }
+                }
                 item { BatchEditorStepIntro(step, batchEditorSubmitAction(state)?.id == "correct-batch") }
                 when (step) {
                     BatchEditorStep.BASICS -> batchEditorBasics(state, onAction)
@@ -762,6 +863,14 @@ private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorBasics(
         }
     }
     val trayField = state.fields.firstOrNull { it.id == "trayId" }
+    item {
+        TextButton(onClick = { onAction(UiAction.Navigate(UiScreen.TRAY_SIZES)) }) {
+            LabeledActionContent("add-preset", "action_add_preset")
+        }
+        TextButton(onClick = { onAction(UiAction.Navigate(UiScreen.ZONES)) }) {
+            LabeledActionContent("add-zone", "action_add_zone")
+        }
+    }
     recipeField?.let { field ->
         item(key = modelListKey(ModelListEntryKind.FIELD, field.id)) { FieldControl(field, onAction) }
     }
@@ -788,6 +897,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorDetails(
     onAdvancedExpandedChange: (Boolean) -> Unit,
     onAction: (UiAction) -> Unit,
 ) {
+    item { TimeZoneContext(scheduleTimeZone(state.fields)) }
     state.fields.filter { it.id in batchEditorCoreDetailFieldIds }.forEach { field ->
         item(key = modelListKey(ModelListEntryKind.FIELD, field.id)) { FieldControl(field, onAction) }
     }
@@ -813,6 +923,10 @@ private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorDetails(
 }
 
 private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorReview(state: SproutPaceUiState) {
+    state.items.firstOrNull { it.planEntry != null }?.let { suggestion -> item {
+        ProjectionContent(suggestion)
+    } }
+    item { TimeZoneContext(scheduleTimeZone(state.fields)) }
     val identityId = if (state.fields.firstOrNull { it.id == "recipeId" }?.value.isNullOrBlank()) "cultureId" else "recipeId"
     val reviewIds = listOf(identityId, "trayId", "substrate", "actualSeedMassGrams", "plannedSowDate", "zoneId")
     reviewIds.mapNotNull { id -> state.fields.firstOrNull { it.id == id } }
@@ -834,10 +948,16 @@ private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorReview(sta
 }
 
 @Composable
-private fun batchEditorFieldDisplayValue(field: UiField): String = field.options
-    .firstOrNull { it.id == field.value }
-    ?.let { localizedOrAuthored(it.labelKey, it.authoredLabel) }
-    ?: field.value
+private fun batchEditorFieldDisplayValue(field: UiField): String {
+    val civil = temporalCivilValue(field.kind, field.value, kotlinx.datetime.TimeZone.currentSystemDefault())
+    return when {
+        field.kind == ScreenFieldKind.POSITIVE_DECIMAL -> localizedDecimal(field.value)
+        civil != null && field.kind == ScreenFieldKind.LOCAL_DATE -> localizedDate(civil.date)
+        civil != null -> "${localizedDate(civil.date)} ${localizedTime(civil.time)}"
+        else -> field.options.firstOrNull { it.id == field.value }
+            ?.let { optionDisplayText(it) } ?: field.value
+    }
+}
 
 @Composable
 private fun BatchEditorBottomActions(
@@ -916,7 +1036,8 @@ private fun TodayScreen(
     val showPrimaryActionInContent = LocalDensity.current.fontScale >= NAVIGATION_ICON_ONLY_FONT_SCALE
     val remaining = state.items.drop(1)
     val overdue = remaining.filter { it.todayGroup() == TodayItemGroup.OVERDUE }
-    val dueToday = remaining.filterNot { it.todayGroup() == TodayItemGroup.OVERDUE }
+    val dueToday = remaining.filter { it.todayGroup() == TodayItemGroup.DUE_TODAY }
+    val upcoming = remaining.filter { it.todayGroup() == TodayItemGroup.UPCOMING }
 
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         LazyColumn(
@@ -934,6 +1055,7 @@ private fun TodayScreen(
             hero?.let { item -> item { TodayHeroCard(item, onAction) } }
             todayGroup("today_overdue_group", overdue, onAction)
             todayGroup("today_due_group", dueToday, onAction)
+            todayGroup("today_upcoming_group", upcoming, onAction)
 
             if (state.variant == UiVariant.EMPTY || showPrimaryActionInContent) {
                 todayScreenActions(state.actions, onAction)
@@ -1019,6 +1141,7 @@ private fun TodayHeroCard(item: UiItem, onAction: (UiAction) -> Unit) {
             item.stateKey?.let { key ->
                 Text(localizedText(key), style = MaterialTheme.typography.labelLarge)
             }
+            ProjectionContent(item)
             TodayItemActions(item, emphasized = true, onAction = onAction)
         }
     }
@@ -1027,7 +1150,6 @@ private fun TodayHeroCard(item: UiItem, onAction: (UiAction) -> Unit) {
 @Composable
 private fun TodayTaskCard(item: UiItem, onAction: (UiAction) -> Unit) {
     Card(
-        onClick = { onAction(UiAction.Select(item.id)) },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth().semantics { testTag = "item-${item.id}" },
@@ -1058,6 +1180,7 @@ private fun TodayTaskCard(item: UiItem, onAction: (UiAction) -> Unit) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
+            ProjectionContent(item)
             TodayItemActions(item, emphasized = false, onAction = onAction)
         }
     }
@@ -1065,6 +1188,14 @@ private fun TodayTaskCard(item: UiItem, onAction: (UiAction) -> Unit) {
 
 @Composable
 private fun TodayItemActions(item: UiItem, emphasized: Boolean, onAction: (UiAction) -> Unit) {
+    if (item.task != null) {
+        TaskSnoozeControl(item, onAction)
+        item.batch?.takeUnless { item.commands.any { command -> command.operation == "open-batch" } }?.let { batch ->
+            TextButton(onClick = { onAction(UiAction.Submit("open-batch", batch.batchId)) }) {
+                Text(localizedText("action_open_batch"))
+            }
+        }
+    }
     item.actionId?.let { actionId ->
         if (emphasized) {
             Button(
@@ -1078,8 +1209,8 @@ private fun TodayItemActions(item: UiItem, emphasized: Boolean, onAction: (UiAct
             ) { LabeledActionContent(actionId, "action_${actionId.replace('-', '_')}") }
         }
     }
-    item.commands.forEach { command ->
-        if (emphasized) {
+    item.commands.forEachIndexed { index, command ->
+        if (emphasized && index == 0) {
             Button(
                 onClick = { onAction(UiAction.SubmitItem(command.operation, command.subjectId)) },
                 modifier = Modifier.heightIn(min = 48.dp)
@@ -1095,14 +1226,12 @@ private fun TodayItemActions(item: UiItem, emphasized: Boolean, onAction: (UiAct
     }
 }
 
-internal enum class TodayItemGroup { OVERDUE, DUE_TODAY }
+internal enum class TodayItemGroup { OVERDUE, DUE_TODAY, UPCOMING }
 
-internal fun UiItem.todayGroup(): TodayItemGroup = if (
-    sequenceOf(titleKey, supportingKey, stateKey).filterNotNull().any { key -> "overdue" in key }
-) {
-    TodayItemGroup.OVERDUE
-} else {
-    TodayItemGroup.DUE_TODAY
+internal fun UiItem.todayGroup(): TodayItemGroup = when (task?.group) {
+    com.sedsoftware.sproutpace.component.TaskDayGroup.OVERDUE -> TodayItemGroup.OVERDUE
+    com.sedsoftware.sproutpace.component.TaskDayGroup.TODAY -> TodayItemGroup.DUE_TODAY
+    else -> TodayItemGroup.UPCOMING
 }
 
 private val TODAY_CONTENT_MAX_WIDTH = 720.dp
@@ -1237,7 +1366,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.trayItems(
 private fun TrayBatchCard(item: UiItem, onAction: (UiAction) -> Unit) {
     val selectionDescription = localizedText(if (item.selected) "state_selected" else "state_not_selected")
     Card(
-        onClick = { onAction(UiAction.Select(item.id)) },
+        onClick = { onAction(UiAction.Submit("open-batch", item.id)) },
         colors = selectableCardColors(item.selected),
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth().semantics {
@@ -1276,7 +1405,7 @@ private fun TrayBatchCard(item: UiItem, onAction: (UiAction) -> Unit) {
                 item.stateKey?.let { key ->
                     Text(localizedText(key), style = MaterialTheme.typography.labelMedium)
                 }
-                ItemTextActions(item, onAction)
+                ProjectionContent(item)
             }
         }
     }
@@ -1293,9 +1422,8 @@ private fun PlanScreen(
     val itemActionIds = state.items.mapNotNull(UiItem::actionId).toSet()
     val excludedActionIds = buildSet {
         addAll(itemActionIds)
-        if (state.items.isNotEmpty()) add("save-plan")
-        if (state.items.any { it.stateKey == "plan_active" }) add("resume-plan")
-        if (state.items.any { it.stateKey == "plan_paused" }) add("pause-plan")
+        if (state.fields.any { it.id == "paused" && it.value == "false" }) add("resume-plan")
+        if (state.fields.any { it.id == "paused" && it.value == "true" }) add("pause-plan")
     }
     val timeline: @Composable (Modifier) -> Unit = { modifier ->
         LazyColumn(
@@ -1305,6 +1433,16 @@ private fun PlanScreen(
         ) {
             statusItems(state)
             planSummary(state)
+            items(state.plans, key = { "plan-summary-${it.id}" }) { plan ->
+                OutlinedButton(onClick = { onAction(UiAction.Submit("edit-plan", plan.id)) }) {
+                    Column {
+                        Text(localizedText("projection_cadence").replace("%1\$s", plan.cadenceDays.toString()))
+                        val cultureNames = plan.cultureIds.map { localizedText("culture_${it}_name") }
+                        Text(cultureNames.joinToString(" · "))
+                        Text(localizedText(if (plan.paused) "plan_paused" else "plan_active"))
+                    }
+                }
+            }
             items(state.items, key = { item -> modelListKey(ModelListEntryKind.ITEM, item.id) }) { item ->
                 PlanTimelineCard(item, onAction)
             }
@@ -1324,9 +1462,12 @@ private fun PlanScreen(
             VerticalDivider(Modifier.fillMaxHeight().width(1.dp))
             LazyColumn(
                 modifier = Modifier.weight(DETAIL_PANE_WEIGHT).fillMaxHeight(),
-                contentPadding = PaddingValues(20.dp),
+                contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
+                items(state.items.mapNotNull { it.planEntry?.zone }.distinctBy { it.zoneId }, key = { "capacity-${it.zoneId}" }) { zone ->
+                    OccupancyContent(zone)
+                }
                 actionItems(state, onAction, headingKey = null, excludedIds = excludedActionIds)
                 if (!state.hidesContextForEmptyState()) {
                     fieldItems(
@@ -1344,7 +1485,7 @@ private fun PlanScreen(
 
 private fun androidx.compose.foundation.lazy.LazyListScope.planSummary(state: SproutPaceUiState) {
     if (state.hidesContextForEmptyState()) return
-    state.facts.firstOrNull()?.let { fact ->
+    state.facts.firstOrNull { it.id == "cadence-days" }?.let { fact ->
         item {
             Surface(
                 color = MaterialTheme.colorScheme.tertiaryContainer,
@@ -1358,7 +1499,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.planSummary(state: Sp
                 ) {
                     Text(localizedText("plan_frequency"), style = MaterialTheme.typography.labelLarge)
                     Text(
-                        localizedOrAuthored(fact.valueKey, fact.authoredValue),
+                        localizedText("projection_cadence").replace("%1\$s", fact.authoredValue.orEmpty()),
                         style = MaterialTheme.typography.headlineSmall,
                         modifier = Modifier.semantics { heading() },
                     )
@@ -1372,7 +1513,6 @@ private fun androidx.compose.foundation.lazy.LazyListScope.planSummary(state: Sp
 private fun PlanTimelineCard(item: UiItem, onAction: (UiAction) -> Unit) {
     val suggested = item.actionId == "confirm-suggestion"
     Card(
-        onClick = { onAction(UiAction.Select(item.id)) },
         colors = CardDefaults.cardColors(
             containerColor = if (suggested) {
                 MaterialTheme.colorScheme.primaryContainer
@@ -1388,7 +1528,7 @@ private fun PlanTimelineCard(item: UiItem, onAction: (UiAction) -> Unit) {
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.Top,
         ) {
-            cultureImage(item.id)?.let { image ->
+            cultureImage(item.planEntry?.cultureId ?: item.id)?.let { image ->
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
@@ -1416,7 +1556,16 @@ private fun PlanTimelineCard(item: UiItem, onAction: (UiAction) -> Unit) {
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
+                ProjectionContent(item)
                 ItemTextActions(item, onAction, emphasized = suggested)
+                if (item.planEntry?.status == com.sedsoftware.sproutpace.component.PlanEntryStatus.NEEDS_RESOLUTION) {
+                    TextButton(onClick = { onAction(UiAction.Submit("confirm-suggestion", item.id)) }) {
+                        Text(localizedText("choose_another_date"))
+                    }
+                    TextButton(onClick = { onAction(UiAction.Navigate(UiScreen.ZONES)) }) {
+                        Text(localizedText("change_capacity"))
+                    }
+                }
             }
         }
     }
@@ -1514,7 +1663,10 @@ private fun CatalogSourceCard(fact: UiFact) {
     ) {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(localizedText("catalog_source_title"), style = MaterialTheme.typography.titleMedium)
-            Text(localizedOrAuthored(fact.valueKey, fact.authoredValue), style = MaterialTheme.typography.bodyMedium)
+            Text(
+                localizedText("catalog_version_label") + ": " + localizedOrAuthored(fact.valueKey, fact.authoredValue),
+                style = MaterialTheme.typography.bodyMedium,
+            )
         }
     }
 }
@@ -1522,7 +1674,7 @@ private fun CatalogSourceCard(fact: UiFact) {
 @Composable
 private fun CatalogCultureCard(item: UiItem, onAction: (UiAction) -> Unit) {
     Card(
-        onClick = { onAction(UiAction.Select(item.id)) },
+        onClick = { onAction(UiAction.Submit("open-recipe", item.id)) },
         colors = selectableCardColors(item.selected),
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth().semantics { testTag = "item-${item.id}" },
@@ -1548,7 +1700,6 @@ private fun CatalogCultureCard(item: UiItem, onAction: (UiAction) -> Unit) {
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
-                ItemTextActions(item, onAction)
             }
         }
     }
@@ -1588,7 +1739,12 @@ private fun selectableCardColors(selected: Boolean) = CardDefaults.cardColors(
 )
 
 private val focusedPrimaryScreens = setOf(UiScreen.TODAY, UiScreen.TRAYS, UiScreen.PLAN, UiScreen.CATALOG)
-private val dedicatedScreenLayouts = focusedPrimaryScreens + UiScreen.FIRST_RUN + UiScreen.BATCH_EDITOR + UiScreen.SETTINGS
+private val dedicatedScreenLayouts = focusedPrimaryScreens + setOf(
+    UiScreen.FIRST_RUN, UiScreen.BATCH_EDITOR, UiScreen.SETTINGS,
+    UiScreen.BATCH_DETAIL,
+    UiScreen.RECIPE, UiScreen.NOTIFICATIONS, UiScreen.BACKUP_RESTORE,
+    UiScreen.OBSERVATION_EDITOR, UiScreen.CLOSE_BATCH, UiScreen.ZONES, UiScreen.TRAY_SIZES,
+)
 private val PRIMARY_CONTENT_MAX_WIDTH = 720.dp
 private val CATALOG_CONTENT_MAX_WIDTH = 1040.dp
 private val CATALOG_CARD_MIN_WIDTH = 240.dp
@@ -1614,7 +1770,7 @@ private fun ModelSinglePane(
         itemCollection(state, onAction, advertisingRuntime)
         if (!state.hidesContextForEmptyState() && state.showsSupportingFacts()) {
             item { SectionHeading("section_details") }
-            items(state.facts, key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
+            items(state.supportingFacts(), key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
                 FactCard(fact)
             }
         }
@@ -1671,7 +1827,10 @@ private fun androidx.compose.foundation.lazy.LazyListScope.trayCategoryTabs(
             PrimaryScrollableTabRow(
                 selectedTabIndex = selectedIndex,
                 edgePadding = 0.dp,
-                minTabWidth = 132.dp,
+                minTabWidth = LARGE_TEXT_TAB_WIDTH_DP.dp,
+                scrollState = rememberScrollState(with(LocalDensity.current) {
+                    (selectedIndex * LARGE_TEXT_TAB_WIDTH_DP).dp.roundToPx()
+                }),
                 tabs = tabs,
             )
         } else {
@@ -1696,7 +1855,7 @@ private fun ModelDetailPane(
         screenHero(state)
         if (!state.hidesContextForEmptyState() && state.showsSupportingFacts()) {
             item { SectionHeading("section_details") }
-            items(state.facts, key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
+            items(state.supportingFacts(), key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
                 FactCard(fact)
             }
         }
@@ -1799,7 +1958,13 @@ private fun androidx.compose.foundation.lazy.LazyListScope.statusItems(state: Sp
                 }
             }
         }
-        val (titleKey, bodyKey) = state.screen.emptyStateCopy()
+        val (titleKey, bodyKey) = when (state.setupState) {
+            com.sedsoftware.sproutpace.component.WorkspaceSetupState.NOT_CONFIGURED -> "setup_resume_title" to "setup_resume_body"
+            com.sedsoftware.sproutpace.component.WorkspaceSetupState.NO_PLAN -> "setup_plan_title" to "setup_plan_body"
+            com.sedsoftware.sproutpace.component.WorkspaceSetupState.NO_BATCHES -> "setup_batch_title" to "setup_batch_body"
+            com.sedsoftware.sproutpace.component.WorkspaceSetupState.ALL_CLEAR -> "setup_clear_title" to "setup_clear_body"
+            null -> state.screen.emptyStateCopy()
+        }
         item { StatusCard(titleKey, bodyKey) }
     }
     if (state.variant == UiVariant.PERMISSION_DENIED) {
@@ -1825,9 +1990,6 @@ private fun androidx.compose.foundation.lazy.LazyListScope.statusItems(state: Sp
     }
     if (state.variant == UiVariant.RESTORE_PREVIEW) {
         item { StatusCard("restore_preview_title", "restore_replace_body", warning = true) }
-    }
-    if (state.variant == UiVariant.PRIVACY_DECISION) {
-        item { StatusCard("privacy_heading", "privacy_decision_body") }
     }
     if (state.variant == UiVariant.VALIDATION_ERROR) {
         item { StatusCard("state_validation_title", "state_validation_body", warning = true) }
@@ -1875,7 +2037,7 @@ internal fun SproutPaceUiState.showsEmptyIllustration(): Boolean =
     variant == UiVariant.EMPTY && screen in emptyIllustrationScreens
 
 internal fun SproutPaceUiState.hidesContextForEmptyState(): Boolean =
-    variant == UiVariant.EMPTY && screen in emptyIllustrationScreens
+    variant == UiVariant.EMPTY && screen in setOf(UiScreen.TODAY, UiScreen.TRAYS)
 
 internal fun UiScreen.emptyStateCopy(): Pair<String, String> = when (this) {
     UiScreen.TODAY -> "today_empty_title" to "today_empty_body"
@@ -2028,6 +2190,7 @@ private fun ItemCard(screen: UiScreen, item: UiItem, onAction: (UiAction) -> Uni
             )
             item.supportingKey?.let { Text(localizedText(it), style = MaterialTheme.typography.bodyMedium) }
             item.stateKey?.let { Text(localizedText(it), style = MaterialTheme.typography.labelMedium) }
+            ProjectionContent(item)
             item.actionId?.let { actionId ->
                 TextButton(
                     onClick = { onAction(UiAction.Submit(actionId, item.id)) },
@@ -2072,8 +2235,14 @@ private fun FactCard(fact: UiFact) {
 }
 
 @Composable
-private fun FieldControl(field: UiField, onAction: (UiAction) -> Unit) {
+internal fun FieldControl(field: UiField, onAction: (UiAction) -> Unit) {
+    if (field.id == "timeZoneId") {
+        TimeZoneContext(scheduleTimeZone(listOf(field)))
+        return
+    }
     when (field.kind) {
+        ScreenFieldKind.INSTANT, ScreenFieldKind.LOCAL_DATE, ScreenFieldKind.LOCAL_DATE_TIME ->
+            TemporalFieldControl(field, onAction)
         ScreenFieldKind.BOOLEAN -> BooleanField(field, onAction)
         ScreenFieldKind.SINGLE_CHOICE -> SingleChoiceField(field, onAction)
         ScreenFieldKind.MULTI_CHOICE -> MultiChoiceField(field, onAction)
@@ -2091,6 +2260,7 @@ private fun FieldControl(field: UiField, onAction: (UiAction) -> Unit) {
 @Composable
 private fun TextEntryField(field: UiField, onAction: (UiAction) -> Unit) {
     val errorText = field.errorKey?.let { localizedText(it) }
+    val displayedValue = displayFieldInput(field.kind, field.value, localizedText("number_decimal_separator"))
     val keyboardType = when (field.kind) {
         ScreenFieldKind.POSITIVE_INTEGER, ScreenFieldKind.POSITIVE_LONG,
         ScreenFieldKind.NON_NEGATIVE_LONG -> KeyboardType.Number
@@ -2098,17 +2268,17 @@ private fun TextEntryField(field: UiField, onAction: (UiAction) -> Unit) {
         else -> KeyboardType.Text
     }
     OutlinedTextField(
-        value = field.value,
-        onValueChange = { onAction(UiAction.EditField(field.id, it)) },
+        value = displayedValue,
+        onValueChange = { onAction(UiAction.EditField(field.id, canonicalFieldInput(field.kind, it))) },
         modifier = Modifier.fillMaxWidth().semantics {
             testTag = "field-${field.id}"
             errorText?.let { error(it) }
         },
         enabled = !field.readOnly,
         label = { Text(localizedText(field.labelKey)) },
-        supportingText = {
-            Text(errorText ?: localizedText(if (field.required) "field_required_supporting" else "field_optional_supporting"))
-        },
+        supportingText = if (errorText != null || fieldHelpKey(field) != null) {
+            { Text(errorText ?: localizedText(requireNotNull(fieldHelpKey(field)))) }
+        } else null,
         isError = errorText != null,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         shape = MaterialTheme.shapes.medium,
@@ -2160,7 +2330,7 @@ private fun SingleChoiceField(field: UiField, onAction: (UiAction) -> Unit) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 RadioButton(selected = selected, onClick = null, enabled = !field.readOnly)
-                Text(localizedOrAuthored(option.labelKey, option.authoredLabel), Modifier.padding(start = 8.dp))
+                Text(optionDisplayText(option), Modifier.padding(start = 8.dp))
             }
         }
         FieldError(field)
@@ -2188,7 +2358,7 @@ private fun MultiChoiceField(field: UiField, onAction: (UiAction) -> Unit) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Checkbox(checked = checked, onCheckedChange = null, enabled = !field.readOnly)
-                Text(localizedOrAuthored(option.labelKey, option.authoredLabel), Modifier.padding(start = 8.dp))
+                Text(optionDisplayText(option), Modifier.padding(start = 8.dp))
             }
         }
         FieldError(field)
@@ -2266,10 +2436,7 @@ private fun PlatformPickerField(
 @Composable
 private fun FieldHeading(field: UiField) {
     Text(localizedText(field.labelKey), style = MaterialTheme.typography.titleMedium)
-    Text(
-        localizedText(if (field.required) "field_required_supporting" else "field_optional_supporting"),
-        style = MaterialTheme.typography.bodySmall,
-    )
+    fieldHelpKey(field)?.let { Text(localizedText(it), style = MaterialTheme.typography.bodySmall) }
 }
 
 @Composable
@@ -2337,7 +2504,7 @@ private fun ProgressState() = Column(
 }
 
 @Composable
-private fun LabeledActionContent(actionId: String, labelKey: String) {
+internal fun LabeledActionContent(actionId: String, labelKey: String) {
     actionIcon(actionId)?.let { icon ->
         Icon(
             imageVector = vectorResource(icon),
@@ -2365,16 +2532,23 @@ private fun stageImage(item: UiItem): DrawableResource? = sequenceOf(
     item.titleKey,
     item.supportingKey,
     item.stateKey,
-).filterNotNull().mapNotNull { key ->
-    when (key) {
+).filterNotNull().mapNotNull(::stageImage).firstOrNull()
+
+internal fun stageImage(key: String): DrawableResource? = when (key) {
         "stage_soaking" -> Res.drawable.stage_soaking
         "stage_sown" -> Res.drawable.stage_sown
         "stage_blackout" -> Res.drawable.stage_blackout
         "stage_light_growth" -> Res.drawable.stage_light_growth
         "stage_harvest" -> Res.drawable.stage_harvest
         else -> null
+}
+
+@Composable
+internal fun StageIllustration(stageKey: String?) {
+    stageKey?.let(::stageImage)?.let { image ->
+        Image(vectorResource(image), null, Modifier.size(width = 96.dp, height = 72.dp))
     }
-}.firstOrNull()
+}
 
 internal fun cultureImage(id: String): DrawableResource? = when (id.substringAfterLast(':')) {
     "radish" -> Res.drawable.culture_radish
@@ -2399,10 +2573,14 @@ private val supportingFactScreens = setOf(
     UiScreen.BATCH_DETAIL,
     UiScreen.RECIPE,
     UiScreen.BACKUP_RESTORE,
+    UiScreen.ADVERTISING_PRIVACY,
 )
 
 private fun SproutPaceUiState.showsSupportingFacts(): Boolean =
-    facts.isNotEmpty() && screen in supportingFactScreens
+    supportingFacts().isNotEmpty() && screen in supportingFactScreens
+
+internal fun SproutPaceUiState.supportingFacts(): List<UiFact> =
+    if (screen == UiScreen.ADVERTISING_PRIVACY) facts.filter { it.id == "policy-version" } else facts
 
 private fun SproutPaceUiState.itemSectionKey(): String? = when (screen) {
     UiScreen.BATCH_DETAIL, UiScreen.RECIPE -> "batch_timeline"
@@ -2412,7 +2590,7 @@ private fun SproutPaceUiState.itemSectionKey(): String? = when (screen) {
 private val multilineFieldIds = setOf("text", "note", "reason", "assessment")
 private val hiddenTechnicalFieldIds = setOf("id", "newId", "eventId", "actionId")
 
-internal val contextFieldScreens = setOf(UiScreen.TODAY, UiScreen.TRAYS, UiScreen.BATCH_DETAIL, UiScreen.PLAN)
+internal val contextFieldScreens = setOf(UiScreen.TODAY, UiScreen.BATCH_DETAIL, UiScreen.PLAN)
 
 private val destructiveActionIds = setOf(
     "delete-batch", "delete-observation", "delete-plan", "delete-recipe", "delete-tray-size",
@@ -2434,6 +2612,8 @@ private val emptyIllustrationScreens = setOf(UiScreen.TODAY, UiScreen.TRAYS, UiS
 private val addActionIds = setOf(
     "new-batch", "save-batch", "add-observation", "create-recipe", "add-zone", "add-preset",
 )
+private const val LARGE_TEXT_TAB_WIDTH_DP = 132
+
 private val editActionIds = setOf(
     "edit", "edit-cadence", "correct-batch", "update-plan", "update-recipe", "update-zone", "update-tray-size",
 )

@@ -1,61 +1,57 @@
 # SproutPace asset inventory
 
-This inventory records the production state verified on 2026-09-20. Every approved asset is referenced from production `commonMain` UI through a typed `Res.drawable` accessor. Standard Material Symbols use the shared screen-level golden review allowed by their `evidenceMode: standard-icon`; custom vectors and generated covers retain explicit visual evidence in `asset-manifest.json`.
+Evidence update: 2026-10-10. This inventory separates artifact traceability from visual/runtime verification. It does not declare all asset or accessibility gates complete.
 
-## Production usage
+## Current artifact traceability
 
-| Asset | Resource | Exact production mapping | Approved screen coverage | Status |
-|---|---|---|---|---|
-| ASSET-001 | `logo_sproutpace` | `ScreenContent.kt` → `screenHero` | SCREEN-001, SCREEN-011 | Complete |
-| ASSET-002 | `ic_nav_today` | `App.kt` → `destinations` | SCREEN-002 | Complete |
-| ASSET-003 | `ic_nav_trays` | `App.kt` → `destinations` | SCREEN-003 | Complete |
-| ASSET-004 | `ic_nav_plan` | `App.kt` → `destinations` | SCREEN-006 | Complete |
-| ASSET-005 | `ic_nav_catalog` | `App.kt` → `destinations` | SCREEN-007 | Complete |
-| ASSET-006 | `ic_settings` | `App.kt` → `SproutPaceApp`; `ScreenContent.kt` → `screenHero` | SCREEN-002, SCREEN-011 | Complete |
-| ASSET-007 | `ic_add` | `ScreenContent.kt` → `actionIcon` → `LabeledActionContent` | SCREEN-002, SCREEN-003, SCREEN-004 | Complete |
-| ASSET-008 | `ic_arrow_back` | `App.kt` → `SproutPaceApp` | SCREEN-004, SCREEN-005, SCREEN-008, SCREEN-009, SCREEN-010, SCREEN-012, SCREEN-013, SCREEN-014, SCREEN-015, SCREEN-016 | Complete |
-| ASSET-009 | `ic_edit` | `ScreenContent.kt` → `actionIcon` → `LabeledActionContent` | SCREEN-005, SCREEN-008, SCREEN-009, SCREEN-012, SCREEN-013 | Complete |
-| ASSET-010 | `ic_delete` | `ScreenContent.kt` → `actionIcon` → `LabeledActionContent` | SCREEN-005, SCREEN-008, SCREEN-009, SCREEN-011, SCREEN-012, SCREEN-013 | Complete |
-| ASSET-011 | `ic_add_photo` | `ScreenContent.kt` → `actionIcon` and `ItemCard` missing-photo state | SCREEN-005, SCREEN-009 | Complete |
-| ASSET-012 | `ic_notifications` | `ScreenContent.kt` → `actionIcon` → `LabeledActionContent` | SCREEN-002, SCREEN-016 | Complete |
-| ASSET-013 | `ic_backup` | `ScreenContent.kt` → `actionIcon` → `LabeledActionContent` | SCREEN-011, SCREEN-014 | Complete |
-| ASSET-014 | `ic_repeat` | `ScreenContent.kt` → `actionIcon` → `LabeledActionContent` | SCREEN-003, SCREEN-005 | Complete |
-| ASSET-015 | `ic_check_circle` | `ScreenContent.kt` → `actionIcon` → `LabeledActionContent` | SCREEN-002, SCREEN-005, SCREEN-010 | Complete |
-| ASSET-016 | `stage_soaking` | `ScreenContent.kt` → `stageImage` → `ItemCard` | SCREEN-005, SCREEN-008 | Complete |
-| ASSET-017 | `stage_sown` | `ScreenContent.kt` → `stageImage` → `ItemCard` | SCREEN-005, SCREEN-008 | Complete |
-| ASSET-018 | `stage_blackout` | `ScreenContent.kt` → `stageImage` → `ItemCard` | SCREEN-005, SCREEN-008 | Complete |
-| ASSET-019 | `stage_light_growth` | `ScreenContent.kt` → `stageImage` → `ItemCard` | SCREEN-005, SCREEN-008 | Complete |
-| ASSET-020 | `stage_harvest` | `ScreenContent.kt` → `stageImage` → `ItemCard` | SCREEN-005, SCREEN-010 | Complete |
-| ASSET-021 | `illustration_empty_today` | `ScreenContent.kt` → `statusItems` guarded by `showsEmptyIllustration` | EMPTY SCREEN-002, SCREEN-003, SCREEN-006 | Complete |
-| ASSET-022 | `culture_radish` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
-| ASSET-023 | `culture_broccoli` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
-| ASSET-024 | `culture_arugula` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
-| ASSET-025 | `culture_mustard` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
-| ASSET-026 | `culture_pea` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
-| ASSET-027 | `culture_sunflower` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
-| ASSET-028 | `culture_basil` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
-| ASSET-029 | `culture_garden_cress` | `ScreenContent.kt` → `cultureImage`; catalog `ItemCard` and Recipe hero | SCREEN-007, SCREEN-008 | Complete |
+The [asset manifest](asset-manifest.json) lists 29 assets with runtime outputs, SHA-256 hashes, source/rights notes, production usage symbols and applicable visual evidence. On this review date, every declared output, usage file and visual-evidence file existed and matched its recorded hash; every declared Kotlin usage symbol was present. Symbol presence is not proof that every runtime branch executes.
 
-## ASSET-001 platform derivatives
+| Asset | Runtime resource | Declared production mapping |
+|---|---|---|
+| ASSET-001 | `logo_sproutpace` | `ScreenContent.kt` → `FirstRunScreen`, `ScreenContent.kt` → `SettingsBrandHeader` |
+| ASSET-002 | `ic_nav_today` | `App.kt` → `destinations` |
+| ASSET-003 | `ic_nav_trays` | `App.kt` → `destinations` |
+| ASSET-004 | `ic_nav_plan` | `App.kt` → `destinations` |
+| ASSET-005 | `ic_nav_catalog` | `App.kt` → `destinations` |
+| ASSET-006 | `ic_settings` | `App.kt` → `SproutPaceTopBar`, `ScreenContent.kt` → `SettingsBrandHeader` |
+| ASSET-007 | `ic_add` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-008 | `ic_arrow_back` | `App.kt` → `SproutPaceTopBar` |
+| ASSET-009 | `ic_edit` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-010 | `ic_delete` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-011 | `ic_add_photo` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-012 | `ic_notifications` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-013 | `ic_backup` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-014 | `ic_repeat` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-015 | `ic_check_circle` | `ScreenContent.kt` → `actionIcon` |
+| ASSET-016 | `stage_soaking` | `ScreenContent.kt` → `stageImage` |
+| ASSET-017 | `stage_sown` | `ScreenContent.kt` → `stageImage` |
+| ASSET-018 | `stage_blackout` | `ScreenContent.kt` → `stageImage` |
+| ASSET-019 | `stage_light_growth` | `ScreenContent.kt` → `stageImage` |
+| ASSET-020 | `stage_harvest` | `ScreenContent.kt` → `stageImage` |
+| ASSET-021 | `illustration_empty_today` | `ScreenContent.kt` → `statusItems` |
+| ASSET-022 | `culture_radish` | `ScreenContent.kt` → `cultureImage` |
+| ASSET-023 | `culture_broccoli` | `ScreenContent.kt` → `cultureImage` |
+| ASSET-024 | `culture_arugula` | `ScreenContent.kt` → `cultureImage` |
+| ASSET-025 | `culture_mustard` | `ScreenContent.kt` → `cultureImage` |
+| ASSET-026 | `culture_pea` | `ScreenContent.kt` → `cultureImage` |
+| ASSET-027 | `culture_sunflower` | `ScreenContent.kt` → `cultureImage` |
+| ASSET-028 | `culture_basil` | `ScreenContent.kt` → `cultureImage` |
+| ASSET-029 | `culture_garden_cress` | `ScreenContent.kt` → `cultureImage` |
 
-Updated 2026-09-23: launcher and store exports derive from user-approved generated logo 1B-1. The approved reference and transparent source are retained in `docs/assets/source/`; provenance is in `generation/logo-1b-1.json`. `generation/render-platform-icons.py` deterministically exports all existing native slots and the 512px shared raster. The shared logo retains its Material primary tint. Exact file hashes, dimensions, alpha modes, and usage evidence are recorded in `asset-manifest.json`. Current verification is in `brand-refresh-review.md`.
+## Provenance
 
-| Platform surface | Delivered inventory | Production usage | Validation |
-|---|---|---|---|
-| Android legacy launcher | `mipmap-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}/ic_launcher.png` | `AndroidManifest.xml` references `@mipmap/ic_launcher` | 48/72/96/144/192 px RGBA; transparent rounded-corner pixels and visible full-color mark |
-| Android adaptive launcher | `mipmap-anydpi-v26/ic_launcher.xml` plus foreground/background/monochrome PNGs in all five density buckets | Adaptive XML binds all three layers; the manifest resolves the same launcher name | Layers are 108/162/216/324/432 px; foreground/monochrome have real transparent padding, backgrounds are opaque, and the mark remains inside the platform mask-safe composition |
-| iPhone, iPad, and CarPlay AppIcon | 20–180 px slot exports declared by `AppIcon.appiconset/Contents.json` | Xcode build setting `ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon` | Every declared filename parses at the slot's exact pixel size and is opaque RGB so the OS owns final masking |
-| App Store marketing icon | `AppIcon~ios-marketing.png` | `Contents.json` `ios-marketing` 1x slot | Exact 1024×1024 opaque RGB export; no alpha channel or pre-rounded corners |
+Standard Material Symbols have pinned Google repository source URLs and Apache 2.0 attribution in the manifest. Custom stage/empty-state vectors are recorded as original project geometry. The eight catalog covers have prompts, export dimensions and selected generator outputs in [catalog-covers.json](generation/catalog-covers.json); all eight referenced originals were accessible on this review machine. Those absolute local paths are not portable copies, so retain them when transferring the evidence package.
 
-`docs/assets/platform-icon-contact-sheet.png` was inspected across Android legacy/adaptive/monochrome density extremes and iOS 20 px, 167/180 px, and 1024 px exports. The sprout, stem, and tray remain distinguishable at the smallest size; adaptive transparent padding is visible; the opaque warm-neutral background reaches every iOS edge; no clipping, alpha fringe, embedded text, or obsolete template-rocket artwork remains. This is a technical export of the already approved ASSET-001 brief, so the existing post-golden Lazyweb product-UI review remains applicable and no new product layout or visual direction was introduced.
+The approved logo reference, transparent derivative and generation/export notes are retained under [source](source/) and [logo-1b-1.json](generation/logo-1b-1.json). Generated-art records explicitly avoid claiming independent legal or trademark clearance. This review found no concrete unsupported third-party-art ownership claim; it does not supply legal clearance.
 
-## Visual evidence review
+## Platform derivatives and historical review
 
-- The clean Paparazzi recording contains 78 current snapshots: light/dark coverage for all 16 primary screens, exactly 16 compact RU/200% stress variants, five expanded adaptive variants, and the required behavioral/asset inspection states. The RU/200% contact sheet was inspected for Cyrillic glyph coverage, reflow, scrollability, non-color cues, and visible controls.
-- Logo (updated 2026-09-23): First Run and Settings light/dark goldens show the approved 1B-1 raster silhouette with semantic primary tint at 88dp and 64dp; the Settings mark remains distinguishable in both themes. See `brand-refresh-review.md` for current evidence.
-- Stage illustrations: `RecipeAssetInspectionPreview` renders all five vectors at the production 96×72dp size. Their silhouettes, strokes and semantic multicolor palette remain distinct on the light surface; no global tint is applied.
-- Empty-state illustration: dedicated Today, Trays and Plan light/dark goldens render the vector at 240×160dp. The inspected layouts preserve navigation clearance and theme contrast, and the image remains decorative beside localized explanatory copy.
-- Culture covers: `generated-catalog-contact-sheet.png` was inspected at original resolution and contains all eight labeled 768×480 outputs. `CatalogLoadedAdInspectionPreview` demonstrates production card placement; `RecipeAssetInspectionPreview` demonstrates the selected radish cover on SCREEN-008. The covers retain their neutral background and readable crop in light/dark cards without text embedded in the images.
-- Standard icons: the shared navigation, action, editor, Settings, Backup, Notifications, Today, Batch, Recipe and Close Batch goldens exercise the unchanged Material Symbols through their production mappings. Accessible meaning comes from localized adjacent labels or content descriptions, not color alone.
+The manifest records Android legacy/adaptive/monochrome launcher outputs and iOS AppIcon slots derived from the approved logo. [brand-refresh-review.md](brand-refresh-review.md) records the 2026-09-23 size, alpha, masking and visual checks, with their original receipts. Those are dated historical results, not a fresh native-runtime pass. [visual-review.md](visual-review.md) records the earlier catalog-cover inspection and explicitly limits its scope.
 
-No asset blockers remain in this inventory. Output hashes, generation provenance and rights statements remain in `asset-manifest.json`; generated-cover provenance remains in `docs/assets/generation/catalog-covers.json` and the asset-level inspection remains in `docs/assets/visual-review.md`.
+## Current visual evidence and remaining boundaries
+
+[ux-preview-review.json](../design-review/ux-preview-review.json) declares 231 production captures and records the inspected sets and unchanged-hash carry-forward across record2 through record7. That file is the current capture-level review record; the former inventory total of 78 described the earlier brand-review set. The current declared usage mappings above replace obsolete `screenHero` references.
+
+The current review records visible layout, readability, hierarchy and fixture data. It does not establish gestures, IME behavior, spoken TalkBack order, or iOS runtime behavior. No new artwork, screenshot recording or image inspection was performed for this inventory update. Complete the final screen-family/state-to-golden mapping and post-golden design review against the final stable capture set before closing QG-006/QG-007. Asset hashes alone do not close those gates.
+
+Catalog botanical appearance is illustrative, not diagnostic or evidence that numeric growing recommendations were source-reviewed. See [catalog-source-review-20261010.md](../catalog-source-review-20261010.md) for the unresolved per-culture density/range evidence and timing interpretation.

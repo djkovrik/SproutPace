@@ -1,0 +1,280 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :detekt
+Successfully generated markdown at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.md
+Successfully generated html at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.html
+Successfully generated sarif at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.sarif
+Successfully generated checkstyle at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.xml
+e: D:\Sources\Android\SproutPace\shared\compose\src\commonMain\kotlin\com\sedsoftware\sproutpace\compose\ScreenContent.kt:1818:97 This expression contains a magic number. Consider defining it to a well named constant. [MagicNumber]
+
+
+> Task :detekt FAILED
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:androidJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:compileAndroidHostTest UP-TO-DATE
+> Task :shared:data:koverFindJar UP-TO-DATE
+> Task :shared:data:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:data:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:data:testAndroidHostTest UP-TO-DATE
+> Task :shared:compose:generateComposablePreviewPaparazziTests UP-TO-DATE
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:compose:convertXmlValueResourcesForCommonMain
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain
+> Task :shared:compose:generateResourceAccessorsForCommonMain
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :shared:compose:packageAndroidMainResources UP-TO-DATE
+> Task :shared:compose:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:compose:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:compose:generateComposeResClass UP-TO-DATE
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :shared:monetization:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:monetization:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:monetization:compileAndroidMain UP-TO-DATE
+> Task :shared:monetization:androidPreBuild UP-TO-DATE
+> Task :shared:monetization:preAndroidMainBuild UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:platform:compileAndroidMain UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:root:compileAndroidMain UP-TO-DATE
+> Task :shared:root:androidPreBuild UP-TO-DATE
+> Task :shared:root:preAndroidMainBuild UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:compose:kspAndroidMain
+> Task :shared:compose:compileAndroidMain
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.android.kt:19:29 'val monthNumber: Int' is deprecated. Use the 'month' property instead.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.android.kt:19:51 'val dayOfMonth: Int' is deprecated. Use the 'day' property instead.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/BackupRestoreScreen.kt:114:31 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:124:13 'lateinit' is unnecessary: definitely initialized in constructors.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:140:34 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:141:36 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:278:41 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RecipeScreen.kt:74:76 Unnecessary safe call on a non-null receiver of type 'UiItem'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RecipeScreen.kt:81:110 Unnecessary safe call on a non-null receiver of type 'UiItem'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RecipeScreen.kt:82:79 Unnecessary safe call on a non-null receiver of type 'UiItem'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.kt:27:38 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.kt:36:5 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.kt:43:40 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:compose:bundleAndroidMainClassesToCompileJar
+> Task :shared:compose:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :shared:component:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:compose:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:data:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:domain:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:monetization:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:platform:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:root:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:checkAndroidHostTestAarMetadata UP-TO-DATE
+> Task :shared:compose:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:compose:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:mapAndroidHostTestSourceSetPaths UP-TO-DATE
+> Task :shared:component:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestResources UP-TO-DATE
+> Task :shared:data:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:domain:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:monetization:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:mergeAndroidHostTestResources UP-TO-DATE
+> Task :shared:component:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:processAndroidMainManifest UP-TO-DATE
+> Task :shared:data:processAndroidMainManifest UP-TO-DATE
+> Task :shared:domain:processAndroidMainManifest UP-TO-DATE
+> Task :shared:monetization:processAndroidMainManifest UP-TO-DATE
+> Task :shared:platform:processAndroidMainManifest UP-TO-DATE
+> Task :shared:root:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestManifest UP-TO-DATE
+> Task :shared:platform:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:platform:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestResources UP-TO-DATE
+> Task :shared:compose:kspAndroidHostTest
+> Task :shared:compose:copyRoomSchemas NO-SOURCE
+> Task :shared:compose:bundleAndroidMainClassesToRuntimeJar
+> Task :shared:monetization:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestAssets UP-TO-DATE
+> Task :shared:compose:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainAssets
+> Task :shared:platform:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:mergeAndroidHostTestAssets
+> Task :shared:compose:packageAndroidHostTestForUnitTest
+> Task :shared:compose:generateAndroidHostTestConfig
+> Task :shared:compose:preparePaparazziAndroidMainResources UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:compose:processAndroidMainJavaRes
+> Task :shared:compose:androidJar UP-TO-DATE
+
+> Task :shared:compose:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt:83:9 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/BackupProductionProjectionTest.kt:93:44 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/BackupProductionProjectionTest.kt:95:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt:35:39 Expression is unused.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:52:67 Unnecessary safe call on a non-null receiver of type 'BatchIdentity'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:67:45 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:186:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt:114:9 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt:129:47 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionPreviewProjectionTest.kt:139:39 Unnecessary safe call on a non-null receiver of type 'ZoneOccupancy'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:76:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:93:22 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:99:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:189:107 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:190:110 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/TodayLayoutTest.kt:25:70 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:compose:transformAndroidHostTestClassesWithAsm
+> Task :shared:monetization:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:platform:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:root:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:testAndroidHostTest
+See the Paparazzi report at: file:///D:/Sources/Android/SproutPace/shared/compose/build/reports/paparazzi/androidMain/index.html
+
+> Task :shared:compose:recordPaparazziAndroidMain
+> Task :shared:compose:recordPaparazzi
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :androidApp:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :androidApp:generateDebugBuildConfig UP-TO-DATE
+> Task :androidApp:generateDebugResources UP-TO-DATE
+> Task :androidApp:packageDebugResources UP-TO-DATE
+> Task :androidApp:processDebugNavigationResources UP-TO-DATE
+> Task :androidApp:parseDebugLocalResources UP-TO-DATE
+> Task :androidApp:generateDebugRFile UP-TO-DATE
+> Task :androidApp:compileDebugKotlin
+> Task :androidApp:javaPreCompileDebug UP-TO-DATE
+> Task :androidApp:compileDebugJavaWithJavac UP-TO-DATE
+> Task :androidApp:generateDebugAssets UP-TO-DATE
+> Task :androidApp:mergeDebugAssets
+> Task :androidApp:compressDebugAssets
+> Task :androidApp:desugarDebugFileDependencies UP-TO-DATE
+> Task :androidApp:checkDebugAarMetadata UP-TO-DATE
+> Task :androidApp:mapDebugSourceSetPaths UP-TO-DATE
+> Task :androidApp:compileDebugNavigationResources UP-TO-DATE
+> Task :androidApp:mergeDebugResources UP-TO-DATE
+> Task :androidApp:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :androidApp:extractDeepLinksDebug UP-TO-DATE
+> Task :androidApp:processDebugMainManifest UP-TO-DATE
+> Task :androidApp:processDebugManifest UP-TO-DATE
+> Task :androidApp:processDebugManifestForPackage UP-TO-DATE
+> Task :androidApp:processDebugResources UP-TO-DATE
+> Task :androidApp:dexBuilderDebug UP-TO-DATE
+> Task :androidApp:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :androidApp:processDebugJavaRes UP-TO-DATE
+> Task :androidApp:mergeDebugJavaResource
+> Task :androidApp:checkDebugDuplicateClasses UP-TO-DATE
+> Task :androidApp:mergeExtDexDebug UP-TO-DATE
+> Task :shared:compose:bundleLibRuntimeToDirAndroidMain
+> Task :shared:monetization:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:platform:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:root:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:data:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:component:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :shared:domain:bundleLibRuntimeToDirAndroidMain UP-TO-DATE
+> Task :androidApp:mergeLibDexDebug
+> Task :androidApp:mergeProjectDexDebug UP-TO-DATE
+> Task :androidApp:mergeDebugJniLibFolders UP-TO-DATE
+> Task :shared:component:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:component:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:component:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:compose:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:data:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:data:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:data:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:domain:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:domain:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:domain:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:monetization:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:monetization:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:monetization:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:platform:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :shared:root:mergeAndroidMainJniLibFolders UP-TO-DATE
+> Task :shared:root:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :shared:root:copyAndroidMainJniLibsProjectOnly UP-TO-DATE
+> Task :androidApp:mergeDebugNativeLibs UP-TO-DATE
+> Task :androidApp:stripDebugDebugSymbols UP-TO-DATE
+> Task :androidApp:validateSigningDebug UP-TO-DATE
+> Task :androidApp:writeDebugAppMetadata UP-TO-DATE
+> Task :androidApp:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :androidApp:packageDebug
+> Task :androidApp:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :androidApp:assembleDebug
+
+
+FAILURE: Build failed with an exception.[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+
+* What went wrong:
+Execution failed for task ':detekt'.
+> Analysis failed with 1 issues.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 3m 16s
+158 actionable tasks: 33 executed, 125 up-to-date

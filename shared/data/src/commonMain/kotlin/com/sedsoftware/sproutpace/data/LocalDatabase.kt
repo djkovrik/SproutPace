@@ -12,6 +12,7 @@ import com.sedsoftware.sproutpace.domain.contract.SetupManager
 import com.sedsoftware.sproutpace.domain.contract.domainResult
 import com.sedsoftware.sproutpace.domain.model.BatchChange
 import com.sedsoftware.sproutpace.domain.model.BatchId
+import com.sedsoftware.sproutpace.domain.model.Placement
 import com.sedsoftware.sproutpace.domain.model.GrowBatch
 import com.sedsoftware.sproutpace.domain.model.GrowZone
 import com.sedsoftware.sproutpace.domain.model.GrowZoneId
@@ -87,13 +88,22 @@ class LocalDatabase(
     }
 
     suspend fun saveBatch(batch: GrowBatch): GrowBatch = write {
-        val order = snapshotNow().batches.indexOfFirst { it.id == batch.id }.takeIf { it >= 0 }
-            ?: snapshotNow().batches.size
+        val snapshot = snapshotNow()
+        val assigned = batch.placement as? Placement.Assigned
+        val resolved = if (!batch.state.isTerminal && assigned != null &&
+            snapshot.zones.none { it.id == assigned.zoneId }) {
+            batch.copy(placement = Placement.Unassigned(assigned.zoneNameSnapshot))
+        } else batch
+        val order = snapshot.batches.indexOfFirst { it.id == batch.id }.takeIf { it >= 0 } ?: snapshot.batches.size
+        saveBatchNow(resolved, order)
+        resolved
+    }
+
+    private fun saveBatchNow(batch: GrowBatch, order: Int) {
         queries.upsertBatch(
             batch.id.value, batch.state.name, batch.recipe.sourceRecipeId?.value,
             batch.recipe.builtInCultureId?.value, codec.encodeBatch(batch), order.toLong(),
         )
-        batch
     }
 
     suspend fun savePlan(plan: HarvestPlan): HarvestPlan = write {
@@ -111,7 +121,17 @@ class LocalDatabase(
         observation
     }
 
-    val deleteZone: suspend (GrowZoneId) -> Unit = { id -> write { queries.deleteZone(id.value) } }
+    val deleteZone: suspend (GrowZoneId) -> Unit = { id ->
+        write {
+            snapshotNow().batches.forEachIndexed { index, batch ->
+                val assigned = batch.placement as? Placement.Assigned
+                if (!batch.state.isTerminal && assigned?.zoneId == id) {
+                    saveBatchNow(batch.copy(placement = Placement.Unassigned(assigned.zoneNameSnapshot)), index)
+                }
+            }
+            queries.deleteZone(id.value)
+        }
+    }
     val deleteTrayPreset: suspend (TraySizePresetId) -> Unit = { id -> write { queries.deleteTrayPreset(id.value) } }
     val deleteRecipe: suspend (RecipeId) -> Unit = { id -> write { queries.deleteRecipe(id.value) } }
     val deletePlan: suspend (HarvestPlanId) -> Unit = { id -> write { queries.deletePlan(id.value) } }

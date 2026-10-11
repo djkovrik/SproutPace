@@ -3,7 +3,14 @@ package com.sedsoftware.sproutpace.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.sedsoftware.sproutpace.component.ScreenComponent
-import com.sedsoftware.sproutpace.component.ScreenFieldKind
+import com.sedsoftware.sproutpace.component.LoadState
+import com.sedsoftware.sproutpace.component.PermissionState
+import com.sedsoftware.sproutpace.component.ScreenModel
+import com.sedsoftware.sproutpace.component.TextKey
+import com.sedsoftware.sproutpace.component.ScreenContractRegistry
+import com.sedsoftware.sproutpace.component.ScreenActionId
+import com.sedsoftware.sproutpace.component.CommandPreparation
+import com.sedsoftware.sproutpace.component.DestructiveOperation
 import com.sedsoftware.sproutpace.component.integration.AdvertisingPrivacyComponentPreview
 import com.sedsoftware.sproutpace.component.integration.BackupRestoreComponentPreview
 import com.sedsoftware.sproutpace.component.integration.BatchDetailComponentPreview
@@ -22,6 +29,7 @@ import com.sedsoftware.sproutpace.component.integration.TraysComponentPreview
 import com.sedsoftware.sproutpace.component.integration.ZonesComponentPreview
 import com.sedsoftware.sproutpace.data.AdvertisingPrivacyState
 import com.sedsoftware.sproutpace.data.ConsentChoice
+import com.sedsoftware.sproutpace.data.ProductionScreenFixtures
 
 internal data class UiPreviewCase(
     val screen: UiScreen,
@@ -57,304 +65,153 @@ internal fun typedPreviewState(
     screen: UiScreen,
     variant: UiVariant = UiVariant.CONTENT,
     showAd: Boolean = false,
+    scenario: ProductionScreenFixtures.Scenario = when (variant) {
+        UiVariant.EMPTY -> ProductionScreenFixtures.Scenario.EMPTY
+        UiVariant.CONFLICT -> ProductionScreenFixtures.Scenario.CAPACITY_CONFLICT
+        UiVariant.TEMPORARILY_UNASSIGNED -> ProductionScreenFixtures.Scenario.UNASSIGNED
+        UiVariant.RESTORE_PREVIEW -> ProductionScreenFixtures.Scenario.RESTORE_PREVIEW
+        else -> ProductionScreenFixtures.Scenario.CONTENT
+    },
+    draft: Map<String, String> = emptyMap(),
+    permissionOverride: PermissionState? = null,
+    selectedId: String? = ProductionScreenFixtures.selectedId(screen.toScreenId()),
+    errorKeyOverride: String? = null,
+    platformProjection: (com.sedsoftware.sproutpace.component.ScreenSnapshot) ->
+        com.sedsoftware.sproutpace.component.ScreenSnapshot = { it },
 ): SproutPaceUiState {
-    val component = previewComponent(screen)
-    val base = component.model.value.toUiState()
-    val state = base.copy(
-        variant = variant,
-        selectedPrimary = screen.takeIf { it in setOf(UiScreen.TODAY, UiScreen.TRAYS, UiScreen.PLAN, UiScreen.CATALOG) }
-            ?: UiScreen.TODAY,
+    val screenId = screen.toScreenId()
+    val snapshot = platformProjection(ProductionScreenFixtures.snapshot(screenId, stableId = selectedId, scenario = scenario))
+    val draftValues = if (variant == UiVariant.VALIDATION_ERROR) invalidPreviewDraft(screen) + draft else draft
+    val fields = snapshot.fields.map { field -> field.copy(value = draftValues[field.id.value] ?: field.value) }
+    val errors = if (variant == UiVariant.VALIDATION_ERROR) {
+        val operation = requireNotNull(ScreenContractRegistry.contracts.getValue(screenId).primaryOperation)
+        val preparation = ScreenContractRegistry.prepareCommand(screenId, ScreenActionId(operation),
+            snapshot.selectedItemId ?: fields.firstOrNull { it.id.value == "id" }?.value,
+            fields.associate { it.id to it.value })
+        check(preparation is CommandPreparation.Invalid)
+        preparation.errors
+    } else emptyMap()
+    val denied = variant == UiVariant.PERMISSION_DENIED
+    val permission = permissionOverride ?: if (denied) PermissionState.PERMANENTLY_DENIED else snapshot.permissionState
+    val model = ScreenModel(
+        screen = screenId,
+        loadState = previewLoadState(variant, scenario, errorKeyOverride),
+        errorKey = errorKeyOverride?.let(::TextKey) ?: when {
+            scenario == ProductionScreenFixtures.Scenario.BACKUP_WRITE_FAILED -> TextKey("error_document_write_failed")
+            variant == UiVariant.ERROR -> TextKey("error_backup_invalid")
+            else -> null
+        },
+        titleKey = TextKey("screen_${screen.name.lowercase()}_title"),
+        items = snapshot.items,
+        selectedItemId = snapshot.selectedItemId ?: selectedId,
+        plans = snapshot.plans,
+        setupState = snapshot.setupState,
+        detail = previewSelectedDetail(screen, selectedId, scenario),
+        primaryActionKey = snapshot.primaryActionKey,
+        permissionState = permission,
+        conflictResolutionKeys = snapshot.conflictResolutionKeys,
+        offline = snapshot.offline,
+        fields = fields,
+        facts = snapshot.facts,
+        actions = if (screen == UiScreen.NOTIFICATIONS) snapshot.actions.filter {
+            it.id.value in notificationPermissionActionIds(
+                fields.any { field -> field.id.value in setOf("dailySummaryEnabled", "soakRemindersEnabled") && field.value == "true" },
+                permission.previewPlatformPermission())
+        } else snapshot.actions,
+        validationErrors = errors,
+    )
+    val state = previewComponent(screen, model).model.value.toUiState().copy(
         showInlineAd = showAd,
-        items = if (variant == UiVariant.EMPTY) emptyList() else realisticPreviewItems(screen),
-        actions = if (variant == UiVariant.EMPTY) listOfNotNull(emptyPreviewPrimaryAction(screen)) else base.actions,
-        fields = base.fields.map { field ->
-            field.copy(
-                value = if (screen == UiScreen.BATCH_EDITOR && field.id in batchEditorCorrectionPreviewFieldIds) {
-                    ""
-                } else {
-                    realisticPreviewFieldValue(field.id)
-                },
-                options = field.options.ifEmpty { realisticPreviewOptions(field.id, field.kind) },
-                errorKey = if (variant == UiVariant.VALIDATION_ERROR && field.required) "state_error_body" else null,
-            )
-        },
-        facts = base.facts.map { fact -> fact.copy(valueKey = realisticPreviewFactKey(screen), authoredValue = null) },
-        conflictKeys = if (variant == UiVariant.CONFLICT || variant == UiVariant.TEMPORARILY_UNASSIGNED) {
-            listOf("capacity_conflict_body")
-        } else {
-            component.model.value.conflictResolutionKeys.map { it.value }
-        },
     )
     return if (screen == UiScreen.ADVERTISING_PRIVACY) {
-        state.withAdvertisingPrivacy(previewPrivacy(ConsentChoice.UNDECIDED))
-    } else {
-        state
+        state.withAdvertisingPrivacy(previewPrivacy(ConsentChoice.UNDECIDED), PREVIEW_PRIVACY_NOW)
+    } else state
+}
+
+private fun previewLoadState(variant: UiVariant, scenario: ProductionScreenFixtures.Scenario, errorKey: String?): LoadState = when {
+    errorKey != null || variant == UiVariant.ERROR || scenario == ProductionScreenFixtures.Scenario.BACKUP_WRITE_FAILED -> LoadState.ERROR
+    variant == UiVariant.EMPTY -> LoadState.EMPTY
+    variant == UiVariant.PROGRESS -> LoadState.LOADING
+    else -> LoadState.CONTENT
+}
+
+private fun previewSelectedDetail(
+    screen: UiScreen,
+    selectedId: String?,
+    scenario: ProductionScreenFixtures.Scenario,
+): ScreenModel? {
+    if (selectedId == null) return null
+    val child = when (screen) {
+        UiScreen.TRAYS -> UiScreen.BATCH_DETAIL
+        UiScreen.CATALOG -> UiScreen.RECIPE
+        else -> return null
     }
+    val source = ProductionScreenFixtures.snapshot(child.toScreenId(), stableId = selectedId, scenario = scenario)
+    val model = ScreenModel(
+        screen = child.toScreenId(), loadState = LoadState.CONTENT,
+        titleKey = TextKey("screen_${child.name.lowercase()}_title"),
+        items = source.items, selectedItemId = source.selectedItemId,
+        primaryActionKey = source.primaryActionKey, permissionState = source.permissionState,
+        conflictResolutionKeys = source.conflictResolutionKeys, offline = source.offline,
+        fields = source.fields, facts = source.facts, actions = source.actions,
+        setupState = source.setupState, plans = source.plans,
+    )
+    return previewComponent(child, model).model.value
 }
 
-private fun previewComponent(screen: UiScreen): ScreenComponent = when (screen) {
-    UiScreen.FIRST_RUN -> FirstRunComponentPreview()
-    UiScreen.TODAY -> TodayComponentPreview()
-    UiScreen.TRAYS -> TraysComponentPreview()
-    UiScreen.BATCH_EDITOR -> BatchEditorComponentPreview()
-    UiScreen.BATCH_DETAIL -> BatchDetailComponentPreview()
-    UiScreen.PLAN -> PlanComponentPreview()
-    UiScreen.CATALOG -> CatalogComponentPreview()
-    UiScreen.RECIPE -> RecipeComponentPreview()
-    UiScreen.OBSERVATION_EDITOR -> ObservationEditorComponentPreview()
-    UiScreen.CLOSE_BATCH -> CloseBatchComponentPreview()
-    UiScreen.SETTINGS -> SettingsComponentPreview()
-    UiScreen.ZONES -> ZonesComponentPreview()
-    UiScreen.TRAY_SIZES -> TraySizesComponentPreview()
-    UiScreen.BACKUP_RESTORE -> BackupRestoreComponentPreview()
-    UiScreen.ADVERTISING_PRIVACY -> AdvertisingPrivacyComponentPreview()
-    UiScreen.NOTIFICATIONS -> NotificationsComponentPreview()
+private fun PermissionState.previewPlatformPermission() = when (this) {
+    PermissionState.GRANTED -> com.sedsoftware.sproutpace.platform.PermissionState.Granted
+    PermissionState.DENIED -> com.sedsoftware.sproutpace.platform.PermissionState.Denied(true)
+    PermissionState.PERMANENTLY_DENIED -> com.sedsoftware.sproutpace.platform.PermissionState.Denied(false)
+    PermissionState.NOT_REQUIRED -> com.sedsoftware.sproutpace.platform.PermissionState.Unavailable
+    PermissionState.NOT_REQUESTED -> com.sedsoftware.sproutpace.platform.PermissionState.Unknown
 }
 
-private val batchEditorCorrectionPreviewFieldIds = setOf(
-    "anchorState", "anchorAt", "actualSoakingAt", "actualSownAt", "actualBlackoutAt",
-    "actualLightAt", "actualHarvestReadyAt",
-)
-
-private fun emptyPreviewPrimaryAction(screen: UiScreen): UiScreenAction? = when (screen) {
-    UiScreen.TODAY, UiScreen.TRAYS, UiScreen.PLAN ->
-        UiScreenAction("new-batch", "action_new_batch", null, enabled = true, primary = true)
-    UiScreen.CATALOG -> UiScreenAction("create-recipe", "action_create_recipe", null, enabled = true, primary = true)
-    UiScreen.ZONES -> UiScreenAction("save-zone", "action_add_zone", "save-zone", enabled = true, primary = true)
-    UiScreen.TRAY_SIZES ->
-        UiScreenAction("save-tray-size", "action_add_preset", "save-tray-size", enabled = true, primary = true)
-    else -> null
+private fun invalidPreviewDraft(screen: UiScreen): Map<String, String> = when (screen) {
+    UiScreen.FIRST_RUN, UiScreen.ZONES -> mapOf("capacity" to "0")
+    UiScreen.BATCH_EDITOR -> mapOf("cultureId" to "radish", "trayId" to "shallow",
+        "substrate" to "Coconut coir", "actualSeedMassGrams" to "-5")
+    UiScreen.RECIPE -> mapOf("stage1MinimumHours" to "24", "stage1MaximumHours" to "2")
+    UiScreen.TRAY_SIZES -> mapOf("widthCm" to "0", "diameterCm" to "0")
+    UiScreen.CLOSE_BATCH -> mapOf("actualMassGrams" to "-5")
+    else -> mapOf("occurredAt" to "invalid")
 }
 
-private fun previewPrivacy(choice: ConsentChoice) = AdvertisingPrivacyState(
-    policyVersion = "2026-09",
-    expiresAtEpochMillis = 1_893_456_000_000,
+private fun previewComponent(screen: UiScreen, model: ScreenModel): ScreenComponent = when (screen) {
+    UiScreen.FIRST_RUN -> FirstRunComponentPreview(model)
+    UiScreen.TODAY -> TodayComponentPreview(model)
+    UiScreen.TRAYS -> TraysComponentPreview(model)
+    UiScreen.BATCH_EDITOR -> BatchEditorComponentPreview(model)
+    UiScreen.BATCH_DETAIL -> BatchDetailComponentPreview(model)
+    UiScreen.PLAN -> PlanComponentPreview(model)
+    UiScreen.CATALOG -> CatalogComponentPreview(model)
+    UiScreen.RECIPE -> RecipeComponentPreview(model)
+    UiScreen.OBSERVATION_EDITOR -> ObservationEditorComponentPreview(model)
+    UiScreen.CLOSE_BATCH -> CloseBatchComponentPreview(model)
+    UiScreen.SETTINGS -> SettingsComponentPreview(model)
+    UiScreen.ZONES -> ZonesComponentPreview(model)
+    UiScreen.TRAY_SIZES -> TraySizesComponentPreview(model)
+    UiScreen.BACKUP_RESTORE -> BackupRestoreComponentPreview(model)
+    UiScreen.ADVERTISING_PRIVACY -> AdvertisingPrivacyComponentPreview(model)
+    UiScreen.NOTIFICATIONS -> NotificationsComponentPreview(model)
+}
+
+internal fun previewPrivacy(choice: ConsentChoice) = AdvertisingPrivacyState(
+    policyVersion = "2026-10",
+    expiresAtEpochMillis = PREVIEW_PRIVACY_NOW + PREVIEW_PRIVACY_LIFETIME,
     choice = choice,
-    fetchedAtEpochMillis = 1_756_800_000_000,
+    fetchedAtEpochMillis = PREVIEW_PRIVACY_NOW - PREVIEW_PRIVACY_AGE,
 )
 
-private fun historyAdPreviewState() = typedPreviewState(UiScreen.TRAYS).copy(
-    trayCategory = TrayCategory.HISTORY,
-    showInlineAd = true,
-    items = (1..6).map { index ->
-        previewItem(
-            id = "history-$index",
-            authored = "Harvested batch $index",
-            supporting = "stage_harvest",
-            state = "option_batch_state_harvested",
-        )
-    },
+internal const val PREVIEW_PRIVACY_NOW = 1_791_619_200_000L
+private const val PREVIEW_PRIVACY_LIFETIME = 86_400_000L
+private const val PREVIEW_PRIVACY_AGE = 1_000L
+
+private fun historyAdPreviewState() = typedPreviewState(
+    UiScreen.TRAYS,
+    showAd = true,
+    scenario = ProductionScreenFixtures.Scenario.HISTORY,
 )
-
-private fun realisticPreviewItems(screen: UiScreen): List<UiItem> = when (screen) {
-    UiScreen.FIRST_RUN -> listOf(previewItem("setup", authored = "Window shelf", supporting = "first_run_preview_body"))
-    UiScreen.TODAY -> listOf(
-        previewItem("batch:radish-01", "culture_radish_name", "today_due", "action_status_pending", "complete-action"),
-        previewItem("batch:pea-02", "culture_pea_name", "today_moisture_overdue", "action_status_pending", "snooze"),
-    )
-    UiScreen.TRAYS -> listOf(
-        previewItem("batch:radish-01", authored = "Radish · Shallow tray", supporting = "stage_light_growth"),
-        previewItem("batch:pea-02", authored = "Pea · Deep tray", supporting = "stage_soaking"),
-        previewItem("batch:broccoli-03", authored = "Broccoli · Shallow tray", supporting = "stage_blackout"),
-        previewItem("batch:sunflower-04", authored = "Sunflower · Deep tray", supporting = "stage_sown"),
-        previewItem("batch:cress-05", authored = "Garden cress · Round bowl", supporting = "stage_harvest"),
-    )
-    UiScreen.BATCH_EDITOR -> listOf(previewItem("recipe:radish", "culture_radish_name", "batch_editor_help"))
-    UiScreen.BATCH_DETAIL -> listOf(
-        previewItem("event:sown", "stage_sown", "stage_actual"),
-        previewItem("event:light", "stage_light_growth", "stage_expected"),
-        previewItem(
-            "observation:preview-1",
-            authored = "Healthy roots and even growth",
-            supporting = "observation_photo_selected",
-            photo = UiPhoto("photo-preview", null, "observation_photo_content_description"),
-        ),
-        previewItem(
-            "observation:missing-photo",
-            authored = "Observation text remains available",
-            state = "observation_photo_unavailable",
-        ),
-    )
-    UiScreen.PLAN -> listOf(
-        previewItem("plan:radish", "plan_confirmed_radish", state = "plan_active"),
-        previewItem("suggestion:broccoli", "plan_suggested_broccoli", action = "confirm-suggestion"),
-    )
-    UiScreen.CATALOG -> listOf(
-        "radish", "broccoli", "arugula", "mustard", "pea", "sunflower", "basil", "garden_cress",
-    ).map { id -> previewItem("culture:$id", "culture_${id}_name", "catalog_typical_window", action = "open-recipe") }
-    UiScreen.RECIPE -> listOf(
-        previewItem("stage:soaking", "stage_soaking", "guidance_soaking"),
-        previewItem("stage:sowing", "stage_sown", "guidance_sowing"),
-        previewItem("stage:blackout", "stage_blackout", "guidance_blackout"),
-        previewItem("stage:light", "stage_light_growth", "guidance_light_growth"),
-        previewItem("stage:harvest", "stage_harvest", "guidance_harvest"),
-    )
-    UiScreen.OBSERVATION_EDITOR -> listOf(
-        previewItem("batch:radish-01", authored = "Radish · Shallow tray", supporting = "observation_photo_help"),
-    )
-    UiScreen.CLOSE_BATCH -> listOf(previewItem("batch:radish-01", "culture_radish_name", "close_batch_help", "stage_harvest"))
-    UiScreen.SETTINGS -> listOf(
-        previewItem("zones", "screen_zones_title", "settings_zones_summary", action = "open-zones"),
-        previewItem("notifications", "screen_notifications_title", "settings_notifications_summary", action = "open-notifications"),
-        previewItem("backup", "screen_backup_restore_title", "settings_backup_summary", action = "open-backup-restore"),
-    )
-    UiScreen.ZONES -> listOf(
-        previewItem("zone:window", authored = "Window shelf", supporting = "zone_light_capacity"),
-        previewItem("zone:cupboard", authored = "Kitchen cupboard", supporting = "zone_dark_capacity"),
-    )
-    UiScreen.TRAY_SIZES -> listOf(
-        previewItem("tray:shallow", authored = "Shallow rectangle · 25 × 35 cm", supporting = "tray_preset_rectangular"),
-        previewItem("tray:round", authored = "Round bowl · 20 cm", supporting = "tray_preset_circular"),
-    )
-    UiScreen.BACKUP_RESTORE -> listOf(
-        previewItem("create", "action_create_backup", "backup_create_body", action = "create-backup"),
-        previewItem("restore", "action_preview_restore", "backup_restore_body", action = "preview-restore"),
-        previewItem("csv", "action_export_csv", "backup_csv_body", action = "export-csv"),
-    )
-    UiScreen.ADVERTISING_PRIVACY -> listOf(previewItem("privacy", "privacy_heading", "privacy_context_body", "privacy_undecided"))
-    UiScreen.NOTIFICATIONS -> listOf(
-        previewItem("daily", "notifications_daily_summary", "notifications_daily_summary_body", "state_enabled"),
-        previewItem("soak", "notifications_soak_reminder", "notifications_soak_body", "state_enabled"),
-    )
-}
-
-private fun previewItem(
-    id: String,
-    title: String? = null,
-    supporting: String? = null,
-    state: String? = null,
-    action: String? = null,
-    authored: String? = null,
-    photo: UiPhoto? = null,
-) = UiItem(id, title, authored, supporting, state, action, selected = false, photo = photo)
-
-private fun realisticPreviewFieldValue(id: String): String =
-    REALISTIC_PREVIEW_FIELD_VALUES[id] ?: error("Missing realistic preview value for field '$id'")
-
-private val REALISTIC_PREVIEW_FIELD_VALUES = mapOf(
-    "id" to "radish-2026-09-20",
-    "zoneName" to "Window shelf",
-    "name" to "Window shelf",
-    "trayName" to "Shallow tray",
-    "type" to "natural_light",
-    "capacity" to "4",
-    "shape" to "rectangle",
-    "widthCm" to "25",
-    "lengthCm" to "35",
-    "diameterCm" to "20",
-    "cadenceDays" to "7",
-    "cultureIds" to "radish,broccoli",
-    "mode" to "cadence",
-    "dueKind" to "elapsed",
-    "dueAt" to "2026-09-20T09:00:00Z",
-    "anchorAt" to "2026-09-20T09:00:00Z",
-    "actualSoakingAt" to "2026-09-20T09:00:00Z",
-    "actualSownAt" to "2026-09-21T09:00:00Z",
-    "actualBlackoutAt" to "2026-09-22T09:00:00Z",
-    "actualLightAt" to "2026-09-24T09:00:00Z",
-    "actualHarvestReadyAt" to "2026-09-28T09:00:00Z",
-    "occurredAt" to "2026-09-20T09:00:00Z",
-    "localDateTime" to "2026-09-20T09:00",
-    "timeZoneId" to "Europe/Moscow",
-    "newId" to "radish-repeat-02",
-    "recipeId" to "recipe-radish",
-    "cultureId" to "radish",
-    "trayId" to "tray-shallow",
-    "substrate" to "Coconut coir",
-    "actualSeedMassGrams" to "18",
-    "plannedSowDate" to "2026-09-21",
-    "fixedSoakingDate" to "2026-09-21",
-    "fixedSownDate" to "2026-09-22",
-    "fixedBlackoutDate" to "2026-09-23",
-    "fixedLightDate" to "2026-09-25",
-    "fixedHarvestDate" to "2026-09-29",
-    "zoneId" to "zone-window",
-    "anchorDate" to "2026-09-20",
-    "anchorState" to "light_growth",
-    "nextState" to "light_growth",
-    "resultingState" to "light_growth",
-    "skippedState" to "blackout_or_weight",
-    "eventId" to "event-light-01",
-    "unassigned" to "true",
-    "enabled" to "true",
-    "dailySummaryEnabled" to "true",
-    "soakRemindersEnabled" to "true",
-    "summaryTime" to "09:00",
-    "reason" to "Adjusted after observation",
-    "actionId" to "check-moisture",
-    "actualMassGrams" to "184",
-    "query" to "",
-    "supplier" to "Local seed shop",
-    "cultivar" to "Sango",
-    "seedLot" to "2026-08",
-    "germinationPercentage" to "92",
-    "batchId" to "batch-radish-01",
-    "text" to "Even growth and fresh leaves",
-    "photoId" to "radish-observation.jpg",
-    "outcome" to "harvested",
-    "assessment" to "successful",
-    "note" to "Crisp harvest",
-    "theme" to "system",
-    "paused" to "false",
-    "documentId" to "sproutpace-backup-2026-09-20.zip",
-    "choice" to "declined",
-    "expiresAtEpochMillis" to "1893456000000",
-    "policyVersion" to "2026-09",
-    "stage1" to "soaking",
-    "stage1MinimumHours" to "8",
-    "stage1MaximumHours" to "12",
-    "stage1Guidance" to "Rinse and soak",
-    "stage2" to "sown",
-    "stage2MinimumHours" to "0",
-    "stage2MaximumHours" to "0",
-    "stage2Guidance" to "Spread seed evenly",
-    "stage3" to "blackout_or_weight",
-    "stage3MinimumHours" to "48",
-    "stage3MaximumHours" to "72",
-    "stage3Guidance" to "Keep covered and weighted",
-    "stage4" to "light_growth",
-    "stage4MinimumHours" to "72",
-    "stage4MaximumHours" to "120",
-    "stage4Guidance" to "Keep under light",
-    "stage5" to "ready_for_harvest",
-    "stage5MinimumHours" to "0",
-    "stage5MaximumHours" to "0",
-    "stage5Guidance" to "Harvest above the medium",
-)
-
-private fun realisticPreviewOptions(id: String, kind: ScreenFieldKind): List<UiOption> {
-    if (kind != ScreenFieldKind.SINGLE_CHOICE && kind != ScreenFieldKind.MULTI_CHOICE) return emptyList()
-    return when (id) {
-        "cultureId", "cultureIds" -> listOf(
-            UiOption("radish", "culture_radish_name", null),
-            UiOption("broccoli", "culture_broccoli_name", null),
-        )
-        "recipeId" -> listOf(UiOption("recipe-radish", null, "Radish house recipe"))
-        "trayId" -> listOf(UiOption("tray-shallow", null, "Shallow tray · 25 × 35 cm"))
-        "zoneId" -> listOf(UiOption("zone-window", null, "Window shelf"))
-        "batchId" -> listOf(UiOption("batch-radish-01", null, "Radish · Shallow tray"))
-        else -> emptyList()
-    }
-}
-
-private fun realisticPreviewFactKey(screen: UiScreen): String = when (screen) {
-    UiScreen.FIRST_RUN -> "first_run_preview_body"
-    UiScreen.TODAY -> "today_due"
-    UiScreen.TRAYS -> "trays_next_action"
-    UiScreen.BATCH_EDITOR -> "batch_editor_help"
-    UiScreen.BATCH_DETAIL -> "batch_next_stage_body"
-    UiScreen.PLAN -> "plan_frequency_value"
-    UiScreen.CATALOG -> "catalog_source_body"
-    UiScreen.RECIPE -> "recipe_summary"
-    UiScreen.OBSERVATION_EDITOR -> "observation_photo_help"
-    UiScreen.CLOSE_BATCH -> "close_batch_help"
-    UiScreen.SETTINGS -> "settings_backup_summary"
-    UiScreen.ZONES -> "settings_zones_summary"
-    UiScreen.TRAY_SIZES -> "tray_preset_rectangular"
-    UiScreen.BACKUP_RESTORE -> "restore_archive_contents_value"
-    UiScreen.ADVERTISING_PRIVACY -> "privacy_context_body"
-    UiScreen.NOTIFICATIONS -> "notifications_default_time"
-}
 
 @Composable
 private fun PreviewScreen(
@@ -435,15 +292,7 @@ private fun PreviewScreen(
 
 @Preview(name = "11 Settings Privacy Management", widthDp = 393, heightDp = 851)
 @Composable private fun SettingsPrivacyManagementPreview() = App(
-    state = typedPreviewState(UiScreen.SETTINGS).let { state ->
-        state.copy(
-            items = state.items + previewItem(
-                "privacy",
-                "screen_advertising_privacy_title",
-                action = "open-advertising-privacy",
-            ),
-        )
-    },
+    state = typedPreviewState(UiScreen.SETTINGS, scenario = ProductionScreenFixtures.Scenario.PRIVACY_AVAILABLE),
 )
 
 @Preview(name = "12 Zones Light", widthDp = 393, heightDp = 851, uiMode = 16)
@@ -469,7 +318,7 @@ private fun PreviewScreen(
 @Preview(name = "15 Privacy Accepted Withdrawal", widthDp = 393, heightDp = 851)
 @Composable private fun PrivacyAcceptedPreview() = App(
     state = typedPreviewState(UiScreen.ADVERTISING_PRIVACY)
-        .withAdvertisingPrivacy(previewPrivacy(ConsentChoice.ACCEPTED)),
+        .withAdvertisingPrivacy(previewPrivacy(ConsentChoice.ACCEPTED), PREVIEW_PRIVACY_NOW),
 )
 
 @Preview(name = "16 Notifications Light", widthDp = 393, heightDp = 851, uiMode = 16)
@@ -514,7 +363,7 @@ private fun PreviewScreen(
 
 @Preview(name = "Destructive confirmation Light", widthDp = 393, heightDp = 851, uiMode = 16)
 @Preview(name = "Destructive confirmation Dark", widthDp = 393, heightDp = 851, uiMode = 32)
-@Composable private fun DestructiveConfirmationPreview() = PreviewScreen(UiScreen.SETTINGS, UiVariant.DESTRUCTIVE_CONFIRMATION)
+@Composable private fun DestructiveConfirmationPreview() = ProductionConfirmationPreview(DestructiveOperation.DELETE_ALL_DATA)
 
 @Preview(name = "Local error Light", widthDp = 393, heightDp = 851, uiMode = 16)
 @Preview(name = "Local error Dark", widthDp = 393, heightDp = 851, uiMode = 32)

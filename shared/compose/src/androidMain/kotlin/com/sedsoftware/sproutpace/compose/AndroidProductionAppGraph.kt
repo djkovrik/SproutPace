@@ -20,6 +20,10 @@ import com.sedsoftware.sproutpace.monetization.AdvertisingRuntime
 import com.sedsoftware.sproutpace.monetization.AndroidAdvertisingRuntime
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.IOException
@@ -34,12 +38,10 @@ class AndroidProductionAppGraph(
 ) : AutoCloseable {
     private val applicationContext = context.applicationContext
     val notificationPermissionService = AndroidNotificationPermissionService(applicationContext)
-    private val settings = SharedPreferencesSettings(
-        applicationContext.getSharedPreferences(
-            "${applicationContext.packageName}_preferences",
-            Context.MODE_PRIVATE,
-        ),
+    private val preferences = applicationContext.getSharedPreferences(
+        "${applicationContext.packageName}_preferences", Context.MODE_PRIVATE,
     )
+    private val settings = SharedPreferencesSettings(preferences, commit = true)
     private val graph = ProductionAppGraph(
         driverFactory = AndroidSqlDriverFactory(applicationContext),
         settings = settings,
@@ -54,6 +56,8 @@ class AndroidProductionAppGraph(
         isDebug = isDebug,
         releaseStoreFactory = DefaultStoreFactory(),
         debugStoreFactory = DefaultStoreFactory(),
+        dailyEvaluationEnabled = true,
+        flushPreferences = { check(preferences.edit().commit()) { "preferences_flush_failed" } },
     )
 
     private val advertisingRuntime = AndroidAdvertisingRuntime(
@@ -62,15 +66,26 @@ class AndroidProductionAppGraph(
         appVersion = appVersion,
         configuration = adConfiguration,
         productSettings = graph.productSettings,
+        workspaceReady = graph.workspaceReady,
     )
     val root: AppRootComponent = AdvertisingAppRootComponent(graph.root, advertisingRuntime)
     val productSettings: ProductSettings get() = graph.productSettings
 
+    private val reconciliationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
     init {
-        AndroidReconciliationSignalStore(applicationContext).consume()
-            .sortedBy(ReconciliationReason::name)
-            .forEach(graph::reconcile)
+        val signals = AndroidReconciliationSignalStore(applicationContext)
+        reconciliationScope.launch {
+            signals.pending().sortedBy(ReconciliationReason::name).forEach { reason ->
+                runCatching { graph.reconcileReminderEnvironment(reason) }
+                    .onSuccess { signals.acknowledge(reason) }
+            }
+        }
     }
+
+    suspend fun reconcileReminderEnvironment(reason: ReconciliationReason) = graph.reconcileReminderEnvironment(reason)
+    suspend fun evaluateReminderDelivery(id: com.sedsoftware.sproutpace.platform.PhysicalReminderId, fireAt: Long): Boolean =
+        graph.evaluateReminderDelivery(id, fireAt)
 
     fun onStart() = graph.onStart()
     fun onResume() = graph.onResume()
@@ -78,6 +93,7 @@ class AndroidProductionAppGraph(
     fun onStop() = graph.onStop()
     fun requestNotificationPermission() = graph.requestNotificationPermission()
     override fun close() {
+        reconciliationScope.cancel()
         advertisingRuntime.close()
         graph.close()
     }

@@ -137,10 +137,15 @@ private final class NativePlatformActionHandler: NSObject, IosPlatformActionBrid
     }
 
     func chooseDocument(result: IosPlatformActionResult) {
-        guard let presenter else { return }
+        guard let presenter else { result.fail(); return }
         platformServices.presentRestoreDocumentPicker(from: presenter) { response in
-            guard case let .success(url?) = response, url.isFileURL else { return }
-            result.accept(value: url.absoluteString)
+            switch response {
+            case .success(nil): break
+            case let .success(document?):
+                guard document.location.isFileURL else { result.fail(); return }
+                result.acceptDocument(location: document.location.absoluteString, displayName: document.displayName)
+            case .failure: result.fail()
+            }
         }
     }
 
@@ -149,22 +154,32 @@ private final class NativePlatformActionHandler: NSObject, IosPlatformActionBrid
         mediaType: String,
         result: IosPlatformActionResult
     ) {
-        guard let presenter else { return }
+        guard let presenter else { result.fail(); return }
         platformServices.presentExportPicker(
             suggestedName: suggestedName,
             mediaType: mediaType,
             from: presenter
-        ) { url in
-            guard let url, url.isFileURL else { return }
-            result.accept(value: url.absoluteString)
+        ) { response in
+            switch response {
+            case .success(nil): break
+            case let .success(url?):
+                guard url.isFileURL else { result.fail(); return }
+                result.accept(value: url.absoluteString)
+            case .failure: result.fail()
+            }
         }
     }
 
     func choosePhoto(result: IosPlatformActionResult) {
-        guard let presenter else { return }
+        guard let presenter else { result.fail(); return }
         platformServices.presentPhotoPicker(from: presenter) { response in
-            guard case let .success(url?) = response, url.isFileURL else { return }
-            result.accept(value: url.lastPathComponent)
+            switch response {
+            case .success(nil): break
+            case let .success(url?):
+                guard url.isFileURL else { result.fail(); return }
+                result.accept(value: url.lastPathComponent)
+            case .failure: result.fail()
+            }
         }
     }
 
@@ -252,8 +267,13 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
     private let notificationCenter = UNUserNotificationCenter.current()
     private var permissionObserver: ((NativeNotificationPermissionState) -> Void)?
     private var photoCompletion: ((Result<URL?, Error>) -> Void)?
-    private var documentCompletion: ((Result<URL?, Error>) -> Void)?
-    private var destinationCompletion: ((URL?) -> Void)?
+    struct ImportedBackupDocument {
+        let location: URL
+        let displayName: String
+    }
+
+    private var documentCompletion: ((Result<ImportedBackupDocument?, Error>) -> Void)?
+    private var destinationCompletion: ((Result<URL?, Error>) -> Void)?
     private var destinationTemporaryFile: URL?
 
     let crashReporting = NativeCrashReportingBridge()
@@ -330,7 +350,7 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         completion: @escaping (Result<URL?, Error>) -> Void
     ) {
         guard photoCompletion == nil else {
-            completion(.success(nil))
+            completion(.failure(CocoaError(.fileReadUnknown)))
             return
         }
         photoCompletion = completion
@@ -344,10 +364,10 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
 
     func presentRestoreDocumentPicker(
         from presenter: UIViewController,
-        completion: @escaping (Result<URL?, Error>) -> Void
+        completion: @escaping (Result<ImportedBackupDocument?, Error>) -> Void
     ) {
         guard documentCompletion == nil else {
-            completion(.success(nil))
+            completion(.failure(CocoaError(.fileReadUnknown)))
             return
         }
         documentCompletion = completion
@@ -363,10 +383,10 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         suggestedName: String,
         mediaType: String,
         from presenter: UIViewController,
-        completion: @escaping (URL?) -> Void
+        completion: @escaping (Result<URL?, Error>) -> Void
     ) {
         guard destinationCompletion == nil, !suggestedName.isEmpty, !mediaType.isEmpty else {
-            completion(nil)
+            completion(.failure(CocoaError(.fileWriteUnknown)))
             return
         }
         do {
@@ -377,7 +397,7 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
             picker.delegate = self
             presenter.present(picker, animated: true)
         } catch {
-            completion(nil)
+            completion(.failure(error))
         }
     }
 
@@ -395,7 +415,7 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
                 return
             }
             guard let url else {
-                DispatchQueue.main.async { completion(.success(nil)) }
+                DispatchQueue.main.async { completion(.failure(CocoaError(.fileReadUnknown))) }
                 return
             }
             do {
@@ -418,7 +438,9 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
                 return
             }
             do {
-                completion(.success(try Self.copyIntoOwnedStorage(source: source)))
+                completion(.success(ImportedBackupDocument(
+                    location: try Self.copyIntoOwnedStorage(source: source), displayName: source.lastPathComponent
+                )))
             } catch {
                 completion(.failure(error))
             }
@@ -428,7 +450,7 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
             destinationCompletion = nil
             let selected = urls.first
             removeDestinationPlaceholder(preserving: selected)
-            completion(selected)
+            completion(.success(selected))
         }
     }
 
@@ -440,7 +462,7 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         if let completion = destinationCompletion {
             destinationCompletion = nil
             removeDestinationPlaceholder()
-            completion(nil)
+            completion(.success(nil))
         }
     }
 

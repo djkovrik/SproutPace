@@ -5,6 +5,8 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.sedsoftware.sproutpace.component.LayoutMode
+import com.sedsoftware.sproutpace.component.BatchIdentity
+import com.sedsoftware.sproutpace.domain.model.BatchState
 import com.sedsoftware.sproutpace.component.LoadState
 import com.sedsoftware.sproutpace.component.ScreenAction
 import com.sedsoftware.sproutpace.component.ScreenActionDescriptor
@@ -40,11 +42,25 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlin.test.assertFailsWith
 import kotlin.test.assertIs
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class RootUiAdapterTest {
+    @Test fun acceptingSuggestionNavigatesWithExactIdentityAndCancelDoesNotSubmit() {
+        val component = RecordingScreen(ScreenModel(ScreenId.PLAN, LoadState.CONTENT, TextKey("screen_plan_title")))
+        val root = RecordingRoot(component)
+        val router = RootActionRouter(root, component) { "unrelated-plan" }
+        router.dispatch(UiAction.Submit("confirm-suggestion", "rotation-b:2"))
+        assertEquals(ScreenId.BATCH_EDITOR to "rotation-b:2", root.opened)
+        assertTrue(component.actions.isEmpty())
+        router.dispatch(UiAction.Back)
+        assertEquals(1, root.backCount)
+        assertTrue(component.actions.isEmpty())
+    }
+
     @Test fun emptySnapshotPrimaryActionIsTheOnlyVisibleFilledCta() {
         val ui = ScreenModel(
             screen = ScreenId.TODAY,
@@ -224,7 +240,7 @@ class RootUiAdapterTest {
             ),
         )
 
-        val undecided = base.withAdvertisingPrivacy(privacy(ConsentChoice.UNDECIDED))
+        val undecided = base.withAdvertisingPrivacy(privacy(ConsentChoice.UNDECIDED), nowEpochMillis = 1_500)
         assertEquals(
             listOf(UiAction.AcceptAdvertisingConsent, UiAction.DeclineAdvertisingConsent),
             undecided.actions.take(2).mapNotNull(UiScreenAction::toAdvertisingUiAction),
@@ -233,7 +249,7 @@ class RootUiAdapterTest {
         assertEquals("open-privacy-policy", undecided.actions.last().id)
         assertEquals(listOf("policyVersion"), undecided.fields.map(UiField::id))
 
-        val accepted = base.withAdvertisingPrivacy(privacy(ConsentChoice.ACCEPTED))
+        val accepted = base.withAdvertisingPrivacy(privacy(ConsentChoice.ACCEPTED), nowEpochMillis = 1_500)
         assertEquals(UiAction.WithdrawAdvertisingConsent, accepted.actions.first().toAdvertisingUiAction())
         assertEquals("open-privacy-policy", accepted.actions.last().id)
     }
@@ -249,6 +265,7 @@ class RootUiAdapterTest {
                         "item-1",
                         authoredTitle = "User batch",
                         stateKey = if (screen == ScreenId.TRAYS) TextKey("option_batch_state_harvested") else null,
+                        batch = BatchIdentity("item-1", "Tray 1", null, null, BatchState.HARVESTED),
                         actionId = "open-batch",
                         commands = listOf(ScreenItemCommand("complete-action", "scheduled-1")),
                     ),
@@ -297,9 +314,9 @@ class RootUiAdapterTest {
             loadState = LoadState.CONTENT,
             titleKey = TextKey("screen_trays_title"),
             items = listOf(
-                ScreenItem("planned", authoredTitle = "Planned", stateKey = TextKey("option_batch_state_planned")),
-                ScreenItem("active", authoredTitle = "Active", stateKey = TextKey("option_batch_state_sown")),
-                ScreenItem("history", authoredTitle = "History", stateKey = TextKey("option_batch_state_harvested")),
+                ScreenItem("planned", authoredTitle = "Planned", batch = BatchIdentity("planned", "Tray", null, null, BatchState.PLANNED)),
+                ScreenItem("active", authoredTitle = "Active", batch = BatchIdentity("active", "Tray", null, null, BatchState.SOWN)),
+                ScreenItem("history", authoredTitle = "History", stateKey = TextKey("outcome_harvested"), batch = BatchIdentity("history", "Tray", null, null, BatchState.HARVESTED)),
             ),
             fields = listOf(
                 ScreenField(
@@ -314,8 +331,22 @@ class RootUiAdapterTest {
         val history = model("history").toUiState()
         assertEquals(TrayCategory.HISTORY, history.trayCategory)
         assertEquals(listOf("history"), history.items.map(UiItem::id))
-        assertEquals("option_batch_state_harvested", history.items.single().stateKey)
+        assertEquals("outcome_harvested", history.items.single().stateKey)
         assertTrue(history.fields.none { it.id == "category" })
+    }
+
+    @Test fun settingsChildKeepsParentContextAndRoutesSiblingThroughRoot() {
+        val parent = ScreenModel(screen = ScreenId.SETTINGS, loadState = LoadState.CONTENT,
+            titleKey = TextKey("screen_settings_title"),
+            items = listOf(ScreenItem("privacy", titleKey = TextKey("screen_advertising_privacy_title"))))
+        val child = SproutPaceUiState(screen = UiScreen.ZONES).withSettingsContext(parent)
+        assertEquals(listOf("privacy"), child.settingsContext?.items?.map { it.id })
+        assertNull(SproutPaceUiState(screen = UiScreen.BATCH_EDITOR).withSettingsContext(parent).settingsContext)
+        val component = RecordingScreen()
+        val root = RecordingRoot(component)
+        RootActionRouter(root, component) { null }.dispatch(UiAction.Navigate(UiScreen.NOTIFICATIONS))
+        assertEquals(ScreenId.NOTIFICATIONS to null, root.opened)
+        assertTrue(component.actions.isEmpty())
     }
 
     @Test fun primaryAndDetailNavigationRouteThroughRootWithoutLocalBackStack() {
@@ -333,6 +364,28 @@ class RootUiAdapterTest {
         assertEquals(ScreenId.BATCH_DETAIL to "batch-from-item", root.opened)
         router.dispatch(UiAction.Back)
         assertEquals(1, root.backCount)
+    }
+
+    @Test fun repeatNavigatesToNewEditorWithoutSubmittingMutation() {
+        val component = RecordingScreen()
+        val root = RecordingRoot(component)
+        val router = RootActionRouter(root, component) { "selected-history" }
+        router.dispatch(UiAction.Submit("repeat-batch", "historical-batch"))
+        assertEquals(ScreenId.BATCH_EDITOR to "repeat-batch:historical-batch", root.opened)
+        assertTrue(component.actions.isEmpty())
+    }
+
+    @Test fun todayStageItemCommandsOpenLifecycleScreensWithoutSubmittingStatusMutations() {
+        val component = RecordingScreen()
+        val root = RecordingRoot(component)
+        val router = RootActionRouter(root, component) { "unrelated-selection" }
+        router.dispatch(UiAction.SubmitItem("open-batch", "stage-task-batch"))
+        assertEquals(ScreenId.BATCH_DETAIL to "stage-task-batch", root.opened)
+        router.dispatch(UiAction.SubmitItem("close-batch", "harvest-task-batch"))
+        assertEquals(ScreenId.CLOSE_BATCH to "harvest-task-batch", root.opened)
+        router.dispatch(UiAction.SubmitItem("repeat-batch", "terminal-batch"))
+        assertEquals(ScreenId.BATCH_EDITOR to "repeat-batch:terminal-batch", root.opened)
+        assertTrue(component.actions.isEmpty())
     }
 
     @Test fun retrySelectionEditingChoiceLayoutAndSubmitRouteTypedActionsToActiveComponent() {
@@ -376,10 +429,9 @@ class RootUiAdapterTest {
 
         todayRouter.dispatch(UiAction.SubmitItem("complete-action", "scheduled-1"))
 
-        assertEquals(
-            ScreenAction.Execute(ScreenCommand("complete-action", "scheduled-1")),
-            today.actions.single(),
-        )
+        val completedCommand = assertIs<ScreenAction.Execute>(today.actions.single()).command
+        assertNotNull(completedCommand.invocationId)
+        assertEquals(ScreenCommand("complete-action", "scheduled-1", invocationId = completedCommand.invocationId), completedCommand)
 
         val detail = RecordingScreen(
             ScreenModel(
@@ -399,10 +451,9 @@ class RootUiAdapterTest {
 
         detailRouter.dispatch(UiAction.SubmitItem("skip-action", "scheduled-2"))
 
-        assertEquals(
-            ScreenAction.Execute(ScreenCommand("skip-action", "scheduled-2")),
-            detail.actions.single(),
-        )
+        val skippedCommand = assertIs<ScreenAction.Execute>(detail.actions.single()).command
+        assertNotNull(skippedCommand.invocationId)
+        assertEquals(ScreenCommand("skip-action", "scheduled-2", invocationId = skippedCommand.invocationId), skippedCommand)
     }
 
     @Test fun platformActionsUseTypedSeamAndFeedDocumentResultBackIntoDraft() {
@@ -417,7 +468,8 @@ class RootUiAdapterTest {
 
         router.dispatch(UiAction.RequestPlatform(PlatformActionRequest(PlatformActionKind.CHOOSE_DOCUMENT, "documentId")))
 
-        assertEquals(PlatformActionRequest(PlatformActionKind.CHOOSE_DOCUMENT, "documentId"), requests.single())
+        assertEquals(PlatformActionRequest(PlatformActionKind.CHOOSE_DOCUMENT, "documentId"),
+            requests.single().copy(onFailure = null))
         assertEquals(ScreenAction.EditField(ScreenFieldId("documentId"), "document-42"), component.actions.single())
     }
 
@@ -441,9 +493,35 @@ class RootUiAdapterTest {
                 PlatformActionRequest(PlatformActionKind.CHOOSE_PHOTO, "photoId"),
                 PlatformActionRequest(PlatformActionKind.DISCARD_PENDING_PHOTO, opaqueValue = oldDraft),
             ),
-            requests,
+            requests.map { it.copy(onFailure = null) },
         )
         assertEquals(ScreenAction.EditField(ScreenFieldId("photoId"), newDraft), component.actions.single())
+    }
+
+    @Test fun failedPhotoReplacementReportsErrorWithoutEditingOrDiscardingCurrentPhoto() {
+        val component = RecordingScreen(observationModel(pendingPhotoDraftValue("keep.jpg")))
+        val requests = mutableListOf<PlatformActionRequest>()
+        val router = RootActionRouter(RecordingRoot(component), component,
+            PlatformActionHandler { request, _ ->
+                requests += request
+                request.onFailure?.invoke(PlatformActionFailure.PHOTO_IMPORT)
+            }) { null }
+        router.dispatch(UiAction.RequestPlatform(PlatformActionRequest(PlatformActionKind.CHOOSE_PHOTO, "photoId")))
+        assertEquals(listOf<ScreenAction>(ScreenAction.ReportFailure(TextKey("error_photo_import_failed"))), component.actions)
+        assertEquals(listOf(PlatformActionKind.CHOOSE_PHOTO), requests.map { it.kind })
+    }
+
+    @Test fun failedBackupPickOrDestinationReportsErrorWithoutSubmitting() {
+        listOf(
+            Triple("preview-restore", PlatformActionFailure.DOCUMENT_IMPORT, "error_document_read_failed"),
+            Triple("create-backup", PlatformActionFailure.DOCUMENT_DESTINATION, "error_document_write_failed"),
+        ).forEach { (operation, failure, key) ->
+            val component = RecordingScreen()
+            val router = RootActionRouter(RecordingRoot(component), component,
+                PlatformActionHandler { request, _ -> request.onFailure?.invoke(failure) }) { null }
+            router.dispatch(UiAction.Submit(operation))
+            assertEquals(listOf<ScreenAction>(ScreenAction.ReportFailure(TextKey(key))), component.actions)
+        }
     }
 
     @Test fun photoCancellationLeavesDraftUntouchedAndRemoveDiscardsPendingToken() {
@@ -528,7 +606,7 @@ class RootUiAdapterTest {
                 suggestedName = "sproutpace-backup.zip",
                 mediaType = "application/zip",
             ),
-            requests.single(),
+            requests.single().copy(onFailure = null),
         )
         assertTrue(component.actions.isEmpty())
 
@@ -564,7 +642,7 @@ class RootUiAdapterTest {
                 suggestedName = "sproutpace-history.csv",
                 mediaType = "text/csv",
             ),
-            requests.single(),
+            requests.single().copy(onFailure = null),
         )
         complete("")
         assertTrue(component.actions.isEmpty())
@@ -595,6 +673,7 @@ private class RecordingAdvertisingRuntime(
     private val preparation: AdPreparation,
 ) : AdvertisingRuntime {
     override val privacyState = MutableStateFlow<AdvertisingPrivacyState?>(null)
+    override val networkAvailable = MutableStateFlow(true)
     var prepareCount = 0
     val actions = mutableListOf<String>()
     override suspend fun prepare(request: AdPlacementRequest): AdPreparation {

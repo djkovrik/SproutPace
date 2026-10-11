@@ -68,6 +68,8 @@ sealed interface AdPreparation {
 /** Narrow production boundary consumed by the UI; platform SDK types never cross common code. */
 interface AdvertisingRuntime {
     val privacyState: StateFlow<AdvertisingPrivacyState?>
+    /** Host connectivity is independent of the local catalog's offline-capable content. */
+    val networkAvailable: StateFlow<Boolean>
     suspend fun prepare(request: AdPlacementRequest): AdPreparation
     suspend fun acceptConsent(): Boolean
     suspend fun declineConsent(): Boolean
@@ -99,7 +101,7 @@ class AdvertisingController(
         when (val eligibility = privacy.resolve()) {
             is PrivacyEligibility.ConsentRequired -> AdPreparation.ConsentRequired(eligibility.policyVersion)
             is PrivacyEligibility.Disabled -> AdPreparation.Disabled(eligibility.reason)
-            is PrivacyEligibility.Eligible -> runCatching {
+            is PrivacyEligibility.Eligible -> cancellableResult {
                 if (!initialized) {
                     sdk.setUserConsent(eligibility.sdkConsent)
                     sdk.initialize()
@@ -133,9 +135,9 @@ class AdvertisingController(
     }
 
     private suspend fun stopImmediately() {
-        runCatching { sdk.setUserConsent(false) }
+        cancellableResult { sdk.setUserConsent(false) }
         activeSdkConsent = false
-        runCatching { sdk.stopNewRequestsAndDispose() }
+        cancellableResult { sdk.stopNewRequestsAndDispose() }
     }
 }
 

@@ -37,7 +37,24 @@ class IosPrivateFileStore : PrivateFileStore {
     private val root: String = (manager.URLsForDirectory(NSApplicationSupportDirectory, NSUserDomainMask).first() as NSURL)
         .URLByAppendingPathComponent("observation_photos", true)!!.path!!
 
-    init { manager.createDirectoryAtPath(root, true, null, null) }
+    init {
+        if (!manager.fileExistsAtPath(root) && manager.fileExistsAtPath("$root.previous")) {
+            check(manager.moveItemAtPath("$root.previous", root, null))
+        }
+        check(manager.createDirectoryAtPath(root, true, null, null))
+    }
+
+    override suspend fun readRecoveryArchive(): ByteArray? = NSData.dataWithContentsOfFile("$root.recovery")?.let {
+        it.bytes?.readBytes(it.length.toInt())
+    }
+    override suspend fun writeRecoveryArchive(bytes: ByteArray?) {
+        val journal = "$root.recovery"
+        if (bytes == null) {
+            if (manager.fileExistsAtPath(journal)) check(manager.removeItemAtPath(journal, null))
+        } else bytes.usePinned { pinned ->
+            check(NSData.create(bytes = pinned.addressOf(0), length = bytes.size.toULong()).writeToFile(journal, true))
+        }
+    }
 
     override suspend fun read(id: PhotoId): ByteArray? = NSData.dataWithContentsOfFile(path(id))?.let { data ->
         data.bytes?.readBytes(data.length.toInt())

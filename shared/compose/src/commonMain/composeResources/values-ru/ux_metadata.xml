@@ -1,0 +1,5 @@
+<resources>
+    <string name="restore_archive_filename">Имя файла</string>
+    <string name="schedule_timezone_context">Часовой пояс расписания: %1$s</string>
+    <string name="event_timezone_context">Местное время: %1$s</string>
+</resources>

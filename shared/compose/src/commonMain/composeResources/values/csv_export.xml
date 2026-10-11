@@ -1,0 +1,9 @@
+<resources>
+    <string name="csv_batch_id">Batch ID</string>
+    <string name="csv_culture_id">Culture ID</string>
+    <string name="csv_recipe_name">Recipe</string>
+    <string name="csv_state">State</string>
+    <string name="csv_outcome_at">Outcome date</string>
+    <string name="csv_actual_mass">Actual mass (g)</string>
+    <string name="csv_note">Note</string>
+</resources>

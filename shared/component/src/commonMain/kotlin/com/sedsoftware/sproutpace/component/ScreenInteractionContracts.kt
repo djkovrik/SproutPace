@@ -3,6 +3,7 @@ package com.sedsoftware.sproutpace.component
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 
 data class ScreenFieldId(val value: String) {
     init { require(value.matches(Regex("[a-z][A-Za-z0-9]*"))) }
@@ -44,6 +45,7 @@ data class ScreenOption(
     val id: String,
     val labelKey: TextKey? = null,
     val authoredLabel: String? = null,
+    val batchIdentity: BatchIdentity? = null,
 ) {
     init {
         require(id.isNotBlank())
@@ -126,33 +128,28 @@ internal fun ScreenOperationContract.prepare(
     val normalizedSubject = subjectId?.takeIf(String::isNotBlank)
     val errors = linkedMapOf<ScreenFieldId, TextKey>()
     if (subjectRequirement == CommandSubjectRequirement.REQUIRED && normalizedSubject == null) {
-        errors[ScreenFieldId("id")] = TextKey("state_error_body")
+        errors[ScreenFieldId("id")] = TextKey("validation_required_selection")
     }
-    arguments.forEach { argument ->
+    val applicableArguments = arguments.filter { it.isApplicable(draft) }
+    applicableArguments.forEach { argument ->
         val fieldId = ScreenFieldId(argument.name)
         val value = draft[fieldId].orEmpty().trim()
-        val conditionMet = argument.requiredWhen?.let { condition ->
-            draft[ScreenFieldId(condition.argument)].orEmpty().equals(condition.equals, ignoreCase = true)
-        } ?: true
-        if (argument.required && conditionMet && value.isEmpty()) {
-            errors[fieldId] = TextKey("state_error_body")
+        val stageDuration = Regex("^stage[1-5](MinimumHours|MaximumHours)$").matches(argument.name)
+        if ((argument.required || stageDuration) && value.isEmpty()) {
+            errors[fieldId] = argument.requiredError()
         } else if (value.isNotEmpty() && !argument.kind.accepts(value)) {
-            errors[fieldId] = TextKey("state_error_body")
+            errors[fieldId] = argument.kind.invalidError()
+        } else if (argument.name == "summaryTime" && value.isNotEmpty() &&
+            runCatching { LocalTime.parse(value) }.isFailure
+        ) {
+            errors[fieldId] = TextKey("validation_valid_time")
         }
     }
-    oneOfArguments.forEach { alternatives ->
-        val hasSelection = alternatives.any { name ->
-            val argument = arguments.first { it.name == name }
-            val value = draft[ScreenFieldId(name)].orEmpty()
-            if (argument.kind == ScreenFieldKind.BOOLEAN) value == "true" else value.isNotBlank()
-        }
-        if (!hasSelection) {
-            alternatives.forEach { errors[ScreenFieldId(it)] = TextKey("state_error_body") }
-        }
-    }
+    validateAlternatives(draft, errors)
+    applicableArguments.validateRanges(draft, errors)
     if (errors.isNotEmpty()) return CommandPreparation.Invalid(errors)
 
-    val arguments = arguments.mapNotNull { argument ->
+    val arguments = applicableArguments.mapNotNull { argument ->
         draft[ScreenFieldId(argument.name)]?.trim()?.takeIf(String::isNotEmpty)?.let { argument.name to it }
     }.toMap()
     val deduplicationKey = buildList {
@@ -161,9 +158,78 @@ internal fun ScreenOperationContract.prepare(
         arguments.entries.sortedBy { it.key }.forEach { (key, value) -> add("$key=$value") }
     }.joinToString(":")
     return CommandPreparation.Ready(
-        ScreenCommand(operation, normalizedSubject, arguments, deduplicationKey),
+        ScreenCommand(operation, normalizedSubject, arguments, deduplicationKey).newInvocation(),
     )
 }
+
+private fun ScreenOperationContract.validateAlternatives(
+    draft: Map<ScreenFieldId, String>,
+    errors: MutableMap<ScreenFieldId, TextKey>,
+) {
+    oneOfArguments.forEach { alternatives ->
+        val hasSelection = alternatives.any { name ->
+            val argument = arguments.first { it.name == name }
+            val value = draft[ScreenFieldId(name)].orEmpty()
+            if (argument.kind == ScreenFieldKind.BOOLEAN) value == "true" else value.isNotBlank()
+        }
+        if (!hasSelection) {
+            val key = if (alternatives == setOf("recipeId", "cultureId")) {
+                "validation_recipe_or_culture"
+            } else {
+                "validation_required_selection"
+            }
+            alternatives.forEach { errors[ScreenFieldId(it)] = TextKey(key) }
+        }
+    }
+}
+
+private fun List<CommandArgument>.validateRanges(
+    draft: Map<ScreenFieldId, String>,
+    errors: MutableMap<ScreenFieldId, TextKey>,
+) {
+    filter { it.name.endsWith("MaximumHours") }.forEach { maximum ->
+        val minimumId = ScreenFieldId(maximum.name.replace("MaximumHours", "MinimumHours"))
+        val maximumId = ScreenFieldId(maximum.name)
+        val minimumValue = draft[minimumId]?.toLongOrNull()
+        val maximumValue = draft[maximumId]?.toLongOrNull()
+        if (minimumId in errors || maximumId in errors) return@forEach
+        if (minimumValue != null && maximumValue != null && maximumValue < minimumValue) {
+            errors[maximumId] = TextKey("validation_maximum_at_least_minimum")
+        }
+    }
+}
+
+internal fun CommandArgument.isApplicable(draft: Map<ScreenFieldId, String>): Boolean {
+    val outcome = draft[ScreenFieldId("outcome")]
+    if (name in setOf("actualMassGrams", "assessment") && outcome in setOf("failed", "abandoned")) return false
+    if (name == "reason" && outcome == "harvested") return false
+    val conditionMet = requiredWhen?.let { condition ->
+        draft[ScreenFieldId(condition.argument)].orEmpty().equals(condition.equals, ignoreCase = true)
+    } ?: true
+    val stage = Regex("^(stage[1-5])(MinimumHours|MaximumHours|Guidance)$").matchEntire(name)?.groupValues?.get(1)
+    val stageSelected = stage == null || draft[ScreenFieldId(stage)].orEmpty().let { it.isNotBlank() && it != "none" }
+    return conditionMet && stageSelected
+}
+
+private fun CommandArgument.requiredError(): TextKey = TextKey(
+    when {
+        name in setOf("name", "zoneName", "trayName") -> "validation_required_name"
+        kind in setOf(ScreenFieldKind.SINGLE_CHOICE, ScreenFieldKind.MULTI_CHOICE) -> "validation_required_selection"
+        else -> "validation_required_value"
+    },
+)
+
+private fun ScreenFieldKind.invalidError(): TextKey = TextKey(
+    when (this) {
+        ScreenFieldKind.POSITIVE_INTEGER, ScreenFieldKind.POSITIVE_LONG -> "validation_positive_integer"
+        ScreenFieldKind.NON_NEGATIVE_LONG -> "validation_non_negative_integer"
+        ScreenFieldKind.POSITIVE_DECIMAL -> "validation_positive_number"
+        ScreenFieldKind.LOCAL_DATE -> "validation_valid_date"
+        ScreenFieldKind.LOCAL_DATE_TIME, ScreenFieldKind.INSTANT -> "validation_valid_date_time"
+        ScreenFieldKind.BOOLEAN, ScreenFieldKind.SINGLE_CHOICE, ScreenFieldKind.MULTI_CHOICE -> "validation_invalid_selection"
+        else -> "validation_required_value"
+    },
+)
 
 private fun ScreenFieldKind.accepts(value: String): Boolean = when (this) {
     ScreenFieldKind.POSITIVE_INTEGER -> value.toIntOrNull()?.let { it > 0 } == true

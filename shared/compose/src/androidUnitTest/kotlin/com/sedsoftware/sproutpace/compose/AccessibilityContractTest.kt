@@ -80,7 +80,9 @@ class AccessibilityContractTest {
     }
 
     private fun resourceKeys(file: File): Set<String> =
-        Regex("<string name=\"([^\"]+)\"").findAll(file.readText()).map { it.groupValues[1] }.toSet()
+        file.parentFile.listFiles().orEmpty().filter { it.extension == "xml" }.flatMap { resource ->
+            Regex("<string name=\"([^\"]+)\"").findAll(resource.readText()).map { it.groupValues[1] }.toList()
+        }.toSet()
 
     private fun projectFile(vararg candidates: String): File =
         candidates.asSequence().map(::File).firstOrNull(File::isFile)

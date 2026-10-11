@@ -1,6 +1,7 @@
 package com.sedsoftware.sproutpace.data
 
 import com.sedsoftware.sproutpace.component.ScreenContractRegistry
+import com.sedsoftware.sproutpace.component.BatchRepeatDraft
 import com.sedsoftware.sproutpace.component.ScreenActionDescriptor
 import com.sedsoftware.sproutpace.component.ScreenFact
 import com.sedsoftware.sproutpace.component.ScreenField
@@ -27,12 +28,14 @@ import com.sedsoftware.sproutpace.domain.model.TraySizePreset
 import com.sedsoftware.sproutpace.domain.model.UserGrowRecipe
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
 
 internal class ProductionScreenInteractionBuilder(
     private val now: () -> Instant,
     private val today: () -> LocalDate,
     private val backupDocumentId: () -> String?,
     private val backupPreview: () -> BackupPreview.Valid?,
+    private val timeZone: () -> TimeZone = { TimeZone.currentSystemDefault() },
 ) {
     fun apply(
         base: ScreenSnapshot,
@@ -40,18 +43,30 @@ internal class ProductionScreenInteractionBuilder(
         stableId: String?,
         workspace: Workspace,
         preferences: SettingsSnapshot,
-    ): ScreenSnapshot = base.withInteractionContract(screen, stableId, workspace, preferences)
+        draftIdentities: DraftIdentitySession = DraftIdentitySession(),
+    ): ScreenSnapshot = base.withInteractionContract(screen, stableId, workspace, preferences, draftIdentities)
 
 private fun ScreenSnapshot.withInteractionContract(
     screen: ScreenId,
     stableId: String?,
     workspace: Workspace,
     preferences: SettingsSnapshot,
+    draftIdentities: DraftIdentitySession,
 ): ScreenSnapshot {
+    val existingEditorRecord = workspace.batches.any { it.id.value == stableId } ||
+        workspace.recipes.any { it.id.value == stableId }
+    val suggestionRoute = BatchRepeatDraft.sourceId(stableId) == null && stableId?.contains(':') == true
+    if (screen == ScreenId.BATCH_EDITOR && suggestionRoute && !existingEditorRecord &&
+        workspace.suggestion(stableId, today(), timeZone()) == null) {
+        return copy(primaryActionKey = null, fields = emptyList(), actions = emptyList(), hasInteractionContract = true,
+            facts = listOf(ScreenFact("suggestion-unavailable", key("suggestion_unavailable_title"),
+                valueKey = key("suggestion_unavailable_body"))))
+    }
     val contract = ScreenContractRegistry.contracts.getValue(screen)
-    val values = fieldValues(screen, stableId, workspace, preferences)
+    val values = draftIdentities.apply(screen, fieldValues(screen, stableId, workspace, preferences), workspace)
     return copy(
-        fields = contract.fields.map { field ->
+        hasInteractionContract = true,
+        fields = contract.fields.filterNot { screen == ScreenId.TODAY }.map { field ->
             val options = if (
                 field.kind == com.sedsoftware.sproutpace.component.ScreenFieldKind.SINGLE_CHOICE ||
                 field.kind == com.sedsoftware.sproutpace.component.ScreenFieldKind.MULTI_CHOICE
@@ -62,66 +77,15 @@ private fun ScreenSnapshot.withInteractionContract(
             }
             field.copy(
                 value = values[field.id].orEmpty(),
-                options = options,
+                options = repeatSnapshotOptions(screen, stableId, field.id, workspace) + options,
             )
         },
-        facts = (contract.facts + screenFacts(screen, stableId, workspace, preferences))
+        facts = screenFacts(screen, stableId, workspace, preferences)
             .distinctBy(ScreenFact::id),
-        actions = visibleActions(screen, stableId, workspace, contract.actions),
-    )
+        actions = productionActions(screen, stableId, workspace, contract.actions),
+    ).withSetupReadiness(screen, workspace)
 }
 
-private fun visibleActions(
-    screen: ScreenId,
-    stableId: String?,
-    workspace: Workspace,
-    actions: List<ScreenActionDescriptor>,
-): List<ScreenActionDescriptor> {
-    if (screen != ScreenId.BATCH_DETAIL) return actions
-    val batch = stableId?.let { id -> workspace.batches.firstOrNull { it.id.value == id } } ?: return emptyList()
-    val visibleIds = batchDetailActionIds(batch)
-    return actions.filter { action -> action.id.value in visibleIds }
-}
-
-private fun batchDetailActionIds(batch: GrowBatch): Set<String> {
-    val configuredStates = batch.recipe.stages.map { stage ->
-        when (stage.stage) {
-            GrowStage.SOAKING -> BatchState.SOAKING
-            GrowStage.SOWN -> BatchState.SOWN
-            GrowStage.BLACKOUT_OR_WEIGHT -> BatchState.BLACKOUT_OR_WEIGHT
-            GrowStage.LIGHT_GROWTH -> BatchState.LIGHT_GROWTH
-            GrowStage.READY_FOR_HARVEST -> BatchState.READY_FOR_HARVEST
-        }
-    }
-    val stateIndex = configuredStates.indexOf(batch.state)
-    val hasNextStage = stateIndex >= 0 && stateIndex + 1 < configuredStates.size
-    val canSkipStage = stateIndex >= 0 && stateIndex + 2 < configuredStates.size
-    return buildSet {
-        add("add-observation")
-        add("delete-batch")
-        when (batch.state) {
-            BatchState.PLANNED -> {
-                add("confirm-sowing")
-                if (BatchState.SOAKING in configuredStates) add("start-soaking")
-            }
-            BatchState.SOAKING -> {
-                add("confirm-sowing")
-                add("schedule-soak-target")
-            }
-            BatchState.HARVESTED -> {
-                add("record-actual-mass")
-                add("repeat-batch")
-            }
-            BatchState.FAILED, BatchState.ABANDONED -> add("repeat-batch")
-            else -> Unit
-        }
-        if (!batch.state.isTerminal) add("close-batch")
-        if (!batch.state.isTerminal && batch.state != BatchState.SOAKING && hasNextStage) add("confirm-stage")
-        if (!batch.state.isTerminal && canSkipStage) add("skip-stage")
-        if (!batch.state.isTerminal && batch.events.isNotEmpty()) add("undo-stage")
-        if (batch.state.occupiesPlace && batch.placement is Placement.Unassigned) add("assign-overflow")
-    }
-}
 
 private fun fieldValues(
     screen: ScreenId,
@@ -151,20 +115,19 @@ private fun primaryFieldValues(
     due: DueMoment?,
 ): Map<String, String> = when (screen) {
         ScreenId.FIRST_RUN -> mapOf(
-            "zoneName" to "Grow shelf", "type" to "grow_light", "capacity" to "1",
-            "trayName" to "10 x 20 tray", "shape" to "rectangle",
+            "zoneName" to "", "type" to "grow_light", "capacity" to "1",
+            "trayName" to "", "shape" to "rectangle",
             "widthCm" to "25.4", "lengthCm" to "50.8", "cadenceDays" to "7",
             "cultureIds" to SproutPaceCatalog.cultures.first().id.value, "mode" to "continuous_queue",
         )
         ScreenId.TODAY -> todayFieldValues(due)
         ScreenId.TRAYS -> mapOf(
             "category" to "planned",
-            "newId" to generatedId("batch"),
         )
         ScreenId.BATCH_EDITOR -> batchEditorFieldValues(stableId, selected.batch, workspace)
         ScreenId.BATCH_DETAIL -> batchDetailFieldValues(stableId, selected.batch, workspace)
         ScreenId.PLAN -> buildMap {
-            put("id", stableId ?: generatedId("plan"))
+            put("id", selected.plan?.id?.value ?: "")
             put("anchorDate", (selected.plan?.anchorDate ?: today()).toString())
             put("cadenceDays", (selected.plan?.cadence?.value ?: DEFAULT_CADENCE_DAYS).toString())
             put("cultureIds", (selected.plan?.cultureRotation?.joinToString(",") { it.value }
@@ -191,7 +154,7 @@ private fun secondaryFieldValues(
             "enabled" to preferences.crashReporting.toString(),
         )
         ScreenId.ZONES -> mapOf(
-            "id" to (selected.zone?.id?.value ?: generatedId("zone")),
+            "id" to (selected.zone?.id?.value ?: ""),
             "name" to selected.zone?.name.orEmpty(),
             "type" to (selected.zone?.type ?: GrowZoneType.GROW_LIGHT).name.lowercase(),
             "capacity" to (selected.zone?.capacity ?: 1).toString(),
@@ -226,15 +189,42 @@ private fun todayFieldValues(due: DueMoment?): Map<String, String> = buildMap {
     }
 }
 
+private fun repeatSnapshotOptions(
+    screen: ScreenId, stableId: String?, field: ScreenFieldId, workspace: Workspace,
+): List<ScreenOption> {
+    if (screen != ScreenId.BATCH_EDITOR) return emptyList()
+    val sourceId = BatchRepeatDraft.sourceId(stableId) ?: return emptyList()
+    val source = workspace.batch(sourceId)
+    val choice = BatchRepeatDraft.snapshotChoice(sourceId)
+    return when (field.value) {
+        "recipeId" -> listOf(ScreenOption(choice,
+            labelKey = source.recipe.builtInCultureId?.let { key("culture_${it.value}_name") },
+            authoredLabel = source.recipe.nameSnapshot))
+        "trayId" -> listOf(ScreenOption(choice, authoredLabel = source.tray.nameSnapshot))
+        else -> emptyList()
+    }
+}
+
 private fun batchEditorFieldValues(
     stableId: String?,
     batch: GrowBatch?,
     workspace: Workspace,
 ): Map<String, String> {
+    BatchRepeatDraft.sourceId(stableId)?.let { sourceId ->
+        val source = workspace.batch(sourceId)
+        require(source.state.isTerminal) { "Only terminal batches can be repeated" }
+        return batchEditorSnapshotFields(null, source, null, BatchRepeatDraft.snapshotChoice(sourceId),
+            source.cultureIdSnapshot?.value ?: source.recipe.builtInCultureId?.value.orEmpty(), null) +
+            batchEditorScheduleFields(null) + mapOf("trayId" to BatchRepeatDraft.snapshotChoice(sourceId))
+    }
+    val suggestion = workspace.suggestion(stableId, today(), timeZone())
     val sourceRecipe = batch?.recipe?.sourceRecipeId?.value
-    val fallbackRecipe = workspace.recipes.firstOrNull()?.id?.value
+        ?: workspace.recipes.firstOrNull { it.id.value == stableId }?.id?.value
+    val fallbackRecipe: String? = null
     val recipe = workspace.recipes.firstOrNull { it.id.value == (sourceRecipe ?: fallbackRecipe) }
-    val culture = batch?.cultureIdSnapshot?.value
+    val culture = suggestion?.cultureId?.value
+        ?: stableId?.takeIf { id -> SproutPaceCatalog.cultures.any { it.id.value == id } }
+        ?: batch?.cultureIdSnapshot?.value
         ?: batch?.recipe?.builtInCultureId?.value
         ?: workspace.recipes.firstOrNull { it.id.value == (sourceRecipe ?: fallbackRecipe) }?.cultureId?.value
         ?: SproutPaceCatalog.cultures.first().id.value
@@ -242,13 +232,21 @@ private fun batchEditorFieldValues(
         workspace.trays.firstOrNull { it.name == current.tray.nameSnapshot && it.shape == current.tray.shape }
     }
     return batchEditorSnapshotFields(
-        stableId = stableId,
+        stableId = batch?.id?.value,
         batch = batch,
         recipe = recipe,
         recipeId = sourceRecipe ?: fallbackRecipe,
         cultureId = culture,
         tray = sourceTray ?: workspace.trays.firstOrNull(),
-    ) + batchEditorScheduleFields(batch) + batchEditorCorrectionFields(batch)
+    ) + batchEditorScheduleFields(batch) + batchEditorCorrectionFields(batch) +
+        if (suggestion != null) mapOf(
+            "plannedSowDate" to suggestion.sowDate(timeZone().id).toString(),
+            "fixedHarvestDate" to suggestion.targetHarvestDate.toString(),
+            "timeZoneId" to timeZone().id,
+            "zoneId" to workspace.planningForecast(today(), timeZone()).firstOrNull {
+                it.suggestion == suggestion
+            }?.route?.firstOrNull()?.zoneId?.value.orEmpty(),
+        ) else emptyMap()
 }
 
 private fun batchEditorSnapshotFields(
@@ -259,7 +257,7 @@ private fun batchEditorSnapshotFields(
     cultureId: String,
     tray: TraySizePreset?,
 ): Map<String, String> = buildMap {
-        put("id", stableId ?: generatedId("batch"))
+        put("id", stableId ?: "")
         recipeId?.let { put("recipeId", it) }
         put("cultureId", cultureId)
         tray?.let { put("trayId", it.id.value) }
@@ -282,7 +280,7 @@ private fun batchEditorScheduleFields(batch: GrowBatch?): Map<String, String> = 
     val civilActions = batch?.actions.orEmpty().mapNotNull { action ->
         (action.due as? DueMoment.CivilTime)?.let { action to it }
     }
-    put("timeZoneId", civilActions.firstOrNull()?.second?.timeZoneId ?: "UTC")
+    put("timeZoneId", civilActions.firstOrNull()?.second?.timeZoneId ?: timeZone().id)
     civilActions.filter { it.first.userFixed }.forEach { (action, due) ->
         fixedDateField(action.stage)?.let { put(it, due.localDateTime.date.toString()) }
     }
@@ -308,8 +306,11 @@ private fun batchDetailFieldValues(
     put("eventId", "event-$subject-${(batch?.events?.size ?: 0) + 1}")
     put("occurredAt", now().toString())
     nextBatchState(batch)?.let { put("nextState", it.name.lowercase()) }
-    workspace.zones.firstOrNull { it.isLightCapable }?.let { put("zoneId", it.id.value) }
-    put("unassigned", (workspace.zones.none { it.isLightCapable }).toString())
+    val currentZone = (batch?.placement as? Placement.Assigned)?.zoneId
+    val zone = workspace.zones.firstOrNull { it.id == currentZone }
+        ?: workspace.zones.firstOrNull { it.isLightCapable }
+    zone?.let { put("zoneId", it.id.value) }
+    put("unassigned", (zone == null || batch?.placement is Placement.Unassigned).toString())
     nextBatchState(batch)?.let { skipped ->
         put("skippedState", skipped.name.lowercase())
         put("resultingState", stateAfter(batch, skipped).name.lowercase())
@@ -322,11 +323,10 @@ private fun batchDetailFieldValues(
         put("actualMassGrams", it.value.toString())
     }
     put("timeZoneId", "UTC")
-    put("newId", generatedId("batch"))
 }
 
 private fun recipeFieldValues(stableId: String?, recipe: UserGrowRecipe?): Map<String, String> = buildMap {
-    put("id", stableId ?: generatedId("recipe"))
+    put("id", stableId ?: "")
     put("name", recipe?.name.orEmpty())
     put(
         "cultureId",
@@ -355,7 +355,7 @@ private fun recipeFieldValues(stableId: String?, recipe: UserGrowRecipe?): Map<S
     repeat((MAX_RECIPE_STAGES - stages.size).coerceAtLeast(0)) { offset ->
         put("stage${stages.size + offset + 1}", "none")
     }
-    put("newId", generatedId("recipe"))
+    put("newId", "")
 }
 
 private fun fixedDateField(stage: GrowStage?): String? = when (stage) {
@@ -381,7 +381,7 @@ private fun observationFieldValues(
     observation: Observation?,
     workspace: Workspace,
 ): Map<String, String> = buildMap {
-    put("id", observation?.id?.value ?: generatedId("observation"))
+    put("id", observation?.id?.value ?: "")
     put(
         "batchId",
         observation?.batchId?.value
@@ -415,7 +415,7 @@ private fun closeBatchFieldValues(batch: GrowBatch?): Map<String, String> = buil
 }
 
 private fun trayFieldValues(tray: TraySizePreset?): Map<String, String> = buildMap {
-    put("id", tray?.id?.value ?: generatedId("tray"))
+    put("id", tray?.id?.value ?: "")
     put("name", tray?.name.orEmpty())
     when (val shape = tray?.shape) {
         is TrayShape.Rectangle -> {
@@ -442,7 +442,8 @@ private fun dynamicOptions(field: ScreenField, workspace: Workspace): List<Scree
     "zoneId" -> workspace.zones.sortedBy { it.id.value }.map { authoredOption(it.id.value, it.name) }
     "batchId" -> workspace.batches.sortedBy { it.id.value }.map { batch ->
         val titleKey = batch.cultureIdSnapshot?.let { key("culture_${it.value}_name") }
-        ScreenOption(batch.id.value, titleKey, batch.recipe.nameSnapshot ?: batch.id.value.takeIf { titleKey == null })
+        ScreenOption(batch.id.value, titleKey, batch.recipe.nameSnapshot ?: batch.id.value.takeIf { titleKey == null },
+            batchIdentity = batch.identity())
     }
     "anchorState", "nextState", "skippedState", "resultingState" -> BatchState.entries.map { state ->
         ScreenOption(state.name.lowercase(), batchStateKey(state))
@@ -526,6 +527,10 @@ private fun batchDetailFacts(batch: GrowBatch?, workspace: Workspace): List<Scre
     listOf(
         keyedFact("batch-state", "screen_batch_detail_title", batchStateKey(it.state)),
         authoredFact("substrate", "field_substrate", it.substrateSnapshot),
+        authoredFact("tray-snapshot", "field_tray_size", it.tray.nameSnapshot),
+        authoredFact("seed-mass-snapshot", "field_actual_seed_mass", it.actualSeedMass.value.toString()),
+        if (it.recipe.nameSnapshot != null) authoredFact("recipe-snapshot", "batch_snapshot_title", it.recipe.nameSnapshot!!)
+        else keyedFact("recipe-snapshot", "batch_snapshot_title", key("culture_${it.recipe.builtInCultureId?.value}_name")),
         valueFact(
             "observation-count",
             "screen_observation_editor_title",
@@ -540,11 +545,24 @@ private fun planFacts(plan: HarvestPlan?, workspace: Workspace): List<ScreenFact
 
 private fun backupFacts(): List<ScreenFact> = buildList {
     backupPreview()?.archive?.let { archive ->
-        add(authoredFact("restore-created-at", "field_date", archive.createdAt.toString()))
-        archive.snapshot.manifest.recordCounts.entries.sortedBy { it.key }.forEach { (name, count) ->
-            add(authoredFact("restore-record-count-$name", "screen_backup_restore_title", count.toString()))
+        backupDocumentId()?.let { SelectedBackupDocument.decode(it).displayName }?.takeIf(String::isNotBlank)?.let {
+            add(authoredFact("restore-file-name", "restore_archive_filename", it))
         }
-        add(valueFact("restore-photo-count", "field_observation_note", archive.photos.size))
+        add(authoredFact("restore-created-at", "restore_archive_date", archive.createdAt.toString()))
+        add(valueFact("restore-format-version", "backup_format_version", archive.formatVersion))
+        archive.snapshot.manifest.recordCounts.entries.sortedBy { it.key }.forEach { (name, count) ->
+            val label = when (name) {
+                "zones" -> "backup_count_zones"
+                "trayPresets" -> "backup_count_trays"
+                "recipes" -> "backup_count_recipes"
+                "batches" -> "backup_count_batches"
+                "plans" -> "backup_count_plans"
+                "observations" -> "backup_count_observations"
+                else -> "backup_count_records"
+            }
+            add(authoredFact("restore-record-count-$name", label, count.toString()))
+        }
+        add(valueFact("restore-photo-count", "backup_count_photos", archive.photos.size))
     }
 }
 
@@ -574,7 +592,7 @@ private fun notificationFacts(preferences: SettingsSnapshot): List<ScreenFact> =
 
 private fun selection(stableId: String?, workspace: Workspace): ScreenSelection = ScreenSelection(
     batch = stableId?.let { id -> workspace.batches.firstOrNull { it.id.value == id } },
-    plan = stableId?.let { id -> workspace.plans.firstOrNull { it.id.value == id } },
+    plan = stableId?.let { id -> workspace.plans.firstOrNull { it.id.value == id } } ?: workspace.plans.firstOrNull(),
     recipe = stableId?.let { id -> workspace.recipes.firstOrNull { it.id.value == id } },
     observation = stableId?.let { id -> workspace.observations.firstOrNull { it.id.value == id } },
     zone = stableId?.let { id -> workspace.zones.firstOrNull { it.id.value == id } },
@@ -599,7 +617,6 @@ private fun authoredFact(id: String, label: String, value: String) =
     ScreenFact(id, key(label), authoredValue = value)
 private fun valueFact(id: String, label: String, value: Any) = authoredFact(id, label, value.toString())
 private fun keyedFact(id: String, label: String, value: TextKey) = ScreenFact(id, key(label), valueKey = value)
-private fun generatedId(prefix: String) = "$prefix-${now().toEpochMilliseconds()}"
 
 private fun nextBatchState(batch: GrowBatch?): BatchState? = when (batch?.state) {
     BatchState.PLANNED -> if (batch.recipe.stages.any { it.stage == GrowStage.SOAKING }) BatchState.SOAKING else BatchState.SOWN

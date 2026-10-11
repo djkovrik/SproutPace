@@ -1,0 +1,7 @@
+// Scope cache maintenance deferral to explicit local verification invocations.
+// No test/build task or dependency resolution is disabled.
+beforeSettings { settings ->
+    settings.caches {
+        cleanup = org.gradle.api.cache.Cleanup.DISABLED
+    }
+}

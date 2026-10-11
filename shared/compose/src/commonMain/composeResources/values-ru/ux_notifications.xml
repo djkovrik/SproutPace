@@ -1,0 +1,5 @@
+<resources>
+    <string name="notifications_schedule_failed">Настройки сохранены, но некоторые напоминания не удалось запланировать. Все задачи по-прежнему доступны на экране «Сегодня». Повторите попытку.</string>
+    <string name="notifications_scheduling">Планируем напоминания…</string>
+    <string name="notifications_retry_scheduling">Повторить планирование</string>
+</resources>

@@ -30,13 +30,11 @@ class AssetUiIntegrationContractTest {
     }
 
     @Test
-    fun recipeFixtureExposesAllApprovedStageIllustrationsAndMatchingCulture() {
+    fun recipeFixtureExposesActualRadishStagesAndMatchingCulture() {
         val recipe = typedPreviewState(UiScreen.RECIPE)
-        val stageKeys = recipe.items.mapNotNull(UiItem::titleKey).toSet()
-        assertTrue(
-            stageKeys.containsAll(
-                setOf("stage_soaking", "stage_sown", "stage_blackout", "stage_light_growth", "stage_harvest"),
-            ),
+        val stageKeys = recipe.items.firstNotNullOf { it.recipe }.stages.map { it.titleKey.value }.toSet()
+        assertEquals(
+            setOf("stage_sown", "stage_blackout", "stage_light_growth", "stage_harvest"), stageKeys,
         )
         assertEquals("radish", recipe.fields.single { it.id == "cultureId" }.value)
         assertEquals(Res.drawable.culture_radish, cultureImage("radish"))
@@ -52,7 +50,7 @@ class AssetUiIntegrationContractTest {
     }
 
     @Test
-    fun illustratedEmptyScreensUseSpecificCopyAndOneNewBatchCta() {
+    fun illustratedEmptyScreensLeadToRequiredSetupOrNewBatch() {
         val expectedCopy = mapOf(
             UiScreen.TODAY to ("today_empty_title" to "today_empty_body"),
             UiScreen.TRAYS to ("trays_empty_title" to "trays_empty_body"),
@@ -62,8 +60,8 @@ class AssetUiIntegrationContractTest {
         expectedCopy.forEach { (screen, copy) ->
             val state = typedPreviewState(screen, UiVariant.EMPTY)
             assertEquals(copy, screen.emptyStateCopy())
-            assertTrue(state.hidesContextForEmptyState())
-            assertEquals(listOf("new-batch"), state.actions.map(UiScreenAction::id))
+            assertEquals(screen != UiScreen.PLAN, state.hidesContextForEmptyState())
+            assertEquals(listOf(if (screen == UiScreen.TRAYS) "new-batch" else "resume-setup"), state.actions.map(UiScreenAction::id))
             assertTrue(state.actions.single().primary)
         }
         assertEquals(

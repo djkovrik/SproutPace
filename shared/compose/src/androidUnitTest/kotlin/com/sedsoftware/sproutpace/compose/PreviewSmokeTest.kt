@@ -21,7 +21,10 @@ class PreviewSmokeTest {
     fun scannerFindsDeterministicProductionPreviewSet() {
         val cases = SproutPacePreviewCatalog.cases
         assertTrue("Expected a nonzero production preview set", cases.isNotEmpty())
-        assertEquals(cases.sortedBy { it.id }.map { it.id }, cases.map { it.id })
+        val original = cases.filter { it.id.startsWith("SproutPacePreviewsKt.") }
+        val added = cases.filterNot { it.id.startsWith("SproutPacePreviewsKt.") }
+        assertEquals(78, original.size)
+        assertEquals((original.sortedBy { it.id } + added.sortedBy { it.id }).map { it.id }, cases.map { it.id })
         assertEquals(cases.size, cases.map { it.id }.distinct().size)
     }
 }

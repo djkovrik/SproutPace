@@ -25,8 +25,24 @@ class AndroidSqlDriverFactory(
     override fun close() { driver?.close(); driver = null }
 }
 
-class AndroidPrivateFileStore(context: Context) : PrivateFileStore {
-    private val root = File(context.filesDir, "observation_photos").also { check(it.mkdirs() || it.isDirectory) }
+class AndroidPrivateFileStore(private val root: File) : PrivateFileStore {
+    constructor(context: Context) : this(File(context.filesDir, "observation_photos"))
+    init {
+        val previous = File(root.parentFile, "${root.name}.previous")
+        if (!root.exists() && previous.exists()) check(previous.renameTo(root))
+        check(root.mkdirs() || root.isDirectory)
+    }
+    private val recovery = File(root.parentFile, "${root.name}.recovery")
+    override suspend fun readRecoveryArchive(): ByteArray? = recovery.takeIf(File::isFile)?.readBytes()
+    override suspend fun writeRecoveryArchive(bytes: ByteArray?) {
+        if (bytes == null) {
+            check(!recovery.exists() || recovery.delete())
+        } else {
+            val temporary = File(root.parentFile, "${root.name}.recovery.tmp")
+            temporary.outputStream().use { stream -> stream.write(bytes); stream.fd.sync() }
+            check(temporary.renameTo(recovery))
+        }
+    }
     override suspend fun read(id: PhotoId): ByteArray? = file(id).takeIf(File::isFile)?.readBytes()
     override suspend fun write(id: PhotoId, bytes: ByteArray) {
         val temporary = File(root, ".${id.value}.tmp")
@@ -40,8 +56,8 @@ class AndroidPrivateFileStore(context: Context) : PrivateFileStore {
         .map { file -> file.readBytes().let { PrivatePhoto(PhotoId(file.name), it, Sha256.digest(it)) } }
     override suspend fun replaceAll(photos: List<PrivatePhoto>) {
         val parent = checkNotNull(root.parentFile)
-        val staged = File(parent, "observation_photos.stage")
-        val previous = File(parent, "observation_photos.previous")
+        val staged = File(parent, "${root.name}.stage")
+        val previous = File(parent, "${root.name}.previous")
         staged.deleteRecursively(); check(staged.mkdir())
         photos.forEach { photo ->
             require(Sha256.digest(photo.bytes) == photo.sha256)

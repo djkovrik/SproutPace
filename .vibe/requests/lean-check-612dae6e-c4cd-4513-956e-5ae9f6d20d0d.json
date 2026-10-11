@@ -1,0 +1,17 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-daemon",
+    "-I",
+    ".vibe/scripts/ux-cache.init.gradle",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.ProductionUxRegressionTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.BackupProductionProjectionTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.ProductionPreviewProjectionTest"
+  ],
+  "timeoutSeconds": 1800
+}

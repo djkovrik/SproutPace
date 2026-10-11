@@ -25,6 +25,8 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.datetime.Instant
 import kotlin.time.Clock
 
@@ -44,7 +46,9 @@ enum class LocalDataErrorKey(val resourceKey: String) {
 }
 
 class LocalDataException(val key: LocalDataErrorKey, cause: Throwable? = null) :
-    IllegalArgumentException(key.resourceKey, cause)
+    IllegalArgumentException(key.resourceKey, cause), com.sedsoftware.sproutpace.component.ScreenFailure {
+    override val errorKey = com.sedsoftware.sproutpace.component.TextKey(key.resourceKey)
+}
 
 /** Opaque document identifiers are supplied by the platform picker; filesystem paths never enter an archive. */
 interface ArchiveDocumentPort {
@@ -294,7 +298,22 @@ class LocalBackupService(
     private val output: LocalDataIntegrationOutput = LocalDataIntegrationOutput { },
     private val codec: LocalBackupArchiveCodec = LocalBackupArchiveCodec(),
     private val now: () -> Instant = { Clock.System.now() },
+    private val csvHeaders: suspend () -> List<String> = { BatchHistoryCsv.HEADER.split(',') },
+    private val flushPreferences: () -> Unit = { },
 ) : BackupManager {
+    private val replacementMutex = Mutex()
+
+    /** Must finish before exposing the workspace after process startup. A journal means no commit occurred. */
+    suspend fun recoverPendingReplacement() = replacementMutex.withLock {
+        withContext(ioDispatcher + NonCancellable) {
+            val bytes = files.readRecoveryArchive()
+            if (bytes != null) {
+                val failure = LocalDataException(LocalDataErrorKey.RESTORE_FAILED)
+                if (!compensate(codec.decode(bytes), failure)) throw failure
+                files.writeRecoveryArchive(null)
+            }
+        }
+    }
     override suspend fun createSnapshot(): Result<ProductSnapshot> = domainResult { createArchive().snapshot }
 
     suspend fun createArchive(): LocalBackupArchive = withContext(ioDispatcher) {
@@ -315,7 +334,7 @@ class LocalBackupService(
     suspend fun writeArchive(documentId: String) = documentWrite(documentId, createArchiveBytes())
     suspend fun readPreview(documentId: String): BackupPreview = preview(codec.decode(documentRead(documentId)))
     suspend fun replaceFromDocument(documentId: String) = replaceArchive(codec.decode(documentRead(documentId)))
-    suspend fun writeCsv(documentId: String) = documentWrite(documentId, BatchHistoryCsv.encode(database.snapshot()))
+    suspend fun writeCsv(documentId: String) = documentWrite(documentId, BatchHistoryCsv.encode(database.snapshot(), csvHeaders()))
 
     override suspend fun validate(snapshot: ProductSnapshot): Result<RestoreValidation> =
         domainResult { SnapshotValidation.validate(snapshot) }
@@ -347,48 +366,71 @@ class LocalBackupService(
         replaceArchive(LocalBackupArchive(now(), snapshot, emptyList()))
     }
 
-    suspend fun replaceArchive(archive: LocalBackupArchive) = withContext(ioDispatcher) {
+    suspend fun replaceArchive(archive: LocalBackupArchive) = replacementMutex.withLock { withContext(ioDispatcher) {
+        check(files.readRecoveryArchive() == null) { "Workspace recovery must finish before replacement" }
         val checked = preview(archive)
         if (checked is BackupPreview.Invalid) throw LocalDataException(checked.reasons.first())
         val previous = createArchive()
+        files.writeRecoveryArchive(codec.encode(previous))
         val failure = runCatching {
             files.replaceAll(archive.photos)
             currentCoroutineContext().ensureActive()
             database.replace(archive.snapshot)
             currentCoroutineContext().ensureActive()
             settings.replace(archive.preferences)
+            flushPreferences()
             reminders.replaceFutureReminders(archive.snapshot)
             currentCoroutineContext().ensureActive()
+            files.writeRecoveryArchive(null)
         }.exceptionOrNull()
         if (failure != null) {
-            withContext(NonCancellable) { compensate(previous, failure) }
+            withContext(NonCancellable) {
+                if (compensate(previous, failure)) {
+                    runCatching { files.writeRecoveryArchive(null) }.exceptionOrNull()?.let(failure::addSuppressed)
+                }
+            }
             if (failure is CancellationException) throw failure
             throw LocalDataException(LocalDataErrorKey.RESTORE_FAILED, failure)
         }
-    }
+    } }
 
-    suspend fun eraseAll() = withContext(ioDispatcher) {
+    suspend fun eraseAll() = replacementMutex.withLock { withContext(ioDispatcher) {
+        check(files.readRecoveryArchive() == null) { "Workspace recovery must finish before erasure" }
         val previous = createArchive()
+        files.writeRecoveryArchive(codec.encode(previous))
         runCatching {
             files.clear()
             database.erase()
             settings.clearProductState()
+            flushPreferences()
             reminders.replaceFutureReminders(database.snapshot())
+            currentCoroutineContext().ensureActive()
+            files.writeRecoveryArchive(null)
         }.getOrElse { failure ->
-            compensate(previous, failure)
+            withContext(NonCancellable) {
+                if (compensate(previous, failure)) {
+                    runCatching { files.writeRecoveryArchive(null) }.exceptionOrNull()?.let(failure::addSuppressed)
+                }
+            }
+            if (failure is CancellationException) throw failure
             throw LocalDataException(LocalDataErrorKey.ERASE_FAILED, failure)
         }
         output.emit(LocalDataIntegrationEvent.FirstRunNavigationRequired)
-    }
+    } }
 
-    private suspend fun compensate(previous: LocalBackupArchive, failure: Throwable) {
+    private suspend fun compensate(previous: LocalBackupArchive, failure: Throwable): Boolean {
+        var complete = true
         suspend fun restore(block: suspend () -> Unit) {
-            runCatching { block() }.exceptionOrNull()?.let(failure::addSuppressed)
+            runCatching { block() }.exceptionOrNull()?.let { error ->
+                complete = false
+                failure.addSuppressed(error)
+            }
         }
         restore { files.replaceAll(previous.photos) }
         restore { database.replace(previous.snapshot) }
-        restore { settings.replace(previous.preferences) }
+        restore { settings.replace(previous.preferences); flushPreferences() }
         restore { reminders.replaceFutureReminders(previous.snapshot) }
+        return complete
     }
 
     private suspend fun documentRead(documentId: String): ByteArray {
@@ -499,7 +541,8 @@ sealed interface ObservationPhotoChange {
 object BatchHistoryCsv {
     const val HEADER: String = "batch_id,culture_id,recipe_name,state,outcome_at,actual_mass_grams,note"
 
-    fun encode(snapshot: ProductSnapshot): ByteArray {
+    fun encode(snapshot: ProductSnapshot, headers: List<String> = HEADER.split(',')): ByteArray {
+        require(headers.size == HEADER.split(',').size && headers.all { it.isNotBlank() })
         val rows = snapshot.batches.map { batch ->
             val outcome = batch.outcome
             listOf(
@@ -508,7 +551,8 @@ object BatchHistoryCsv {
                 (outcome as? BatchOutcome.Harvested)?.actualMass?.value?.toString().orEmpty(), outcome?.note.orEmpty(),
             ).joinToString(",", transform = ::escape)
         }
-        return (listOf(HEADER) + rows).joinToString("\r\n", postfix = "\r\n").encodeToByteArray()
+        return (listOf(headers.joinToString(",", transform = ::escape)) + rows)
+            .joinToString("\r\n", postfix = "\r\n").encodeToByteArray()
     }
 
     private fun escape(value: String): String = if (value.any { it == ',' || it == '"' || it == '\r' || it == '\n' }) {

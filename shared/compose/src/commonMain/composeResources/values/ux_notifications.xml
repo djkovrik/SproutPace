@@ -1,0 +1,5 @@
+<resources>
+    <string name="notifications_schedule_failed">Your preferences are saved, but some reminders could not be scheduled. Today still shows all your tasks. Try scheduling again.</string>
+    <string name="notifications_scheduling">Scheduling reminders…</string>
+    <string name="notifications_retry_scheduling">Retry scheduling</string>
+</resources>

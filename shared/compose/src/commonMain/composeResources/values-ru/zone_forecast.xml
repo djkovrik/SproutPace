@@ -1,0 +1,4 @@
+<resources>
+    <string name="zone_future_conflict">Прогноз на %1$s: нужно мест — %2$d, вместимость зоны — %3$d</string>
+    <string name="zone_future_conflict_basis">Прогноз учитывает запланированные партии и предложения плана. Фактически занятое место освободится после завершения или перемещения партии.</string>
+</resources>

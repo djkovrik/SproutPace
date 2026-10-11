@@ -99,16 +99,16 @@ object ScreenContractRegistry {
         ),
         contract(
             ScreenId.TRAYS,
-            primary = "repeat-batch",
+            primary = null,
             variants = variants(ScreenVariant.EMPTY, ScreenVariant.LOCAL_ERROR, ScreenVariant.OFFLINE),
             fields = listOf(
                 field(
                     "category", ScreenFieldKind.SINGLE_CHOICE, required = true, labelKey = "field_tray_category",
                     options = choices("tray_category", "planned", "active", "history"),
                 ),
-                field("newId"),
             ),
-            operations = listOf(subjectOperation("delete-batch"), subjectOperation("repeat-batch", argument("newId"))),
+            operations = listOf(subjectOperation("delete-batch")),
+            actions = listOf(navigationAction("repeat-batch")),
         ),
         contract(
             ScreenId.BATCH_EDITOR,
@@ -159,6 +159,7 @@ object ScreenContractRegistry {
                     argument("fixedLightDate", ScreenFieldKind.LOCAL_DATE, required = false),
                     argument("fixedHarvestDate", ScreenFieldKind.LOCAL_DATE, required = false),
                     argument("timeZoneId", required = false),
+                    argument("zoneId", ScreenFieldKind.SINGLE_CHOICE, required = false),
                     oneOf = listOf(setOf("recipeId", "cultureId")),
                 ),
                 operation(
@@ -205,7 +206,7 @@ object ScreenContractRegistry {
                 field("reason", labelKey = "field_skip_reason"),
                 field("resultingState", ScreenFieldKind.SINGLE_CHOICE, options = batchStateChoices()),
                 field("dueAt", ScreenFieldKind.INSTANT), field("actionId"),
-                field("actualMassGrams", ScreenFieldKind.POSITIVE_DECIMAL), field("timeZoneId"), field("newId"),
+                field("actualMassGrams", ScreenFieldKind.POSITIVE_DECIMAL), field("timeZoneId"),
             ),
             operations = listOf(
                 eventOperation("start-soaking"),
@@ -239,9 +240,10 @@ object ScreenContractRegistry {
                 itemSubjectOperation("complete-action"),
                 itemSubjectOperation("skip-action"),
                 operation("time-zone-change", CommandSubjectRequirement.NONE, argument("timeZoneId")),
-                subjectOperation("delete-batch"), subjectOperation("repeat-batch", argument("newId")),
+                subjectOperation("delete-batch"),
             ),
-            actions = listOf(navigationAction("add-observation"), navigationAction("close-batch")),
+            actions = listOf(navigationAction("add-observation"), navigationAction("close-batch"),
+                navigationAction("edit-batch"), navigationAction("repeat-batch")),
         ),
         contract(
             ScreenId.PLAN,
@@ -287,7 +289,7 @@ object ScreenContractRegistry {
                 field("stage1", ScreenFieldKind.SINGLE_CHOICE, required = true, options = stageChoices()),
                 field("stage1MinimumHours", ScreenFieldKind.NON_NEGATIVE_LONG, required = true),
                 field("stage1MaximumHours", ScreenFieldKind.NON_NEGATIVE_LONG, required = true),
-                field("stage1Guidance", required = true),
+                field("stage1Guidance"),
                 field("stage2", ScreenFieldKind.SINGLE_CHOICE, options = stageChoices(includeNone = true)),
                 field("stage2MinimumHours", ScreenFieldKind.NON_NEGATIVE_LONG),
                 field("stage2MaximumHours", ScreenFieldKind.NON_NEGATIVE_LONG), field("stage2Guidance"),
@@ -304,9 +306,11 @@ object ScreenContractRegistry {
             ),
             operations = listOf(
                 recipeOperation("save-recipe"), recipeOperation("update-recipe"),
-                subjectOperation("duplicate-recipe", argument("newId"), argument("name", required = false)),
+                subjectOperation("duplicate-recipe", argument("newId"), argument("name", required = false),
+                    argument("substrate", required = false)),
                 subjectOperation("delete-recipe"),
             ),
+            actions = listOf(navigationAction("use-recipe")),
         ),
         contract(
             ScreenId.OBSERVATION_EDITOR,
@@ -436,6 +440,7 @@ object ScreenContractRegistry {
             fields = listOf(field("documentId", ScreenFieldKind.DOCUMENT)),
             operations = listOf(
                 documentOperation("create-backup"), documentOperation("preview-restore"),
+                operation("cancel-restore-preview", CommandSubjectRequirement.NONE),
                 documentOperation("restore-backup"), documentOperation("export-csv"),
                 operation("erase-all", CommandSubjectRequirement.NONE), operation("delete-all-data", CommandSubjectRequirement.NONE),
             ),
@@ -504,7 +509,9 @@ object ScreenContractRegistry {
             contract.operations[operation]?.itemTargeted == true
         } ?: return CommandPreparation.Invalid(mapOf(ScreenFieldId("id") to TextKey("state_error_body")))
         val operation = contract.operations.getValue(operationName)
-        val optionErrors = contract.fields.mapNotNull { field ->
+        val optionErrors = contract.fields.filter { field ->
+            operation.arguments.any { it.name == field.id.value && it.isApplicable(draft) }
+        }.mapNotNull { field ->
             val value = draft[field.id].orEmpty()
             val optionIds = field.options.mapTo(mutableSetOf(), ScreenOption::id)
             val valid = when {
@@ -513,11 +520,17 @@ object ScreenContractRegistry {
                 field.kind == ScreenFieldKind.SINGLE_CHOICE -> value in optionIds
                 else -> true
             }
-            if (valid) null else field.id to TextKey("state_error_body")
+            if (valid) null else field.id to TextKey("validation_invalid_selection")
         }.toMap()
         if (optionErrors.isNotEmpty()) return CommandPreparation.Invalid(optionErrors)
         val draftSubject = draft[ScreenFieldId("id")]
-        return operation.prepare(currentSubjectId ?: draftSubject, draft)
+        val creating = operationName in setOf(
+            "save-batch", "save-observation", "save-recipe", "save-plan", "save-zone", "save-tray-size",
+        )
+        val subject = if (creating) {
+            draftSubject ?: currentSubjectId
+        } else currentSubjectId ?: draftSubject
+        return operation.prepare(subject, draft)
     }
 }
 
@@ -621,7 +634,7 @@ private fun recipeOperation(name: String) = operation(
         argument("germinationPercentage", ScreenFieldKind.POSITIVE_INTEGER, required = false),
         argument("stage1", ScreenFieldKind.SINGLE_CHOICE),
         argument("stage1MinimumHours", ScreenFieldKind.NON_NEGATIVE_LONG),
-        argument("stage1MaximumHours", ScreenFieldKind.NON_NEGATIVE_LONG), argument("stage1Guidance"),
+        argument("stage1MaximumHours", ScreenFieldKind.NON_NEGATIVE_LONG), argument("stage1Guidance", required = false),
         argument("stage2", ScreenFieldKind.SINGLE_CHOICE, required = false),
         argument("stage2MinimumHours", ScreenFieldKind.NON_NEGATIVE_LONG, required = false),
         argument("stage2MaximumHours", ScreenFieldKind.NON_NEGATIVE_LONG, required = false),

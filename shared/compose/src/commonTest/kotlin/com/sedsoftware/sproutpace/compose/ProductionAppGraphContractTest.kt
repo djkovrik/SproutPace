@@ -34,6 +34,29 @@ import kotlin.test.assertTrue
 
 class ProductionAppGraphContractTest {
     @Test
+    fun restoreReminderPortPropagatesPhysicalRegistrationFailure() = runTest {
+        val reminder = PhysicalReminder(PhysicalReminderId("sproutpace:daily-summary"), ReminderKind.DAILY_SUMMARY,
+            20_000, com.sedsoftware.sproutpace.platform.NativeTextKey.DAILY_SUMMARY_TITLE,
+            com.sedsoftware.sproutpace.platform.NativeTextKey.DAILY_SUMMARY_BODY)
+        val driver = object : com.sedsoftware.sproutpace.platform.ReminderDriver {
+            override suspend fun registeredIds(): Set<PhysicalReminderId> = emptySet()
+            override suspend fun schedule(reminder: PhysicalReminder): Result<Unit> = Result.failure(IllegalStateException("full"))
+            override suspend fun cancel(id: PhysicalReminderId): Result<Unit> = Result.success(Unit)
+        }
+        val coordinator = com.sedsoftware.sproutpace.platform.ReminderLifecycleCoordinator(
+            com.sedsoftware.sproutpace.platform.FakeNotificationPermissionService(
+                com.sedsoftware.sproutpace.platform.PermissionState.Granted),
+            com.sedsoftware.sproutpace.platform.ReminderPlanSource {
+                com.sedsoftware.sproutpace.platform.ReminderPlan(1, reminder, emptyList())
+            }, com.sedsoftware.sproutpace.platform.ReminderReconciler(driver),
+            com.sedsoftware.sproutpace.platform.EpochMillisClock { 10_000 })
+        val failure = kotlin.test.assertFailsWith<com.sedsoftware.sproutpace.platform.ReminderReconciliationException> {
+            SnapshotReminderReconciliationPort(coordinator).replaceFutureReminders(snapshotWithSoakTarget(20_000))
+        }
+        assertEquals(setOf(reminder.id), failure.failures.keys)
+    }
+
+    @Test
     fun rootDependenciesKeepReleaseAndDebugFactoriesDistinct() {
         val releaseFactory = DefaultStoreFactory()
         val debugFactory = DefaultStoreFactory()
