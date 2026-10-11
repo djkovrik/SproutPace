@@ -14,6 +14,8 @@ The repository uses a direct Gradle-built static iOS framework. CocoaPods is not
 
 The `compose` framework explicitly exports `shared:platform` as an API dependency so Swift can implement `IosCrashReportingBridge`, which is accepted by `IosProductionAppGraph`. Kotlin compilation alone does not verify this Swift-facing contract; the Xcode host build remains required.
 
+Both Xcode target configurations include `$(inherited)` and `-lsqlite3` in `OTHER_LDFLAGS`. SQLDelight's native driver inside the static Kotlin framework requires the host app to link the system SQLite library; linking the Kotlin framework alone does not prove host linkage.
+
 Compose Android host tests pin `user.timezone=Europe/Moscow`, the time zone used for the reviewed Paparazzi baselines. Production still uses the device time zone. This keeps timestamp snapshots identical on Windows and UTC Linux runners without relaxing pixel comparison or regenerating goldens.
 
 The Xcode target excludes `x86_64` for the iOS Simulator in Debug and Release, matching the configured Kotlin targets (`iosArm64` and `iosSimulatorArm64`). Simulator builds require an Apple Silicon Mac; a generic simulator destination must not request an unconfigured Intel framework.
