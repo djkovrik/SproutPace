@@ -1,0 +1,199 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        b1a0e03 com.sedsoftware.sproutpace/.AppActivity filter f0bae12
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        df71e44 com.sedsoftware.sproutpace/androidx.profileinstaller.ProfileInstallReceiver filter 1f2995e
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        df71e44 com.sedsoftware.sproutpace/androidx.profileinstaller.ProfileInstallReceiver filter 1c14fe0
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      android.intent.action.TIMEZONE_CHANGED:
+        1dfa3b9 com.sedsoftware.sproutpace/.platform.ReminderEnvironmentReceiver filter aeec9e3
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.MY_PACKAGE_REPLACED"
+      androidx.profileinstaller.action.SKIP_FILE:
+        df71e44 com.sedsoftware.sproutpace/androidx.profileinstaller.ProfileInstallReceiver filter ce57299
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        df71e44 com.sedsoftware.sproutpace/androidx.profileinstaller.ProfileInstallReceiver filter bba213f
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+      android.intent.action.BOOT_COMPLETED:
+        1dfa3b9 com.sedsoftware.sproutpace/.platform.ReminderEnvironmentReceiver filter aeec9e3
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.MY_PACKAGE_REPLACED"
+      android.intent.action.MY_PACKAGE_REPLACED:
+        1dfa3b9 com.sedsoftware.sproutpace/.platform.ReminderEnvironmentReceiver filter aeec9e3
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.MY_PACKAGE_REPLACED"
+
+Service Resolver Table:
+  Schemes:
+      appmetrica:
+        3453a7b com.sedsoftware.sproutpace/io.appmetrica.analytics.internal.AppMetricaService filter a1b8a0c
+          Action: "io.appmetrica.analytics.IAppMetricaService"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "appmetrica"
+
+Domain verification status:
+
+Permissions:
+  Permission [com.sedsoftware.sproutpace.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (be30551):
+    sourcePackage=com.sedsoftware.sproutpace
+    uid=10229 gids=[] type=0 prot=signature
+    perm=PermissionInfo{8ee21b6 com.sedsoftware.sproutpace.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    flags=0x0
+
+Registered ContentProviders:
+  com.sedsoftware.sproutpace/org.jetbrains.compose.resources.AndroidContextProvider:
+    Provider{a3143fe com.sedsoftware.sproutpace/org.jetbrains.compose.resources.AndroidContextProvider}
+  com.sedsoftware.sproutpace/com.yandex.mobile.ads.features.debugpanel.data.local.DebugPanelFileProvider:
+    Provider{59a20a com.sedsoftware.sproutpace/com.yandex.mobile.ads.features.debugpanel.data.local.DebugPanelFileProvider}
+  com.sedsoftware.sproutpace/io.appmetrica.analytics.internal.PreloadInfoContentProvider:
+    Provider{26d9098 com.sedsoftware.sproutpace/io.appmetrica.analytics.internal.PreloadInfoContentProvider}
+  com.sedsoftware.sproutpace/androidx.startup.InitializationProvider:
+    Provider{ee30357 com.sedsoftware.sproutpace/androidx.startup.InitializationProvider}
+  com.sedsoftware.sproutpace/com.yandex.mobile.ads.core.initializer.YandexAdsInitializeProvider:
+    Provider{7b3c5ac com.sedsoftware.sproutpace/com.yandex.mobile.ads.core.initializer.YandexAdsInitializeProvider}
+
+ContentProvider Authorities:
+  [com.sedsoftware.sproutpace.YandexAdsInitializeProvider]:
+    Provider{7b3c5ac com.sedsoftware.sproutpace/com.yandex.mobile.ads.core.initializer.YandexAdsInitializeProvider}
+      applicationInfo=ApplicationInfo{46dfeb7 com.sedsoftware.sproutpace}
+  [com.sedsoftware.sproutpace.appmetrica.preloadinfo.retail]:
+    Provider{26d9098 com.sedsoftware.sproutpace/io.appmetrica.analytics.internal.PreloadInfoContentProvider}
+      applicationInfo=ApplicationInfo{efb6624 com.sedsoftware.sproutpace}
+  [com.sedsoftware.sproutpace.androidx-startup]:
+    Provider{ee30357 com.sedsoftware.sproutpace/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{e01a58d com.sedsoftware.sproutpace}
+  [com.sedsoftware.sproutpace.monetization.ads.inspector.fileprovider]:
+    Provider{59a20a com.sedsoftware.sproutpace/com.yandex.mobile.ads.features.debugpanel.data.local.DebugPanelFileProvider}
+      applicationInfo=ApplicationInfo{f32a342 com.sedsoftware.sproutpace}
+  [com.sedsoftware.sproutpace.resources.AndroidContextProvider]:
+    Provider{a3143fe com.sedsoftware.sproutpace/org.jetbrains.compose.resources.AndroidContextProvider}
+      applicationInfo=ApplicationInfo{d59cf53 com.sedsoftware.sproutpace}
+
+Key Set Manager:
+  [com.sedsoftware.sproutpace]
+      Signing KeySets: 65
+
+Packages:
+  Package [com.sedsoftware.sproutpace] (9b3d88d):
+    appId=10229
+    pccId=-1
+    pkg=Package{99ac090 com.sedsoftware.sproutpace}
+    codePath=/data/app/~~LS6ZrJNKU7VIu4BUI0QeMQ==/com.sedsoftware.sproutpace-qnrjbyeZd1V8WNbNheTsZQ==
+    resourcePath=/data/app/~~LS6ZrJNKU7VIu4BUI0QeMQ==/com.sedsoftware.sproutpace-qnrjbyeZd1V8WNbNheTsZQ==
+    legacyNativeLibraryDir=/data/app/~~LS6ZrJNKU7VIu4BUI0QeMQ==/com.sedsoftware.sproutpace-qnrjbyeZd1V8WNbNheTsZQ==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=x86_64
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=1 minSdk=24 targetSdk=37
+    minExtensionVersions=[]
+    versionName=1.0.0
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP KILL_AFTER_RESTORE ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    pageSizeCompat=0
+    queriesPackages=[com.android.vending]
+    queriesIntents=[Intent { act=ru.vk.store.sdk.install.referrer.InstallReferrerProvider }]
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      androidx.window.extensions
+      androidx.window.sidecar
+    usesLibraryFiles:
+      /system_ext/framework/androidx.window.extensions.jar
+      /system_ext/framework/androidx.window.sidecar.jar
+    timeStamp=2026-10-17 10:09:19
+    lastUpdateTime=2026-10-17 10:09:19
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{cf00d89 version:2, signatures:[5eb7b728], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP KILL_AFTER_RESTORE ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    declared permissions:
+      com.sedsoftware.sproutpace.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature
+    requested permissions:
+      com.sedsoftware.sproutpace.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+      android.permission.POST_NOTIFICATIONS
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.INTERNET
+      android.permission.ACCESS_NETWORK_STATE
+    install permissions:
+      com.sedsoftware.sproutpace.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+    User 0: ceDataInode=353766 deDataInode=82016 pccCeDataInode=0 pccDeDataInode=0 installed=true hidden=false suspended=false appLockEnabled=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/com.sedsoftware.sproutpace
+      firstInstallTime=2026-10-17 08:02:42
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/EmulationPixel8/EmulationPixel8Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      legacy overlay paths:
+        /product/overlay/EmulationPixel8/EmulationPixel8Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      gids=[3003]
+      runtime permissions:
+        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    com.google.android.settings.intelligence:
+      com.sedsoftware.sproutpace
+    com.google.android.as:
+      com.sedsoftware.sproutpace
+    com.google.android.as.oss:
+      com.sedsoftware.sproutpace
+    com.google.android.apps.accessibility.voiceaccess:
+      com.sedsoftware.sproutpace
+  queryable via interaction:
+    User 0:
+      [com.android.DeviceAsWebcam,com.android.inputdevices,com.android.providers.settings,com.android.settings,com.android.server.telecom,com.android.location.fused,android,com.android.localtransport,com.android.emulator.multidisplay,com.android.keychain,com.android.dynsystem]:
+        com.sedsoftware.sproutpace
+      [com.android.providers.downloads.ui,com.android.providers.downloads,com.android.mtp,com.android.soundpicker]:
+        com.sedsoftware.sproutpace
+      com.google.android.documentsui:
+        com.sedsoftware.sproutpace
+      com.google.android.inputmethod.latin:
+        com.sedsoftware.sproutpace
+      com.google.android.gms:
+        com.sedsoftware.sproutpace
+      com.sedsoftware.sproutpace:
+        [com.android.providers.downloads.ui,com.android.providers.downloads,com.android.mtp,com.android.soundpicker]
+        com.google.android.providers.media.module
+  queryable via uses-library:
+
+Dexopt state:
+  [com.sedsoftware.sproutpace]
+    path: /data/app/~~LS6ZrJNKU7VIu4BUI0QeMQ==/com.sedsoftware.sproutpace-qnrjbyeZd1V8WNbNheTsZQ==/base.apk
+      x86_64: [status=run-from-apk] [reason=unknown] [primary-abi]
+        [location is error]

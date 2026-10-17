@@ -135,7 +135,10 @@ private fun ContextualEditor(state: SproutPaceUiState, onAction: (UiAction) -> U
             }
             itemsIndexed(fields, key = { _, field -> field.id }) { index, field ->
                 Box(if (index == firstError) Modifier.focusRequester(errorFocus) else Modifier) {
-                    FieldControl(field, onAction)
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        if (field.id == "photoId") ObservationPhotoPreview(state)
+                        FieldControl(field, onAction)
+                    }
                 }
             }
             if (existing && state.screen != UiScreen.CLOSE_BATCH) item {

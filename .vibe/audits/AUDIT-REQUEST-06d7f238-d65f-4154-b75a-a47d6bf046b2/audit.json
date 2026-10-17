@@ -1,0 +1,2543 @@
+{
+  "checks": [
+    {
+      "assertion": "Independently verified prior request/audit hashes, all 792 frozen workspace hashes, 34 AppSpec hashes, canonical inventory parity and 350 required pairs. All eight Android target configurations and 11 applicable merged manifests satisfy minSdk >= 24.",
+      "receiptRef": ".vibe/receipts/RECEIPT-83e1e4c8-12d0-4c19-a762-4dad220d2d0d.json",
+      "result": "passed"
+    },
+    {
+      "assertion": "Current start/end fingerprints match. Log hash matches; execution completed successfully with 363 tasks, including 338 up-to-date tasks. Inspected selected new behavioral tests and their zero-failure, zero-error, zero-skip XML results. This does not establish the complete acceptance matrix.",
+      "receiptRef": ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json",
+      "result": "execution-evidence-reviewed"
+    },
+    {
+      "assertion": "Current receipt and log hashes match. Its read-only verifier asserts installed APK identity, actual posted daily/soak notifications, delivery claims and persisted SQLite scheduling state. Local debug APK SHA256 matches 7e36c838f2095be7440dd4afdb6a03bc4526b979460ac0c9823b0eae7066ecaf. This does not prove complete accessibility or native scenario coverage.",
+      "receiptRef": ".vibe/receipts/RECEIPT-1f4d12c6-7147-4815-a0e3-737bf4775060.json",
+      "result": "bounded-runtime-evidence-reviewed"
+    }
+  ],
+  "completedAt": "2026-10-17T10:02:26.508956Z",
+  "deltaReview": {
+    "appSpecFingerprint": "9aafbaa4e5eea131a839d12da26349036253d20f65701a331b086f8e5d3bc472",
+    "appSpecUnchanged": true,
+    "changedImagePaths": 82,
+    "changedNonImageFiles": 61,
+    "currentSnapshotFilesVerified": 792,
+    "matrixInterpretation": "D01 gap rows mean independent assessment is pending a fresh full audit; they do not assert that every corresponding behavior is defective. Previous verified rows were not automatically carried forward.",
+    "newOrModifiedImageContents": 18,
+    "normativeFileHashesVerified": 34,
+    "previousAuditSha256": "57dff22f620783ea6e4e761e9d46ecf150050ef5349333b2ef764c70a526a744",
+    "previousRequestSha256": "8fb837b17b8d0e19f7f54f9163eabb38de64895f29ed7c8bdb08d3357df33e29",
+    "priorBindingsVerified": true,
+    "reviewBoundary": "Compared every snapshot file hash and rechecked prior findings at the scope described below. Complete inspection of every changed file, changed golden and dependent production scenario was not completed after rejecting delta scope.",
+    "scopeDecision": "Fresh full audit required. Changes alter shared contracts, Store execution, persisted scheduling metadata, lifecycle invalidation, native entry points, file compensation and advertising ownership.",
+    "workspaceFingerprint": "d8081e775c99ba6ccbc2c3cc6764e5c94b01d23198b9467c7cbbb4105820235e"
+  },
+  "findings": [
+    {
+      "evidence": [
+        "Compared immutable snapshot hashes: 61 non-image files changed, including 58 source/test/configuration files, across all seven shared modules and both native application boundaries.",
+        "ScreenDataManager adds previewPhoto; ScreenStoreProvider adds asynchronous photo-preview execution/messages and retained preview state.",
+        "Screen interaction projections now carry tray/density inputs used by draft recommendation logic.",
+        "ScheduledAction gains persisted origin metadata consumed by ActionScheduleEngine, SchedulingEngine and DomainJsonCodec, including legacy decoding behavior.",
+        "ProductionAppGraph introduces clock invalidation and revised serialized environment reconciliation; AndroidInlineAdHost changes native banner ownership.",
+        "There are 18 new or modified golden image contents beyond filename/index churn.",
+        "These changes affect common contracts, persistence semantics and lifecycle ownership beyond isolated leaf fixes. Full changed-file, visual and dependent-scenario review was not completed within the rejected delta scope.",
+        "spec/quality.md requires a fresh audit for broad architecture changes; the audit request explicitly requires BLOCKED in this situation."
+      ],
+      "id": "D01",
+      "obligationIds": [
+        "QG-001",
+        "QG-004",
+        "QG-006",
+        "QG-007",
+        "QG-012"
+      ],
+      "remediation": "Launch a fresh independent full lean audit against this frozen workspace and unchanged AppSpec. Inspect every changed file, all dependent production paths, the 18 new or modified golden contents and every required obligation/surface pair. Reuse current checks only after reviewing their assertions and logs.",
+      "requirement": "Broad architecture changes require a fresh full audit rather than bounded delta acceptance.",
+      "severity": "blocking"
+    },
+    {
+      "evidence": [
+        "Native reminder posting now has current exact-APK assertion evidence, improving the previous finding.",
+        "Current accessibility checkpoints describe programmatically assigned accessibility focus and TalkBack display-speech captures.",
+        "Those bounded captures and successful build/test execution do not establish complete traversal order, keyboard task completion and adaptive runtime operation across the required core screens."
+      ],
+      "id": "F02",
+      "obligationIds": [
+        "AC-122",
+        "QG-002",
+        "QG-007",
+        "QG-004"
+      ],
+      "remediation": "During the fresh full audit, assess the exact-APK accessibility artifacts and complete missing task-based screen-reader, keyboard and adaptive runtime checks. Credit only the behavior each artifact actually demonstrates.",
+      "requirement": "Establish accessible task operation and complete applicable keyboard/native runtime coverage.",
+      "severity": "high"
+    },
+    {
+      "evidence": [
+        "The immutable request declares exactly AC-107/ios-platform-test and QG-003/ios-build, ios-platform-test and macos-ci-check unavailable.",
+        "Current Kotlin iOS target compilation is execution evidence for compilation only.",
+        "The changed iOS time-zone bridge still requires native verification on macOS/Xcode."
+      ],
+      "id": "F06",
+      "obligationIds": [
+        "AC-107",
+        "QG-003",
+        "QG-004"
+      ],
+      "remediation": "Obtain current macOS CI, Xcode linkage and native iOS scenario results for the frozen implementation. Preserve the four exact pairs as unavailable until that evidence exists.",
+      "requirement": "Current native iOS build, runtime and macOS CI evidence remains required.",
+      "severity": "host-limitation"
+    },
+    {
+      "evidence": [
+        "The new resource tests meaningfully assert Compose and native EN/RU resolution and unsupported-locale English fallback.",
+        "They do not assert preservation of an active production destination, draft or user-authored content across an actual system-locale configuration change."
+      ],
+      "id": "F08",
+      "obligationIds": [
+        "AC-120",
+        "QG-001"
+      ],
+      "remediation": "Map existing production configuration-change assertions during the fresh audit or run a focused safe check proving retained product state across EN/RU/unsupported system-locale changes.",
+      "requirement": "System-locale changes must preserve live product state while selecting production resources and English fallback.",
+      "severity": "medium"
+    }
+  ],
+  "inventory": {
+    "acceptanceScenarioIds": [
+      "AC-001",
+      "AC-002",
+      "AC-010",
+      "AC-011",
+      "AC-012",
+      "AC-013",
+      "AC-014",
+      "AC-015",
+      "AC-016",
+      "AC-017",
+      "AC-020",
+      "AC-021",
+      "AC-022",
+      "AC-023",
+      "AC-024",
+      "AC-025",
+      "AC-026",
+      "AC-027",
+      "AC-030",
+      "AC-031",
+      "AC-032",
+      "AC-033",
+      "AC-034",
+      "AC-035",
+      "AC-036",
+      "AC-037",
+      "AC-038",
+      "AC-039",
+      "AC-040",
+      "AC-050",
+      "AC-051",
+      "AC-052",
+      "AC-053",
+      "AC-054",
+      "AC-055",
+      "AC-056",
+      "AC-057",
+      "AC-060",
+      "AC-061",
+      "AC-062",
+      "AC-063",
+      "AC-064",
+      "AC-065",
+      "AC-066",
+      "AC-067",
+      "AC-068",
+      "AC-070",
+      "AC-071",
+      "AC-072",
+      "AC-073",
+      "AC-074",
+      "AC-080",
+      "AC-081",
+      "AC-082",
+      "AC-083",
+      "AC-084",
+      "AC-085",
+      "AC-090",
+      "AC-091",
+      "AC-092",
+      "AC-093",
+      "AC-094",
+      "AC-095",
+      "AC-100",
+      "AC-101",
+      "AC-102",
+      "AC-103",
+      "AC-104",
+      "AC-105",
+      "AC-106",
+      "AC-107",
+      "AC-110",
+      "AC-111",
+      "AC-112",
+      "AC-113",
+      "AC-120",
+      "AC-121",
+      "AC-122",
+      "AC-123"
+    ],
+    "excludedRequirementIds": [
+      "REQ-901",
+      "REQ-902",
+      "REQ-903",
+      "REQ-904",
+      "REQ-905",
+      "REQ-906",
+      "REQ-907",
+      "REQ-908",
+      "REQ-909"
+    ],
+    "managedOperationIds": [
+      "AdvertisingConsent:create",
+      "AdvertisingConsent:read",
+      "AdvertisingConsent:update",
+      "BackupArchive:create",
+      "BackupArchive:read",
+      "BackupArchive:reject-invalid",
+      "BackupArchive:restore",
+      "CrashReportingPreference:create",
+      "CrashReportingPreference:read",
+      "CrashReportingPreference:update",
+      "GrowBatch:abandon",
+      "GrowBatch:assign-overflow",
+      "GrowBatch:complete-harvest",
+      "GrowBatch:confirm-stage",
+      "GrowBatch:create",
+      "GrowBatch:delete",
+      "GrowBatch:fail",
+      "GrowBatch:read",
+      "GrowBatch:record-actual-mass",
+      "GrowBatch:repeat",
+      "GrowBatch:skip-stage",
+      "GrowBatch:start-growing",
+      "GrowBatch:start-soaking",
+      "GrowBatch:undo-stage",
+      "GrowBatch:update",
+      "GrowZone:create",
+      "GrowZone:delete",
+      "GrowZone:read",
+      "GrowZone:update",
+      "HarvestPlan:confirm-suggestion",
+      "HarvestPlan:create",
+      "HarvestPlan:delete",
+      "HarvestPlan:pause-resume",
+      "HarvestPlan:read",
+      "HarvestPlan:suggest-continuous-batch",
+      "HarvestPlan:update",
+      "Observation:attach-photo",
+      "Observation:create",
+      "Observation:delete",
+      "Observation:read",
+      "Observation:update",
+      "TraySizePreset:create",
+      "TraySizePreset:delete",
+      "TraySizePreset:read",
+      "TraySizePreset:update",
+      "UserGrowRecipe:create",
+      "UserGrowRecipe:delete",
+      "UserGrowRecipe:duplicate",
+      "UserGrowRecipe:read",
+      "UserGrowRecipe:update"
+    ],
+    "qualityGateIds": [
+      "QG-001",
+      "QG-002",
+      "QG-003",
+      "QG-004",
+      "QG-005",
+      "QG-006",
+      "QG-007",
+      "QG-008",
+      "QG-009",
+      "QG-010",
+      "QG-011",
+      "QG-012"
+    ],
+    "requirementIds": [
+      "REQ-001",
+      "REQ-002",
+      "REQ-003",
+      "REQ-004",
+      "REQ-005",
+      "REQ-006",
+      "REQ-007",
+      "REQ-008",
+      "REQ-009",
+      "REQ-010",
+      "REQ-011",
+      "REQ-012"
+    ]
+  },
+  "obligations": [
+    {
+      "id": "AC-001",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-001",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-002",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-002",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-002",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-010",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-010",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-011",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-011",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-013",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-013",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-015",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-015",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-016",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-016",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-017",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-017",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-021",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-021",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-021",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-022",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-022",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-023",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-023",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-024",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-024",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-025",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-025",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-026",
+      "reason": "D01: bounded fix evidence does not complete fresh acceptance.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-026",
+      "reason": "D01: bounded fix evidence does not complete fresh acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-030",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-030",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-031",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-031",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "D01: changed scheduling metadata and consumers require full review.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "D01: changed scheduling metadata and consumers require full review.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "D01: changed scheduling metadata and consumers require full review.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-033",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-033",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-035",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-035",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-039",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-039",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-039",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-051",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-051",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-053",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-053",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-054",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-054",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-056",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-056",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-057",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-057",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "D01: bounded clock-refresh proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "D01: bounded clock-refresh proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-061",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-061",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-061",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-063",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-063",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-065",
+      "reason": "D01: current posting evidence requires complete scenario review.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-065",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-066",
+      "reason": "D01: current posting evidence requires complete scenario review.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-066",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-067",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-067",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-068",
+      "reason": "D01: changed scheduling and environment consumers require full review.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-068",
+      "reason": "D01: repository wiring improved; complete platform acceptance remains pending.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-070",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-070",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-071",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-071",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-072",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-072",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "D01: complete picker and rendering acceptance requires full review.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "D01: bounded compensation proof does not complete scenario acceptance.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "D01: preview assertions improved; changed goldens and consumers remain pending.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-083",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-083",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-085",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-085",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-091",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-091",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-094",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-094",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "D01: changed native ad ownership requires full review.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-101",
+      "reason": "D01: changed native ad ownership requires full review.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-101",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-101",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-102",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-102",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-103",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-103",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "D01: changed native ad ownership requires full review.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-105",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-105",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "network-mock-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-107",
+      "reason": "F06: request declares macOS and Xcode unavailable.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "AC-107",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-110",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-110",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-111",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-111",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-113",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "repository-check"
+    },
+    {
+      "id": "AC-113",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-113",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-review"
+    },
+    {
+      "id": "AC-120",
+      "reason": "D01: resource fallback proof reviewed; complete localization acceptance remains pending.",
+      "result": "gap",
+      "surface": "localization-contract-test"
+    },
+    {
+      "id": "AC-120",
+      "reason": "F08: live product-state preservation across system-locale changes remains unproven; D01.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-120",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-121",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-121",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-121",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-122",
+      "reason": "D01: full visual inspection remains pending.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AC-122",
+      "reason": "F02: complete current accessible task traversal remains unproven.",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "id": "AC-122",
+      "reason": "F02: complete core-screen keyboard task coverage remains unproven.",
+      "result": "gap",
+      "surface": "keyboard-test"
+    },
+    {
+      "id": "AC-123",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-123",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "D01: SDK floor verified separately; complete repository acceptance remains pending.",
+      "result": "gap",
+      "surface": "repository-check"
+    },
+    {
+      "id": "QG-001",
+      "reason": "D01: successful current execution does not replace assertion review.",
+      "result": "gap",
+      "surface": "unit-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "D01: successful current execution does not replace assertion review.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "D01: complete gate assessment remains pending.",
+      "result": "gap",
+      "surface": "static-analysis"
+    },
+    {
+      "id": "QG-001",
+      "reason": "D01: complete gate assessment remains pending.",
+      "result": "gap",
+      "surface": "coverage-check"
+    },
+    {
+      "id": "QG-001",
+      "reason": "D01: bounded locale proof does not complete gate acceptance.",
+      "result": "gap",
+      "surface": "localization-contract-test"
+    },
+    {
+      "id": "QG-002",
+      "reason": "D01: current build and SDK evidence do not complete platform acceptance.",
+      "result": "gap",
+      "surface": "android-build"
+    },
+    {
+      "id": "QG-002",
+      "reason": "F02: reminder posting evidence improved; complete native task coverage remains pending.",
+      "result": "gap",
+      "surface": "android-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "F06: request declares macOS and Xcode unavailable.",
+      "result": "unavailable",
+      "surface": "ios-build"
+    },
+    {
+      "id": "QG-003",
+      "reason": "F06: request declares macOS and Xcode unavailable.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "F06: request declares macOS and Xcode unavailable.",
+      "result": "unavailable",
+      "surface": "macos-ci-check"
+    },
+    {
+      "id": "QG-004",
+      "reason": "D01: acceptance blocked pending fresh full audit and unresolved evidence.",
+      "result": "gap",
+      "surface": "release-check"
+    },
+    {
+      "assertion": "Independently compared frozen file hashes and prior audit bindings, rebuilt the complete 350-pair inventory, inspected changed shared/native wiring and rechecked prior findings within the stated boundary. This audit rejects bounded delta scope and requests a fresh full audit; it does not grant product acceptance.",
+      "auditEvidence": true,
+      "id": "QG-004",
+      "result": "verified",
+      "surface": "acceptance-audit"
+    },
+    {
+      "id": "QG-005",
+      "reason": "Production store publication is not active or authorized in this audit.",
+      "result": "not-applicable",
+      "surface": "publication-check"
+    },
+    {
+      "id": "QG-006",
+      "reason": "D01: changed manifest and production usage require full review.",
+      "result": "gap",
+      "surface": "asset-check"
+    },
+    {
+      "id": "QG-006",
+      "reason": "D01: full visual inspection remains pending.",
+      "result": "gap",
+      "surface": "asset-visual"
+    },
+    {
+      "id": "QG-007",
+      "reason": "D01: current execution evidence requires full acceptance review.",
+      "result": "gap",
+      "surface": "preview-compile"
+    },
+    {
+      "id": "QG-007",
+      "reason": "D01: 18 new or modified image contents require full visual review.",
+      "result": "gap",
+      "surface": "screenshot-test"
+    },
+    {
+      "id": "QG-007",
+      "reason": "F02: complete accessible task and focus coverage remains unproven.",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "id": "QG-007",
+      "reason": "D01: changed captures and review records require full review.",
+      "result": "gap",
+      "surface": "design-review"
+    },
+    {
+      "id": "QG-008",
+      "reason": "Frozen checks use safe-disabled Firebase configuration; no Crashlytics-enabled release candidate is active.",
+      "result": "not-applicable",
+      "surface": "firebase-config-check"
+    },
+    {
+      "id": "QG-008",
+      "reason": "No Crashlytics-enabled release candidate is active; controlled crash symbolication is conditional on that build.",
+      "result": "not-applicable",
+      "surface": "crash-symbolication-check"
+    },
+    {
+      "id": "QG-009",
+      "reason": "No Android release candidate enabling production advertising is active; production ad configuration remains absent.",
+      "result": "not-applicable",
+      "surface": "ad-config-check"
+    },
+    {
+      "id": "QG-009",
+      "reason": "Production advertising is not enabled in an Android release candidate.",
+      "result": "not-applicable",
+      "surface": "ad-device-check"
+    },
+    {
+      "id": "QG-010",
+      "reason": "External distribution preparation is not active in this audit.",
+      "result": "not-applicable",
+      "surface": "privacy-policy-check"
+    },
+    {
+      "id": "QG-010",
+      "reason": "External distribution preparation is not active in this audit.",
+      "result": "not-applicable",
+      "surface": "store-disclosure-check"
+    },
+    {
+      "id": "QG-011",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "QG-011",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "content-review"
+    },
+    {
+      "id": "QG-012",
+      "reason": "D01: changed serialized scheduling metadata requires full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "QG-012",
+      "reason": "D01: changed native storage and compensation require full review.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "D01: changed scheduling and draft consumers require full review.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "D01: changed scheduling and draft consumers require full review.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "D01: changed scheduling and draft consumers require full review.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "Observation:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:update",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:update",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "D01: changed preview contract and consumers require full review.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "D01: bounded compensation proof does not complete operation acceptance.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "D01: complete native picker acceptance remains pending.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "D01: changed serialization and storage require full review.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "ui-golden"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "D01: changed native ad ownership requires full review.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "D01: fresh full audit required.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    }
+  ],
+  "priorFindingRechecks": [
+    {
+      "evidence": [
+        "Independent check confirms minSdk >= 24 in all eight Android target configurations and 11 applicable merged manifests."
+      ],
+      "id": "F01",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-83e1e4c8-12d0-4c19-a762-4dad220d2d0d.json"
+      ],
+      "status": "closed"
+    },
+    {
+      "evidence": [
+        "Current exact-APK verifier now asserts actual daily and soak notification posting and persisted delivery claims.",
+        "New accessibility checkpoints describe programmatic ACTION_ACCESSIBILITY_FOCUS with TalkBack display-speech screenshots; their stated hardware/audio boundary remains explicit.",
+        "Complete core-screen traversal, keyboard task operation and adaptive runtime coverage were not independently established."
+      ],
+      "id": "F02",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-1f4d12c6-7147-4815-a0e3-737bf4775060.json"
+      ],
+      "status": "partially-resolved"
+    },
+    {
+      "evidence": [
+        "LocalWorkspaceRepository now compensates observation/photo and batch deletion failures inside NonCancellable + ioDispatcher, retaining the original failure and suppressed compensation failures.",
+        "PhotoMutationCancellationTest injects cancellation after native deletion and committed SQL, asserting exact row/file restoration across replacement, removal, observation deletion and batch deletion.",
+        "The three inspected test results contain no failures, errors or skips. Complete dependent-behavior acceptance remains pending D01."
+      ],
+      "id": "F03",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json"
+      ],
+      "status": "bounded-fix-substantiated"
+    },
+    {
+      "evidence": [
+        "ContextualFormsScreen now invokes ObservationPhotoPreview for the photo field.",
+        "ObservationPhotoPreview uses the selected photo bytes and localized description; DraftGuidanceAndPhotoProductionTest asserts pending replacement, removal, committed bytes and reopened preview.",
+        "Changed photo goldens require full visual inspection in the fresh audit; this finding is not fully closed."
+      ],
+      "id": "F04",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json"
+      ],
+      "status": "implementation-and-test-improvement-reviewed"
+    },
+    {
+      "evidence": [
+        "ProductionScreenDataManager.watch now combines timeUpdates with workspace and settings flows.",
+        "ProductionAppGraph connects ScreenTimeUpdates to resume, pause and stop.",
+        "TimeRefreshProductionTest asserts retained Today transitions across midnight/due time, background ticker cancellation, immediate resume refresh and preservation of dirty editor/storage state.",
+        "Complete dependent-behavior acceptance remains pending D01."
+      ],
+      "id": "F05",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json"
+      ],
+      "status": "bounded-fix-substantiated"
+    },
+    {
+      "evidence": [
+        "The same four exact macOS/Xcode pairs remain unavailable in the immutable request.",
+        "Kotlin iOS compilation does not establish Xcode linkage, simulator execution or native iOS behavior."
+      ],
+      "id": "F06",
+      "status": "unavailable"
+    },
+    {
+      "evidence": [
+        "iosApp.swift now observes NSSystemTimeZoneDidChange and forwards through the host to graph.onTimeZoneChanged.",
+        "IosProductionAppGraph.onResume also invokes onTimeZoneChanged.",
+        "The shared environment path persists the civil scheduling command before physical reconciliation; a production-graph test asserts civil-zone persistence, stable registrations and unchanged elapsed target.",
+        "Native iOS verification remains unavailable under F06; complete changed-consumer review remains pending D01."
+      ],
+      "id": "F07",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json"
+      ],
+      "status": "repository-wiring-improvement-reviewed"
+    },
+    {
+      "evidence": [
+        "LocaleResourceResolutionTest now resolves generated production Compose resources across EN, RU and unsupported locales and checks native notification resource fallback.",
+        "Its two current test results pass without skips.",
+        "These resource assertions do not establish system-locale changes preserving live product state across the required production screens."
+      ],
+      "id": "F08",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json"
+      ],
+      "status": "partially-resolved"
+    },
+    {
+      "evidence": [
+        "withDraftSeedRecommendation derives guidance from retained tray and recipe/culture selections.",
+        "The public production fixture uses the actual router, Store, production manager and SQLite.",
+        "DraftGuidanceAndPhotoProductionTest asserts recalculation before persistence, explicit mass preservation and saved recommendation/override values.",
+        "Complete rendering and dependent-behavior acceptance remains pending D01."
+      ],
+      "id": "F09",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json"
+      ],
+      "status": "bounded-fix-substantiated"
+    },
+    {
+      "evidence": [
+        "PublicProductionFixture replaces supplied screen results with actual router, Store, production manager and persistent SQLite/file wiring.",
+        "New catalog, planning, advertising, file, draft and reminder production test classes have successful current XML results.",
+        "An assertion-by-assertion mapping of every previously deficient component surface was not completed after rejecting delta scope. Test class presence and successful execution do not close those pairs."
+      ],
+      "id": "F10",
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-43d54f19-bed7-468c-abae-c53bcac236e9.json"
+      ],
+      "status": "not-fully-revalidated"
+    }
+  ],
+  "requestSha256": "62721bed9f828bb345e29cb882681f5145073aef84186f802aa0b5360c83caf4",
+  "reviewedSources": [
+    "app-spec.json",
+    "product.md",
+    "domain.md",
+    "data.md",
+    "design.md",
+    "quality.md",
+    "flows/FLOW-001.md",
+    "flows/FLOW-002.md",
+    "flows/FLOW-003.md",
+    "flows/FLOW-004.md",
+    "flows/FLOW-005.md",
+    "flows/FLOW-006.md",
+    "flows/FLOW-007.md",
+    "flows/FLOW-008.md",
+    "flows/FLOW-009.md",
+    "flows/FLOW-010.md",
+    "flows/FLOW-011.md",
+    "flows/FLOW-012.md",
+    "screens/SCREEN-001.md",
+    "screens/SCREEN-002.md",
+    "screens/SCREEN-003.md",
+    "screens/SCREEN-004.md",
+    "screens/SCREEN-005.md",
+    "screens/SCREEN-006.md",
+    "screens/SCREEN-007.md",
+    "screens/SCREEN-008.md",
+    "screens/SCREEN-009.md",
+    "screens/SCREEN-010.md",
+    "screens/SCREEN-011.md",
+    "screens/SCREEN-012.md",
+    "screens/SCREEN-013.md",
+    "screens/SCREEN-014.md",
+    "screens/SCREEN-015.md",
+    "screens/SCREEN-016.md"
+  ],
+  "startedAt": "2026-10-17T09:57:27.711160Z",
+  "verdict": "BLOCKED"
+}

@@ -256,4 +256,17 @@
     <string name="task_action_light">Перенести на свет</string>
     <string name="task_action_harvest">Собрать урожай</string>
     <string name="batch_detail_reached_after_skip">Переход после пропуска этапа</string>
+    <string name="error_recipe_stage_order">Укажите посев, рост на свету и готовность к сбору в таком порядке. Замачивание и затемнение необязательны.</string>
+    <string name="schedule_fixed_date_conflict">Фиксированная дата этапа не совпадает с исправленным расписанием. Проверьте даты.</string>
+    <string name="field_optional_dark_zone">Добавить необязательную тёмную зону</string>
+    <string name="action_edit_zone">Изменить вместимость</string>
+    <string name="field_dark_zone_name">Название тёмной зоны</string>
+    <string name="field_dark_zone_capacity">Число мест в тёмной зоне</string>
+    <string name="batch_actual_harvest_mass">Фактическая масса урожая: %1$s г</string>
+    <string name="privacy_choice_consequences">После сохранения согласия реклама станет доступна. Отказ оставит рекламу выключенной. Изменить или отозвать решение можно в настройках; все функции выращивания остаются доступны.</string>
+    <string name="privacy_withdrawn">Отозвано</string>
+    <string name="confirmation_skip_task_title">Пропустить задачу?</string>
+    <string name="confirmation_skip_task_body">Задача будет отмечена как пропущенная. Последующие задачи и этап партии не изменятся.</string>
+    <string name="field_recommended_seed_mass">Рекомендуемая масса семян</string>
+    <string name="batch_seed_recommendation">Рекомендуемая масса семян: %1$s г. Оставьте поле пустым, чтобы использовать это значение, или укажите своё измерение.</string>
 </resources>

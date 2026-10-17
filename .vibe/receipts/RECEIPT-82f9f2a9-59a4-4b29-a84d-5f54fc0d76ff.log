@@ -1,0 +1,46 @@
+[
+  {
+    "manifest": "shared/domain/build/intermediates/merged_manifest/androidMain/processAndroidMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "shared/data/build/intermediates/merged_manifest/androidMain/processAndroidMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "shared/component/build/intermediates/merged_manifest/androidMain/processAndroidMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "shared/root/build/intermediates/merged_manifest/androidMain/processAndroidMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "shared/platform/build/intermediates/merged_manifest/androidMain/processAndroidMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "shared/monetization/build/intermediates/merged_manifest/androidMain/processAndroidMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "shared/compose/build/intermediates/merged_manifest/androidMain/processAndroidMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "androidApp/build/intermediates/merged_manifest/release/processReleaseMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "androidApp/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "androidApp/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml",
+    "minSdk": 24
+  },
+  {
+    "manifest": "androidApp/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml",
+    "minSdk": 24
+  }
+]

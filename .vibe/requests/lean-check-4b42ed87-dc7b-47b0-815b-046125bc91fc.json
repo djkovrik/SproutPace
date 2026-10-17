@@ -1,0 +1,11 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    ":shared:compose:verifyPaparazzi"
+  ],
+  "timeoutSeconds": 1800
+}

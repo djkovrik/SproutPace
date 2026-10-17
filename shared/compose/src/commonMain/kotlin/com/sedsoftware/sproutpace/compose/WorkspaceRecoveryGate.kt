@@ -52,4 +52,9 @@ internal class RecoveryGatedScreenDataManager(
         recovery.awaitReady()
         delegate.previewStage(command).getOrThrow()
     }
+
+    override suspend fun previewPhoto(value: String) = domainResult {
+        recovery.awaitReady()
+        delegate.previewPhoto(value).getOrThrow()
+    }
 }

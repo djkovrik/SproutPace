@@ -1,0 +1,9 @@
+Actual captured SQLite rows satisfy the exact bounded assertion
+Actual captured SQLite rows satisfy the exact bounded assertion
+Actual focus retained at both widths; no-refocus typing succeeded; PID22698 unchanged with no app Activity recreation; persisted rows/files unchanged
+Actual captured SQLite rows satisfy the exact bounded assertion
+Actual captured SQLite rows satisfy the exact bounded assertion
+Actual captured SQLite rows satisfy the exact bounded assertion
+Actual captured SQLite rows satisfy the exact bounded assertion
+Captured photo/cancel/permission/keyboard/font/pane assertions passed; KNOWN FINDING: resize recreation loses editable focus
+Actual current focus/native state verified; historical9730 flow attribution preserved: D:\Sources\Android\SproutPace\build\reports\requirements-fixes-20261017\runtime\revision-6-retry-worker\focus-delta\live-final-e744effaf6f24f6987eab9348c71580c

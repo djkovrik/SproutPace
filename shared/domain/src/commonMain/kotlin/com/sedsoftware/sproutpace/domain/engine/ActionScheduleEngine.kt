@@ -8,6 +8,7 @@ import com.sedsoftware.sproutpace.domain.model.ScheduleConflict
 import com.sedsoftware.sproutpace.domain.model.ScheduledAction
 import com.sedsoftware.sproutpace.domain.model.ScheduledActionId
 import com.sedsoftware.sproutpace.domain.model.ScheduledActionStatus
+import com.sedsoftware.sproutpace.domain.model.ScheduledActionOrigin
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -40,7 +41,8 @@ object ActionScheduleEngine {
                 if (isObsolete) return@forEach
 
                 seenIds += action.id
-                add(rebuildAction(batch, action, actionIndex, anchorIndex, correction))
+                add(rebuildAutomaticSoak(batch, action, correction)
+                    ?: rebuildAction(batch, action, actionIndex, anchorIndex, correction))
             }
         }
         val conflicts = rebuilt.mapNotNull { result -> result.conflict }
@@ -51,6 +53,22 @@ object ActionScheduleEngine {
             cancelledActionIds = batch.actions.mapTo(mutableSetOf()) { it.id } - survivingIds,
             conflicts = conflicts,
         )
+    }
+
+    private fun rebuildAutomaticSoak(
+        batch: GrowBatch,
+        action: ScheduledAction,
+        correction: ActionScheduleCorrection,
+    ): RebuiltAction? {
+        val isActiveSoakCorrection = batch.state == BatchState.SOAKING && correction.anchorState == BatchState.SOAKING
+        val isAutomaticSoak = action.origin == ScheduledActionOrigin.SOAK_DURATION &&
+            action.status == ScheduledActionStatus.PENDING && !action.userFixed
+        if (!isActiveSoakCorrection || !isAutomaticSoak) return null
+        return batch.recipe.stages.firstOrNull { it.stage == GrowStage.SOAKING }?.let { soak ->
+            RebuiltAction(action.copy(due = DueMoment.ElapsedTarget(
+                correction.anchorAt + soak.duration.maximum,
+            )))
+        }
     }
 
     private fun rebuildAction(

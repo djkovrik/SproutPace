@@ -37,6 +37,7 @@ import com.sedsoftware.sproutpace.domain.engine.SchedulingEngine
 import com.sedsoftware.sproutpace.domain.model.GrowStage
 import com.sedsoftware.sproutpace.domain.model.ProductSnapshot
 import com.sedsoftware.sproutpace.domain.model.ScheduledActionStatus
+import com.sedsoftware.sproutpace.domain.model.ScheduledAction
 import com.sedsoftware.sproutpace.platform.NativeTextKey
 import com.sedsoftware.sproutpace.platform.PhysicalReminder
 import com.sedsoftware.sproutpace.platform.PhysicalReminderId
@@ -60,6 +61,7 @@ import com.sedsoftware.sproutpace.root.AppRootDependencies
 import com.sedsoftware.sproutpace.root.AppRootFactory
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
@@ -102,11 +104,14 @@ class ProductionAppGraph internal constructor(
     dailyEvaluationEnabled: Boolean = false,
     summaryHorizonDays: Int = 1,
     flushPreferences: () -> Unit = {},
+    screenTimeTicks: Flow<Unit> = minuteScreenTimeTicks(),
 ) : AutoCloseable {
     private val lifecycleRegistry = lifecycleRegistry.also { it.create() }
     private val database = LocalDatabase(driverFactory, ioDispatcher)
     val productSettings: ProductSettings = MultiplatformProductSettings(settings)
     private val applicationScope = CoroutineScope(SupervisorJob() + ioDispatcher)
+    private val screenTimeUpdates = ScreenTimeUpdates(applicationScope, screenTimeTicks)
+    private var reminderEnvironmentUpdate: Job? = null
     private val crashReportingCoordinator = CrashReportingCoordinator(
         productSettings,
         crashReportingDriver,
@@ -142,6 +147,7 @@ class ProductionAppGraph internal constructor(
         output = FirstRunNavigationOutput(mainContext) { rootComponent.resetToFirstRun() },
         csvHeaders = { localizedCsvHeaders() },
         flushPreferences = flushPreferences,
+        clearPendingPhotos = { pendingPhotoImportStore.clear() },
     )
     private val productionDataManager = ProductionScreenDataManager(
         database = database,
@@ -152,6 +158,7 @@ class ProductionAppGraph internal constructor(
         now = { kotlinx.datetime.Instant.fromEpochMilliseconds(nowEpochMillis()) },
         today = { kotlinx.datetime.Instant.fromEpochMilliseconds(nowEpochMillis()).toLocalDateTime(timeZone()).date },
         timeZone = timeZone,
+        timeUpdates = screenTimeUpdates.revisions,
     )
     private val workspaceRecovery = WorkspaceRecoveryGate(applicationScope) {
         rootConstructed.await()
@@ -201,15 +208,24 @@ class ProductionAppGraph internal constructor(
     fun onStart() = lifecycleRegistry.start()
     fun onResume() {
         lifecycleRegistry.resume()
+        screenTimeUpdates.onResume()
+        val environmentUpdate = reminderEnvironmentUpdate
         applicationScope.launch {
+            environmentUpdate?.join()
             reminderScheduling.run {
                 workspaceRecovery.awaitReady()
                 reminderCoordinator.onHostResume()
             }
         }
     }
-    fun onPause() = lifecycleRegistry.pause()
-    fun onStop() = lifecycleRegistry.stop()
+    fun onPause() {
+        screenTimeUpdates.onPause()
+        lifecycleRegistry.pause()
+    }
+    fun onStop() {
+        screenTimeUpdates.onPause()
+        lifecycleRegistry.stop()
+    }
 
     fun requestNotificationPermission() {
         applicationScope.launch {
@@ -233,6 +249,19 @@ class ProductionAppGraph internal constructor(
     suspend fun reconcileReminderEnvironment(reason: ReconciliationReason) {
         workspaceRecovery.awaitReady()
         reconcileReminderEnvironment(reason, productionDataManager, reminderCoordinator, timeZone())
+        screenTimeUpdates.refresh()
+    }
+
+    fun onReminderEnvironmentChanged(reason: ReconciliationReason) {
+        val previous = reminderEnvironmentUpdate
+        reminderEnvironmentUpdate = applicationScope.launch {
+            previous?.join()
+            reminderScheduling.run {
+                workspaceRecovery.awaitReady()
+                reconcileReminderEnvironment(reason, productionDataManager, reminderCoordinator, timeZone())
+                    .also { screenTimeUpdates.refresh() }
+            }
+        }
     }
 
     suspend fun evaluateReminderDelivery(id: PhysicalReminderId, fireAtEpochMillis: Long): Boolean {
@@ -264,6 +293,7 @@ internal class CrashAwareScreenDataManager(
     private val runtimeState: StateFlow<CrashReportingState>,
 ) : ScreenDataManager {
     override suspend fun previewStage(command: ScreenCommand) = delegate.previewStage(command)
+    override suspend fun previewPhoto(value: String) = delegate.previewPhoto(value)
 
     override fun watch(screen: ScreenId, stableId: String?): Flow<ScreenSnapshot> {
         val source = delegate.watch(screen, stableId)
@@ -360,7 +390,7 @@ internal class SnapshotReminderPlanSource(
         }
         return preferences.soakRemindersEnabled && current.batches.filterNot { it.state.isTerminal }.any { batch ->
             batch.effectiveActions().any { action ->
-                action.status == ScheduledActionStatus.PENDING && action.stage == GrowStage.SOAKING &&
+                action.status == ScheduledActionStatus.PENDING && action.isSoakReminder(batch.id.value) &&
                     action.due is com.sedsoftware.sproutpace.domain.model.DueMoment.ElapsedTarget &&
                     id.value == "sproutpace:soak:${batch.id.value}:${action.id.value}" &&
                     SchedulingEngine.resolvedInstant(action).toEpochMilliseconds() == fireAtEpochMillis
@@ -414,6 +444,7 @@ internal class ReminderAwareScreenDataManager(
     private val schedulingState: StateFlow<ReminderSchedulingState> = MutableStateFlow(ReminderSchedulingState.IDLE),
 ) : ScreenDataManager {
     override suspend fun previewStage(command: ScreenCommand) = delegate.previewStage(command)
+    override suspend fun previewPhoto(value: String) = delegate.previewPhoto(value)
 
     override fun watch(screen: ScreenId, stableId: String?): Flow<ScreenSnapshot> {
         val source = delegate.watch(screen, stableId)
@@ -483,7 +514,7 @@ internal class ReminderAwareScreenDataManager(
     private companion object {
         val PERMISSION_CONTEXT_SCREENS = setOf(ScreenId.SETTINGS, ScreenId.FIRST_RUN, ScreenId.TODAY)
         val REMINDER_MUTATIONS = setOf(
-            "save-batch", "delete-batch", "delete-batch-cascade", "confirm-sowing", "confirm-stage",
+            "save-batch", "correct-batch", "delete-batch", "delete-batch-cascade", "start-soaking", "confirm-sowing", "confirm-stage",
             "undo-stage", "skip-stage", "complete-action", "snooze", "skip-action", "schedule-soak-target",
             "time-zone-change", "close-harvest", "close-failed", "close-abandoned", "save-outcome",
         )
@@ -494,7 +525,7 @@ private fun ProductSnapshot.futureSoakReminders(nowEpochMillis: Long): List<Phys
     batches.filterNot { it.state.isTerminal }.flatMap { batch ->
         batch.effectiveActions().mapNotNull { action ->
             val fireAt = SchedulingEngine.resolvedInstant(action).toEpochMilliseconds()
-            if (action.status != ScheduledActionStatus.PENDING || action.stage != GrowStage.SOAKING ||
+            if (action.status != ScheduledActionStatus.PENDING || !action.isSoakReminder(batch.id.value) ||
                 action.due !is com.sedsoftware.sproutpace.domain.model.DueMoment.ElapsedTarget || fireAt <= nowEpochMillis
             ) {
                 null
@@ -509,6 +540,10 @@ private fun ProductSnapshot.futureSoakReminders(nowEpochMillis: Long): List<Phys
             }
         }
     }
+
+private fun ScheduledAction.isSoakReminder(batchId: String): Boolean =
+    kind == com.sedsoftware.sproutpace.domain.model.ScheduledActionKind.SOAK_TARGET ||
+        stage == GrowStage.SOAKING || (stage == null && id.value == "soak:$batchId")
 
 /** Pure assembly seam used by contract tests without constructing production storage. */
 internal fun productionRootDependencies(

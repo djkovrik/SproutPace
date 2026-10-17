@@ -1,0 +1,15 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:data:testAndroidHostTest",
+    "--tests",
+    "*AndroidPrivateFileStoreTest",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*ArchiveDocumentStorageTest",
+    "--tests",
+    "*ProductionIntegrationContractTest"
+  ],
+  "timeoutSeconds": 1800
+}

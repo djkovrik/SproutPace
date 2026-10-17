@@ -50,6 +50,8 @@ class TypedUiPreviewMatrixTest {
                 assertEquals(state.items.size.toString(), state.facts.single { it.id == "batch-count" }.authoredValue)
                 assertEquals(source.facts.filterNot { it.id == "batch-count" }.map { Triple(it.id, it.valueKey?.value, it.authoredValue) },
                     state.facts.filterNot { it.id == "batch-count" }.map { Triple(it.id, it.valueKey, it.authoredValue) })
+            } else if (screen == UiScreen.BATCH_EDITOR) {
+                assertNewBatchPreviewFacts(source, state)
             } else {
                 assertEquals(source.facts.map { Triple(it.id, it.valueKey?.value, it.authoredValue) },
                     state.facts.map { Triple(it.id, it.valueKey, it.authoredValue) }, "$screen facts")

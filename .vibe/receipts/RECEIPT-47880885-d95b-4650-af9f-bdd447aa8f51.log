@@ -1,0 +1,13 @@
+{
+  "serial": "emulator-5556",
+  "apkSha256": "d22dc8cb028b61b81908383f37ec9cdc44b24796053fbe7e545593ab83139d72",
+  "checks": [
+    "actual-system-picker-export-import-preview-cancel",
+    "native-private-import-copy-cleared",
+    "empty-first-run-after-reset",
+    "external-backup-preserved-byte-identical"
+  ],
+  "externalBackupSha256": "622018d0828bf598a54297d9c6caedcea4939c18ea9b70c4a791db87c1b1493f",
+  "externalBackupBytes": 585,
+  "verifiedAt": "2026-10-17T08:15:08.1914860Z"
+}

@@ -30,6 +30,9 @@ struct ComposeApp: App {
                 .onChange(of: scenePhase) { phase in
                     host.transition(to: phase)
                 }
+                .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in
+                    host.timeZoneDidChange()
+                }
         }
     }
 }
@@ -52,15 +55,21 @@ private final class IosApplicationHost: ObservableObject {
 #else
         let isDebug = false
 #endif
-        platformServices = NativePlatformServiceFactory.make()
+        let archiveImports = IosArchiveImportCoordinator()
+        platformServices = NativePlatformServiceFactory.make(archiveImports: archiveImports)
         graph = IosProductionAppGraph(
             isDebug: isDebug,
-            crashReportingBridge: platformServices.crashReporting
+            crashReportingBridge: platformServices.crashReporting,
+            archiveImports: archiveImports
         )
     }
 
     deinit {
         graph.close()
+    }
+
+    func timeZoneDidChange() {
+        graph.onTimeZoneChanged()
     }
 
     func transition(to scenePhase: ScenePhase) {
@@ -263,6 +272,23 @@ struct NativePhysicalReminder {
     let bodyLocalizationKey: String
 }
 
+private final class NativeDocumentRequest {
+    let generation: Int64
+    private let lock = NSLock()
+    private var cancelled = false
+
+    init(generation: Int64) { self.generation = generation }
+    func cancel() { lock.lock(); cancelled = true; lock.unlock() }
+    var isCancelled: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return cancelled
+    }
+    func checkActive() throws {
+        if isCancelled { throw CocoaError(.userCancelled) }
+    }
+}
+
 final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UIDocumentPickerDelegate {
     private let notificationCenter = UNUserNotificationCenter.current()
     private var permissionObserver: ((NativeNotificationPermissionState) -> Void)?
@@ -275,6 +301,17 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
     private var documentCompletion: ((Result<ImportedBackupDocument?, Error>) -> Void)?
     private var destinationCompletion: ((Result<URL?, Error>) -> Void)?
     private var destinationTemporaryFile: URL?
+    private let archiveImports: IosArchiveImportCoordinator
+    private let archiveQueue = DispatchQueue(label: "SproutPace.archive-io", qos: .utility)
+    private var documentRequest: NativeDocumentRequest?
+    private var destinationRequest: NativeDocumentRequest?
+    private weak var restoreDocumentPicker: UIDocumentPickerViewController?
+    private weak var destinationPicker: UIDocumentPickerViewController?
+
+    init(archiveImports: IosArchiveImportCoordinator) {
+        self.archiveImports = archiveImports
+        super.init()
+    }
 
     let crashReporting = NativeCrashReportingBridge()
 
@@ -366,16 +403,18 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         from presenter: UIViewController,
         completion: @escaping (Result<ImportedBackupDocument?, Error>) -> Void
     ) {
-        guard documentCompletion == nil else {
+        guard documentCompletion == nil, destinationCompletion == nil else {
             completion(.failure(CocoaError(.fileReadUnknown)))
             return
         }
         documentCompletion = completion
+        documentRequest = NativeDocumentRequest(generation: archiveImports.currentGeneration())
         let picker = UIDocumentPickerViewController(
             forOpeningContentTypes: [.zip, .data],
             asCopy: true
         )
         picker.delegate = self
+        restoreDocumentPicker = picker
         presenter.present(picker, animated: true)
     }
 
@@ -385,19 +424,46 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         from presenter: UIViewController,
         completion: @escaping (Result<URL?, Error>) -> Void
     ) {
-        guard destinationCompletion == nil, !suggestedName.isEmpty, !mediaType.isEmpty else {
+        guard documentCompletion == nil, destinationCompletion == nil, !suggestedName.isEmpty, !mediaType.isEmpty else {
             completion(.failure(CocoaError(.fileWriteUnknown)))
             return
         }
-        do {
-            let temporaryFile = try Self.createExportPlaceholder(suggestedName: suggestedName)
-            destinationTemporaryFile = temporaryFile
-            destinationCompletion = completion
-            let picker = UIDocumentPickerViewController(forExporting: [temporaryFile], asCopy: true)
-            picker.delegate = self
-            presenter.present(picker, animated: true)
-        } catch {
-            completion(.failure(error))
+        let request = NativeDocumentRequest(generation: archiveImports.currentGeneration())
+        destinationRequest = request
+        destinationCompletion = completion
+        let queue = archiveQueue
+        let imports = archiveImports
+        queue.async { [weak self, weak presenter] in
+            let prepared = Result { () throws -> URL in
+                try request.checkActive()
+                guard imports.currentGeneration() == request.generation else { throw CocoaError(.userCancelled) }
+                return try Self.createExportPlaceholder(suggestedName: suggestedName)
+            }
+            DispatchQueue.main.async {
+                guard let self, self.destinationRequest === request else {
+                    if case let .success(file) = prepared { queue.async { try? Self.removeExportPlaceholder(file) } }
+                    return
+                }
+                switch prepared {
+                case let .success(file):
+                    self.destinationTemporaryFile = file
+                    guard !request.isCancelled, imports.currentGeneration() == request.generation,
+                          let presenter, presenter.viewIfLoaded?.window != nil,
+                          presenter.presentedViewController == nil else {
+                        request.cancel()
+                        self.finishDestination(request, selected: nil)
+                        return
+                    }
+                    let picker = UIDocumentPickerViewController(forExporting: [file], asCopy: true)
+                    picker.delegate = self
+                    self.destinationPicker = picker
+                    presenter.present(picker, animated: true)
+                case let .failure(error):
+                    self.destinationRequest = nil
+                    self.destinationCompletion = nil
+                    completion(.failure(error))
+                }
+            }
         }
     }
 
@@ -431,38 +497,101 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         _ controller: UIDocumentPickerViewController,
         didPickDocumentsAt urls: [URL]
     ) {
-        if let completion = documentCompletion {
-            documentCompletion = nil
+        if controller === restoreDocumentPicker, let request = documentRequest {
             guard let source = urls.first else {
-                completion(.success(nil))
+                finishImport(request, response: .success(nil))
                 return
             }
-            do {
-                completion(.success(ImportedBackupDocument(
-                    location: try Self.copyIntoOwnedStorage(source: source), displayName: source.lastPathComponent
-                )))
-            } catch {
-                completion(.failure(error))
+            let imports = archiveImports
+            let queue = archiveQueue
+            queue.async { [weak self] in
+                let response: Result<ImportedBackupDocument?, Error> = Result {
+                    try request.checkActive()
+                    guard imports.beginCopy(expectedGeneration: request.generation) else { throw CocoaError(.userCancelled) }
+                    defer { imports.endCopy() }
+                    let copied = try Self.copyIntoOwnedStorage(source: source)
+                    do {
+                        try request.checkActive()
+                        guard imports.currentGeneration() == request.generation else { throw CocoaError(.userCancelled) }
+                        return ImportedBackupDocument(location: copied, displayName: source.lastPathComponent)
+                    } catch {
+                        throw Self.cleanupFailure(error, removing: copied)
+                    }
+                }
+                DispatchQueue.main.async {
+                    guard let self else {
+                        if case let .success(document?) = response {
+                            queue.async { try? Self.removeIfPresent(document.location) }
+                        }
+                        return
+                    }
+                    self.finishImport(request, response: response)
+                }
             }
             return
         }
-        if let completion = destinationCompletion {
-            destinationCompletion = nil
-            let selected = urls.first
-            removeDestinationPlaceholder(preserving: selected)
-            completion(.success(selected))
+        if controller === destinationPicker, let request = destinationRequest {
+            finishDestination(request, selected: urls.first)
         }
     }
 
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        if let completion = documentCompletion {
+        if controller === restoreDocumentPicker, let request = documentRequest, let completion = documentCompletion {
+            request.cancel()
+            documentRequest = nil
+            restoreDocumentPicker = nil
             documentCompletion = nil
             completion(.success(nil))
         }
-        if let completion = destinationCompletion {
-            destinationCompletion = nil
-            removeDestinationPlaceholder()
-            completion(.success(nil))
+        if controller === destinationPicker, let request = destinationRequest {
+            request.cancel()
+            finishDestination(request, selected: nil)
+        }
+    }
+
+    private func finishImport(_ request: NativeDocumentRequest, response: Result<ImportedBackupDocument?, Error>) {
+        guard documentRequest === request else { discardImportedResponse(response); return }
+        let completion = documentCompletion
+        documentRequest = nil
+        restoreDocumentPicker = nil
+        documentCompletion = nil
+        guard !request.isCancelled, archiveImports.currentGeneration() == request.generation else {
+            discardImportedResponse(response)
+            completion?(.success(nil))
+            return
+        }
+        completion?(response)
+    }
+
+    private func discardImportedResponse(_ response: Result<ImportedBackupDocument?, Error>) {
+        guard case let .success(document?) = response else { return }
+        archiveQueue.async {
+            do { try Self.removeIfPresent(document.location) }
+            catch { NSLog("Unable to clean stale private archive import") }
+        }
+    }
+
+    private func finishDestination(_ request: NativeDocumentRequest, selected: URL?) {
+        guard destinationRequest === request else { return }
+        destinationPicker = nil
+        let temporaryFile = destinationTemporaryFile
+        destinationTemporaryFile = nil
+        let imports = archiveImports
+        archiveQueue.async { [weak self] in
+            let response: Result<URL?, Error> = Result {
+                if let temporaryFile { try Self.removeExportPlaceholder(temporaryFile, preserving: selected) }
+                return selected
+            }
+            DispatchQueue.main.async {
+                guard let self, self.destinationRequest === request else { return }
+                let completion = self.destinationCompletion
+                self.destinationRequest = nil
+                self.destinationCompletion = nil
+                if request.isCancelled || imports.currentGeneration() != request.generation {
+                    if case let .failure(error) = response { completion?(.failure(error)) }
+                    else { completion?(.success(nil)) }
+                } else { completion?(response) }
+            }
         }
     }
 
@@ -503,18 +632,21 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         return destination
     }
 
-    private static func copyIntoOwnedStorage(source: URL) throws -> URL {
+    nonisolated private static func copyIntoOwnedStorage(source: URL) throws -> URL {
         let root = try importDirectory()
         let extensionPart = source.pathExtension.filter { $0.isLetter || $0.isNumber }
         let name = UUID().uuidString + (extensionPart.isEmpty ? "" : ".\(extensionPart)")
         let destination = root.appendingPathComponent(name, isDirectory: false)
         let scoped = source.startAccessingSecurityScopedResource()
         defer { if scoped { source.stopAccessingSecurityScopedResource() } }
-        try FileManager.default.copyItem(at: source, to: destination)
+        do { try FileManager.default.copyItem(at: source, to: destination) }
+        catch {
+            throw cleanupFailure(error, removing: destination)
+        }
         return destination
     }
 
-    private static func createExportPlaceholder(suggestedName: String) throws -> URL {
+    nonisolated private static func createExportPlaceholder(suggestedName: String) throws -> URL {
         let safeName = URL(fileURLWithPath: suggestedName).lastPathComponent
         guard !safeName.isEmpty, safeName != ".", safeName != ".." else {
             throw CocoaError(.fileWriteInvalidFileName)
@@ -528,20 +660,40 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
         let root = support
             .appendingPathComponent("SproutPace", isDirectory: true)
             .appendingPathComponent("Exports", isDirectory: true)
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
         let placeholder = root.appendingPathComponent(safeName, isDirectory: false)
-        try Data().write(to: placeholder, options: .atomic)
+        do { try Data().write(to: placeholder, options: .atomic) }
+        catch {
+            throw cleanupFailure(error, removing: root)
+        }
         return placeholder
     }
 
-    private func removeDestinationPlaceholder(preserving selected: URL? = nil) {
-        guard let temporaryFile = destinationTemporaryFile else { return }
-        destinationTemporaryFile = nil
+    nonisolated private static func removeExportPlaceholder(_ temporaryFile: URL, preserving selected: URL? = nil) throws {
         if let selected, temporaryFile.standardizedFileURL == selected.standardizedFileURL { return }
-        try? FileManager.default.removeItem(at: temporaryFile)
+        let directory = temporaryFile.deletingLastPathComponent()
+        guard directory.deletingLastPathComponent().lastPathComponent == "Exports" else {
+            throw CocoaError(.fileWriteInvalidFileName)
+        }
+        try removeIfPresent(directory)
     }
 
-    private static func importDirectory() throws -> URL {
+    nonisolated private static func removeIfPresent(_ url: URL) throws {
+        if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }
+    }
+
+    nonisolated private static func cleanupFailure(_ original: Error, removing url: URL) -> Error {
+        do {
+            try removeIfPresent(url)
+            return original
+        } catch {
+            return NSError(domain: "SproutPace.PrivateArchiveCleanup", code: 1,
+                userInfo: [NSUnderlyingErrorKey: original, "cleanupError": error])
+        }
+    }
+
+    nonisolated private static func importDirectory() throws -> URL {
         let support = try FileManager.default.url(
             for: .applicationSupportDirectory,
             in: .userDomainMask,
@@ -614,7 +766,7 @@ final class NativeCrashReportingBridge: IosCrashReportingBridge {
 }
 
 enum NativePlatformServiceFactory {
-    static func make() -> NativePlatformServices {
-        NativePlatformServices()
+    static func make(archiveImports: IosArchiveImportCoordinator) -> NativePlatformServices {
+        NativePlatformServices(archiveImports: archiveImports)
     }
 }

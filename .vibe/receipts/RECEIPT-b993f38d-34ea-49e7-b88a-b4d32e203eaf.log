@@ -1,0 +1,12 @@
+UI hierchary dumped to: /sdcard/sproutpace-audit-ui.xml
+{'text': 'Add zone', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[105,379][255,432]'}
+{'text': 'finaldark', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,542][250,591]'}
+{'text': 'Dark', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,602][148,639]'}
+{'text': '0 of 1 places occupied · 1 available', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,650][735,713]'}
+{'text': 'finallight', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,829][249,878]'}
+{'text': 'Grow light', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,889][226,926]'}
+{'text': '0 of 1 places occupied · 1 available', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,937][735,1000]'}
+{'text': 'Capacity forecast for Oct 17, 2026: 2 places needed, zone capacity 1', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,1011][996,1137]'}
+{'text': 'Forecast includes planned batches and plan suggestions. Current places stay occupied until a batch is closed or moved.', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[84,1148][996,1227]'}
+{'text': '', 'content-desc': 'Back', 'class': 'android.view.View', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[43,185][106,248]'}
+{'text': 'Growing zones', 'content-desc': '', 'class': 'android.widget.TextView', 'clickable': 'false', 'focusable': 'false', 'focused': 'false', 'bounds': '[148,179][527,253]'}

@@ -2,11 +2,11 @@
   "appSpec": "spec",
   "appSpecFingerprint": {
     "algorithm": "sha256",
-    "digest": "44a2f344f83a35b27d9599102b108cf35456f439aa431912d9e2dbbccd7770ad",
+    "digest": "9aafbaa4e5eea131a839d12da26349036253d20f65701a331b086f8e5d3bc472",
     "files": [
       {
         "path": "app-spec.json",
-        "sha256": "060b435f6b00cdac581fb164dfb5b16368e56e145ef254632868fefc2bf56b81"
+        "sha256": "11673c5c2c7e50a0c9713bac12f7ddeb2cd229c53e6acadebc70b18cacdc7812"
       },
       {
         "path": "data.md",
@@ -142,9 +142,9 @@
       }
     ]
   },
-  "auditRequest": ".vibe/audits/AUDIT-REQUEST-af6b124d-6fd4-49a2-aa9f-de7a1f7054e7/request.json",
+  "auditRequest": ".vibe/audits/AUDIT-REQUEST-76326ac5-3a2d-40b2-92b0-590fec19f455/request.json",
   "mode": "lean",
-  "nextAction": "Catalog QG-011 accepted v2; see docs/catalog-audit/2026-10-11/v2/acceptance.json. Requested catalog work complete. Remaining separate app obligations F04 coverage, F05 native runtime, F06 accessibility; no global release PASS. Preserve existing emulator data.",
+  "nextAction": "Available implementation/check/audit scope complete. Next release acceptance: natural current-APK TalkBack traversal/actions/announcements across core screens, then current macOS Swift/Xcode/framework linkage/Simulator/native platform/accessibility proof for AC107/QG003. Keep GAPS/no lean close until substantiated; activate external distribution gates only if requested.",
   "predecessor": {
     "decision": "docs/decisions/DEC-20260920-lean-delivery.md",
     "path": ".vibe/history/strict-557d1d32-ca12-457b-a937-41dbd56a7e8e.json",
@@ -325,9 +325,11 @@
     ]
   },
   "scenarios": {
-    "catalog": "QG-011 ACCEPTED 2026-10-11 catalog v2. Independent bounded PASS docs/catalog-audit/2026-10-11/v2/independent-audit.json; gate record acceptance.json in same folder. Historical F07 resolved; CAT-001..008 dispositions recorded. Matrix eff64f23 passed719 tests231goldens,14iOS compiles,Android builds,Detekt,migration,Kover. Full-app F04/F05/F06 remain open."
+    "catalog": "QG-011 ACCEPTED 2026-10-11 catalog v2. Independent bounded PASS docs/catalog-audit/2026-10-11/v2/independent-audit.json; gate record acceptance.json in same folder. Historical F07 resolved; CAT-001..008 dispositions recorded. Matrix eff64f23 passed719 tests231goldens,14iOS compiles,Android builds,Detekt,migration,Kover. Full-app F04/F05/F06 remain open.",
+    "requirements-fixes-20261017": "All14 fixes plus independent F01/F02 and native focus correction completed. Current source d5d57266; final matrix f0382fbb passed823 tests/249 reviewed PNG. Formal independent audit76326ac5 completed0 with no validation errors:335verified/4gap/4unavailable/7NA; F01/F02/F05 closed. Remaining F03 natural TalkBack and F04 four macOS pairs prevent global completion/release. Exact350 matrix retained unchanged in consolidated-coverage.json and acceptance-summary.md.",
+    "requirements-review-20261017": "Current authoritative result: audit76326ac5, source d5d57266, matrix f0382fbb. See requirements-fixes-20261017 scenario and current recovery. Historical fb338/70da/a546 notes are superseded."
   },
   "schemaVersion": "1.0",
-  "specDecision": "docs/design/production-ui-redesign.md",
-  "updatedAt": "2026-10-11T07:03:09.952762Z"
+  "specDecision": "docs/decisions/DEC-20261017-requirements-fixes-adopt-spec.md",
+  "updatedAt": "2026-10-17T12:10:56.728804Z"
 }

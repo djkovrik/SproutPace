@@ -46,6 +46,8 @@ data class ScreenOption(
     val labelKey: TextKey? = null,
     val authoredLabel: String? = null,
     val batchIdentity: BatchIdentity? = null,
+    val trayShape: com.sedsoftware.sproutpace.domain.model.TrayShape? = null,
+    val seedDensity: com.sedsoftware.sproutpace.domain.model.SeedDensity? = null,
 ) {
     init {
         require(id.isNotBlank())
@@ -125,7 +127,7 @@ internal fun ScreenOperationContract.prepare(
     subjectId: String?,
     draft: Map<ScreenFieldId, String>,
 ): CommandPreparation {
-    val normalizedSubject = subjectId?.takeIf(String::isNotBlank)
+    val normalizedSubject = subjectId?.trim()?.takeIf(String::isNotEmpty)
     val errors = linkedMapOf<ScreenFieldId, TextKey>()
     if (subjectRequirement == CommandSubjectRequirement.REQUIRED && normalizedSubject == null) {
         errors[ScreenFieldId("id")] = TextKey("validation_required_selection")
@@ -133,9 +135,9 @@ internal fun ScreenOperationContract.prepare(
     val applicableArguments = arguments.filter { it.isApplicable(draft) }
     applicableArguments.forEach { argument ->
         val fieldId = ScreenFieldId(argument.name)
-        val value = draft[fieldId].orEmpty().trim()
+        val value = argument.normalizedValue(draft[fieldId].orEmpty())
         val stageDuration = Regex("^stage[1-5](MinimumHours|MaximumHours)$").matches(argument.name)
-        if ((argument.required || stageDuration) && value.isEmpty()) {
+        if ((argument.required || stageDuration) && value.isBlank()) {
             errors[fieldId] = argument.requiredError()
         } else if (value.isNotEmpty() && !argument.kind.accepts(value)) {
             errors[fieldId] = argument.kind.invalidError()
@@ -150,7 +152,8 @@ internal fun ScreenOperationContract.prepare(
     if (errors.isNotEmpty()) return CommandPreparation.Invalid(errors)
 
     val arguments = applicableArguments.mapNotNull { argument ->
-        draft[ScreenFieldId(argument.name)]?.trim()?.takeIf(String::isNotEmpty)?.let { argument.name to it }
+        draft[ScreenFieldId(argument.name)]?.let(argument::normalizedValue)?.takeIf(String::isNotEmpty)
+            ?.let { argument.name to it }
     }.toMap()
     val deduplicationKey = buildList {
         add(operation)
@@ -161,6 +164,15 @@ internal fun ScreenOperationContract.prepare(
         ScreenCommand(operation, normalizedSubject, arguments, deduplicationKey).newInvocation(),
     )
 }
+
+/** Authored content is data: whitespace is significant, unlike identifiers and numeric controls. */
+private fun CommandArgument.normalizedValue(value: String): String =
+    if (name in AUTHORED_ARGUMENTS || name.matches(Regex("stage[1-5]Guidance"))) value else value.trim()
+
+private val AUTHORED_ARGUMENTS = setOf(
+    "name", "zoneName", "darkZoneName", "trayName", "substrate", "supplier", "cultivar", "seedLot",
+    "text", "reason", "note", "priorZoneName",
+)
 
 private fun ScreenOperationContract.validateAlternatives(
     draft: Map<ScreenFieldId, String>,
@@ -232,6 +244,7 @@ private fun ScreenFieldKind.invalidError(): TextKey = TextKey(
 )
 
 private fun ScreenFieldKind.accepts(value: String): Boolean = when (this) {
+    ScreenFieldKind.TEXT -> true
     ScreenFieldKind.POSITIVE_INTEGER -> value.toIntOrNull()?.let { it > 0 } == true
     ScreenFieldKind.POSITIVE_LONG -> value.toLongOrNull()?.let { it > 0L } == true
     ScreenFieldKind.NON_NEGATIVE_LONG -> value.toLongOrNull()?.let { it >= 0L } == true

@@ -54,6 +54,7 @@ object ProductionScreenFixtures {
         PHOTO, LONG_NAMES, BACKUP_CREATED, BACKUP_RESTORED, CSV_EXPORTED, BACKUP_WRITE_FAILED,
         OUTDATED_RECIPE, FIXED_READY, REPEATED_BATCH, NO_IMAGE_RECIPE, LONG_CULTURE_NAMES, NEEDS_RESOLUTION,
         FUTURE_ZONE_CONFLICT,
+        ORDINARY_SOAK_TASK,
     }
 
     fun selectedId(screen: ScreenId): String? = when (screen) {
@@ -116,6 +117,7 @@ object ProductionScreenFixtures {
     private fun scenarioSelection(scenario: Scenario, fallback: String?, screen: ScreenId): String? = when (scenario) {
         Scenario.DETAIL_PLANNED -> "planned-pea"
         Scenario.DETAIL_SOAKING -> "soaking-pea"
+        Scenario.ORDINARY_SOAK_TASK -> "soaking-pea"
         Scenario.DETAIL_READY -> "ready-broccoli"
         Scenario.DETAIL_HARVESTED -> "history-0"
         Scenario.DETAIL_FAILED -> "history-1"
@@ -161,7 +163,7 @@ object ProductionScreenFixtures {
             val state = when (index % 3) { 0 -> BatchState.HARVESTED; 1 -> BatchState.FAILED; else -> BatchState.ABANDONED }
             batch("history-$index", if (index % 2 == 0) "radish" else "pea", state, "2026-09-${20 + index}", null)
         }
-        val selectedBatches = scenarioBatches(scenario, batches)
+        val selectedBatches = scenarioBatches(scenario, batches).withOrdinarySoakTask(scenario)
         return Workspace(
             zones = listOf(zone, GrowZone(GrowZoneId("cupboard"), "Kitchen cupboard", GrowZoneType.DARK, CUPBOARD_CAPACITY)),
             trays = listOf(tray, TraySizePreset(TraySizePresetId("round"), "Round bowl", TrayShape.Circle(ROUND_DIAMETER_CM))),
@@ -180,6 +182,15 @@ object ProductionScreenFixtures {
             ),
         )
     }
+
+    private fun List<GrowBatch>.withOrdinarySoakTask(scenario: Scenario): List<GrowBatch> =
+        if (scenario != Scenario.ORDINARY_SOAK_TASK) this else map { batch ->
+            if (batch.id.value != "soaking-pea") batch else batch.copy(actions = batch.actions + ScheduledAction(
+                ScheduledActionId("soak:soaking-pea"), batch.id, null,
+                DueMoment.ElapsedTarget(Instant.parse("2026-10-10T13:00:00Z")),
+                kind = com.sedsoftware.sproutpace.domain.model.ScheduledActionKind.SOAK_TARGET,
+            ))
+        }
 
     private fun scenarioBatches(scenario: Scenario, batches: List<GrowBatch>): List<GrowBatch> =
         if (scenario in setOf(Scenario.DETAIL_SOWN, Scenario.DETAIL_BLACKOUT)) batches.map { batch ->

@@ -1,0 +1,12 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:data:testAndroidHostTest",
+    "--tests",
+    "*LocalDataAcceptanceTest*",
+    "--no-parallel",
+    "--max-workers=1"
+  ],
+  "timeoutSeconds": 1800
+}

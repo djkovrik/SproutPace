@@ -12,7 +12,7 @@ kotlin {
     android {
         namespace = "com.sedsoftware.sproutpace.data"
         compileSdk = 37
-        minSdk = 23
+        minSdk = 24
         withHostTest {}
         compilerOptions { jvmTarget = JvmTarget.JVM_17 }
     }

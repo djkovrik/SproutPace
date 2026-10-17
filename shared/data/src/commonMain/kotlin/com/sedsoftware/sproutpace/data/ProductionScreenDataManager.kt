@@ -43,6 +43,7 @@ import com.sedsoftware.sproutpace.domain.model.HarvestPlanId
 import com.sedsoftware.sproutpace.domain.model.HarvestPlanMode
 import com.sedsoftware.sproutpace.domain.model.Observation
 import com.sedsoftware.sproutpace.domain.model.ObservationId
+import com.sedsoftware.sproutpace.domain.model.PhotoId
 import com.sedsoftware.sproutpace.domain.model.Placement
 import com.sedsoftware.sproutpace.domain.model.Percentage
 import com.sedsoftware.sproutpace.domain.model.PositiveGrams
@@ -62,6 +63,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -87,6 +89,7 @@ class ProductionScreenDataManager(
     private val today: () -> LocalDate = { Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date },
     private val timeZone: () -> TimeZone = { TimeZone.currentSystemDefault() },
     private val draftIdentity: () -> String = { kotlin.uuid.Uuid.random().toString() },
+    private val timeUpdates: Flow<Long> = flowOf(0L),
 ) : ScreenDataManager {
     private val commandMutex = Mutex()
     private val completedCommands = mutableMapOf<String, CompletedCommand>()
@@ -110,7 +113,7 @@ class ProductionScreenDataManager(
 
     override fun watch(screen: ScreenId, stableId: String?): Flow<ScreenSnapshot> = flow {
         val identities = DraftIdentitySession(draftIdentity())
-        emitAll(combine(workspaceFlow(), settingsFlow()) { workspace, preferences ->
+        emitAll(combine(workspaceFlow(), settingsFlow(), timeUpdates) { workspace, preferences, _ ->
             render(screen, stableId, workspace, preferences, identities)
         })
     }
@@ -160,6 +163,13 @@ class ProductionScreenDataManager(
             } else batch.placement
             stageTransition(batch, command, targetPlacement).preview(batch, command)
         }.onFailure { if (it is CancellationException) throw it }
+
+    override suspend fun previewPhoto(value: String): Result<ScreenPhoto?> = runCatching {
+        if (value.isBlank() || value == REMOVE_PHOTO_VALUE) return@runCatching null
+        val pending = pendingPhotoToken(value)
+        val bytes = if (pending != null) pendingPhotos?.read(pending) else workspaceRepository?.readPhoto(PhotoId(value))
+        bytes?.takeIf { it.isNotEmpty() }?.let { ScreenPhoto(value, it, TextKey("observation_photo_content_description")) }
+    }.onFailure { if (it is CancellationException) throw it }
 
     private fun workspaceFlow(): Flow<Workspace> {
         val core = combine(
@@ -294,8 +304,10 @@ class ProductionScreenDataManager(
             val target = ScheduledAction(
                 actionId,
                 batch.id,
-                GrowStage.SOAKING,
+                null,
                 DueMoment.ElapsedTarget(occurredAt + soak.duration.maximum),
+                kind = com.sedsoftware.sproutpace.domain.model.ScheduledActionKind.SOAK_TARGET,
+                origin = com.sedsoftware.sproutpace.domain.model.ScheduledActionOrigin.SOAK_DURATION,
             )
             changed.copy(
                 batch = changed.batch.copy(actions = changed.batch.actions.filterNot { it.id == actionId } + target),
@@ -378,9 +390,11 @@ class ProductionScreenDataManager(
                 backupResultKey = "backup_csv_exported"
             }
             "erase-all", "delete-all-data" -> {
-                requiredBackupService().eraseAll()
                 lastBackupPreview = null
                 validatedBackupDocumentId = null
+                lastBackupDocumentId = null
+                requiredBackupService().eraseAll()
+                completedCommands.clear()
             }
             else -> error("Unsupported backup operation: ${command.operation}")
         }
@@ -400,7 +414,19 @@ class ProductionScreenDataManager(
             "circle" -> FIRST_RUN_ARGUMENTS + "diameterCm"
             else -> error("Unknown tray shape")
         }
-        require(command.arguments.keys == expectedArguments) { "Unexpected first-run setup arguments" }
+        val optionalArguments = setOf("darkZoneEnabled", "dailySummaryEnabled") +
+            (if (command.arguments["darkZoneEnabled"] == "true") setOf("darkZoneName", "darkZoneCapacity") else emptySet()) +
+            (if (command.arguments["dailySummaryEnabled"] == "true") setOf("summaryTime") else emptySet())
+        require(command.arguments.keys.containsAll(expectedArguments) &&
+            command.arguments.keys.all { it in expectedArguments || it in optionalArguments }) {
+            "Unexpected first-run setup arguments"
+        }
+        val darkZone = if (command.arguments["darkZoneEnabled"] == "true") GrowZone(
+            GrowZoneId(FIRST_RUN_DARK_ZONE_ID), command.required("darkZoneName"), GrowZoneType.DARK,
+            command.int("darkZoneCapacity"),
+        ) else null
+        val summaryTime = if (command.arguments["dailySummaryEnabled"] == "true")
+            kotlinx.datetime.LocalTime.parse(command.required("summaryTime")).let { SummaryLocalTime(it.hour, it.minute) } else null
         val shape = when (shapeName) {
             "rectangle" -> TrayShape.Rectangle(command.double("widthCm"), command.double("lengthCm"))
             "circle" -> TrayShape.Circle(command.double("diameterCm"))
@@ -440,7 +466,7 @@ class ProductionScreenDataManager(
         )
 
         val current = database.snapshot()
-        val zones = current.zones.filterNot { it.id == zone.id } + zone
+        val zones = current.zones.filterNot { it.id == zone.id || it.id == darkZone?.id } + listOfNotNull(zone, darkZone)
         val trays = current.trayPresets.filterNot { it.id == tray.id } + tray
         val plans = current.plans.filterNot { it.id == plan.id } + plan
         val manifest = SnapshotValidation.manifest(
@@ -460,6 +486,8 @@ class ProductionScreenDataManager(
                 plans = plans,
             ),
         )
+        command.arguments["dailySummaryEnabled"]?.let { settings.setNotificationsEnabled(it.toBooleanStrict()) }
+        summaryTime?.let(settings::setSummaryTime)
     }
 
     private suspend fun saveZone(command: ScreenCommand) {
@@ -517,7 +545,8 @@ class ProductionScreenDataManager(
         val workspace = loadWorkspace()
         val batch = workspace.batch(command.subject())
         val actionId = ScheduledActionId(command.arguments["actionId"] ?: "soak:${batch.id.value}")
-        val action = ScheduledAction(actionId, batch.id, GrowStage.SOAKING, DueMoment.ElapsedTarget(command.instant("dueAt")))
+        val action = ScheduledAction(actionId, batch.id, null, DueMoment.ElapsedTarget(command.instant("dueAt")),
+            kind = com.sedsoftware.sproutpace.domain.model.ScheduledActionKind.SOAK_TARGET)
         database.saveBatch(batch.copy(actions = (batch.actions.filterNot { it.id == actionId } + action)))
     }
 
@@ -587,7 +616,7 @@ class ProductionScreenDataManager(
             pendingToken != null -> {
                 val bytes = requireNotNull(pendingPhotos?.read(pendingToken)) { "Pending photo is unavailable" }
                 require(bytes.isNotEmpty()) { "Pending photo is empty" }
-                ObservationPhotoChange.Replace(managedPhotoId(observationId, bytes), bytes)
+                requiredWorkspaceRepository().prepareManagedPhotoReplacement(observationId, bytes)
             }
             else -> throw LocalDataException(LocalDataErrorKey.INVALID_COMMAND)
         }
@@ -619,6 +648,7 @@ class ProductionScreenDataManager(
 }
 
 private const val FIRST_RUN_ZONE_ID = "first-run-zone"
+private const val FIRST_RUN_DARK_ZONE_ID = "first-run-dark-zone"
 private const val FIRST_RUN_TRAY_ID = "first-run-tray"
 private const val FIRST_RUN_PLAN_ID = "first-run-plan"
 private val BATCH_LIFECYCLE_OPERATIONS = setOf(
@@ -685,7 +715,7 @@ internal fun ScreenCommand.subject(): String =
 internal fun ScreenCommand.required(name: String): String =
     requireNotNull(arguments[name]?.takeIf(String::isNotBlank)) { "$name is required" }
 
-internal fun ScreenCommand.optional(name: String): String? = arguments[name]?.trim()?.takeIf(String::isNotEmpty)
+internal fun ScreenCommand.optional(name: String): String? = arguments[name]?.takeIf(String::isNotEmpty)
 
 internal fun ScreenCommand.optionalPercentage(name: String): Percentage? = optional(name)?.let { raw ->
     Percentage(raw.toIntOrNull() ?: error("Invalid $name"))

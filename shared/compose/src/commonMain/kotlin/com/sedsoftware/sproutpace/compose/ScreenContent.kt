@@ -102,8 +102,15 @@ internal fun ScreenContent(
     Box(Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding)) {
         if (state.keepsContentOnFailure()) {
             Column(Modifier.fillMaxSize()) {
-                if (state.errorKey != null && state.screen in setOf(UiScreen.FIRST_RUN, UiScreen.BATCH_EDITOR, UiScreen.PLAN)) {
+                if (state.errorKey != null && (state.screen in setOf(UiScreen.FIRST_RUN, UiScreen.BATCH_EDITOR, UiScreen.PLAN) ||
+                        (state.screen in setOf(UiScreen.ZONES, UiScreen.TRAY_SIZES) && state.selectedItemId == null))) {
                     Text(localizedText(state.errorKey), color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(16.dp))
+                }
+                if (state.variant == UiVariant.ERROR) {
+                    TextButton(onClick = { onAction(UiAction.Retry) }, modifier = Modifier.padding(horizontal = 16.dp)
+                        .semantics { testTag = "action-retry" }) {
+                        Text(localizedText("action_retry"))
+                    }
                 }
                 Box(Modifier.weight(1f)) {
                     ModelDrivenScreen(state, layout, contextFieldsExpanded, onContextFieldsExpandedChange, onAction, advertisingRuntime)
@@ -227,7 +234,9 @@ internal fun FirstRunScreen(
     val focusRequester = remember { FocusRequester() }
     LaunchedEffect(step) { focusRequester.requestFocus() }
     val shape = state.fields.firstOrNull { it.id == "shape" }?.value
-    val visibleFields = state.fields.filter { field -> field.id in firstRunFieldIds(step, shape) }
+    val visibleFields = state.fields.filter { field -> field.id in firstRunFieldIds(step, shape) &&
+        (field.id !in setOf("darkZoneName", "darkZoneCapacity") || state.fields.any { it.id == "darkZoneEnabled" && it.value == "true" }) &&
+        (field.id != "summaryTime" || state.fields.any { it.id == "dailySummaryEnabled" && it.value == "true" }) }
 
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         Column(
@@ -367,10 +376,10 @@ internal fun firstRunFieldIds(step: FirstRunStep, shape: String?): Set<String> =
     FirstRunStep.PLAN -> firstRunPlanFieldIds
 }
 
-private val firstRunZoneFieldIds = setOf("zoneName", "type", "capacity")
+private val firstRunZoneFieldIds = setOf("zoneName", "type", "capacity", "darkZoneEnabled", "darkZoneName", "darkZoneCapacity")
 private val firstRunTrayFieldIds = setOf("trayName", "shape")
 private val firstRunTrayAllFieldIds = firstRunTrayFieldIds + setOf("widthCm", "lengthCm", "diameterCm")
-private val firstRunPlanFieldIds = setOf("cadenceDays", "cultureIds", "mode")
+private val firstRunPlanFieldIds = setOf("cadenceDays", "cultureIds", "mode", "dailySummaryEnabled", "summaryTime")
 
 @Composable
 private fun SettingsScreen(
@@ -684,7 +693,7 @@ internal fun batchEditorStepForField(fieldId: String): BatchEditorStep = when (f
 }
 
 internal fun batchEditorSubmitAction(state: SproutPaceUiState): UiScreenAction? {
-    val correcting = state.fields.firstOrNull { it.id == "anchorState" }?.value?.isNotBlank() == true
+    val correcting = state.selectedItemId != null && state.fields.firstOrNull { it.id == "id" }?.value == state.selectedItemId
     val actionId = if (correcting) "correct-batch" else "save-batch"
     return state.actions.firstOrNull { it.id == actionId }
 }
@@ -899,7 +908,12 @@ private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorDetails(
 ) {
     item { TimeZoneContext(scheduleTimeZone(state.fields)) }
     state.fields.filter { it.id in batchEditorCoreDetailFieldIds }.forEach { field ->
-        item(key = modelListKey(ModelListEntryKind.FIELD, field.id)) { FieldControl(field, onAction) }
+        item(key = modelListKey(ModelListEntryKind.FIELD, field.id)) {
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                if (field.id == "actualSeedMassGrams") SeedMassRecommendation(state)
+                FieldControl(field, onAction)
+            }
+        }
     }
     val advancedFields = state.fields.filter {
         it.id !in batchEditorBasicFieldIds && it.id !in batchEditorCoreDetailFieldIds && it.id !in batchEditorHiddenFieldIds
@@ -923,6 +937,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorDetails(
 }
 
 private fun androidx.compose.foundation.lazy.LazyListScope.batchEditorReview(state: SproutPaceUiState) {
+    item { SeedMassRecommendation(state) }
     state.items.firstOrNull { it.planEntry != null }?.let { suggestion -> item {
         ProjectionContent(suggestion)
     } }
@@ -1765,6 +1780,7 @@ private fun ModelSinglePane(
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
         screenHero(state)
+        privacyExplanation(state)
         trayCategoryTabs(state, onAction)
         statusItems(state)
         itemCollection(state, onAction, advertisingRuntime)
@@ -1853,6 +1869,7 @@ private fun ModelDetailPane(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         screenHero(state)
+        privacyExplanation(state)
         if (!state.hidesContextForEmptyState() && state.showsSupportingFacts()) {
             item { SectionHeading("section_details") }
             items(state.supportingFacts(), key = { fact -> modelListKey(ModelListEntryKind.FACT, fact.id) }) { fact ->
@@ -1862,6 +1879,20 @@ private fun ModelDetailPane(
         actionItems(state, onAction)
         if (!state.hidesContextForEmptyState()) {
             fieldItems(state, contextFieldsExpanded, onContextFieldsExpandedChange, onAction)
+        }
+    }
+}
+
+private fun androidx.compose.foundation.lazy.LazyListScope.privacyExplanation(state: SproutPaceUiState) {
+    if (state.screen != UiScreen.ADVERTISING_PRIVACY) return
+    item {
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text(localizedText(if (state.actions.any {
+                    it.id in setOf("accept-advertising-consent", "withdraw-advertising-consent")
+                }) "privacy_decision_body" else "privacy_stale_body"))
+            Text(localizedText("privacy_choice_consequences"))
+            Text(localizedText("privacy_context_title"), style = MaterialTheme.typography.titleMedium)
+            Text(localizedText("privacy_context_body"))
         }
     }
 }
@@ -2236,6 +2267,10 @@ private fun FactCard(fact: UiFact) {
 
 @Composable
 internal fun FieldControl(field: UiField, onAction: (UiAction) -> Unit) {
+    if (field.id == "summaryTime") {
+        SummaryTimeField(field, onAction)
+        return
+    }
     if (field.id == "timeZoneId") {
         TimeZoneContext(scheduleTimeZone(listOf(field)))
         return

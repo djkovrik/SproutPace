@@ -1,0 +1,19 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=2",
+    ":shared:component:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    "--tests",
+    "*PhotoPreparationWorkerTest",
+    "--tests",
+    "*PhotoMutationCancellationTest",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*ProductionReadRetryIntegrationTest"
+  ],
+  "timeoutSeconds": 1800
+}

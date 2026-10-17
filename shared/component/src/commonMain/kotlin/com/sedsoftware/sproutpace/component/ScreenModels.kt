@@ -136,6 +136,7 @@ data class ScreenCommand(
 enum class DestructiveOperation {
     SAVE_BATCH_CORRECTION,
     UNDO_LAST_TRANSITION,
+    SKIP_ACTION,
     DELETE_ZONE,
     DELETE_TRAY_PRESET,
     DELETE_RECIPE,

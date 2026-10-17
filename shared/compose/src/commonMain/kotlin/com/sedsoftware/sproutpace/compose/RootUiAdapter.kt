@@ -74,9 +74,9 @@ internal fun RootApp(
             active = stack.active.configuration.screen,
             backStack = stack.backStack.map { it.configuration.screen },
         ),
-    ).withSettingsContext(settingsModel)
+    ).withSettingsContext(settingsModel).withLocalizedCatalogSearch()
     var adUnitId by remember(activeComponent) { mutableStateOf<String?>(null) }
-    val advertisingVisit = remember(activeComponent, networkAvailable) { AdvertisingVisitGate() }
+    val advertisingVisit = remember(activeComponent) { AdvertisingVisitGate() }
     val placement = baseUiState.adPlacementRequestOrNull(networkAvailable)
     LaunchedEffect(activeComponent, placement) {
         if (placement == null || advertisingRuntime == null) {
@@ -84,9 +84,10 @@ internal fun RootApp(
             return@LaunchedEffect
         }
         val request = advertisingVisit.claim(placement) ?: return@LaunchedEffect
-        adUnitId = prepareAdvertisingVisit(advertisingRuntime, request) {
-            root.open(ScreenId.ADVERTISING_PRIVACY, null)
+        val preparedAdUnit = prepareAdvertisingVisit(advertisingRuntime, request) {
+            if (root.stack.value.active.instance === activeComponent) root.open(ScreenId.ADVERTISING_PRIVACY, null)
         }
+        if (root.stack.value.active.instance === activeComponent) adUnitId = preparedAdUnit
     }
     val uiState = baseUiState
         .withAdvertisingPrivacy(privacyState)

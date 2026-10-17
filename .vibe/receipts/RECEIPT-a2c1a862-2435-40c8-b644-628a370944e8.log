@@ -1,0 +1,8 @@
+Get-FileHash : Имя "Get-FileHash" не распознано как имя командлета, функции, файла сценария или выполняемой программы. 
+Проверьте правильность написания имени, а также наличие и правильность пути, после чего повторите попытку.
+D:\Sources\Android\SproutPace\.vibe\scripts\verify-final-design-review.ps1:22 знак:14
++     $hash = (Get-FileHash -LiteralPath $golden.FullName -Algorithm SH ...
++              ~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-FileHash:String) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

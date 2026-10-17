@@ -76,16 +76,15 @@ internal fun BatchDetailScreen(state: SproutPaceUiState, onAction: (UiAction) ->
                 BatchOperationEditor(state, id, onAction, onCancel = { operation = null; onAction(UiAction.CancelDraft) })
             } }
             state.errorKey?.let { key -> item { Text(localizedText(key), color = MaterialTheme.colorScheme.error) } }
-            if (state.conflictKeys.isNotEmpty()) item {
-                Text(localizedText("batch_detail_unassigned"), color = MaterialTheme.colorScheme.error)
-            }
-            batch?.occupancy?.let { item { OccupancyContent(it) } }
+            if (state.conflictKeys.isNotEmpty() || batch?.occupancy != null) item { BatchCapacitySection(batch, state, onAction) }
             item { BatchSection("batch_timeline") }
             items(state.items.filter { it.id.startsWith("event:") }, key = { "timeline:${it.id}" }) {
                 BatchHistoryCard(it)
             }
             if (state.items.any { it.task != null }) item { BatchSection("batch_detail_scheduled_tasks") }
-            items(state.items.filter { it.task != null }, key = { "task:${it.id}" }) { BatchHistoryCard(it) }
+            items(state.items.filter { it.task != null }, key = { "task:${it.id}" }) { task ->
+                BatchScheduledTask(task, state, onAction)
+            }
             item { BatchSection("backup_count_observations") }
             state.actions.firstOrNull { it.id == "add-observation" }?.let { action -> item {
                 TextButton(onClick = { choose(action) }, enabled = !state.busy) {
@@ -105,6 +104,37 @@ internal fun BatchDetailScreen(state: SproutPaceUiState, onAction: (UiAction) ->
                     Text(localizedOrAuthored(fact.valueKey, fact.authoredValue)) }
             }
             items(state.items.filter { it.snapshotStage != null }, key = { it.id }) { BatchHistoryCard(it) }
+        }
+    }
+}
+
+@Composable
+private fun BatchCapacitySection(batch: UiItem?, state: SproutPaceUiState, onAction: (UiAction) -> Unit) {
+    if (state.conflictKeys.isNotEmpty()) {
+        val key = when {
+            batch?.occupancy?.overflow?.let { it > 0 } == true -> "capacity_conflict_title"
+            batch?.supportingKey == "state_temporarily_unassigned_title" -> "batch_detail_unassigned"
+            else -> state.conflictKeys.first()
+        }
+        Text(localizedText(key), color = MaterialTheme.colorScheme.error)
+    }
+    batch?.occupancy?.let { zone ->
+        OccupancyContent(zone)
+        if (zone.overflow > 0 && state.actions.isNotEmpty()) TextButton(
+            onClick = { onAction(UiAction.Submit("edit-zone", zone.zoneId)) }, enabled = !state.busy,
+            modifier = Modifier.heightIn(min = 48.dp)) { Text(localizedText("change_capacity")) }
+    }
+}
+
+@Composable
+private fun BatchScheduledTask(task: UiItem, state: SproutPaceUiState, onAction: (UiAction) -> Unit) {
+    BatchHistoryCard(task)
+    if (state.actions.isEmpty()) return
+    task.commands.filter { it.operation in setOf("complete-action", "skip-action") }.forEach { command ->
+        TextButton(onClick = { onAction(UiAction.SubmitItem(command.operation, command.subjectId)) },
+            enabled = !state.busy, modifier = Modifier.heightIn(min = 48.dp)
+                .semantics { testTag = "item-${task.id}-${command.operation}" }) {
+            LabeledActionContent(command.operation, "action_${command.operation.replace('-', '_')}")
         }
     }
 }
@@ -190,6 +220,9 @@ internal fun BatchHistoryCard(item: UiItem) {
                     Text(localizedText(if (history.skipped) "batch_detail_reached_after_skip" else "stage_actual"))
                 }
                 history.reason?.let { Text(it) }
+                history.actualHarvestMassGrams?.let {
+                    Text(stringResource(strictTextResource("batch_actual_harvest_mass"), localizedDecimal(it.toString())))
+                }
                 history.priorOccurredAt.forEach {
                     Text(stringResource(strictTextResource("batch_detail_prior_date"), localizedInstant(it)))
                 }

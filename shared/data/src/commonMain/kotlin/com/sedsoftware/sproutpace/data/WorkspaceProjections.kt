@@ -20,6 +20,7 @@ internal fun GrowBatch.identity() = BatchIdentity(
     zoneName = (placement as? Placement.Assigned)?.zoneNameSnapshot,
     state = state,
     closedAt = outcome?.occurredAt,
+    actualHarvestMassGrams = (outcome as? com.sedsoftware.sproutpace.domain.model.BatchOutcome.Harvested)?.actualMass?.value,
 )
 
 internal fun GrowZone.occupancy(batches: List<GrowBatch>) = ZoneOccupancy(

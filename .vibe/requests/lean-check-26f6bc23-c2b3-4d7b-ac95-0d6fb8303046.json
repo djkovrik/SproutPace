@@ -1,0 +1,18 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--continue",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    "-I",
+    "build/reports/requirements-fixes-20261017/record-affected-previews.init.gradle",
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:recordPaparazzi",
+    ":androidApp:assembleDebug"
+  ],
+  "timeoutSeconds": 1800
+}

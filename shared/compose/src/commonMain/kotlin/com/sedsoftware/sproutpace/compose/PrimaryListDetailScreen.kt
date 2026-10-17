@@ -64,7 +64,7 @@ internal fun PrimaryListDetailScreen(
                 Text(localizedText(copy.second))
             }
             itemsIndexed(state.items, key = { _, item -> item.id }) { index, item ->
-                SelectableRecordCard(item, item.id == selectedItem?.id) { onAction(UiAction.Select(item.id)) }
+                SelectableRecordCard(item, item.id == selectedItem?.id, onAction) { onAction(UiAction.Select(item.id)) }
                 val insertion = state.inlineAdInsertionIndexOrNull()
                 if (state.showInlineAd && insertion != null && index == insertion - 1) {
                     InlineAdSlot(state.inlineAdUnitId, advertisingRuntime)
@@ -85,6 +85,12 @@ internal fun PrimaryListDetailScreen(
                     Text(localizedText("action_open_details"))
                 }
                 state.detail?.takeIf { it.selectedItemId == selectedItem.id }?.let { detail ->
+                    if (detail.variant == UiVariant.ERROR) {
+                        TextButton(onClick = { onAction(UiAction.Retry) }, modifier = Modifier.padding(horizontal = 16.dp)
+                            .semantics { testTag = "action-retry-detail" }) {
+                            Text(localizedText("action_retry"))
+                        }
+                    }
                     if (state.screen == UiScreen.TRAYS) {
                         BatchDetailScreen(detail.copy(actions = emptyList()), onAction = { })
                     } else {
@@ -97,7 +103,7 @@ internal fun PrimaryListDetailScreen(
 }
 
 @Composable
-private fun SelectableRecordCard(item: UiItem, isSelected: Boolean, onClick: () -> Unit) {
+private fun SelectableRecordCard(item: UiItem, isSelected: Boolean, onAction: (UiAction) -> Unit, onClick: () -> Unit) {
     Card(onClick = onClick,
         colors = CardDefaults.cardColors(containerColor = if (isSelected) MaterialTheme.colorScheme.secondaryContainer
             else MaterialTheme.colorScheme.surfaceContainer),
@@ -107,6 +113,14 @@ private fun SelectableRecordCard(item: UiItem, isSelected: Boolean, onClick: () 
                 modifier = Modifier.semantics { heading() })
             item.stateKey?.let { Text(localizedText(it), style = MaterialTheme.typography.bodyMedium) }
             if (item.batch != null) ProjectionContent(item)
+            if (item.occupancy?.overflow?.let { it > 0 } == true) {
+                Text(localizedText("capacity_conflict_title"), color = MaterialTheme.colorScheme.error)
+                item.commands.forEach { command ->
+                    TextButton(onClick = { onAction(UiAction.SubmitItem(command.operation, command.subjectId)) }) {
+                        Text(localizedText("change_capacity"))
+                    }
+                }
+            }
             item.recipe?.scientificNameKey?.let { Text(localizedText(it.value), style = MaterialTheme.typography.bodySmall) }
         }
     }

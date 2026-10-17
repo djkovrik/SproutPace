@@ -54,7 +54,8 @@ class ScreenActionPresentationTest {
 
     @Test
     fun `first run exposes only the fields belonging to the current step`() {
-        assertEquals(setOf("zoneName", "type", "capacity"), firstRunFieldIds(FirstRunStep.ZONE, null))
+        assertEquals(setOf("zoneName", "type", "capacity", "darkZoneEnabled", "darkZoneName", "darkZoneCapacity"),
+            firstRunFieldIds(FirstRunStep.ZONE, null))
         assertEquals(
             setOf("trayName", "shape", "widthCm", "lengthCm"),
             firstRunFieldIds(FirstRunStep.TRAY, "rectangle"),
@@ -63,7 +64,8 @@ class ScreenActionPresentationTest {
             setOf("trayName", "shape", "diameterCm"),
             firstRunFieldIds(FirstRunStep.TRAY, "circle"),
         )
-        assertEquals(setOf("cadenceDays", "cultureIds", "mode"), firstRunFieldIds(FirstRunStep.PLAN, null))
+        assertEquals(setOf("cadenceDays", "cultureIds", "mode", "dailySummaryEnabled", "summaryTime"),
+            firstRunFieldIds(FirstRunStep.PLAN, null))
     }
 
     private fun item(id: String, actionId: String?) = UiItem(

@@ -1,0 +1,28 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--continue",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    "detekt",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*DraftGuidanceAndPhotoProductionTest",
+    "--tests",
+    "*LocaleResourceResolutionTest",
+    "--tests",
+    "*ProductionCatalogCrudActionsTest",
+    "--tests",
+    "*NativePublicFileOperationsTest",
+    "--tests",
+    "*TimeRefreshProductionTest",
+    "--tests",
+    "*ProductionPlanningActionsTest",
+    "--tests",
+    "*AdvertisingRootProductionTest"
+  ],
+  "timeoutSeconds": 1800
+}

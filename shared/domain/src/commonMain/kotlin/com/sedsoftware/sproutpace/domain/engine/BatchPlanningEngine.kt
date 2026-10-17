@@ -8,6 +8,7 @@ import com.sedsoftware.sproutpace.domain.model.GrowStage
 import com.sedsoftware.sproutpace.domain.model.RecipeStage
 import com.sedsoftware.sproutpace.domain.model.ScheduledAction
 import com.sedsoftware.sproutpace.domain.model.ScheduledActionId
+import com.sedsoftware.sproutpace.domain.model.ScheduledActionStatus
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -71,6 +72,7 @@ object BatchPlanningEngine {
         fixedStageDates: Map<GrowStage, LocalDate>,
         timeZoneId: String,
     ): List<ScheduledAction> = actions.map { action ->
+        if (action.status != ScheduledActionStatus.PENDING) return@map action
         val stage = action.stage ?: return@map action
         val fixedDate = fixedStageDates[stage]
         when {

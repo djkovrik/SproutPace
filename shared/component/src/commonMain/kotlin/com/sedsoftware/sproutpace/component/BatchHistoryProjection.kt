@@ -8,4 +8,5 @@ data class BatchHistoryProjection(
     val skipped: Boolean = false,
     val reason: String? = null,
     val priorOccurredAt: List<Instant> = emptyList(),
+    val actualHarvestMassGrams: Double? = null,
 )

@@ -24,10 +24,13 @@ internal fun productionActions(
         )
         actions.filter { it.id.value in allowed }
     }
-    ScreenId.BATCH_EDITOR -> (actions + listOf(
-        ScreenActionDescriptor(ScreenActionId("open-zones"), TextKey("action_add_zone")),
-        ScreenActionDescriptor(ScreenActionId("open-tray-sizes"), TextKey("action_add_preset")),
-    )).distinctBy { it.id }
+    ScreenId.BATCH_EDITOR -> {
+        val commitAction = if (workspace.batches.any { it.id.value == stableId }) "correct-batch" else "save-batch"
+        (actions.filter { it.id.value == commitAction } + listOf(
+            ScreenActionDescriptor(ScreenActionId("open-zones"), TextKey("action_add_zone")),
+            ScreenActionDescriptor(ScreenActionId("open-tray-sizes"), TextKey("action_add_preset")),
+        )).distinctBy { it.id }
+    }
     ScreenId.RECIPE -> {
         val allowed = when {
             SproutPaceCatalog.cultures.any { it.id.value == stableId } -> setOf("use-recipe", "duplicate-recipe")

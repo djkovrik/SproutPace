@@ -1,0 +1,6 @@
+[('androidApp\\build.gradle.kts', 24), ('shared\\component\\build.gradle.kts', 23), ('shared\\compose\\build.gradle.kts', 23), ('shared\\data\\build.gradle.kts', 23), ('shared\\domain\\build.gradle.kts', 23), ('shared\\monetization\\build.gradle.kts', 24), ('shared\\platform\\build.gradle.kts', 23), ('shared\\root\\build.gradle.kts', 23)]
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pathlib,re; paths=[pathlib.Path("androidApp/build.gradle.kts"),*pathlib.Path("shared").glob("*/build.gradle.kts")]; values=[(str(p),int(m.group(1))) for p in paths for m in re.finditer(r"minSdk\s*=\s*(\d+)",p.read_text())]; print(values); assert values and all(v>=24 for _,v in values), "Android targets below required minSdk 24"
+                                                                                                                                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Android targets below required minSdk 24

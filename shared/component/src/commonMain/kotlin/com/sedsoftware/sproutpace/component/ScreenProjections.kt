@@ -15,6 +15,7 @@ data class BatchIdentity(
     val zoneName: String?,
     val state: BatchState,
     val closedAt: Instant? = null,
+    val actualHarvestMassGrams: Double? = null,
 )
 
 data class TaskProjection(

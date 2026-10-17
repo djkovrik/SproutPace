@@ -5,6 +5,9 @@ import com.sedsoftware.sproutpace.component.DestructiveOperation
 internal data class ConfirmationCopy(val title: String, val body: String, val confirm: String)
 
 internal fun confirmationCopy(operation: DestructiveOperation): ConfirmationCopy = when (operation) {
+    DestructiveOperation.SKIP_ACTION -> ConfirmationCopy(
+        "confirmation_skip_task_title", "confirmation_skip_task_body", "action_skip_action",
+    )
     DestructiveOperation.DISCARD_CHANGES -> ConfirmationCopy(
         "confirmation_discard_title", "confirmation_discard_body", "action_discard_changes",
     )

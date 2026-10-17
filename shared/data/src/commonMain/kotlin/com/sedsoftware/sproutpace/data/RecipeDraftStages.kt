@@ -1,6 +1,7 @@
 package com.sedsoftware.sproutpace.data
 
 import com.sedsoftware.sproutpace.component.ScreenCommand
+import com.sedsoftware.sproutpace.domain.engine.RecipeStageConfiguration
 import com.sedsoftware.sproutpace.domain.model.BuiltInCulture
 import com.sedsoftware.sproutpace.domain.model.DurationRange
 import com.sedsoftware.sproutpace.domain.model.GrowStage
@@ -19,15 +20,13 @@ internal fun ScreenCommand.recipeDraftStages(existing: UserGrowRecipe?, culture:
             ?: error("stage${slot}MaximumHours is required")
         require(minimum >= 0L && maximum >= minimum) { "Invalid duration for stage $slot" }
         val previous = existing?.stages?.firstOrNull { it.stage == stage }
-        val authored = optional("stage${slot}Guidance") ?: previous?.userGuidance
+        val authored = arguments["stage${slot}Guidance"]?.takeIf { it.isNotBlank() } ?: previous?.userGuidance
         val inheritedKey = if (authored == null) {
             previous?.guidanceKey ?: culture.stages.firstOrNull { it.stage == stage }?.instructionKey
         } else null
         RecipeStage(stage, DurationRange(minimum.hours, maximum.hours), inheritedKey, authored)
     }
-    require(stages.isNotEmpty()) { "At least one authored stage is required" }
-    require(stages.map(RecipeStage::stage).distinct().size == stages.size) { "Recipe stages must be unique" }
-    require(stages.any { it.stage == GrowStage.SOWN }) { "A recipe requires a sown stage" }
+    if (!RecipeStageConfiguration.isValid(stages)) throw LocalDataException(LocalDataErrorKey.INVALID_RECIPE_STAGES)
     return stages
 }
 

@@ -1,5 +1,7 @@
 package com.sedsoftware.sproutpace.compose
 
+import com.sedsoftware.sproutpace.component.integration.withDraftSeedRecommendation
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.sedsoftware.sproutpace.component.ScreenComponent
@@ -112,7 +114,7 @@ internal fun typedPreviewState(
         conflictResolutionKeys = snapshot.conflictResolutionKeys,
         offline = snapshot.offline,
         fields = fields,
-        facts = snapshot.facts,
+        facts = snapshot.facts.withDraftSeedRecommendation(screenId, fields, snapshot.actions),
         actions = if (screen == UiScreen.NOTIFICATIONS) snapshot.actions.filter {
             it.id.value in notificationPermissionActionIds(
                 fields.any { field -> field.id.value in setOf("dailySummaryEnabled", "soakRemindersEnabled") && field.value == "true" },

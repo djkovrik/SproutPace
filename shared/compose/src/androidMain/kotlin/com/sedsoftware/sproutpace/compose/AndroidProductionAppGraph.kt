@@ -20,12 +20,17 @@ import com.sedsoftware.sproutpace.monetization.AdvertisingRuntime
 import com.sedsoftware.sproutpace.monetization.AndroidAdvertisingRuntime
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.io.IOException
 
 /** Typed Android application entry point. Construct once from Application.onCreate. */
@@ -112,29 +117,37 @@ internal class AndroidArchiveDocumentPort(
     private val writeDocument: suspend (Uri, ByteArray) -> Unit,
     private val readImportedFile: suspend (String) -> ByteArray? = { null },
     private val isImportedFile: (String) -> Boolean = { false },
+    private val clearImports: suspend () -> Unit = {},
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ArchiveDocumentPort {
     constructor(context: Context) : this(
         readDocument = { uri ->
-            withContext(Dispatchers.IO) {
-                context.applicationContext.contentResolver.openInputStream(uri)?.use { it.readBytes() }
-            }
+            context.applicationContext.contentResolver.openInputStream(uri)?.use { it.readArchiveBytes() }
         },
         writeDocument = { uri, bytes ->
-            withContext(Dispatchers.IO) {
-                val output = context.applicationContext.contentResolver.openOutputStream(uri, "wt")
-                    ?: throw IOException("The document provider did not return an output stream")
-                output.use { it.write(bytes) }
+            val output = context.applicationContext.contentResolver.openOutputStream(uri, "wt")
+                ?: throw IOException("The document provider did not return an output stream")
+            output.use { stream ->
+                var offset = 0
+                while (offset < bytes.size) {
+                    currentCoroutineContext().ensureActive()
+                    val length = minOf(DEFAULT_BUFFER_SIZE, bytes.size - offset)
+                    stream.write(bytes, offset, length)
+                    offset += length
+                }
             }
         },
         readImportedFile = { path ->
-            withContext(Dispatchers.IO) { File(path).takeIf { it.isFile }?.readBytes() }
+            File(path).takeIf { it.isFile }?.inputStream()?.use { it.readArchiveBytes() }
         },
         isImportedFile = { path -> isCanonicalImportedFile(context.applicationContext, path) },
+        clearImports = { clearAndroidImportedArchives(File(context.applicationContext.filesDir, "imports")) },
     )
 
-    override suspend fun read(documentId: String): ByteArray? {
+    override suspend fun read(documentId: String): ByteArray? = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
         val uri = Uri.parse(documentId)
-        return when {
+        val bytes = when {
             uri.scheme == "content" -> readDocument(uri)
             uri.scheme == null -> {
                 require(isImportedFile(documentId)) { "Android archive file must be app-owned" }
@@ -142,13 +155,51 @@ internal class AndroidArchiveDocumentPort(
             }
             else -> throw IllegalArgumentException("Android archive documents must use content URIs or app-owned paths")
         }
+        currentCoroutineContext().ensureActive()
+        bytes
     }
 
-    override suspend fun write(documentId: String, bytes: ByteArray) =
+    override suspend fun write(documentId: String, bytes: ByteArray) = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
         writeDocument(documentId.contentUri(), bytes)
+        currentCoroutineContext().ensureActive()
+    }
+
+    override suspend fun clearImportedArchives() = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
+        clearImports()
+    }
 
     private fun String.contentUri(): Uri = Uri.parse(this).also { uri ->
         require(uri.scheme == "content") { "Android archive documents must use content URIs" }
+    }
+}
+
+private suspend fun InputStream.readArchiveBytes(): ByteArray {
+    val result = ByteArrayOutputStream()
+    val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+    while (true) {
+        currentCoroutineContext().ensureActive()
+        val count = read(buffer)
+        if (count < 0) break
+        result.write(buffer, 0, count)
+    }
+    return result.toByteArray()
+}
+
+internal fun clearAndroidImportedArchives(imports: File) {
+    // A symlink must never turn the app-owned cleanup root into an external document directory.
+    val canonicalRoot = imports.canonicalFile
+    require(canonicalRoot.parentFile == imports.parentFile.canonicalFile) {
+        "Archive import directory must be app-owned"
+    }
+    if (!canonicalRoot.exists()) return
+    val files = checkNotNull(canonicalRoot.listFiles()) { "Unable to inspect imported archives" }
+    files.forEach { file ->
+        require(file.canonicalFile.parentFile == canonicalRoot && file.isFile) {
+            "Imported archive must remain app-owned"
+        }
+        check(file.delete()) { "Unable to clear imported archive" }
     }
 }
 

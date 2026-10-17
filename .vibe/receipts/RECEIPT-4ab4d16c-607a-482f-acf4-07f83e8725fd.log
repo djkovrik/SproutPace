@@ -1,0 +1,257 @@
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:compose:convertXmlValueResourcesForCommonMain
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain
+> Task :shared:compose:generateResourceAccessorsForCommonMain
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :shared:compose:packageAndroidMainResources UP-TO-DATE
+> Task :shared:compose:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:compose:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:compose:generateComposeResClass UP-TO-DATE
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:monetization:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:monetization:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:monetization:compileAndroidMain UP-TO-DATE
+> Task :shared:monetization:androidPreBuild UP-TO-DATE
+> Task :shared:monetization:preAndroidMainBuild UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:platform:compileAndroidMain UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:root:compileAndroidMain UP-TO-DATE
+> Task :shared:root:androidPreBuild UP-TO-DATE
+> Task :shared:root:preAndroidMainBuild UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:compose:kspAndroidMain
+
+> Task :shared:compose:compileAndroidMain
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/AndroidProductionAppGraph.kt:193:41 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.android.kt:19:29 'val monthNumber: Int' is deprecated. Use the 'month' property instead.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.android.kt:19:51 'val dayOfMonth: Int' is deprecated. Use the 'day' property instead.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/BackupRestoreScreen.kt:114:31 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:138:13 'lateinit' is unnecessary: definitely initialized in constructors.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:158:34 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:159:36 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:366:42 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:385:42 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:411:41 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RecipeScreen.kt:74:76 Unnecessary safe call on a non-null receiver of type 'UiItem'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RecipeScreen.kt:81:110 Unnecessary safe call on a non-null receiver of type 'UiItem'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RecipeScreen.kt:82:79 Unnecessary safe call on a non-null receiver of type 'UiItem'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.kt:27:38 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.kt:36:5 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFormatting.kt:43:40 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:compose:bundleAndroidMainClassesToCompileJar
+> Task :shared:compose:generateComposablePreviewPaparazziTests UP-TO-DATE
+> Task :shared:compose:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :shared:component:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:compose:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:data:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:domain:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:monetization:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:platform:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:root:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:checkAndroidHostTestAarMetadata UP-TO-DATE
+> Task :shared:compose:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:compose:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:mapAndroidHostTestSourceSetPaths UP-TO-DATE
+> Task :shared:component:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestResources UP-TO-DATE
+> Task :shared:data:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:domain:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:monetization:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:mergeAndroidHostTestResources UP-TO-DATE
+> Task :shared:component:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:processAndroidMainManifest UP-TO-DATE
+> Task :shared:data:processAndroidMainManifest UP-TO-DATE
+> Task :shared:domain:processAndroidMainManifest UP-TO-DATE
+> Task :shared:monetization:processAndroidMainManifest UP-TO-DATE
+> Task :shared:platform:processAndroidMainManifest UP-TO-DATE
+> Task :shared:root:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestManifest UP-TO-DATE
+> Task :shared:platform:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:platform:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestResources UP-TO-DATE
+> Task :shared:compose:kspAndroidHostTest
+> Task :shared:compose:copyRoomSchemas NO-SOURCE
+> Task :shared:compose:bundleAndroidMainClassesToRuntimeJar
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:platform:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:generateAndroidHostTestAssets UP-TO-DATE
+> Task :shared:compose:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:mergeAndroidMainAssets
+> Task :shared:platform:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:platform:mergeAndroidMainAssets UP-TO-DATE
+> Task :shared:compose:mergeAndroidHostTestAssets
+> Task :shared:compose:packageAndroidHostTestForUnitTest
+> Task :shared:compose:generateAndroidHostTestConfig
+> Task :shared:compose:preparePaparazziAndroidMainResources UP-TO-DATE
+> Task :shared:compose:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:compose:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:compose:androidJar UP-TO-DATE
+
+> Task :shared:compose:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AccessibilityContractTest.kt:83:9 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AdvertisingRootProductionTest.kt:54:42 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AdvertisingRootProductionTest.kt:460:13 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/BackupProductionProjectionTest.kt:93:44 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/BackupProductionProjectionTest.kt:95:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/DraftGuidanceAndPhotoProductionTest.kt:73:21 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:29:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:35:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:39:30 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:51:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:76:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:91:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:102:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:125:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:149:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/NativePublicFileOperationsTest.kt:153:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionIntegrationContractTest.kt:35:39 Expression is unused.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:51:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:58:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:66:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:71:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:82:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:92:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:96:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:100:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:126:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionLifecycleFlowTest.kt:150:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionPlanningActionsTest.kt:54:30 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionPlanningActionsTest.kt:262:27 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionPlanningActionsTest.kt:284:23 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionPlanningActionsTest.kt:309:23 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:44:41 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:72:54 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:223:67 Unnecessary safe call on a non-null receiver of type 'BatchIdentity'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:238:45 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionUxRegressionTest.kt:359:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PublicProductionFixture.kt:31:20 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/PublicProductionFixture.kt:31:32 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/RootPreferenceProductionTest.kt:44:77 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/RootPreferenceProductionTest.kt:50:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/RootPreferenceProductionTest.kt:57:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/TimeRefreshProductionTest.kt:149:25 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/TimeRefreshProductionTest.kt:212:29 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/TimeRefreshProductionTest.kt:237:45 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/TimeRefreshProductionTest.kt:250:33 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:129:13 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:144:13 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:172:50 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:174:23 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:183:13 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:201:45 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:211:27 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:222:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:240:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:244:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:248:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:252:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:288:13 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:309:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiCompletenessProductionTest.kt:343:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt:117:9 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'File?'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraphContractTest.kt:152:47 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionPreviewProjectionTest.kt:140:39 Unnecessary safe call on a non-null receiver of type 'ZoneOccupancy'.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:77:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:94:22 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:100:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:114:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:130:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:143:22 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:149:22 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:155:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:161:22 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:176:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:177:19 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:280:107 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/ReminderProductionIntegrationTest.kt:281:110 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/TodayLayoutTest.kt:25:70 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:compose:transformAndroidHostTestClassesWithAsm
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:monetization:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:platform:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:root:processAndroidMainJavaRes UP-TO-DATE
+
+> Task :shared:compose:testAndroidHostTest
+
+AdvertisingRootProductionTest > realConsentAcceptWithdrawalAndChangedPolicyGateTheOwnedBanner FAILED
+    java.lang.AssertionError at AdvertisingRootProductionTest.kt:464
+
+
+> Task :shared:compose:testAndroidHostTest3 tests completed, 1 failed
+ FAILED
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':shared:compose:testAndroidHostTest'.
+> There were failing tests. See the report at: file:///D:/Sources/Android/SproutPace/shared/compose/build/reports/tests/testAndroidHostTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 47s
+94 actionable tasks: 24 executed, 70 up-to-date

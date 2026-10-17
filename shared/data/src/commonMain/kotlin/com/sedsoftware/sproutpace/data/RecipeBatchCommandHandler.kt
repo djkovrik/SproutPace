@@ -7,6 +7,7 @@ import com.sedsoftware.sproutpace.domain.engine.ActionScheduleCorrection
 import com.sedsoftware.sproutpace.domain.engine.BatchLifecycleEngine
 import com.sedsoftware.sproutpace.domain.engine.BatchPlanningEngine
 import com.sedsoftware.sproutpace.domain.engine.MeasurementEngine
+import com.sedsoftware.sproutpace.domain.engine.RecipeStageConfiguration
 import com.sedsoftware.sproutpace.domain.model.BatchId
 import com.sedsoftware.sproutpace.domain.model.BatchState
 import com.sedsoftware.sproutpace.domain.model.CultureId
@@ -18,6 +19,7 @@ import com.sedsoftware.sproutpace.domain.model.PositiveGrams
 import com.sedsoftware.sproutpace.domain.model.RecipeId
 import com.sedsoftware.sproutpace.domain.model.RecipeSnapshot
 import com.sedsoftware.sproutpace.domain.model.RecipeStage
+import com.sedsoftware.sproutpace.domain.model.ScheduledActionStatus
 import com.sedsoftware.sproutpace.domain.model.TraySizePreset
 import com.sedsoftware.sproutpace.domain.model.TraySnapshot
 import com.sedsoftware.sproutpace.domain.model.UserGrowRecipe
@@ -41,6 +43,7 @@ internal class RecipeBatchCommandHandler(
         } else {
             existing?.stages ?: error("Recipe stage configuration is required")
         }
+        validateRecipeStages(stages)
         database.saveRecipe(UserGrowRecipe(
             id = RecipeId(command.subject()),
             name = command.required("name"),
@@ -76,6 +79,7 @@ internal class RecipeBatchCommandHandler(
                 substrate = command.required("substrate"),
             )
         }
+        validateRecipeStages(duplicate.stages)
         database.saveRecipe(duplicate)
     }
 
@@ -83,6 +87,7 @@ internal class RecipeBatchCommandHandler(
         val workspace = loadWorkspace()
         val recipeId = command.arguments["recipeId"]
         val recipeSnapshot = recipeSnapshot(workspace, recipeId, command.arguments["cultureId"])
+        validateRecipeStages(recipeSnapshot.stages)
         val tray = traySnapshot(workspace, command.required("trayId"))
         val sourceRecipe = workspace.recipes.firstOrNull { it.id.value == recipeId }
         val recommended = MeasurementEngine.recommendedSeedMass(tray.shape, recipeSnapshot.density)
@@ -123,8 +128,10 @@ internal class RecipeBatchCommandHandler(
         val fixedDates = correctedFixedDates(command, original)
         val fields = correctedFields(command, original, workspace, tray, plannedSowDate)
         val events = BatchPlanningEngine.correctActualEventDates(fields, command.correctedActualDates())
-        val scheduled = events.withCorrectedSchedule(plannedSowDate, fixedDates, timeZoneId)
-        val corrected = rebuildDependentFutureActions(command, scheduled)
+        val scheduleChanged = plannedSowDate != original.plannedSowDate || fixedDates != original.fixedDates() ||
+            timeZoneId != (original.timeZoneId() ?: DEFAULT_TIME_ZONE)
+        val scheduled = if (scheduleChanged) events.withCorrectedSchedule(plannedSowDate, fixedDates, timeZoneId) else events
+        val corrected = rebuildDependentFutureActions(command, scheduled, original)
         database.saveBatch(corrected)
     }
 
@@ -188,13 +195,13 @@ internal class RecipeBatchCommandHandler(
     private fun correctedFixedDates(command: ScreenCommand, batch: GrowBatch): Map<GrowStage, LocalDate> =
         if (FIXED_DATE_FIELDS.any(command.arguments::containsKey)) {
             command.fixedStageDates()
-        } else {
-            batch.actions.mapNotNull { action ->
-                val due = action.due as? DueMoment.CivilTime
-                val stage = action.stage
-                if (action.userFixed && stage != null && due != null) stage to due.localDateTime.date else null
-            }.toMap()
-        }
+        } else batch.fixedDates()
+
+    private fun GrowBatch.fixedDates(): Map<GrowStage, LocalDate> = actions.mapNotNull { action ->
+        val due = action.due as? DueMoment.CivilTime
+        val stage = action.stage
+        if (action.userFixed && stage != null && due != null) stage to due.localDateTime.date else null
+    }.toMap()
 
     private fun GrowBatch.withCorrectedSchedule(
         plannedSowDate: LocalDate?,
@@ -206,21 +213,33 @@ internal class RecipeBatchCommandHandler(
         }
         val planned = BatchPlanningEngine.plannedActions(id, recipe.stages, plannedSowDate, fixedDates, timeZoneId)
         val explicitReminders = actions.filterNot { it.id.value.startsWith(PLANNED_ACTION_ID_PREFIX) }
-        return copy(actions = explicitReminders + planned)
+        val existing = actions.associateBy { it.id }
+        return copy(actions = explicitReminders + planned.map { projected ->
+            val previous = existing[projected.id]
+            when {
+                previous == null -> projected
+                previous.status != ScheduledActionStatus.PENDING -> previous
+                else -> previous.copy(due = projected.due, userFixed = projected.userFixed)
+            }
+        })
     }
 
-    private fun rebuildDependentFutureActions(command: ScreenCommand, batch: GrowBatch): GrowBatch {
-        val hasExplicitAnchor = "anchorState" in command.arguments || "anchorAt" in command.arguments
-        if (batch.state == BatchState.PLANNED && !hasExplicitAnchor) return batch
-        return BatchLifecycleEngine.applyCorrection(
-            batch,
+    private fun rebuildDependentFutureActions(command: ScreenCommand, batch: GrowBatch, original: GrowBatch): GrowBatch {
+        val hasExplicitAnchor = command.optional("anchorState") != null || command.optional("anchorAt") != null
+        val latestEvent = batch.events.lastOrNull()
+        val changedSchedule = batch.events != original.events || batch.actions != original.actions
+        val rebuildFromActual = batch.state != BatchState.PLANNED && changedSchedule && latestEvent != null
+        if (!hasExplicitAnchor && !rebuildFromActual) return batch
+        val correction = if (batch.events != original.events && latestEvent != null) {
+            ActionScheduleCorrection(latestEvent.to, latestEvent.occurredAt)
+        } else {
             ActionScheduleCorrection(
-                anchorState = command.arguments["anchorState"]?.let { enumValue<BatchState>(it) } ?: batch.state,
-                anchorAt = command.arguments["anchorAt"]?.let(Instant::parse)
-                    ?: batch.events.lastOrNull()?.occurredAt
-                    ?: now(),
-            ),
-        ).batch
+                anchorState = command.optional("anchorState")?.let { enumValue<BatchState>(it) }
+                    ?: latestEvent?.to ?: batch.state,
+                anchorAt = command.optional("anchorAt")?.let(Instant::parse) ?: latestEvent?.occurredAt ?: now(),
+            )
+        }
+        return BatchLifecycleEngine.applyCorrection(batch, correction).batch
     }
 
     private fun GrowBatch.timeZoneId(): String? = actions.asSequence()
@@ -232,6 +251,10 @@ internal class RecipeBatchCommandHandler(
 
     private fun positiveGrams(raw: String): PositiveGrams =
         PositiveGrams(raw.toDoubleOrNull() ?: error("Invalid actualSeedMassGrams"))
+
+    private fun validateRecipeStages(stages: List<RecipeStage>) {
+        if (!RecipeStageConfiguration.isValid(stages)) throw LocalDataException(LocalDataErrorKey.INVALID_RECIPE_STAGES)
+    }
 
     private companion object {
         const val DEFAULT_TIME_ZONE = "UTC"

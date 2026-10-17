@@ -192,7 +192,7 @@
       "usageEvidence": [
         {
           "path": "androidApp/src/main/AndroidManifest.xml",
-          "sha256": "b5e5476c080772bf5123ed415148630c2abcf3ec0e228bbf53057d340514eaac",
+          "sha256": "9326f2c4a0561e35c37ae49353545497825659689b6fccc3f2fe68511d849b4f",
           "symbol": "android:icon=@mipmap/ic_launcher"
         },
         {
@@ -388,7 +388,7 @@
       "usageEvidence": [
         {
           "path": "iosApp/iosApp.xcodeproj/project.pbxproj",
-          "sha256": "a2b32f8ef7c376b43b1c450733ac5daa9943f44ac680cfdaa7cb3d1366eff012",
+          "sha256": "fd53a37b9df0e1839aaa02af7d2664d158ba9c5379470f8e756cf4700127cb9b",
           "symbol": "ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon"
         },
         {
@@ -432,7 +432,7 @@
           "screenIds": [
             "SCREEN-001"
           ],
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d"
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518"
         },
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
@@ -440,17 +440,17 @@
           "screenIds": [
             "SCREEN-011"
           ],
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d"
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518"
         }
       ],
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[32]_sproutpacepreviewskt.firstrunpreviews.01_first_run_dark_w393dp_h851dp_night.png",
-          "sha256": "50e2623c6138f8399f73e3f7ba02f8df674a6eb8df9c88c5abd7e3353ec68938"
+          "sha256": "ccf0582a86a25cd24857d847f4c70076dd79cb6259026057edf98625df0141b0"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[33]_sproutpacepreviewskt.firstrunpreviews.01_first_run_light_w393dp_h851dp_day.png",
-          "sha256": "2c09f5039aab321f5116a380728660c16dbae50a285339483202957760d22dfa"
+          "sha256": "50db1ca212224c05686b47bdba369856f25f655944985b4069b9ea28d0cda6a1"
         },
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[56]_sproutpacepreviewskt.settingspreviews.11_settings_dark_w393dp_h851dp_night.png",
@@ -466,7 +466,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "72b5a430510c75168724f8365d5012b0aca0a9077c80bff5657de511460afa53"
+          "sha256": "29c0320a64858bad92b1ffd057d2db338311302b3cdd4842a1d7b4cfab5e017b"
         }
       ],
       "blockers": [],
@@ -488,7 +488,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-002"
@@ -520,7 +520,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-003"
@@ -552,7 +552,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-006"
@@ -584,7 +584,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-007"
@@ -616,7 +616,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
           "symbol": "SproutPaceTopBar",
           "screenIds": [
             "SCREEN-002"
@@ -624,7 +624,7 @@
         },
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "SettingsBrandHeader",
           "screenIds": [
             "SCREEN-011"
@@ -656,7 +656,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -691,7 +691,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "9e43faf3ee4d2988b65fdd6c8c9148d8d3efaef6eb4485927ae05edf2e855c9c",
+          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
           "symbol": "SproutPaceTopBar",
           "screenIds": [
             "SCREEN-004",
@@ -733,7 +733,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -770,7 +770,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-005",
@@ -808,7 +808,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-009",
@@ -842,7 +842,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-016",
@@ -876,7 +876,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-014",
@@ -910,7 +910,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-003",
@@ -921,7 +921,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[122]_productionscenariopreviewskt.harvestedscenario.05_harvested_light_w393dp_h851dp_day.png",
-          "sha256": "2af68c301d2c54b29ecda77bd605b08aeed706a9d9561998409d3edbf72c1265"
+          "sha256": "389fe323843d1c2462c538b4927a5634cac57707577002504c35ca84818e0556"
         }
       ],
       "blockers": [],
@@ -944,7 +944,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "actionIcon",
           "screenIds": [
             "SCREEN-002",
@@ -983,7 +983,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1029,7 +1029,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1039,7 +1039,7 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[242]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
           "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
         },
         {
@@ -1075,7 +1075,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1085,7 +1085,7 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[242]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
           "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
         },
         {
@@ -1121,7 +1121,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1131,7 +1131,7 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[242]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
           "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
         },
         {
@@ -1167,7 +1167,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "stageImage",
           "screenIds": [
             "SCREEN-005",
@@ -1177,7 +1177,7 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[231]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[242]_zillustrationpreviewskt.recipeartworkdark.08_recipe_asset_inspection_dark_w393dp_h1800dp_night.png",
           "sha256": "d0a4b1368c43f9116ca428dbc47144ff0ca71242595c6882902a3494c9691ca3"
         },
         {
@@ -1213,7 +1213,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "statusItems",
           "screenIds": [
             "SCREEN-002",
@@ -1280,7 +1280,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1290,11 +1290,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
@@ -1330,7 +1330,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1340,11 +1340,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
@@ -1380,7 +1380,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1390,11 +1390,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
@@ -1430,7 +1430,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1440,11 +1440,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
@@ -1480,7 +1480,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1490,11 +1490,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
@@ -1530,7 +1530,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1540,11 +1540,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
@@ -1580,7 +1580,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1590,11 +1590,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {
@@ -1630,7 +1630,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
-          "sha256": "ce31bb70c37487b3f0a0a5ef27857cfb46d233ab43fbbab7188b4e456b74375d",
+          "sha256": "d871a2bf343889ce9ca6cfaa13dadf992e95adfc787de34947b2d508f78df518",
           "symbol": "cultureImage",
           "screenIds": [
             "SCREEN-007",
@@ -1640,11 +1640,11 @@
       ],
       "visualEvidence": [
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[232]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[243]_zzculturepreviewskt.allcultureartwork.07_all_cultures_dark_w393dp_h1800dp_night.png",
           "sha256": "221f726939ccbe116882096ec73533e9464e5f6d5a315bbd9195f78cd920dea0"
         },
         {
-          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[233]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
+          "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[244]_zzculturepreviewskt.allcultureartwork.07_all_cultures_light_w393dp_h1800dp_day.png",
           "sha256": "1e30390bb8a3a38ef841bc395422b1a9a24c7587a51e254e956b9165896f9281"
         },
         {

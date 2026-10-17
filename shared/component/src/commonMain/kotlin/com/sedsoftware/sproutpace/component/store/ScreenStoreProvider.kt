@@ -15,6 +15,11 @@ import com.sedsoftware.sproutpace.component.ScreenSnapshot
 import com.sedsoftware.sproutpace.component.TextKey
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
@@ -49,11 +54,14 @@ internal class ScreenStoreProvider(
     private sealed interface Msg {
         data class Loaded(val snapshot: ScreenSnapshot, val protectedFields: Set<ScreenFieldId> = emptySet()) : Msg
         data class DetailLoaded(val subjectId: String, val snapshot: ScreenSnapshot) : Msg
+        data class ObservationFailed(val key: TextKey) : Msg
+        data class DetailFailed(val subjectId: String, val key: TextKey) : Msg
         data class Committed(val snapshot: ScreenSnapshot) : Msg
         data class PreferenceFinished(
             val snapshot: ScreenSnapshot?, val fields: Set<ScreenFieldId>, val preserved: Set<ScreenFieldId>,
         ) : Msg
         data class StagePreviewed(val preview: com.sedsoftware.sproutpace.component.StageChangeProjection) : Msg
+        data class PhotoPreviewed(val value: String, val photo: com.sedsoftware.sproutpace.component.ScreenPhoto?) : Msg
         data class Selected(val id: String) : Msg
         data class Busy(val value: Boolean) : Msg
         data class Failed(val key: TextKey) : Msg
@@ -67,6 +75,7 @@ internal class ScreenStoreProvider(
         CoroutineExecutor<ScreenStore.Intent, Action, ScreenStore.State, Msg, ScreenStore.Label>(mainContext) {
         private var observation: Job? = null
         private var detailObservation: Job? = null
+        private var photoPreview: Job? = null
         private var detailSubject: String? = null
         private val inFlight = mutableSetOf<String>()
         private val inFlightPayloads = mutableSetOf<String>()
@@ -88,7 +97,7 @@ internal class ScreenStoreProvider(
 
         override fun executeIntent(intent: ScreenStore.Intent) {
             when (intent) {
-                ScreenStore.Intent.Retry -> observe()
+                ScreenStore.Intent.Retry -> retryObservation()
                 is ScreenStore.Intent.Select -> {
                     dispatch(Msg.Selected(intent.id))
                     observeDetail(intent.id)
@@ -96,9 +105,10 @@ internal class ScreenStoreProvider(
                 is ScreenStore.Intent.EditField -> {
                     fieldRevisions[intent.fieldId] = (fieldRevisions[intent.fieldId] ?: 0L) + 1
                     dispatch(Msg.FieldEdited(intent.fieldId, intent.value))
+                    if (intent.fieldId.value == "photoId") previewPendingPhoto()
                 }
                 is ScreenStore.Intent.Submit -> submit(intent.actionId)
-                ScreenStore.Intent.CancelDraft -> dispatch(Msg.DraftCancelled)
+                ScreenStore.Intent.CancelDraft -> { dispatch(Msg.DraftCancelled); previewPendingPhoto() }
                 is ScreenStore.Intent.ReportFailure -> dispatch(Msg.Failed(intent.key))
                 ScreenStore.Intent.ConfirmStagePreview -> state().stagePreview?.let { executeValidated(it.command) }
                 is ScreenStore.Intent.SetLayout -> dispatch(Msg.Layout(intent.mode))
@@ -187,28 +197,59 @@ internal class ScreenStoreProvider(
             }
         }
 
+        private fun retryObservation() {
+            val current = state()
+            if (current.observationErrorKey != null || current.detailErrorKey == null) observe()
+            if (current.detailErrorKey != null) observeDetail(current.snapshot.selectedItemId, force = true)
+        }
+
+        private fun observationFlow(target: ScreenId, id: String?, failure: (TextKey) -> Msg) = flow {
+            emitAll(manager.watch(target, id))
+        }.catch { error ->
+            if (error is CancellationException) throw error
+            currentCoroutineContext().ensureActive()
+            dispatch(failure((error as? com.sedsoftware.sproutpace.component.ScreenFailure)?.errorKey
+                ?: TextKey("state_error_body")))
+        }
+
         private fun observe() {
             observation?.cancel()
             observation = scope.launch {
-                manager.watch(screen, stableId).collectLatest {
+                observationFlow(screen, stableId, Msg::ObservationFailed).collectLatest {
                     dispatch(Msg.Loaded(it, preferences.flatMap { request -> request.revisions.keys }.toSet()))
+                    previewPendingPhoto()
                     observeDetail(state().snapshot.selectedItemId)
                 }
             }
         }
 
-        private fun observeDetail(subjectId: String?) {
+        private fun previewPendingPhoto() {
+            if (screen != ScreenId.OBSERVATION_EDITOR) return
+            photoPreview?.cancel()
+            val value = state().draftValues[ScreenFieldId("photoId")].orEmpty()
+            dispatch(Msg.PhotoPreviewed(value, null))
+            if (com.sedsoftware.sproutpace.component.pendingPhotoToken(value) == null) return
+            photoPreview = scope.launch {
+                manager.previewPhoto(value).unwrap(
+                    onSuccess = { dispatch(Msg.PhotoPreviewed(value, it)) },
+                    onFailure = { dispatch(Msg.PhotoPreviewed(value, null)) },
+                )
+            }
+        }
+
+        private fun observeDetail(subjectId: String?, force: Boolean = false) {
             val detailScreen = when (screen) {
                 ScreenId.TRAYS -> ScreenId.BATCH_DETAIL
                 ScreenId.CATALOG -> ScreenId.RECIPE
                 else -> return
             }
-            if (detailSubject == subjectId) return
+            if (detailSubject == subjectId && !force) return
             detailSubject = subjectId
             detailObservation?.cancel()
             if (subjectId == null) return
             detailObservation = scope.launch {
-                manager.watch(detailScreen, subjectId).collectLatest { dispatch(Msg.DetailLoaded(subjectId, it)) }
+                observationFlow(detailScreen, subjectId) { Msg.DetailFailed(subjectId, it) }
+                    .collectLatest { dispatch(Msg.DetailLoaded(subjectId, it)) }
             }
         }
 
@@ -287,7 +328,11 @@ internal class ScreenStoreProvider(
     private object ReducerImpl : Reducer<ScreenStore.State, Msg> {
         override fun ScreenStore.State.reduce(msg: Msg): ScreenStore.State = when (msg) {
             is Msg.Loaded -> loaded(msg)
-            is Msg.DetailLoaded -> if (snapshot.selectedItemId == msg.subjectId) copy(detailSnapshot = msg.snapshot) else this
+            is Msg.DetailLoaded -> if (snapshot.selectedItemId == msg.subjectId) {
+                copy(detailSnapshot = msg.snapshot, detailErrorKey = null)
+            } else this
+            is Msg.ObservationFailed -> copy(loading = false, observationErrorKey = msg.key)
+            is Msg.DetailFailed -> if (snapshot.selectedItemId == msg.subjectId) copy(detailErrorKey = msg.key) else this
             is Msg.Committed -> {
                 val fields = if (!msg.snapshot.hasInteractionContract && msg.snapshot.fields.isEmpty()) {
                     ScreenContractRegistry.contracts.getValue(screen).fields
@@ -297,9 +342,12 @@ internal class ScreenStoreProvider(
                 copy(
                     snapshot = msg.snapshot,
                     loading = false,
+                    hasLoadedSnapshot = true,
                     errorKey = null,
                     stagePreview = null,
                     completionRevision = completionRevision + 1,
+                    photoPreview = null,
+                    photoPreviewValue = null,
                     draftValues = fields.associate { it.id to it.value } + draftValues.filterKeys { isTransientFilter(it) },
                     dirtyFields = emptySet(),
                     validationErrors = emptyMap(),
@@ -307,8 +355,12 @@ internal class ScreenStoreProvider(
             }
             is Msg.PreferenceFinished -> preferenceFinished(msg)
             is Msg.StagePreviewed -> copy(stagePreview = msg.preview, errorKey = null)
+            is Msg.PhotoPreviewed -> if (draftValues[ScreenFieldId("photoId")].orEmpty() == msg.value) {
+                copy(photoPreview = msg.photo, photoPreviewValue = msg.value)
+            } else this
             is Msg.Selected -> copy(snapshot = snapshot.copy(selectedItemId = msg.id),
-                detailSnapshot = detailSnapshot.takeIf { snapshot.selectedItemId == msg.id })
+                detailSnapshot = detailSnapshot.takeIf { snapshot.selectedItemId == msg.id },
+                detailErrorKey = detailErrorKey.takeIf { snapshot.selectedItemId == msg.id })
             is Msg.Busy -> copy(busy = msg.value)
             is Msg.Failed -> copy(loading = false, errorKey = msg.key)
             is Msg.Layout -> copy(layoutMode = msg.mode)
@@ -336,15 +388,20 @@ internal class ScreenStoreProvider(
                 msg.snapshot.fields
             }
             val loadedValues = availableFields.associate { it.id to it.value }
+            val selection = if (screen in setOf(ScreenId.TRAYS, ScreenId.CATALOG)) {
+                snapshot.selectedItemId?.takeIf { selected -> msg.snapshot.items.any { it.id == selected } }
+            } else msg.snapshot.selectedItemId
             return copy(
-                snapshot = msg.snapshot.copy(selectedItemId = if (screen in setOf(ScreenId.TRAYS, ScreenId.CATALOG)) {
-                    snapshot.selectedItemId?.takeIf { selected -> msg.snapshot.items.any { it.id == selected } }
-                } else msg.snapshot.selectedItemId),
+                snapshot = msg.snapshot.copy(selectedItemId = selection),
+                hasLoadedSnapshot = true,
+                observationErrorKey = null,
+                detailSnapshot = detailSnapshot.takeIf { selection == snapshot.selectedItemId },
+                detailErrorKey = detailErrorKey.takeIf { selection == snapshot.selectedItemId },
                 loading = false,
                 errorKey = null,
                 draftValues = draftValues + loadedValues.filterKeys {
                     it !in dirtyFields && it !in restoredFields && it !in msg.protectedFields &&
-                        (loading || (!isTransientFilter(it) && it.value != "id"))
+                        (!hasLoadedSnapshot || (!isTransientFilter(it) && it.value != "id"))
                 },
                 restoredFields = emptySet(),
             )

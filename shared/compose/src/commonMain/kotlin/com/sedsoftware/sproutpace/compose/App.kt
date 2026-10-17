@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
@@ -373,7 +375,8 @@ private fun PrimaryBottomBar(selected: UiScreen, onAction: (UiAction) -> Unit) {
     val fontScale = LocalDensity.current.fontScale
     if (fontScale >= NAVIGATION_ICON_ONLY_FONT_SCALE) {
         Surface(color = MaterialTheme.colorScheme.surfaceContainer) {
-            Column(Modifier.fillMaxWidth().semantics { testTag = "primary-navigation-bottom" }) {
+            Column(Modifier.fillMaxWidth().windowInsetsPadding(NavigationBarDefaults.windowInsets)
+                .semantics { testTag = "primary-navigation-bottom" }) {
                 destinations.chunked(2).forEach { row ->
                     Row(Modifier.fillMaxWidth().heightIn(min = 80.dp)) {
                         row.forEach { PrimaryDestinationItem(it, selected, onAction) }

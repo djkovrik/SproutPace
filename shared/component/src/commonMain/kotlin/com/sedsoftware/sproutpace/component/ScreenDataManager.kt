@@ -11,6 +11,7 @@ interface ScreenDataManager {
     suspend fun execute(screen: ScreenId, command: ScreenCommand): Result<ScreenSnapshot>
     suspend fun previewStage(command: ScreenCommand): Result<StageChangeProjection> =
         Result.failure(UnsupportedOperationException("Stage preview is unavailable"))
+    suspend fun previewPhoto(value: String): Result<ScreenPhoto?> = Result.success(null)
 }
 
 interface ScreenFailure { val errorKey: TextKey }

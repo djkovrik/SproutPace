@@ -104,6 +104,20 @@ class AndroidYandexAdsDriver(context: Context) : AdSdkDriver {
     }
 }
 
+/** Android view lifecycle boundary; eligibility still belongs to [AdvertisingController]. */
+interface AndroidInlineAdHost : AdvertisingRuntime {
+    fun createInlineBanner(
+        context: Context,
+        adUnitId: String,
+        widthDp: Int,
+        maxHeightDp: Int,
+        session: InlineAdSession,
+        isHostDestroyed: () -> Boolean,
+        onStateChanged: (InlineAdState) -> Unit,
+    ): View
+    fun disposeInlineBanner(view: View, session: InlineAdSession)
+}
+
 class AndroidAdvertisingRuntime(
     context: Context,
     appId: String,
@@ -112,7 +126,7 @@ class AndroidAdvertisingRuntime(
     private val productSettings: ProductSettings,
     clock: EpochMillisClock = EpochMillisClock { System.currentTimeMillis() },
     workspaceReady: StateFlow<Boolean> = MutableStateFlow(true),
-) : AdvertisingRuntime {
+) : AndroidInlineAdHost {
     private val connectivity = AndroidAdConnectivity(context)
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     override val networkAvailable = combine(connectivity.available, workspaceReady) { connected, ready ->
@@ -135,7 +149,7 @@ class AndroidAdvertisingRuntime(
     override suspend fun declineConsent() = controller.declineConsent()
     override suspend fun withdrawConsent() = controller.withdrawConsent()
 
-    fun createInlineBanner(
+    override fun createInlineBanner(
         context: Context,
         adUnitId: String,
         widthDp: Int,
@@ -153,7 +167,7 @@ class AndroidAdvertisingRuntime(
         onStateChanged,
     )
 
-    fun disposeInlineBanner(view: View, session: InlineAdSession) {
+    override fun disposeInlineBanner(view: View, session: InlineAdSession) {
         (view as? BannerAdView)?.let { sdk.disposeBanner(it, session) } ?: session.dispose()
     }
 

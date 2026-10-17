@@ -5,6 +5,7 @@ import com.sedsoftware.sproutpace.component.ScreenDataManager
 import com.sedsoftware.sproutpace.component.ScreenId
 import com.sedsoftware.sproutpace.platform.ReconciliationReason
 import com.sedsoftware.sproutpace.platform.ReminderLifecycleCoordinator
+import com.sedsoftware.sproutpace.platform.ReminderReconciliationResult
 import com.sedsoftware.sproutpace.platform.requireSuccessful
 import kotlinx.datetime.TimeZone
 
@@ -14,8 +15,8 @@ internal suspend fun reconcileReminderEnvironment(
     manager: ScreenDataManager,
     coordinator: ReminderLifecycleCoordinator,
     timeZone: TimeZone,
-) {
-    coordinator.reconcile(reason) {
+): ReminderReconciliationResult {
+    return coordinator.reconcile(reason) {
         if (reason == ReconciliationReason.TIME_ZONE_CHANGED) {
             manager.execute(ScreenId.TODAY, ScreenCommand(
                 operation = "time-zone-change",

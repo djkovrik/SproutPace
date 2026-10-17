@@ -1,0 +1,2 @@
+usage: validate-app-spec.py [-h] [--require-current] [--inventory] app_spec
+validate-app-spec.py: error: unrecognized arguments: --strict

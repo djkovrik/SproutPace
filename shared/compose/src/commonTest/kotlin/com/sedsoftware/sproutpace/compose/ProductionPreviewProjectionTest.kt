@@ -1,8 +1,11 @@
 package com.sedsoftware.sproutpace.compose
 
 import com.sedsoftware.sproutpace.component.ScreenId
+import com.sedsoftware.sproutpace.component.ScreenSnapshot
 import com.sedsoftware.sproutpace.component.TaskDayGroup
 import com.sedsoftware.sproutpace.data.ProductionScreenFixtures
+import com.sedsoftware.sproutpace.domain.catalog.SproutPaceCatalog
+import com.sedsoftware.sproutpace.domain.engine.MeasurementEngine
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -119,6 +122,8 @@ class ProductionPreviewProjectionTest {
                 assertEquals(ui.items.size.toString(), ui.facts.single { it.id == "batch-count" }.authoredValue)
                 assertEquals(source.facts.filterNot { it.id == "batch-count" }.map { it.authoredValue },
                     ui.facts.filterNot { it.id == "batch-count" }.map { it.authoredValue })
+            } else if (screen == ScreenId.BATCH_EDITOR) {
+                assertNewBatchPreviewFacts(source, ui)
             } else {
                 assertEquals(source.facts.map { it.authoredValue }, ui.facts.map { it.authoredValue }, screen.name)
             }
@@ -143,6 +148,9 @@ class ProductionPreviewProjectionTest {
         assertEquals("6", history.facts.single { it.id == "batch-count" }.authoredValue)
         assertTrue(history.items.all { assertNotNull(it.batch).state.isTerminal })
         assertTrue(history.items.map { it.batch?.closedAt }.distinct().size > 1)
+        val harvested = history.items.filter { it.batch?.state == com.sedsoftware.sproutpace.domain.model.BatchState.HARVESTED }
+        assertTrue(harvested.isNotEmpty())
+        assertTrue(harvested.all { it.batch?.actualHarvestMassGrams == 184.0 })
     }
 
     @Test
@@ -152,4 +160,21 @@ class ProductionPreviewProjectionTest {
         assertEquals("2026-10-07T15:45:00Z", restore.facts.single { it.id == "restore-created-at" }.authoredValue)
         assertEquals("10", restore.facts.single { it.id == "restore-record-count-batches" }.authoredValue)
     }
+}
+
+/** Retained draft guidance adds a calculated fact while every raw production fact remains exact. */
+internal fun assertNewBatchPreviewFacts(source: ScreenSnapshot, state: SproutPaceUiState) {
+    assertTrue(source.actions.any { it.id.value == "save-batch" }, "The default preview must use a fresh draft")
+    assertEquals("", source.fields.single { it.id.value == "recipeId" }.value,
+        "This fresh fixture uses the selected built-in culture's density")
+    val selectedTray = source.fields.single { it.id.value == "trayId" }
+    val shape = assertNotNull(selectedTray.options.single { it.id == selectedTray.value }.trayShape)
+    val selectedCulture = source.fields.single { it.id.value == "cultureId" }.value
+    val density = SproutPaceCatalog.cultures.single { it.id.value == selectedCulture }.seedDensity
+    val expectedMass = MeasurementEngine.recommendedSeedMass(shape, density).value.toString()
+    val recommendation = state.facts.single { it.id == "recommended-seed-mass" }
+    assertEquals(expectedMass, recommendation.authoredValue)
+    val rawFacts = source.facts.map { UiFact(it.id, it.labelKey.value, it.valueKey?.value, it.authoredValue) }
+    assertEquals(rawFacts + UiFact("recommended-seed-mass", "field_recommended_seed_mass", null, expectedMass), state.facts,
+        "Only the independently calculated draft recommendation may supplement the unchanged production facts")
 }

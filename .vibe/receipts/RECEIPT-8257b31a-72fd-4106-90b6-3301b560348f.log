@@ -1,0 +1,14 @@
+{
+  "serial": "emulator-5556",
+  "installedApkSha256": "d22dc8cb028b61b81908383f37ec9cdc44b24796053fbe7e545593ab83139d72",
+  "backupSha256": "622018d0828bf598a54297d9c6caedcea4939c18ea9b70c4a791db87c1b1493f",
+  "checks": [
+    "actual-production-restore-completed",
+    "post-restore-process-restart",
+    "restored-dark-capacity-3",
+    "restored-light-capacity-1",
+    "restored-summary-local-time-10:37",
+    "external-backup-byte-identical"
+  ],
+  "verifiedAt": "2026-10-17T08:17:24.3092551Z"
+}

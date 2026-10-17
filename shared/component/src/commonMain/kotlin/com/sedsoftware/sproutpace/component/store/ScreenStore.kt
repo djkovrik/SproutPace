@@ -26,6 +26,9 @@ internal interface ScreenStore : Store<ScreenStore.Intent, ScreenStore.State, Sc
         val screen: ScreenId,
         val snapshot: ScreenSnapshot = ScreenSnapshot(),
         val loading: Boolean = true,
+        val hasLoadedSnapshot: Boolean = false,
+        val observationErrorKey: TextKey? = null,
+        val detailErrorKey: TextKey? = null,
         val busy: Boolean = false,
         val errorKey: TextKey? = null,
         val layoutMode: LayoutMode = LayoutMode.COMPACT,
@@ -37,6 +40,8 @@ internal interface ScreenStore : Store<ScreenStore.Intent, ScreenStore.State, Sc
         val detailSnapshot: ScreenSnapshot? = null,
         val stagePreview: com.sedsoftware.sproutpace.component.StageChangeProjection? = null,
         val completionRevision: Long = 0,
+        val photoPreview: com.sedsoftware.sproutpace.component.ScreenPhoto? = null,
+        val photoPreviewValue: String? = null,
     )
 
     sealed interface Label {

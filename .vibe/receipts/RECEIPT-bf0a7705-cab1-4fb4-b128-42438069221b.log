@@ -1,0 +1,25 @@
+Calculating task graph as no cached configuration is available for tasks: detekt :shared:domain:testAndroidHostTest :shared:data:testAndroidHostTest :shared:component:testAndroidHostTest :shared:root:testAndroidHostTest :shared:platform:testAndroidHostTest :shared:monetization:testAndroidHostTest :shared:compose:testAndroidHostTest :shared:compose:compileAndroidMain :androidApp:assembleDebug :shared:compose:recordPaparazzi
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Querying the mapped value of and(list(interface org.gradle.api.file.Directory, flatmap(provider(?)) + item(flatmap(provider(task 'kspAndroidHostTest', class com.google.devtools.ksp.gradle.KspAATask)))), and(list(interface org.gradle.api.file.Directory, []), list(interface org.gradle.api.file.Directory, []))) before task ':shared:compose:kspAndroidHostTest' has completed is not supported
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 6s
+Configuration cache entry discarded due to serialization error.

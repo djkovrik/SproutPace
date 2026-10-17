@@ -1,0 +1,26 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--continue",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=2",
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":shared:data:verifySqlDelightMigration",
+    ":shared:compose:verifyPaparazzi",
+    ":androidApp:assembleDebug",
+    ":androidApp:assembleRelease",
+    "koverXmlReport",
+    "koverVerify"
+  ],
+  "timeoutSeconds": 5400
+}

@@ -24,6 +24,8 @@ import com.sedsoftware.sproutpace.component.ScreenComponent
 import com.sedsoftware.sproutpace.component.ScreenContractRegistry
 import com.sedsoftware.sproutpace.component.ScreenDataManager
 import com.sedsoftware.sproutpace.component.ScreenId
+import com.sedsoftware.sproutpace.component.ScreenFieldId
+import com.sedsoftware.sproutpace.component.TextKey
 import com.sedsoftware.sproutpace.component.ScreenModel
 import com.sedsoftware.sproutpace.component.ScreenOutput
 import com.sedsoftware.sproutpace.component.ScreenVariant
@@ -120,20 +122,24 @@ private fun ScreenStore.State.toModel(): ScreenModel {
     val fields = sourceFields.map { value -> value.copy(value = draftValues[value.id] ?: value.value) }
     val facts = if (snapshot.hasInteractionContract) snapshot.facts else snapshot.facts.ifEmpty { contract.facts }
     val actions = if (snapshot.hasInteractionContract) snapshot.actions else snapshot.actions.ifEmpty { contract.actions }
+    val visibleError = errorKey ?: observationErrorKey
     return ScreenModel(
         screen = screen,
         loadState = when {
             loading -> LoadState.LOADING
-            errorKey != null -> LoadState.ERROR
+            visibleError != null -> LoadState.ERROR
             ScreenVariant.EMPTY in contract.variants && snapshot.items.isEmpty() -> LoadState.EMPTY
             else -> LoadState.CONTENT
         },
         titleKey = titleKey(screen),
-        items = snapshot.items,
+        items = snapshot.items + listOfNotNull(photoPreview?.takeIf {
+            photoPreviewValue == draftValues[ScreenFieldId("photoId")]
+        }?.let { com.sedsoftware.sproutpace.component.ScreenItem("draft-photo",
+            titleKey = TextKey("observation_photo_content_description"), photo = it) }),
         selectedItemId = snapshot.selectedItemId,
         plans = snapshot.plans,
         primaryActionKey = snapshot.primaryActionKey,
-        errorKey = errorKey,
+        errorKey = visibleError,
         permissionState = snapshot.permissionState,
         conflictResolutionKeys = snapshot.conflictResolutionKeys,
         offline = snapshot.offline,
@@ -142,18 +148,19 @@ private fun ScreenStore.State.toModel(): ScreenModel {
         showInlineAdSlot = snapshot.showInlineAdSlot,
         destructiveConfirmationKey = snapshot.destructiveConfirmationKey,
         fields = fields,
-        facts = facts,
+        facts = facts.withDraftSeedRecommendation(screen, fields, actions),
         actions = actions,
         validationErrors = validationErrors,
         hasUnsavedChanges = dirtyFields.isNotEmpty(),
         setupState = snapshot.setupState,
         stagePreview = stagePreview,
         completionRevision = completionRevision,
-        detail = detailSnapshot?.takeIf { snapshot.selectedItemId != null }?.let { detail ->
+        detail = snapshot.selectedItemId?.takeIf { detailSnapshot != null || detailErrorKey != null }?.let { selected ->
             ScreenStore.State(
                 screen = if (screen == ScreenId.TRAYS) ScreenId.BATCH_DETAIL else ScreenId.RECIPE,
-                snapshot = detail,
+                snapshot = detailSnapshot ?: com.sedsoftware.sproutpace.component.ScreenSnapshot(selectedItemId = selected),
                 loading = false,
+                errorKey = detailErrorKey,
             ).toModel()
         },
     )

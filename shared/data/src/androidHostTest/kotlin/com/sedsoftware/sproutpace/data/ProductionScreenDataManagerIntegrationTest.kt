@@ -270,9 +270,10 @@ class ProductionScreenDataManagerIntegrationTest {
         assertEquals(original.tray, restored.tray)
         assertEquals(15.5, restored.actualSeedMass.value)
         assertEquals(
-            DueMoment.ElapsedTarget(Instant.parse(NOW)),
+            DueMoment.ElapsedTarget(Instant.parse("2026-09-22T10:00:00Z")),
             restored.actions.single { it.id.value == "corrected-action" }.due,
         )
+        kotlin.test.assertNull(restored.actions.single { it.id.value == "corrected-action" }.stage)
         assertEquals("batch-1", manager.watch(ScreenId.BATCH_DETAIL, "batch-1").first().selectedItemId)
     }
 
@@ -554,7 +555,7 @@ class ProductionScreenDataManagerIntegrationTest {
         assertTrue(
             manager.watch(ScreenId.TODAY).first().items.any { item ->
                 item.task?.actionId == scheduled.id.value &&
-                    item.commands.any { it.operation == "open-batch" && it.subjectId == scheduled.batchId.value }
+                    item.commands.any { it.operation == "complete-action" && it.subjectId == scheduled.id.value }
             },
         )
 

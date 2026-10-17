@@ -3,13 +3,14 @@ package com.sedsoftware.sproutpace.domain.engine
 import com.sedsoftware.sproutpace.domain.model.DueMoment
 import com.sedsoftware.sproutpace.domain.model.ScheduledAction
 import com.sedsoftware.sproutpace.domain.model.ScheduledActionStatus
+import com.sedsoftware.sproutpace.domain.model.ScheduledActionOrigin
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 
 object SchedulingEngine {
     fun snooze(action: ScheduledAction, newDue: DueMoment): ScheduledAction {
         require(action.status == ScheduledActionStatus.PENDING)
-        return action.copy(due = newDue)
+        return action.copy(due = newDue, origin = ScheduledActionOrigin.UNSPECIFIED)
     }
 
     fun afterTimeZoneChange(action: ScheduledAction, newTimeZoneId: String): ScheduledAction = when (val due = action.due) {

@@ -14,6 +14,7 @@ import com.sedsoftware.sproutpace.platform.PermissionState
 import com.sedsoftware.sproutpace.platform.PhysicalReminder
 import com.sedsoftware.sproutpace.platform.PhysicalReminderId
 import com.sedsoftware.sproutpace.platform.ReminderDriver
+import com.sedsoftware.sproutpace.platform.ReconciliationReason
 import com.sedsoftware.sproutpace.platform.remainingReminderCapacity
 import com.sedsoftware.sproutpace.platform.IosCrashReportingBridge
 import com.sedsoftware.sproutpace.platform.IosCrashReportingDriver
@@ -22,15 +23,23 @@ import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.readBytes
 import kotlinx.cinterop.usePinned
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.datetime.number
 import platform.Foundation.NSBundle
+import platform.Foundation.NSApplicationSupportDirectory
+import platform.Foundation.NSFileManager
+import platform.Foundation.NSUserDomainMask
 import platform.Foundation.NSData
 import platform.Foundation.NSDateComponents
 import platform.Foundation.NSCalendar
 import platform.Foundation.NSCalendarIdentifierGregorian
 import platform.Foundation.NSError
+import platform.Foundation.NSLock
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.NSURL
 import platform.Foundation.create
@@ -55,7 +64,11 @@ import kotlin.math.max
 import kotlin.time.Clock
 
 /** Typed iOS application entry point. Swift owns and retains one instance. */
-class IosProductionAppGraph(isDebug: Boolean, crashReportingBridge: IosCrashReportingBridge) : AutoCloseable {
+class IosProductionAppGraph(
+    isDebug: Boolean,
+    crashReportingBridge: IosCrashReportingBridge,
+    archiveImports: IosArchiveImportCoordinator = IosArchiveImportCoordinator(),
+) : AutoCloseable {
     private val notificationPermissionService = IosNotificationPermissionService()
     private val graph = ProductionAppGraph(
         driverFactory = IosSqlDriverFactory(),
@@ -63,7 +76,7 @@ class IosProductionAppGraph(isDebug: Boolean, crashReportingBridge: IosCrashRepo
         flushPreferences = { check(NSUserDefaults.standardUserDefaults.synchronize()) { "preferences_flush_failed" } },
         privateFileStore = IosPrivateFileStore(),
         pendingPhotoImportStore = IosPendingPhotoImportStore(),
-        documentPort = IosArchiveDocumentPort(),
+        documentPort = IosArchiveDocumentPort(imports = archiveImports),
         reminderDriver = IosReminderDriver(),
         summaryHorizonDays = IOS_SUMMARY_HORIZON_DAYS,
         notificationPermissionService = notificationPermissionService,
@@ -78,7 +91,11 @@ class IosProductionAppGraph(isDebug: Boolean, crashReportingBridge: IosCrashRepo
     val root: AppRootComponent get() = graph.root
 
     fun onStart() = graph.onStart()
-    fun onResume() = graph.onResume()
+    fun onResume() {
+        onTimeZoneChanged()
+        graph.onResume()
+    }
+    fun onTimeZoneChanged() = graph.onReminderEnvironmentChanged(ReconciliationReason.TIME_ZONE_CHANGED)
     fun onPause() = graph.onPause()
     fun onStop() = graph.onStop()
     fun requestNotificationPermission() = graph.requestNotificationPermission()
@@ -127,17 +144,81 @@ internal class IosNotificationPermissionService(
     }
 }
 
-internal class IosArchiveDocumentPort : ArchiveDocumentPort {
-    override suspend fun read(documentId: String): ByteArray? = documentId.withSecurityScopedUrl { url ->
-        NSData.dataWithContentsOfURL(url)?.let { data -> data.bytes?.readBytes(data.length.toInt()) }
+/** Shared by the Swift picker worker and reset. Main-thread epoch reads never wait for bulk file I/O. */
+class IosArchiveImportCoordinator {
+    private val generationLock = NSLock()
+    private val ioLock = NSLock()
+    private var generation = 0L
+
+    fun currentGeneration(): Long {
+        generationLock.lock()
+        return try { generation } finally { generationLock.unlock() }
     }
 
-    override suspend fun write(documentId: String, bytes: ByteArray) {
+    /** Worker-only admission. Every successful admission must be paired with [endCopy]. */
+    fun beginCopy(expectedGeneration: Long): Boolean {
+        ioLock.lock()
+        if (currentGeneration() == expectedGeneration) return true
+        ioLock.unlock()
+        return false
+    }
+
+    fun endCopy() = ioLock.unlock()
+
+    internal fun invalidateAndClear(clear: () -> Unit) {
+        generationLock.lock()
+        try { generation += 1 } finally { generationLock.unlock() }
+        ioLock.lock()
+        try { clear() } finally { ioLock.unlock() }
+    }
+}
+
+internal class IosArchiveDocumentPort(
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val imports: IosArchiveImportCoordinator = IosArchiveImportCoordinator(),
+) : ArchiveDocumentPort {
+    override suspend fun read(documentId: String): ByteArray? = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
+        val bytes = documentId.withSecurityScopedUrl { url ->
+            NSData.dataWithContentsOfURL(url)?.let { data -> data.bytes?.readBytes(data.length.toInt()) }
+        }
+        currentCoroutineContext().ensureActive()
+        bytes
+    }
+
+    override suspend fun write(documentId: String, bytes: ByteArray) = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
         documentId.withSecurityScopedUrl { url ->
             bytes.usePinned { pinned ->
-                val data = NSData.create(bytes = pinned.addressOf(0), length = bytes.size.toULong())
+                val data = NSData.create(
+                    bytes = if (bytes.isEmpty()) null else pinned.addressOf(0),
+                    length = bytes.size.toULong(),
+                )
                 check(data.writeToURL(url, true)) { "The document provider rejected the archive write" }
             }
+        }
+        currentCoroutineContext().ensureActive()
+    }
+
+    override suspend fun clearImportedArchives() = withContext(ioDispatcher) {
+        currentCoroutineContext().ensureActive()
+        imports.invalidateAndClear { clearOwnedImports() }
+    }
+
+    private fun clearOwnedImports() {
+        val manager = NSFileManager.defaultManager
+        val support = manager.URLsForDirectory(NSApplicationSupportDirectory, NSUserDomainMask).first() as NSURL
+        val appRoot = support.URLByAppendingPathComponent("SproutPace", true)!!.URLByResolvingSymlinksInPath!!
+        require(appRoot.URLByDeletingLastPathComponent?.path == support.URLByResolvingSymlinksInPath?.path) {
+            "Archive application directory must be app-owned"
+        }
+        val imports = appRoot.URLByAppendingPathComponent("Imports", true)!!.URLByResolvingSymlinksInPath!!
+        require(imports.URLByDeletingLastPathComponent?.path == appRoot.path) {
+            "Archive import directory must be app-owned"
+        }
+        val path = requireNotNull(imports.path)
+        if (manager.fileExistsAtPath(path)) check(manager.removeItemAtPath(path, null)) {
+            "Unable to clear imported archives"
         }
     }
 

@@ -1,0 +1,13 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:data:testAndroidHostTest",
+    "--tests",
+    "*PhotoMutationCancellationTest",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1"
+  ],
+  "timeoutSeconds": 1800
+}

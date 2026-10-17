@@ -27,6 +27,8 @@ import com.sedsoftware.sproutpace.domain.model.RecipeStage
 import com.sedsoftware.sproutpace.domain.model.ScheduledAction
 import com.sedsoftware.sproutpace.domain.model.ScheduledActionId
 import com.sedsoftware.sproutpace.domain.model.ScheduledActionStatus
+import com.sedsoftware.sproutpace.domain.model.ScheduledActionKind
+import com.sedsoftware.sproutpace.domain.model.ScheduledActionOrigin
 import com.sedsoftware.sproutpace.domain.model.SeedDensity
 import com.sedsoftware.sproutpace.domain.model.SourceMetadata
 import com.sedsoftware.sproutpace.domain.model.StageEvent
@@ -88,6 +90,8 @@ class DomainJsonCodec(
 @Serializable private data class ActionDto(
     val id: String, val batchId: String, val stage: String?, val due: DueDto,
     val status: String, val userFixed: Boolean,
+    val kind: String = "GENERAL",
+    val origin: String = "UNSPECIFIED",
 )
 @Serializable private data class OutcomeDto(
     val kind: String, val occurredAt: String, val actualMass: Double?, val assessment: String?,
@@ -176,10 +180,12 @@ private fun DueDto.toDomain(): DueMoment = when (kind) {
     "CIVIL" -> DueMoment.CivilTime(LocalDateTime.parse(requireNotNull(localDateTime)), requireNotNull(timeZoneId))
     else -> error("Unsupported due kind: $kind")
 }
-private fun ScheduledAction.toDto() = ActionDto(id.value, batchId.value, stage?.name, due.toDto(), status.name, userFixed)
+private fun ScheduledAction.toDto() = ActionDto(
+    id.value, batchId.value, stage?.name, due.toDto(), status.name, userFixed, kind.name, origin.name,
+)
 private fun ActionDto.toDomain() = ScheduledAction(
     ScheduledActionId(id), BatchId(batchId), stage?.let(GrowStage::valueOf), due.toDomain(),
-    ScheduledActionStatus.valueOf(status), userFixed,
+    ScheduledActionStatus.valueOf(status), userFixed, ScheduledActionKind.valueOf(kind), ScheduledActionOrigin.valueOf(origin),
 )
 private fun BatchOutcome.toDto(): OutcomeDto = when (this) {
     is BatchOutcome.Harvested -> OutcomeDto("HARVESTED", occurredAt.toString(), actualMass?.value, assessment?.name, null, note)

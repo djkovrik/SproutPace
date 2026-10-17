@@ -1,15 +1,19 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-10-10",
+  "recordedAt": "2026-10-17",
   "status": "VISUALLY_REVIEWED_PENDING_FINAL_VERIFY",
-  "declarationCount": 231,
+  "declarationCount": 249,
   "notes": [
     "Original 78 declarations preserved; added production scenario captures are in ProductionScenarioPreviews.kt.",
     "Production domain fixtures replace fabricated UI items, field values, and facts. Drafts are explicit user-input variants and validation errors come from ScreenContractRegistry.prepareCommand.",
     "Confirmation captures render the actual RootConfirmationDialog with operation-specific copy. Permission overrides represent platform states and use the same production permission-action policy.",
     "All 231 declared images rendered and visually inspected; hash-bound review is ux-preview-review.json. Final Paparazzi verification is a separate executed gate.",
     "Available-photo fixture contains an 8x8 RGB diagnostic pattern generated with Pillow; PNG chunk CRC and Pillow verify/load passed. Archive fixture contains zero photos. It tests real image decoding, not representative photographic composition.",
-    "All inventoried required scenario categories have declarations and reviewed captures. Landscape harness orientation was corrected after record1 review; full final matrix remains separate."
+    "All inventoried required scenario categories have declarations and reviewed captures. Landscape harness orientation was corrected after record1 review; full final matrix remains separate.",
+    "2026-10-17: all241 current captures inspected; hash-bound current approval in ux-preview-review.json. Final verify is an executed receipt, not this declaration.",
+    "Independent-audit fixes 2026-10-17: all18 changed/new captures actually inspected by root in initial-delta001-003 (photo/pending/error/withdrawn consent and seed recommendation), then all10 reformatted mass captures re-inspected in delta001-002. Fullsize208/240 pending photo and withdrawn consent RU200, and final92/195 mobile RU200 and dark conflict reviewed. Fixed excessive numeric precision to28.48/28,48 without changing stored values. Eight photo/privacy captures unchanged after accepted first inspection. All241 prior stable preview IDs preserved, four new cases yield245 current captures;33 obsolete indexed names archived outside source. Scrollable content below fixed footer is intentionally outside the initial viewport. Runtime focus/IME/native proof remains separate.",
+    "Cycle 3: root and UI owner actually viewed both EN/RU200 PrimaryNavigationInsetsTest PNGs after passing native 24/32/72 inset resolver, safe label/target bounds and four Navigate action assertions (receipt10f09bb5). Bottom/side safe space is visible, labels/actions remain clear. Native BDAD Trays screenshot002 independently confirms gesture separation. Earlier245 approved image hashes unchanged.",
+    "Cycle 4: root actually inspected all eight intentional error Retry deltas in cycle4-error-delta001-002; official filtered record8 hashes exactly match those viewed bytes. Fullsize recorded RU200 backup90 and dark photo210 inspected again. EN retained Observation editor and RU200 expanded selected-detail frames independently viewed with actual visible error/draft/selection and semantic Retry assertions. No overlapping controls, draft/photo loss or unexpected changes accepted; scrollable content below viewport remains scrollable. All prior247 files retained,239 unchanged hashes plus8 intentional changes and2 new standalone cases yield249."
   ],
   "screens": [
     {
@@ -31,7 +35,9 @@
         "01 Setup Skipped Today Dark",
         "01 Expanded Completion",
         "01 Permission Denied Optional Step Light",
-        "01 Permission Denied Optional Step Dark RU 200"
+        "01 Permission Denied Optional Step Dark RU 200",
+        "01 Optional Dark Zone Dark RU 200",
+        "01 Optional Dark Zone Light"
       ],
       "productionFixture": {
         "renderer": "ProductionScreenSnapshotRenderer",
@@ -94,7 +100,9 @@
         "03 Empty Active Dark",
         "03 Empty History Light",
         "03 Empty History Dark",
-        "03 Long Names RU 200"
+        "03 Long Names RU 200",
+        "03 Assigned Capacity Conflict Dark RU 200",
+        "03 Assigned Capacity Conflict Light"
       ],
       "productionFixture": {
         "renderer": "ProductionScreenSnapshotRenderer",
@@ -178,7 +186,10 @@
         "05 Available Photo Dark",
         "05 Long Names RU 200",
         "05 Ready Fixed Date Light",
-        "05 Ready Fixed Date Dark"
+        "05 Ready Fixed Date Dark",
+        "05 Ordinary Soak Task Light",
+        "05 Ordinary Soak Task Dark RU 200",
+        "05 Skip Task Confirmation"
       ],
       "productionFixture": {
         "renderer": "ProductionScreenSnapshotRenderer",
@@ -296,7 +307,9 @@
         "09 Delete Observation Dialog RU 200",
         "09 Save Failure Retains Note",
         "09 Photo Import Failure Light",
-        "09 Photo Import Failure Dark RU 200"
+        "09 Photo Import Failure Dark RU 200",
+        "09 Pending Photo Light",
+        "09 Pending Photo Dark RU 200"
       ],
       "productionFixture": {
         "renderer": "ProductionScreenSnapshotRenderer",
@@ -473,7 +486,9 @@
         "15 Endpoint Failure Dark",
         "15 Changed Policy Expanded",
         "15 Declined Privacy Light",
-        "15 Declined Privacy Dark"
+        "15 Declined Privacy Dark",
+        "15 Withdrawn Privacy Light",
+        "15 Withdrawn Privacy Dark RU 200"
       ],
       "productionFixture": {
         "renderer": "ProductionScreenSnapshotRenderer",
@@ -515,5 +530,15 @@
       "missingDedicatedScenarioPreviews": [],
       "renderVerification": "Rendered and visually inspected; see ux-preview-review.json hashes. Final verification requires current Gradle receipt."
     }
+  ],
+  "generatedPreviewDeclarationCount": 245,
+  "additionalRenderedRegressionCaseCount": 4,
+  "nativeInsetRenderedRegressionCases": [
+    "com.sedsoftware.sproutpace.compose_PrimaryNavigationInsetsTest_englishLargeTextNavigationKeepsLabelsAndActionsInsideNativeSafeArea_native-navigation-insets-en-font200.png",
+    "com.sedsoftware.sproutpace.compose_PrimaryNavigationInsetsTest_russianLargeTextNavigationKeepsLabelsAndActionsInsideNativeSafeArea_native-navigation-insets-ru-font200.png"
+  ],
+  "storeReadFailureRenderedRegressionCases": [
+    "com.sedsoftware.sproutpace.compose_StoreReadFailureRenderingTest_retainedEditorReadFailureExposesActualRetryWithoutLosingAuthoredDraft_en-retained-editor-read-error.png",
+    "com.sedsoftware.sproutpace.compose_StoreReadFailureRenderingTest_russianExpandedDetailReadFailureKeepsCollectionAndExposesExactRetryAtFont200_ru-font200-selected-detail-read-error.png"
   ]
 }

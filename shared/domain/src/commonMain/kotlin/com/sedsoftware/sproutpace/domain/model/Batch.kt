@@ -41,6 +41,8 @@ sealed interface DueMoment {
 }
 
 enum class ScheduledActionStatus { PENDING, COMPLETED, SKIPPED, CANCELLED }
+enum class ScheduledActionKind { GENERAL, SOAK_TARGET }
+enum class ScheduledActionOrigin { UNSPECIFIED, SOAK_DURATION }
 
 data class ScheduledAction(
     val id: ScheduledActionId,
@@ -49,7 +51,15 @@ data class ScheduledAction(
     val due: DueMoment,
     val status: ScheduledActionStatus = ScheduledActionStatus.PENDING,
     val userFixed: Boolean = false,
-)
+    val kind: ScheduledActionKind = ScheduledActionKind.GENERAL,
+    val origin: ScheduledActionOrigin = ScheduledActionOrigin.UNSPECIFIED,
+) {
+    init {
+        if (origin == ScheduledActionOrigin.SOAK_DURATION) {
+            require(kind == ScheduledActionKind.SOAK_TARGET && stage == null && due is DueMoment.ElapsedTarget)
+        }
+    }
+}
 
 data class GrowBatch(
     val id: BatchId,

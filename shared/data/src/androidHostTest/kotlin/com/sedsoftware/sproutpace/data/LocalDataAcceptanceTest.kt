@@ -7,6 +7,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.currentCoroutineContext
@@ -18,6 +19,138 @@ import kotlinx.datetime.LocalDateTime
 import kotlin.test.*
 
 class LocalDataAcceptanceTest {
+    @Test fun archiveCsvAndPreviewRunOnWorkerAndCancelledReadNeverReplacesMultiPhotoWorkspace() = runTest {
+        seedCompleteFixture(fixture())
+        val before = backup.createArchive()
+        val archiveBytes = LocalBackupArchiveCodec().encode(before)
+        val caller = Thread.currentThread()
+        val workerThread = java.util.concurrent.atomic.AtomicReference<Thread>()
+        java.util.concurrent.Executors.newSingleThreadExecutor { task ->
+            Thread(task, "archive-worker").also(workerThread::set)
+        }
+            .asCoroutineDispatcher().use { worker ->
+                var cancelRead = false
+                val operations = mutableListOf<String>()
+                fun workerBoundary(operation: String) {
+                    assertNotEquals(caller, Thread.currentThread(), operation)
+                    assertSame(workerThread.get(), Thread.currentThread(), operation)
+                    operations += operation
+                }
+                val documents = object : ArchiveDocumentPort {
+                    override suspend fun read(documentId: String): ByteArray {
+                        workerBoundary("read")
+                        if (cancelRead) currentCoroutineContext().cancel()
+                        return archiveBytes
+                    }
+                    override suspend fun write(documentId: String, bytes: ByteArray) { workerBoundary("write") }
+                }
+                val service = LocalBackupService(database, files, settings, worker, documents = documents,
+                    now = { workerBoundary("snapshot"); before.createdAt },
+                    csvHeaders = { workerBoundary("csv"); BatchHistoryCsv.HEADER.split(',') })
+                service.writeArchive("backup")
+                service.writeCsv("csv")
+                assertIs<BackupPreview.Valid>(service.readPreview("backup"))
+                assertTrue(operations.containsAll(listOf("snapshot", "write", "csv", "read")))
+                cancelRead = true
+                val job = async { service.replaceFromDocument("backup") }
+                assertFailsWith<CancellationException> { job.await() }
+                assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+                assertNull(files.readRecoveryArchive())
+            }
+    }
+
+    @Test fun invalidPhotoPathsAreRejectedBeforeAnyWorkspaceOrPhotoWrite() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val before = backup.createArchive()
+        val paths = listOf("../outside-photos.txt", "..\\outside.txt", "/tmp/outside", "C:\\outside", "a/b", "a\\b", ".", "..")
+        for (path in paths) {
+            val id = PhotoId(path)
+            val oldId = before.photos.first().id
+            val photos = before.photos.map { if (it.id == oldId) it.copy(id = id) else it }
+            val observations = before.snapshot.observations.map { if (it.photoId == oldId) it.copy(photoId = id) else it }
+            val snapshot = before.snapshot.copy(observations = observations, manifest = before.snapshot.manifest.copy(
+                photoIntegrity = photos.associate { it.id to it.sha256 }))
+            val hostile = before.copy(snapshot = snapshot, photos = photos)
+            assertIs<BackupPreview.Invalid>(backup.preview(hostile), path)
+            assertFailsWith<LocalDataException>(path) { backup.replaceArchive(hostile) }
+            assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt), path)
+            assertNull(files.readRecoveryArchive(), path)
+        }
+        assertIs<BackupPreview.Valid>(backup.preview(before))
+    }
+
+    @Test fun unknownPlanCultureAndBrokenRequiredLinksFailPreviewAndPreserveWorkspace() = runTest {
+        val fixture = fixture()
+        seedCompleteFixture(fixture)
+        val before = backup.createArchive()
+        val current = before.snapshot
+        val variants = listOf(
+            current.copy(plans = current.plans.map { it.copy(cultureRotation = listOf(CultureId("unknown-culture"))) }),
+            current.copy(batches = current.batches.map { batch -> batch.copy(actions = batch.actions.map {
+                it.copy(batchId = BatchId("missing-batch")) }) }),
+            current.copy(batches = current.batches.map { batch -> batch.copy(actions = batch.actions.map {
+                it.copy(due = DueMoment.CivilTime(LocalDateTime(2026, 10, 17, 9, 0), "Invalid/TimeZone")) }) }),
+            current.copy(batches = current.batches.map { batch -> if (batch.state.isTerminal) batch else batch.copy(
+                placement = Placement.Assigned(GrowZoneId("missing-zone"), "Deleted")) }),
+        )
+        for (snapshot in variants) {
+            val invalid = before.copy(snapshot = snapshot)
+            assertIs<BackupPreview.Invalid>(backup.preview(invalid))
+            assertFailsWith<LocalDataException> { backup.replaceArchive(invalid) }
+            assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+        }
+        backup.replaceArchive(before)
+        val manager = ProductionScreenDataManager(database, settings)
+        listOf(com.sedsoftware.sproutpace.component.ScreenId.TODAY,
+            com.sedsoftware.sproutpace.component.ScreenId.PLAN,
+            com.sedsoftware.sproutpace.component.ScreenId.ZONES).forEach { manager.watch(it).first() }
+    }
+
+    @Test fun resetCleansImportedArchivesAndPendingPhotosAndReportsCleanupFailure() = runTest {
+        seedCompleteFixture(fixture())
+        var imports = 1
+        var pendingPhotos = 2
+        var failCleanup = true
+        val documents = object : ArchiveDocumentPort {
+            override suspend fun read(documentId: String): ByteArray? = null
+            override suspend fun write(documentId: String, bytes: ByteArray) = Unit
+            override suspend fun clearImportedArchives() {
+                if (failCleanup) error("import cleanup failed")
+                imports = 0
+            }
+        }
+        val service = LocalBackupService(database, files, settings, Dispatchers.Unconfined,
+            documents = documents, clearPendingPhotos = { pendingPhotos = 0 })
+        val before = backup.createArchive()
+        assertEquals(LocalDataErrorKey.ERASE_FAILED, assertFailsWith<LocalDataException> { service.eraseAll() }.key)
+        assertEquals(before, backup.createArchive().copy(createdAt = before.createdAt))
+        assertEquals(1, imports)
+        failCleanup = false
+        service.eraseAll()
+        assertEquals(0, imports)
+        assertEquals(0, pendingPhotos)
+        assertTrue(database.snapshot().batches.isEmpty())
+        assertTrue(files.exportAll().isEmpty())
+        assertNull(files.readRecoveryArchive())
+    }
+
+    @Test fun codecCancellationDuringMultiPhotoEncodeAndDecodeIsNeverWrappedAsCorruption() = runTest {
+        seedCompleteFixture(fixture())
+        val archive = backup.createArchive()
+        val codec = LocalBackupArchiveCodec()
+        val bytes = codec.encode(archive)
+        var checkpoints = 0
+        assertFailsWith<CancellationException> { codec.encode(archive) {
+            if (++checkpoints == 13) throw CancellationException("encode cancelled during second photo")
+        } }
+        checkpoints = 0
+        assertFailsWith<CancellationException> { codec.decode(bytes) {
+            if (++checkpoints == 13) throw CancellationException("decode cancelled during second photo")
+        } }
+        assertEquals(archive, backup.createArchive().copy(createdAt = archive.createdAt))
+    }
+
     @Test fun cancelledEraseRestoresAllStateBeforePropagatingCancellation() = runTest {
         val fixture = fixture()
         seedCompleteFixture(fixture)

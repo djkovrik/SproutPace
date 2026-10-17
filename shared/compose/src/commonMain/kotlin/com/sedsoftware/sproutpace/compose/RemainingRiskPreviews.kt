@@ -9,6 +9,24 @@ import com.sedsoftware.sproutpace.component.DestructiveOperation
 import com.sedsoftware.sproutpace.data.ConsentChoice
 import com.sedsoftware.sproutpace.data.ProductionScreenFixtures.Scenario
 
+@Preview(name = "01 Optional Dark Zone Light", widthDp = 393, heightDp = 1400)
+@Preview(name = "01 Optional Dark Zone Dark RU 200", widthDp = 700, heightDp = 1800, locale = "ru", fontScale = 2f, uiMode = 32)
+@Composable private fun OptionalDarkZoneSetup() = WizardStepPreview(UiScreen.FIRST_RUN, 0,
+    typedPreviewState(UiScreen.FIRST_RUN, draft = mapOf(
+        "darkZoneEnabled" to "true", "darkZoneName" to "Cupboard", "darkZoneCapacity" to "2")))
+
+@Preview(name = "03 Assigned Capacity Conflict Light", widthDp = 393, heightDp = 1300)
+@Preview(name = "03 Assigned Capacity Conflict Dark RU 200", widthDp = 700, heightDp = 1800, locale = "ru", fontScale = 2f, uiMode = 32)
+@Composable private fun AssignedCapacityConflictTrays() = App(typedPreviewState(UiScreen.TRAYS,
+    scenario = Scenario.CAPACITY_CONFLICT, draft = mapOf("category" to "active")))
+
+@Preview(name = "05 Ordinary Soak Task Light", widthDp = 393, heightDp = 1500)
+@Preview(name = "05 Ordinary Soak Task Dark RU 200", widthDp = 700, heightDp = 1800, locale = "ru", fontScale = 2f, uiMode = 32)
+@Composable private fun OrdinarySoakTaskDetail() = App(typedPreviewState(UiScreen.BATCH_DETAIL, scenario = Scenario.ORDINARY_SOAK_TASK))
+
+@Preview(name = "05 Skip Task Confirmation", widthDp = 393, heightDp = 900)
+@Composable private fun SkipTaskConfirmation() = ProductionConfirmationPreview(DestructiveOperation.SKIP_ACTION)
+
 @Preview(name = "03 Empty Active Light", widthDp = 393, heightDp = 851)
 @Preview(name = "03 Empty Active Dark", widthDp = 393, heightDp = 851, uiMode = 32)
 @Composable private fun EmptyActive() = App(typedPreviewState(UiScreen.TRAYS, UiVariant.EMPTY,
@@ -44,6 +62,18 @@ import com.sedsoftware.sproutpace.data.ProductionScreenFixtures.Scenario
 @Preview(name = "09 Actual Photo Dark", widthDp = 393, heightDp = 1100, uiMode = 32)
 @Composable private fun ObservationPhoto() = App(typedPreviewState(UiScreen.OBSERVATION_EDITOR,
     scenario = Scenario.PHOTO, selectedId = "growth"))
+
+@Preview(name = "09 Pending Photo Light", widthDp = 393, heightDp = 1200)
+@Preview(name = "09 Pending Photo Dark RU 200", widthDp = 1100, heightDp = 1400, locale = "ru", fontScale = 2f, uiMode = 32)
+@Composable private fun PendingObservationPhoto() {
+    val state = typedPreviewState(UiScreen.OBSERVATION_EDITOR, scenario = Scenario.PHOTO, selectedId = "growth")
+    val selected = requireNotNull(state.observationPreviewPhoto())
+    val pending = com.sedsoftware.sproutpace.component.pendingPhotoDraftValue("preview-selection")
+    val preview = state.items.first { it.photo?.id == selected.id }.copy(
+        id = "draft-photo", photo = UiPhoto(pending, selected.bytes, selected.contentDescriptionKey))
+    App(state.copy(fields = state.fields.map { if (it.id == "photoId") it.copy(value = pending) else it },
+        items = state.items + preview))
+}
 
 @Preview(name = "09 Long Note RU 200", widthDp = 700, heightDp = 1200, locale = "ru", fontScale = 2f)
 @Composable private fun ObservationLongNote() = App(typedPreviewState(UiScreen.OBSERVATION_EDITOR,
@@ -83,6 +113,11 @@ import com.sedsoftware.sproutpace.data.ProductionScreenFixtures.Scenario
 @Preview(name = "15 Declined Privacy Dark", widthDp = 393, heightDp = 851, uiMode = 32)
 @Composable private fun DeclinedPrivacy() = App(typedPreviewState(UiScreen.ADVERTISING_PRIVACY)
     .withAdvertisingPrivacy(previewPrivacy(ConsentChoice.DECLINED), PREVIEW_PRIVACY_NOW))
+
+@Preview(name = "15 Withdrawn Privacy Light", widthDp = 393, heightDp = 1400)
+@Preview(name = "15 Withdrawn Privacy Dark RU 200", widthDp = 700, heightDp = 1800, locale = "ru", fontScale = 2f, uiMode = 32)
+@Composable private fun WithdrawnPrivacy() = App(typedPreviewState(UiScreen.ADVERTISING_PRIVACY)
+    .withAdvertisingPrivacy(previewPrivacy(ConsentChoice.WITHDRAWN), PREVIEW_PRIVACY_NOW))
 
 @Preview(name = "16 Schedule Failure Light", widthDp = 393, heightDp = 1000)
 @Preview(name = "16 Schedule Failure Dark RU 200", widthDp = 700, heightDp = 1200, locale = "ru", fontScale = 2f, uiMode = 32)

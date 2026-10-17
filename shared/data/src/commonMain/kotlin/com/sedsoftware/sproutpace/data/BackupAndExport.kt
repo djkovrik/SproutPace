@@ -32,6 +32,7 @@ import kotlin.time.Clock
 
 enum class LocalDataErrorKey(val resourceKey: String) {
     INVALID_COMMAND("error_local_data_invalid_command"),
+    INVALID_RECIPE_STAGES("error_recipe_stage_order"),
     ARCHIVE_UNREADABLE("error_backup_unreadable"),
     ARCHIVE_UNSUPPORTED("error_backup_unsupported_version"),
     ARCHIVE_INVALID("error_backup_invalid"),
@@ -54,6 +55,8 @@ class LocalDataException(val key: LocalDataErrorKey, cause: Throwable? = null) :
 interface ArchiveDocumentPort {
     suspend fun read(documentId: String): ByteArray?
     suspend fun write(documentId: String, bytes: ByteArray)
+    /** Removes only private copies made by the import picker, never external documents. */
+    suspend fun clearImportedArchives() = Unit
 }
 
 /** Replaces all app-owned future reminders, making both apply and compensation idempotent. */
@@ -91,34 +94,52 @@ sealed interface BackupPreview {
 
 /** Deterministic line-framed payload. Authored strings and JSON are UTF-8 hex, so records cannot escape framing. */
 class LocalBackupArchiveCodec(private val domainCodec: DomainJsonCodec = DomainJsonCodec()) {
-    fun encode(archive: LocalBackupArchive): ByteArray {
+    fun encode(archive: LocalBackupArchive, checkActive: () -> Unit = {}): ByteArray {
+        checkActive()
         val snapshot = archive.snapshot
         val lines = buildList {
             add(listOf(MAGIC, archive.formatVersion.toString(), archive.createdAt.toString()).joinToString(SEPARATOR))
             add(encodePreferences(archive.preferences))
             add(encodeManifest(snapshot.manifest))
             snapshot.zones.sortedBy { it.id.value }.forEach { zone ->
+                checkActive()
                 add(listOf("Z", text(zone.id.value), text(zone.name), zone.type.name, zone.capacity.toString()).joinToString(SEPARATOR))
             }
             snapshot.trayPresets.sortedBy { it.id.value }.forEach { tray ->
+                checkActive()
                 val shape = when (val value = tray.shape) {
                     is TrayShape.Rectangle -> listOf("RECTANGLE", value.widthCentimetres.toString(), value.lengthCentimetres.toString())
                     is TrayShape.Circle -> listOf("CIRCLE", value.diameterCentimetres.toString(), "")
                 }
                 add((listOf("T", text(tray.id.value), text(tray.name)) + shape).joinToString(SEPARATOR))
             }
-            snapshot.recipes.sortedBy { it.id.value }.forEach { add("R$SEPARATOR${text(domainCodec.encodeRecipe(it))}") }
-            snapshot.batches.sortedBy { it.id.value }.forEach { add("B$SEPARATOR${text(domainCodec.encodeBatch(it))}") }
-            snapshot.plans.sortedBy { it.id.value }.forEach { add("L$SEPARATOR${text(domainCodec.encodePlan(it))}") }
-            snapshot.observations.sortedBy { it.id.value }.forEach { add("O$SEPARATOR${text(domainCodec.encodeObservation(it))}") }
+            snapshot.recipes.sortedBy { it.id.value }.forEach {
+                checkActive()
+                add("R$SEPARATOR${text(domainCodec.encodeRecipe(it))}")
+            }
+            snapshot.batches.sortedBy { it.id.value }.forEach {
+                checkActive()
+                add("B$SEPARATOR${text(domainCodec.encodeBatch(it))}")
+            }
+            snapshot.plans.sortedBy { it.id.value }.forEach {
+                checkActive()
+                add("L$SEPARATOR${text(domainCodec.encodePlan(it))}")
+            }
+            snapshot.observations.sortedBy { it.id.value }.forEach {
+                checkActive()
+                add("O$SEPARATOR${text(domainCodec.encodeObservation(it))}")
+            }
             archive.photos.sortedBy { it.id.value }.forEach { photo ->
-                add(listOf("F", text(photo.id.value), photo.sha256, photo.bytes.toHex()).joinToString(SEPARATOR))
+                checkActive()
+                add(listOf("F", text(photo.id.value), photo.sha256, photo.bytes.toHex(checkActive)).joinToString(SEPARATOR))
             }
         }
-        return lines.joinToString("\n", postfix = "\n").encodeToByteArray()
+        checkActive()
+        return lines.joinToString("\n", postfix = "\n").encodeToByteArray().also { checkActive() }
     }
 
-    fun decode(bytes: ByteArray): LocalBackupArchive = guardedDecode {
+    fun decode(bytes: ByteArray, checkActive: () -> Unit = {}): LocalBackupArchive = guardedDecode {
+        checkActive()
         val lines = bytes.decodeToString(throwOnInvalidSequence = true).split('\n').filter(String::isNotEmpty)
         val header = fields(lines.firstOrNull() ?: invalid())
         if (header.size != HEADER_FIELD_COUNT || header[RECORD_TYPE_INDEX] != MAGIC) invalid()
@@ -135,6 +156,7 @@ class LocalBackupArchiveCodec(private val domainCodec: DomainJsonCodec = DomainJ
         val observations = mutableListOf<Observation>()
         val photos = mutableListOf<PrivatePhoto>()
         lines.drop(ARCHIVE_PREAMBLE_LINE_COUNT).forEach { line ->
+            checkActive()
             val value = fields(line)
             when (value.firstOrNull()) {
                 "Z" -> zones += GrowZone(
@@ -162,7 +184,7 @@ class LocalBackupArchiveCodec(private val domainCodec: DomainJsonCodec = DomainJ
                 "O" -> observations += domainCodec.decodeObservation(plain(value[1]))
                 "F" -> photos += PrivatePhoto(
                     PhotoId(plain(value[1])),
-                    value[PHOTO_BYTES_INDEX].hexToBytes(),
+                    value[PHOTO_BYTES_INDEX].hexToBytes(checkActive),
                     value[2],
                 )
                 else -> invalid()
@@ -248,6 +270,7 @@ class LocalBackupArchiveCodec(private val domainCodec: DomainJsonCodec = DomainJ
     private fun plain(value: String) = value.hexToBytes().decodeToString(throwOnInvalidSequence = true)
     private fun invalid(): Nothing = throw LocalDataException(LocalDataErrorKey.ARCHIVE_UNREADABLE)
     private inline fun <T> guardedDecode(block: () -> T): T = runCatching(block).getOrElse { failure ->
+        if (failure is CancellationException) throw failure
         if (failure is LocalDataException) throw failure
         throw LocalDataException(LocalDataErrorKey.ARCHIVE_UNREADABLE, failure)
     }
@@ -300,6 +323,7 @@ class LocalBackupService(
     private val now: () -> Instant = { Clock.System.now() },
     private val csvHeaders: suspend () -> List<String> = { BatchHistoryCsv.HEADER.split(',') },
     private val flushPreferences: () -> Unit = { },
+    private val clearPendingPhotos: suspend () -> Unit = { },
 ) : BackupManager {
     private val replacementMutex = Mutex()
 
@@ -330,14 +354,28 @@ class LocalBackupService(
         LocalBackupArchive(now(), current.copy(manifest = manifest), photos, settings.snapshot())
     }
 
-    suspend fun createArchiveBytes(): ByteArray = codec.encode(createArchive())
-    suspend fun writeArchive(documentId: String) = documentWrite(documentId, createArchiveBytes())
-    suspend fun readPreview(documentId: String): BackupPreview = preview(codec.decode(documentRead(documentId)))
-    suspend fun replaceFromDocument(documentId: String) = replaceArchive(codec.decode(documentRead(documentId)))
-    suspend fun writeCsv(documentId: String) = documentWrite(documentId, BatchHistoryCsv.encode(database.snapshot(), csvHeaders()))
+    suspend fun createArchiveBytes(): ByteArray = withContext(ioDispatcher) {
+        val context = currentCoroutineContext()
+        codec.encode(createArchive(), context::ensureActive)
+    }
+    suspend fun writeArchive(documentId: String) = withContext(ioDispatcher) {
+        documentWrite(documentId, createArchiveBytes())
+    }
+    suspend fun readPreview(documentId: String): BackupPreview = withContext(ioDispatcher) {
+        val context = currentCoroutineContext()
+        preview(codec.decode(documentRead(documentId), context::ensureActive))
+    }
+    suspend fun replaceFromDocument(documentId: String) = withContext(ioDispatcher) {
+        val context = currentCoroutineContext()
+        replaceArchive(codec.decode(documentRead(documentId), context::ensureActive))
+    }
+    suspend fun writeCsv(documentId: String) = withContext(ioDispatcher) {
+        val context = currentCoroutineContext()
+        documentWrite(documentId, BatchHistoryCsv.encode(database.snapshot(), csvHeaders(), context::ensureActive))
+    }
 
     override suspend fun validate(snapshot: ProductSnapshot): Result<RestoreValidation> =
-        domainResult { SnapshotValidation.validate(snapshot) }
+        domainResult { withContext(ioDispatcher) { SnapshotValidation.validate(snapshot) } }
 
     suspend fun preview(archive: LocalBackupArchive): BackupPreview = withContext(ioDispatcher) {
         currentCoroutineContext().ensureActive()
@@ -346,10 +384,12 @@ class LocalBackupService(
         if (SnapshotValidation.validate(archive.snapshot) is RestoreValidation.Invalid) reasons += LocalDataErrorKey.ARCHIVE_INVALID
         currentCoroutineContext().ensureActive()
         if (archive.photos.map { it.id }.distinct().size != archive.photos.size) reasons += LocalDataErrorKey.ARCHIVE_DUPLICATE_RECORD
+        if (archive.photos.any { !isSafePhotoId(it.id) }) reasons += LocalDataErrorKey.ARCHIVE_INVALID
         var corruptPhoto = false
+        val context = currentCoroutineContext()
         for (photo in archive.photos) {
             currentCoroutineContext().ensureActive()
-            if (Sha256.digest(photo.bytes) != photo.sha256) {
+            if (Sha256.digest(photo.bytes, context::ensureActive) != photo.sha256) {
                 corruptPhoto = true
                 break
             }
@@ -371,7 +411,8 @@ class LocalBackupService(
         val checked = preview(archive)
         if (checked is BackupPreview.Invalid) throw LocalDataException(checked.reasons.first())
         val previous = createArchive()
-        files.writeRecoveryArchive(codec.encode(previous))
+        val context = currentCoroutineContext()
+        files.writeRecoveryArchive(codec.encode(previous, context::ensureActive))
         val failure = runCatching {
             files.replaceAll(archive.photos)
             currentCoroutineContext().ensureActive()
@@ -397,13 +438,16 @@ class LocalBackupService(
     suspend fun eraseAll() = replacementMutex.withLock { withContext(ioDispatcher) {
         check(files.readRecoveryArchive() == null) { "Workspace recovery must finish before erasure" }
         val previous = createArchive()
-        files.writeRecoveryArchive(codec.encode(previous))
+        val context = currentCoroutineContext()
+        files.writeRecoveryArchive(codec.encode(previous, context::ensureActive))
         runCatching {
             files.clear()
             database.erase()
             settings.clearProductState()
             flushPreferences()
             reminders.replaceFutureReminders(database.snapshot())
+            documents?.clearImportedArchives()
+            clearPendingPhotos()
             currentCoroutineContext().ensureActive()
             files.writeRecoveryArchive(null)
         }.getOrElse { failure ->
@@ -434,6 +478,7 @@ class LocalBackupService(
     }
 
     private suspend fun documentRead(documentId: String): ByteArray {
+        currentCoroutineContext().ensureActive()
         if (documentId.isBlank()) localDataFailure(LocalDataErrorKey.INVALID_COMMAND)
         val port = documents ?: localDataFailure(LocalDataErrorKey.DOCUMENT_READ_FAILED)
         val result = runCatching { port.read(documentId) }
@@ -445,6 +490,7 @@ class LocalBackupService(
     }
 
     private suspend fun documentWrite(documentId: String, bytes: ByteArray) {
+        currentCoroutineContext().ensureActive()
         if (documentId.isBlank()) localDataFailure(LocalDataErrorKey.INVALID_COMMAND)
         val port = documents ?: localDataFailure(LocalDataErrorKey.DOCUMENT_WRITE_FAILED)
         val failure = runCatching { port.write(documentId, bytes) }.exceptionOrNull()
@@ -455,78 +501,155 @@ class LocalBackupService(
     }
 }
 
-class LocalWorkspaceRepository(
+class LocalWorkspaceRepository internal constructor(
     private val database: LocalDatabase,
     private val files: PrivateFileStore,
     private val ioDispatcher: CoroutineDispatcher,
+    private val photoIdFactory: (ObservationId, ByteArray, () -> Unit) -> PhotoId,
 ) {
+    constructor(database: LocalDatabase, files: PrivateFileStore, ioDispatcher: CoroutineDispatcher) :
+        this(database, files, ioDispatcher, ::managedPhotoId)
+
+    internal suspend fun prepareManagedPhotoReplacement(
+        observationId: ObservationId,
+        bytes: ByteArray,
+    ): ObservationPhotoChange.Replace = preparePhotoReplacement(bytes) { checkActive ->
+        photoIdFactory(observationId, bytes, checkActive)
+    }
+
+    private suspend fun preparePhotoReplacement(
+        bytes: ByteArray,
+        photoId: (() -> Unit) -> PhotoId,
+    ): ObservationPhotoChange.Replace = withContext(ioDispatcher) {
+        val checkActive = currentCoroutineContext()::ensureActive
+        checkActive()
+        val id = photoId(checkActive)
+        checkActive()
+        val replacement = ObservationPhotoChange.Replace(id, bytes)
+        checkActive()
+        replacement
+    }
+
     suspend fun saveObservation(observation: Observation, photoBytes: ByteArray?): Observation = saveObservation(
         observation = observation,
         photoChange = photoBytes?.let { bytes ->
-            ObservationPhotoChange.Replace(requireNotNull(observation.photoId), bytes)
+            preparePhotoReplacement(bytes) { requireNotNull(observation.photoId) }
         } ?: ObservationPhotoChange.Keep,
     )
 
     suspend fun saveObservation(
         observation: Observation,
         photoChange: ObservationPhotoChange = ObservationPhotoChange.Keep,
-    ): Observation = withContext(ioDispatcher) {
-        val previousObservation = database.snapshot().observations.firstOrNull { it.id == observation.id }
-        val previousId = previousObservation?.photoId
-        val previousBytes = previousId?.let { files.read(it) }
-        val target = when (photoChange) {
-            ObservationPhotoChange.Keep -> observation.copy(photoId = previousId ?: observation.photoId)
-            ObservationPhotoChange.Remove -> observation.copy(photoId = null)
-            is ObservationPhotoChange.Replace -> observation.copy(photoId = photoChange.id)
-        }
-        val replacement = photoChange as? ObservationPhotoChange.Replace
-        val overwrittenReplacement = replacement?.id
-            ?.takeIf { it != previousId }
-            ?.let { id -> files.read(id)?.let { id to it } }
-        return@withContext runCatching {
-            replacement?.let { files.write(it.id, it.bytes) }
-            database.saveObservation(target)
-            if (previousId != null && previousId != target.photoId) files.delete(previousId)
-            target
-        }.getOrElse { failure ->
-            runCatching {
-                if (previousObservation == null) database.deleteObservation(observation.id)
-                else database.saveObservation(previousObservation)
+    ): Observation {
+        var restore: suspend (Throwable) -> Unit = {}
+        return try {
+            withContext(ioDispatcher) {
+                val previousObservation = database.snapshot().observations.firstOrNull { it.id == observation.id }
+                val previousId = previousObservation?.photoId
+                val previousBytes = previousId?.let { files.read(it) }
+                val target = when (photoChange) {
+                    ObservationPhotoChange.Keep -> observation.copy(photoId = previousId ?: observation.photoId)
+                    ObservationPhotoChange.Remove -> observation.copy(photoId = null)
+                    is ObservationPhotoChange.Replace -> observation.copy(photoId = photoChange.id)
+                }
+                val replacement = photoChange as? ObservationPhotoChange.Replace
+                val overwrittenReplacement = replacement?.id
+                    ?.takeIf { it != previousId }
+                    ?.let { id -> files.read(id)?.let { id to it } }
+                restore = { failure ->
+                    restoreSavedObservation(failure, observation.id, previousObservation, previousBytes,
+                        replacement, overwrittenReplacement)
+                }
+                replacement?.let { files.write(it.id, it.bytes) }
+                database.saveObservation(target)
+                if (previousId != null && previousId != target.photoId) files.delete(previousId)
+                currentCoroutineContext().ensureActive()
+                target
             }
-            if (previousId != null && previousBytes != null) runCatching { files.write(previousId, previousBytes) }
-            replacement?.takeIf { it.id != previousId }?.let { changed ->
-                val overwritten = overwrittenReplacement?.takeIf { it.first == changed.id }
-                if (overwritten == null) runCatching { files.delete(changed.id) }
-                else runCatching { files.write(overwritten.first, overwritten.second) }
-            }
-            throw failure
+        } catch (expectedFailure: Throwable) {
+            withContext(NonCancellable + ioDispatcher) { restore(expectedFailure) }
+            throw expectedFailure
         }
     }
 
     suspend fun readPhoto(id: PhotoId): ByteArray? = withContext(ioDispatcher) { files.read(id) }
 
-    suspend fun deleteObservation(id: ObservationId) = withContext(ioDispatcher) {
-        val observation = database.snapshot().observations.firstOrNull { it.id == id } ?: return@withContext
-        val photo = observation.photoId?.let { it to files.read(it) }
-        runCatching {
-            observation.photoId?.let { files.delete(it) }
-            database.deleteObservation(id)
-        }.getOrElse { failure ->
-            photo?.second?.let { files.write(photo.first, it) }
-            throw failure
+    suspend fun deleteObservation(id: ObservationId) {
+        var restore: suspend (Throwable) -> Unit = {}
+        try {
+            withContext(ioDispatcher) {
+                val observation = database.snapshot().observations.firstOrNull { it.id == id } ?: return@withContext
+                val photo = observation.photoId?.let { it to files.read(it) }
+                restore = { failure ->
+                    restoreDeletedObservation(failure, observation, photo)
+                }
+                observation.photoId?.let { files.delete(it) }
+                database.deleteObservation(id)
+                currentCoroutineContext().ensureActive()
+            }
+        } catch (expectedFailure: Throwable) {
+            withContext(NonCancellable + ioDispatcher) { restore(expectedFailure) }
+            throw expectedFailure
         }
     }
 
-    suspend fun deleteBatch(id: BatchId) = withContext(ioDispatcher) {
-        val photoIds = database.snapshot().observations.filter { it.batchId == id }.mapNotNull { it.photoId }
-        val photos = photoIds.mapNotNull { photoId -> files.read(photoId)?.let { photoId to it } }
-        runCatching {
-            photoIds.forEach { files.delete(it) }
-            database.deleteBatch(id)
-        }.getOrElse { failure ->
-            photos.forEach { (photoId, bytes) -> runCatching { files.write(photoId, bytes) } }
-            throw failure
+    suspend fun deleteBatch(id: BatchId) {
+        var restore: suspend (Throwable) -> Unit = {}
+        try {
+            withContext(ioDispatcher) {
+                val previous = database.snapshot()
+                if (previous.batches.none { it.id == id }) return@withContext
+                val photoIds = previous.observations.filter { it.batchId == id }.mapNotNull { it.photoId }
+                val photos = photoIds.mapNotNull { photoId -> files.read(photoId)?.let { photoId to it } }
+                restore = { failure ->
+                    restoreDeletedBatch(failure, previous, photos)
+                }
+                photoIds.forEach { files.delete(it) }
+                database.deleteBatch(id)
+                currentCoroutineContext().ensureActive()
+            }
+        } catch (expectedFailure: Throwable) {
+            withContext(NonCancellable + ioDispatcher) { restore(expectedFailure) }
+            throw expectedFailure
         }
+    }
+
+    private suspend fun restoreSavedObservation(
+        failure: Throwable,
+        observationId: ObservationId,
+        previous: Observation?,
+        previousBytes: ByteArray?,
+        replacement: ObservationPhotoChange.Replace?,
+        overwrittenReplacement: Pair<PhotoId, ByteArray>?,
+    ) {
+        val previousId = previous?.photoId
+        restoreAfterFailure(failure) {
+            if (previous == null) database.deleteObservation(observationId) else database.saveObservation(previous)
+        }
+        if (previousId != null && previousBytes != null) {
+            restoreAfterFailure(failure) { files.write(previousId, previousBytes) }
+        }
+        replacement?.takeIf { it.id != previousId }?.let { changed ->
+            restoreAfterFailure(failure) {
+                if (overwrittenReplacement == null) files.delete(changed.id)
+                else files.write(overwrittenReplacement.first, overwrittenReplacement.second)
+            }
+        }
+    }
+
+    private suspend fun restoreDeletedObservation(failure: Throwable, observation: Observation, photo: Pair<PhotoId, ByteArray?>?) {
+        photo?.second?.let { bytes -> restoreAfterFailure(failure) { files.write(photo.first, bytes) } }
+        restoreAfterFailure(failure) { database.saveObservation(observation) }
+    }
+
+    private suspend fun restoreDeletedBatch(failure: Throwable, previous: ProductSnapshot, photos: List<Pair<PhotoId, ByteArray>>) {
+        photos.forEach { (id, bytes) -> restoreAfterFailure(failure) { files.write(id, bytes) } }
+        restoreAfterFailure(failure) { database.replace(previous) }
+    }
+
+    private suspend fun restoreAfterFailure(failure: Throwable, restore: suspend () -> Unit) {
+        val compensationFailure = runCatching { restore() }.exceptionOrNull()
+        if (compensationFailure != null && compensationFailure !== failure) failure.addSuppressed(compensationFailure)
     }
 }
 
@@ -541,9 +664,11 @@ sealed interface ObservationPhotoChange {
 object BatchHistoryCsv {
     const val HEADER: String = "batch_id,culture_id,recipe_name,state,outcome_at,actual_mass_grams,note"
 
-    fun encode(snapshot: ProductSnapshot, headers: List<String> = HEADER.split(',')): ByteArray {
+    fun encode(snapshot: ProductSnapshot, headers: List<String> = HEADER.split(','), checkActive: () -> Unit = {}): ByteArray {
+        checkActive()
         require(headers.size == HEADER.split(',').size && headers.all { it.isNotBlank() })
-        val rows = snapshot.batches.map { batch ->
+        val rows = snapshot.batches.filter { it.state.isTerminal }.map { batch ->
+            checkActive()
             val outcome = batch.outcome
             listOf(
                 batch.id.value, batch.recipe.builtInCultureId?.value.orEmpty(), batch.recipe.nameSnapshot.orEmpty(),
@@ -563,13 +688,19 @@ object BatchHistoryCsv {
 private const val HEX_RADIX = 16
 private const val HEX_BYTE_WIDTH = 2
 
-private fun ByteArray.toHex(): String = joinToString("") { byte ->
-    byte.toUByte().toString(HEX_RADIX).padStart(HEX_BYTE_WIDTH, '0')
+private fun ByteArray.toHex(checkActive: () -> Unit = {}): String = buildString(size * HEX_BYTE_WIDTH) {
+    this@toHex.forEachIndexed { index, byte ->
+        if (index % CODEC_CANCELLATION_INTERVAL == 0) checkActive()
+        append(byte.toUByte().toString(HEX_RADIX).padStart(HEX_BYTE_WIDTH, '0'))
+    }
 }
 
-private fun String.hexToBytes(): ByteArray {
+private const val CODEC_CANCELLATION_INTERVAL = 4096
+
+private fun String.hexToBytes(checkActive: () -> Unit = {}): ByteArray {
     require(length % HEX_BYTE_WIDTH == 0)
     return ByteArray(length / HEX_BYTE_WIDTH) { index ->
+        if (index % CODEC_CANCELLATION_INTERVAL == 0) checkActive()
         val start = index * HEX_BYTE_WIDTH
         substring(start, start + HEX_BYTE_WIDTH).toInt(HEX_RADIX).toByte()
     }

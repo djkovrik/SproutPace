@@ -142,3 +142,18 @@ private val NOTIFICATION_PERMISSION_ACTION_IDS = setOf("request-notification-per
 
 private val DEFAULT_SUMMARY_TIME = LocalTime(9, 0)
 
+@Composable
+internal fun SummaryTimeField(field: UiField, onAction: (UiAction) -> Unit) {
+    var open by rememberSaveable(field.id) { mutableStateOf(false) }
+    val time = runCatching { LocalTime.parse(field.value) }.getOrDefault(DEFAULT_SUMMARY_TIME)
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(localizedText(field.labelKey), style = MaterialTheme.typography.titleMedium)
+        OutlinedButton(onClick = { open = true }, enabled = !field.readOnly) { Text(localizedTime(time)) }
+        field.errorKey?.let { Text(localizedText(it), color = MaterialTheme.colorScheme.error) }
+    }
+    if (open) TemporalTimeDialog(time, onDismiss = { open = false }, onApply = {
+        onAction(UiAction.EditField(field.id, it.toString()))
+        open = false
+    })
+}
+

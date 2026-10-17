@@ -15,6 +15,9 @@ internal fun ProjectionContent(item: UiItem) {
         batch.zoneName?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         batch.sowDate?.let { Text(stringResource(Res.string.projection_sown, localizedDate(it))) }
         batch.closedAt?.let { Text(stringResource(Res.string.projection_closed, localizedInstant(it))) }
+        batch.actualHarvestMassGrams?.let {
+            Text(stringResource(Res.string.batch_actual_harvest_mass, localizedDecimal(it.toString())))
+        }
     }
     item.task?.let { task ->
         Text(

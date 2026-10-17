@@ -7,10 +7,15 @@ import com.sedsoftware.sproutpace.domain.model.GrowZone
 import com.sedsoftware.sproutpace.domain.model.HarvestPlan
 import com.sedsoftware.sproutpace.domain.model.Observation
 import com.sedsoftware.sproutpace.domain.model.PhotoId
+import com.sedsoftware.sproutpace.domain.model.Placement
+import com.sedsoftware.sproutpace.domain.model.BatchOutcome
+import com.sedsoftware.sproutpace.domain.model.BatchState
 import com.sedsoftware.sproutpace.domain.model.ProductSnapshot
 import com.sedsoftware.sproutpace.domain.model.RestoreValidation
 import com.sedsoftware.sproutpace.domain.model.TraySizePreset
 import com.sedsoftware.sproutpace.domain.model.UserGrowRecipe
+import com.sedsoftware.sproutpace.domain.model.DueMoment
+import kotlinx.datetime.TimeZone
 
 object SnapshotValidation {
     const val SCHEMA_VERSION: Int = 1
@@ -26,15 +31,10 @@ object SnapshotValidation {
             duplicates("batches", snapshot.batches.map { it.id.value })?.let(::add)
             duplicates("plans", snapshot.plans.map { it.id.value })?.let(::add)
             duplicates("observations", snapshot.observations.map { it.id.value })?.let(::add)
-            val batchIds = snapshot.batches.mapTo(hashSetOf()) { it.id }
-            if (snapshot.observations.any { it.batchId !in batchIds }) add("orphan_observation")
-            val photoIds = snapshot.observations.mapNotNullTo(hashSetOf()) { it.photoId }
-            if (snapshot.manifest.photoIntegrity.keys != photoIds) add("photo_manifest_mismatch")
             val expected = recordCounts(snapshot)
             if (snapshot.manifest.recordCounts != expected) add("record_count_mismatch")
-            if (snapshot.batches.any { batch ->
-                    batch.recipe.builtInCultureId?.let { it !in SproutPaceCatalog.cultureIds } == true
-                }) add("unknown_built_in_culture")
+            addAll(referenceErrors(snapshot))
+            addAll(batchErrors(snapshot))
         }
         return if (reasons.isEmpty()) RestoreValidation.Valid(snapshot) else RestoreValidation.Invalid(reasons)
     }
@@ -49,6 +49,38 @@ object SnapshotValidation {
             zones, trays, recipes, batches, plans, observations,
         )
         return BackupManifest(SCHEMA_VERSION, ARCHIVE_VERSION, recordCounts(snapshot), photoIntegrity)
+    }
+
+    private fun referenceErrors(snapshot: ProductSnapshot): List<String> = buildList {
+        val batchIds = snapshot.batches.mapTo(hashSetOf()) { it.id }
+        if (snapshot.observations.any { it.batchId !in batchIds }) add("orphan_observation")
+        val photoIds = snapshot.observations.mapNotNullTo(hashSetOf()) { it.photoId }
+        if ((photoIds + snapshot.manifest.photoIntegrity.keys).any { !isSafePhotoId(it) }) add("unsafe_photo_id")
+        if (snapshot.manifest.photoIntegrity.keys != photoIds) add("photo_manifest_mismatch")
+        val cultures = snapshot.plans.flatMap { it.cultureRotation } + snapshot.recipes.mapNotNull { it.cultureId } +
+            snapshot.batches.mapNotNull { it.cultureIdSnapshot } + snapshot.batches.mapNotNull { it.recipe.builtInCultureId }
+        if (cultures.any { it !in SproutPaceCatalog.cultureIds }) add("unknown_culture_reference")
+        val zoneIds = snapshot.zones.mapTo(hashSetOf()) { it.id }
+        if (snapshot.batches.any { batch ->
+                !batch.state.isTerminal && (batch.placement as? Placement.Assigned)?.zoneId?.let { it !in zoneIds } == true
+            }) add("orphan_active_placement")
+    }
+
+    private fun batchErrors(snapshot: ProductSnapshot): List<String> = buildList {
+        if (snapshot.batches.any { batch -> batch.actions.any { it.batchId != batch.id } }) add("action_batch_mismatch")
+        if (snapshot.batches.any { batch -> batch.actions.any { action ->
+                (action.due as? DueMoment.CivilTime)?.let { runCatching { TimeZone.of(it.timeZoneId) }.isFailure } == true
+            } }) add("unknown_action_time_zone")
+        if (snapshot.batches.any { batch -> batch.actions.map { it.id }.distinct().size != batch.actions.size }) add("duplicate_action")
+        if (snapshot.batches.any { batch -> batch.events.map { it.id }.distinct().size != batch.events.size }) add("duplicate_stage_event")
+        if (snapshot.batches.any(::invalidOutcome)) add("outcome_state_mismatch")
+    }
+
+    private fun invalidOutcome(batch: GrowBatch): Boolean = when (batch.outcome) {
+        is BatchOutcome.Harvested -> batch.state != BatchState.HARVESTED
+        is BatchOutcome.Failed -> batch.state != BatchState.FAILED
+        is BatchOutcome.Abandoned -> batch.state != BatchState.ABANDONED
+        null -> batch.state.isTerminal
     }
 
     private fun recordCounts(snapshot: ProductSnapshot) = linkedMapOf(

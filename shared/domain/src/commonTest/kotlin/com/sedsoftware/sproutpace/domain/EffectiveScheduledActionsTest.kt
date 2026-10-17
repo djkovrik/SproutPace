@@ -57,6 +57,23 @@ class EffectiveScheduledActionsTest {
         assertEquals(actions, DomainFixtures.batch(BatchState.LIGHT_GROWTH, assigned, actions = actions).effectiveActions())
     }
 
+    @Test fun ordinarySoakTargetUsesSowingHistoryWithoutOverwritingItsIdentityOrExplicitDecision() {
+        val target = action(GrowStage.SOAKING).copy(id = ScheduledActionId("custom-soak"), stage = null,
+            due = DueMoment.ElapsedTarget(now + 12.hours), kind = ScheduledActionKind.SOAK_TARGET)
+        val soaking = DomainFixtures.batch(BatchState.SOAKING, actions = listOf(target))
+        val sown = BatchLifecycleEngine.confirmSowing(soaking, StageEventId("sown"), now, assigned).batch
+        assertEquals(ScheduledActionStatus.COMPLETED, sown.effectiveActions().single().status)
+        assertEquals(target, sown.actions.single())
+        val undone = BatchLifecycleEngine.undoLastTransition(sown).batch
+        assertEquals(target, undone.effectiveActions().single())
+        listOf(ScheduledActionStatus.COMPLETED, ScheduledActionStatus.SKIPPED).forEach { status ->
+            val explicit = target.copy(status = status)
+            assertEquals(explicit, sown.copy(actions = listOf(explicit)).effectiveActions().single())
+        }
+        val closed = BatchLifecycleEngine.close(soaking, BatchOutcome.Abandoned(now)).batch
+        assertEquals(target.copy(status = ScheduledActionStatus.CANCELLED), closed.actions.single())
+    }
+
     private fun GrowBatch.status(stage: GrowStage) = effectiveActions().first { it.stage == stage }.status
     private fun action(stage: GrowStage) = ScheduledAction(ScheduledActionId(stage.name), BatchId("batch-1"), stage,
         DueMoment.CivilTime(LocalDateTime(2026, 9, 20, 9, 0), "UTC"), userFixed = true)

@@ -2,6 +2,21 @@ package com.sedsoftware.sproutpace.data
 
 import com.sedsoftware.sproutpace.domain.model.PhotoId
 
+/** Photo IDs are portable basenames, never archive-supplied filesystem paths. */
+fun isSafePhotoId(id: PhotoId): Boolean = id.value.let { value ->
+    value.isNotBlank() && !value.startsWith('.') &&
+        value.none { it == '/' || it == '\\' || it == ':' || it.code < FIRST_PRINTABLE_CODE || it.code == DELETE_CODE } &&
+        !value.endsWith('.') && !value.endsWith(' ')
+}
+
+private const val FIRST_PRINTABLE_CODE = 32
+private const val DELETE_CODE = 127
+
+fun requireSafePhotoId(id: PhotoId): String {
+    require(isSafePhotoId(id)) { "Photo ID must be a portable basename" }
+    return id.value
+}
+
 data class PrivatePhoto(val id: PhotoId, val bytes: ByteArray, val sha256: String) {
     override fun equals(other: Any?): Boolean = other is PrivatePhoto && id == other.id &&
         sha256 == other.sha256 && bytes.contentEquals(other.bytes)
@@ -31,6 +46,7 @@ class InMemoryPrivateFileStore : PrivateFileStore {
 
     override suspend fun read(id: PhotoId) = values[id]?.bytes?.copyOf()
     override suspend fun write(id: PhotoId, bytes: ByteArray) {
+        requireSafePhotoId(id)
         values[id] = PrivatePhoto(id, bytes.copyOf(), Sha256.digest(bytes))
     }
     override suspend fun delete(id: PhotoId) { values.remove(id) }
@@ -38,6 +54,7 @@ class InMemoryPrivateFileStore : PrivateFileStore {
     override suspend fun replaceAll(photos: List<PrivatePhoto>) {
         failNextReplace?.let { failure -> failNextReplace = null; throw failure }
         require(photos.map { it.id }.distinct().size == photos.size)
+        photos.forEach { requireSafePhotoId(it.id) }
         require(photos.all { Sha256.digest(it.bytes) == it.sha256 })
         values.clear()
         photos.forEach { values[it.id] = it.copy(bytes = it.bytes.copyOf()) }
@@ -100,7 +117,8 @@ internal object Sha256 {
     private val roundConstants = ROUND_CONSTANTS_HEX.hexWords()
 
     // Pure Kotlin SHA-256 keeps archive integrity deterministic on every KMP target.
-    fun digest(input: ByteArray): String {
+    fun digest(input: ByteArray, checkActive: () -> Unit = {}): String {
+        checkActive()
         val bitLength = input.size.toLong() * BYTE_BITS
         val paddedSize = ((input.size + INITIAL_PADDING_BYTES + BLOCK_BYTES - 1) / BLOCK_BYTES) * BLOCK_BYTES
         val data = ByteArray(paddedSize)
@@ -111,6 +129,7 @@ internal object Sha256 {
         val h = initialHashes.copyOf()
         val w = IntArray(SCHEDULE_WORDS)
         for (offset in data.indices step BLOCK_BYTES) {
+            if (offset % HASH_CANCELLATION_INTERVAL == 0) checkActive()
             for (i in 0 until MESSAGE_WORDS) {
                 val p = offset + i * WORD_BYTES
                 w[i] = ((data[p].toInt() and BYTE_MASK) shl WORD_HIGH_SHIFT) or
@@ -155,4 +174,6 @@ internal object Sha256 {
     private fun String.hexWords(): IntArray = split(',')
         .map { it.toUInt(HEX_RADIX).toInt() }
         .toIntArray()
+
+    private const val HASH_CANCELLATION_INTERVAL = 4096
 }

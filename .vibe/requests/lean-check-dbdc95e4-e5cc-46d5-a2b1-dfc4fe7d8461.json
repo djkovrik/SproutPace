@@ -1,0 +1,22 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--continue",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    ":shared:root:testAndroidHostTest",
+    ":shared:platform:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:compileAndroidMain",
+    ":androidApp:assembleDebug",
+    ":shared:compose:recordPaparazzi"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import android.view.View
 import com.sedsoftware.sproutpace.monetization.AdvertisingRuntime
-import com.sedsoftware.sproutpace.monetization.AndroidAdvertisingRuntime
+import com.sedsoftware.sproutpace.monetization.AndroidInlineAdHost
 import com.sedsoftware.sproutpace.monetization.InlineAdSession
 import com.sedsoftware.sproutpace.monetization.InlineAdState
 import org.jetbrains.compose.resources.stringResource
@@ -35,7 +35,7 @@ internal actual fun PlatformInlineAd(
     adUnitId: String,
     modifier: Modifier,
 ) {
-    val androidRuntime = runtime as? AndroidAdvertisingRuntime ?: return
+    val androidRuntime = runtime as? AndroidInlineAdHost ?: return
     BoxWithConstraints(modifier.fillMaxWidth()) {
         val widthDp = maxWidth.value.toInt()
         if (widthDp <= 0) return@BoxWithConstraints

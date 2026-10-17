@@ -1,0 +1,3 @@
+GAP: primary and detail observation jobs have no read/recovery exception mapping
+GAP: synchronous photo-ID SHA256 runs before the repository dispatcher boundary
+JUnit totals {'tests': 810, 'failures': 0, 'errors': 0, 'skipped': 0}

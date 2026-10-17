@@ -256,4 +256,17 @@
     <string name="task_action_light">Move into the light</string>
     <string name="task_action_harvest">Harvest</string>
     <string name="batch_detail_reached_after_skip">Reached after skipping a stage</string>
+    <string name="error_recipe_stage_order">Include sowing, light growth, and harvest readiness in that order. Soaking and blackout are optional.</string>
+    <string name="schedule_fixed_date_conflict">A fixed stage date conflicts with the corrected schedule. Review the dates.</string>
+    <string name="field_optional_dark_zone">Add an optional dark zone</string>
+    <string name="action_edit_zone">Change capacity</string>
+    <string name="field_dark_zone_name">Dark zone name</string>
+    <string name="field_dark_zone_capacity">Dark zone places</string>
+    <string name="batch_actual_harvest_mass">Actual harvest mass: %1$s g</string>
+    <string name="privacy_choice_consequences">Accept allows advertising after this choice is saved. Decline keeps advertising off. You can change or withdraw your choice in Settings; all growing features remain available.</string>
+    <string name="privacy_withdrawn">Withdrawn</string>
+    <string name="confirmation_skip_task_title">Skip this task?</string>
+    <string name="confirmation_skip_task_body">This task will be marked skipped. Later tasks and the batch stage stay unchanged.</string>
+    <string name="field_recommended_seed_mass">Recommended seed mass</string>
+    <string name="batch_seed_recommendation">Recommended seed mass: %1$s g. Leave the field empty to use this amount, or enter your own measurement.</string>
 </resources>

@@ -1,0 +1,2915 @@
+{
+  "completedAt": "2026-10-17T11:50:36Z",
+  "findings": [
+    {
+      "evidence": "Rechecked raw captures and assertions. Actual PhotoPicker, cancellation/save/restart, OS permission recovery, grouped key-event activation and controlled resize focus are now substantiated. Earlier programmatic accessibility focus/displayed speech still does not establish natural reader operation or spoken order across core screen families.",
+      "failedLink": "Accessibility declarations and bounded native focus probes → natural TalkBack traversal, actions and announcements.",
+      "id": "F03",
+      "obligationIds": [
+        "AC-122",
+        "QG-002",
+        "QG-007",
+        "QG-004"
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-68ccba83-4077-4ca5-be53-4025aee299f5.json"
+      ],
+      "severity": "medium",
+      "smallestUsefulProof": "Complete a bounded current-APK TalkBack traversal/action run across core screen families and retain focus/order and announcement evidence. Group repeated controls.",
+      "title": "Natural Android screen-reader acceptance remains incomplete"
+    },
+    {
+      "evidence": "The request's four exact unavailable pairs remain unavailable. Swift lifecycle/native adapters and macOS CI wiring were inspected. Earlier Windows Kotlin target compilation does not prove framework/app linkage, simulator behavior or xcodebuild.",
+      "id": "F04",
+      "obligationIds": [
+        "AC-107",
+        "QG-003",
+        "QG-004"
+      ],
+      "severity": "external-limitation",
+      "smallestUsefulProof": "Execute current macOS CI framework/app builds and native simulator/platform scenarios; supply successful current receipts.",
+      "title": "Native iOS verification remains unavailable"
+    },
+    {
+      "affectedPairs": "All obligation rows whose reason cites F05.",
+      "evidence": "Earlier current-snapshot matrix receipt fb338f78 reports success. Its task logs, production wiring, assertions and 823 JUnit results were inspected: zero failures, errors or skips. Auditor reruns failed before tests: the default wrapper cache lock was denied, and an isolated writable cache with offline dependency reuse could not resolve pinned Kotlin plugin 2.4.10. These are execution-setup failures, not observed product/test regressions. The lean validator rejects the earlier receipt after a newer failed identical argv. Consequently 304 formerly verified rows and executable closure of F01/F02 remain evidence gaps.",
+      "failedLink": "Serialized Gradle runner → accessible populated wrapper/dependency cache → applicable matrix execution.",
+      "id": "F05",
+      "obligationIds": [
+        "QG-001",
+        "QG-002",
+        "QG-004",
+        "QG-007",
+        "QG-011",
+        "QG-012"
+      ],
+      "protocolBasis": {
+        "path": "D:/Sources/vibe-skills/vibe-developer/scripts/lean_delivery.py",
+        "rule": "latest current execution failed",
+        "symbol": "validate_audit"
+      },
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-fb338f78-39ef-4514-813a-4f34b55b63b1.json",
+        ".vibe/receipts/RECEIPT-9e5bf281-a880-42af-85ea-e0c36321dbc8.json",
+        ".vibe/receipts/RECEIPT-16583318-9a91-4d1d-b38f-757fe695cc1c.json"
+      ],
+      "severity": "external-limitation",
+      "smallestUsefulProof": "Rerun the applicable matrix through lean-delivery.py check --runner gradle with a writable populated Gradle cache, preserving the source snapshot; then revalidate affected rows. This environment failure establishes no required source fix.",
+      "title": "Latest executable Gradle verification is blocked by auditor cache access"
+    }
+  ],
+  "inventory": {
+    "acceptanceScenarioIds": [
+      "AC-001",
+      "AC-002",
+      "AC-010",
+      "AC-011",
+      "AC-012",
+      "AC-013",
+      "AC-014",
+      "AC-015",
+      "AC-016",
+      "AC-017",
+      "AC-020",
+      "AC-021",
+      "AC-022",
+      "AC-023",
+      "AC-024",
+      "AC-025",
+      "AC-026",
+      "AC-027",
+      "AC-030",
+      "AC-031",
+      "AC-032",
+      "AC-033",
+      "AC-034",
+      "AC-035",
+      "AC-036",
+      "AC-037",
+      "AC-038",
+      "AC-039",
+      "AC-040",
+      "AC-050",
+      "AC-051",
+      "AC-052",
+      "AC-053",
+      "AC-054",
+      "AC-055",
+      "AC-056",
+      "AC-057",
+      "AC-060",
+      "AC-061",
+      "AC-062",
+      "AC-063",
+      "AC-064",
+      "AC-065",
+      "AC-066",
+      "AC-067",
+      "AC-068",
+      "AC-070",
+      "AC-071",
+      "AC-072",
+      "AC-073",
+      "AC-074",
+      "AC-080",
+      "AC-081",
+      "AC-082",
+      "AC-083",
+      "AC-084",
+      "AC-085",
+      "AC-090",
+      "AC-091",
+      "AC-092",
+      "AC-093",
+      "AC-094",
+      "AC-095",
+      "AC-100",
+      "AC-101",
+      "AC-102",
+      "AC-103",
+      "AC-104",
+      "AC-105",
+      "AC-106",
+      "AC-107",
+      "AC-110",
+      "AC-111",
+      "AC-112",
+      "AC-113",
+      "AC-120",
+      "AC-121",
+      "AC-122",
+      "AC-123"
+    ],
+    "excludedRequirementIds": [
+      "REQ-901",
+      "REQ-902",
+      "REQ-903",
+      "REQ-904",
+      "REQ-905",
+      "REQ-906",
+      "REQ-907",
+      "REQ-908",
+      "REQ-909"
+    ],
+    "managedOperationIds": [
+      "AdvertisingConsent:create",
+      "AdvertisingConsent:read",
+      "AdvertisingConsent:update",
+      "BackupArchive:create",
+      "BackupArchive:read",
+      "BackupArchive:reject-invalid",
+      "BackupArchive:restore",
+      "CrashReportingPreference:create",
+      "CrashReportingPreference:read",
+      "CrashReportingPreference:update",
+      "GrowBatch:abandon",
+      "GrowBatch:assign-overflow",
+      "GrowBatch:complete-harvest",
+      "GrowBatch:confirm-stage",
+      "GrowBatch:create",
+      "GrowBatch:delete",
+      "GrowBatch:fail",
+      "GrowBatch:read",
+      "GrowBatch:record-actual-mass",
+      "GrowBatch:repeat",
+      "GrowBatch:skip-stage",
+      "GrowBatch:start-growing",
+      "GrowBatch:start-soaking",
+      "GrowBatch:undo-stage",
+      "GrowBatch:update",
+      "GrowZone:create",
+      "GrowZone:delete",
+      "GrowZone:read",
+      "GrowZone:update",
+      "HarvestPlan:confirm-suggestion",
+      "HarvestPlan:create",
+      "HarvestPlan:delete",
+      "HarvestPlan:pause-resume",
+      "HarvestPlan:read",
+      "HarvestPlan:suggest-continuous-batch",
+      "HarvestPlan:update",
+      "Observation:attach-photo",
+      "Observation:create",
+      "Observation:delete",
+      "Observation:read",
+      "Observation:update",
+      "TraySizePreset:create",
+      "TraySizePreset:delete",
+      "TraySizePreset:read",
+      "TraySizePreset:update",
+      "UserGrowRecipe:create",
+      "UserGrowRecipe:delete",
+      "UserGrowRecipe:duplicate",
+      "UserGrowRecipe:read",
+      "UserGrowRecipe:update"
+    ],
+    "qualityGateIds": [
+      "QG-001",
+      "QG-002",
+      "QG-003",
+      "QG-004",
+      "QG-005",
+      "QG-006",
+      "QG-007",
+      "QG-008",
+      "QG-009",
+      "QG-010",
+      "QG-011",
+      "QG-012"
+    ],
+    "requirementIds": [
+      "REQ-001",
+      "REQ-002",
+      "REQ-003",
+      "REQ-004",
+      "REQ-005",
+      "REQ-006",
+      "REQ-007",
+      "REQ-008",
+      "REQ-009",
+      "REQ-010",
+      "REQ-011",
+      "REQ-012"
+    ]
+  },
+  "obligations": [
+    {
+      "id": "AC-001",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "assertion": "Inspected first-run, catalog and guided empty-state captures. Current visual/hash review agrees; executable screenshot verification remains subject to F05.",
+      "id": "AC-001",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "FirstRunPreviews"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-002",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "assertion": "Inspected setup steps and first-plan production-form presentation. Current visual/hash review agrees; executable verification remains subject to F05.",
+      "id": "AC-002",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionScenarioPreviews.kt",
+          "symbol": "FirstRunPlanScenario"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-010",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-011",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-011",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-012",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-013",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-013",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-014",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-015",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-015",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-016",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-016",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-017",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-017",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-020",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "assertion": "Inspected catalog/recipe captures in both themes, RU200 and expanded layouts. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-020",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "CatalogPreviews"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-021",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-021",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-021",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-022",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-022",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-023",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-023",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-024",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-024",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-025",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-025",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-026",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-026",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "AC-027",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "assertion": "Inspected tall recipe, provenance and garden-cress resource presentation. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-027",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "RecipeAssetInspectionPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-030",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-030",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-031",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-031",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-032",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-033",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-033",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-034",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-035",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-035",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-036",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-037",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-038",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "assertion": "Inspected light/dark unassigned and conflict captures with explicit textual warnings. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-038",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "TemporarilyUnassignedPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-039",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-039",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-039",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-040",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-050",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-051",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-051",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-052",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-053",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-053",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-054",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-054",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-055",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "assertion": "Inspected conflict captures with named alternatives and occupied/capacity warnings in both themes. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-055",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "CapacityConflictPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-056",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-056",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-057",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-057",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-060",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "assertion": "Inspected Today hero, due groups, empty/conflict, RU200 and expanded captures. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-060",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "TodayPreviews"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-061",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-061",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-061",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-062",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-063",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-063",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-064",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "assertion": "Inspected denied/recovery permission presentation in both themes and RU. Local work remains primary. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-064",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "PermissionDeniedPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-065",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-065",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-066",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-066",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-067",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-067",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-068",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-068",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-070",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-070",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-071",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-071",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-072",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-072",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-073",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "F02 is corrected in source and earlier worker/cancellation assertions passed; F05 prevents executable closure.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-074",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "assertion": "Actual PhotoPicker select/save/process restart and cancellation preserve exact draft/photo/rows and clean pending files. Fresh device checkpoint passes. Current APK differs from captured flow APK only in its manifest, with 794 identical entries. TalkBack remains separate.",
+      "id": "AC-074",
+      "production": [
+        {
+          "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+          "symbol": "importPickedContent"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-68ccba83-4077-4ca5-be53-4025aee299f5.json"
+      ],
+      "result": "verified",
+      "surface": "platform-test",
+      "tests": [
+        {
+          "path": "build/reports/requirements-fixes-20261017/runtime/revision-6-retry-worker/verify-captured.py",
+          "symbol": "019-system-photo-picker"
+        }
+      ]
+    },
+    {
+      "id": "AC-080",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-080",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-081",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-082",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-083",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-083",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-084",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "assertion": "Inspected harvested/failed/abandoned detail and History captures, including RU200; outcomes and mass are textual. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-084",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionScenarioPreviews.kt",
+          "symbol": "HarvestedScenario"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-085",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "AC-085",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-090",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-091",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-091",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-092",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-093",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "assertion": "Inspected invalid-archive/error captures with localized no-change explanation and disabled replacement. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-093",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "LocalErrorPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-094",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-094",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "AC-095",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-100",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "assertion": "Inspected tall Catalog/History captures: one labeled slot follows four/five real records. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-100",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "CatalogLoadedAdInspectionPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-101",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-101",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "assertion": "Inspected hidden-ad presentation without a reserved gap and prohibited-screen captures without ads. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-101",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "CatalogHiddenAdOfflineInspectionPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "AC-102",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-102",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-103",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-103",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-104",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-105",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-105",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "network-mock-test"
+    },
+    {
+      "id": "AC-106",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AC-107",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AC-107",
+      "reason": "Exact request pair: macOS/Xcode unavailable. Native iOS rendering/runtime is unverified; inspected safe-disabled advertising wiring and Swift entry do not replace native execution.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "AC-110",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-110",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-111",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-111",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "AC-112",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AC-113",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "assertion": "Inspected real graph and native bridges: no product-content logging call sites, Analytics, user identifiers or breadcrumb APIs were found. Current static check passes.",
+      "id": "AC-113",
+      "production": [
+        {
+          "path": "shared/platform/src/commonMain/kotlin/com/sedsoftware/sproutpace/platform/CrashReporting.kt",
+          "symbol": "CrashReportingDriver"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-ff0f5f60-506b-442c-b2cb-ae71c7693a6b.json"
+      ],
+      "result": "verified",
+      "surface": "privacy-review",
+      "tests": [
+        {
+          "path": "shared/platform/scripts/validate-platform.ps1",
+          "symbol": "forbiddenApi"
+        }
+      ]
+    },
+    {
+      "assertion": "Automatic collection starts disabled; optional Firebase linkage and current source scan exclude Analytics/user-ID/custom-key APIs.",
+      "id": "AC-113",
+      "production": [
+        {
+          "path": "androidApp/src/main/AndroidManifest.xml",
+          "symbol": "firebase_crashlytics_collection_enabled"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-ff0f5f60-506b-442c-b2cb-ae71c7693a6b.json"
+      ],
+      "result": "verified",
+      "surface": "repository-check",
+      "tests": [
+        {
+          "path": "shared/platform/scripts/validate-platform.ps1",
+          "symbol": "forbiddenApi"
+        }
+      ]
+    },
+    {
+      "id": "AC-120",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-120",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "localization-contract-test"
+    },
+    {
+      "assertion": "Inspected primary-screen RU200 resource presentation and corresponding declarations. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-120",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "typedPreviewState"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+          "symbol": "localeFontScaleAndAdaptiveStressVariantsAreExecutable"
+        }
+      ]
+    },
+    {
+      "id": "AC-121",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-121",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "assertion": "Inspected all sixteen primary screen families in light/dark production themes, including textual state cues. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-121",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "PreviewScreen"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+          "symbol": "everyPrimaryScreenHasLightAndDarkCoverage"
+        }
+      ]
+    },
+    {
+      "id": "AC-122",
+      "reason": "F03: source contracts, goldens and programmatic accessibility focus/displayed speech do not prove natural TalkBack traversal, actions and announcements across core screens.",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "assertion": "Native Tab/Enter operates Today, batch, Trays, expanded Plan, Catalog and 200% text. Current compact/wide/compact resize retains editor focus, photo and no-refocus typing, with unchanged PID and no Activity recreation. Key events do not claim physical hardware or screen-reader operation.",
+      "id": "AC-122",
+      "production": [
+        {
+          "path": "androidApp/src/main/AndroidManifest.xml",
+          "symbol": "android:configChanges"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-68ccba83-4077-4ca5-be53-4025aee299f5.json"
+      ],
+      "result": "verified",
+      "surface": "keyboard-test",
+      "tests": [
+        {
+          "path": "build/reports/requirements-fixes-20261017/runtime/revision-6-retry-worker/verify-captured.py",
+          "symbol": "keyboard ="
+        },
+        {
+          "path": "build/reports/requirements-fixes-20261017/runtime/revision-6-retry-worker/focus-delta/verify-focus-captured.py",
+          "symbol": "expected_text"
+        }
+      ]
+    },
+    {
+      "assertion": "Inspected compact RU200, expanded detail/supporting panes and inset regression images. Current hashes agree; executable verification remains subject to F05.",
+      "id": "AC-122",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "symbol": "UiLayout"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/UiPreviewContractTest.kt",
+          "symbol": "localeFontScaleAndAdaptiveStressVariantsAreExecutable"
+        }
+      ]
+    },
+    {
+      "id": "AC-123",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AC-123",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F05: latest executable matrix blocked. Existing Kover report is 5611 covered/762 missed lines with a 60% configured minimum; latest verification is unproven.",
+      "result": "gap",
+      "surface": "coverage-check"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F01/F02 code defects are corrected; F05 blocks latest executable proof. Earlier 823 passing JUnit results retain original execution attribution.",
+      "result": "gap",
+      "surface": "integration-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "localization-contract-test"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F01/F02 code defects are corrected; F05 blocks latest applicable matrix proof.",
+      "result": "gap",
+      "surface": "repository-check"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F05: latest Gradle execution blocked before Detekt.",
+      "result": "gap",
+      "surface": "static-analysis"
+    },
+    {
+      "id": "QG-001",
+      "reason": "F01/F02 code defects are corrected; F05 blocks latest executable proof. Earlier 823 passing JUnit results retain original execution attribution.",
+      "result": "gap",
+      "surface": "unit-test"
+    },
+    {
+      "id": "QG-002",
+      "reason": "F05: latest build execution blocked. Existing debug/release artifacts and merged manifests declare minSdk 24; latest build proof is missing.",
+      "result": "gap",
+      "surface": "android-build"
+    },
+    {
+      "id": "QG-002",
+      "reason": "F03 narrowed: native picker/save/restart/cancel, permission settings recovery, keyboard/adaptive operation and current focus/data checks pass. Natural TalkBack traversal/actions/announcements remain incomplete.",
+      "result": "gap",
+      "surface": "android-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Exact request pair: macOS/Xcode unavailable. Earlier Windows Kotlin target compilation does not prove framework/app linkage or xcodebuild.",
+      "result": "unavailable",
+      "surface": "ios-build"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Exact request pair: macOS/Xcode unavailable. Inspected Swift lifecycle, pickers, notifications, Crashlytics and disabled ads; native runtime remains unverified.",
+      "result": "unavailable",
+      "surface": "ios-platform-test"
+    },
+    {
+      "id": "QG-003",
+      "reason": "Exact request pair: macOS/Xcode unavailable. CI declares native builds and simulator checks; no completed current macOS receipt was available.",
+      "result": "unavailable",
+      "surface": "macos-ci-check"
+    },
+    {
+      "assertion": "Independent bounded delta audit of unchanged inventory and all 350 surfaces. Compared snapshot hashes, inspected 26 changed files and consumers, rechecked all prior findings, assertions/logs and 10 changed/new goldens. GAPS remains. Host supplies audit execution evidence.",
+      "auditEvidence": true,
+      "id": "QG-004",
+      "result": "verified",
+      "surface": "acceptance-audit"
+    },
+    {
+      "id": "QG-004",
+      "reason": "F03, F05 and the four unavailable iOS pairs prevent closure; implementation completion and release readiness are not established.",
+      "result": "gap",
+      "surface": "release-check"
+    },
+    {
+      "id": "QG-005",
+      "reason": "Condition inactive: Android production-store publication was not requested or performed. Signing, listing, countries, current name, publication result and release AAB proof become required when publication is activated.",
+      "result": "not-applicable",
+      "surface": "publication-check"
+    },
+    {
+      "assertion": "Current validator confirms delivered assets, hashes and provenance. Inspected runtime mappings, changed metadata and captures; no resource file changed. Compilation proof remains separately blocked by F05.",
+      "id": "QG-006",
+      "production": [
+        {
+          "path": "docs/assets/asset-manifest.json",
+          "symbol": "ASSET-022"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-14190a21-8d1a-4caf-8b90-c59b42fb3997.json",
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "asset-check",
+      "tests": [
+        {
+          "path": "shared/compose/src/commonTest/kotlin/com/sedsoftware/sproutpace/compose/AssetUiIntegrationContractTest.kt",
+          "symbol": "AssetUiIntegrationContractTest"
+        }
+      ]
+    },
+    {
+      "assertion": "Inspected production mark, stage/empty art and eight culture-cover appearances in light/dark captures. Runtime mappings and current image hashes agree.",
+      "id": "QG-006",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "RecipeAssetInspectionPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-14190a21-8d1a-4caf-8b90-c59b42fb3997.json",
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "asset-visual",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "QG-007",
+      "reason": "F03: source contracts, goldens and programmatic focus/displayed speech do not prove natural TalkBack traversal/actions/announcements across core screens.",
+      "result": "gap",
+      "surface": "accessibility-test"
+    },
+    {
+      "assertion": "Inspected saved Lazyweb screen-family references/dispositions and actual primary/risk captures. All 10 delta images were viewed; current review hashes cover 249 images across sixteen screens. Hash checking alone was not treated as visual proof.",
+      "id": "QG-007",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
+          "symbol": "UiScreen"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "design-review",
+      "tests": [
+        {
+          "path": ".vibe/scripts/verify-final-design-review.ps1",
+          "symbol": "VISUALLY_REVIEWED"
+        }
+      ]
+    },
+    {
+      "id": "QG-007",
+      "reason": "F05: latest Gradle execution blocked before compilation.",
+      "result": "gap",
+      "surface": "preview-compile"
+    },
+    {
+      "id": "QG-007",
+      "reason": "F05: latest Gradle execution blocked before Paparazzi verification. Earlier passing execution and current reviewed image hashes remain separately attributed.",
+      "result": "gap",
+      "surface": "screenshot-test"
+    },
+    {
+      "id": "QG-008",
+      "reason": "Condition inactive: no Crashlytics-enabled release candidate is being produced. Static platform-script PASS checks documented mapping/dSYM setup, not uploaded symbols or a readable controlled crash.",
+      "result": "not-applicable",
+      "surface": "crash-symbolication-check"
+    },
+    {
+      "id": "QG-008",
+      "reason": "Condition inactive: current builds do not enable externally configured Firebase release/RC collection. Optional guards/templates are present; real registrations/configurations remain external inputs.",
+      "result": "not-applicable",
+      "surface": "firebase-config-check"
+    },
+    {
+      "id": "QG-009",
+      "reason": "Condition inactive: no release candidate enables production Android ads; release ad-unit input is empty. Debug demo-ID and fail-closed configuration are separately checked.",
+      "result": "not-applicable",
+      "surface": "ad-config-check"
+    },
+    {
+      "id": "QG-009",
+      "reason": "Condition inactive: production Android advertising is disabled. No real project/ad-unit/device delivery is claimed; iOS production ads remain excluded.",
+      "result": "not-applicable",
+      "surface": "ad-device-check"
+    },
+    {
+      "id": "QG-010",
+      "reason": "Condition inactive: no external distribution is in scope. Final public policy URL/legal copy remain external inputs; safe empty configuration is not a published policy.",
+      "result": "not-applicable",
+      "surface": "privacy-policy-check"
+    },
+    {
+      "id": "QG-010",
+      "reason": "Condition inactive: external distribution/store submission is not authorized in this task. Store/platform disclosures require proof when activated.",
+      "result": "not-applicable",
+      "surface": "store-disclosure-check"
+    },
+    {
+      "id": "QG-011",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "catalog-contract-test"
+    },
+    {
+      "id": "QG-011",
+      "reason": "F05: source/content review is retained from the unchanged baseline, but latest executable catalog-contract corroboration is blocked.",
+      "result": "gap",
+      "surface": "content-review"
+    },
+    {
+      "id": "QG-012",
+      "reason": "F05: latest Gradle execution blocked before tests. Fresh restored native data/photo checks are partial corroboration, not the complete archive matrix.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "QG-012",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "ad-lifecycle-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "AdvertisingConsent:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "privacy-integration-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "BackupArchive:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:reject-invalid",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "assertion": "Inspected localized invalid-archive/no-change presentation and current hashes. Executable screenshot verification remains subject to F05.",
+      "id": "BackupArchive:reject-invalid",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "LocalErrorPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "BackupArchive:restore",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "snapshot-roundtrip-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "CrashReportingPreference:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "settings-integration-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:abandon",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "platform-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:assign-overflow",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "assertion": "Inspected light/dark unassigned warnings and current hashes. Executable screenshot verification remains subject to F05.",
+      "id": "GrowBatch:assign-overflow",
+      "production": [
+        {
+          "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/SproutPacePreviews.kt",
+          "symbol": "TemporarilyUnassignedPreview"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json"
+      ],
+      "result": "verified",
+      "surface": "ui-golden",
+      "tests": [
+        {
+          "path": "shared/compose/build.gradle.kts",
+          "symbol": "GenerateComposablePreviewPaparazziTests"
+        }
+      ]
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:complete-harvest",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:confirm-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:fail",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:record-actual-mass",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:repeat",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:skip-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:start-growing",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:start-soaking",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowBatch:undo-stage",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "store-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowBatch:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "GrowZone:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:confirm-suggestion",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:pause-resume",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:suggest-continuous-batch",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "HarvestPlan:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "F02 is corrected in source and earlier worker/cancellation assertions passed; F05 prevents executable closure.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:attach-photo",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "assertion": "Actual PhotoPicker select/save/process restart and cancellation preserve exact draft/photo/rows and clean pending files. Fresh device checkpoint passes. Current APK differs from captured flow APK only in its manifest, with 794 identical entries. TalkBack remains separate.",
+      "id": "Observation:attach-photo",
+      "production": [
+        {
+          "path": "androidApp/src/main/kotlin/com/sedsoftware/sproutpace/AppActivity.kt",
+          "symbol": "importPickedContent"
+        }
+      ],
+      "receiptRefs": [
+        ".vibe/receipts/RECEIPT-68ccba83-4077-4ca5-be53-4025aee299f5.json"
+      ],
+      "result": "verified",
+      "surface": "platform-test",
+      "tests": [
+        {
+          "path": "build/reports/requirements-fixes-20261017/runtime/revision-6-retry-worker/verify-captured.py",
+          "symbol": "019-system-photo-picker"
+        }
+      ]
+    },
+    {
+      "id": "Observation:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "file-integration-test"
+    },
+    {
+      "id": "Observation:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "Observation:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "Observation:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "TraySizePreset:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:create",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "domain-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:delete",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:duplicate",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:read",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "component-test"
+    },
+    {
+      "id": "UserGrowRecipe:update",
+      "reason": "F05: latest Gradle execution blocked before tests.",
+      "result": "gap",
+      "surface": "database-integration-test"
+    }
+  ],
+  "requestSha256": "ceda3170ec54faf0fb40a4af3ae244587f78b7a9c08e228b03367ecc68189ce4",
+  "reviewedSources": [
+    "product.md",
+    "domain.md",
+    "data.md",
+    "design.md",
+    "quality.md",
+    "flows/FLOW-001.md",
+    "flows/FLOW-002.md",
+    "flows/FLOW-003.md",
+    "flows/FLOW-004.md",
+    "flows/FLOW-005.md",
+    "flows/FLOW-006.md",
+    "flows/FLOW-007.md",
+    "flows/FLOW-008.md",
+    "flows/FLOW-009.md",
+    "flows/FLOW-010.md",
+    "flows/FLOW-011.md",
+    "flows/FLOW-012.md",
+    "screens/SCREEN-001.md",
+    "screens/SCREEN-002.md",
+    "screens/SCREEN-003.md",
+    "screens/SCREEN-004.md",
+    "screens/SCREEN-005.md",
+    "screens/SCREEN-006.md",
+    "screens/SCREEN-007.md",
+    "screens/SCREEN-008.md",
+    "screens/SCREEN-009.md",
+    "screens/SCREEN-010.md",
+    "screens/SCREEN-011.md",
+    "screens/SCREEN-012.md",
+    "screens/SCREEN-013.md",
+    "screens/SCREEN-014.md",
+    "screens/SCREEN-015.md",
+    "screens/SCREEN-016.md"
+  ],
+  "startedAt": "2026-10-17T11:35:37.3834357Z",
+  "verdict": "GAPS",
+  "verificationContext": {
+    "appSpecFingerprint": "9aafbaa4e5eea131a839d12da26349036253d20f65701a331b086f8e5d3bc472",
+    "appSpecUnchanged": true,
+    "boundaries": "Native platform claims are limited to inspected/injected boundaries or explicitly described Android device operations. No native iOS runtime, natural TalkBack, production-ad delivery, symbolication, publication or external distribution is claimed. Platform-script symbolication PASS means documented setup only. No live privacy-endpoint qualification was performed.",
+    "changedFileAssessment": "Bounded manifest configuration handling, Store read/detail errors and retry retention, production Retry rendering, worker-owned cancellable photo preparation, four test files, three metadata files and ten changed/new goldens. Inspected consumers in real Android/common graphs, recovery gate, reducers, routing, detail renderers and atomic repository. No dependency, AppSpec, database-schema or broad architecture change.",
+    "changedFilesInspected": [
+      "androidApp/src/main/AndroidManifest.xml",
+      "docs/assets/asset-manifest.json",
+      "docs/design-review/ux-preview-coverage.json",
+      "docs/design-review/ux-preview-review.json",
+      "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+      "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStore.kt",
+      "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+      "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenObservationRetryTest.kt",
+      "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionReadRetryIntegrationTest.kt",
+      "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/StoreReadFailureRenderingTest.kt",
+      "shared/compose/src/androidUnitTest/snapshots/images/com.sedsoftware.sproutpace.compose_StoreReadFailureRenderingTest_retainedEditorReadFailureExposesActualRetryWithoutLosingAuthoredDraft_en-retained-editor-read-error.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/com.sedsoftware.sproutpace.compose_StoreReadFailureRenderingTest_russianExpandedDetailReadFailureKeepsCollectionAndExposesExactRetryAtFont200_ru-font200-selected-detail-read-error.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[201]_remainingriskpreviewskt.observationsavefailure.09_save_failure_retains_note_w393dp_h1200dp.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[206]_remainingriskpreviewskt.outcomesavefailure.10_save_failure_retains_outcome_w393dp_h1200dp.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[210]_remainingriskpreviewskt.photoimportfailure.09_photo_import_failure_dark_ru_200_w700dp_h1400dp_ru_font_2_0f_night.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[211]_remainingriskpreviewskt.photoimportfailure.09_photo_import_failure_light_w393dp_h1200dp.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[35]_sproutpacepreviewskt.localerrorpreview.local_error_dark_w393dp_h851dp_night.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[36]_sproutpacepreviewskt.localerrorpreview.local_error_light_w393dp_h851dp_day.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[89]_productionscenariopreviewskt.backupwritefailurescenario.14_write_failure_en_w393dp_h851dp.png",
+      "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[90]_productionscenariopreviewskt.backupwritefailurescenario.14_write_failure_ru_200_w393dp_h1100dp_ru_font_2_0f.png",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/PrimaryListDetailScreen.kt",
+      "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ScreenContent.kt",
+      "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PhotoPreparationWorkerTest.kt",
+      "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+      "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PendingPhotoImport.kt",
+      "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt"
+    ],
+    "evidence": {
+      "advertisingStaticReceipt": ".vibe/receipts/RECEIPT-66fc2ac6-35d6-4c5b-a4d7-09b936843117.json",
+      "android": {
+        "capturedFlowApkSha256": "9730bf805e95b6f770ea4bc1802f4ce38524d526e6b699489ea6118402879500",
+        "changedApkEntries": [
+          "AndroidManifest.xml"
+        ],
+        "currentDeviceCheckpointReceipt": ".vibe/receipts/RECEIPT-68ccba83-4077-4ca5-be53-4025aee299f5.json",
+        "debugApkSha256": "990a72ad2edaba8771a2c0f90e6c5274fcc6b516ffa40f569b6bb7e16b2d316b",
+        "device": "emulator-5556",
+        "effectiveMinimumSdk": 24,
+        "independentlyComparedApkEntries": 795,
+        "installedMatchesBuiltArtifact": true,
+        "mergedManifestReceipt": ".vibe/receipts/RECEIPT-82f9f2a9-59a4-4b29-a84d-5f54fc0d76ff.json",
+        "unchangedNonManifestEntries": 794
+      },
+      "coverage": {
+        "attribution": "Existing report; latest execution unverified under F05.",
+        "configuredMinimumPercent": 60,
+        "coveredLines": 5611,
+        "missedLines": 762
+      },
+      "earlierJunit": {
+        "attribution": "Earlier current-snapshot execution: 819 shared and four Android application tests. Auditor reruns did not reach tests.",
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 823
+      },
+      "goldens": {
+        "allDeltaImagesViewed": true,
+        "changed": 8,
+        "hashCheckReceipt": ".vibe/receipts/RECEIPT-15271f3c-7812-4ebb-9830-154ffa876eea.json",
+        "images": 249,
+        "new": 2,
+        "unchangedFromPrior": 239
+      },
+      "platformStaticReceipt": ".vibe/receipts/RECEIPT-ff0f5f60-506b-442c-b2cb-ae71c7693a6b.json"
+    },
+    "matrixResults": {
+      "gap": 313,
+      "notApplicable": 7,
+      "unavailable": 4,
+      "verified": 26
+    },
+    "matrixValidation": {
+      "errors": [],
+      "method": "Equivalent in-memory row transformations validated with lean_delivery.validate_audit(require_launch=False); host supplies launch evidence.",
+      "obligationPairs": 350
+    },
+    "previousAudit": {
+      "auditSha256": "c380b851d86aef166c3ab8e0f0f03ef2a7dc3177de7ecacb5f11a6d5d3d5a7b2",
+      "hashesIndependentlyMatched": true,
+      "request": ".vibe/audits/AUDIT-REQUEST-70da4280-4165-461e-8bc7-a3360d9ccc22/request.json",
+      "requestSha256": "f71e414c0da3d58f6c210f513241886e663644fa9796cee9cfbf5803c28435b3"
+    },
+    "priorFindings": [
+      {
+        "assertion": "Cold-flow construction/collection failures map to localized Store errors, retaining drafts, generated identities, selection and stable detail. Exact retry has one collector, independent primary/detail recovery and cancellation propagation. Actual recovery-gated graph retries a transient private-file fault and saves/reopens new data. Production Retry controls are invoked by semantic actions in EN and expanded RU200 rendering tests.",
+        "assessment": "Implementation corrected; executable closure pending F05.",
+        "id": "F01",
+        "production": [
+          {
+            "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/store/ScreenStoreProvider.kt",
+            "symbol": "observationFlow"
+          },
+          {
+            "path": "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/integration/ScreenComponentDefault.kt",
+            "symbol": "visibleError"
+          }
+        ],
+        "tests": [
+          {
+            "path": "shared/component/src/commonTest/kotlin/com/sedsoftware/sproutpace/component/ScreenObservationRetryTest.kt",
+            "symbol": "ScreenObservationRetryTest"
+          },
+          {
+            "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/ProductionReadRetryIntegrationTest.kt",
+            "symbol": "publicRetryRecoversActualGraphAfterTransientPrivateRecoveryReadFailureAndCanPersistNewData"
+          },
+          {
+            "path": "shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/StoreReadFailureRenderingTest.kt",
+            "symbol": "StoreReadFailureRenderingTest"
+          }
+        ]
+      },
+      {
+        "assertion": "Real Save calls injected repository IO preparation. Identity buffer, SHA and owned replacement copy execute on the worker. A one-MiB public-manager test observes real SHA checkpoints and compares independent JCA identity. During/after-hash cancellation leaves rows/files untouched and pending bytes retryable. Atomic replacement and legacy explicit identity remain covered.",
+        "assessment": "Implementation corrected; executable closure pending F05.",
+        "id": "F02",
+        "production": [
+          {
+            "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/BackupAndExport.kt",
+            "symbol": "prepareManagedPhotoReplacement"
+          },
+          {
+            "path": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/PendingPhotoImport.kt",
+            "symbol": "checkActive"
+          }
+        ],
+        "tests": [
+          {
+            "path": "shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PhotoPreparationWorkerTest.kt",
+            "symbol": "PhotoPreparationWorkerTest"
+          }
+        ]
+      },
+      {
+        "assessment": "Narrowed: picker platform and grouped keyboard/adaptive checks are verified; natural TalkBack remains open.",
+        "id": "F03"
+      },
+      {
+        "assessment": "Unchanged: four declared native iOS host pairs remain unavailable.",
+        "id": "F04"
+      }
+    ],
+    "reviewMode": "Bounded independent delta; no implementation conversation used.",
+    "snapshotHashesMatch": true,
+    "sourceTestsConfigurationSpecAndWorkStateEdited": false,
+    "warnings": [
+      "Earlier iOS compile logs warn that Coil 3.5.0 requested Skiko 0.144.6 but 0.150.1 was selected; native iOS runtime remains unverified.",
+      "Earlier matrix reports tooling deprecations; these are separate from failed execution setup."
+    ],
+    "workspaceFingerprint": "d5d57266723af9dd5a410e3a4d4642269b9f912d47c7cd8eeda71c8b04c837a6"
+  }
+}

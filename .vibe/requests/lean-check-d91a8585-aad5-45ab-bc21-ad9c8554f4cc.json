@@ -1,0 +1,24 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:domain:testAndroidHostTest",
+    "--tests",
+    "*RecipeStageConfigurationTest",
+    "--tests",
+    "*BatchPlanningEngineTest",
+    "--tests",
+    "*ActionScheduleEngineTest",
+    ":shared:data:testAndroidHostTest",
+    "--tests",
+    "*EditorSchedulePersistenceTest",
+    "--tests",
+    "*RecipeGuideIntegrationTest",
+    "--tests",
+    "*PlanningForecastIntegrationTest",
+    "--tests",
+    "*ProductionScreenDataManagerIntegrationTest"
+  ],
+  "timeoutSeconds": 1800
+}

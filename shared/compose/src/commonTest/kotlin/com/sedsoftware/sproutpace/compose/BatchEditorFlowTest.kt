@@ -20,8 +20,10 @@ class BatchEditorFlowTest {
             UiScreenAction("save-batch", "action_save_batch", "save-batch", enabled = true, primary = true),
             UiScreenAction("correct-batch", "action_correct_batch", "correct-batch", enabled = true, primary = false),
         )
-        val newBatch = SproutPaceUiState(fields = listOf(field("anchorState", "")), actions = actions)
-        val correction = SproutPaceUiState(fields = listOf(field("anchorState", "sown")), actions = actions)
+        val newBatch = SproutPaceUiState(selectedItemId = "recipe-source",
+            fields = listOf(field("id", "new-batch"), field("anchorState", "")), actions = actions)
+        val correction = SproutPaceUiState(selectedItemId = "existing-batch",
+            fields = listOf(field("id", "existing-batch"), field("anchorState", "")), actions = actions)
 
         assertEquals("save-batch", batchEditorSubmitAction(newBatch)?.id)
         assertEquals("correct-batch", batchEditorSubmitAction(correction)?.id)

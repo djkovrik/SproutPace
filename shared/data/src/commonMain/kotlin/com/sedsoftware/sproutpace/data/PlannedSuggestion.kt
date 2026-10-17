@@ -53,7 +53,10 @@ internal fun Workspace.workspaceForecast(today: LocalDate, timeZone: TimeZone): 
                 ContinuousQueueSlot(culture, target, batch.outcome?.occurredAt?.toLocalDateTime(timeZone)?.date)
             }))
         } else {
-            PlannerEngine.suggestions(plan, FORECAST_COUNT) { _, _ -> CapacityDecision.Feasible }
+            // Each saved batch can cover at most one slot in this plan. Extend the horizon
+            // before filtering so accepted slots never exhaust the three visible proposals.
+            PlannerEngine.suggestions(plan, FORECAST_COUNT + batches.size) { _, _ -> CapacityDecision.Feasible }
+                .filterNot(this::coversSuggestion).take(FORECAST_COUNT)
         }
     }.filterNot(this::coversSuggestion).sortedWith(compareBy({ it.sowDate(timeZone.id) }, { it.planId.value }, { it.id }))
     val existing = batches.filter { it.state.occupiesPlace }.mapNotNull { batch ->

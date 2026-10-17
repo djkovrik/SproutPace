@@ -82,7 +82,14 @@ private fun todaySnapshot(workspace: Workspace): ScreenSnapshot {
 }
 
 private fun traysSnapshot(workspace: Workspace) = ScreenSnapshot(
-    items = workspace.batches.sortedBy { it.id.value }.map(::batchItem),
+    items = workspace.batches.sortedBy { it.id.value }.map { batch ->
+        val assigned = batch.placement as? Placement.Assigned
+        val occupancy = workspace.zones.firstOrNull { it.id == assigned?.zoneId }?.occupancy(workspace.batches)
+            ?.takeIf { batch.state.occupiesPlace && it.overflow > 0 }
+        batchItem(batch).copy(occupancy = occupancy,
+            supportingKey = if (occupancy != null) key("capacity_conflict_title") else batchItem(batch).supportingKey,
+            commands = occupancy?.let { listOf(ScreenItemCommand("edit-zone", it.zoneId)) }.orEmpty())
+    },
     primaryActionKey = key("action_new_batch"),
 )
 
@@ -100,7 +107,8 @@ private fun batchEditorSnapshot(workspace: Workspace, stableId: String?): Screen
         forecast?.let { add(forecastItem(it, workspace)) }
     }
     return ScreenSnapshot(items = items, selectedItemId = stableId, primaryActionKey = key("action_save_batch"),
-        conflictResolutionKeys = conflict?.resolutions?.map(::resolutionKey).orEmpty())
+        conflictResolutionKeys = conflict?.resolutions?.map(::resolutionKey).orEmpty() +
+            workspace.batches.firstOrNull { it.id.value == stableId }?.scheduleConflictKeys().orEmpty())
 }
 
 private fun batchDetailSnapshot(workspace: Workspace, stableId: String?, photos: Map<PhotoId, ByteArray>): ScreenSnapshot {
@@ -125,6 +133,8 @@ private fun batchDetailSnapshot(workspace: Workspace, stableId: String?, photos:
             add(ScreenItem("event:outcome", titleKey = batchStateKey(batch.state),
                 history = com.sedsoftware.sproutpace.component.BatchHistoryProjection(
                     outcome.occurredAt, reason = listOfNotNull(reason, outcome.note).joinToString("\n").ifBlank { null },
+                    actualHarvestMassGrams = (outcome as? com.sedsoftware.sproutpace.domain.model.BatchOutcome.Harvested)
+                        ?.actualMass?.value,
                 )))
         }
         batch.effectiveActions().sortedBy { SchedulingEngine.resolvedInstant(it) }.forEach { action ->
@@ -145,9 +155,12 @@ private fun batchDetailSnapshot(workspace: Workspace, stableId: String?, photos:
         items = items,
         selectedItemId = batch.id.value,
         primaryActionKey = batchDetailPrimaryAction(batch),
-        conflictResolutionKeys = if (batch.placement is Placement.Unassigned) {
+        conflictResolutionKeys = (if (batch.placement is Placement.Unassigned || workspace.zones.any { zone ->
+                zone.id == (batch.placement as? Placement.Assigned)?.zoneId &&
+                    zone.occupancy(workspace.batches).occupied > zone.capacity
+            }) {
             listOf(key("choose_another_zone"), key("change_capacity"), key("leave_unassigned"))
-        } else emptyList(),
+        } else emptyList()) + batch.scheduleConflictKeys(),
     )
 }
 
@@ -416,7 +429,8 @@ private fun actionItem(prefix: String, batch: GrowBatch, action: ScheduledAction
         GrowStage.BLACKOUT_OR_WEIGHT -> "task_action_cover"
         GrowStage.LIGHT_GROWTH -> "task_action_light"
         GrowStage.READY_FOR_HARVEST -> "task_action_harvest"
-        null -> "today_next_action"
+        null -> if (action.kind == com.sedsoftware.sproutpace.domain.model.ScheduledActionKind.SOAK_TARGET ||
+            action.id.value.startsWith("soak:")) "task_action_soak" else "today_next_action"
     }),
     supportingKey = batch.cultureIdSnapshot?.let { key("culture_${it.value}_name") },
     stateKey = actionStatusKey(action.status),

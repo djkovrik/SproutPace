@@ -1,0 +1,13 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    "--init-script",
+    "build/reports/requirements-fixes-20261017/record-native-insets.init.gradle",
+    ":shared:compose:recordPaparazzi"
+  ],
+  "timeoutSeconds": 1800
+}

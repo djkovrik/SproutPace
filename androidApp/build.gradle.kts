@@ -99,6 +99,10 @@ dependencies {
     implementation(project(":shared:platform"))
     implementation(project(":shared:root"))
     implementation(libs.androidx.activityCompose)
+    testImplementation(libs.test.junit4)
+    testImplementation(libs.mvikotlin)
+    testImplementation(libs.mvikotlin.main)
+    testImplementation(libs.kotlinx.coroutines.core)
     if (firebaseCrashlyticsEnabled) {
         implementation(platform("com.google.firebase:firebase-bom:34.19.0"))
         implementation("com.google.firebase:firebase-crashlytics")

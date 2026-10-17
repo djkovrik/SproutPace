@@ -116,9 +116,11 @@ private fun primaryFieldValues(
 ): Map<String, String> = when (screen) {
         ScreenId.FIRST_RUN -> mapOf(
             "zoneName" to "", "type" to "grow_light", "capacity" to "1",
+            "darkZoneEnabled" to "false", "darkZoneName" to "", "darkZoneCapacity" to "1",
             "trayName" to "", "shape" to "rectangle",
             "widthCm" to "25.4", "lengthCm" to "50.8", "cadenceDays" to "7",
             "cultureIds" to SproutPaceCatalog.cultures.first().id.value, "mode" to "continuous_queue",
+            "dailySummaryEnabled" to preferences.dailySummaryEnabled.toString(), "summaryTime" to preferences.summaryTime.toString(),
         )
         ScreenId.TODAY -> todayFieldValues(due)
         ScreenId.TRAYS -> mapOf(
@@ -199,8 +201,8 @@ private fun repeatSnapshotOptions(
     return when (field.value) {
         "recipeId" -> listOf(ScreenOption(choice,
             labelKey = source.recipe.builtInCultureId?.let { key("culture_${it.value}_name") },
-            authoredLabel = source.recipe.nameSnapshot))
-        "trayId" -> listOf(ScreenOption(choice, authoredLabel = source.tray.nameSnapshot))
+            authoredLabel = source.recipe.nameSnapshot, seedDensity = source.recipe.density))
+        "trayId" -> listOf(ScreenOption(choice, authoredLabel = source.tray.nameSnapshot, trayShape = source.tray.shape))
         else -> emptyList()
     }
 }
@@ -289,8 +291,6 @@ private fun batchEditorScheduleFields(batch: GrowBatch?): Map<String, String> = 
 private fun batchEditorCorrectionFields(batch: GrowBatch?): Map<String, String> = buildMap {
     (batch?.placement as? Placement.Assigned)?.zoneId?.value?.let { put("zoneId", it) }
     batch?.let { current ->
-        put("anchorState", current.state.name.lowercase())
-        put("anchorAt", (current.events.lastOrNull()?.occurredAt ?: now()).toString())
         current.events.forEach { event ->
             actualDateField(event.to)?.let { field -> put(field, event.occurredAt.toString()) }
         }
@@ -315,11 +315,14 @@ private fun batchDetailFieldValues(
         put("skippedState", skipped.name.lowercase())
         put("resultingState", stateAfter(batch, skipped).name.lowercase())
     }
-    batch?.actions?.firstOrNull { it.status == ScheduledActionStatus.PENDING }?.let {
-        put("actionId", it.id.value)
-        put("dueAt", SchedulingEngine.resolvedInstant(it).toString())
-    } ?: put("dueAt", now().toString())
-    ((batch?.outcome as? BatchOutcome.Harvested)?.actualMass ?: batch?.actualSeedMass)?.let {
+    val soakTarget = batch?.actions?.firstOrNull {
+        (it.kind == com.sedsoftware.sproutpace.domain.model.ScheduledActionKind.SOAK_TARGET ||
+            (it.id.value == "soak:$subject" && it.stage == GrowStage.SOAKING)) &&
+            it.status == ScheduledActionStatus.PENDING
+    }
+    put("actionId", soakTarget?.id?.value ?: "soak:$subject")
+    put("dueAt", soakTarget?.let(SchedulingEngine::resolvedInstant)?.toString() ?: now().toString())
+    (batch?.outcome as? BatchOutcome.Harvested)?.actualMass?.let {
         put("actualMassGrams", it.value.toString())
     }
     put("timeZoneId", "UTC")
@@ -350,7 +353,7 @@ private fun recipeFieldValues(stableId: String?, recipe: UserGrowRecipe?): Map<S
         put("stage$slot", stage.stage.name.lowercase())
         put("stage${slot}MinimumHours", stage.duration.minimum.inWholeHours.toString())
         put("stage${slot}MaximumHours", stage.duration.maximum.inWholeHours.toString())
-        stage.userGuidance?.trim()?.takeIf(String::isNotEmpty)?.let { put("stage${slot}Guidance", it) }
+        stage.userGuidance?.takeIf(String::isNotBlank)?.let { put("stage${slot}Guidance", it) }
     }
     repeat((MAX_RECIPE_STAGES - stages.size).coerceAtLeast(0)) { offset ->
         put("stage${stages.size + offset + 1}", "none")
@@ -437,8 +440,12 @@ private fun trayFieldValues(tray: TraySizePreset?): Map<String, String> = buildM
 
 private fun dynamicOptions(field: ScreenField, workspace: Workspace): List<ScreenOption> = when (field.id.value) {
     "cultureId", "cultureIds" -> cultureOptions()
-    "recipeId" -> workspace.recipes.sortedBy { it.id.value }.map { authoredOption(it.id.value, it.name) }
-    "trayId" -> workspace.trays.sortedBy { it.id.value }.map { authoredOption(it.id.value, it.name) }
+    "recipeId" -> workspace.recipes.sortedBy { it.id.value }.map {
+        authoredOption(it.id.value, it.name).copy(seedDensity = it.density)
+    }
+    "trayId" -> workspace.trays.sortedBy { it.id.value }.map {
+        authoredOption(it.id.value, it.name).copy(trayShape = it.shape)
+    }
     "zoneId" -> workspace.zones.sortedBy { it.id.value }.map { authoredOption(it.id.value, it.name) }
     "batchId" -> workspace.batches.sortedBy { it.id.value }.map { batch ->
         val titleKey = batch.cultureIdSnapshot?.let { key("culture_${it.value}_name") }
@@ -481,7 +488,7 @@ private fun primaryScreenFacts(
         ))
         ScreenId.TRAYS -> listOf(valueFact("batch-count", "screen_trays_title", workspace.batches.size))
         ScreenId.BATCH_EDITOR -> selected.batch?.let {
-            listOf(authoredFact("recommended-seed-mass", "field_harvest_mass", it.recommendedSeedMass.value.toString()))
+            listOf(authoredFact("recommended-seed-mass", "field_recommended_seed_mass", it.recommendedSeedMass.value.toString()))
         }.orEmpty()
         ScreenId.BATCH_DETAIL -> batchDetailFacts(selected.batch, workspace)
         ScreenId.PLAN -> planFacts(selected.plan, workspace)
@@ -609,7 +616,7 @@ private data class ScreenSelection(
 )
 
 private fun cultureOptions() = SproutPaceCatalog.cultures.map { culture ->
-    ScreenOption(culture.id.value, key(culture.nameKey.value))
+    ScreenOption(culture.id.value, key(culture.nameKey.value), seedDensity = culture.seedDensity)
 }
 
 private fun authoredOption(id: String, value: String) = ScreenOption(id, authoredLabel = value)

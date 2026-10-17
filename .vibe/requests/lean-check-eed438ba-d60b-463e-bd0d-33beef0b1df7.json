@@ -1,0 +1,13 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.UiCompletenessProductionTest"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -1,0 +1,6 @@
+2026-10-17T08:13:08.554087Z  WARN codex_core_plugins::loader: failed to parse plugin MCP config: expected value at line 1 column 1 path=C:\Users\Sergey\.codex\plugins\cache\lazyweb\lazyweb\0.1.1\.mcp.json
+2026-10-17T08:13:08.662991Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-17T08:13:08.663017Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-17T08:13:08.697643Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-10-17T08:13:48.098779Z  WARN codex_core_plugins::manager: failed to auto-upgrade configured marketplace marketplace="lazyweb" error=failed to validate upgraded marketplace root: invalid marketplace file `C:\Users\Sergey\.codex\.tmp/marketplaces\.staging\marketplace-upgrade-phe3FK`: marketplace root does not contain a supported manifest
+2026-10-17T08:34:32.733015Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a148ec-0e46-7e60-9a8f-8d7bf879c1f3 hook_name=legacy_notify error=Имя файла или его расширение имеет слишком большую длину. (os error 206)

@@ -25,13 +25,21 @@ class InMemoryPendingPhotoImportStore : PendingPhotoImportStore {
     override fun close() = values.clear()
 }
 
-internal fun managedPhotoId(observationId: ObservationId, bytes: ByteArray): PhotoId {
+internal fun managedPhotoId(
+    observationId: ObservationId,
+    bytes: ByteArray,
+    checkActive: () -> Unit = {},
+): PhotoId {
+    checkActive()
     val identity = observationId.value.encodeToByteArray()
+    checkActive()
     val digestInput = ByteArray(identity.size + 1 + bytes.size)
+    checkActive()
     identity.copyInto(digestInput)
     digestInput[identity.size] = 0
     bytes.copyInto(digestInput, identity.size + 1)
-    return PhotoId("photo-${Sha256.digest(digestInput)}")
+    checkActive()
+    return PhotoId("photo-${Sha256.digest(digestInput, checkActive)}")
 }
 
 fun requireSafePendingPhotoToken(token: String): String {

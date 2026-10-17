@@ -1,0 +1,7 @@
+{
+  "valid": false,
+  "errors": [
+    "ASSET-001: visual evidence: stale file hash: docs/design-review/ux-preview-review.json"
+  ],
+  "warnings": []
+}

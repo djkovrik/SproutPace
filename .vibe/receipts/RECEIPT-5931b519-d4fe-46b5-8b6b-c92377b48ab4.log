@@ -1,0 +1,26 @@
+{
+  "serial": "emulator-5556",
+  "installedApkSha256": "d22dc8cb028b61b81908383f37ec9cdc44b24796053fbe7e545593ab83139d72",
+  "hostApkSha256": "D22DC8CB028B61B81908383F37EC9CDC44B24796053FBE7E545593AB83139D72",
+  "verifiedAt": "2026-10-17T08:12:01.2294666Z",
+  "liveChecks": [
+    "exact-installed-apk",
+    "resumed-app",
+    "persisted-dark-and-light-zones",
+    "persisted-local-summary-time",
+    "talkback-bound",
+    "touch-exploration-enabled",
+    "app-labels-exposed-with-talkback"
+  ],
+  "capturedChecks": [
+    "hardware-tab-editor-focus",
+    "typed-name-ime-shown",
+    "real-edge-back-hides-ime",
+    "dirty-back-cancel-preserves-draft"
+  ],
+  "unverified": [
+    "TalkBack spoken traversal and output",
+    "TalkBack next-item gesture ordering",
+    "iOS runtime"
+  ]
+}

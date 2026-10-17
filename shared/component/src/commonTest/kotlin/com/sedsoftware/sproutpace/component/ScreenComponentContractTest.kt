@@ -276,9 +276,10 @@ class ScreenComponentContractTest {
         val expectedFieldKeys = mapOf(
             ScreenId.FIRST_RUN to setOf(
                 "field_zone_name", "field_zone_type", "field_zone_capacity", "field_tray_name",
+                "field_optional_dark_zone", "field_dark_zone_name", "field_dark_zone_capacity",
                 "field_tray_shape", "field_tray_width_cm", "field_tray_length_cm",
                 "field_tray_diameter_cm", "field_plan_cadence_days", "field_plan_culture_ids",
-                "field_plan_mode",
+                "field_plan_mode", "field_daily_summary_enabled", "field_summary_time",
             ),
             ScreenId.TODAY to setOf("field_due_kind", "field_due_at", "field_local_date_time", "field_time_zone"),
             ScreenId.TRAYS to setOf("field_tray_category"),

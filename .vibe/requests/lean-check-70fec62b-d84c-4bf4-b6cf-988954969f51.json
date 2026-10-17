@@ -1,0 +1,14 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--continue",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    "detekt",
+    ":androidApp:testDebugUnitTest",
+    ":androidApp:assembleDebug"
+  ],
+  "timeoutSeconds": 1800
+}

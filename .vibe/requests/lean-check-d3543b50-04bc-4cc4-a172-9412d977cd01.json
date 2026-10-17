@@ -1,0 +1,20 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--continue",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*ProductionCatalogCrudActionsTest",
+    "--tests",
+    "*TimeRefreshProductionTest",
+    "--tests",
+    "*AdvertisingRootProductionTest",
+    "--tests",
+    "*LocaleResourceResolutionTest"
+  ],
+  "timeoutSeconds": 1800
+}
