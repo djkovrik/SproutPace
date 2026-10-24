@@ -4,6 +4,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
@@ -44,6 +45,8 @@ import com.sedsoftware.sproutpace.monetization.AdSurface
 import com.sedsoftware.sproutpace.monetization.AdvertisingRuntime
 import com.sedsoftware.sproutpace.monetization.InlineAdPlacementPolicy
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
+import com.sedsoftware.sproutpace.monetization.InlineAdSession
 import org.jetbrains.compose.resources.stringResource
 import sproutpace.shared.compose.generated.resources.Res
 import sproutpace.shared.compose.generated.resources.action_back
@@ -56,6 +59,7 @@ internal fun RootApp(
     root: AppRootComponent,
     platformActions: PlatformActionHandler = NoOpPlatformActionHandler,
     onThemeChanged: @Composable (isDark: Boolean) -> Unit,
+    advertisingExpiryDelay: suspend (Long) -> Unit = { delay(it) },
 ) {
     val theme = (root as? ThemePreferenceOwner)?.themePreference?.collectAsState()?.value
         ?: ThemePreference.SYSTEM
@@ -77,6 +81,9 @@ internal fun RootApp(
     ).withSettingsContext(settingsModel).withLocalizedCatalogSearch()
     var adUnitId by remember(activeComponent) { mutableStateOf<String?>(null) }
     val advertisingVisit = remember(activeComponent) { AdvertisingVisitGate() }
+    val adSession = remember(activeComponent) { InlineAdSession(maxRetries = 0) }
+    val adState by adSession.states.collectAsState()
+    DisposableEffect(adSession) { onDispose { adSession.dispose() } }
     val placement = baseUiState.adPlacementRequestOrNull(networkAvailable)
     LaunchedEffect(activeComponent, placement) {
         if (placement == null || advertisingRuntime == null) {
@@ -89,15 +96,30 @@ internal fun RootApp(
         }
         if (root.stack.value.active.instance === activeComponent) adUnitId = preparedAdUnit
     }
+    LaunchedEffect(activeComponent, adUnitId, privacyState) {
+        val unit = adUnitId ?: return@LaunchedEffect
+        val runtime = advertisingRuntime ?: return@LaunchedEffect
+        if (runtime.canRequestAd(unit)) {
+            val expiresAt = privacyState?.expiresAtEpochMillis ?: return@LaunchedEffect
+            advertisingExpiryDelay((expiresAt - runtime.nowEpochMillis()).coerceAtLeast(0))
+        }
+        adUnitId = null
+        adSession.dispose()
+    }
+    val adEligible = adUnitId?.let { advertisingRuntime?.canRequestAd(it) } == true &&
+        adState != com.sedsoftware.sproutpace.monetization.InlineAdState.FAILED &&
+        adState != com.sedsoftware.sproutpace.monetization.InlineAdState.DISPOSED
     val uiState = baseUiState
-        .withAdvertisingPrivacy(privacyState)
-        .copy(showInlineAd = networkAvailable && adUnitId != null,
-            inlineAdUnitId = adUnitId.takeIf { networkAvailable })
+        .withAdvertisingPrivacy(privacyState, advertisingRuntime?.nowEpochMillis()
+            ?: kotlin.time.Clock.System.now().toEpochMilliseconds())
+        .copy(showInlineAd = adEligible,
+            inlineAdUnitId = adUnitId.takeIf { adEligible })
     val router = remember(root, activeComponent, platformActions) {
         RootActionRouter(root, activeComponent, platformActions) { activeComponent.model.value.selectedItemId }
     }
 
     val scope = rememberCoroutineScope()
+    CompositionLocalProvider(LocalInlineAdSession provides adSession) {
     SproutPaceApp(
         state = uiState,
         advertisingRuntime = advertisingRuntime,
@@ -118,6 +140,7 @@ internal fun RootApp(
             }
         },
     )
+    }
         confirmationSlot.child?.instance?.let { confirmation ->
             RootConfirmationDialog(confirmation, baseUiState)
         }
@@ -468,6 +491,7 @@ internal fun ScreenModel.toUiState(
         detail = detail?.toUiState(selectedPrimary = selectedPrimary),
         stagePreview = stagePreview,
         completionRevision = completionRevision,
+        lastCompletedOperation = lastCompletedOperation,
     )
 }
 
@@ -541,6 +565,7 @@ private fun ScreenItem.toUiItem(selectedItemId: String?) = UiItem(
     recipe = recipe,
     history = history,
     snapshotStage = snapshotStage,
+    trayShape = trayShape,
 )
 
 private fun ScreenField.toUiField(errorKey: String?) = UiField(

@@ -1,0 +1,19 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=2",
+    ":shared:compose:compileAndroidMain",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*DataLifecycleRegressionProductionTest",
+    "--tests",
+    "*ReminderProductionIntegrationTest",
+    ":shared:platform:testAndroidHostTest",
+    "--tests",
+    "*AndroidNotificationPermissionPolicyTest"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -232,6 +232,7 @@ object ScreenContractRegistry {
                     "confirm-stage",
                     argument("nextState", ScreenFieldKind.SINGLE_CHOICE),
                     argument("zoneId", ScreenFieldKind.SINGLE_CHOICE, required = false),
+                    argument("unassigned", ScreenFieldKind.BOOLEAN, required = false),
                 ),
                 subjectOperation("assign-overflow"), subjectOperation("undo-stage"),
                 eventOperation(

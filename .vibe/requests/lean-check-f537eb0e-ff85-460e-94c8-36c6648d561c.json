@@ -1,0 +1,15 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=2",
+    "detekt",
+    ":shared:compose:testAndroidHostTest",
+    ":shared:compose:verifyPaparazzi",
+    ":shared:compose:compileKotlinIosArm64",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "timeoutSeconds": 1800
+}

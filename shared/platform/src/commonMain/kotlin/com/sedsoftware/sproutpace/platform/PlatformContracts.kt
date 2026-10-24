@@ -75,7 +75,13 @@ data class PhysicalReminder(
     val titleKey: NativeTextKey,
     val bodyKey: NativeTextKey,
     val civilDateTime: kotlinx.datetime.LocalDateTime? = null,
-)
+    /** Repeats at the civil hour/minute. Only safe once work exists in the first delivery window. */
+    val repeatsDaily: Boolean = false,
+) {
+    init {
+        require(!repeatsDaily || (kind == ReminderKind.DAILY_SUMMARY && civilDateTime != null))
+    }
+}
 
 data class ReminderPlan(
     val currentOrOverdueWorkCount: Int,

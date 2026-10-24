@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,16 +34,27 @@ import sproutpace.shared.compose.generated.resources.advertisement_label
 internal actual fun PlatformInlineAd(
     runtime: AdvertisingRuntime,
     adUnitId: String,
+    session: InlineAdSession,
     modifier: Modifier,
 ) {
     val androidRuntime = runtime as? AndroidInlineAdHost ?: return
     BoxWithConstraints(modifier.fillMaxWidth()) {
         val widthDp = maxWidth.value.toInt()
-        if (widthDp <= 0) return@BoxWithConstraints
-        val session = remember(adUnitId, widthDp) { InlineAdSession(maxRetries = 0) }
-        var state by remember(adUnitId, widthDp) { mutableStateOf(InlineAdState.IDLE) }
-        var banner by remember(adUnitId, widthDp) { mutableStateOf<View?>(null) }
-        var disposed by remember(adUnitId, widthDp) { mutableStateOf(false) }
+        val requestedWidth = remember(session) { widthDp }
+        // A changed viewport disposes the old native view without spending another visit load.
+        if (widthDp > 0 && widthDp == requestedWidth) {
+            OwnedInlineBanner(androidRuntime, adUnitId, requestedWidth, session)
+        }
+    }
+}
+
+@Composable
+private fun OwnedInlineBanner(androidRuntime: AndroidInlineAdHost, adUnitId: String, widthDp: Int, session: InlineAdSession) {
+    val mayCreate = remember(session) { session.state == InlineAdState.IDLE && androidRuntime.canRequestAd(adUnitId) }
+    if (!mayCreate) return
+    val state by session.states.collectAsState()
+    var banner by remember(session) { mutableStateOf<View?>(null) }
+    var disposed by remember(session) { mutableStateOf(false) }
 
         Column(
             Modifier.fillMaxWidth().then(
@@ -64,7 +76,7 @@ internal actual fun PlatformInlineAd(
                         maxHeightDp = MAX_INLINE_HEIGHT_DP,
                         session = session,
                         isHostDestroyed = { disposed },
-                        onStateChanged = { state = it },
+                        onStateChanged = {},
                     ).also { banner = it }
                 },
                 modifier = Modifier.fillMaxWidth().then(
@@ -81,7 +93,6 @@ internal actual fun PlatformInlineAd(
                 banner = null
             }
         }
-    }
 }
 
 private const val MAX_INLINE_HEIGHT_DP = 250

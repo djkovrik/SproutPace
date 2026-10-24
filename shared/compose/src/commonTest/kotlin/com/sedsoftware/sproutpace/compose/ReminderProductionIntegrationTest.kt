@@ -182,20 +182,76 @@ class ReminderProductionIntegrationTest {
         val plan = source.currentPlan()
         assertEquals(0, plan.currentOrOverdueWorkCount)
         assertNull(plan.dailySummary)
-        assertEquals(29, plan.dailySummaries.size)
+        assertEquals(30, plan.dailySummaries.size)
         assertEquals(listOf("2026-10-11T09:00", "2026-10-12T09:00"),
             plan.dailySummaries.take(2).map { it.civilDateTime.toString() })
         assertEquals(plan.dailySummaries.size, plan.dailySummaries.map { it.id }.distinct().size)
         val driver = com.sedsoftware.sproutpace.platform.FakeReminderDriver()
         val reconciler = com.sedsoftware.sproutpace.platform.ReminderReconciler(driver)
         reconciler.reconcile(plan, now, PermissionState.Granted, ReconciliationReason.APP_START)
-        assertEquals(29, driver.registeredIds().size)
+        assertEquals(30, driver.registeredIds().size)
         current = current.copy(batches = emptyList())
         val noWork = source.currentPlan()
         assertTrue(noWork.dailySummaries.isEmpty())
         reconciler.reconcile(noWork, now, PermissionState.Granted, ReconciliationReason.PRODUCT_DATA_CHANGED)
         assertTrue(driver.registeredIds().isEmpty())
-        assertEquals(29, driver.cancelledCalls.size)
+        assertEquals(30, driver.cancelledCalls.size)
+    }
+
+    @Test
+    fun ac065_iosDueWorkUsesOneIndefiniteCivilRepeatAndCancelsOldQueuedWindows() = runTest {
+        var now = Instant.parse("2026-10-10T08:00:00Z").toEpochMilliseconds()
+        var current = snapshot(now - 1, now + 3_600_000)
+        var zone: TimeZone = TimeZone.UTC
+        val settings = FakeSettings(ProductPreferences(notificationsEnabled = true))
+        val source = SnapshotReminderPlanSource({ current }, settings, { now }, { zone },
+            summaryHorizonDays = 30, repeatingDailySummaryEnabled = true)
+        val repeat = kotlin.test.assertNotNull(source.currentPlan().dailySummary)
+        assertTrue(repeat.repeatsDaily)
+        assertEquals("sproutpace:daily-summary", repeat.id.value)
+        assertEquals("2026-10-10T09:00", repeat.civilDateTime.toString())
+        assertTrue(source.currentPlan().dailySummaries.isEmpty())
+        val legacy = repeat.copy(id = com.sedsoftware.sproutpace.platform.PhysicalReminderId(
+            "sproutpace:daily-summary:2026-10-10"), repeatsDaily = false)
+        val driver = com.sedsoftware.sproutpace.platform.FakeReminderDriver(listOf(legacy))
+        val reconciler = com.sedsoftware.sproutpace.platform.ReminderReconciler(driver)
+        reconciler.reconcile(source.currentPlan(), now, PermissionState.Granted, ReconciliationReason.APP_START)
+        assertEquals(listOf(legacy.id), driver.cancelledCalls)
+        assertEquals(setOf(repeat.id, source.currentPlan().soakReminders.single().id), driver.registeredIds())
+        val elapsedSoak = source.currentPlan().soakReminders.single().fireAtEpochMillis
+        zone = TimeZone.of("Europe/Moscow")
+        assertEquals(elapsedSoak, source.currentPlan().soakReminders.single().fireAtEpochMillis)
+        assertEquals(9, source.currentPlan().dailySummary?.civilDateTime?.hour)
+        // No foreground reconciliation is required for the native repeat after day 30.
+        now = Instant.parse("2026-11-20T06:00:00Z").toEpochMilliseconds()
+        assertTrue(repeat.repeatsDaily)
+        assertTrue(source.shouldDeliver(repeat.id, now))
+        current = current.copy(batches = emptyList())
+        val empty = source.currentPlan()
+        assertNull(empty.dailySummary)
+        assertTrue(empty.dailySummaries.isEmpty())
+        reconciler.reconcile(empty, now, PermissionState.Granted, ReconciliationReason.PRODUCT_DATA_CHANGED)
+        assertTrue(driver.registeredIds().isEmpty())
+    }
+
+    @Test
+    fun ac065_iosFutureOnlyWorkIsSilentBeforeDueAndQueuesThirtyUsefulWindowsEvenBeyondThirtyDays() = runTest {
+        var now = Instant.parse("2026-10-10T08:00:00Z").toEpochMilliseconds()
+        val due = Instant.parse("2026-12-20T10:00:00Z").toEpochMilliseconds()
+        val settings = FakeSettings(ProductPreferences(notificationsEnabled = true, soakRemindersEnabled = false))
+        val source = SnapshotReminderPlanSource({ snapshot(due, due) }, settings, { now }, { TimeZone.UTC },
+            summaryHorizonDays = 30, repeatingDailySummaryEnabled = true)
+        val future = source.currentPlan()
+        assertNull(future.dailySummary)
+        assertEquals(30, future.dailySummaries.size)
+        assertTrue(future.dailySummaries.all { !it.repeatsDaily && it.fireAtEpochMillis > due })
+        assertEquals("2026-12-21T09:00", future.dailySummaries.first().civilDateTime.toString())
+        assertEquals("2027-01-19T09:00", future.dailySummaries.last().civilDateTime.toString())
+        now = due
+        val repeat = kotlin.test.assertNotNull(source.currentPlan().dailySummary)
+        assertTrue(repeat.repeatsDaily)
+        settings.setNotificationsEnabled(false)
+        assertTrue(source.currentPlan().futurePhysicalReminders(now).isEmpty())
     }
 
     @Test

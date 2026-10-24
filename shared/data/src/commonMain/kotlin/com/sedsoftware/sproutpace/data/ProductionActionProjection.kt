@@ -8,7 +8,6 @@ import com.sedsoftware.sproutpace.domain.catalog.SproutPaceCatalog
 import com.sedsoftware.sproutpace.domain.model.BatchState
 import com.sedsoftware.sproutpace.domain.model.GrowBatch
 import com.sedsoftware.sproutpace.domain.model.GrowStage
-import com.sedsoftware.sproutpace.domain.model.Placement
 
 internal fun productionActions(
     screen: ScreenId,
@@ -85,6 +84,6 @@ private fun batchDetailActionIds(batch: GrowBatch): Set<String> {
         if (!batch.state.isTerminal && batch.state != BatchState.SOAKING && hasNextStage) add("confirm-stage")
         if (!batch.state.isTerminal && canSkipStage) add("skip-stage")
         if (!batch.state.isTerminal && batch.events.isNotEmpty()) add("undo-stage")
-        if (batch.state.occupiesPlace && batch.placement is Placement.Unassigned) add("assign-overflow")
+        if (batch.state.occupiesPlace) add("assign-overflow")
     }
 }

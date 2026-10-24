@@ -49,6 +49,73 @@ class AdvertisingRootProductionTest {
     )
 
     @Test
+    fun recycledCatalogSlotCannotLoadAnotherAdDuringTheSameVisit() = runTest {
+        paparazzi.unsafeUpdateConfig(deviceConfig = DeviceConfig.PIXEL_5.copy(screenHeight = 640))
+        withPublicWorkspace { directory, preferences ->
+            PublicProductionFixture(directory, preferences, initialScreen = ScreenId.CATALOG).use { fixture ->
+                val runtime = ControllerRuntime(fixture.settings, protected = false)
+                val view = rootView(RuntimeRoot(fixture.root, runtime))
+                var returnedFrames = 0
+                play(view, listOf(
+                    { view.scrollCatalogTo(6) },
+                    {
+                        if (runtime.created != 1 || view.tagged("inline-ad").isEmpty()) false else {
+                            view.assertAdAbovePrimaryAction()
+                            view.scrollCatalogTo(0)
+                        }
+                    },
+                    { if (runtime.disposed != 1) false else view.scrollCatalogTo(6) },
+                    {
+                        returnedFrames += 1
+                        if (returnedFrames < 4) false else {
+                            assertEquals(1, runtime.created, "Lazy recycling must retain the screen-visit load budget")
+                            assertTrue(view.tagged("inline-ad").isEmpty())
+                            assertEquals(ScreenId.CATALOG, fixture.model().screen)
+                            true
+                        }
+                    },
+                ))
+            }
+        }
+    }
+
+    @Test
+    fun privacyExpiryCollapsesTheOpenVisitAndPreventsAnyReload() = runTest {
+        withPublicWorkspace { directory, preferences ->
+            PublicProductionFixture(directory, preferences, initialScreen = ScreenId.CATALOG).use { fixture ->
+                val runtime = ControllerRuntime(fixture.settings, protected = false)
+                val expiry = CompletableDeferred<Unit>()
+                val view = rootView(RuntimeRoot(fixture.root, runtime)) { remaining ->
+                    assertEquals(60_000L, remaining)
+                    expiry.await()
+                }
+                var expiredFrames = 0
+                play(view, listOf(
+                    {
+                        if (runtime.created != 1 || view.tagged("inline-ad").isEmpty()) false else {
+                            runtime.now += 60_001
+                            expiry.complete(Unit)
+                            true
+                        }
+                    },
+                    {
+                        expiredFrames += 1
+                        if (expiredFrames < 4 || runtime.disposed != 1) false else {
+                            assertTrue(view.tagged("inline-ad").isEmpty())
+                            assertFalse(runtime.canRequestAd(AdConfiguration.ANDROID_DEMO_BANNER_ID))
+                            assertEquals(1, runtime.created)
+                            assertEquals(1, runtime.endpointCalls, "Expiry must not refresh/retry within the same visit")
+                            assertEquals(ScreenId.CATALOG, fixture.model().screen)
+                            assertEquals(8, fixture.model().items.size)
+                            true
+                        }
+                    },
+                ))
+            }
+        }
+    }
+
+    @Test
     fun realConsentAcceptWithdrawalAndChangedPolicyGateTheOwnedBanner() = runTest {
         withPublicWorkspace { directory, preferences ->
             PublicProductionFixture(directory, preferences, initialScreen = ScreenId.CATALOG,
@@ -252,10 +319,17 @@ class AdvertisingRootProductionTest {
                 val runtime = ControllerRuntime(fixture.settings, protected = false, fill = false)
                 val view = rootView(RuntimeRoot(fixture.root, runtime))
                 play(view, listOf({
-                    if (runtime.created != 1) false else {
+                    if (runtime.created != 1 || runtime.disposed != 1) false else {
                         assertTrue(view.tagged("inline-ad").isEmpty())
                         assertTrue(view.nodes().none { it.config.getOrNull(SemanticsProperties.Text)?.any { text -> text.text == "Advertisement" } == true })
                         assertEquals(0, runtime.banner?.height)
+                        val items = fixture.model().toUiState().items
+                        val precedingBottom = items.take(4).maxOf { item ->
+                            view.tagged("item-${item.id}").single().boundsInRoot.bottom
+                        }
+                        val nextTop = view.tagged("item-${items[4].id}").single().boundsInRoot.top
+                        assertEquals(12f * view.resources.displayMetrics.density, nextTop - precedingBottom, 1f,
+                            "A failed slot must leave only the ordinary grid spacing")
                         true
                     }
                 }))
@@ -476,7 +550,7 @@ class AdvertisingRootProductionTest {
         assertNull(model().errorKey)
     }
 
-    private fun rootView(root: AppRootComponent): ComposeView {
+    private fun rootView(root: AppRootComponent, expiryDelay: suspend (Long) -> Unit = { kotlinx.coroutines.delay(it) }): ComposeView {
         paparazzi.configureComposeResources()
         rootDiagnostic = {
             val model = root.stack.value.active.instance.model.value
@@ -484,7 +558,9 @@ class AdvertisingRootProductionTest {
                 "confirmation=${root.confirmation.value.child?.configuration}, " +
                 "privacy=${(root as? AdvertisingRuntimeOwner)?.advertisingRuntime?.privacyState?.value}"
         }
-        return ComposeView(paparazzi.context).apply { setContent { RootApp(root, onThemeChanged = {}) } }
+        return ComposeView(paparazzi.context).apply {
+            setContent { RootApp(root, onThemeChanged = {}, advertisingExpiryDelay = expiryDelay) }
+        }
     }
 
     private fun play(view: View, steps: List<suspend () -> Boolean>) {
@@ -519,7 +595,8 @@ private class ControllerRuntime(
     failSdk: Boolean = false,
     beforeRegionFetch: suspend () -> Unit = {},
 ) : AndroidInlineAdHost {
-    val now = System.currentTimeMillis()
+    var now = System.currentTimeMillis()
+    override fun nowEpochMillis(): Long = now
     var policy = "policy-1"
     val events = mutableListOf<String>()
     var created = 0
@@ -550,6 +627,7 @@ private class ControllerRuntime(
     override fun close() = Unit
     override fun createInlineBanner(context: Context, adUnitId: String, widthDp: Int, maxHeightDp: Int,
         session: InlineAdSession, isHostDestroyed: () -> Boolean, onStateChanged: (InlineAdState) -> Unit): View {
+        assertTrue(canRequestAd(adUnitId), "The native request boundary must never receive stale eligibility")
         assertTrue(session.beginLoad())
         assertFalse(isHostDestroyed())
         created += 1
@@ -572,6 +650,15 @@ private fun View.assertSlotBetween(items: List<UiItem>, precedingCount: Int) {
     val after = tagged("item-${items[precedingCount].id}").single().boundsInRoot
     assertTrue(slot.top >= before.bottom, "Banner must follow the $precedingCount real records")
     assertTrue(slot.bottom <= after.top, "Banner must precede the next real record")
+    assertAdAbovePrimaryAction()
+}
+private fun View.assertAdAbovePrimaryAction() {
+    val slot = tagged("inline-ad").single().boundsInRoot
+    val footer = tagged("primary-action-footer").single().boundsInRoot
+    assertTrue(slot.bottom <= footer.top, "The primary action must have its own space outside the ad viewport")
 }
 private fun View.clickTag(tag: String): Boolean = tagged(tag).firstOrNull()
     ?.config?.getOrNull(SemanticsActions.OnClick)?.action?.invoke() == true
+
+private fun View.scrollCatalogTo(index: Int): Boolean = tagged("catalog-grid").firstOrNull()
+    ?.config?.getOrNull(SemanticsActions.ScrollToIndex)?.action?.invoke(index) == true

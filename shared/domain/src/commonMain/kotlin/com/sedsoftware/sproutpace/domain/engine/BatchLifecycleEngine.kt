@@ -120,6 +120,7 @@ object BatchLifecycleEngine {
             batch.copy(
                 state = terminalState,
                 placement = Placement.None,
+                closedPlacementSnapshot = batch.placement,
                 outcome = outcome,
                 actions = batch.actions.map {
                     if (it.status == ScheduledActionStatus.PENDING) it.copy(status = ScheduledActionStatus.CANCELLED) else it

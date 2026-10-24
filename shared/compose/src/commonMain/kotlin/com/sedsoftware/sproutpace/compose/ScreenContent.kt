@@ -1447,16 +1447,9 @@ private fun PlanScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             statusItems(state)
-            planSummary(state)
+            if (state.plans.isEmpty()) planSummary(state)
             items(state.plans, key = { "plan-summary-${it.id}" }) { plan ->
-                OutlinedButton(onClick = { onAction(UiAction.Submit("edit-plan", plan.id)) }) {
-                    Column {
-                        Text(localizedText("projection_cadence").replace("%1\$s", plan.cadenceDays.toString()))
-                        val cultureNames = plan.cultureIds.map { localizedText("culture_${it}_name") }
-                        Text(cultureNames.joinToString(" · "))
-                        Text(localizedText(if (plan.paused) "plan_paused" else "plan_active"))
-                    }
-                }
+                PlanSummaryCard(plan, onClick = { onAction(UiAction.Submit("edit-plan", plan.id)) })
             }
             items(state.items, key = { item -> modelListKey(ModelListEntryKind.ITEM, item.id) }) { item ->
                 PlanTimelineCard(item, onAction)

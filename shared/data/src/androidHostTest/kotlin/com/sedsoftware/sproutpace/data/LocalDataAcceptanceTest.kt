@@ -900,7 +900,10 @@ class LocalDataAcceptanceTest {
         )
         val terminalBatch = activeBatch.copy(
             id = BatchId("batch-terminal"), state = BatchState.HARVESTED, placement = Placement.None,
-            actions = actions.map { it.copy(batchId = BatchId("batch-terminal"), status = ScheduledActionStatus.CANCELLED) },
+            actions = actions.map { it.copy(
+                id = ScheduledActionId("terminal:${it.id.value}"),
+                batchId = BatchId("batch-terminal"), status = ScheduledActionStatus.CANCELLED,
+            ) },
             outcome = BatchOutcome.Harvested(
                 Instant.parse("2026-09-25T12:00:00Z"), PositiveGrams(145.5),
                 OutcomeAssessment.SUCCESSFUL, note = "Хороший, свежий",

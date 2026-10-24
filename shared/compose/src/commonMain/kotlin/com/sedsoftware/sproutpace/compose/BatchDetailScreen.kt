@@ -173,7 +173,9 @@ private fun BatchMoreActions(state: SproutPaceUiState, primaryId: String?, choos
 private fun BatchOperationEditor(state: SproutPaceUiState, id: String, onAction: (UiAction) -> Unit, onCancel: () -> Unit) {
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            state.fields.filter { it.id in batchActionFieldIds(id) }.forEach { FieldControl(it, onAction) }
+            val unassigned = state.fields.firstOrNull { it.id == "unassigned" }?.value == "true"
+            state.fields.filter { it.id in batchActionFieldIds(id) && !(it.id == "zoneId" && unassigned) }
+                .forEach { FieldControl(it, onAction) }
             Button(onClick = { onAction(UiAction.Submit(id, state.selectedItemId)) }, enabled = !state.busy) {
                 Text(localizedText(if (id in com.sedsoftware.sproutpace.component.previewedStageOperations)
                     "stage_preview_action" else "action_${id.replace('-', '_')}"))
@@ -201,7 +203,7 @@ private fun BatchOperationEditor(state: SproutPaceUiState, id: String, onAction:
 internal fun batchActionFieldIds(id: String): Set<String> = when (id) {
     "start-soaking" -> setOf("occurredAt")
     "confirm-sowing" -> setOf("occurredAt", "zoneId", "unassigned")
-    "confirm-stage" -> setOf("occurredAt", "nextState", "zoneId")
+    "confirm-stage" -> setOf("occurredAt", "nextState", "zoneId", "unassigned")
     "skip-stage" -> setOf("occurredAt", "skippedState", "reason", "resultingState")
     "schedule-soak-target" -> setOf("dueAt")
     "record-actual-mass" -> setOf("actualMassGrams")

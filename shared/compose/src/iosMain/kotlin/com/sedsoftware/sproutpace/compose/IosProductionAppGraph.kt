@@ -29,15 +29,11 @@ import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.datetime.number
 import platform.Foundation.NSBundle
 import platform.Foundation.NSApplicationSupportDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 import platform.Foundation.NSData
-import platform.Foundation.NSDateComponents
-import platform.Foundation.NSCalendar
-import platform.Foundation.NSCalendarIdentifierGregorian
 import platform.Foundation.NSError
 import platform.Foundation.NSLock
 import platform.Foundation.NSUserDefaults
@@ -55,12 +51,9 @@ import platform.UserNotifications.UNAuthorizationStatusEphemeral
 import platform.UserNotifications.UNAuthorizationStatusNotDetermined
 import platform.UserNotifications.UNAuthorizationStatusProvisional
 import platform.UserNotifications.UNNotificationRequest
-import platform.UserNotifications.UNTimeIntervalNotificationTrigger
-import platform.UserNotifications.UNCalendarNotificationTrigger
 import platform.UserNotifications.UNUserNotificationCenter
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-import kotlin.math.max
 import kotlin.time.Clock
 
 /** Typed iOS application entry point. Swift owns and retains one instance. */
@@ -79,6 +72,7 @@ class IosProductionAppGraph(
         documentPort = IosArchiveDocumentPort(imports = archiveImports),
         reminderDriver = IosReminderDriver(),
         summaryHorizonDays = IOS_SUMMARY_HORIZON_DAYS,
+        repeatingDailySummaryEnabled = true,
         notificationPermissionService = notificationPermissionService,
         crashReportingDriver = IosCrashReportingDriver(crashReportingBridge),
         ioDispatcher = Dispatchers.Default,
@@ -260,19 +254,7 @@ internal class IosReminderDriver(
             notification.setTitle(reminder.titleKey.localized())
             notification.setBody(reminder.bodyKey.localized())
         }
-        val nowSeconds = Clock.System.now().toEpochMilliseconds() / MILLIS_PER_SECOND
-        val seconds = max(1.0, reminder.fireAtEpochMillis / MILLIS_PER_SECOND - nowSeconds)
-        val trigger = reminder.civilDateTime?.let { civil ->
-            val components = NSDateComponents().apply {
-                calendar = NSCalendar.calendarWithIdentifier(NSCalendarIdentifierGregorian)
-                year = civil.year.toLong()
-                month = civil.month.number.toLong()
-                day = civil.day.toLong()
-                hour = civil.hour.toLong()
-                minute = civil.minute.toLong()
-            }
-            UNCalendarNotificationTrigger.triggerWithDateMatchingComponents(components, repeats = false)
-        } ?: UNTimeIntervalNotificationTrigger.triggerWithTimeInterval(seconds, repeats = false)
+        val trigger = reminder.iosNotificationTrigger(Clock.System.now().toEpochMilliseconds())
         val request = UNNotificationRequest.requestWithIdentifier(reminder.id.value, content, trigger)
         center.addNotificationRequest(request) { error -> continuation.resume(error.asResult()) }
     }
@@ -292,7 +274,6 @@ internal class IosReminderDriver(
 
     private companion object {
         const val APP_REMINDER_PREFIX = "sproutpace:"
-        const val MILLIS_PER_SECOND = 1_000.0
     }
 }
 

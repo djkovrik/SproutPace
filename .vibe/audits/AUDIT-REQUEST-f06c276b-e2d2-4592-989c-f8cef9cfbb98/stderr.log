@@ -1,0 +1,8 @@
+2026-10-24T14:45:07.708480Z  WARN codex_core_plugins::loader: failed to parse plugin MCP config: expected value at line 1 column 1 path=C:\Users\Sergey\.codex\plugins\cache\lazyweb\lazyweb\0.1.1\.mcp.json
+2026-10-24T14:45:08.030752Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-24T14:45:08.030781Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-24T14:45:08.127535Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-10-24T14:45:46.132108Z  WARN codex_core_plugins::manager: failed to auto-upgrade configured marketplace marketplace="lazyweb" error=failed to validate upgraded marketplace root: invalid marketplace file `C:\Users\Sergey\.codex\.tmp/marketplaces\.staging\marketplace-upgrade-O7gf3v`: marketplace root does not contain a supported manifest
+2026-10-24T14:50:32.156498Z  WARN codex_sandboxing::violation: recorded sandbox violation: resource=filesystem backend=windows_sandbox reason=permission_denied path=unknown
+2026-10-24T14:59:13.382304Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 205ms)... turn_id=01a16e5f-708b-77b3-94fa-183c9f8893bd retries=1 max_retries=5 sampling_error=stream disconnected before completion: websocket closed by server before response.completed
+2026-10-24T15:12:45.859040Z  WARN codex_core::hook_runtime: after_agent hook failed; continuing turn_id=01a16e5f-708b-77b3-94fa-183c9f8893bd hook_name=legacy_notify error=Имя файла или его расширение имеет слишком большую длину. (os error 206)

@@ -79,6 +79,8 @@ data class GrowBatch(
     val outcome: BatchOutcome? = null,
     val plannedSowDate: LocalDate? = null,
     val cultureIdSnapshot: CultureId? = recipe.builtInCultureId,
+    /** Placement at closure is historical only and never occupies a growing place. */
+    val closedPlacementSnapshot: Placement = Placement.None,
 ) {
     init {
         require(substrateSnapshot.isNotBlank())

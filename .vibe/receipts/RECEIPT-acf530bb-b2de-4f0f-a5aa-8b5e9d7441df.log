@@ -1,0 +1,32 @@
+{
+  "builtManifests": [
+    {
+      "path": "androidApp/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml",
+      "minSdk": 24,
+      "sha256": "b9af454455859812e24b6a3c5491e209b5e489e4b4ae7a601a5d6c3d8043956c"
+    },
+    {
+      "path": "androidApp/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml",
+      "minSdk": 24,
+      "sha256": "dc7547b902f305b49f00eafb587380d5b5f046014fc240e6b04b0562163dd152"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "androidApp/build/outputs/apk/debug/androidApp-debug.apk",
+      "bytes": 35676560,
+      "sha256": "7cb748970f10cba5e2903105842e93d5675de128860705785144b20fdd35f57c"
+    },
+    {
+      "path": "androidApp/build/outputs/apk/release/androidApp-release-unsigned.apk",
+      "bytes": 29490691,
+      "sha256": "ae926472cbe6beff14695b04602b2b0bf14bbfcc39c5abd4a2db165f1d93406a"
+    },
+    {
+      "path": "androidApp/build/outputs/bundle/release/androidApp-release.aab",
+      "bytes": 28259462,
+      "sha256": "6e76e4ba47aa931c9cc01383cba0a3ceef0ab04feeaad4de435b2d83f2b7ba20"
+    }
+  ],
+  "distribution": "Release artifacts built with safe local configuration; not published."
+}

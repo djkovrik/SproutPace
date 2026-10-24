@@ -27,36 +27,23 @@ class AndroidNotificationPermissionService(
 
     override suspend fun check(): PermissionState {
         mutableState.value = PermissionState.Checking
-        mutableState.value = when {
-            !NotificationManagerCompat.from(applicationContext).areNotificationsEnabled() ->
-                PermissionState.Denied(canRequestAgain = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU -> PermissionState.Granted
-            ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.POST_NOTIFICATIONS) ==
-                PackageManager.PERMISSION_GRANTED -> PermissionState.Granted
-            else -> PermissionState.Denied(
-                canRequestAgain = !preferences.getBoolean("requested", false) ||
-                    activity?.shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) == true,
-            )
-        }
+        mutableState.value = currentPermissionState()
         return state.value
     }
 
     override suspend fun request(): PermissionState {
+        if (pendingRequest != null) return PermissionState.Requesting
+        val current = check()
         return when {
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU -> check()
-            pendingRequest != null -> PermissionState.Requesting
-            requestLauncher == null -> check()
+            current != PermissionState.Denied(true) -> current
+            requestLauncher == null -> current
             else -> {
                 mutableState.value = PermissionState.Requesting
                 suspendCancellableCoroutine { continuation ->
                     preferences.edit().putBoolean("requested", true).apply()
-                    pendingRequest = { granted ->
+                    pendingRequest = { _ ->
                         pendingRequest = null
-                        mutableState.value = if (granted) PermissionState.Granted else PermissionState.Denied(
-                            canRequestAgain = activity?.shouldShowRequestPermissionRationale(
-                                Manifest.permission.POST_NOTIFICATIONS,
-                            ) == true,
-                        )
+                        mutableState.value = currentPermissionState()
                         if (continuation.isActive) continuation.resume(state.value)
                     }
                     continuation.invokeOnCancellation { pendingRequest = null }
@@ -65,6 +52,15 @@ class AndroidNotificationPermissionService(
             }
         }
     }
+
+    private fun currentPermissionState(): PermissionState = androidNotificationPermissionState(
+        runtimePermissionRequired = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU,
+        notificationsEnabled = NotificationManagerCompat.from(applicationContext).areNotificationsEnabled(),
+        runtimePermissionGranted = ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.POST_NOTIFICATIONS) ==
+            PackageManager.PERMISSION_GRANTED,
+        previouslyRequested = preferences.getBoolean("requested", false),
+        shouldShowRationale = activity?.shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) == true,
+    )
 
     fun attach(activity: ComponentActivity, requestLauncher: ActivityResultLauncher<String>) {
         this.activity = activity

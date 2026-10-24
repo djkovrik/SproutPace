@@ -466,7 +466,7 @@
         },
         {
           "path": "docs/design-review/ux-preview-review.json",
-          "sha256": "29c0320a64858bad92b1ffd057d2db338311302b3cdd4842a1d7b4cfab5e017b"
+          "sha256": "aefa4d747f79229a8a8b563fb7aaa4942fe7c9a442939d4ebf07839527cda457"
         }
       ],
       "blockers": [],
@@ -488,7 +488,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
+          "sha256": "3a798215083a56dc71b7037b2bd8c2d2170084d765a06a0e10bf98aea7192499",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-002"
@@ -520,7 +520,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
+          "sha256": "3a798215083a56dc71b7037b2bd8c2d2170084d765a06a0e10bf98aea7192499",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-003"
@@ -552,7 +552,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
+          "sha256": "3a798215083a56dc71b7037b2bd8c2d2170084d765a06a0e10bf98aea7192499",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-006"
@@ -584,7 +584,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
+          "sha256": "3a798215083a56dc71b7037b2bd8c2d2170084d765a06a0e10bf98aea7192499",
           "symbol": "destinations",
           "screenIds": [
             "SCREEN-007"
@@ -616,7 +616,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
+          "sha256": "3a798215083a56dc71b7037b2bd8c2d2170084d765a06a0e10bf98aea7192499",
           "symbol": "SproutPaceTopBar",
           "screenIds": [
             "SCREEN-002"
@@ -691,7 +691,7 @@
       "usages": [
         {
           "path": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt",
-          "sha256": "6682fec495c3fd169092020a73ef6143b46e8bfc00a942b95f1698cae7067c31",
+          "sha256": "3a798215083a56dc71b7037b2bd8c2d2170084d765a06a0e10bf98aea7192499",
           "symbol": "SproutPaceTopBar",
           "screenIds": [
             "SCREEN-004",
@@ -921,7 +921,7 @@
       "visualEvidence": [
         {
           "path": "shared/compose/src/androidUnitTest/snapshots/images/p_P_snapshot[122]_productionscenariopreviewskt.harvestedscenario.05_harvested_light_w393dp_h851dp_day.png",
-          "sha256": "389fe323843d1c2462c538b4927a5634cac57707577002504c35ca84818e0556"
+          "sha256": "425e2367486ee6b8ad91e9145f9fef824d37f65e155dafbc102f6dcfe8e66e3b"
         }
       ],
       "blockers": [],

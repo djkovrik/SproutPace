@@ -56,7 +56,7 @@ internal class ScreenStoreProvider(
         data class DetailLoaded(val subjectId: String, val snapshot: ScreenSnapshot) : Msg
         data class ObservationFailed(val key: TextKey) : Msg
         data class DetailFailed(val subjectId: String, val key: TextKey) : Msg
-        data class Committed(val snapshot: ScreenSnapshot) : Msg
+        data class Committed(val snapshot: ScreenSnapshot, val operation: String) : Msg
         data class PreferenceFinished(
             val snapshot: ScreenSnapshot?, val fields: Set<ScreenFieldId>, val preserved: Set<ScreenFieldId>,
         ) : Msg
@@ -302,7 +302,7 @@ internal class ScreenStoreProvider(
                 try {
                     manager.execute(screen, command).unwrap(
                         onSuccess = {
-                            dispatch(Msg.Committed(it))
+                            dispatch(Msg.Committed(it, command.operation))
                             completedKeys += command.executionKey
                             publish(ScreenStore.Label.Completed(command))
                         },
@@ -346,6 +346,7 @@ internal class ScreenStoreProvider(
                     errorKey = null,
                     stagePreview = null,
                     completionRevision = completionRevision + 1,
+                    lastCompletedOperation = msg.operation,
                     photoPreview = null,
                     photoPreviewValue = null,
                     draftValues = fields.associate { it.id to it.value } + draftValues.filterKeys { isTransientFilter(it) },
@@ -421,6 +422,7 @@ internal class ScreenStoreProvider(
                 validationErrors = validationErrors - settled,
                 errorKey = if (msg.snapshot == null) TextKey("error_operation_failed") else null,
                 completionRevision = completionRevision + if (msg.snapshot != null) 1 else 0,
+                lastCompletedOperation = null,
             )
         }
 

@@ -1,0 +1,4 @@
+firebase-config-check: PASS (5 localized native keys; optional configuration guarded)
+crash-symbolication-check: PASS (mapping/dSYM setup and controlled verification documented)
+Advertising privacy static contract: OK
+Validated 57 Kotlin files, 6 SQL tables, platform drivers, tests, and scope exclusions.

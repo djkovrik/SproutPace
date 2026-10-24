@@ -71,7 +71,8 @@ object SnapshotValidation {
         if (snapshot.batches.any { batch -> batch.actions.any { action ->
                 (action.due as? DueMoment.CivilTime)?.let { runCatching { TimeZone.of(it.timeZoneId) }.isFailure } == true
             } }) add("unknown_action_time_zone")
-        if (snapshot.batches.any { batch -> batch.actions.map { it.id }.distinct().size != batch.actions.size }) add("duplicate_action")
+        val actionIds = snapshot.batches.flatMap { batch -> batch.actions.map { it.id } }
+        if (actionIds.distinct().size != actionIds.size) add("duplicate_action")
         if (snapshot.batches.any { batch -> batch.events.map { it.id }.distinct().size != batch.events.size }) add("duplicate_stage_event")
         if (snapshot.batches.any(::invalidOutcome)) add("outcome_state_mismatch")
     }

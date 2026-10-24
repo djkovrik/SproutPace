@@ -103,6 +103,7 @@ class ProductionAppGraph internal constructor(
     private val timeZone: () -> TimeZone = { TimeZone.currentSystemDefault() },
     dailyEvaluationEnabled: Boolean = false,
     summaryHorizonDays: Int = 1,
+    repeatingDailySummaryEnabled: Boolean = false,
     flushPreferences: () -> Unit = {},
     screenTimeTicks: Flow<Unit> = minuteScreenTimeTicks(),
 ) : AutoCloseable {
@@ -125,6 +126,7 @@ class ProductionAppGraph internal constructor(
         timeZone = timeZone,
         dailyEvaluationEnabled = dailyEvaluationEnabled,
         summaryHorizonDays = summaryHorizonDays,
+        repeatingDailySummaryEnabled = repeatingDailySummaryEnabled,
     )
     private val reminderCoordinator = ReminderLifecycleCoordinator(
         permissionService = notificationPermissionService,
@@ -334,6 +336,7 @@ internal class SnapshotReminderPlanSource(
     private val timeZone: () -> TimeZone,
     private val dailyEvaluationEnabled: Boolean = false,
     private val summaryHorizonDays: Int = 1,
+    private val repeatingDailySummaryEnabled: Boolean = false,
 ) : ReminderPlanSource {
     override suspend fun currentPlan(): ReminderPlan {
         val now = nowEpochMillis()
@@ -349,10 +352,14 @@ internal class SnapshotReminderPlanSource(
                 fireAtEpochMillis = summaryAt,
                 titleKey = NativeTextKey.DAILY_SUMMARY_TITLE,
                 bodyKey = NativeTextKey.DAILY_SUMMARY_BODY,
+                civilDateTime = if (repeatingDailySummaryEnabled) {
+                    kotlinx.datetime.Instant.fromEpochMilliseconds(summaryAt).toLocalDateTime(timeZone())
+                } else null,
+                repeatsDaily = repeatingDailySummaryEnabled && windowWorkCount > 0,
             )
         } else null
         val soak = if (preferences.soakRemindersEnabled) current.futureSoakReminders(now) else emptyList()
-        if (summaryHorizonDays <= 1 || dailyEvaluationEnabled) {
+        if (daily?.repeatsDaily == true || summaryHorizonDays <= 1 || dailyEvaluationEnabled) {
             return ReminderPlan(dueCount, daily, soak, windowWorkCount, dailyEvaluationEnabled)
         }
         val summaries = if (preferences.notificationsEnabled) {
@@ -363,7 +370,11 @@ internal class SnapshotReminderPlanSource(
 
     private fun ProductSnapshot.summaryWindows(firstAt: Long, summaryTime: SummaryLocalTime): List<PhysicalReminder> {
         val zone = timeZone()
-        val firstDate = kotlinx.datetime.Instant.fromEpochMilliseconds(firstAt).toLocalDateTime(zone).date
+        val firstUsefulAt = if (pendingWorkCountAt(firstAt) > 0) firstAt else {
+            val firstWorkAt = pendingWorkInstants().minOrNull() ?: return emptyList()
+            nextSummaryAt(firstWorkAt - 1, summaryTime, zone)
+        }
+        val firstDate = kotlinx.datetime.Instant.fromEpochMilliseconds(firstUsefulAt).toLocalDateTime(zone).date
         return (0 until summaryHorizonDays).mapNotNull { offset ->
             val date = firstDate.plus(offset, DateTimeUnit.DAY)
             val civil = LocalDateTime(date.year, date.month, date.day, summaryTime.hour, summaryTime.minute)
@@ -398,13 +409,14 @@ internal class SnapshotReminderPlanSource(
         }
     }
 
-    private fun ProductSnapshot.pendingWorkCountAt(at: Long): Int = batches.asSequence()
+    private fun ProductSnapshot.pendingWorkCountAt(at: Long): Int = pendingWorkInstants().count { it <= at }
+
+    private fun ProductSnapshot.pendingWorkInstants(): Sequence<Long> = batches.asSequence()
         .filterNot { it.state.isTerminal }
         .flatMap { it.effectiveActions().asSequence() }
-        .count { action ->
-            action.status == ScheduledActionStatus.PENDING && SchedulingEngine.resolvedInstant(
-                SchedulingEngine.afterTimeZoneChange(action, timeZone().id),
-            ).toEpochMilliseconds() <= at
+        .filter { it.status == ScheduledActionStatus.PENDING }
+        .map { action ->
+            SchedulingEngine.resolvedInstant(SchedulingEngine.afterTimeZoneChange(action, timeZone().id)).toEpochMilliseconds()
         }
 
     private fun nextSummaryAt(now: Long, localTime: SummaryLocalTime, zone: TimeZone): Long {

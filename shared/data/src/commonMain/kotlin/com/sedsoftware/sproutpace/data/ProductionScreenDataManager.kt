@@ -158,7 +158,7 @@ class ProductionScreenDataManager(
         runCatching {
             val workspace = loadWorkspace()
             val batch = workspace.batch(command.subject())
-            val targetPlacement = if (command.operation == "confirm-sowing" || command.arguments["zoneId"] != null) {
+            val targetPlacement = if (command.operation == "confirm-sowing" || command.hasPlacementChoice()) {
                 placement(command, workspace)
             } else batch.placement
             stageTransition(batch, command, targetPlacement).preview(batch, command)
@@ -285,7 +285,11 @@ class ProductionScreenDataManager(
             "confirm-stage" -> confirmStage(command)
             "assign-overflow" -> changeBatch(command) { batch ->
                 com.sedsoftware.sproutpace.domain.model.BatchChange(
-                    batch.copy(placement = Placement.Unassigned((batch.placement as? Placement.Assigned)?.zoneNameSnapshot)),
+                    batch.copy(placement = Placement.Unassigned(when (val current = batch.placement) {
+                        is Placement.Assigned -> current.zoneNameSnapshot
+                        is Placement.Unassigned -> current.priorZoneNameSnapshot
+                        Placement.None -> null
+                    })),
                 )
             }
             "undo-stage" -> changeBatch(command) { batch -> BatchLifecycleEngine.undoLastTransition(batch) }
@@ -323,7 +327,7 @@ class ProductionScreenDataManager(
     private suspend fun confirmStage(command: ScreenCommand) = changeBatch(command) { batch ->
         val eventId = StageEventId(command.required("eventId"))
         existingEvent(batch, eventId) ?: stageTransition(batch, command,
-            command.arguments["zoneId"]?.let { placement(command, loadWorkspace()) } ?: batch.placement)
+            if (command.hasPlacementChoice()) placement(command, loadWorkspace()) else batch.placement)
     }
 
     private suspend fun skipStage(command: ScreenCommand) = changeBatch(command) { batch ->
@@ -703,11 +707,20 @@ private fun validateOperation(screen: ScreenId, operation: String) {
 
 internal fun placement(command: ScreenCommand, workspace: Workspace): Placement {
     if (command.arguments["unassigned"]?.toBooleanStrictOrNull() == true) {
-        return Placement.Unassigned(command.arguments["priorZoneName"])
+        val current = workspace.batches.firstOrNull { it.id.value == command.subjectId }?.placement
+        val previousName = when (current) {
+            is Placement.Assigned -> current.zoneNameSnapshot
+            is Placement.Unassigned -> current.priorZoneNameSnapshot
+            else -> null
+        }
+        return Placement.Unassigned(previousName)
     }
     val zone = workspace.zones.firstOrNull { it.id.value == command.required("zoneId") } ?: error("Unknown zone")
     return Placement.Assigned(zone.id, zone.name)
 }
+
+private fun ScreenCommand.hasPlacementChoice(): Boolean =
+    !arguments["zoneId"].isNullOrBlank() || arguments["unassigned"]?.toBooleanStrictOrNull() == true
 
 internal fun ScreenCommand.subject(): String =
     requireNotNull(subjectId?.takeIf(String::isNotBlank)) { "subjectId is required" }

@@ -59,6 +59,10 @@ Given daily summaries are enabled at the default or user-selected local time
 When the delivery window arrives
 Then one grouped summary is delivered only if current or overdue actions exist.
 
+On iOS, when work exists by the next summary window, one repeating civil-time notification continues without a 30-day cutoff. Product changes, restart, permission changes, and foreground time-zone reconciliation replace or cancel its stable identity.
+
+When iOS has only work due after the next summary window, queue up to 30 useful one-shot summary windows starting at the first due window, within the native pending-request budget. Stay silent before that first useful window. Opening the app replenishes this queue or switches to the continuing daily repeat once work is due. Without reopening, delivery after this finite future-only queue is exhausted is not guaranteed. This approved local-only platform limitation is recorded in `../../docs/decisions/DEC-20261024-ios-summary-horizon.md`; Today remains authoritative. Android continues to evaluate persisted work at each delivery and rearm its next civil window.
+
 ## AC-066
 
 Given a batch starts a finite soak duration on SCREEN-005 and notifications are allowed

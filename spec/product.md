@@ -42,6 +42,7 @@ The first-value loop is:
 - Batch stages: optional soaking, sown, blackout/weight when applicable, light growth, ready for harvest, and terminal harvested/failed/abandoned outcomes.
 - Manual confirmation, correction, last-transition undo, explicit stage skip, capacity conflict resolution, and temporary unassigned placement.
 - Today actions, one conditional daily summary, and a separate best-effort target-time soak reminder without Android exact-alarm permission.
+- iOS summaries repeat without a horizon once work exists by the next window; future-only work uses a finite queue of up to 30 useful windows replenished on app opening, as approved in FLOW-006 AC-065. Today remains authoritative after that queue is exhausted without reopening.
 - Cadence plan, future capacity validation, explicit confirmation before creating suggested batches, and continuous-queue suggestions.
 - Dated observations with optional local photo.
 - History, optional actual harvest mass, repeat-as-new-batch, explicit permanent deletion, and no trash.

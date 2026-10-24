@@ -1,0 +1,180 @@
+{
+  "date": "2026-10-24",
+  "kind": "actual-changed-image-inspection",
+  "reviewer": "implementation owner; independent acceptance remains separate",
+  "inventory": {
+    "total": 249,
+    "changed": 19,
+    "unchanged": 230
+  },
+  "method": "Requirements corrections 2026-10-24: root actually inspected all 19 changed captures on changed-01 through changed-04, plus full-size expanded tray editor142, history69 and expanded catalog28. Saved historical shelf context, localized circle/rectangle metric dimensions, long RU200 tray names and measured primary-action footers render without a new visible clipping or overlap defect. History69 has its ad below the initial viewport after the new shelf lines; actual-root tests separately scroll/load the slot and assert ad/footer separation. Other230 hashes and all249 filenames remain unchanged. Images establish visible layout only; screen reader speech/traversal and native runtime acceptance remain separate.",
+  "contactSheets": [
+    "build/reports/requirements-fixes-20261024/visual/changed-01.png",
+    "build/reports/requirements-fixes-20261024/visual/changed-02.png",
+    "build/reports/requirements-fixes-20261024/visual/changed-03.png",
+    "build/reports/requirements-fixes-20261024/visual/changed-04.png"
+  ],
+  "images": [
+    {
+      "file": "p_P_snapshot[113]_productionscenariopreviewskt.failedscenario.05_failed_dark_w393dp_h851dp_night.png",
+      "sha256": "b59e43ba89358b86e16b7e1e038ca6c225e845bd417d08141456c45fc5290995",
+      "width": 461,
+      "height": 1000,
+      "sheet": 1,
+      "slot": 1
+    },
+    {
+      "file": "p_P_snapshot[114]_productionscenariopreviewskt.failedscenario.05_failed_light_w393dp_h851dp_day.png",
+      "sha256": "108b9f6d8528cd01af2757958b461c3a8b5898c4291cf7305e2445dc6820844f",
+      "width": 461,
+      "height": 1000,
+      "sheet": 1,
+      "slot": 2
+    },
+    {
+      "file": "p_P_snapshot[121]_productionscenariopreviewskt.harvestedscenario.05_harvested_dark_w393dp_h851dp_night.png",
+      "sha256": "9c4524700e6ec8810f305a67fa6e6cb7948212a1b058cda3484fbb76f1178006",
+      "width": 461,
+      "height": 1000,
+      "sheet": 1,
+      "slot": 3
+    },
+    {
+      "file": "p_P_snapshot[122]_productionscenariopreviewskt.harvestedscenario.05_harvested_light_w393dp_h851dp_day.png",
+      "sha256": "425e2367486ee6b8ad91e9145f9fef824d37f65e155dafbc102f6dcfe8e66e3b",
+      "width": 461,
+      "height": 1000,
+      "sheet": 1,
+      "slot": 4
+    },
+    {
+      "file": "p_P_snapshot[123]_productionscenariopreviewskt.historyscenario.03_history_dark_w393dp_h851dp_night.png",
+      "sha256": "95fcc55b5a7c7e12c945b736d28b83b01e768efa4b7bc7c3350ab76705339d88",
+      "width": 461,
+      "height": 1000,
+      "sheet": 1,
+      "slot": 5
+    },
+    {
+      "file": "p_P_snapshot[124]_productionscenariopreviewskt.historyscenario.03_history_ru_200_outcomes_w393dp_h1100dp_ru_font_2_0f.png",
+      "sha256": "0ed1c6c8d970ddbddee9923d16fb4bbba40ba5d5e517f6b93cc553589943c7f3",
+      "width": 357,
+      "height": 1000,
+      "sheet": 1,
+      "slot": 6
+    },
+    {
+      "file": "p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
+      "sha256": "60f415101695f5308fd9f51a0a7e25d9ade9f127c65b3d440ee0684861dbec8c",
+      "width": 218,
+      "height": 1000,
+      "sheet": 2,
+      "slot": 1
+    },
+    {
+      "file": "p_P_snapshot[13]_sproutpacepreviewskt.catalogpreviews.07_catalog_dark_w393dp_h851dp_night.png",
+      "sha256": "d928bdab4304780d123bfe6a1f7ab2eb0fa5108993e4a306d8d064c32e391dfb",
+      "width": 461,
+      "height": 1000,
+      "sheet": 2,
+      "slot": 2
+    },
+    {
+      "file": "p_P_snapshot[142]_productionscenariopreviewskt.rectanglescenario.13_rectangle_editor_expanded_w1100dp_h1000dp.png",
+      "sha256": "49479ec5bd17f83f6b4dd810b23af6bfe8d56e6846ecaa39f7b70eda3963b134",
+      "width": 1000,
+      "height": 909,
+      "sheet": 2,
+      "slot": 3
+    },
+    {
+      "file": "p_P_snapshot[14]_sproutpacepreviewskt.catalogpreviews.07_catalog_light_w393dp_h851dp_day.png",
+      "sha256": "5ca41aefc93d45c0b40f2fd0a0ff2227391773b5ce9605d74350f6ad563823ea",
+      "width": 461,
+      "height": 1000,
+      "sheet": 2,
+      "slot": 4
+    },
+    {
+      "file": "p_P_snapshot[192]_remainingriskpreviewskt.longtraypreset.13_long_tray_name_ru_200_w393dp_h1200dp_ru_font_2_0f.png",
+      "sha256": "afd561e9a0b13d599b3577a1f7f5afc5e1d719c64e164467f5b5f5ea6ed0b5fb",
+      "width": 327,
+      "height": 1000,
+      "sheet": 2,
+      "slot": 5
+    },
+    {
+      "file": "p_P_snapshot[28]_sproutpacepreviewskt.expandedcatalogpreview.expanded_catalog_w1100dp_h800dp.png",
+      "sha256": "0965af65d583bb23ff05c415791421970ee257ee2c7d0726b7998105edf93397",
+      "width": 1000,
+      "height": 727,
+      "sheet": 2,
+      "slot": 6
+    },
+    {
+      "file": "p_P_snapshot[65]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_dark_w393dp_h851dp_night.png",
+      "sha256": "32efb9e03da590ae27c2a38712ad6cf1a0872dfe093a917d01262443e217b498",
+      "width": 461,
+      "height": 1000,
+      "sheet": 3,
+      "slot": 1
+    },
+    {
+      "file": "p_P_snapshot[66]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_light_w393dp_h851dp_day.png",
+      "sha256": "4c5e504767b2a8474bddc5e95fa8d76dc79ed3cb339075fc7b163be406578202",
+      "width": 461,
+      "height": 1000,
+      "sheet": 3,
+      "slot": 2
+    },
+    {
+      "file": "p_P_snapshot[67]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
+      "sha256": "cc7584f6b64807c805cbaf392a9a6a00cdad8b8e457ec906075603f0e1bc099b",
+      "width": 461,
+      "height": 1000,
+      "sheet": 3,
+      "slot": 3
+    },
+    {
+      "file": "p_P_snapshot[68]_sproutpacepreviewskt.trayshistoryadpreview.03_trays_history_loaded_ad_w393dp_h851dp.png",
+      "sha256": "1aba0b9483fb8ccccd0508f527c9de3c25d5accbd8af88bc580055b96f259ee9",
+      "width": 461,
+      "height": 1000,
+      "sheet": 3,
+      "slot": 4
+    },
+    {
+      "file": "p_P_snapshot[69]_sproutpacepreviewskt.trayshistoryloadedadinspectionpreview.03_trays_history_loaded_ad_inspection_w393dp_h1300dp.png",
+      "sha256": "9b801397d2ab3073873fdd949eafdacb410cf8d4cea03c29cb5a3af6e375de67",
+      "width": 302,
+      "height": 1000,
+      "sheet": 3,
+      "slot": 5
+    },
+    {
+      "file": "p_P_snapshot[80]_productionscenariopreviewskt.abandonedscenario.05_abandoned_dark_w393dp_h851dp_night.png",
+      "sha256": "ad91e5b32f6fef1e12ed9582b5c1b84bdd804fb76cb6077857c401387fd99b35",
+      "width": 461,
+      "height": 1000,
+      "sheet": 3,
+      "slot": 6
+    },
+    {
+      "file": "p_P_snapshot[81]_productionscenariopreviewskt.abandonedscenario.05_abandoned_light_w393dp_h851dp_day.png",
+      "sha256": "d5178ab151c3f79e3207b2760eb8e81b32b3ea7c330b951b5dfd373080d740ce",
+      "width": 461,
+      "height": 1000,
+      "sheet": 4,
+      "slot": 1
+    }
+  ],
+  "supportingResearch": {
+    "lazywebSearchId": "ed2d62b9-3685-44e6-b694-7810d2068595",
+    "references": [
+      "screens:4ca9768abb287a901d7399f3",
+      "screens:9bbeda7764aad7e984b5919e",
+      "screens:d9e139192e5825edf811d667"
+    ],
+    "application": "Shape/size descriptors in preset rows and a prominent bottom primary action alongside navigation."
+  }
+}

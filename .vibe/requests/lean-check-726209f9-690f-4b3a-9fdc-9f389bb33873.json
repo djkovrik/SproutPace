@@ -1,0 +1,15 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=1",
+    "-I",
+    "build/reports/requirements-fixes-20261024/record-goldens.init.gradle",
+    ":shared:compose:recordPaparazzi",
+    ":androidApp:assembleDebug",
+    "detekt"
+  ],
+  "timeoutSeconds": 1800
+}

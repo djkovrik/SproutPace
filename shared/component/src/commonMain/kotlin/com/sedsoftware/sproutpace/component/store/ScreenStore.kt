@@ -40,6 +40,7 @@ internal interface ScreenStore : Store<ScreenStore.Intent, ScreenStore.State, Sc
         val detailSnapshot: ScreenSnapshot? = null,
         val stagePreview: com.sedsoftware.sproutpace.component.StageChangeProjection? = null,
         val completionRevision: Long = 0,
+        val lastCompletedOperation: String? = null,
         val photoPreview: com.sedsoftware.sproutpace.component.ScreenPhoto? = null,
         val photoPreviewValue: String? = null,
     )

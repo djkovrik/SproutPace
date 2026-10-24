@@ -9,4 +9,5 @@ import com.sedsoftware.sproutpace.domain.model.Placement
 internal fun GrowBatch.repeatedAs(newId: BatchId): GrowBatch = copy(
     id = newId, state = BatchState.PLANNED, placement = Placement.None,
     events = emptyList(), actions = emptyList(), outcome = null,
+    closedPlacementSnapshot = Placement.None,
 )

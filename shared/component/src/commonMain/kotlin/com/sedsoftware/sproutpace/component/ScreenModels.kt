@@ -45,6 +45,7 @@ data class ScreenItem(
     val recipe: RecipeGuideProjection? = null,
     val history: BatchHistoryProjection? = null,
     val snapshotStage: RecipeStageProjection? = null,
+    val trayShape: com.sedsoftware.sproutpace.domain.model.TrayShape? = null,
 ) {
     init {
         require(id.isNotBlank())
@@ -91,6 +92,7 @@ data class ScreenModel(
     val detail: ScreenModel? = null,
     val stagePreview: StageChangeProjection? = null,
     val completionRevision: Long = 0,
+    val lastCompletedOperation: String? = null,
 )
 
 sealed interface ScreenAction {

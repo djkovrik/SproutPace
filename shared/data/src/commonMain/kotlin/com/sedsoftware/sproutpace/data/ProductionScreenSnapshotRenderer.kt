@@ -335,7 +335,7 @@ private fun zonesSnapshot(workspace: Workspace, stableId: String?): ScreenSnapsh
 
 private fun traySizesSnapshot(workspace: Workspace, stableId: String?) = ScreenSnapshot(
     items = workspace.trays.sortedBy { it.id.value }.map {
-        ScreenItem(it.id.value, authoredTitle = it.name, supportingKey = key("field_tray_size"))
+        ScreenItem(it.id.value, authoredTitle = it.name, supportingKey = key("field_tray_size"), trayShape = it.shape)
     },
     selectedItemId = stableId,
     primaryActionKey = key("action_add_preset"),

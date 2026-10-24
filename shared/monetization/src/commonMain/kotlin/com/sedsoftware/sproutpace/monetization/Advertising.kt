@@ -1,7 +1,10 @@
 package com.sedsoftware.sproutpace.monetization
 
 import com.sedsoftware.sproutpace.data.AdvertisingPrivacyState
+import com.sedsoftware.sproutpace.data.ConsentChoice
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -70,6 +73,15 @@ interface AdvertisingRuntime {
     val privacyState: StateFlow<AdvertisingPrivacyState?>
     /** Host connectivity is independent of the local catalog's offline-capable content. */
     val networkAvailable: StateFlow<Boolean>
+    fun nowEpochMillis(): Long = kotlin.time.Clock.System.now().toEpochMilliseconds()
+    /** Recheck immediately at the native request boundary, including time spent outside composition. */
+    fun canRequestAd(adUnitId: String): Boolean =
+        (AdConfiguration.isProductionAdUnitId(adUnitId) || adUnitId == AdConfiguration.ANDROID_DEMO_BANNER_ID) &&
+        networkAvailable.value &&
+        privacyState.value?.let { state ->
+            PrivacyRepository.isFresh(state, nowEpochMillis()) &&
+                (!state.consentRequired || state.choice == ConsentChoice.ACCEPTED)
+        } == true
     suspend fun prepare(request: AdPlacementRequest): AdPreparation
     suspend fun acceptConsent(): Boolean
     suspend fun declineConsent(): Boolean
@@ -85,6 +97,9 @@ class AdvertisingController(
     private val mutex = Mutex()
     private var initialized = false
     private var activeSdkConsent: Boolean? = null
+
+    fun isPreparedFor(adUnitId: String): Boolean = initialized && sdk.supported &&
+        configuration.platform == AdPlatform.ANDROID && configuration.effectiveAdUnitId == adUnitId
 
     suspend fun prepare(request: AdPlacementRequest): AdPreparation = mutex.withLock {
         if (!sdk.supported || configuration.platform != AdPlatform.ANDROID) {
@@ -144,8 +159,11 @@ class AdvertisingController(
 enum class InlineAdState { IDLE, LOADING, LOADED, FAILED, DISPOSED }
 
 class InlineAdSession(private val maxRetries: Int = 1) {
-    var state: InlineAdState = InlineAdState.IDLE
-        private set
+    private val mutableState = MutableStateFlow(InlineAdState.IDLE)
+    val states: StateFlow<InlineAdState> = mutableState.asStateFlow()
+    var state: InlineAdState
+        get() = mutableState.value
+        private set(value) { mutableState.value = value }
     private var failures = 0
 
     fun beginLoad(): Boolean {

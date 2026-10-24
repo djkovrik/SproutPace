@@ -49,6 +49,7 @@ QG-003 requires evidence from macOS and CI for both declared iOS targets:
 
 - framework/app compilation and native entry point;
 - notification authorization/denial, scheduling, cancellation, restart, and time-zone behavior;
+- recurring daily summary beyond day 30 for work due by the next window; future-only no-work silence, 30 useful queued windows, foreground replenishment/conversion to recurrence, stable-ID cancellation, native pending-request budget, civil-time/DST behavior, and elapsed soak independence, under the approved AC-065 boundary in `../docs/decisions/DEC-20261024-ios-summary-horizon.md`;
 - photo and document pickers plus private file persistence;
 - Firebase Crashlytics Apple configuration, dSYM upload/symbolication path, opt-out behavior, and controlled test crash;
 - Yandex integration remains safe-disabled without an iOS production ad unit; no production ad request occurs;

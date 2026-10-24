@@ -1,0 +1,24 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "--continue",
+    "--no-configuration-cache",
+    "--no-parallel",
+    "--max-workers=2",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*DataLifecycleRegressionProductionTest",
+    "--tests",
+    "*ReminderProductionIntegrationTest",
+    "--tests",
+    "*AdvertisingRootProductionTest",
+    "--tests",
+    "*ReviewAccessibilityProductionTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:monetization:testAndroidHostTest",
+    ":shared:component:testAndroidHostTest",
+    "detekt"
+  ],
+  "timeoutSeconds": 1800
+}

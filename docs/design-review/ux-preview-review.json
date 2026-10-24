@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-17",
+  "reviewedAt": "2026-10-24",
   "status": "VISUALLY_REVIEWED",
   "declarationCount": 249,
   "reviewNotes": [
@@ -16,7 +16,8 @@
     "Requirements fixes 2026-10-17: all 241 current PNGs actually inspected: bounded reviewer sheets001-020 (frames0-119) plus risk captures; owner sheets021-041 (frames120-240). After inspection found missing History mass and expanded privacy explanation, both production renderers were corrected and every changed final capture was inspected again. Seven new cases cover optional dark zone, assigned capacity conflict, ordinary task actions and skip confirmation. All original78 retained. 75 obsolete parameter filenames archived outside source; no stable preview removed. Nonblocking existing RU200 scrollable Trays tab edge and correction toolbar wording recorded. This approval establishes visible layout/data only; runtime IME and accessibility have separate evidence.",
     "Independent-audit fixes 2026-10-17: all18 changed/new captures actually inspected by root in initial-delta001-003 (photo/pending/error/withdrawn consent and seed recommendation), then all10 reformatted mass captures re-inspected in delta001-002. Fullsize208/240 pending photo and withdrawn consent RU200, and final92/195 mobile RU200 and dark conflict reviewed. Fixed excessive numeric precision to28.48/28,48 without changing stored values. Eight photo/privacy captures unchanged after accepted first inspection. All241 prior stable preview IDs preserved, four new cases yield245 current captures;33 obsolete indexed names archived outside source. Scrollable content below fixed footer is intentionally outside the initial viewport. Runtime focus/IME/native proof remains separate.",
     "Cycle 3: root and UI owner actually viewed both EN/RU200 PrimaryNavigationInsetsTest PNGs after passing native 24/32/72 inset resolver, safe label/target bounds and four Navigate action assertions (receipt10f09bb5). Bottom/side safe space is visible, labels/actions remain clear. Native BDAD Trays screenshot002 independently confirms gesture separation. Earlier245 approved image hashes unchanged.",
-    "Cycle 4: root actually inspected all eight intentional error Retry deltas in cycle4-error-delta001-002; official filtered record8 hashes exactly match those viewed bytes. Fullsize recorded RU200 backup90 and dark photo210 inspected again. EN retained Observation editor and RU200 expanded selected-detail frames independently viewed with actual visible error/draft/selection and semantic Retry assertions. No overlapping controls, draft/photo loss or unexpected changes accepted; scrollable content below viewport remains scrollable. All prior247 files retained,239 unchanged hashes plus8 intentional changes and2 new standalone cases yield249."
+    "Cycle 4: root actually inspected all eight intentional error Retry deltas in cycle4-error-delta001-002; official filtered record8 hashes exactly match those viewed bytes. Fullsize recorded RU200 backup90 and dark photo210 inspected again. EN retained Observation editor and RU200 expanded selected-detail frames independently viewed with actual visible error/draft/selection and semantic Retry assertions. No overlapping controls, draft/photo loss or unexpected changes accepted; scrollable content below viewport remains scrollable. All prior247 files retained,239 unchanged hashes plus8 intentional changes and2 new standalone cases yield249.",
+    "Requirements corrections 2026-10-24: root actually inspected all 19 changed captures on changed-01 through changed-04, plus full-size expanded tray editor142, history69 and expanded catalog28. Saved historical shelf context, localized circle/rectangle metric dimensions, long RU200 tray names and measured primary-action footers render without a new visible clipping or overlap defect. History69 has its ad below the initial viewport after the new shelf lines; actual-root tests separately scroll/load the slot and assert ad/footer separation. Other230 hashes and all249 filenames remain unchanged. Images establish visible layout only; screen reader speech/traversal and native runtime acceptance remain separate."
   ],
   "images": [
     {
@@ -97,11 +98,11 @@
     },
     {
       "file": "p_P_snapshot[113]_productionscenariopreviewskt.failedscenario.05_failed_dark_w393dp_h851dp_night.png",
-      "sha256": "e9d932daa5aacdc04dd2bbce53562edd909ac9afa0e602e07a5cdfad660f0a44"
+      "sha256": "b59e43ba89358b86e16b7e1e038ca6c225e845bd417d08141456c45fc5290995"
     },
     {
       "file": "p_P_snapshot[114]_productionscenariopreviewskt.failedscenario.05_failed_light_w393dp_h851dp_day.png",
-      "sha256": "bdaa8d4e637e7362c815fb47463ff76f8711bf93d05fc452131c22ee7a91c6d6"
+      "sha256": "108b9f6d8528cd01af2757958b461c3a8b5898c4291cf7305e2445dc6820844f"
     },
     {
       "file": "p_P_snapshot[115]_productionscenariopreviewskt.firstrunplanscenario.01_plan_date_step_dark_w393dp_h851dp_night.png",
@@ -133,19 +134,19 @@
     },
     {
       "file": "p_P_snapshot[121]_productionscenariopreviewskt.harvestedscenario.05_harvested_dark_w393dp_h851dp_night.png",
-      "sha256": "5ae3a130d163016207daa8be682058b0d2ad3c6db9a33c671db0d66342e1d4e9"
+      "sha256": "9c4524700e6ec8810f305a67fa6e6cb7948212a1b058cda3484fbb76f1178006"
     },
     {
       "file": "p_P_snapshot[122]_productionscenariopreviewskt.harvestedscenario.05_harvested_light_w393dp_h851dp_day.png",
-      "sha256": "389fe323843d1c2462c538b4927a5634cac57707577002504c35ca84818e0556"
+      "sha256": "425e2367486ee6b8ad91e9145f9fef824d37f65e155dafbc102f6dcfe8e66e3b"
     },
     {
       "file": "p_P_snapshot[123]_productionscenariopreviewskt.historyscenario.03_history_dark_w393dp_h851dp_night.png",
-      "sha256": "026a93edac5401a76275c1f9f613575d32863ba0bd138df08bc72d4792c443a7"
+      "sha256": "95fcc55b5a7c7e12c945b736d28b83b01e768efa4b7bc7c3350ab76705339d88"
     },
     {
       "file": "p_P_snapshot[124]_productionscenariopreviewskt.historyscenario.03_history_ru_200_outcomes_w393dp_h1100dp_ru_font_2_0f.png",
-      "sha256": "d2c1253614603dd59b49b601adf2b65a9d6eb0f46672ffd63d319a039cc61870"
+      "sha256": "0ed1c6c8d970ddbddee9923d16fb4bbba40ba5d5e517f6b93cc553589943c7f3"
     },
     {
       "file": "p_P_snapshot[125]_productionscenariopreviewskt.invalidbatchscenario.04_invalid_mass_en_w393dp_h1000dp.png",
@@ -169,7 +170,7 @@
     },
     {
       "file": "p_P_snapshot[12]_sproutpacepreviewskt.catalogloadedadinspectionpreview.07_catalog_loaded_ad_inspection_w393dp_h1800dp.png",
-      "sha256": "67c89570a593acbe556261ede5a113575c588369f2994a14da3ba7d27bdd08b2"
+      "sha256": "60f415101695f5308fd9f51a0a7e25d9ade9f127c65b3d440ee0684861dbec8c"
     },
     {
       "file": "p_P_snapshot[130]_productionscenariopreviewskt.longbatchscenario.05_long_names_ru_200_w393dp_h1400dp_ru_font_2_0f.png",
@@ -213,7 +214,7 @@
     },
     {
       "file": "p_P_snapshot[13]_sproutpacepreviewskt.catalogpreviews.07_catalog_dark_w393dp_h851dp_night.png",
-      "sha256": "71ce0ca33bb263ef8d9e5174a19971c13f6c33276fd37cac7a91ac5b236d3814"
+      "sha256": "d928bdab4304780d123bfe6a1f7ab2eb0fa5108993e4a306d8d064c32e391dfb"
     },
     {
       "file": "p_P_snapshot[140]_productionscenariopreviewskt.readyscenario.05_ready_dark_w393dp_h851dp_night.png",
@@ -225,7 +226,7 @@
     },
     {
       "file": "p_P_snapshot[142]_productionscenariopreviewskt.rectanglescenario.13_rectangle_editor_expanded_w1100dp_h1000dp.png",
-      "sha256": "cd1749c8ff91583d1c8d6b3c1e56b377ffc77a8fe04338be0cd61fd2630c7d2a"
+      "sha256": "49479ec5bd17f83f6b4dd810b23af6bfe8d56e6846ecaa39f7b70eda3963b134"
     },
     {
       "file": "p_P_snapshot[143]_productionscenariopreviewskt.rectanglescenario.13_rectangle_editor_medium_w700dp_h1000dp.png",
@@ -257,7 +258,7 @@
     },
     {
       "file": "p_P_snapshot[14]_sproutpacepreviewskt.catalogpreviews.07_catalog_light_w393dp_h851dp_day.png",
-      "sha256": "7affdb60370b9bd592579ad487553db764999182595329e5ee3eb8c36e8082f4"
+      "sha256": "5ca41aefc93d45c0b40f2fd0a0ff2227391773b5ce9605d74350f6ad563823ea"
     },
     {
       "file": "p_P_snapshot[150]_productionscenariopreviewskt.selectedbatchexpandedscenario.03_selected_batch_expanded_light_w1100dp_h1100dp.png",
@@ -445,7 +446,7 @@
     },
     {
       "file": "p_P_snapshot[192]_remainingriskpreviewskt.longtraypreset.13_long_tray_name_ru_200_w393dp_h1200dp_ru_font_2_0f.png",
-      "sha256": "50ccf4c055394bd8cb2717406dac9cc467b9c473f7990628ffa474269e1e9987"
+      "sha256": "afd561e9a0b13d599b3577a1f7f5afc5e1d719c64e164467f5b5f5ea6ed0b5fb"
     },
     {
       "file": "p_P_snapshot[193]_remainingriskpreviewskt.longtrays.03_long_names_ru_200_w393dp_h1400dp_ru_font_2_0f.png",
@@ -697,7 +698,7 @@
     },
     {
       "file": "p_P_snapshot[28]_sproutpacepreviewskt.expandedcatalogpreview.expanded_catalog_w1100dp_h800dp.png",
-      "sha256": "ef91c98c015dfc1c29044d6df7fb46fe57b6b82528041b695b39abf35f099f50"
+      "sha256": "0965af65d583bb23ff05c415791421970ee257ee2c7d0726b7998105edf93397"
     },
     {
       "file": "p_P_snapshot[29]_sproutpacepreviewskt.expandedplanpreview.expanded_plan_w1100dp_h800dp.png",
@@ -861,23 +862,23 @@
     },
     {
       "file": "p_P_snapshot[65]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_dark_w393dp_h851dp_night.png",
-      "sha256": "da0a70c352273f79da1a2d7a66156a2591c4d428c80ed4f9df9307a3af6b6fa7"
+      "sha256": "32efb9e03da590ae27c2a38712ad6cf1a0872dfe093a917d01262443e217b498"
     },
     {
       "file": "p_P_snapshot[66]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_light_w393dp_h851dp_day.png",
-      "sha256": "4fc26972341ec1cb44bd508e73b57fb02b10f72c25e4c884fa955931af6bd804"
+      "sha256": "4c5e504767b2a8474bddc5e95fa8d76dc79ed3cb339075fc7b163be406578202"
     },
     {
       "file": "p_P_snapshot[67]_sproutpacepreviewskt.traysizespreviews.13_tray_sizes_ru_200%_w393dp_h851dp_ru_font_2_0f_day.png",
-      "sha256": "0fff45af13fde95bd664df5769d2736222edc815eaf2ad2ee8e778e1b613c97e"
+      "sha256": "cc7584f6b64807c805cbaf392a9a6a00cdad8b8e457ec906075603f0e1bc099b"
     },
     {
       "file": "p_P_snapshot[68]_sproutpacepreviewskt.trayshistoryadpreview.03_trays_history_loaded_ad_w393dp_h851dp.png",
-      "sha256": "a79b73c67765c66f386c2ed45f31c48fe88f5ac0c445e4a6cb34ea17a96273ce"
+      "sha256": "1aba0b9483fb8ccccd0508f527c9de3c25d5accbd8af88bc580055b96f259ee9"
     },
     {
       "file": "p_P_snapshot[69]_sproutpacepreviewskt.trayshistoryloadedadinspectionpreview.03_trays_history_loaded_ad_inspection_w393dp_h1300dp.png",
-      "sha256": "61a705e381671a2a6d3837b7fae7c14a176b0516624c4b83eac89750ff93debe"
+      "sha256": "9b801397d2ab3073873fdd949eafdacb410cf8d4cea03c29cb5a3af6e375de67"
     },
     {
       "file": "p_P_snapshot[6]_sproutpacepreviewskt.batcheditorpreviews.04_batch_editor_dark_w393dp_h851dp_night.png",
@@ -929,11 +930,11 @@
     },
     {
       "file": "p_P_snapshot[80]_productionscenariopreviewskt.abandonedscenario.05_abandoned_dark_w393dp_h851dp_night.png",
-      "sha256": "5da196aa265d07180bd104de809f82b669752042a04e8afc905d1663c0b1253b"
+      "sha256": "ad91e5b32f6fef1e12ed9582b5c1b84bdd804fb76cb6077857c401387fd99b35"
     },
     {
       "file": "p_P_snapshot[81]_productionscenariopreviewskt.abandonedscenario.05_abandoned_light_w393dp_h851dp_day.png",
-      "sha256": "b503f9844df44a1a58b822319b94cf51b1fdff67678ed94bd4a876c4ea4dc4fa"
+      "sha256": "d5178ab151c3f79e3207b2760eb8e81b32b3ea7c330b951b5dfd373080d740ce"
     },
     {
       "file": "p_P_snapshot[82]_productionscenariopreviewskt.activetraysscenario.03_active_dark_w393dp_h851dp_night.png",

@@ -25,6 +25,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.error
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.testTag
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.unit.dp
 import com.sedsoftware.sproutpace.component.ScreenFieldKind
 import kotlinx.datetime.LocalDateTime
@@ -43,6 +51,14 @@ internal fun TemporalFieldControl(field: UiField, onAction: (UiAction) -> Unit) 
     var unavailableTime by rememberSaveable(field.id, field.value) { mutableStateOf(false) }
     val fallback = remember(field.id, field.value) { Clock.System.now().toLocalDateTime(zone) }
     val selection = civil ?: fallback
+    val label = localizedText(field.labelKey)
+    val errorText = field.errorKey?.let { localizedText(it) }
+        ?: if (unavailableTime) localizedText("temporal_time_unavailable") else null
+    val dateLabel = stringResource(strictTextResource("temporal_date_for_field"), label)
+    val timeLabel = stringResource(strictTextResource("temporal_time_for_field"), label)
+    val clearLabel = stringResource(strictTextResource("temporal_clear_field"), label)
+    val dateValue = civil?.let { localizedDate(it.date) } ?: localizedText("temporal_choose_date")
+    val timeValue = civil?.let { localizedTime(it.time) } ?: localizedText("temporal_choose_time")
     fun update(value: LocalDateTime) {
         unavailableTime = !temporalSelectionExists(field.kind, value, zone)
         if (!unavailableTime) onAction(UiAction.EditField(
@@ -51,25 +67,35 @@ internal fun TemporalFieldControl(field: UiField, onAction: (UiAction) -> Unit) 
     }
 
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(localizedText(field.labelKey), style = MaterialTheme.typography.labelLarge)
+        Text(label, style = MaterialTheme.typography.labelLarge)
         if (field.kind == ScreenFieldKind.INSTANT) TimeZoneContext(zone, schedule = false)
-        OutlinedButton(onClick = { dateOpen = true }, enabled = !field.readOnly) {
-            Text(civil?.let { localizedDate(it.date) } ?: localizedText("temporal_choose_date"))
+        OutlinedButton(onClick = { dateOpen = true }, enabled = !field.readOnly, modifier = Modifier.semantics {
+            contentDescription = dateLabel
+            stateDescription = dateValue
+            testTag = "temporal-${field.id}-date"
+            errorText?.let { error(it) }
+        }) {
+            Text(dateValue)
         }
         if (field.kind != ScreenFieldKind.LOCAL_DATE) {
-            OutlinedButton(onClick = { timeOpen = true }, enabled = !field.readOnly) {
-                Text(civil?.let { localizedTime(it.time) } ?: localizedText("temporal_choose_time"))
+            OutlinedButton(onClick = { timeOpen = true }, enabled = !field.readOnly, modifier = Modifier.semantics {
+                contentDescription = timeLabel
+                stateDescription = timeValue
+                testTag = "temporal-${field.id}-time"
+                errorText?.let { error(it) }
+            }) {
+                Text(timeValue)
             }
         }
         if (!field.required && !field.readOnly && field.value.isNotEmpty()) {
-            TextButton(onClick = { onAction(UiAction.EditField(field.id, "")) }) {
+            TextButton(onClick = { onAction(UiAction.EditField(field.id, "")) }, modifier = Modifier.semantics {
+                contentDescription = clearLabel
+            }) {
                 Text(localizedText("temporal_clear"))
             }
         }
-        field.errorKey?.let { Text(localizedText(it), color = MaterialTheme.colorScheme.error) }
-        if (unavailableTime) {
-            Text(localizedText("temporal_time_unavailable"), color = MaterialTheme.colorScheme.error)
-        }
+        errorText?.let { Text(it, color = MaterialTheme.colorScheme.error,
+            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) }
     }
     if (dateOpen) {
         TemporalDateDialog(selection, onDismiss = { dateOpen = false }) { selected ->

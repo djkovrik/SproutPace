@@ -1,0 +1,31 @@
+RESULT: VALID AppSpec 2.0
+{
+  "valid": true,
+  "errors": [],
+  "warnings": []
+}
+Visual review hashes match all 249 production images across 16 screens. Runtime and platform checks are separate.
+warning: in the working copy of '.vibe/work.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenModels.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/PlatformInlineAd.android.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/androidUnitTest/kotlin/com/sedsoftware/sproutpace/compose/AdvertisingRootProductionTest.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/App.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/BatchDetailScreen.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ContextualFormsScreen.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/InlineAdSlot.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFieldControl.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/PlatformInlineAd.ios.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/DomainJsonCodec.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionActionProjection.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/RepeatedBatchProjection.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/model/Batch.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/monetization/src/commonMain/kotlin/com/sedsoftware/sproutpace/monetization/Advertising.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidNotificationPermissionService.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'spec/flows/FLOW-006.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'spec/product.md', LF will be replaced by CRLF the next time Git touches it

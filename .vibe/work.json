@@ -2,7 +2,7 @@
   "appSpec": "spec",
   "appSpecFingerprint": {
     "algorithm": "sha256",
-    "digest": "9aafbaa4e5eea131a839d12da26349036253d20f65701a331b086f8e5d3bc472",
+    "digest": "8ac392c40f82569b6a209a6fac555c24aa590ac24abe643f94e330789c25d381",
     "files": [
       {
         "path": "app-spec.json",
@@ -42,7 +42,7 @@
       },
       {
         "path": "flows/FLOW-006.md",
-        "sha256": "bab5b7172d812d9a81212dec3cbac2144c86cecef3add376649bd1f3e01ec564"
+        "sha256": "ee89920e941d5b4495eebdeababec32b3f2a7402e15565bf0d463ae53d36d1b9"
       },
       {
         "path": "flows/FLOW-007.md",
@@ -70,11 +70,11 @@
       },
       {
         "path": "product.md",
-        "sha256": "9acc1473a4c68cd379861002a6e7bc53c24ee089a549820c67ef2edddc91a53d"
+        "sha256": "a08b9debf206c8ca0f0293799f6cba3d7b7dd42f504fb63df6479efb36547341"
       },
       {
         "path": "quality.md",
-        "sha256": "6868ee6f004cd8b4a74d4a4527169390b7cd6a1376d8c8ed9802a92d1bf828b5"
+        "sha256": "da3662fb761e83913f5686c1c372be03b843f80d37ae9bd8c70325cfb094b1eb"
       },
       {
         "path": "screens/SCREEN-001.md",
@@ -142,9 +142,9 @@
       }
     ]
   },
-  "auditRequest": ".vibe/audits/AUDIT-REQUEST-76326ac5-3a2d-40b2-92b0-590fec19f455/request.json",
+  "auditRequest": ".vibe/audits/AUDIT-REQUEST-14f77764-6a96-4d29-97e4-f257ff6ed2d0/request.json",
   "mode": "lean",
-  "nextAction": "Available implementation/check/audit scope complete. Next release acceptance: natural current-APK TalkBack traversal/actions/announcements across core screens, then current macOS Swift/Xcode/framework linkage/Simulator/native platform/accessibility proof for AC107/QG003. Keep GAPS/no lean close until substantiated; activate external distribution gates only if requested.",
+  "nextAction": "Remaining acceptance requires reliable natural TalkBack traversal/contextual-value/error/success utterance proof on current8d APK and current-source macOS/Xcode/simulator/VoiceOver results. No known established source defect; do not claim global completion or release readiness. Final verified evidence: acceptance-summary.md/json and audit14f77764.",
   "predecessor": {
     "decision": "docs/decisions/DEC-20260920-lean-delivery.md",
     "path": ".vibe/history/strict-557d1d32-ca12-457b-a937-41dbd56a7e8e.json",
@@ -327,9 +327,10 @@
   "scenarios": {
     "catalog": "QG-011 ACCEPTED 2026-10-11 catalog v2. Independent bounded PASS docs/catalog-audit/2026-10-11/v2/independent-audit.json; gate record acceptance.json in same folder. Historical F07 resolved; CAT-001..008 dispositions recorded. Matrix eff64f23 passed719 tests231goldens,14iOS compiles,Android builds,Detekt,migration,Kover. Full-app F04/F05/F06 remain open.",
     "requirements-fixes-20261017": "All14 fixes plus independent F01/F02 and native focus correction completed. Current source d5d57266; final matrix f0382fbb passed823 tests/249 reviewed PNG. Formal independent audit76326ac5 completed0 with no validation errors:335verified/4gap/4unavailable/7NA; F01/F02/F05 closed. Remaining F03 natural TalkBack and F04 four macOS pairs prevent global completion/release. Exact350 matrix retained unchanged in consolidated-coverage.json and acceptance-summary.md.",
+    "requirements-fixes-20261024": "Validated same-auditor delta14f77764 completed0 on frozen85fc:335verified/4gap/4macOS-unavailable/7NA across350pairs; no report validation errors and no established implementation defects. Keyboard F002 closed. F001 natural TalkBack proof and F003 current macOS/Xcode/Simulator/VoiceOver remain open; all computed completion flags false. Matrix842/249 and current native keyboard175 passed. See build/reports/requirements-fixes-20261024/acceptance-summary.md/json.",
     "requirements-review-20261017": "Current authoritative result: audit76326ac5, source d5d57266, matrix f0382fbb. See requirements-fixes-20261017 scenario and current recovery. Historical fb338/70da/a546 notes are superseded."
   },
   "schemaVersion": "1.0",
-  "specDecision": "docs/decisions/DEC-20261017-requirements-fixes-adopt-spec.md",
-  "updatedAt": "2026-10-17T12:10:56.728804Z"
+  "specDecision": "docs/decisions/DEC-20261024-ios-summary-horizon.md",
+  "updatedAt": "2026-10-24T16:06:14.717690Z"
 }

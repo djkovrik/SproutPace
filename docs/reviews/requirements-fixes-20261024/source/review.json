@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "review-1",
+  "kind": "read-only-requirements-review",
+  "date": "2026-10-24",
+  "head": "1d771ea853d337cd77a1da18471da18e8aa43cb1",
+  "verdict": "GAPS",
+  "scope": {
+    "source": "spec/",
+    "requirements": 12,
+    "excludedRequirements": 9,
+    "acceptanceScenarios": 79,
+    "managedOperations": 50,
+    "qualityGates": 12,
+    "verificationPairs": 350
+  },
+  "method": "Independent bounded source reviews of domain/data, platform/monetization and UI; production entry-to-result tracing, existing assertions and receipts inspected. No production/spec/test changes. This is a review report, not a launcher-generated acceptance receipt. Code findings below were established by source tracing; new device reproductions were not executed.",
+  "coverage": [
+    {
+      "requirement": "REQ-001",
+      "assessment": "Production first-run/setup/navigation paths and tests present; no new scoped finding."
+    },
+    {
+      "requirement": "REQ-002",
+      "assessment": "Production CRUD/snapshots present; F04, F06."
+    },
+    {
+      "requirement": "REQ-003",
+      "assessment": "Offline versioned catalog, eight stable IDs, recipe CRUD and snapshot paths present; no new scoped finding."
+    },
+    {
+      "requirement": "REQ-004",
+      "assessment": "Lifecycle/correction/skip/undo/deletion present; F03."
+    },
+    {
+      "requirement": "REQ-005",
+      "assessment": "Cadence/continuous suggestions, confirmation and capacity paths present; no new scoped finding."
+    },
+    {
+      "requirement": "REQ-006",
+      "assessment": "Today/reminder reconciliation present; F09, F10."
+    },
+    {
+      "requirement": "REQ-007",
+      "assessment": "Observation/photo CRUD, compensation/private storage and restart paths present; no new scoped finding."
+    },
+    {
+      "requirement": "REQ-008",
+      "assessment": "Terminal outcomes/repeat/mass/history paths present; F04."
+    },
+    {
+      "requirement": "REQ-009",
+      "assessment": "Archive staging/replace/rollback/photos/CSV/reset paths present; F05."
+    },
+    {
+      "requirement": "REQ-010",
+      "assessment": "Fail-closed controller and consent paths present, iOS ads disabled; UI request lifecycle gaps F01, F02."
+    },
+    {
+      "requirement": "REQ-011",
+      "assessment": "Native Crashlytics configuration/toggle paths present; configured RC symbolication remains conditional."
+    },
+    {
+      "requirement": "REQ-012",
+      "assessment": "Resources/themes/adaptive/offline paths present; accessibility defects F07, F08 and missing natural runtime acceptance."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "priority": "P1",
+      "obligations": [
+        "AC-101",
+        "AC-103"
+      ],
+      "title": "Advertising eligibility outlives privacy expiry on an open screen",
+      "anchor": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/RootUiAdapter.kt:81",
+      "detail": "adUnitId is retained and prepare is keyed only by activeComponent and placement, without expiry invalidation. The banner can remain visible past expiry; lazy-slot re-entry calls the Android factory with this retained ID and loadAd bypasses privacy.resolve.",
+      "related": [
+        "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/PlatformInlineAd.android.kt:42",
+        "shared/monetization/src/androidMain/kotlin/com/sedsoftware/sproutpace/monetization/AndroidAdvertising.kt:89"
+      ],
+      "proofNeeded": "Short-lived valid eligibility, remain on catalog past expiry, recycle the lazy ad slot; assert no stale visible ad/request."
+    },
+    {
+      "id": "F02",
+      "priority": "P2",
+      "obligations": [
+        "AC-100"
+      ],
+      "title": "Lazy slot recreation permits multiple loads during one screen visit",
+      "anchor": "shared/compose/src/androidMain/kotlin/com/sedsoftware/sproutpace/compose/PlatformInlineAd.android.kt:42",
+      "detail": "AdvertisingVisitGate guards prepare, but InlineAdSession is remember-local to the lazy item. Disposing and re-entering creates a fresh session and calls loadAd again. Current root tests use screenHeight=6000 and do not test slot recycling.",
+      "proofNeeded": "Compact production RootApp test scrolls ad item out/in and asserts one SDK load per visit."
+    },
+    {
+      "id": "F03",
+      "priority": "P2",
+      "obligations": [
+        "AC-038"
+      ],
+      "title": "Assigned active batch cannot be made temporarily unassigned from UI",
+      "anchor": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionActionProjection.kt:88",
+      "detail": "assign-overflow is offered only to already-unassigned batches. confirm-stage and correct-batch do not accept an unassigned choice. Manager-level tests call the hidden operation directly.",
+      "related": [
+        "shared/component/src/commonMain/kotlin/com/sedsoftware/sproutpace/component/ScreenContractRegistry.kt:232",
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/BatchDetailScreen.kt:204"
+      ],
+      "proofNeeded": "Public UI path: assigned A -> real move to full B -> select temporary unassigned; restart verifies placement."
+    },
+    {
+      "id": "F04",
+      "priority": "P2",
+      "obligations": [
+        "AC-013",
+        "AC-084"
+      ],
+      "title": "Historical zone snapshot is not readable after closing a batch",
+      "anchor": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/WorkspaceProjections.kt:20",
+      "detail": "close sets Placement.None; History/detail identity uses only current Assigned placement. Historical event placement snapshots remain internally, but timeline projection omits them. Closing, then renaming/deleting the zone leaves no original zone in history/detail.",
+      "related": [
+        "shared/domain/src/commonMain/kotlin/com/sedsoftware/sproutpace/domain/engine/BatchLifecycleEngine.kt:122",
+        "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt:120"
+      ],
+      "proofNeeded": "Close batch grown on Shelf A; rename/delete zone; reopen app and assert original zone name in History/detail."
+    },
+    {
+      "id": "F05",
+      "priority": "P2",
+      "obligations": [
+        "AC-093",
+        "QG-012"
+      ],
+      "title": "Restore validation allows action-ID collisions between batches",
+      "anchor": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/SnapshotValidation.kt:74",
+      "detail": "Uniqueness is checked within a batch only. Two different batches can have actions with equal IDs and valid own batchId. Today distinctBy drops one; updateAction selects the first matching batch. Actions are JSON, without SQL global uniqueness.",
+      "related": [
+        "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt:78",
+        "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenDataManager.kt:534"
+      ],
+      "proofNeeded": "Corrupt archive fixture with cross-batch duplicate action IDs must reject before replacement and leave live DB/photos/reminders unchanged."
+    },
+    {
+      "id": "F06",
+      "priority": "P2",
+      "obligations": [
+        "SCREEN-013"
+      ],
+      "title": "Tray preset rows omit shape and metric dimensions",
+      "anchor": "shared/data/src/commonMain/kotlin/com/sedsoftware/sproutpace/data/ProductionScreenSnapshotRenderer.kt:336",
+      "detail": "Projection and ContextualEntityList render name only, without Rectangle/Circle and cm dimensions. Existing light golden visually confirms this.",
+      "related": [
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ContextualFormsScreen.kt:78"
+      ],
+      "proofNeeded": "Mixed shapes list with localized geometry at 200% in EN/RU, including accessible shape names."
+    },
+    {
+      "id": "F07",
+      "priority": "P2",
+      "obligations": [
+        "AC-122",
+        "QG-007"
+      ],
+      "title": "Date/time controls lack contextual accessible names and associated errors",
+      "anchor": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TemporalFieldControl.kt:53",
+      "detail": "Field label/error are sibling Text. Focusable date/time/clear buttons contain only raw value or generic Choose/Clear. No field-specific name/error semantics associates validation or DST errors with controls.",
+      "proofNeeded": "Semantics assertions for two temporal fields plus native TalkBack/VoiceOver traversal."
+    },
+    {
+      "id": "F08",
+      "priority": "P2",
+      "obligations": [
+        "AC-122",
+        "SCREEN-002",
+        "SCREEN-005",
+        "QG-007"
+      ],
+      "title": "Completion/reschedule lacks explicit accessibility announcement and focus handoff",
+      "anchor": "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/BatchDetailScreen.kt:44",
+      "detail": "Operation editor closes on completionRevision; snooze dialog dispatches and closes. Refreshed task/timeline text has no success announcement mechanism or stable explicit focus handoff. Exact native spoken behavior remains unexecuted.",
+      "related": [
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/TaskSnoozeControl.kt:28"
+      ],
+      "proofNeeded": "Complete/reschedule actual action with screen reader; verify localized feedback and logical focus destination."
+    },
+    {
+      "id": "F09",
+      "priority": "P2",
+      "obligations": [
+        "AC-065",
+        "QG-003"
+      ],
+      "title": "iOS daily summaries stop after the 30-day queued horizon without reopening",
+      "anchor": "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt:299",
+      "detail": "iOS schedules up to 30 one-shot summaries with repeats=false and no background replenishment path. Day31 without foreground reconciliation has no summary despite pending/overdue work. No 30-day exemption exists in spec.",
+      "related": [
+        "shared/compose/src/commonMain/kotlin/com/sedsoftware/sproutpace/compose/ProductionAppGraph.kt:364",
+        "shared/compose/src/iosMain/kotlin/com/sedsoftware/sproutpace/compose/IosProductionAppGraph.kt:274"
+      ],
+      "proofNeeded": "Deterministic beyond-horizon scheduling scenario and macOS native acceptance; document a product limitation only if explicitly approved."
+    },
+    {
+      "id": "F10",
+      "priority": "P3",
+      "obligations": [
+        "AC-064"
+      ],
+      "title": "Permanent Android notification denial is misclassified on recheck",
+      "anchor": "shared/platform/src/androidMain/kotlin/com/sedsoftware/sproutpace/platform/AndroidNotificationPermissionService.kt:31",
+      "detail": "!areNotificationsEnabled branch returns canRequestAgain=true on API33+, bypassing requested/rationale logic. After permanent denial/resume UI offers a permission request that OS cannot display; Settings recovery still exists.",
+      "proofNeeded": "Native twice-denied/resume scenario asserts permanently denied state and settings recovery."
+    }
+  ],
+  "verification": {
+    "specValidation": "Passed 2026-10-24: VALID AppSpec 2.0; canonical 350 pairs.",
+    "assetValidation": "Passed 2026-10-24: no errors/warnings.",
+    "visualHashValidation": "Passed 2026-10-24: 249 production images across all 16 screens.",
+    "sourceComparison": "Previously audited workingFiles hashes matched current files; initial git status clean.",
+    "currentCommitCI": {
+      "run": 39032646460,
+      "url": "https://github.com/djkovrik/SproutPace/actions/runs/39032646460",
+      "head": "1d771ea853d337cd77a1da18471da18e8aa43cb1",
+      "conclusion": "success",
+      "iosJob": 117396067011,
+      "androidJob": 117396067253,
+      "observed": "Current-commit CI includes Android quality/build/bundle/Paparazzi and iOS target compilation, six executed simulator test tasks (data task skipped), simulator framework linkage and successful unsigned Xcode simulator host build."
+    },
+    "localGradle": {"result":"interrupted-before-gates","receipt":".vibe/receipts/RECEIPT-12b8ecbe-2076-49cf-b91e-c3ce813a31fc.json","exitCode":-1,"detail":"Repeated local matrix produced no task output for roughly 7 minutes. JVM thread inspection showed Gradle cache cleanup (FineGrainedMarkAndSweepLeastRecentlyUsedCacheCleanup), not test execution. Stopped only the verified review-owned wrapper client PID 20624. No test/build success is claimed for this attempt. Current-commit successful CI and previously executed matching-source evidence were inspected instead."},
+    "ciLogEvidence": "Six iosSimulatorArm64Test tasks executed; data task skipped. Simulator framework, embedAndSignAppleFrameworkForXcode and xcodebuild build succeeded. No native platform/compose/data iosTest sources exercise the OS notification/picker flows; existing common fixture tests do not substitute for native acceptance.",
+    "newDeviceTestsRun": false,
+    "nativeBoundary": "Natural current-app TalkBack/VoiceOver, iOS picker/notification/device lifecycle acceptance not substantiated by CI build steps alone. Previous blanket absence of iOS build/CI evidence is superseded by current-commit successful CI.",
+    "conditionalExternal": "Publication/signing, configured Firebase RC symbolication, production Yandex device tests and distribution policy inputs are inactive for this review; safe defaults are not implementation defects."
+  }
+}

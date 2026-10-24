@@ -103,6 +103,7 @@ class DomainJsonCodec(
     val events: List<EventDto>, val actions: List<ActionDto>, val supplier: String?, val cultivar: String?,
     val seedLot: String?, val germinationPercentage: Int?, val outcome: OutcomeDto?,
     val plannedSowDate: String? = null, val cultureIdSnapshot: String? = null,
+    val closedPlacementSnapshot: PlacementDto? = null,
 )
 @Serializable private data class PlanDto(
     val id: String,
@@ -207,13 +208,14 @@ private fun GrowBatch.toDto() = BatchDto(
     id.value, recipe.toDto(), tray.toDto(), substrateSnapshot, recommendedSeedMass.value,
     actualSeedMass.value, state.name, placement.toDto(), events.map { it.toDto() }, actions.map { it.toDto() },
     supplier, cultivar, seedLot, germinationPercentage?.value, outcome?.toDto(),
-    plannedSowDate?.toString(), cultureIdSnapshot?.value,
+    plannedSowDate?.toString(), cultureIdSnapshot?.value, closedPlacementSnapshot.toDto(),
 )
 private fun BatchDto.toDomain() = GrowBatch(
     BatchId(id), recipe.toDomain(), tray.toDomain(), substrate, PositiveGrams(recommendedMass),
     PositiveGrams(actualMass), BatchState.valueOf(state), placement.toDomain(), events.map { it.toDomain() },
     actions.map { it.toDomain() }, supplier, cultivar, seedLot, germinationPercentage?.let(::Percentage), outcome?.toDomain(),
     plannedSowDate?.let(LocalDate::parse), cultureIdSnapshot?.let(::CultureId) ?: recipe.builtInCultureId?.let(::CultureId),
+    closedPlacementSnapshot?.toDomain() ?: Placement.None,
 )
 private fun HarvestPlan.toDto() = PlanDto(
     id.value,

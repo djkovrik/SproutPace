@@ -34,6 +34,8 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import com.sedsoftware.sproutpace.domain.model.TrayShape
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun ContextualFormsScreen(state: SproutPaceUiState, layout: UiLayout, onAction: (UiAction) -> Unit) {
@@ -74,12 +76,22 @@ private fun ContextualEntityList(state: SproutPaceUiState, onAction: (UiAction) 
             )) {
                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(localizedOrAuthored(item.titleKey, item.authoredTitle), style = MaterialTheme.typography.titleMedium)
+                    item.trayShape?.let { shape -> Text(trayShapeDescription(shape)) }
                     item.occupancy?.let { OccupancyContent(it, showName = false) }
                     item.stateKey?.let { Text(localizedText(it), color = MaterialTheme.colorScheme.error) }
                 }
             }
         }
     }
+}
+
+@Composable
+internal fun trayShapeDescription(shape: TrayShape): String = when (shape) {
+    is TrayShape.Rectangle -> stringResource(strictTextResource("tray_dimensions_rectangle"),
+        localizedDecimal(shape.widthCentimetres.toString().removeSuffix(".0")),
+        localizedDecimal(shape.lengthCentimetres.toString().removeSuffix(".0")))
+    is TrayShape.Circle -> stringResource(strictTextResource("tray_dimensions_circle"),
+        localizedDecimal(shape.diameterCentimetres.toString().removeSuffix(".0")))
 }
 
 @Composable

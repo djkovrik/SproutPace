@@ -5,6 +5,11 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -89,6 +94,7 @@ data class UiItem(
     val recipe: com.sedsoftware.sproutpace.component.RecipeGuideProjection? = null,
     val history: com.sedsoftware.sproutpace.component.BatchHistoryProjection? = null,
     val snapshotStage: com.sedsoftware.sproutpace.component.RecipeStageProjection? = null,
+    val trayShape: com.sedsoftware.sproutpace.domain.model.TrayShape? = null,
 )
 
 class UiPhoto(val id: String, bytes: ByteArray?, val contentDescriptionKey: String) {
@@ -155,6 +161,7 @@ data class SproutPaceUiState(
     val settingsContext: SproutPaceUiState? = null,
     val stagePreview: com.sedsoftware.sproutpace.component.StageChangeProjection? = null,
     val completionRevision: Long = 0,
+    val lastCompletedOperation: String? = null,
 )
 
 enum class PlatformActionKind {
@@ -270,23 +277,29 @@ fun SproutPaceApp(
                 displayState.variant != UiVariant.EMPTY &&
                 !largeTextNavigation
         }
+        val dockedAction = primaryFabAction.takeIf { displayState.showInlineAd }
         val body: @Composable () -> Unit = {
             Scaffold(
                 modifier = Modifier.semantics { testTag = "screen-${displayState.screen.name.lowercase()}" },
                 contentWindowInsets = WindowInsets.safeDrawing,
                 topBar = { SproutPaceTopBar(displayState.screen, topLevel, onAction) },
-                bottomBar = { if (compact && topLevel) PrimaryBottomBar(displayState.selectedPrimary, onAction) },
-                floatingActionButton = { PrimaryFloatingActionButton(primaryFabAction, onAction) },
+                bottomBar = { PrimaryActionBar(displayState, compact, dockedAction, onAction) },
+                floatingActionButton = {
+                    if (dockedAction == null) PrimaryFloatingActionButton(primaryFabAction, onAction)
+                },
             ) { padding ->
+                Column(Modifier.padding(padding).consumeWindowInsets(padding)) {
+                ActionCompletionStatus(displayState)
                 ScreenContent(
                     state = displayState,
                     layout = layout,
-                    padding = padding,
+                    padding = PaddingValues(),
                     contextFieldsExpanded = contextFieldsExpanded || displayState.variant == UiVariant.VALIDATION_ERROR,
                     onContextFieldsExpandedChange = { contextFieldsExpanded = it },
                     onAction = onAction,
                     advertisingRuntime = advertisingRuntime,
                 )
+                }
             }
         }
         if (!compact && topLevel) {
@@ -297,6 +310,23 @@ fun SproutPaceApp(
         } else {
             body()
         }
+    }
+}
+
+@Composable
+private fun PrimaryActionBar(state: SproutPaceUiState, compact: Boolean, action: UiScreenAction?, onAction: (UiAction) -> Unit) {
+    val showNavigation = compact && state.screen in primaryDestinations
+    if (action == null && !showNavigation) return
+    Column {
+        action?.let {
+            Row(Modifier.fillMaxWidth()
+                .then(if (compact) Modifier else Modifier.windowInsetsPadding(WindowInsets.navigationBars))
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .semantics { testTag = "primary-action-footer" }, horizontalArrangement = Arrangement.End) {
+                PrimaryFloatingActionButton(it, onAction)
+            }
+        }
+        if (showNavigation) PrimaryBottomBar(state.selectedPrimary, onAction)
     }
 }
 

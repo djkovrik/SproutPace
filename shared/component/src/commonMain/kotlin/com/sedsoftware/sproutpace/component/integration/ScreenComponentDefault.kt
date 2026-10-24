@@ -155,6 +155,7 @@ private fun ScreenStore.State.toModel(): ScreenModel {
         setupState = snapshot.setupState,
         stagePreview = stagePreview,
         completionRevision = completionRevision,
+        lastCompletedOperation = lastCompletedOperation,
         detail = snapshot.selectedItemId?.takeIf { detailSnapshot != null || detailErrorKey != null }?.let { selected ->
             ScreenStore.State(
                 screen = if (screen == ScreenId.TRAYS) ScreenId.BATCH_DETAIL else ScreenId.RECIPE,

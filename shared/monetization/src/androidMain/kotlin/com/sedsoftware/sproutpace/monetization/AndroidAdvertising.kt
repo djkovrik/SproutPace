@@ -124,7 +124,7 @@ class AndroidAdvertisingRuntime(
     appVersion: String,
     configuration: AdConfiguration,
     private val productSettings: ProductSettings,
-    clock: EpochMillisClock = EpochMillisClock { System.currentTimeMillis() },
+    private val clock: EpochMillisClock = EpochMillisClock { System.currentTimeMillis() },
     workspaceReady: StateFlow<Boolean> = MutableStateFlow(true),
 ) : AndroidInlineAdHost {
     private val connectivity = AndroidAdConnectivity(context)
@@ -141,6 +141,9 @@ class AndroidAdvertisingRuntime(
     )
     val controller = AdvertisingController(privacy, sdk, configuration)
     override val privacyState = productSettings.privacyState
+    override fun nowEpochMillis(): Long = clock.now()
+    override fun canRequestAd(adUnitId: String): Boolean = controller.isPreparedFor(adUnitId) &&
+        super<AndroidInlineAdHost>.canRequestAd(adUnitId)
 
     override suspend fun prepare(request: AdPlacementRequest) = controller.prepare(
         request.copy(offline = request.offline || !networkAvailable.value),
@@ -157,15 +160,22 @@ class AndroidAdvertisingRuntime(
         session: InlineAdSession,
         isHostDestroyed: () -> Boolean,
         onStateChanged: (InlineAdState) -> Unit,
-    ): View = sdk.createInlineBanner(
-        context,
-        adUnitId,
-        widthDp,
-        maxHeightDp,
-        session,
-        isHostDestroyed,
-        onStateChanged,
-    )
+    ): View {
+        if (!canRequestAd(adUnitId)) {
+            session.dispose()
+            onStateChanged(session.state)
+            return View(context)
+        }
+        return sdk.createInlineBanner(
+            context,
+            adUnitId,
+            widthDp,
+            maxHeightDp,
+            session,
+            { isHostDestroyed() || !canRequestAd(adUnitId) },
+            onStateChanged,
+        )
+    }
 
     override fun disposeInlineBanner(view: View, session: InlineAdSession) {
         (view as? BannerAdView)?.let { sdk.disposeBanner(it, session) } ?: session.dispose()

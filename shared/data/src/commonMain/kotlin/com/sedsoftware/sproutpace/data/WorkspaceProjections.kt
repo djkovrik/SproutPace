@@ -17,11 +17,22 @@ internal fun GrowBatch.identity() = BatchIdentity(
     batchId = id.value,
     trayName = tray.nameSnapshot,
     sowDate = plannedSowDate,
-    zoneName = (placement as? Placement.Assigned)?.zoneNameSnapshot,
+    zoneName = if (state.isTerminal) historicalZoneName() else (placement as? Placement.Assigned)?.zoneNameSnapshot,
     state = state,
     closedAt = outcome?.occurredAt,
     actualHarvestMassGrams = (outcome as? com.sedsoftware.sproutpace.domain.model.BatchOutcome.Harvested)?.actualMass?.value,
 )
+
+/** Legacy closed batches predate the explicit closure snapshot; their events retain the same names. */
+private fun GrowBatch.historicalZoneName(): String? = closedPlacementSnapshot.zoneName()
+    ?: placement.zoneName()
+    ?: events.asReversed().firstNotNullOfOrNull { it.placementAfter.zoneName() ?: it.placementBefore.zoneName() }
+
+private fun Placement.zoneName(): String? = when (this) {
+    is Placement.Assigned -> zoneNameSnapshot
+    is Placement.Unassigned -> priorZoneNameSnapshot
+    Placement.None -> null
+}
 
 internal fun GrowZone.occupancy(batches: List<GrowBatch>) = ZoneOccupancy(
     zoneId = id.value,
