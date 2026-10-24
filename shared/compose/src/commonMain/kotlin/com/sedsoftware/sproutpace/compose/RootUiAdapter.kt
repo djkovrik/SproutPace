@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import com.sedsoftware.sproutpace.data.ThemePreference
 import com.sedsoftware.sproutpace.data.AdvertisingPrivacyState
 import com.sedsoftware.sproutpace.data.ConsentChoice
@@ -122,6 +123,7 @@ internal fun RootApp(
     CompositionLocalProvider(LocalInlineAdSession provides adSession) {
     SproutPaceApp(
         state = uiState,
+        navigationKey = stack.active.configuration,
         advertisingRuntime = advertisingRuntime,
         onAction = { action ->
             when (action) {
@@ -141,16 +143,21 @@ internal fun RootApp(
         },
     )
     }
-        confirmationSlot.child?.instance?.let { confirmation ->
-            RootConfirmationDialog(confirmation, baseUiState)
+        AnimatedNavigationDialog(confirmationSlot.child?.instance?.let { it to baseUiState }) { (confirmation, source), modifier ->
+            RootConfirmationDialog(confirmation, source, modifier)
         }
     }
 }
 
 @Composable
-internal fun RootConfirmationDialog(component: ConfirmationComponent, source: SproutPaceUiState? = null) {
+internal fun RootConfirmationDialog(
+    component: ConfirmationComponent,
+    source: SproutPaceUiState? = null,
+    modifier: Modifier = Modifier,
+) {
     val copy = confirmationCopy(component.destructiveOperation)
     AlertDialog(
+        modifier = modifier,
         onDismissRequest = component::cancel,
         title = { Text(localizedText(copy.title)) },
         text = { ConfirmationBody(component.command, source, copy.body) },

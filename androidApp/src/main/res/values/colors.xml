@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Keep in sync with SurfaceLight in the shared Compose palette. -->
+    <color name="app_window_background">#FAF8F0</color>
+    <!-- API 24/25 navigation buttons are always light, so retain a dark bar there. -->
+    <color name="app_navigation_bar">#101710</color>
+</resources>

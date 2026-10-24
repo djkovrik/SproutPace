@@ -1,0 +1,11 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":androidApp:testDebugUnitTest",
+    ":androidApp:assembleDebug",
+    ":androidApp:assembleRelease",
+    "detekt"
+  ],
+  "timeoutSeconds": 1800
+}

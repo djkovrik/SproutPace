@@ -2,6 +2,7 @@ package com.sedsoftware.sproutpace
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -10,7 +11,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
@@ -201,8 +204,10 @@ class AppActivity : ComponentActivity() {
 @Composable
 private fun ThemeChanged(isDark: Boolean) {
     val view = LocalView.current
-    LaunchedEffect(isDark) {
+    val background = MaterialTheme.colorScheme.background.toArgb()
+    SideEffect {
         val window = (view.context as Activity).window
+        window.setBackgroundDrawable(ColorDrawable(background))
         WindowInsetsControllerCompat(window, window.decorView).apply {
             isAppearanceLightStatusBars = !isDark
             isAppearanceLightNavigationBars = !isDark

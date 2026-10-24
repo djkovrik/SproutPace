@@ -1,0 +1,10 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":androidApp:testDebugUnitTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.LaunchThemeContractTest"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -1,0 +1,12 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.NavigationMotionTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.ReviewAccessibilityProductionTest.planCardsExposeOneEditTargetWithTheirOwnCadenceAndStatusInBothLocalesAtFont200"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -1,0 +1,13 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:root:testAndroidHostTest",
+    ":shared:compose:verifyPaparazzi",
+    ":androidApp:assembleDebug",
+    ":shared:compose:compileKotlinIosArm64",
+    ":shared:compose:compileKotlinIosSimulatorArm64"
+  ],
+  "timeoutSeconds": 1800
+}

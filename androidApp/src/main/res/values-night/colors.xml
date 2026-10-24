@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Keep in sync with SurfaceDark in the shared Compose palette. -->
+    <color name="app_window_background">#101710</color>
+</resources>

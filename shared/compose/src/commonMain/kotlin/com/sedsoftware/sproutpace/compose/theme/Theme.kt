@@ -129,12 +129,14 @@ internal fun AppTheme(
         LocalThemeIsDark provides isDarkState
     ) {
         val isDark by isDarkState
-        onThemeChanged(isDark)
         MaterialTheme(
             colorScheme = if (isDark) DarkColorScheme else LightColorScheme,
             typography = SproutPaceTypography,
             shapes = SproutPaceShapes,
-            content = { Surface(content = content) }
+            content = {
+                onThemeChanged(isDark)
+                Surface(content = content)
+            }
         )
     }
 }
