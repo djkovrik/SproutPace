@@ -1,0 +1,10 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "com.sedsoftware.sproutpace.compose.NavigationMotionTest"
+  ],
+  "timeoutSeconds": 1800
+}

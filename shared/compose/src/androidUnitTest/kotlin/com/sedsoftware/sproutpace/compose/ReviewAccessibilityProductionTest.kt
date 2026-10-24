@@ -84,9 +84,12 @@ class ReviewAccessibilityProductionTest {
                     assertEquals(if (russian) "Обновить план" else "Update plan", click.label)
                     assertTrue(assertNotNull(click.action).invoke())
                 }
-                assertEquals(listOf<UiAction>(UiAction.Submit("edit-plan", "weekly"), UiAction.Submit("edit-plan", "paused")), actions)
+                assertEquals(listOf<UiAction>(UiAction.Submit("edit-plan", "weekly"), UiAction.Submit("edit-plan", "paused")),
+                    actions.filterNot { it is UiAction.SetLayout })
                 true
             }))
+            // Layout reporting is asynchronous and can precede the first rendered frame.
+            assertEquals(listOf(UiAction.SetLayout(UiLayout.COMPACT)), actions.filterIsInstance<UiAction.SetLayout>())
         }
     }
 

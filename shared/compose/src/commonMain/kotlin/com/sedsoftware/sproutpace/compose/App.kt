@@ -257,6 +257,7 @@ fun SproutPaceApp(
     onAction: (UiAction) -> Unit,
     modifier: Modifier = Modifier,
     advertisingRuntime: AdvertisingRuntime? = null,
+    navigationKey: Any = state.screen,
 ) {
     BoxWithConstraints(modifier.fillMaxSize()) {
         val displayState = state.withLocalizedCatalogSearch()
@@ -288,23 +289,27 @@ fun SproutPaceApp(
                     if (dockedAction == null) PrimaryFloatingActionButton(primaryFabAction, onAction)
                 },
             ) { padding ->
-                Column(Modifier.padding(padding).consumeWindowInsets(padding)) {
-                ActionCompletionStatus(displayState)
-                ScreenContent(
-                    state = displayState,
-                    layout = layout,
-                    padding = PaddingValues(),
-                    contextFieldsExpanded = contextFieldsExpanded || displayState.variant == UiVariant.VALIDATION_ERROR,
-                    onContextFieldsExpandedChange = { contextFieldsExpanded = it },
-                    onAction = onAction,
-                    advertisingRuntime = advertisingRuntime,
-                )
+                Box(Modifier.padding(padding).consumeWindowInsets(padding)) {
+                    NavigationContent(displayState, navigationKey, onAction) { frame, frameAction ->
+                        Column {
+                            ActionCompletionStatus(frame)
+                            ScreenContent(
+                                state = frame,
+                                layout = layout,
+                                padding = PaddingValues(),
+                                contextFieldsExpanded = contextFieldsExpanded || frame.variant == UiVariant.VALIDATION_ERROR,
+                                onContextFieldsExpandedChange = { contextFieldsExpanded = it },
+                                onAction = frameAction,
+                                advertisingRuntime = advertisingRuntime,
+                            )
+                        }
+                    }
                 }
             }
         }
-        if (!compact && topLevel) {
+        if (!compact) {
             Row(Modifier.fillMaxSize()) {
-                PrimaryRail(displayState.selectedPrimary, onAction)
+                if (topLevel) PrimaryRail(displayState.selectedPrimary, onAction)
                 Box(Modifier.weight(1f).fillMaxSize()) { body() }
             }
         } else {
