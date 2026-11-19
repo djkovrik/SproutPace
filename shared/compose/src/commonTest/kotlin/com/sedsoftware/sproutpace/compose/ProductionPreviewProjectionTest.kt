@@ -44,8 +44,8 @@ class ProductionPreviewProjectionTest {
         assertEquals(3, occupancy.capacity)
         val forecast = assertNotNull(occupancy.futureConflict)
         assertEquals(4, forecast.projectedOccupied)
-        // The pending plan also needs this shelf today; planned batches alone conflict tomorrow.
-        assertEquals("2026-10-10", forecast.date.toString())
+        // Committed batches conflict tomorrow; expired proposals no longer reserve the shelf today.
+        assertEquals("2026-10-11", forecast.date.toString())
     }
 
     @Test

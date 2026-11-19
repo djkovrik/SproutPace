@@ -1,0 +1,92 @@
+Calculating task graph as no cached configuration is available for tasks: :shared:domain:testAndroidHostTest :shared:data:testAndroidHostTest detekt
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:androidJar UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+
+> Task :shared:domain:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchPlanningEngineTest.kt:50:26 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/BatchPlanningEngineTest.kt:60:27 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt:25:77 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/ContractsAndSnapshotTest.kt:26:81 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt:11:18 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/DomainFixtures.kt:11:28 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt:142:22 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/domain/src/commonTest/kotlin/com/sedsoftware/sproutpace/domain/PlannerAndSchedulingTest.kt:163:26 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:domain:koverFindJar UP-TO-DATE
+> Task :shared:domain:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:domain:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:testAndroidHostTest
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:androidJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+
+> Task :shared:data:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt:114:23 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt:152:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt:187:43 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt:207:46 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:data:koverFindJar UP-TO-DATE
+> Task :shared:data:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:data:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:data:testAndroidHostTest
+
+> Task :detekt
+Successfully generated markdown at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.md
+Successfully generated html at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.html
+Successfully generated sarif at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.sarif
+Successfully generated checkstyle at file:///D:/Sources/Android/SproutPace/build/reports/detekt/detekt.xml
+e: D:\Sources\Android\SproutPace\shared\platform\src\androidMain\kotlin\com\sedsoftware\sproutpace\platform\AndroidNotificationPermissionService.kt:55:30 The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled. [TooGenericExceptionCaught]
+e: D:\Sources\Android\SproutPace\shared\platform\src\androidMain\kotlin\com\sedsoftware\sproutpace\platform\AndroidSystemPickers.kt:137:14 The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled. [TooGenericExceptionCaught]
+
+
+> Task :detekt FAILED
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':detekt'.
+> Analysis failed with 2 issues.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 49s
+25 actionable tasks: 8 executed, 17 up-to-date
+Configuration cache entry stored.

@@ -77,7 +77,7 @@ private fun ScreenSnapshot.withInteractionContract(
             }
             field.copy(
                 value = values[field.id].orEmpty(),
-                options = repeatSnapshotOptions(screen, stableId, field.id, workspace) + options,
+                options = mergeSnapshotOptions(field.id, repeatSnapshotOptions(screen, stableId, field.id, workspace), options),
             )
         },
         facts = screenFacts(screen, stableId, workspace, preferences)
@@ -85,7 +85,6 @@ private fun ScreenSnapshot.withInteractionContract(
         actions = productionActions(screen, stableId, workspace, contract.actions),
     ).withSetupReadiness(screen, workspace)
 }
-
 
 private fun fieldValues(
     screen: ScreenId,
@@ -195,14 +194,17 @@ private fun repeatSnapshotOptions(
     screen: ScreenId, stableId: String?, field: ScreenFieldId, workspace: Workspace,
 ): List<ScreenOption> {
     if (screen != ScreenId.BATCH_EDITOR) return emptyList()
-    val sourceId = BatchRepeatDraft.sourceId(stableId) ?: return emptyList()
+    val repeating = BatchRepeatDraft.sourceId(stableId)
+    val sourceId = repeating ?: workspace.batches.firstOrNull { it.id.value == stableId }?.id?.value
+        ?: return emptyList()
     val source = workspace.batch(sourceId)
     val choice = BatchRepeatDraft.snapshotChoice(sourceId)
     return when (field.value) {
-        "recipeId" -> listOf(ScreenOption(choice,
+        "recipeId" -> if (repeating == null) emptyList() else listOf(ScreenOption(choice,
             labelKey = source.recipe.builtInCultureId?.let { key("culture_${it.value}_name") },
             authoredLabel = source.recipe.nameSnapshot, seedDensity = source.recipe.density))
-        "trayId" -> listOf(ScreenOption(choice, authoredLabel = source.tray.nameSnapshot, trayShape = source.tray.shape))
+        "trayId" -> listOf(ScreenOption(choice, authoredLabel = source.tray.nameSnapshot,
+            trayShape = source.tray.shape, seedDensity = source.recipe.density))
         else -> emptyList()
     }
 }
@@ -230,17 +232,15 @@ private fun batchEditorFieldValues(
         ?: batch?.recipe?.builtInCultureId?.value
         ?: workspace.recipes.firstOrNull { it.id.value == (sourceRecipe ?: fallbackRecipe) }?.cultureId?.value
         ?: SproutPaceCatalog.cultures.first().id.value
-    val sourceTray = batch?.let { current ->
-        workspace.trays.firstOrNull { it.name == current.tray.nameSnapshot && it.shape == current.tray.shape }
-    }
     return batchEditorSnapshotFields(
         stableId = batch?.id?.value,
         batch = batch,
         recipe = recipe,
         recipeId = sourceRecipe ?: fallbackRecipe,
         cultureId = culture,
-        tray = sourceTray ?: workspace.trays.firstOrNull(),
+        tray = if (batch == null) workspace.trays.firstOrNull() else null,
     ) + batchEditorScheduleFields(batch) + batchEditorCorrectionFields(batch) +
+        (batch?.let { mapOf("trayId" to BatchRepeatDraft.snapshotChoice(it.id.value)) } ?: emptyMap()) +
         if (suggestion != null) mapOf(
             "plannedSowDate" to suggestion.sowDate(timeZone().id).toString(),
             "fixedHarvestDate" to suggestion.targetHarvestDate.toString(),
@@ -269,10 +269,10 @@ private fun batchEditorSnapshotFields(
                 ?: recipe?.substrate.orEmpty(),
         )
         batch?.actualSeedMass?.value?.let { put("actualSeedMassGrams", it.toString()) }
-        (batch?.supplier ?: recipe?.supplier)?.let { put("supplier", it) }
-        (batch?.cultivar ?: recipe?.cultivar)?.let { put("cultivar", it) }
-        (batch?.seedLot ?: recipe?.seedLot)?.let { put("seedLot", it) }
-        (batch?.germinationPercentage ?: recipe?.germinationPercentage)?.value?.let {
+        (if (batch != null) batch.supplier else recipe?.supplier)?.let { put("supplier", it) }
+        (if (batch != null) batch.cultivar else recipe?.cultivar)?.let { put("cultivar", it) }
+        (if (batch != null) batch.seedLot else recipe?.seedLot)?.let { put("seedLot", it) }
+        (if (batch != null) batch.germinationPercentage else recipe?.germinationPercentage)?.value?.let {
             put("germinationPercentage", it.toString())
         }
 }
@@ -677,5 +677,18 @@ private fun stateAfter(batch: GrowBatch?, skipped: BatchState): BatchState = whe
             ScreenId.CATALOG,
             ScreenId.RECIPE,
         )
+    }
+}
+
+/** An unchanged preset occupies its existing row, but selects the immutable batch snapshot. */
+private fun mergeSnapshotOptions(
+    field: ScreenFieldId, snapshots: List<ScreenOption>, choices: List<ScreenOption>,
+): List<ScreenOption> {
+    val snapshot = snapshots.singleOrNull()?.takeIf { field.value == "trayId" } ?: return snapshots + choices
+    val matching = choices.indexOfFirst {
+        it.authoredLabel == snapshot.authoredLabel && it.trayShape == snapshot.trayShape
+    }
+    return if (matching < 0) snapshots + choices else choices.mapIndexed { index, option ->
+        if (index == matching) snapshot else option
     }
 }

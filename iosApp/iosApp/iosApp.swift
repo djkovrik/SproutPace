@@ -620,16 +620,9 @@ final class NativePlatformServices: NSObject, PHPickerViewControllerDelegate, UI
 
     private static func copyIntoPendingPhotoStorage(source: URL) throws -> URL {
         let root = try pendingPhotoDirectory()
-        for existing in try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil) {
-            try FileManager.default.removeItem(at: existing)
-        }
-        let extensionPart = source.pathExtension.filter { $0.isLetter || $0.isNumber }
-        let name = UUID().uuidString + (extensionPart.isEmpty ? "" : ".\(extensionPart)")
-        let destination = root.appendingPathComponent(name, isDirectory: false)
         let scoped = source.startAccessingSecurityScopedResource()
         defer { if scoped { source.stopAccessingSecurityScopedResource() } }
-        try FileManager.default.copyItem(at: source, to: destination)
-        return destination
+        return try PendingPhotoStorage.copy(source: source, root: root)
     }
 
     nonisolated private static func copyIntoOwnedStorage(source: URL) throws -> URL {

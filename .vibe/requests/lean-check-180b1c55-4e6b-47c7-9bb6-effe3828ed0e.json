@@ -1,0 +1,17 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    "detekt",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*NativeReminderProductionRegressionTest",
+    "--tests",
+    "*ReminderSchedulingStateTest",
+    "--tests",
+    "*EditorCorrectionRegressionTest",
+    ":androidApp:assembleDebugAndroidTest",
+    ":androidApp:assembleDebug"
+  ],
+  "timeoutSeconds": 1800
+}

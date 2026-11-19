@@ -14,6 +14,7 @@ import com.sedsoftware.sproutpace.domain.engine.SchedulingEngine
 import com.sedsoftware.sproutpace.domain.model.BatchId
 import com.sedsoftware.sproutpace.domain.model.BatchSuggestion
 import com.sedsoftware.sproutpace.domain.model.CapacityDecision
+import com.sedsoftware.sproutpace.domain.model.CultureId
 import com.sedsoftware.sproutpace.domain.model.GrowBatch
 import com.sedsoftware.sproutpace.domain.model.GrowStage
 import com.sedsoftware.sproutpace.domain.model.GrowZone
@@ -25,6 +26,7 @@ import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.minus
+import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
 
 internal data class PlannedSuggestion(val suggestion: BatchSuggestion, val route: List<ForecastReservation>)
@@ -44,6 +46,9 @@ internal fun Workspace.planningForecast(today: LocalDate, timeZone: TimeZone): L
     workspaceForecast(today, timeZone).suggestions
 
 internal fun Workspace.workspaceForecast(today: LocalDate, timeZone: TimeZone): WorkspaceForecast {
+    val earliestHarvestDates = plans.flatMap { it.cultureRotation }.distinct().associateWith {
+        earliestHarvestDate(it, today, timeZone)
+    }
     val candidates = plans.flatMap { plan ->
         if (plan.mode == HarvestPlanMode.CONTINUOUS_QUEUE) {
             listOfNotNull(ContinuousQueueEngine.next(plan, batches.mapNotNull { batch ->
@@ -51,11 +56,14 @@ internal fun Workspace.workspaceForecast(today: LocalDate, timeZone: TimeZone): 
                 val target = batch.actions.firstOrNull { it.stage == GrowStage.READY_FOR_HARVEST && it.userFixed }
                     ?.let { SchedulingEngine.resolvedInstant(it).toLocalDateTime(timeZone).date } ?: return@mapNotNull null
                 ContinuousQueueSlot(culture, target, batch.outcome?.occurredAt?.toLocalDateTime(timeZone)?.date)
-            }))
+            })?.let { candidate ->
+                val target = maxOf(candidate.targetHarvestDate, earliestHarvestDates.getValue(candidate.cultureId))
+                candidate.copy(id = "${plan.id.value}:continuous:$target", targetHarvestDate = target)
+            })
         } else {
             // Each saved batch can cover at most one slot in this plan. Extend the horizon
             // before filtering so accepted slots never exhaust the three visible proposals.
-            PlannerEngine.suggestions(plan, FORECAST_COUNT + batches.size) { _, _ -> CapacityDecision.Feasible }
+            PlannerEngine.suggestions(plan, FORECAST_COUNT + batches.size, earliestHarvestDates) { _, _ -> CapacityDecision.Feasible }
                 .filterNot(this::coversSuggestion).take(FORECAST_COUNT)
         }
     }.filterNot(this::coversSuggestion).sortedWith(compareBy({ it.sowDate(timeZone.id) }, { it.planId.value }, { it.id }))
@@ -82,6 +90,18 @@ internal fun Workspace.workspaceForecast(today: LocalDate, timeZone: TimeZone): 
         PlannedSuggestion(suggestion.copy(status = status), result.route)
     }
     return WorkspaceForecast(suggestions, allocations)
+}
+
+/** Use the same reverse/forward schedule as the editor, including pre-sowing soaking and DST. */
+private fun earliestHarvestDate(cultureId: CultureId, today: LocalDate, timeZone: TimeZone): LocalDate {
+    val stages = SproutPaceCatalog.cultures.first { it.id == cultureId }.stages
+        .map { RecipeStage(it.stage, it.duration, it.instructionKey) }
+    return generateSequence(today) { it + DatePeriod(days = 1) }.first { harvest ->
+        val sow = BatchPlanningEngine.sowDateForHarvest(stages, harvest, timeZone.id)
+        BatchPlanningEngine.plannedActions(BatchId("forecast"), stages, sow, emptyMap(), timeZone.id).all {
+            SchedulingEngine.resolvedInstant(it).toLocalDateTime(timeZone).date >= today
+        }
+    }
 }
 
 private data class ForecastDates(val sow: LocalDate, val light: LocalDate, val harvest: LocalDate)

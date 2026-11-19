@@ -473,16 +473,22 @@ class RootUiAdapterTest {
         assertEquals(ScreenAction.EditField(ScreenFieldId("documentId"), "document-42"), component.actions.single())
     }
 
-    @Test fun replacingPendingPhotoDiscardsOldTokenBeforeEditingDraft() {
+    @Test fun replacingPendingPhotoDiscardsOldTokenOnlyAfterDraftAcceptsNewToken() {
         val oldDraft = pendingPhotoDraftValue("old.jpg")
         val newDraft = pendingPhotoDraftValue("new.jpg")
-        val component = RecordingScreen(observationModel(oldDraft))
+        val component = RecordingScreen(observationModel(oldDraft), acceptEdits = true)
         val requests = mutableListOf<PlatformActionRequest>()
         lateinit var complete: (String) -> Unit
         val router = RootActionRouter(
             RecordingRoot(component),
             component,
-            PlatformActionHandler { request, result -> requests += request; complete = result },
+            PlatformActionHandler { request, result ->
+                requests += request
+                if (request.kind == PlatformActionKind.DISCARD_PENDING_PHOTO) {
+                    assertEquals(newDraft, component.model.value.fields.single().value)
+                    assertEquals(ScreenAction.EditField(ScreenFieldId("photoId"), newDraft), component.actions.single())
+                } else complete = result
+            },
         ) { "observation-1" }
 
         router.dispatch(UiAction.RequestPlatform(PlatformActionRequest(PlatformActionKind.CHOOSE_PHOTO, "photoId")))
@@ -496,6 +502,21 @@ class RootUiAdapterTest {
             requests.map { it.copy(onFailure = null) },
         )
         assertEquals(ScreenAction.EditField(ScreenFieldId("photoId"), newDraft), component.actions.single())
+    }
+
+    @Test fun rejectedPhotoReplacementDiscardsNewTokenAndPreservesOldSelection() {
+        val oldDraft = pendingPhotoDraftValue("old.jpg")
+        val newDraft = pendingPhotoDraftValue("new.jpg")
+        val component = RecordingScreen(observationModel(oldDraft))
+        val discarded = mutableListOf<String>()
+        val router = RootActionRouter(RecordingRoot(component), component,
+            PlatformActionHandler { request, result ->
+                if (request.kind == PlatformActionKind.CHOOSE_PHOTO) result(newDraft)
+                else discarded += request.opaqueValue!!
+            }) { null }
+        router.dispatch(UiAction.RequestPlatform(PlatformActionRequest(PlatformActionKind.CHOOSE_PHOTO, "photoId")))
+        assertEquals(oldDraft, component.model.value.fields.single().value)
+        assertEquals(listOf(newDraft), discarded)
     }
 
     @Test fun failedPhotoReplacementReportsErrorWithoutEditingOrDiscardingCurrentPhoto() {
@@ -688,10 +709,18 @@ private class RecordingAdvertisingRuntime(
 
 private class RecordingScreen(
     initial: ScreenModel = ScreenModel(ScreenId.TODAY, LoadState.CONTENT, TextKey("screen_today_title")),
+    private val acceptEdits: Boolean = false,
 ) : ScreenComponent {
-    override val model: Value<ScreenModel> = MutableValue(initial)
+    override val model = MutableValue(initial)
     val actions = mutableListOf<ScreenAction>()
-    override fun onAction(action: ScreenAction) { actions += action }
+    override fun onAction(action: ScreenAction) {
+        actions += action
+        if (acceptEdits && action is ScreenAction.EditField) {
+            model.value = model.value.copy(fields = model.value.fields.map {
+                if (it.id == action.fieldId) it.copy(value = action.value) else it
+            })
+        }
+    }
 }
 
 private class RecordingRoot(component: ScreenComponent) : AppRootComponent {

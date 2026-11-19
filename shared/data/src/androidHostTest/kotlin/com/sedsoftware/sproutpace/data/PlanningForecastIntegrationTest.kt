@@ -37,6 +37,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -80,7 +81,69 @@ class PlanningForecastIntegrationTest {
     private lateinit var manager: ProductionScreenDataManager
     private var today = LocalDate(2026, 10, 1)
     private val zone = GrowZone(GrowZoneId("a"), "First shelf", GrowZoneType.GROW_LIGHT, 1)
-    private val timeZone = TimeZone.UTC
+    private var timeZone: TimeZone = TimeZone.UTC
+
+    @Test fun longBreakAdvancesCadenceAndContinuousIncludingSoakWithoutCreatingBatches() = runTest {
+        database.saveZone(zone)
+        val stale = plan("stale").copy(anchorDate = LocalDate(2026, 10, 1),
+            cadence = HarvestCadenceDays(5), cultureRotation = listOf(CultureId("pea"), CultureId("radish")))
+        database.savePlan(stale)
+        today = LocalDate(2026, 11, 19)
+        fun assertFuture(rows: List<com.sedsoftware.sproutpace.component.ScreenItem>) {
+            rows.forEach { row ->
+                val entry = requireNotNull(row.planEntry)
+                val stages = SproutPaceCatalog.cultures.first { it.id.value == entry.cultureId }.stages
+                    .map { RecipeStage(it.stage, it.duration, it.instructionKey) }
+                val actions = BatchPlanningEngine.plannedActions(BatchId("preview"), stages,
+                    requireNotNull(entry.sowDate), emptyMap(), timeZone.id)
+                assertTrue(actions.all { (it.due as com.sedsoftware.sproutpace.domain.model.DueMoment.CivilTime)
+                    .localDateTime.date >= today }, "Sowing and soaking must be current: $entry")
+            }
+        }
+        val initial = manager.watch(ScreenId.PLAN).first().items
+        assertEquals(3, initial.size)
+        assertFuture(initial)
+        database.savePlan(stale.copy(paused = true))
+        assertTrue(manager.watch(ScreenId.PLAN).first().items.isEmpty())
+        database.savePlan(stale)
+        manager = ProductionScreenDataManager(database, MultiplatformProductSettings(MapSettings()),
+            today = { today }, timeZone = { timeZone })
+        assertEquals(initial, manager.watch(ScreenId.PLAN).first().items)
+        database.savePlan(stale.copy(mode = HarvestPlanMode.CONTINUOUS_QUEUE))
+        assertFuture(manager.watch(ScreenId.PLAN).first().items.also { assertEquals(1, it.size) })
+        val instant = Instant.parse("2027-01-01T12:30:00Z")
+        listOf("America/Los_Angeles", "Pacific/Kiritimati").forEach { zoneId ->
+            timeZone = TimeZone.of(zoneId)
+            today = instant.toLocalDateTime(timeZone).date
+            assertFuture(manager.watch(ScreenId.TODAY).first().items.also { assertEquals(1, it.size) })
+        }
+        assertTrue(database.snapshot().batches.isEmpty())
+        assertEquals(stale.anchorDate, database.snapshot().plans.single().anchorDate)
+    }
+
+    @Test fun advancingHorizonSkipsAcceptedSlotsPreservesFixedBatchAndStillChecksCapacity() = runTest {
+        today = LocalDate(2026, 11, 19)
+        database.saveZone(zone)
+        database.savePlan(plan("mixed").copy(anchorDate = LocalDate(2026, 10, 1), cadence = HarvestCadenceDays(5)))
+        val initial = manager.watch(ScreenId.PLAN).first().items
+        val acceptedTarget = requireNotNull(initial.first().planEntry?.harvestDate)
+        val accepted = batch(zone).copy(actions = BatchPlanningEngine.plannedActions(BatchId("committed"),
+            batch(zone).recipe.stages, LocalDate(2026, 10, 10),
+            mapOf(GrowStage.READY_FOR_HARVEST to acceptedTarget), timeZone.id))
+        database.saveBatch(accepted)
+        val suggestions = manager.watch(ScreenId.PLAN).first().items.filter { it.actionId == "confirm-suggestion" }
+        assertEquals(3, suggestions.size)
+        assertTrue(suggestions.none { it.id == initial.first().id })
+        initial.drop(1).forEach { before ->
+            assertEquals(before.planEntry?.harvestDate, suggestions.single { it.id == before.id }.planEntry?.harvestDate)
+        }
+        database.saveZone(zone.copy(capacity = 0))
+        assertTrue(manager.watch(ScreenId.PLAN).first().items.filter { it.actionId == "confirm-suggestion" }
+            .all { it.planEntry?.status == PlanEntryStatus.NEEDS_RESOLUTION })
+        today = LocalDate(2027, 2, 1)
+        manager.watch(ScreenId.PLAN).first()
+        assertEquals(accepted, database.snapshot().batches.single())
+    }
 
     @BeforeTest fun setUp() {
         factory = TestSqlDriverFactory()
@@ -105,16 +168,16 @@ class PlanningForecastIntegrationTest {
 
     @Test fun continuousCandidateSurvivesRolloverAndAcceptedBatchSuppressesUntilTerminalOutcome() = runTest {
         database.saveZone(zone)
-        val continuous = plan("continuous").copy(anchorDate = today, cadence = HarvestCadenceDays(5),
+        val continuous = plan("continuous").copy(anchorDate = LocalDate(2026, 10, 25), cadence = HarvestCadenceDays(5),
             cultureRotation = listOf(CultureId("radish"), CultureId("pea")), mode = HarvestPlanMode.CONTINUOUS_QUEUE)
         database.savePlan(continuous)
         val first = manager.watch(ScreenId.PLAN).first().items.single()
-        assertEquals(LocalDate(2026, 10, 6), first.planEntry?.harvestDate)
+        assertEquals(LocalDate(2026, 10, 30), first.planEntry?.harvestDate)
         today = LocalDate(2026, 10, 2)
         assertEquals(first, manager.watch(ScreenId.PLAN).first().items.single())
         assertEquals(first, manager.watch(ScreenId.TODAY).first().items.single())
         val accepted = batch(zone).copy(actions = BatchPlanningEngine.plannedActions(BatchId("committed"),
-            batch(zone).recipe.stages, today, mapOf(GrowStage.READY_FOR_HARVEST to LocalDate(2026, 10, 6)), timeZone.id))
+            batch(zone).recipe.stages, today, mapOf(GrowStage.READY_FOR_HARVEST to LocalDate(2026, 10, 30)), timeZone.id))
         database.saveBatch(accepted)
         today = LocalDate(2026, 10, 3)
         assertTrue(manager.watch(ScreenId.PLAN).first().items.none { it.actionId == "confirm-suggestion" })
@@ -124,7 +187,7 @@ class PlanningForecastIntegrationTest {
             outcome = BatchOutcome.Failed(Instant.parse("2026-10-03T12:00:00Z"))))
         val next = manager.watch(ScreenId.PLAN).first().items.single()
         assertEquals("pea", next.planEntry?.cultureId)
-        assertEquals(LocalDate(2026, 10, 11), next.planEntry?.harvestDate)
+        assertEquals(LocalDate(2026, 11, 4), next.planEntry?.harvestDate)
         today = LocalDate(2026, 10, 4)
         assertEquals(next, manager.watch(ScreenId.PLAN).first().items.single())
         assertEquals(1, database.snapshot().batches.size)
@@ -142,7 +205,7 @@ class PlanningForecastIntegrationTest {
         assertTrue(manager.watch(ScreenId.PLAN).first().items.none { it.actionId == "confirm-suggestion" })
         database.saveBatch(accepted.copy(state = BatchState.HARVESTED,
             outcome = BatchOutcome.Harvested(Instant.parse("2026-10-28T12:00:00Z"))))
-        assertEquals(LocalDate(2026, 11, 2), manager.watch(ScreenId.PLAN).first().items.single().planEntry?.harvestDate)
+        assertEquals(LocalDate(2026, 11, 9), manager.watch(ScreenId.PLAN).first().items.single().planEntry?.harvestDate)
     }
 
     @Test fun zonesAndSavedPlanRowsUseSameIntervalsAndConflictDates() = runTest {

@@ -164,6 +164,7 @@ class ProductionAppGraph internal constructor(
     )
     private val workspaceRecovery = WorkspaceRecoveryGate(applicationScope) {
         rootConstructed.await()
+        pendingPhotoImportStore.clear()
         backupService.recoverPendingReplacement()
         if (!database.hasMinimumGrowingSetup()) {
             withContext(mainContext) { rootComponent.resetToFirstRun() }
@@ -197,7 +198,6 @@ class ProductionAppGraph internal constructor(
     val lifecycleState: Lifecycle.State get() = lifecycleRegistry.state
 
     init {
-        applicationScope.launch { runCatching { pendingPhotoImportStore.clear() } }
         applicationScope.launch {
             workspaceRecovery.ready.first { it }
             productSettings.crashReportingEnabled.collect { preference ->
@@ -231,9 +231,14 @@ class ProductionAppGraph internal constructor(
 
     fun requestNotificationPermission() {
         applicationScope.launch {
-            reminderScheduling.run {
+            runCatching {
                 workspaceRecovery.awaitReady()
                 notificationPermissionService.request()
+            }.getOrElse { failure ->
+                reminderScheduling.reportFailure(failure)
+                return@launch
+            }
+            reminderScheduling.run {
                 reminderCoordinator.reconcile(ReconciliationReason.PERMISSION_RESTORED)
             }
         }

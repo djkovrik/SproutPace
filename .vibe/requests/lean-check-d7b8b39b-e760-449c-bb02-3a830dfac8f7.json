@@ -1,0 +1,20 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*EditorCorrectionRegressionTest",
+    "--tests",
+    "*ProductionPreviewProjectionTest",
+    "--tests",
+    "*ProductionUxRegressionTest",
+    "--tests",
+    "*RootUiAdapterTest",
+    "--tests",
+    "*DraftGuidanceAndPhotoProductionTest",
+    "--tests",
+    "*PlanHorizonProductionRegressionTest"
+  ],
+  "timeoutSeconds": 1800
+}

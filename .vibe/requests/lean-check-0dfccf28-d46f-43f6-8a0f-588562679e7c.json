@@ -1,0 +1,27 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*snapshot[161]",
+    "--tests",
+    "*snapshot[184]",
+    "--tests",
+    "*snapshot[195]",
+    "--tests",
+    "*snapshot[196]",
+    "--tests",
+    "*snapshot[212]",
+    "--tests",
+    "*snapshot[213]",
+    "--tests",
+    "*snapshot[215]",
+    "--tests",
+    "*snapshot[245]",
+    "--tests",
+    "*snapshot[246]",
+    ":shared:compose:recordPaparazzi"
+  ],
+  "timeoutSeconds": 1800
+}

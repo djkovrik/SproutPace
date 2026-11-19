@@ -1,0 +1,60 @@
+Reusing configuration cache.
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:androidJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+
+> Task :shared:data:compileAndroidHostTest
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt:124:21 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt:159:43 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+w: file:///D:/Sources/Android/SproutPace/shared/data/src/androidHostTest/kotlin/com/sedsoftware/sproutpace/data/PlanningForecastIntegrationTest.kt:179:46 'typealias Instant = Instant' is deprecated. This type is deprecated in favor of `kotlin.time.Instant`.
+
+> Task :shared:data:koverFindJar UP-TO-DATE
+> Task :shared:data:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:data:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+
+> Task :shared:data:testAndroidHostTest
+
+PlanningForecastIntegrationTest > longBreakAdvancesCadenceAndContinuousIncludingSoakWithoutCreatingBatches FAILED
+    java.lang.AssertionError at PlanningForecastIntegrationTest.kt:85
+
+1 test completed, 1 failed
+
+> Task :shared:data:testAndroidHostTest FAILED
+
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':shared:data:testAndroidHostTest'.
+> There were failing tests. See the report at: file:///D:/Sources/Android/SproutPace/shared/data/build/reports/tests/testAndroidHostTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 14s
+20 actionable tasks: 5 executed, 15 up-to-date
+Configuration cache entry reused.

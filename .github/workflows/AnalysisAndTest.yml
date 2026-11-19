@@ -130,6 +130,12 @@ jobs:
           :shared:compose:iosSimulatorArm64Test
           :shared:compose:linkDebugFrameworkIosSimulatorArm64
 
+      - name: Test native pending photo transactions
+        run: |
+          mkdir -p build/ios-ci
+          swiftc iosApp/iosApp/PendingPhotoStorage.swift iosApp/nativeTests/PendingPhotoStorageTest.swift -o build/ios-ci/pending-photo-tests
+          build/ios-ci/pending-photo-tests
+
       - name: Build the iOS host without signing
         run: |
           mkdir -p build/ios-ci

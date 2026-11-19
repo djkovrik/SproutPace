@@ -275,7 +275,7 @@ class ProductionUxRegressionTest {
         fixture { database, manager ->
             database.saveZone(GrowZone(GrowZoneId("zone"), "Grow shelf", GrowZoneType.GROW_LIGHT, 8))
             database.savePlan(HarvestPlan(
-                HarvestPlanId("rotation"), LocalDate.parse("2026-10-20"), HarvestCadenceDays(5),
+                HarvestPlanId("rotation"), LocalDate.parse("2026-10-30"), HarvestCadenceDays(5),
                 listOf(CultureId("radish"), CultureId("pea")), HarvestPlanMode.CADENCE,
             ))
             withComponent(manager, ScreenId.PLAN) { component ->
@@ -283,7 +283,7 @@ class ProductionUxRegressionTest {
                 assertTrue(items.size >= 3)
                 val entries = items.map { assertNotNull(it.planEntry, "Missing plan projection for ${it.id}") }
                 assertEquals(listOf("radish", "pea", "radish"), entries.take(3).map { it.cultureId })
-                assertEquals(listOf("2026-10-20", "2026-10-25", "2026-10-30"),
+                assertEquals(listOf("2026-10-30", "2026-11-04", "2026-11-09"),
                     entries.take(3).map { it.harvestDate.toString() })
                 entries.forEach { entry ->
                     assertNotNull(entry.sowDate)

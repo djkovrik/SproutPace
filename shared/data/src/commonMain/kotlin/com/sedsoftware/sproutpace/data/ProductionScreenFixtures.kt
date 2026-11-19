@@ -108,7 +108,8 @@ object ProductionScreenFixtures {
             return ProductionScreenSnapshotRenderer({ NOW }, { TODAY }, { TimeZone.UTC })
                 .snapshot(ScreenId.PLAN, "rotation", workspace, SettingsSnapshot(ThemePreference.SYSTEM, false, false,
                     SummaryLocalTime(), false, null)).items.first {
-                    it.planEntry?.status == com.sedsoftware.sproutpace.component.PlanEntryStatus.NEEDS_RESOLUTION
+                    it.actionId == "confirm-suggestion" &&
+                        it.planEntry?.status == com.sedsoftware.sproutpace.component.PlanEntryStatus.NEEDS_RESOLUTION
                 }.id
         }
         return scenarioSelection(scenario, fallback, screen)

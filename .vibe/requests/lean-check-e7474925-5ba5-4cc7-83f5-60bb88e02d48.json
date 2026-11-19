@@ -1,0 +1,19 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:component:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*EditorCorrectionRegressionTest",
+    "--tests",
+    "*ScreenComponentContractTest",
+    "--tests",
+    "*EditorSchedulePersistenceTest",
+    "--tests",
+    "*CommandInvocationIntegrationTest",
+    "--continue"
+  ],
+  "timeoutSeconds": 1800
+}

@@ -1,0 +1,10 @@
+INSTRUMENTATION_STATUS: class=com.sedsoftware.sproutpace.PlatformRegressionTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+com.sedsoftware.sproutpace.PlatformRegressionTest:
+INSTRUMENTATION_STATUS: test=testCancellationDuringNativeCopyPreservesPriorAndRemovesPartialFile
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0

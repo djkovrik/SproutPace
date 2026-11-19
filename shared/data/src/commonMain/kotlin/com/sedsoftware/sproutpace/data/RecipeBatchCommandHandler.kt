@@ -108,11 +108,12 @@ internal class RecipeBatchCommandHandler(
             actions = BatchPlanningEngine.plannedActions(
                 batchId, recipeSnapshot.stages, plannedSowDate, command.fixedStageDates(), timeZoneId,
             ),
-            supplier = command.optional("supplier") ?: sourceRecipe?.supplier,
-            cultivar = command.optional("cultivar") ?: sourceRecipe?.cultivar,
-            seedLot = command.optional("seedLot") ?: sourceRecipe?.seedLot,
-            germinationPercentage = command.optionalPercentage("germinationPercentage")
-                ?: sourceRecipe?.germinationPercentage,
+            supplier = command.updatedOptional("supplier", sourceRecipe?.supplier),
+            cultivar = command.updatedOptional("cultivar", sourceRecipe?.cultivar),
+            seedLot = command.updatedOptional("seedLot", sourceRecipe?.seedLot),
+            germinationPercentage = if (command.arguments.containsKey("germinationPercentage")) {
+                command.optionalPercentage("germinationPercentage")
+            } else sourceRecipe?.germinationPercentage,
             plannedSowDate = plannedSowDate,
             cultureIdSnapshot = command.optional("cultureId")?.let(::CultureId)
                 ?: sourceRecipe?.cultureId ?: recipeSnapshot.builtInCultureId,
@@ -166,7 +167,11 @@ internal class RecipeBatchCommandHandler(
 
     private fun selectedTray(command: ScreenCommand, workspace: Workspace): TraySizePreset? =
         command.optional("trayId")?.let { trayId ->
-            workspace.trays.firstOrNull { it.id.value == trayId } ?: error("Unknown tray")
+            val snapshotSource = BatchRepeatDraft.snapshotSource(trayId)
+            if (snapshotSource != null) {
+                require(snapshotSource == command.subject()) { "Only this batch's tray snapshot can be retained" }
+                null
+            } else workspace.trays.firstOrNull { it.id.value == trayId } ?: error("Unknown tray")
         }
 
     private fun correctedFields(
@@ -193,9 +198,7 @@ internal class RecipeBatchCommandHandler(
     )
 
     private fun correctedFixedDates(command: ScreenCommand, batch: GrowBatch): Map<GrowStage, LocalDate> =
-        if (FIXED_DATE_FIELDS.any(command.arguments::containsKey)) {
-            command.fixedStageDates()
-        } else batch.fixedDates()
+        command.fixedStageDates(batch.fixedDates())
 
     private fun GrowBatch.fixedDates(): Map<GrowStage, LocalDate> = actions.mapNotNull { action ->
         val due = action.due as? DueMoment.CivilTime

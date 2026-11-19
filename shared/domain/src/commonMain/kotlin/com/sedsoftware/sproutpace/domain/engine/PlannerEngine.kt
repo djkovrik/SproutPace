@@ -15,10 +15,21 @@ object PlannerEngine {
         plan: HarvestPlan,
         count: Int,
         capacityAt: (LocalDate, CultureId) -> CapacityDecision,
+    ): List<BatchSuggestion> = suggestions(plan, count, emptyMap(), capacityAt)
+
+    /** Keep absolute cadence slots and rotation when advancing the unconfirmed horizon. */
+    fun suggestions(
+        plan: HarvestPlan,
+        count: Int,
+        earliestHarvestDates: Map<CultureId, LocalDate>,
+        capacityAt: (LocalDate, CultureId) -> CapacityDecision,
     ): List<BatchSuggestion> {
         require(count >= 0)
         if (plan.paused) return emptyList()
-        return List(count) { index ->
+        val earliest = plan.cultureRotation.minOf { earliestHarvestDates[it] ?: plan.anchorDate }
+        val firstIndex = ((earliest.toEpochDays() - plan.anchorDate.toEpochDays()) / plan.cadence.value)
+            .coerceAtLeast(0).toInt()
+        return generateSequence(firstIndex) { it + 1 }.map { index ->
             val culture = plan.cultureRotation[index % plan.cultureRotation.size]
             val date = when (plan.mode) {
                 HarvestPlanMode.CADENCE -> plan.anchorDate + DatePeriod(days = plan.cadence.value * index)
@@ -29,7 +40,8 @@ object PlannerEngine {
                 is CapacityDecision.NeedsResolution -> SuggestionStatus.NeedsResolution(decision.conflict)
             }
             BatchSuggestion("${plan.id.value}:$index", plan.id, culture, date, status)
-        }
+        }.filter { it.targetHarvestDate >= (earliestHarvestDates[it.cultureId] ?: plan.anchorDate) }
+            .take(count).toList()
     }
 
     fun nextContinuousSuggestion(

@@ -1,0 +1,42 @@
+Reusing configuration cache.
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:domain:androidJar UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:domain:compileAndroidHostTest UP-TO-DATE
+> Task :shared:domain:koverFindJar UP-TO-DATE
+> Task :shared:domain:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:domain:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:domain:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:domain:testAndroidHostTest
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:component:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :shared:data:androidJar UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:data:compileAndroidHostTest UP-TO-DATE
+> Task :shared:data:koverFindJar UP-TO-DATE
+> Task :shared:data:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:data:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:data:processAndroidMainJavaRes UP-TO-DATE
+> Task :shared:data:testAndroidHostTest UP-TO-DATE
+
+BUILD SUCCESSFUL in 3s
+24 actionable tasks: 4 executed, 20 up-to-date
+Configuration cache entry reused.

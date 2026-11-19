@@ -196,21 +196,37 @@ internal class RootActionRouter(
             is UiAction.Submit -> submit(action.actionId, action.subjectId)
             UiAction.ConfirmStagePreview -> active.onAction(ScreenAction.ConfirmStagePreview)
             is UiAction.SubmitItem -> submitItem(action.operation, action.subjectId, action.arguments)
-            is UiAction.RequestPlatform -> platformActions.perform(action.request.withFailureHandler()) { result ->
-                if (result.isBlank()) return@perform
-                action.request.fieldId?.let { fieldId ->
-                    if (action.request.kind == PlatformActionKind.CHOOSE_PHOTO) {
-                        discardPendingPhoto(currentPhotoDraft())
-                    }
-                    active.onAction(ScreenAction.EditField(ScreenFieldId(fieldId), result))
-                }
-            }
+            is UiAction.RequestPlatform -> requestPlatform(action.request)
             is UiAction.ClearPickerSelection -> {
                 if (action.kind == PlatformActionKind.CHOOSE_PHOTO) {
                     discardPendingPhoto(action.currentValue)
                 }
                 val clearedValue = if (action.kind == PlatformActionKind.CHOOSE_PHOTO) REMOVE_PHOTO_VALUE else ""
                 active.onAction(ScreenAction.EditField(ScreenFieldId(action.fieldId), clearedValue))
+            }
+        }
+    }
+
+    private fun requestPlatform(request: PlatformActionRequest) {
+        val requestedPhoto = currentPhotoDraft()
+        platformActions.perform(request.withFailureHandler()) { result ->
+            if (result.isBlank()) return@perform
+            val choosingPhoto = request.kind == PlatformActionKind.CHOOSE_PHOTO
+            if (choosingPhoto &&
+                (root.stack.value.active.instance !== active || currentPhotoDraft() != requestedPhoto)
+            ) {
+                discardPendingPhoto(result)
+                return@perform
+            }
+            request.fieldId?.let { fieldId ->
+                active.onAction(ScreenAction.EditField(ScreenFieldId(fieldId), result))
+                if (choosingPhoto) {
+                    if (currentPhotoDraft() == result) {
+                        if (requestedPhoto != result) discardPendingPhoto(requestedPhoto)
+                    } else {
+                        discardPendingPhoto(result)
+                    }
+                }
             }
         }
     }

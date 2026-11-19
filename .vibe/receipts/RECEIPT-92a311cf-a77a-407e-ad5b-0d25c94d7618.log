@@ -1,0 +1,178 @@
+Calculating task graph as no cached configuration is available for tasks: :androidApp:assembleDebugAndroidTest
+
+> Configure project :shared:component
+w: [33m[1mNative task 'iosSimulatorArm64Test' is disabled[0m[0m
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (windows-x86_64).
+Reason: simulator tests require macOS
+[32m[1mSolution:[0m[0m
+[32m[3mTo suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.[0m[0m
+
+
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :androidApp:generateDebugBuildConfig UP-TO-DATE
+> Task :androidApp:generateDebugResources UP-TO-DATE
+> Task :androidApp:packageDebugResources UP-TO-DATE
+> Task :shared:component:androidPreBuild UP-TO-DATE
+> Task :shared:component:preAndroidMainBuild UP-TO-DATE
+> Task :shared:component:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:compose:androidPreBuild UP-TO-DATE
+> Task :shared:compose:preAndroidMainBuild UP-TO-DATE
+> Task :shared:compose:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:data:androidPreBuild UP-TO-DATE
+> Task :shared:data:preAndroidMainBuild UP-TO-DATE
+> Task :shared:data:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:domain:androidPreBuild UP-TO-DATE
+> Task :shared:domain:preAndroidMainBuild UP-TO-DATE
+> Task :shared:domain:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:monetization:androidPreBuild UP-TO-DATE
+> Task :shared:monetization:preAndroidMainBuild UP-TO-DATE
+> Task :shared:monetization:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:platform:androidPreBuild UP-TO-DATE
+> Task :shared:platform:preAndroidMainBuild UP-TO-DATE
+> Task :shared:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :shared:root:androidPreBuild UP-TO-DATE
+> Task :shared:root:preAndroidMainBuild UP-TO-DATE
+> Task :shared:root:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :androidApp:processDebugNavigationResources UP-TO-DATE
+> Task :androidApp:parseDebugLocalResources UP-TO-DATE
+> Task :androidApp:generateDebugRFile UP-TO-DATE
+> Task :shared:component:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:component:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:domain:compileAndroidMain UP-TO-DATE
+> Task :shared:domain:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:component:compileAndroidMain UP-TO-DATE
+> Task :shared:component:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:compose:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:compose:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:compose:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:compose:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:compose:convertXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:compose:copyNonXmlValueResourcesForCommonMain UP-TO-DATE
+> Task :shared:compose:prepareComposeResourcesTaskForCommonMain UP-TO-DATE
+> Task :shared:compose:generateResourceAccessorsForCommonMain UP-TO-DATE
+> Task :shared:compose:generateActualResourceCollectorsForAndroidMain UP-TO-DATE
+> Task :shared:compose:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :shared:compose:packageAndroidMainResources UP-TO-DATE
+> Task :shared:compose:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:compose:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:compose:generateComposeResClass UP-TO-DATE
+> Task :shared:compose:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :shared:data:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:data:generateCommonMainSproutPaceDatabaseInterface UP-TO-DATE
+> Task :shared:data:compileAndroidMain UP-TO-DATE
+> Task :shared:data:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:monetization:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:monetization:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:monetization:compileAndroidMain UP-TO-DATE
+> Task :shared:monetization:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:platform:packageAndroidMainResources UP-TO-DATE
+> Task :shared:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :shared:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :shared:platform:compileAndroidMain
+> Task :shared:platform:bundleAndroidMainClassesToCompileJar
+> Task :shared:root:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:root:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:root:compileAndroidMain UP-TO-DATE
+> Task :shared:root:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :shared:compose:kspAndroidMain
+> Task :shared:compose:copyRoomSchemas NO-SOURCE
+> Task :shared:compose:compileAndroidMain
+> Task :shared:compose:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :androidApp:compileDebugKotlin
+> Task :androidApp:javaPreCompileDebug UP-TO-DATE
+> Task :androidApp:compileDebugJavaWithJavac UP-TO-DATE
+> Task :shared:component:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:compose:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:data:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:domain:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:monetization:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:platform:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :shared:root:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :androidApp:checkDebugAarMetadata UP-TO-DATE
+> Task :androidApp:mapDebugSourceSetPaths UP-TO-DATE
+> Task :androidApp:compileDebugNavigationResources UP-TO-DATE
+> Task :androidApp:mergeDebugResources UP-TO-DATE
+> Task :androidApp:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :androidApp:extractDeepLinksDebug UP-TO-DATE
+> Task :shared:component:processAndroidMainManifest UP-TO-DATE
+> Task :shared:compose:processAndroidMainManifest UP-TO-DATE
+> Task :shared:data:processAndroidMainManifest UP-TO-DATE
+> Task :shared:domain:processAndroidMainManifest UP-TO-DATE
+> Task :shared:monetization:processAndroidMainManifest UP-TO-DATE
+> Task :shared:platform:processAndroidMainManifest UP-TO-DATE
+> Task :shared:root:processAndroidMainManifest UP-TO-DATE
+> Task :androidApp:processDebugMainManifest UP-TO-DATE
+> Task :androidApp:processDebugManifest UP-TO-DATE
+> Task :androidApp:processDebugManifestForPackage UP-TO-DATE
+> Task :shared:compose:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:compose:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :shared:platform:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :shared:platform:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :androidApp:processDebugResources UP-TO-DATE
+> Task :androidApp:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :androidApp:preDebugAndroidTestBuild SKIPPED
+> Task :androidApp:processDebugAndroidTestManifest
+> Task :androidApp:generateDebugAndroidTestBuildConfig
+> Task :androidApp:generateDebugAndroidTestResources
+> Task :androidApp:packageDebugAndroidTestResources
+> Task :androidApp:processDebugAndroidTestNavigationResources
+> Task :androidApp:parseDebugAndroidTestLocalResources
+> Task :androidApp:generateDebugAndroidTestRFile
+
+> Task :androidApp:compileDebugAndroidTestKotlin FAILED
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:8:16 Unresolved reference 'test'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:22:32 Unresolved reference 'InstrumentationTestCase'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:23:65 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:24:23 Unresolved reference 'instrumentation'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:25:61 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:25:61 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+fun <T> T.apply(block: T.() -> Unit): T
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:25:67 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:25:69 Unresolved reference 'mkdirs'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:26:45 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:26:45 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+fun <T> T.apply(block: T.() -> Unit): T
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:26:51 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:30:13 Unresolved reference 'fail'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:32:13 Unresolved reference 'assertTrue'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:32:30 Unresolved reference 'exists'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:33:13 Unresolved reference 'assertEquals'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:33:52 Unresolved reference 'listFiles'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:33:72 Unresolved reference 'it'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:34:27 Unresolved reference 'delete'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:38:23 Unresolved reference 'instrumentation'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:39:86 Unresolved reference 'commit'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:46:9 Unresolved reference 'assertEquals'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:51:9 Unresolved reference 'assertEquals'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:58:9 Unresolved reference 'assertEquals'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:59:9 Unresolved reference 'assertEquals'.
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:67:13 Class 'PlatformRegressionTest.RecordingLauncher' is not abstract and does not implement abstract base class member:
+val contract: ActivityResultContract<I, *>
+e: file:///D:/Sources/Android/SproutPace/androidApp/src/androidTest/java/com/sedsoftware/sproutpace/PlatformRegressionTest.kt:74:9 'getContract' overrides nothing.
+
+[Incubating] Problems report is available at: file:///D:/Sources/Android/SproutPace/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':androidApp:compileDebugAndroidTestKotlin' (registered by plugin 'com.android.internal.application').
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 45s
+90 actionable tasks: 20 executed, 70 up-to-date
+Configuration cache entry stored.

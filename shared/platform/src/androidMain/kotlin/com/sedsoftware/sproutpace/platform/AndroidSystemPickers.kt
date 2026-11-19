@@ -15,6 +15,8 @@ import kotlin.coroutines.resume
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import com.sedsoftware.sproutpace.data.requireSafePendingPhotoToken
 
 class AndroidSystemPickerHost(
@@ -85,45 +87,57 @@ class AndroidSystemPickerHost(
     }
 }
 
-private suspend fun importIntoPrivateStorage(
+suspend fun importIntoPrivateStorage(
     context: Context,
     source: Uri,
     kind: PickedContentKind,
-): ImportedFile = withContext(Dispatchers.IO) {
-    val resolver = context.contentResolver
-    val sourceName = resolver.displayName(source) ?: "import"
-    val safeExtension = sourceName.substringAfterLast('.', "")
-        .filter { it.isLetterOrDigit() }
-        .take(12)
-    val directoryName = if (kind == PickedContentKind.PHOTO) "pending_photos" else "imports"
-    val privateDirectory = File(context.filesDir, directoryName).canonicalFile.apply {
-        check(mkdirs() || isDirectory) { "private_import_directory_unavailable" }
-    }
-    if (kind == PickedContentKind.PHOTO) {
-        privateDirectory.listFiles().orEmpty()
-            .filter { candidate -> candidate.isFile && candidate.parentFile == privateDirectory }
-            .forEach { candidate -> check(candidate.delete()) { "pending_photo_cleanup_failed" } }
-    }
-    val target = File(privateDirectory, buildString {
-        append(UUID.randomUUID())
-        if (safeExtension.isNotEmpty()) append('.').append(safeExtension)
-    })
-    runCatching {
-        resolver.openInputStream(source).use { input ->
-            requireNotNull(input) { "selected_content_unreadable" }
-            target.outputStream().use(input::copyTo)
+): ImportedFile {
+    var copiedTarget: File? = null
+    return runCatching {
+        withContext(Dispatchers.IO) {
+            val resolver = context.contentResolver
+            val sourceName = resolver.displayName(source) ?: "import"
+            val safeExtension = sourceName.substringAfterLast('.', "")
+                .filter { it.isLetterOrDigit() }
+                .take(12)
+            val directoryName = if (kind == PickedContentKind.PHOTO) "pending_photos" else "imports"
+            val privateDirectory = File(context.filesDir, directoryName).canonicalFile.apply {
+                check(mkdirs() || isDirectory) { "private_import_directory_unavailable" }
+            }
+            val target = File(privateDirectory, buildString {
+                append(UUID.randomUUID())
+                if (safeExtension.isNotEmpty()) append('.').append(safeExtension)
+            })
+            copiedTarget = target
+            resolver.openInputStream(source).use { input ->
+                requireNotNull(input) { "selected_content_unreadable" }
+                target.outputStream().use { output ->
+                    val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+                    while (true) {
+                        currentCoroutineContext().ensureActive()
+                        val count = input.read(buffer)
+                        if (count < 0) break
+                        output.write(buffer, 0, count)
+                    }
+                }
+            }
+            ImportedFile(
+                appOwnedPath = target.absolutePath.takeIf { kind == PickedContentKind.BACKUP_ARCHIVE },
+                pendingToken = target.name.takeIf { kind == PickedContentKind.PHOTO },
+                displayName = sourceName,
+                mediaType = resolver.getType(source),
+                sizeBytes = target.length(),
+            )
         }
     }.getOrElse { failure ->
-        target.delete()
+        // Includes prompt cancellation while returning from the IO dispatcher.
+        copiedTarget?.let { target ->
+            if (target.exists() && !target.delete()) {
+                failure.addSuppressed(IllegalStateException("pending_photo_cleanup_failed"))
+            }
+        }
         throw failure
     }
-    ImportedFile(
-        appOwnedPath = target.absolutePath.takeIf { kind == PickedContentKind.BACKUP_ARCHIVE },
-        pendingToken = target.name.takeIf { kind == PickedContentKind.PHOTO },
-        displayName = sourceName,
-        mediaType = resolver.getType(source),
-        sizeBytes = target.length(),
-    )
 }
 
 private fun pendingPhotoFile(context: Context, token: String): File {

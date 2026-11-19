@@ -1,0 +1,10 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:domain:testAndroidHostTest",
+    ":shared:data:testAndroidHostTest",
+    "detekt"
+  ],
+  "timeoutSeconds": 1800
+}

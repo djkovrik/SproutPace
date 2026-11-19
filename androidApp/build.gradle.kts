@@ -53,6 +53,8 @@ if (firebaseCrashlyticsEnabled) {
 }
 
 android {
+    useLibrary("android.test.runner")
+    useLibrary("android.test.base")
     namespace = "com.sedsoftware.sproutpace"
     compileSdk = 37
 
@@ -63,6 +65,7 @@ android {
         applicationId = "com.sedsoftware.sproutpace"
         versionCode = 1
         versionName = "1.0.0"
+        testInstrumentationRunner = "android.test.InstrumentationTestRunner"
         val privacyUrl = configuredPrivacyPolicyUrl.get()
             .replace("\\", "\\\\")
             .replace("\"", "\\\"")
@@ -103,6 +106,7 @@ dependencies {
     testImplementation(libs.mvikotlin)
     testImplementation(libs.mvikotlin.main)
     testImplementation(libs.kotlinx.coroutines.core)
+    androidTestImplementation(libs.kotlinx.coroutines.core)
     if (firebaseCrashlyticsEnabled) {
         implementation(platform("com.google.firebase:firebase-bom:34.19.0"))
         implementation("com.google.firebase:firebase-crashlytics")

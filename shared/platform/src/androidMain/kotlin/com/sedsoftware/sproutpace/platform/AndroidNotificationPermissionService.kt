@@ -10,6 +10,8 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import kotlin.coroutines.resume
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -31,10 +33,10 @@ class AndroidNotificationPermissionService(
         return state.value
     }
 
-    override suspend fun request(): PermissionState {
-        if (pendingRequest != null) return PermissionState.Requesting
+    override suspend fun request(): PermissionState = withContext(Dispatchers.Main.immediate) {
+        if (pendingRequest != null) return@withContext PermissionState.Requesting
         val current = check()
-        return when {
+        when {
             current != PermissionState.Denied(true) -> current
             requestLauncher == null -> current
             else -> {
@@ -46,8 +48,15 @@ class AndroidNotificationPermissionService(
                         mutableState.value = currentPermissionState()
                         if (continuation.isActive) continuation.resume(state.value)
                     }
-                    continuation.invokeOnCancellation { pendingRequest = null }
-                    checkNotNull(requestLauncher).launch(Manifest.permission.POST_NOTIFICATIONS)
+                    // Keep the in-flight slot until Android delivers its result, even if the
+                    // caller cancels. Otherwise that late result could complete a newer request.
+                    runCatching {
+                        checkNotNull(requestLauncher).launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }.getOrElse { failure ->
+                        pendingRequest = null
+                        mutableState.value = currentPermissionState()
+                        throw failure
+                    }
                 }
             }
         }
@@ -71,7 +80,8 @@ class AndroidNotificationPermissionService(
         if (this.activity === activity) {
             this.activity = null
             requestLauncher = null
-            pendingRequest = null
+            // The application owns the request. The recreated Activity reattaches the
+            // registered result callback; dropping its continuation here strands the caller.
         }
     }
 

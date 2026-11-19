@@ -28,6 +28,18 @@ class PlannerAndSchedulingTest {
 
     private val feasible: (LocalDate, CultureId) -> CapacityDecision = { _, _ -> CapacityDecision.Feasible }
 
+    @Test fun advancingHorizonKeepsAbsoluteCadenceIndicesAndRotationWithDifferentLeadTimes() {
+        val earliest = mapOf(CultureId("radish") to LocalDate(2026, 11, 1),
+            CultureId("pea") to LocalDate(2026, 11, 10))
+        val result = PlannerEngine.suggestions(plan(), 3, earliest, feasible)
+        assertEquals(listOf("plan-1:14", "plan-1:16", "plan-1:17"), result.map { it.id })
+        assertEquals(listOf("radish", "radish", "pea"), result.map { it.cultureId.value })
+        assertEquals(listOf(LocalDate(2026, 11, 1), LocalDate(2026, 11, 7), LocalDate(2026, 11, 10)),
+            result.map { it.targetHarvestDate })
+        assertEquals(result, PlannerEngine.suggestions(plan(), 3, earliest, feasible))
+        assertTrue(PlannerEngine.suggestions(plan().copy(paused = true), 3, earliest, feasible).isEmpty())
+    }
+
     @Test fun ac050_positiveCadenceAndRotationGenerateSuggestionsNotBatches() {
         val plan = plan()
         val suggestions = PlannerEngine.suggestions(plan, 3, feasible)

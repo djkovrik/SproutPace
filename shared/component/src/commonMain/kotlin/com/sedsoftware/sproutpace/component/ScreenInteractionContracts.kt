@@ -152,7 +152,8 @@ internal fun ScreenOperationContract.prepare(
     if (errors.isNotEmpty()) return CommandPreparation.Invalid(errors)
 
     val arguments = applicableArguments.mapNotNull { argument ->
-        draft[ScreenFieldId(argument.name)]?.let(argument::normalizedValue)?.takeIf(String::isNotEmpty)
+        draft[ScreenFieldId(argument.name)]?.let(argument::normalizedValue)
+            ?.takeIf { it.isNotEmpty() || argument.name in CLEARABLE_ARGUMENTS }
             ?.let { argument.name to it }
     }.toMap()
     val deduplicationKey = buildList {
@@ -164,6 +165,12 @@ internal fun ScreenOperationContract.prepare(
         ScreenCommand(operation, normalizedSubject, arguments, deduplicationKey).newInvocation(),
     )
 }
+
+/** Missing key leaves persisted data unchanged; present empty value explicitly clears nullable input. */
+private val CLEARABLE_ARGUMENTS = setOf(
+    "supplier", "cultivar", "seedLot", "germinationPercentage",
+    "fixedSoakingDate", "fixedSownDate", "fixedBlackoutDate", "fixedLightDate", "fixedHarvestDate",
+)
 
 /** Authored content is data: whitespace is significant, unlike identifiers and numeric controls. */
 private fun CommandArgument.normalizedValue(value: String): String =

@@ -1,0 +1,10 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":shared:data:testAndroidHostTest",
+    "--tests",
+    "*PlanningForecastIntegrationTest.longBreak*"
+  ],
+  "timeoutSeconds": 1800
+}

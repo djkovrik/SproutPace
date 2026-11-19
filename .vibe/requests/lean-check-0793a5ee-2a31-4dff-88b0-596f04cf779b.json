@@ -1,0 +1,12 @@
+{
+  "coveredObligations": [],
+  "kind": "integration",
+  "tasks": [
+    ":androidApp:assembleDebugAndroidTest",
+    ":androidApp:assembleDebug",
+    ":shared:compose:testAndroidHostTest",
+    "--tests",
+    "*NativeReminderProductionRegressionTest*"
+  ],
+  "timeoutSeconds": 1800
+}

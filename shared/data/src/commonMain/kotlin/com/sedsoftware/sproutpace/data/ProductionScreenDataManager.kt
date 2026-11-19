@@ -754,17 +754,22 @@ internal fun ScreenCommand.authoredRecipeStages(): List<RecipeStage> {
     return stages
 }
 
-internal fun ScreenCommand.fixedStageDates(): Map<GrowStage, LocalDate> = listOf(
+internal fun ScreenCommand.fixedStageDates(
+    current: Map<GrowStage, LocalDate> = emptyMap(),
+): Map<GrowStage, LocalDate> = current.toMutableMap().apply {
+    listOf(
     GrowStage.SOAKING to "fixedSoakingDate",
     GrowStage.SOWN to "fixedSownDate",
     GrowStage.BLACKOUT_OR_WEIGHT to "fixedBlackoutDate",
     GrowStage.LIGHT_GROWTH to "fixedLightDate",
     GrowStage.READY_FOR_HARVEST to "fixedHarvestDate",
-).mapNotNull { (stage, field) -> optional(field)?.let { stage to LocalDate.parse(it) } }.toMap()
-
-internal val FIXED_DATE_FIELDS = setOf(
-    "fixedSoakingDate", "fixedSownDate", "fixedBlackoutDate", "fixedLightDate", "fixedHarvestDate",
-)
+    ).forEach { (stage, field) ->
+        if (arguments.containsKey(field)) {
+            remove(stage)
+            optional(field)?.let { put(stage, LocalDate.parse(it)) }
+        }
+    }
+}
 
 internal fun ScreenCommand.correctedActualDates(): Map<BatchState, Instant> = listOf(
     BatchState.SOAKING to "actualSoakingAt",

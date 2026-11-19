@@ -11,6 +11,14 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class ReminderSchedulingStateTest {
+    @Test fun cancelledPermissionRequestRemainsCancellation() = runTest {
+        val monitor = ReminderSchedulingMonitor()
+        kotlin.test.assertFailsWith<kotlinx.coroutines.CancellationException> {
+            monitor.reportFailure(kotlinx.coroutines.CancellationException("host_closed"))
+        }
+        assertEquals(ReminderSchedulingState.IDLE, monitor.state.value)
+    }
+
     @Test
     fun partialOsFailureIsVisibleAndSuccessfulRetryClearsWarning() = runTest {
         val monitor = ReminderSchedulingMonitor()

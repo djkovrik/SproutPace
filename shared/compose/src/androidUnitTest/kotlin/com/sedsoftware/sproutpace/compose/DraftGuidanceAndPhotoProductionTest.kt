@@ -11,6 +11,28 @@ import java.util.Base64
 import kotlin.test.*
 
 class DraftGuidanceAndPhotoProductionTest {
+    @Test fun latePhotoResultAfterRemovalIsDiscardedWithoutRestoringSelection() = runTest {
+        withPublicWorkspace { directory, preferences ->
+            PublicProductionFixture(directory, preferences).use { fixture ->
+                fixture.seed()
+                fixture.open(ScreenId.OBSERVATION_EDITOR, "batch")
+                fixture.edit(mapOf("photoId" to pendingPhotoDraftValue("a")))
+                var complete: ((String) -> Unit)? = null
+                val discarded = mutableListOf<String>()
+                fixture.platformHandler = PlatformActionHandler { request, callback ->
+                    if (request.kind == PlatformActionKind.CHOOSE_PHOTO) complete = callback
+                    if (request.kind == PlatformActionKind.DISCARD_PENDING_PHOTO) discarded += request.opaqueValue!!
+                }
+                fixture.dispatch(UiAction.RequestPlatform(PlatformActionRequest(PlatformActionKind.CHOOSE_PHOTO, "photoId")))
+                fixture.dispatch(UiAction.ClearPickerSelection("photoId", fixture.field("photoId"), PlatformActionKind.CHOOSE_PHOTO))
+                val removed = fixture.field("photoId")
+                complete!!(pendingPhotoDraftValue("b"))
+                assertEquals(removed, fixture.field("photoId"))
+                assertEquals(listOf(pendingPhotoDraftValue("a"), pendingPhotoDraftValue("b")), discarded)
+            }
+        }
+    }
+
     @Test
     fun unsavedSelectionsRecalculateRecommendationWithoutReplacingExplicitSeedMass() = runTest {
         withPublicWorkspace { directory, preferences ->

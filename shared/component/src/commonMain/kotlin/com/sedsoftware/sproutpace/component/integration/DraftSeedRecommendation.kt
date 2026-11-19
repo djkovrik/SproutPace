@@ -1,6 +1,7 @@
 package com.sedsoftware.sproutpace.component.integration
 
 import com.sedsoftware.sproutpace.component.ScreenActionDescriptor
+import com.sedsoftware.sproutpace.component.BatchRepeatDraft
 import com.sedsoftware.sproutpace.component.ScreenFact
 import com.sedsoftware.sproutpace.component.ScreenField
 import com.sedsoftware.sproutpace.component.ScreenId
@@ -13,12 +14,18 @@ fun List<ScreenFact>.withDraftSeedRecommendation(
     fields: List<ScreenField>,
     actions: List<ScreenActionDescriptor>,
 ): List<ScreenFact> {
-    if (screen != ScreenId.BATCH_EDITOR || actions.none { it.id.value == "save-batch" }) return this
+    val correcting = actions.any { it.id.value == "correct-batch" }
+    if (screen != ScreenId.BATCH_EDITOR ||
+        (!correcting && actions.none { it.id.value == "save-batch" })
+    ) return this
     val tray = fields.firstOrNull { it.id.value == "trayId" }
+    if (correcting && BatchRepeatDraft.snapshotSource(tray?.value) != null) return this
     val recipe = fields.firstOrNull { it.id.value == "recipeId" && it.value.isNotBlank() }
         ?: fields.firstOrNull { it.id.value == "cultureId" }
     val shape = tray?.options?.firstOrNull { it.id == tray.value }?.trayShape
-    val density = recipe?.options?.firstOrNull { it.id == recipe.value }?.seedDensity
+    val density = if (correcting) {
+        tray?.options?.firstOrNull { BatchRepeatDraft.snapshotSource(it.id) != null }?.seedDensity
+    } else recipe?.options?.firstOrNull { it.id == recipe.value }?.seedDensity
     val recommendation = if (shape != null && density != null) ScreenFact(
         "recommended-seed-mass", TextKey("field_recommended_seed_mass"),
         authoredValue = MeasurementEngine.recommendedSeedMass(shape, density).value.toString(),

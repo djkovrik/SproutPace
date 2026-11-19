@@ -18,6 +18,11 @@ internal class ReminderSchedulingMonitor {
     val state = mutableState.asStateFlow()
     private val mutex = Mutex()
 
+    fun reportFailure(cause: Throwable) {
+        if (cause is CancellationException) throw cause
+        mutableState.value = ReminderSchedulingState.FAILED
+    }
+
     suspend fun run(block: suspend () -> ReminderReconciliationResult) = mutex.withLock {
         mutableState.value = ReminderSchedulingState.RUNNING
         try {

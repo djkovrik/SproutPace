@@ -36,6 +36,95 @@ import kotlin.time.Duration.Companion.hours
 /** Real production graph and public root commands; native registration is the observed boundary. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class NativeReminderProductionRegressionTest {
+    @Test fun startupPhotoCleanupFinishesBeforeEditorBecomesReady() = runTest {
+        withPublicWorkspace { directory, preferences ->
+            arrangePlannedBatch(directory, preferences)
+            val pending = InMemoryPendingPhotoImportStore()
+            pending.stage("orphan", byteArrayOf(9))
+            val releaseCleanup = kotlinx.coroutines.CompletableDeferred<Unit>()
+            val delayed = object : com.sedsoftware.sproutpace.data.PendingPhotoImportStore by pending {
+                override suspend fun clear() { releaseCleanup.await(); pending.clear() }
+            }
+            GraphFixture(directory, preferences, this, pending = delayed).use { fixture ->
+                fixture.start(this)
+                assertFalse(fixture.graph.workspaceReady.value, "Editors must not race orphan cleanup")
+                releaseCleanup.complete(Unit)
+                runCurrent()
+                assertTrue(fixture.graph.workspaceReady.value)
+                kotlin.test.assertNull(pending.read("orphan"))
+                pending.stage("selected-a", byteArrayOf(1, 2, 3))
+                fixture.graph.onPause()
+                fixture.graph.onResume()
+                runCurrent()
+                kotlin.test.assertContentEquals(byteArrayOf(1, 2, 3), pending.read("selected-a"))
+            }
+        }
+    }
+
+    @Test fun permissionLaunchFailureIsReportedAndCanRetry() = runTest {
+        withPublicWorkspace { directory, preferences ->
+            arrangePlannedBatch(directory, preferences)
+            val permission = WaitingPermission(failRequest = true)
+            GraphFixture(directory, preferences, this, permission).use { fixture ->
+                fixture.start(this)
+                fixture.graph.root.open(ScreenId.NOTIFICATIONS)
+                runCurrent()
+                fixture.graph.requestNotificationPermission()
+                runCurrent()
+                assertEquals("notifications_schedule_failed", fixture.graph.root.stack.value.active.instance.model.value
+                    .facts.single { it.id == "reminder-scheduling" }.valueKey?.value)
+                permission.failRequest = false
+                permission.result.complete(PermissionState.Granted)
+                fixture.graph.requestNotificationPermission()
+                runCurrent()
+                assertFalse(fixture.graph.root.stack.value.active.instance.model.value.facts.any { it.id == "reminder-scheduling" })
+            }
+        }
+    }
+
+    @Test fun foregroundReconciliationContinuesWhilePermissionDialogIsOpen() = runTest {
+        withPublicWorkspace { directory, preferences ->
+            arrangePlannedBatch(directory, preferences)
+            val permission = WaitingPermission()
+            GraphFixture(directory, preferences, this, permission).use { fixture ->
+                fixture.start(this)
+                fixture.graph.root.open(ScreenId.BATCH_DETAIL, "batch")
+                runCurrent()
+                fixture.dispatch(UiAction.Submit("start-soaking", "batch"))
+                runCurrent()
+                val batch = fixture.batch()
+                val target = batch.actions.single { it.kind == ScheduledActionKind.SOAK_TARGET }
+                val expectedId = PhysicalReminderId("sproutpace:soak:batch:${target.id.value}")
+                fixture.graph.requestNotificationPermission()
+                runCurrent()
+                assertTrue(permission.waiting)
+                val checks = permission.checks
+                fixture.graph.onPause()
+                fixture.graph.onResume()
+                runCurrent()
+                assertTrue(permission.checks > checks, "A dialog must not lock foreground reconciliation")
+                permission.result.complete(PermissionState.Granted)
+                runCurrent()
+                assertEquals(setOf(expectedId), fixture.physical.registeredIds())
+                fixture.graph.reconcile(com.sedsoftware.sproutpace.platform.ReconciliationReason.PRODUCT_DATA_CHANGED)
+                runCurrent()
+                assertEquals(setOf(expectedId), fixture.physical.registeredIds())
+            }
+        }
+    }
+
+    private class WaitingPermission(var failRequest: Boolean = false) : com.sedsoftware.sproutpace.platform.NotificationPermissionService {
+        override val state = kotlinx.coroutines.flow.MutableStateFlow<PermissionState>(PermissionState.Denied(true))
+        val result = kotlinx.coroutines.CompletableDeferred<PermissionState>()
+        var checks = 0
+        var waiting = false
+        override suspend fun check(): PermissionState { checks++; return state.value }
+        override suspend fun request(): PermissionState {
+            check(!failRequest) { "permission_launch_failed" }
+            waiting = true
+            return result.await().also { state.value = it; waiting = false }
+        }
+    }
     @Test fun publicStartSoakingImmediatelyRegistersOneElapsedReminderWithoutAnotherResume() = runTest {
         withPublicWorkspace { directory, preferences ->
             arrangePlannedBatch(directory, preferences)
@@ -103,7 +192,11 @@ class NativeReminderProductionRegressionTest {
         }
     }
 
-    private class GraphFixture(directory: Path, preferences: MapSettings, scope: TestScope) : AutoCloseable {
+    private class GraphFixture(directory: Path, preferences: MapSettings, scope: TestScope,
+        permission: com.sedsoftware.sproutpace.platform.NotificationPermissionService =
+            FakeNotificationPermissionService(PermissionState.Granted),
+        pending: com.sedsoftware.sproutpace.data.PendingPhotoImportStore = InMemoryPendingPhotoImportStore(),
+    ) : AutoCloseable {
         private val dispatcher = StandardTestDispatcher(scope.testScheduler)
         private val driver = JdbcSqliteDriver("jdbc:sqlite:${directory.resolve("workspace.db").toAbsolutePath()}")
         private val factory = object : SqlDriverFactory {
@@ -112,9 +205,9 @@ class NativeReminderProductionRegressionTest {
         }
         private val inspection = LocalDatabase(factory, dispatcher)
         val physical = FakeReminderDriver()
-        val graph = ProductionAppGraph(factory, preferences, InMemoryPrivateFileStore(), InMemoryPendingPhotoImportStore(),
+        val graph = ProductionAppGraph(factory, preferences, InMemoryPrivateFileStore(), pending,
             PublicFileDocuments(directory.resolve("documents")), physical,
-            FakeNotificationPermissionService(PermissionState.Granted), FakeCrashReportingDriver(),
+            permission, FakeCrashReportingDriver(),
             dispatcher, dispatcher, false, DefaultStoreFactory(), DefaultStoreFactory(),
             nowEpochMillis = { CLOCK.toEpochMilliseconds() }, timeZone = { TimeZone.UTC }, screenTimeTicks = emptyFlow())
 
